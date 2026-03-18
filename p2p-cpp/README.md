@@ -33,7 +33,7 @@ P2P Platform C++ 是 Python 版本的高性能重写，提供：
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-org/p2p-platform.git
+git clone https://github.com/hbliu007/peerlink.git
 cd p2p-platform/p2p-cpp
 
 # 构建
@@ -281,8 +281,8 @@ MIT License - 详见 [LICENSE](../LICENSE)
 
 ## 联系我们
 
-- Issues: [GitHub Issues](https://github.com/your-org/p2p-platform/issues)
-- Discussions: [GitHub Discussions](https://github.com/your-org/p2p-platform/discussions)
+- Issues: [GitHub Issues](https://github.com/hbliu007/peerlink/issues)
+- Discussions: [GitHub Discussions](https://github.com/hbliu007/peerlink/discussions)
 
 ---
 

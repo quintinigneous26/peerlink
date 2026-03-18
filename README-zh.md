@@ -91,7 +91,7 @@ P2P Platform 是一套完整的去中心化 P2P 通信解决方案，实现了 l
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-org/p2p-platform.git
+git clone https://github.com/hbliu007/peerlink.git
 cd p2p-platform
 
 # 启动所有服务
@@ -156,7 +156,7 @@ docker-compose up -d
 
 ```bash
 # 下载 RPM 包
-wget https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform-1.0.0.rpm
+wget https://github.com/hbliu007/peerlink/releases/download/v1.0.0/p2p-platform-1.0.0.rpm
 
 # 安装
 sudo rpm -ivh p2p-platform-1.0.0.rpm
@@ -175,7 +175,7 @@ sudo systemctl enable p2p-stun p2p-relay p2p-signaling p2p-did
 
 ```bash
 # 下载 DEB 包
-wget https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform_1.0.0_amd64.deb
+wget https://github.com/hbliu007/peerlink/releases/download/v1.0.0/p2p-platform_1.0.0_amd64.deb
 
 # 安装
 sudo dpkg -i p2p-platform_1.0.0_amd64.deb
@@ -198,7 +198,7 @@ pip install p2p-platform-sdk
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-org/p2p-platform.git
+git clone https://github.com/hbliu007/peerlink.git
 cd p2p-platform
 
 # 安装依赖
@@ -363,9 +363,9 @@ JWT_EXPIRATION=3600
 
 ## 📞 联系我们
 
-- 问题反馈: [GitHub Issues](https://github.com/your-org/p2p-platform/issues)
-- 功能建议: [GitHub Discussions](https://github.com/your-org/p2p-platform/discussions)
-- 邮件: support@your-org.com
+- 问题反馈: [GitHub Issues](https://github.com/hbliu007/peerlink/issues)
+- 功能建议: [GitHub Discussions](https://github.com/hbliu007/peerlink/discussions)
+- 邮件: support@peerlink.dev
 
 ---
 
