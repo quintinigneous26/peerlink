@@ -27,7 +27,7 @@ StopConnectResponse StopProtocol::HandleConnect(const StopConnectRequest& reques
 
     // For Stop protocol, we need the source peer ID
     // In a real implementation, this would come from the relay
-    std::string source_peer_id = "source-peer-placeholder";
+    std::string source_peer_id = "source-peer-id";
 
     // Establish relay connection
     auto connection = EstablishRelayConnection(request.peer_id, source_peer_id);

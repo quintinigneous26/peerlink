@@ -509,7 +509,7 @@ asio::awaitable<json> MessageHandler::handle_relay_request(
             {"session_id", session_id},
             {"use_relay", true},
             {"relay_info", {
-                {"host", "relay.example.com"},
+                {"host", "relay.peerlink.example.org"},
                 {"port", 50000}
             }}
         }},

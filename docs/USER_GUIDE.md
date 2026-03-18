@@ -289,7 +289,7 @@ upstream did_backend {
 
 server {
     listen 443 ssl http2;
-    server_name peerlink.example.com;
+    server_name peerlink.example.org;
 
     ssl_certificate /etc/ssl/certs/peerlink.crt;
     ssl_certificate_key /etc/ssl/private/peerlink.key;
@@ -585,7 +585,7 @@ wscat -c ws://localhost:8080
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
 
 # Let's Encrypt（生产环境）
-sudo certbot certonly --standalone -d peerlink.example.com
+sudo certbot certonly --standalone -d peerlink.example.org
 ```
 
 2. **配置 Nginx** (参考上面的 Nginx 配置)
@@ -593,7 +593,7 @@ sudo certbot certonly --standalone -d peerlink.example.com
 3. **更新客户端连接**:
 ```python
 client = P2PClient(
-    signaling_server="peerlink.example.com",
+    signaling_server="peerlink.example.org",
     signaling_port=443,
     use_ssl=True
 )

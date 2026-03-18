@@ -955,7 +955,7 @@ docker push peerlink:1.1.0
 - **文档**: [docs/](./)
 - **Issues**: [GitHub Issues](https://github.com/hbliu007/peerlink/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/hbliu007/peerlink/discussions)
-- **邮件**: support@peerlink.example.com
+- **邮件**: dev@peerlink-project.io
 
 ---
 

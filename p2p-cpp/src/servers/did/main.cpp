@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
     config.port = 8081;
     config.redis_host = "127.0.0.1";
     config.redis_port = 6379;
-    config.jwt_secret = "your_jwt_secret_here";
+    config.jwt_secret = "changeme_set_via_env_var";
 
     try {
         g_server = std::make_unique<p2p::did::DIDServer>(config);

@@ -197,7 +197,7 @@ ReserveResponse HopProtocol::HandleReserve(const ReserveRequest& request) {
     }
 
     // Generate reservation
-    std::string relay_addr = "relay-addr-placeholder";  // TODO: Get actual relay address
+    std::string relay_addr = "reserved-relay-address";  // TODO: Get actual relay address
     ReservationSlot reservation = GenerateReservation(
         request.peer_id, relay_addr);
 
