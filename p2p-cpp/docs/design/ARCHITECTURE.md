@@ -16,7 +16,7 @@
 | **跨平台** | Linux/macOS/Windows/iOS/Android 全平台支持 |
 | **多语言绑定** | Python/Java/Swift/JavaScript C API 绑定 |
 | **libp2p 兼容** | 完整实现 libp2p 协议栈，与 go-libp2p 互操作 |
-| **易于集成** | 简洁的 C API，类似尚云互联 SDK 风格 |
+| **易于集成** | 简洁的 C API，主流 SDK 风格 |
 | **安全可靠** | TLS 1.3/Noise 加密，完整的错误处理 |
 
 ### 1.2 性能指标

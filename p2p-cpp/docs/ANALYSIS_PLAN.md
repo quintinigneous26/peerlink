@@ -18,11 +18,11 @@
 - 确保1:1迁移完整性
 - 识别缺失功能
 
-### 任务3: 尚云互联功能对比
+### 任务3: 第三方 P2P 平台功能对比
 **负责人**: 待分配
 **状态**: 待开始 ⏳
 **目标**:
-- 连接尚云互联服务器测试
+- 连接第三方 P2P 平台服务器测试
 - 对比协议兼容性
 - 性能对比
 
@@ -69,7 +69,7 @@
 
 1. `TEST_COVERAGE_ANALYSIS.md` - 测试覆盖率分析报告
 2. `PYTHON_CPP_FEATURE_COMPARISON.md` - Python/C++功能对比
-3. `SHANGYUN_COMPARISON.md` - 尚云互联对比报告
+3. `P2P_PLATFORM_COMPARISON.md` - 第三方平台对比报告
 4. `OPENSOURCE_COMPARISON.md` - 开源代码对比报告
 5. `TEST_SUPPLEMENT_PLAN.md` - 测试补充计划
 6. `COMPREHENSIVE_COMPARISON_REPORT.md` - 综合对比总结
