@@ -1,0 +1,221 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+webrtc 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1transport_1_1webrtc}{}\label{namespacep2p__engine_1_1transport_1_1webrtc}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message_type}{Signaling\+Message\+Type}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message}{Signaling\+Message}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_i_c_e_server}{ICEServer}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection}{Web\+RTCConnection}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener}{Web\+RTCListener}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport}{Web\+RTCTransport}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_ad29e2b85e6af090f70efbc7e830ffd4f}{HAS\+\_\+\+AIORTC}} = True
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_a4dff7168b0b72c800ef565ebd109b9cf}{RTCPeer\+Connection}} = None
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_afe9dbb6b67893274b1a60104245c89e0}{RTCSession\+Description}} = None
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_a9421959fab51e67801d78f6dce60abfb}{RTCConfiguration}} = None
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_aa2f5ec4b2c25486d92dfa9dd500a2f18}{RTCIce\+Server}} = None
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_a8d4c127bcff76574b33b29e2370cfedf}{Data\+Channel}} = None
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_a03aac704f8ab3312ea748f0b9cb5205e}{Connection\+Error}} = Base\+Connection\+Error
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_ac3e1f4f6c09e0b6678053bc7b27b48e2}{Listener\+Error}} = Base\+Listener\+Error
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_aa68b8e957eaaede02f7e0fa4bbd5b465}{logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+transport.\+webrtc"{})
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_a6842962a59d75e6d9557fcda51e2c4e2}{PROTOCOL\+\_\+\+ID}} = "{}/\+webrtc-\/direct"{}
+\item 
+list \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_aabc396993f393facc979835462becc44}{DEFAULT\+\_\+\+STUN\+\_\+\+SERVERS}}
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_ad6e682421813f8de3c0357aeaf3d9600}{DEFAULT\+\_\+\+DATA\+\_\+\+CHANNEL\+\_\+\+LABEL}} = "{}libp2p-\/webrtc"{}
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webrtc_a249f56467635bec6ff20b3c0182bce4d}{MAX\+\_\+\+DATA\+\_\+\+CHANNEL\+\_\+\+BUFFERED\+\_\+\+AMOUNT}} = 16 \texorpdfstring{$\ast$}{*} 1024 \texorpdfstring{$\ast$}{*} 1024
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}WebRTC DataChannel 传输实现
+
+基于 aiortc 库实现 WebRTC DataChannel 支持，
+实现浏览器与 Python 之间的 P2P 通信。
+
+协议ID: /webrtc-direct
+
+特性:
+- WebRTC DataChannel 支持
+- ICE 候选交换
+- DTLS-SRTP 加密
+- 与浏览器 WebRTC 互操作
+\end{DoxyVerb}
+ 
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_a03aac704f8ab3312ea748f0b9cb5205e}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!ConnectionError@{ConnectionError}}
+\index{ConnectionError@{ConnectionError}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{ConnectionError}{ConnectionError}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_a03aac704f8ab3312ea748f0b9cb5205e} 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_error}{p2p\+\_\+engine.\+transport.\+webrtc.\+Connection\+Error}} = Base\+Connection\+Error}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00042}{42}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_a8d4c127bcff76574b33b29e2370cfedf}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!DataChannel@{DataChannel}}
+\index{DataChannel@{DataChannel}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{DataChannel}{DataChannel}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_a8d4c127bcff76574b33b29e2370cfedf} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+Data\+Channel = None}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00035}{35}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_ad6e682421813f8de3c0357aeaf3d9600}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!DEFAULT\_DATA\_CHANNEL\_LABEL@{DEFAULT\_DATA\_CHANNEL\_LABEL}}
+\index{DEFAULT\_DATA\_CHANNEL\_LABEL@{DEFAULT\_DATA\_CHANNEL\_LABEL}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_DATA\_CHANNEL\_LABEL}{DEFAULT\_DATA\_CHANNEL\_LABEL}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_ad6e682421813f8de3c0357aeaf3d9600} 
+str p2p\+\_\+engine.\+transport.\+webrtc.\+DEFAULT\+\_\+\+DATA\+\_\+\+CHANNEL\+\_\+\+LABEL = "{}libp2p-\/webrtc"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00057}{57}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_aabc396993f393facc979835462becc44}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!DEFAULT\_STUN\_SERVERS@{DEFAULT\_STUN\_SERVERS}}
+\index{DEFAULT\_STUN\_SERVERS@{DEFAULT\_STUN\_SERVERS}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_STUN\_SERVERS}{DEFAULT\_STUN\_SERVERS}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_aabc396993f393facc979835462becc44} 
+list p2p\+\_\+engine.\+transport.\+webrtc.\+DEFAULT\+\_\+\+STUN\+\_\+\+SERVERS}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}stun:stun.l.google.com:19302"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}stun:stun1.l.google.com:19302"{}},}
+\DoxyCodeLine{00004\ ]}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00051}{51}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_ad29e2b85e6af090f70efbc7e830ffd4f}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!HAS\_AIORTC@{HAS\_AIORTC}}
+\index{HAS\_AIORTC@{HAS\_AIORTC}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{HAS\_AIORTC}{HAS\_AIORTC}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_ad29e2b85e6af090f70efbc7e830ffd4f} 
+bool p2p\+\_\+engine.\+transport.\+webrtc.\+HAS\+\_\+\+AIORTC = True}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00028}{28}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_ac3e1f4f6c09e0b6678053bc7b27b48e2}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!ListenerError@{ListenerError}}
+\index{ListenerError@{ListenerError}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{ListenerError}{ListenerError}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_ac3e1f4f6c09e0b6678053bc7b27b48e2} 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_error}{p2p\+\_\+engine.\+transport.\+webrtc.\+Listener\+Error}} = Base\+Listener\+Error}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00043}{43}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_aa68b8e957eaaede02f7e0fa4bbd5b465}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_aa68b8e957eaaede02f7e0fa4bbd5b465} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+logger = logging.\+get\+Logger("{}p2p\+\_\+engine.\+transport.\+webrtc"{})}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00045}{45}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_a249f56467635bec6ff20b3c0182bce4d}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!MAX\_DATA\_CHANNEL\_BUFFERED\_AMOUNT@{MAX\_DATA\_CHANNEL\_BUFFERED\_AMOUNT}}
+\index{MAX\_DATA\_CHANNEL\_BUFFERED\_AMOUNT@{MAX\_DATA\_CHANNEL\_BUFFERED\_AMOUNT}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{MAX\_DATA\_CHANNEL\_BUFFERED\_AMOUNT}{MAX\_DATA\_CHANNEL\_BUFFERED\_AMOUNT}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_a249f56467635bec6ff20b3c0182bce4d} 
+int p2p\+\_\+engine.\+transport.\+webrtc.\+MAX\+\_\+\+DATA\+\_\+\+CHANNEL\+\_\+\+BUFFERED\+\_\+\+AMOUNT = 16 \texorpdfstring{$\ast$}{*} 1024 \texorpdfstring{$\ast$}{*} 1024}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00058}{58}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_a6842962a59d75e6d9557fcda51e2c4e2}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!PROTOCOL\_ID@{PROTOCOL\_ID}}
+\index{PROTOCOL\_ID@{PROTOCOL\_ID}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{PROTOCOL\_ID}{PROTOCOL\_ID}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_a6842962a59d75e6d9557fcda51e2c4e2} 
+str p2p\+\_\+engine.\+transport.\+webrtc.\+PROTOCOL\+\_\+\+ID = "{}/\+webrtc-\/direct"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00050}{50}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_a9421959fab51e67801d78f6dce60abfb}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!RTCConfiguration@{RTCConfiguration}}
+\index{RTCConfiguration@{RTCConfiguration}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{RTCConfiguration}{RTCConfiguration}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_a9421959fab51e67801d78f6dce60abfb} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+RTCConfiguration = None}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00033}{33}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00705}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+create\+\_\+rtc\+\_\+config()}}.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_aa2f5ec4b2c25486d92dfa9dd500a2f18}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!RTCIceServer@{RTCIceServer}}
+\index{RTCIceServer@{RTCIceServer}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{RTCIceServer}{RTCIceServer}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_aa2f5ec4b2c25486d92dfa9dd500a2f18} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+RTCIce\+Server = None}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00034}{34}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00106}{p2p\+\_\+engine.\+transport.\+webrtc.\+ICEServer.\+to\+\_\+aiortc()}}.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_a4dff7168b0b72c800ef565ebd109b9cf}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!RTCPeerConnection@{RTCPeerConnection}}
+\index{RTCPeerConnection@{RTCPeerConnection}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{RTCPeerConnection}{RTCPeerConnection}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_a4dff7168b0b72c800ef565ebd109b9cf} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+RTCPeer\+Connection = None}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00031}{31}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00723}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+create\+\_\+connection()}}.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1webrtc_afe9dbb6b67893274b1a60104245c89e0}\index{p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}!RTCSessionDescription@{RTCSessionDescription}}
+\index{RTCSessionDescription@{RTCSessionDescription}!p2p\_engine.transport.webrtc@{p2p\_engine.transport.webrtc}}
+\doxysubsubsection{\texorpdfstring{RTCSessionDescription}{RTCSessionDescription}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1webrtc_afe9dbb6b67893274b1a60104245c89e0} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+RTCSession\+Description = None}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00032}{32}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00788}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+handle\+\_\+answer()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00759}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+handle\+\_\+offer()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00497}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+handle\+\_\+offer()}}.
+

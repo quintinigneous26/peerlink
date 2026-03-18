@@ -1,0 +1,51 @@
+\doxysection{config.\+py}
+\hypertarget{signaling-server_2src_2signaling__server_2config_8py_source}{}\label{signaling-server_2src_2signaling__server_2config_8py_source}\index{signaling-\/server/src/signaling\_server/config.py@{signaling-\/server/src/signaling\_server/config.py}}
+\doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2config_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00001}\doxymbox{\hyperlink{namespacesrc_1_1signaling__server_1_1config}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00002}00002\ \textcolor{stringliteral}{Signaling\ Server\ Configuration}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00003}00003\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00005}00005\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00006}00006\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00009}00009\ \textcolor{preprocessor}{@dataclass(frozen=True)}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00010}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config}{00010}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config}{Config}}:}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00011}00011\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Signaling\ server\ configuration."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00013}00013\ \ \ \ \ \textcolor{comment}{\#\ Server\ settings}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00014}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_afcd60ad436ac78f2b14bd7da7a4a8008}{00014}}\ \ \ \ \ host:\ str\ =\ os.getenv(\textcolor{stringliteral}{"{}SIGNALING\_HOST"{}},\ \textcolor{stringliteral}{"{}0.0.0.0"{}})}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00015}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_acb16c23a1c52ce827fba0820ac02c7fc}{00015}}\ \ \ \ \ ws\_port:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}SIGNALING\_WS\_PORT"{}},\ \textcolor{stringliteral}{"{}8080"{}}))}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00016}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_ae4125976c86552b8f23c794cee3c38a5}{00016}}\ \ \ \ \ wss\_port:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}SIGNALING\_WSS\_PORT"{}},\ \textcolor{stringliteral}{"{}8443"{}}))}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00018}00018\ \ \ \ \ \textcolor{comment}{\#\ Redis\ settings}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00019}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_ac8651136f8a1db63cf5d2f9fe2393bd9}{00019}}\ \ \ \ \ redis\_url:\ str\ =\ os.getenv(\textcolor{stringliteral}{"{}REDIS\_URL"{}},\ \textcolor{stringliteral}{"{}redis://localhost:6379"{}})}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00020}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_a1f31c3f6fd4a054e55655f7182e24d55}{00020}}\ \ \ \ \ redis\_db:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}REDIS\_DB"{}},\ \textcolor{stringliteral}{"{}0"{}}))}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00021}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_ad1f5851d2fa1a25be17255419482b464}{00021}}\ \ \ \ \ redis\_password:\ str\ |\ \textcolor{keywordtype}{None}\ =\ os.getenv(\textcolor{stringliteral}{"{}REDIS\_PASSWORD"{}})}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00023}00023\ \ \ \ \ \textcolor{comment}{\#\ DID\ service}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00024}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_a0a6bb4d4fe2211e77a8fbe02042f05f0}{00024}}\ \ \ \ \ did\_service\_url:\ str\ =\ os.getenv(\textcolor{stringliteral}{"{}DID\_SERVICE\_URL"{}},\ \textcolor{stringliteral}{"{}http://localhost:9000"{}})}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00026}00026\ \ \ \ \ \textcolor{comment}{\#\ Connection\ settings}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00027}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_a12d3df9aa841f6fb3502f04f987db706}{00027}}\ \ \ \ \ heartbeat\_interval:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}HEARTBEAT\_INTERVAL"{}},\ \textcolor{stringliteral}{"{}30"{}}))\ \ \textcolor{comment}{\#\ seconds}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00028}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_af2e817215c8271ab4f6fe3e5dc987bd5}{00028}}\ \ \ \ \ connection\_timeout:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}CONNECTION\_TIMEOUT"{}},\ \textcolor{stringliteral}{"{}300"{}}))\ \ \textcolor{comment}{\#\ seconds}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00029}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_ab2b59fd10a223eac28b20dbf660d158b}{00029}}\ \ \ \ \ ping\_timeout:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}PING\_TIMEOUT"{}},\ \textcolor{stringliteral}{"{}20"{}}))\ \ \textcolor{comment}{\#\ seconds}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00031}00031\ \ \ \ \ \textcolor{comment}{\#\ Message\ queue\ size}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00032}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_a6fd548d7a16cf6f7dad74529712dd465}{00032}}\ \ \ \ \ message\_queue\_size:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}MESSAGE\_QUEUE\_SIZE"{}},\ \textcolor{stringliteral}{"{}100"{}}))}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00034}00034\ \ \ \ \ \textcolor{comment}{\#\ ICE\ settings}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00035}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_ace6b406822cb456ede222abbfa5aa726}{00035}}\ \ \ \ \ ice\_timeout:\ int\ =\ int(os.getenv(\textcolor{stringliteral}{"{}ICE\_TIMEOUT"{}},\ \textcolor{stringliteral}{"{}30"{}}))\ \ \textcolor{comment}{\#\ seconds}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00037}00037\ \ \ \ \ \textcolor{comment}{\#\ Cluster\ support}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00038}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_adbd2cbe07e1f8d5ac095f09e68cb6e4e}{00038}}\ \ \ \ \ cluster\_mode:\ bool\ =\ os.getenv(\textcolor{stringliteral}{"{}CLUSTER\_MODE"{}},\ \textcolor{stringliteral}{"{}false"{}}).lower()\ ==\ \textcolor{stringliteral}{"{}true"{}}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00039}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_ae395c265d5215b5778bbbb5b39b325d4}{00039}}\ \ \ \ \ cluster\_node\_id:\ str\ =\ os.getenv(\textcolor{stringliteral}{"{}CLUSTER\_NODE\_ID"{}},\ \textcolor{stringliteral}{"{}node-\/1"{}})}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00041}00041\ \ \ \ \ \textcolor{comment}{\#\ Logging}}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00042}\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config_a2619ea1c95b12b27819381fc7ae514d2}{00042}}\ \ \ \ \ log\_level:\ str\ =\ os.getenv(\textcolor{stringliteral}{"{}LOG\_LEVEL"{}},\ \textcolor{stringliteral}{"{}INFO"{}})}
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{signaling-server_2src_2signaling__server_2config_8py_source_l00045}\doxymbox{\hyperlink{namespacesrc_1_1signaling__server_1_1config_a480cfc8a0659895e33870f6fdc00a93f}{00045}}\ config\ =\ \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1config_1_1_config}{Config}}()}
+
+\end{DoxyCode}

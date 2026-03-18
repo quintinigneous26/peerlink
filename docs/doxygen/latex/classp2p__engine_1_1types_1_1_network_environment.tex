@@ -1,0 +1,207 @@
+\doxysection{p2p\+\_\+engine.\+types.\+Network\+Environment类 参考}
+\hypertarget{classp2p__engine_1_1types_1_1_network_environment}{}\label{classp2p__engine_1_1types_1_1_network_environment}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a090c5dd7d12e77f8e9058fd35e7792de}{is\+\_\+complex\+\_\+environment}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a8364e51b8c786ce80176cf81d926829f}{nat\+\_\+level}} = 1
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a05a348fed9bc77a46a8a4087b075a7aa}{is\+\_\+behind\+\_\+vpn}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a99ba98c5b26a7ca4d537a5cc5a3e4b5c}{is\+\_\+behind\+\_\+cdn}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a8433f8640d6b348c680f2860175274a8}{is\+\_\+enterprise\+\_\+network}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_acbf4a84489c154f54c487f9fd317ab9e}{is\+\_\+mobile\+\_\+network}} = False
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a1a9f9f90dfc4e655efb2398548f94284}{firewall\+\_\+type}} = "{}unknown"{}
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a1727a6b92e92a2281b8c2e84de67d4a8}{ipv6\+\_\+available}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a9b32c2dfc8a02d2a9359c5752e76662a}{ipv6\+\_\+preferred}} = False
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_a022d67cf7389ae3322b4ee48e2a4c986}{packet\+\_\+loss\+\_\+rate}} = 0.\+0
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_network_environment_ace14d197433b94581c3b0fd70ac46b64}{avg\+\_\+latency\+\_\+ms}} = 0.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}网络环境信息数据类
+
+描述节点所处的网络环境特征，用于选择合适的连接策略。
+
+属性:
+    nat_level (int): NAT层级数（1表示无NAT，>1表示多层NAT）
+    is_behind_vpn (bool): 是否在VPN后
+    is_behind_cdn (bool): 是否在CDN后
+    is_enterprise_network (bool): 是否为企业网络
+    is_mobile_network (bool): 是否为移动网络（4G/5G）
+    firewall_type (str): 防火墙类型
+        - "home": 家用防火墙
+        - "enterprise": 企业防火墙
+        - "isp": ISP级防火墙
+        - "cross_border": 跨境防火墙
+        - "unknown": 未知
+    ipv6_available (bool): IPv6是否可用
+    ipv6_preferred (bool): 是否优先使用IPv6
+    packet_loss_rate (float): 丢包率（0.0-1.0）
+    avg_latency_ms (float): 平均延迟（毫秒）
+
+方法:
+    is_complex_environment(): 判断是否为复杂网络环境
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00255}{255}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a090c5dd7d12e77f8e9058fd35e7792de}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!is\_complex\_environment@{is\_complex\_environment}}
+\index{is\_complex\_environment@{is\_complex\_environment}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{is\_complex\_environment()}{is\_complex\_environment()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a090c5dd7d12e77f8e9058fd35e7792de} 
+ bool p2p\+\_\+engine.\+types.\+Network\+Environment.\+is\+\_\+complex\+\_\+environment (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}是否为复杂网络环境\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00301}{301}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{types_8py_source_l00285}{is\+\_\+behind\+\_\+vpn}}, \doxymbox{\hyperlink{types_8py_source_l00287}{is\+\_\+enterprise\+\_\+network}}, \doxymbox{\hyperlink{identify_8py_source_l00043}{p2p\+\_\+engine.\+protocol.\+identify.\+Identify\+Extension.\+nat\+\_\+level}}, \doxymbox{\hyperlink{types_8py_source_l00282}{nat\+\_\+level}} , 以及 \doxymbox{\hyperlink{types_8py_source_l00298}{packet\+\_\+loss\+\_\+rate}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_ace14d197433b94581c3b0fd70ac46b64}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!avg\_latency\_ms@{avg\_latency\_ms}}
+\index{avg\_latency\_ms@{avg\_latency\_ms}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{avg\_latency\_ms}{avg\_latency\_ms}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_ace14d197433b94581c3b0fd70ac46b64} 
+float p2p\+\_\+engine.\+types.\+Network\+Environment.\+avg\+\_\+latency\+\_\+ms = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00299}{299}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a1a9f9f90dfc4e655efb2398548f94284}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!firewall\_type@{firewall\_type}}
+\index{firewall\_type@{firewall\_type}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{firewall\_type}{firewall\_type}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a1a9f9f90dfc4e655efb2398548f94284} 
+str p2p\+\_\+engine.\+types.\+Network\+Environment.\+firewall\+\_\+type = "{}unknown"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00291}{291}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a1727a6b92e92a2281b8c2e84de67d4a8}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!ipv6\_available@{ipv6\_available}}
+\index{ipv6\_available@{ipv6\_available}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{ipv6\_available}{ipv6\_available}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a1727a6b92e92a2281b8c2e84de67d4a8} 
+bool p2p\+\_\+engine.\+types.\+Network\+Environment.\+ipv6\+\_\+available = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00294}{294}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a9b32c2dfc8a02d2a9359c5752e76662a}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!ipv6\_preferred@{ipv6\_preferred}}
+\index{ipv6\_preferred@{ipv6\_preferred}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{ipv6\_preferred}{ipv6\_preferred}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a9b32c2dfc8a02d2a9359c5752e76662a} 
+bool p2p\+\_\+engine.\+types.\+Network\+Environment.\+ipv6\+\_\+preferred = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00295}{295}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a99ba98c5b26a7ca4d537a5cc5a3e4b5c}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!is\_behind\_cdn@{is\_behind\_cdn}}
+\index{is\_behind\_cdn@{is\_behind\_cdn}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{is\_behind\_cdn}{is\_behind\_cdn}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a99ba98c5b26a7ca4d537a5cc5a3e4b5c} 
+bool p2p\+\_\+engine.\+types.\+Network\+Environment.\+is\+\_\+behind\+\_\+cdn = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00286}{286}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a05a348fed9bc77a46a8a4087b075a7aa}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!is\_behind\_vpn@{is\_behind\_vpn}}
+\index{is\_behind\_vpn@{is\_behind\_vpn}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{is\_behind\_vpn}{is\_behind\_vpn}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a05a348fed9bc77a46a8a4087b075a7aa} 
+bool p2p\+\_\+engine.\+types.\+Network\+Environment.\+is\+\_\+behind\+\_\+vpn = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00285}{285}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{types_8py_source_l00301}{is\+\_\+complex\+\_\+environment()}}.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a8433f8640d6b348c680f2860175274a8}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!is\_enterprise\_network@{is\_enterprise\_network}}
+\index{is\_enterprise\_network@{is\_enterprise\_network}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{is\_enterprise\_network}{is\_enterprise\_network}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a8433f8640d6b348c680f2860175274a8} 
+bool p2p\+\_\+engine.\+types.\+Network\+Environment.\+is\+\_\+enterprise\+\_\+network = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00287}{287}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{types_8py_source_l00301}{is\+\_\+complex\+\_\+environment()}}.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_acbf4a84489c154f54c487f9fd317ab9e}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!is\_mobile\_network@{is\_mobile\_network}}
+\index{is\_mobile\_network@{is\_mobile\_network}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{is\_mobile\_network}{is\_mobile\_network}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_acbf4a84489c154f54c487f9fd317ab9e} 
+bool p2p\+\_\+engine.\+types.\+Network\+Environment.\+is\+\_\+mobile\+\_\+network = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00288}{288}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a8364e51b8c786ce80176cf81d926829f}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!nat\_level@{nat\_level}}
+\index{nat\_level@{nat\_level}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{nat\_level}{nat\_level}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a8364e51b8c786ce80176cf81d926829f} 
+int p2p\+\_\+engine.\+types.\+Network\+Environment.\+nat\+\_\+level = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00282}{282}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{types_8py_source_l00301}{is\+\_\+complex\+\_\+environment()}}.
+
+\Hypertarget{classp2p__engine_1_1types_1_1_network_environment_a022d67cf7389ae3322b4ee48e2a4c986}\index{p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}!packet\_loss\_rate@{packet\_loss\_rate}}
+\index{packet\_loss\_rate@{packet\_loss\_rate}!p2p\_engine.types.NetworkEnvironment@{p2p\_engine.types.NetworkEnvironment}}
+\doxysubsubsection{\texorpdfstring{packet\_loss\_rate}{packet\_loss\_rate}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1types_1_1_network_environment_a022d67cf7389ae3322b4ee48e2a4c986} 
+float p2p\+\_\+engine.\+types.\+Network\+Environment.\+packet\+\_\+loss\+\_\+rate = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{types_8py_source}{types.\+py}} 第 \doxymbox{\hyperlink{types_8py_source_l00298}{298}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{types_8py_source_l00301}{is\+\_\+complex\+\_\+environment()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+\doxymbox{\hyperlink{types_8py}{types.\+py}}\end{DoxyCompactItemize}

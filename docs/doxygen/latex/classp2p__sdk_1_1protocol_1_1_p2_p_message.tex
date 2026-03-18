@@ -1,0 +1,153 @@
+\doxysection{p2p\+\_\+sdk.\+protocol.\+P2\+PMessage类 参考}
+\hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message}{}\label{classp2p__sdk_1_1protocol_1_1_p2_p_message}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+
+
+类 p2p\+\_\+sdk.\+protocol.\+P2\+PMessage 继承关系图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_affe86774875519b67b8dd44b40f8d849}{encode}} (self)
+\item 
+Optional\+["{}P2\+PMessage"{}]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_ac25f2c1f420b53f6c515fb3bd97bd81a}{decode}} (cls, bytes data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aa7672c60cb04a66b5e32bdfed69d1685}{message\+\_\+id}} = field(default\+\_\+factory=lambda:\+ str(uuid.\+uuid4()))
+\item 
+Optional \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a5ebedfcdd320821ca720c2969fa229bd}{channel\+\_\+id}} = None
+\item 
+bytes \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a3c4454ed3f59f09b8f710556ff06d461}{payload}} = b"{}"{}
+\item 
+float \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a960b2a0fc61ed08854df531cbcd07324}{timestamp}} = 0.\+0
+\item 
+Dict \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aeec87a806b35890e633714bee75de86d}{metadata}} = field(default\+\_\+factory=dict)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Base P2P message.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00044}{44}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_ac25f2c1f420b53f6c515fb3bd97bd81a}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}!decode@{decode}}
+\index{decode@{decode}!p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_p2_p_message_ac25f2c1f420b53f6c515fb3bd97bd81a} 
+ Optional\+["{}P2\+PMessage"{}]\+ p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+decode (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode message from bytes.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00078}{78}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_affe86774875519b67b8dd44b40f8d849}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}!encode@{encode}}
+\index{encode@{encode}!p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_p2_p_message_affe86774875519b67b8dd44b40f8d849} 
+ bytes p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+encode (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode message to bytes for transmission.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00056}{56}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{protocol_8py_source_l00051}{channel\+\_\+id}}, \doxymbox{\hyperlink{protocol_8py_source_l00056}{encode()}}, \doxymbox{\hyperlink{protocol_8py_source_l00050}{message\+\_\+id}}, \doxymbox{\hyperlink{benchmark_8py_source_l00042}{p2p\+\_\+engine.\+muxer.\+benchmark.\+Benchmark\+Result.\+metadata}}, \doxymbox{\hyperlink{protocol_8py_source_l00054}{metadata}}, \doxymbox{\hyperlink{protocol_8py_source_l00052}{payload}}, \doxymbox{\hyperlink{provider_8py_source_l00039}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Record.\+timestamp}}, \doxymbox{\hyperlink{event_8py_source_l00150}{p2p\+\_\+engine.\+event.\+P2\+PEvent.\+timestamp}}, \doxymbox{\hyperlink{types_8py_source_l00411}{p2p\+\_\+engine.\+types.\+Event.\+timestamp}} , 以及 \doxymbox{\hyperlink{protocol_8py_source_l00053}{timestamp}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_8py_source_l00056}{encode()}}.
+
+函数调用图:\+
+% FIG 1
+这是这个函数的调用关系图:\+
+% FIG 2
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_a5ebedfcdd320821ca720c2969fa229bd}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}!channel\_id@{channel\_id}}
+\index{channel\_id@{channel\_id}!p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+\doxysubsubsection{\texorpdfstring{channel\_id}{channel\_id}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_p2_p_message_a5ebedfcdd320821ca720c2969fa229bd} 
+Optional p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+channel\+\_\+id = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00051}{51}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_8py_source_l00056}{encode()}}.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_aa7672c60cb04a66b5e32bdfed69d1685}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}!message\_id@{message\_id}}
+\index{message\_id@{message\_id}!p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+\doxysubsubsection{\texorpdfstring{message\_id}{message\_id}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_p2_p_message_aa7672c60cb04a66b5e32bdfed69d1685} 
+str p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+message\+\_\+id = field(default\+\_\+factory=lambda:\+ str(uuid.\+uuid4()))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00050}{50}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_8py_source_l00056}{encode()}}.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_aeec87a806b35890e633714bee75de86d}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}!metadata@{metadata}}
+\index{metadata@{metadata}!p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+\doxysubsubsection{\texorpdfstring{metadata}{metadata}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_p2_p_message_aeec87a806b35890e633714bee75de86d} 
+Dict p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+metadata = field(default\+\_\+factory=dict)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00054}{54}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_8py_source_l00056}{encode()}}.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_a3c4454ed3f59f09b8f710556ff06d461}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}!payload@{payload}}
+\index{payload@{payload}!p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+\doxysubsubsection{\texorpdfstring{payload}{payload}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_p2_p_message_a3c4454ed3f59f09b8f710556ff06d461} 
+bytes p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+payload = b"{}"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00052}{52}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_8py_source_l00056}{encode()}}.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_p2_p_message_a960b2a0fc61ed08854df531cbcd07324}\index{p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!p2p\_sdk.protocol.P2PMessage@{p2p\_sdk.protocol.P2PMessage}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_p2_p_message_a960b2a0fc61ed08854df531cbcd07324} 
+float p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+timestamp = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00053}{53}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{query__optimizer_8py_source_l00061}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Cached\+Result.\+age()}}, \doxymbox{\hyperlink{protocol_8py_source_l00056}{encode()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00056}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Cached\+Result.\+is\+\_\+expired()}}, \doxymbox{\hyperlink{did-service_2src_2did__service_2models_8py_source_l00099}{src.\+did\+\_\+service.\+models.\+APIResponse.\+to\+\_\+dict()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00140}{src.\+relay\+\_\+server.\+models.\+APIResponse.\+to\+\_\+dict()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+client\+\_\+sdk/\+src/\+p2p\+\_\+sdk/\+\doxymbox{\hyperlink{protocol_8py}{protocol.\+py}}\end{DoxyCompactItemize}

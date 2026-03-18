@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__client_1_1_stun_message" kind="class" language="Python" prot="public">
+    <compoundname>p2p_client::StunMessage</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classp2p__client_1_1_stun_message_1ac411dae4d6df305f3ae524ded007c874" prot="public" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list p2p_client.StunMessage::attributes</definition>
+        <argsstring></argsstring>
+        <name>attributes</name>
+        <qualifiedname>p2p_client.StunMessage.attributes</qualifiedname>
+        <initializer>[<ref refid="classp2p__client_1_1_stun_attribute" kindref="compound">StunAttribute</ref>]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="client_sdk/src/p2p_client.py" line="88" column="1" bodyfile="client_sdk/src/p2p_client.py" bodystart="88" bodyend="-1"/>
+        <referencedby refid="classp2p__client_1_1_stun_message_1a9e50db141850c5d25b826fd30510b8c5" compoundref="p2p__client_8py" startline="145" endline="153">p2p_client.StunMessage.get_attribute</referencedby>
+        <referencedby refid="classsrc_1_1messages_1_1_stun_message_1a97ca53862fa00823652273ff8034eefa" compoundref="stun-server_2src_2messages_8py" startline="149" endline="164">src.messages.StunMessage.get_attribute</referencedby>
+        <referencedby refid="classsrc_1_1messages_1_1_stun_message_1a634d14cfd8fc0ab956f1f9d5b6a1eec0" compoundref="stun-server_2src_2messages_8py" startline="120" endline="148">src.messages.StunMessage.serialize</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__client_1_1_stun_message_1a893c94c58a52df9655e1807527d69b31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[&quot;StunMessage&quot;]</type>
+        <definition> Optional[&quot;StunMessage&quot;] p2p_client.StunMessage.parse</definition>
+        <argsstring>(cls, bytes data)</argsstring>
+        <name>parse</name>
+        <qualifiedname>p2p_client.StunMessage.parse</qualifiedname>
+        <param>
+          <type>cls</type>
+          <defname>cls</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Parse STUN message from bytes.
+
+Args:
+    data: Raw message bytes
+
+Returns:
+    StunMessage or None if invalid
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="client_sdk/src/p2p_client.py" line="91" column="1" bodyfile="client_sdk/src/p2p_client.py" bodystart="91" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__client_1_1_stun_message_1a9e50db141850c5d25b826fd30510b8c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classp2p__client_1_1_stun_attribute" kindref="compound">StunAttribute</ref>]</type>
+        <definition> Optional[StunAttribute] p2p_client.StunMessage.get_attribute</definition>
+        <argsstring>(self, int attr_type)</argsstring>
+        <name>get_attribute</name>
+        <qualifiedname>p2p_client.StunMessage.get_attribute</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>attr_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get attribute by type.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="client_sdk/src/p2p_client.py" line="145" column="1" bodyfile="client_sdk/src/p2p_client.py" bodystart="145" bodyend="153"/>
+        <references refid="classp2p__client_1_1_stun_message_1ac411dae4d6df305f3ae524ded007c874" compoundref="p2p__client_8py" startline="88">p2p_client.StunMessage.attributes</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>STUN Message.</verbatim> </para>
+    </detaileddescription>
+    <location file="client_sdk/src/p2p_client.py" line="81" column="1" bodyfile="client_sdk/src/p2p_client.py" bodystart="81" bodyend="153"/>
+    <listofallmembers>
+      <member refid="classp2p__client_1_1_stun_message_1ac411dae4d6df305f3ae524ded007c874" prot="public" virt="non-virtual"><scope>p2p_client::StunMessage</scope><name>attributes</name></member>
+      <member refid="classp2p__client_1_1_stun_message_1a9e50db141850c5d25b826fd30510b8c5" prot="public" virt="non-virtual"><scope>p2p_client::StunMessage</scope><name>get_attribute</name></member>
+      <member refid="classp2p__client_1_1_stun_message_1a893c94c58a52df9655e1807527d69b31" prot="public" virt="non-virtual"><scope>p2p_client::StunMessage</scope><name>parse</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

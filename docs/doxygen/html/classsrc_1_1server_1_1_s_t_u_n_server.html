@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: src.server.STUNServer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classsrc_1_1server_1_1_s_t_u_n_server.html','','classsrc_1_1server_1_1_s_t_u_n_server-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">src.server.STUNServer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:ae7ca883d50ec6b194f5984437750954f" id="r_ae7ca883d50ec6b194f5984437750954f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae7ca883d50ec6b194f5984437750954f">__init__</a> (self, str <a class="el" href="#a75e5489168c585fd8c637f146a13e859">host</a>=<a class="el" href="namespacesrc_1_1server.html#a3ebee8520fbd17bcf3a9bf8dbc4c84a2">DEFAULT_HOST</a>, int <a class="el" href="#a471326b31daf7543142acd41833d3a5a">udp_port</a>=<a class="el" href="namespacesrc_1_1server.html#a55a83844751d585b58d8a13a0df64b7b">DEFAULT_UDP_PORT</a>, int <a class="el" href="#a8ececd4731a1ad6c1b03f52d28be8b15">tcp_port</a>=<a class="el" href="namespacesrc_1_1server.html#af0aa210380ed4288d1646795233260d6">DEFAULT_TCP_PORT</a>)</td></tr>
+<tr class="memitem:a25f104bd89a28233de06b9bc69f0825b" id="r_a25f104bd89a28233de06b9bc69f0825b"><td class="memItemLeft">Optional[bytes]&#160;</td><td class="memItemRight"><a class="el" href="#a25f104bd89a28233de06b9bc69f0825b">handle_udp_packet</a> (self, bytes data, Tuple[str, int] addr)</td></tr>
+<tr class="memitem:a295f6b3afb1ebdaa904c9a66aa4a4f8b" id="r_a295f6b3afb1ebdaa904c9a66aa4a4f8b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a295f6b3afb1ebdaa904c9a66aa4a4f8b">udp_server</a> (self)</td></tr>
+<tr class="memitem:a114745e39d0c1ee1d23b3546381d04f2" id="r_a114745e39d0c1ee1d23b3546381d04f2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a114745e39d0c1ee1d23b3546381d04f2">tcp_server</a> (self)</td></tr>
+<tr class="memitem:a1ba5238eedb18cee36351b5787bdadd1" id="r_a1ba5238eedb18cee36351b5787bdadd1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1ba5238eedb18cee36351b5787bdadd1">start</a> (self, bool udp_only=False)</td></tr>
+<tr class="memitem:a83733a161f3efcab11c315c8f76f37c4" id="r_a83733a161f3efcab11c315c8f76f37c4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a83733a161f3efcab11c315c8f76f37c4">stop</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a75e5489168c585fd8c637f146a13e859" id="r_a75e5489168c585fd8c637f146a13e859"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a75e5489168c585fd8c637f146a13e859">host</a> = host</td></tr>
+<tr class="memitem:a471326b31daf7543142acd41833d3a5a" id="r_a471326b31daf7543142acd41833d3a5a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a471326b31daf7543142acd41833d3a5a">udp_port</a> = udp_port</td></tr>
+<tr class="memitem:a8ececd4731a1ad6c1b03f52d28be8b15" id="r_a8ececd4731a1ad6c1b03f52d28be8b15"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8ececd4731a1ad6c1b03f52d28be8b15">tcp_port</a> = tcp_port</td></tr>
+<tr class="memitem:a290adc3a80ecf175e732e8d24081e157" id="r_a290adc3a80ecf175e732e8d24081e157"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a290adc3a80ecf175e732e8d24081e157">running</a> = False</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a8c92fd03eb6886b1aee9c8d37d75802d" id="r_a8c92fd03eb6886b1aee9c8d37d75802d"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a8c92fd03eb6886b1aee9c8d37d75802d">_create_binding_response</a> (self, <a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a> request, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:a27cbe31967a6b0d2322bc512da2ed000" id="r_a27cbe31967a6b0d2322bc512da2ed000"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a27cbe31967a6b0d2322bc512da2ed000">_handle_tcp_client</a> (self, asyncio.StreamReader reader, asyncio.StreamWriter writer)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:aaf5d0ddf7b22edf64093430365cb4df8" id="r_aaf5d0ddf7b22edf64093430365cb4df8"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aaf5d0ddf7b22edf64093430365cb4df8">_started</a> = asyncio.Event()</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">STUN Server implementation.
+
+Handles both UDP and TCP STUN requests according to RFC 5389.
+</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00038">38</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="ae7ca883d50ec6b194f5984437750954f" name="ae7ca883d50ec6b194f5984437750954f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7ca883d50ec6b194f5984437750954f">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>host</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1server.html#a3ebee8520fbd17bcf3a9bf8dbc4c84a2">DEFAULT_HOST</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>udp_port</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1server.html#a55a83844751d585b58d8a13a0df64b7b">DEFAULT_UDP_PORT</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>tcp_port</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1server.html#af0aa210380ed4288d1646795233260d6">DEFAULT_TCP_PORT</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize STUN server.
+
+Args:
+    host: Host address to bind to
+    udp_port: UDP port for STUN requests
+    tcp_port: TCP port for STUN requests
+</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a8c92fd03eb6886b1aee9c8d37d75802d" name="a8c92fd03eb6886b1aee9c8d37d75802d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c92fd03eb6886b1aee9c8d37d75802d">&#9670;&#160;</a></span>_create_binding_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes src.server.STUNServer._create_binding_response </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Create binding success response.
+
+Args:
+    request: Original STUN request
+    client_addr: Client's (ip, port)
+
+Returns:
+    Serialized STUN response
+</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00103">103</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00231">src.relay.RelayServer._handle_control_message()</a> , 以及 <a class="el" href="server_8py_source.html#l00065">handle_udp_packet()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a8c92fd03eb6886b1aee9c8d37d75802d_icgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a8c92fd03eb6886b1aee9c8d37d75802d_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a27cbe31967a6b0d2322bc512da2ed000" name="a27cbe31967a6b0d2322bc512da2ed000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27cbe31967a6b0d2322bc512da2ed000">&#9670;&#160;</a></span>_handle_tcp_client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer._handle_tcp_client </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamReader</td>          <td class="paramname"><span class="paramname"><em>reader</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamWriter
+    </td>          <td class="paramname"><span class="paramname"><em>writer</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle TCP STUN client connection.</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00187">187</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="server_8py_source.html#l00065">handle_udp_packet()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="server_8py_source.html#l00175">tcp_server()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a27cbe31967a6b0d2322bc512da2ed000_cgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a27cbe31967a6b0d2322bc512da2ed000_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a27cbe31967a6b0d2322bc512da2ed000_icgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a27cbe31967a6b0d2322bc512da2ed000_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a25f104bd89a28233de06b9bc69f0825b" name="a25f104bd89a28233de06b9bc69f0825b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f104bd89a28233de06b9bc69f0825b">&#9670;&#160;</a></span>handle_udp_packet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[bytes] src.server.STUNServer.handle_udp_packet </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]</td>          <td class="paramname"><span class="paramname"><em>addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Handle incoming UDP STUN packet.
+
+Args:
+    data: Raw packet data
+    addr: (ip, port) of sender
+
+Returns:
+    Response bytes or None
+</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00065">65</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="server_8py_source.html#l00105">_create_binding_response()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="server_8py_source.html#l00189">_handle_tcp_client()</a> , 以及 <a class="el" href="server_8py_source.html#l00139">udp_server()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a25f104bd89a28233de06b9bc69f0825b_cgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a25f104bd89a28233de06b9bc69f0825b_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a25f104bd89a28233de06b9bc69f0825b_icgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a25f104bd89a28233de06b9bc69f0825b_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a1ba5238eedb18cee36351b5787bdadd1" name="a1ba5238eedb18cee36351b5787bdadd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ba5238eedb18cee36351b5787bdadd1">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.start </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool </td>          <td class="paramname"><span class="paramname"><em>udp_only</em></span><span class="paramdefsep"> = </span><span class="paramdefval">False</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Start STUN server.
+
+Args:
+    udp_only: If True, only start UDP server (useful for testing)
+</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00223">223</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="server_8py_source.html#l00062">running</a>, <a class="el" href="server_8py_source.html#l00175">tcp_server()</a> , 以及 <a class="el" href="server_8py_source.html#l00139">udp_server()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a1ba5238eedb18cee36351b5787bdadd1_cgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a1ba5238eedb18cee36351b5787bdadd1_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a83733a161f3efcab11c315c8f76f37c4" name="a83733a161f3efcab11c315c8f76f37c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83733a161f3efcab11c315c8f76f37c4">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.stop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Stop STUN server.</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00246">246</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="server_8py_source.html#l00062">running</a>.</p>
+
+</div>
+</div>
+<a id="a114745e39d0c1ee1d23b3546381d04f2" name="a114745e39d0c1ee1d23b3546381d04f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a114745e39d0c1ee1d23b3546381d04f2">&#9670;&#160;</a></span>tcp_server()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.tcp_server </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Run TCP STUN server.</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00175">175</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="server_8py_source.html#l00189">_handle_tcp_client()</a>, <a class="el" href="server_8py_source.html#l00059">host</a>, <a class="el" href="server_8py_source.html#l00062">running</a> , 以及 <a class="el" href="server_8py_source.html#l00061">tcp_port</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="server_8py_source.html#l00223">start()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a114745e39d0c1ee1d23b3546381d04f2_cgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a114745e39d0c1ee1d23b3546381d04f2_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a114745e39d0c1ee1d23b3546381d04f2_icgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a114745e39d0c1ee1d23b3546381d04f2_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a295f6b3afb1ebdaa904c9a66aa4a4f8b" name="a295f6b3afb1ebdaa904c9a66aa4a4f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295f6b3afb1ebdaa904c9a66aa4a4f8b">&#9670;&#160;</a></span>udp_server()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.udp_server </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Run UDP STUN server.</pre> 
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00139">139</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="protocol_2kademlia_8py_source.html#l00067">p2p_engine.protocol.kademlia.KademliaProtocolHandler._started</a>, <a class="el" href="server_8py_source.html#l00063">_started</a>, <a class="el" href="server_8py_source.html#l00065">handle_udp_packet()</a>, <a class="el" href="server_8py_source.html#l00059">host</a>, <a class="el" href="server_8py_source.html#l00062">running</a> , 以及 <a class="el" href="server_8py_source.html#l00060">udp_port</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="server_8py_source.html#l00223">start()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a295f6b3afb1ebdaa904c9a66aa4a4f8b_cgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a295f6b3afb1ebdaa904c9a66aa4a4f8b_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1server_1_1_s_t_u_n_server_a295f6b3afb1ebdaa904c9a66aa4a4f8b_icgraph.png" border="0" usemap="#aclasssrc_1_1server_1_1_s_t_u_n_server_a295f6b3afb1ebdaa904c9a66aa4a4f8b_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="aaf5d0ddf7b22edf64093430365cb4df8" name="aaf5d0ddf7b22edf64093430365cb4df8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf5d0ddf7b22edf64093430365cb4df8">&#9670;&#160;</a></span>_started</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer._started = asyncio.Event()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00063">63</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="server_8py_source.html#l00139">udp_server()</a>.</p>
+
+</div>
+</div>
+<a id="a75e5489168c585fd8c637f146a13e859" name="a75e5489168c585fd8c637f146a13e859"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75e5489168c585fd8c637f146a13e859">&#9670;&#160;</a></span>host</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.host = host</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00059">59</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00198">src.relay.RelayServer._start_control_channel()</a>, <a class="el" href="server_8py_source.html#l00175">tcp_server()</a> , 以及 <a class="el" href="server_8py_source.html#l00139">udp_server()</a>.</p>
+
+</div>
+</div>
+<a id="a290adc3a80ecf175e732e8d24081e157" name="a290adc3a80ecf175e732e8d24081e157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a290adc3a80ecf175e732e8d24081e157">&#9670;&#160;</a></span>running</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool src.server.STUNServer.running = False</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00062">62</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00210">src.relay.RelayServer._control_loop()</a>, <a class="el" href="relay_8py_source.html#l00188">src.relay.RelayServer.start()</a>, <a class="el" href="server_8py_source.html#l00223">start()</a>, <a class="el" href="relay_8py_source.html#l00554">src.relay.RelayServer.stop()</a>, <a class="el" href="server_8py_source.html#l00246">stop()</a>, <a class="el" href="server_8py_source.html#l00175">tcp_server()</a> , 以及 <a class="el" href="server_8py_source.html#l00139">udp_server()</a>.</p>
+
+</div>
+</div>
+<a id="a8ececd4731a1ad6c1b03f52d28be8b15" name="a8ececd4731a1ad6c1b03f52d28be8b15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ececd4731a1ad6c1b03f52d28be8b15">&#9670;&#160;</a></span>tcp_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.tcp_port = tcp_port</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00061">61</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="server_8py_source.html#l00175">tcp_server()</a>.</p>
+
+</div>
+</div>
+<a id="a471326b31daf7543142acd41833d3a5a" name="a471326b31daf7543142acd41833d3a5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a471326b31daf7543142acd41833d3a5a">&#9670;&#160;</a></span>udp_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.server.STUNServer.udp_port = udp_port</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="server_8py_source.html">server.py</a> 第 <a class="el" href="server_8py_source.html#l00060">60</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="server_8py_source.html#l00139">udp_server()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>stun-server/src/<a class="el" href="server_8py_source.html">server.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacesrc.html">src</a></li><li class="navelem"><a href="namespacesrc_1_1server.html">server</a></li><li class="navelem"><a href="classsrc_1_1server_1_1_s_t_u_n_server.html">STUNServer</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

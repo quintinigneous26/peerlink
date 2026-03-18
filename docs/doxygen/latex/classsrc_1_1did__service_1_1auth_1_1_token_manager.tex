@@ -1,0 +1,208 @@
+\doxysection{src.\+did\+\_\+service.\+auth.\+Token\+Manager类 参考}
+\hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager}{}\label{classsrc_1_1did__service_1_1auth_1_1_token_manager}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_a1df3f182d0d66060c2f2252356bc8dcd}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_af6c8f0b7aaf43b608e2ccad9eff39146}{secret}}=None, int\texorpdfstring{$\vert$}{|}None \doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_add9f65b52baaf158998af7591dadf638}{expiration}}=None)
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_af8f79874f88d74d7aea4d331839e5ab7}{generate\+\_\+token}} (self, str device\+\_\+id, str device\+\_\+type, dict\texorpdfstring{$\vert$}{|}None extra\+\_\+claims=None)
+\item 
+Optional\+[dict]\+ \doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_af64b59a4b097084f64aa242d59981904}{verify\+\_\+token}} (self, str token)
+\item 
+Optional\+[dict]\+ \doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_a50ca0ecf0f19c123284b792e48a0ac12}{decode\+\_\+token}} (self, str token)
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_ad991f86ead84f543b1bf451c146c278d}{get\+\_\+expiration}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_af6c8f0b7aaf43b608e2ccad9eff39146}{secret}} = secret or config.\+jwt\+\_\+secret
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_add9f65b52baaf158998af7591dadf638}{expiration}} = expiration or config.\+jwt\+\_\+expiration
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_ab14aac1388063fae40ddb57e93861d47}{algorithm}} = config.\+jwt\+\_\+algorithm
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional \doxymbox{\hyperlink{classsrc_1_1did__service_1_1auth_1_1_token_manager_af41babf2de7822122c17274f3617c8b4}{\+\_\+token\+\_\+manager}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Manage JWT tokens for device authentication.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00015}{15}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_a1df3f182d0d66060c2f2252356bc8dcd}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_a1df3f182d0d66060c2f2252356bc8dcd} 
+src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str \texorpdfstring{$\vert$}{|} None }]{secret}{ = {\ttfamily None}, }\item[{int \texorpdfstring{$\vert$}{|} None }]{expiration}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize token manager.
+
+Args:
+    secret: JWT secret key (default from config)
+    expiration: Token expiration time in seconds (default from config)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00018}{18}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_a50ca0ecf0f19c123284b792e48a0ac12}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!decode\_token@{decode\_token}}
+\index{decode\_token@{decode\_token}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{decode\_token()}{decode\_token()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_a50ca0ecf0f19c123284b792e48a0ac12} 
+ Optional\+[dict]\+ src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+decode\+\_\+token (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{token}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode a JWT token without verification.
+
+Args:
+    token: JWT token string
+
+Returns:
+    Decoded payload or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00089}{89}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{auth_8py_source_l00028}{algorithm}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_af8f79874f88d74d7aea4d331839e5ab7}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!generate\_token@{generate\_token}}
+\index{generate\_token@{generate\_token}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{generate\_token()}{generate\_token()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_af8f79874f88d74d7aea4d331839e5ab7} 
+ str src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+generate\+\_\+token (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{device\+\_\+id}{, }\item[{str}]{device\+\_\+type}{, }\item[{dict \texorpdfstring{$\vert$}{|} None }]{extra\+\_\+claims}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate a JWT token for a device.
+
+Args:
+    device_id: Device identifier
+    device_type: Type of device
+    extra_claims: Optional additional claims
+
+Returns:
+    JWT token string
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00030}{30}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{auth_8py_source_l00028}{algorithm}}, \doxymbox{\hyperlink{auth_8py_source_l00027}{expiration}} , 以及 \doxymbox{\hyperlink{auth_8py_source_l00026}{secret}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_ad991f86ead84f543b1bf451c146c278d}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!get\_expiration@{get\_expiration}}
+\index{get\_expiration@{get\_expiration}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{get\_expiration()}{get\_expiration()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_ad991f86ead84f543b1bf451c146c278d} 
+ int src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+get\+\_\+expiration (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get token expiration time in seconds.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00111}{111}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{auth_8py_source_l00027}{expiration}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_af64b59a4b097084f64aa242d59981904}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!verify\_token@{verify\_token}}
+\index{verify\_token@{verify\_token}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{verify\_token()}{verify\_token()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_af64b59a4b097084f64aa242d59981904} 
+ Optional\+[dict]\+ src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+verify\+\_\+token (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{token}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify a JWT token.
+
+Args:
+    token: JWT token string
+
+Returns:
+    Decoded payload if valid, None otherwise
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00064}{64}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{auth_8py_source_l00028}{algorithm}} , 以及 \doxymbox{\hyperlink{auth_8py_source_l00026}{secret}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_af41babf2de7822122c17274f3617c8b4}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!\_token\_manager@{\_token\_manager}}
+\index{\_token\_manager@{\_token\_manager}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{\_token\_manager}{\_token\_manager}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_af41babf2de7822122c17274f3617c8b4} 
+Optional src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+\_\+token\+\_\+manager = None\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00117}{117}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_ab14aac1388063fae40ddb57e93861d47}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!algorithm@{algorithm}}
+\index{algorithm@{algorithm}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{algorithm}{algorithm}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_ab14aac1388063fae40ddb57e93861d47} 
+src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+algorithm = config.\+jwt\+\_\+algorithm}
+
+
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00028}{28}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{auth_8py_source_l00089}{decode\+\_\+token()}}, \doxymbox{\hyperlink{auth_8py_source_l00035}{generate\+\_\+token()}} , 以及 \doxymbox{\hyperlink{auth_8py_source_l00064}{verify\+\_\+token()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_add9f65b52baaf158998af7591dadf638}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!expiration@{expiration}}
+\index{expiration@{expiration}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{expiration}{expiration}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_add9f65b52baaf158998af7591dadf638} 
+src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+expiration = expiration or config.\+jwt\+\_\+expiration}
+
+
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00027}{27}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{auth_8py_source_l00035}{generate\+\_\+token()}} , 以及 \doxymbox{\hyperlink{auth_8py_source_l00111}{get\+\_\+expiration()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1auth_1_1_token_manager_af6c8f0b7aaf43b608e2ccad9eff39146}\index{src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}!secret@{secret}}
+\index{secret@{secret}!src.did\_service.auth.TokenManager@{src.did\_service.auth.TokenManager}}
+\doxysubsubsection{\texorpdfstring{secret}{secret}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1auth_1_1_token_manager_af6c8f0b7aaf43b608e2ccad9eff39146} 
+src.\+did\+\_\+service.\+auth.\+Token\+Manager.\+secret = secret or config.\+jwt\+\_\+secret}
+
+
+
+在文件 \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}} 第 \doxymbox{\hyperlink{auth_8py_source_l00026}{26}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{auth_8py_source_l00035}{generate\+\_\+token()}} , 以及 \doxymbox{\hyperlink{auth_8py_source_l00064}{verify\+\_\+token()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+did-\/service/\+src/\+did\+\_\+service/\+\doxymbox{\hyperlink{auth_8py}{auth.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="example_8py" kind="file" language="Python">
+    <compoundname>example.py</compoundname>
+    <innernamespace refid="namespacep2p__engine">p2p_engine</innernamespace>
+    <innernamespace refid="namespacep2p__engine_1_1protocol">p2p_engine::protocol</innernamespace>
+    <innernamespace refid="namespacep2p__engine_1_1protocol_1_1dcutr">p2p_engine::protocol::dcutr</innernamespace>
+    <innernamespace refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example">p2p_engine::protocol::dcutr::example</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example" refkind="compound"><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="2"><highlight class="stringliteral">DCUtR<sp/>Protocol<sp/>Usage<sp/>Example</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">This<sp/>example<sp/>demonstrates<sp/>how<sp/>to<sp/>use<sp/>the<sp/>DCUtR<sp/>protocol<sp/>to<sp/>upgrade</highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">a<sp/>relay<sp/>connection<sp/>to<sp/>a<sp/>direct<sp/>connection.</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>asyncio</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>logging</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>...types<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>NATInfo,<sp/>NATType,<sp/>ISP</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>..dcutr<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>(</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>DCUtRProtocol,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>DCUtRMessage,</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>DCUtRMessageType,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>PROTOCOL_ID,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">logging.basicConfig(</highlight></codeline>
+<codeline lineno="20" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a78dc414004c9c266390e108c6157663f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>level=logging.INFO,</highlight></codeline>
+<codeline lineno="21" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1af5529ad27ccf240e7d275ede7f9795e5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>format=</highlight><highlight class="stringliteral">&quot;[%(asctime)s]<sp/>[%(name)s]<sp/>[%(levelname)s]<sp/>%(message)s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="23" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a615f4bbfbe453fb83c693a13417c436e" refkind="member"><highlight class="normal">logger<sp/>=<sp/>logging.getLogger(__name__)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1abc27c0a7bf898204f7dfff1e14c25c8b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1abc27c0a7bf898204f7dfff1e14c25c8b" kindref="member">example_dcutr_active_side</ref>():</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="28"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Example:<sp/>Active<sp/>side<sp/>(initiator)<sp/>of<sp/>DCUtR<sp/>upgrade</highlight></codeline>
+<codeline lineno="29"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="30"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>This<sp/>is<sp/>the<sp/>peer<sp/>that<sp/>initiates<sp/>the<sp/>upgrade<sp/>from<sp/>relay<sp/>to<sp/>direct.</highlight></codeline>
+<codeline lineno="31"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Setup<sp/>local<sp/>NAT<sp/>information</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>local_nat<sp/>=<sp/><ref refid="classp2p__engine_1_1types_1_1_n_a_t_info" kindref="compound">NATInfo</ref>(</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>type=NATType.PORT_RESTRICTED,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_ip=</highlight><highlight class="stringliteral">&quot;203.0.113.1&quot;</highlight><highlight class="normal">,<sp/><sp/></highlight><highlight class="comment">#<sp/>Example<sp/>public<sp/>IP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_port=12345,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_ip=</highlight><highlight class="stringliteral">&quot;10.0.0.1&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_port=54321,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>DCUtR<sp/>protocol<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>dcutr<sp/>=<sp/><ref refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_protocol" kindref="compound">DCUtRProtocol</ref>(</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id=</highlight><highlight class="stringliteral">&quot;QmInitiatorPeer&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_nat=local_nat,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_isp=ISP.CHINA_TELECOM,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_retry_attempts=3,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sync_timeout_ms=10000,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Simulated<sp/>relay<sp/>connection<sp/>(in<sp/>real<sp/>use,<sp/>this<sp/>comes<sp/>from<sp/>circuit<sp/>relay)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>For<sp/>this<sp/>example,<sp/>we&apos;ll<sp/>skip<sp/>the<sp/>actual<sp/>relay<sp/>connection<sp/>setup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Local<sp/>addresses<sp/>to<sp/>share<sp/>with<sp/>remote<sp/>peer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>These<sp/>would<sp/>typically<sp/>come<sp/>from<sp/>Identify<sp/>protocol<sp/>observations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>local_addrs<sp/>=<sp/>[</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;/ip4/203.0.113.1/tcp/12345&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;/ip4/203.0.113.1/udp/12346/quic&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Starting<sp/>DCUtR<sp/>upgrade<sp/>(active<sp/>side)...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>In<sp/>a<sp/>real<sp/>scenario,<sp/>you<sp/>would<sp/>have<sp/>actual<sp/>relay<sp/>streams:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>result<sp/>=<sp/>await<sp/>dcutr.upgrade_to_direct(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>relay_reader=relay_reader,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>relay_writer=relay_writer,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>local_addrs=local_addrs,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>remote_peer_id=&quot;QmRemotePeer&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>For<sp/>this<sp/>example,<sp/>just<sp/>show<sp/>the<sp/>flow</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Would<sp/>upgrade<sp/>using<sp/>addresses:<sp/>{local_addrs}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Protocol<sp/>ID:<sp/>{PROTOCOL_ID}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Cleanup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>dcutr.close()</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a18d514323255c48ce868c15f6803af33" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a18d514323255c48ce868c15f6803af33" kindref="member">example_dcutr_passive_side</ref>():</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="80"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Example:<sp/>Passive<sp/>side<sp/>(receiver)<sp/>of<sp/>DCUtR<sp/>upgrade</highlight></codeline>
+<codeline lineno="81"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="82"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>This<sp/>is<sp/>the<sp/>peer<sp/>that<sp/>receives<sp/>the<sp/>upgrade<sp/>request.</highlight></codeline>
+<codeline lineno="83"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Setup<sp/>local<sp/>NAT<sp/>information</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>local_nat<sp/>=<sp/><ref refid="classp2p__engine_1_1types_1_1_n_a_t_info" kindref="compound">NATInfo</ref>(</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>type=NATType.FULL_CONE,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_ip=</highlight><highlight class="stringliteral">&quot;198.51.100.1&quot;</highlight><highlight class="normal">,<sp/><sp/></highlight><highlight class="comment">#<sp/>Example<sp/>public<sp/>IP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_port=23456,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_ip=</highlight><highlight class="stringliteral">&quot;10.0.1.1&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_port=65432,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>DCUtR<sp/>protocol<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>dcutr<sp/>=<sp/><ref refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_protocol" kindref="compound">DCUtRProtocol</ref>(</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id=</highlight><highlight class="stringliteral">&quot;QmPassivePeer&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_nat=local_nat,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_isp=ISP.CHINA_UNICOM,</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Local<sp/>addresses<sp/>to<sp/>share</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>local_addrs<sp/>=<sp/>[</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;/ip4/198.51.100.1/tcp/23456&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;/ip4/198.51.100.1/udp/23457/quic&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Waiting<sp/>for<sp/>DCUtR<sp/>upgrade<sp/>request<sp/>(passive<sp/>side)...&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>In<sp/>a<sp/>real<sp/>scenario,<sp/>you<sp/>would<sp/>handle<sp/>incoming<sp/>requests:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>result<sp/>=<sp/>await<sp/>dcutr.handle_incoming_upgrade(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>relay_reader=relay_reader,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>relay_writer=relay_writer,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/><sp/><sp/><sp/><sp/>local_addrs=local_addrs,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Would<sp/>share<sp/>addresses:<sp/>{local_addrs}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Cleanup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>dcutr.close()</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a4900cef308681aa7c2a08b14f1a67dd3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a4900cef308681aa7c2a08b14f1a67dd3" kindref="member">example_message_encoding</ref>():</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Example:<sp/>Encoding<sp/>and<sp/>decoding<sp/>DCUtR<sp/>messages&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;===<sp/>DCUtR<sp/>Message<sp/>Encoding<sp/>Example<sp/>===&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>a<sp/>CONNECT<sp/>message<sp/>with<sp/>observed<sp/>addresses</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>connect_msg<sp/>=<sp/><ref refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message" kindref="compound">DCUtRMessage</ref>(</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>message_type=DCUtRMessageType.CONNECT,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>obs_addrs=[</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b</highlight><highlight class="stringliteral">&quot;/ip4/203.0.113.1/tcp/12345&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>b</highlight><highlight class="stringliteral">&quot;/ip4/203.0.113.1/udp/12346/quic&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>],</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Encode<sp/>the<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>encoded<sp/>=<sp/>connect_msg.encode()</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Encoded<sp/>CONNECT<sp/>message:<sp/>{len(encoded)}<sp/>bytes&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Hex:<sp/>{encoded.hex()}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Decode<sp/>the<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>length,<sp/>offset<sp/>=<sp/>DCUtRMessage.decode_varint(encoded)</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>msg_data<sp/>=<sp/>encoded[offset:offset<sp/>+<sp/>length]</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>decoded<sp/>=<sp/>DCUtRMessage.decode(msg_data)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Decoded<sp/>message<sp/>type:<sp/>{decoded.message_type.name}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Decoded<sp/>addresses:<sp/>{[addr.decode()<sp/>for<sp/>addr<sp/>in<sp/>decoded.obs_addrs]}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>a<sp/>SYNC<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>sync_msg<sp/>=<sp/><ref refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message" kindref="compound">DCUtRMessage</ref>(message_type=DCUtRMessageType.SYNC)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>sync_encoded<sp/>=<sp/>sync_msg.encode()</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Encoded<sp/>SYNC<sp/>message:<sp/>{len(sync_encoded)}<sp/>bytes&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1aede029a510514afdc5409f98095a182a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1aede029a510514afdc5409f98095a182a" kindref="member">example_protocol_flow</ref>():</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Example:<sp/>Complete<sp/>DCUtR<sp/>protocol<sp/>flow&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;===<sp/>DCUtR<sp/>Protocol<sp/>Flow<sp/>Example<sp/>===&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Step<sp/>1:<sp/>Relay<sp/>connection<sp/>established&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Peer<sp/>A<sp/>---relay---&gt;<sp/>Peer<sp/>B&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Step<sp/>2:<sp/>Peer<sp/>B<sp/>opens<sp/>DCUtR<sp/>stream&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>B<sp/>-&gt;<sp/>A:<sp/>CONNECT<sp/>(with<sp/>B&apos;s<sp/>observed<sp/>addresses)&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Step<sp/>3:<sp/>Peer<sp/>A<sp/>responds&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>A<sp/>-&gt;<sp/>B:<sp/>CONNECT<sp/>(with<sp/>A&apos;s<sp/>observed<sp/>addresses)&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>[RTT<sp/>measured]&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Step<sp/>4:<sp/>Peer<sp/>B<sp/>synchronizes&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>B<sp/>-&gt;<sp/>A:<sp/>SYNC&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>[B<sp/>starts<sp/>timer<sp/>=<sp/>RTT/2]&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Step<sp/>5:<sp/>Simultaneous<sp/>connect&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>A:<sp/>Immediately<sp/>connects<sp/>to<sp/>B&apos;s<sp/>addresses&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>B:<sp/>After<sp/>timer,<sp/>connects<sp/>to<sp/>A&apos;s<sp/>addresses&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Step<sp/>6:<sp/>Direct<sp/>connection<sp/>established&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Peer<sp/>A<sp/>&lt;---direct---&gt;<sp/>Peer<sp/>B&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;<sp/><sp/>Relay<sp/>connection<sp/>can<sp/>be<sp/>closed&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180" refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a9862a12b7fc546d445b9393a42fe04ab" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a9862a12b7fc546d445b9393a42fe04ab" kindref="member">main</ref>():</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Run<sp/>all<sp/>examples&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;=&quot;</highlight><highlight class="normal"><sp/>*<sp/>60)</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;DCUtR<sp/>Protocol<sp/>Examples&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;=&quot;</highlight><highlight class="normal"><sp/>*<sp/>60)</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a4900cef308681aa7c2a08b14f1a67dd3" kindref="member">example_message_encoding</ref>()</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1aede029a510514afdc5409f98095a182a" kindref="member">example_protocol_flow</ref>()</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1abc27c0a7bf898204f7dfff1e14c25c8b" kindref="member">example_dcutr_active_side</ref>()</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/><ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a18d514323255c48ce868c15f6803af33" kindref="member">example_dcutr_passive_side</ref>()</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;=&quot;</highlight><highlight class="normal"><sp/>*<sp/>60)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Examples<sp/>completed&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;=&quot;</highlight><highlight class="normal"><sp/>*<sp/>60)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>__name__<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;__main__&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>asyncio.run(<ref refid="namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_1a9862a12b7fc546d445b9393a42fe04ab" kindref="member">main</ref>())</highlight></codeline>
+    </programlisting>
+    <location file="p2p_engine/protocol/dcutr/example.py"/>
+  </compounddef>
+</doxygen>

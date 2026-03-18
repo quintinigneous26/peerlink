@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</compoundname>
+    <basecompoundref refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session" prot="public" virt="non-virtual">p2p_engine.muxer.yamux.YamuxSession</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1adc8e2c02bd2e1d3d1108040867c840b9" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession::_stream_id_pool</definition>
+        <argsstring></argsstring>
+        <name>_stream_id_pool</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stream_id_pool</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_stream_i_d_pool" kindref="compound">StreamIDPool</ref>(
+            start_id=self._next_stream_id,
+            increment=STREAM_ID_INCREMENT,
+        )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="183" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="183" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a95d325974e21f09de8ce92886df1457c" compoundref="yamux__optimized_8py" startline="329" endline="347">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.get_performance_metrics</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa9f5cf8aab9b19aaeba6eff14613f83c" compoundref="yamux__optimized_8py" startline="240" endline="293">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_streams_batch</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession::_stats</definition>
+        <argsstring></argsstring>
+        <name>_stats</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</qualifiedname>
+        <initializer>=  {
+            &quot;streams_opened&quot;: 0,
+            &quot;streams_closed&quot;: 0,
+            &quot;frames_sent&quot;: 0,
+            &quot;frames_received&quot;: 0,
+            &quot;bytes_sent&quot;: 0,
+            &quot;bytes_received&quot;: 0,
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="189" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="189" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" compoundref="ping_8py" startline="270" endline="286">p2p_engine.protocol.ping.PingProtocol._handle_ping_request</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad7458e8f9d146d5cf5027a2803c20e5e" compoundref="ping_8py" startline="225" endline="230">p2p_engine.protocol.ping.PingProtocol._on_ping_failure</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1af26faaa94cb5e7a4b2bc2ee5daf2762b" compoundref="ping_8py" startline="201" endline="224">p2p_engine.protocol.ping.PingProtocol._on_ping_success</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1ac8832e8cd7f08253cc50250f9203cc6d" compoundref="yamux__optimized_8py" startline="312" endline="323">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frame</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a5f0cb1be2682c71925c8a03e9cb58604" compoundref="yamux__optimized_8py" startline="294" endline="311">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frames_batch</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" compoundref="ping_8py" startline="151" endline="200">p2p_engine.protocol.ping.PingProtocol._send_ping</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a95d325974e21f09de8ce92886df1457c" compoundref="yamux__optimized_8py" startline="329" endline="347">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.get_performance_metrics</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1a3de8eb5c570f875b921b22792dba06b9" compoundref="bandwidth_8py" startline="228" endline="239">src.bandwidth.BandwidthLimiter.get_stats</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa9f5cf8aab9b19aaeba6eff14613f83c" compoundref="yamux__optimized_8py" startline="240" endline="293">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_streams_batch</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" compoundref="ping_8py" startline="101" endline="150">p2p_engine.protocol.ping.PingProtocol.ping</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1ab10791079e6da96fdd1f93484707bde4" compoundref="bandwidth_8py" startline="218" endline="227">src.bandwidth.BandwidthLimiter.remove_allocation</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a2a4514e58db0af927b6c2620abc79467" compoundref="ping_8py" startline="304" endline="310">p2p_engine.protocol.ping.PingProtocol.reset_stats</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa31f82576e961b7fca79c7f518d53260" compoundref="yamux__optimized_8py" startline="325" endline="328">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.statistics</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a749fc9c7f9bba3e333e80081d2da652f" compoundref="ping_8py" startline="92" endline="95">p2p_engine.protocol.ping.PingProtocol.stats</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1af4609bbde00596273bb3a35b18bbbea6" compoundref="bandwidth_8py" startline="139" endline="168">src.bandwidth.BandwidthLimiter.throttle_read</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1acc1e7b50b152006fd2cd87c7a11b6068" compoundref="bandwidth_8py" startline="169" endline="198">src.bandwidth.BandwidthLimiter.throttle_write</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1af13c40671b86ce9e22be1f475350a97b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.__init__</definition>
+        <argsstring>(self, *args, **kwargs)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>*</type>
+          <declname>args</declname>
+        </param>
+        <param>
+          <type>**</type>
+          <declname>kwargs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="179" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="179" bodyend="197"/>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1af13c40671b86ce9e22be1f475350a97b" compoundref="yamux__optimized_8py" startline="179" endline="197">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.__init__</references>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1af13c40671b86ce9e22be1f475350a97b" compoundref="yamux__optimized_8py" startline="179" endline="197">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.__init__</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1acbf12c7d93305c993290edb64570697b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream" kindref="compound">OptimizedYamuxStream</ref></type>
+        <definition> OptimizedYamuxStream p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_stream</definition>
+        <argsstring>(self)</argsstring>
+        <name>open_stream</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_stream</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a0b9e6b778124e0386f65e87e3b520496">open_stream</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>打开新流（优化版）
+
+使用预分配池，无锁快速路径。
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="198" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="198" bodyend="236"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aed5dc0723cbeaaf8f6c23b858b9260b1" compoundref="quic_8py" startline="329" endline="341">p2p_engine.transport.quic.QUICConnection._get_or_create_stream</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa9f5cf8aab9b19aaeba6eff14613f83c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[<ref refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream" kindref="compound">OptimizedYamuxStream</ref>]</type>
+        <definition> List[OptimizedYamuxStream] p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_streams_batch</definition>
+        <argsstring>(self, int count)</argsstring>
+        <name>open_streams_batch</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_streams_batch</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>批量打开流
+
+比单独调用 open_stream() 更高效。
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="237" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="240" bodyend="293"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1config_1_1loader_1_1_config_loader_1a904c370fdcdb06f1864d808d2621ac49" compoundref="loader_8py" startline="61">p2p_engine.config.loader.ConfigLoader._config</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1a0ea64e42340f3cb5bec3c71fb6c91c66" compoundref="engine_8py" startline="126">p2p_engine.engine.P2PEngine._config</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1ad170e14e58ed9480493b068dab30552c" compoundref="yamux_8py" startline="530">p2p_engine.muxer.yamux.YamuxSession._config</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_1adac0c82a4f18981c03a091140252aa37" compoundref="yamux_8py" startline="230">p2p_engine.muxer.yamux.YamuxStream._config</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a5f0cb1be2682c71925c8a03e9cb58604" compoundref="yamux__optimized_8py" startline="294" endline="311">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frames_batch</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1adc8e2c02bd2e1d3d1108040867c840b9" compoundref="yamux__optimized_8py" startline="183">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stream_id_pool</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1ab7457f1b08ddedaaafb3868b90a6253c" compoundref="mplex_8py" startline="512">p2p_engine.muxer.mplex.MplexSession._streams</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ab0a77d959aef963835f9624aac62bbf8" compoundref="mplex__v2_8py" startline="675">p2p_engine.muxer.mplex_v2.MplexSession._streams</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a646d937f75d6ef53e2a7a930d88e288d" compoundref="yamux_8py" startline="533">p2p_engine.muxer.yamux.YamuxSession._streams</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1accee082be381d63305c558cece5faa92" compoundref="mplex_8py" startline="513">p2p_engine.muxer.mplex.MplexSession._streams_lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1afea3327c5fd87ca9e33aa6c4fb7b50e2" compoundref="mplex__v2_8py" startline="676">p2p_engine.muxer.mplex_v2.MplexSession._streams_lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a3cb379326b80edb504078edb851aa2e4" compoundref="yamux_8py" startline="534">p2p_engine.muxer.yamux.YamuxSession._streams_lock</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa31f82576e961b7fca79c7f518d53260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, int]</type>
+        <definition> Dict[str, int] p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.statistics</definition>
+        <argsstring>(self)</argsstring>
+        <name>statistics</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.statistics</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取会话统计</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="325" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="325" bodyend="328"/>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a95d325974e21f09de8ce92886df1457c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Dict[str, float]</type>
+        <definition> Dict[str, float] p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.get_performance_metrics</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_performance_metrics</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.get_performance_metrics</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取性能指标</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="329" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="329" bodyend="347"/>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1adc8e2c02bd2e1d3d1108040867c840b9" compoundref="yamux__optimized_8py" startline="183">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stream_id_pool</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1ab7457f1b08ddedaaafb3868b90a6253c" compoundref="mplex_8py" startline="512">p2p_engine.muxer.mplex.MplexSession._streams</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ab0a77d959aef963835f9624aac62bbf8" compoundref="mplex__v2_8py" startline="675">p2p_engine.muxer.mplex_v2.MplexSession._streams</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a646d937f75d6ef53e2a7a930d88e288d" compoundref="yamux_8py" startline="533">p2p_engine.muxer.yamux.YamuxSession._streams</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a5f0cb1be2682c71925c8a03e9cb58604" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frames_batch</definition>
+        <argsstring>(self, List[YamuxFrame] frames)</argsstring>
+        <name>_send_frames_batch</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frames_batch</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>frames</declname>
+          <array>[YamuxFrame]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>批量发送帧
+
+减少系统调用次数。
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="294" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="294" bodyend="311"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa9f5cf8aab9b19aaeba6eff14613f83c" compoundref="yamux__optimized_8py" startline="240" endline="293">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_streams_batch</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1ac8832e8cd7f08253cc50250f9203cc6d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frame</definition>
+        <argsstring>(self, YamuxFrame frame)</argsstring>
+        <name>_send_frame</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frame</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a8252a45c93f00f3b1bcdce46105ff0c0">_send_frame</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame" kindref="compound">YamuxFrame</ref></type>
+          <declname>frame</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>发送单帧（覆盖父类方法，添加统计）</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="312" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="312" bodyend="323"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_1af542ea1d0e3cd1a1836f6701a80f8d0e" compoundref="noise_8py" startline="855" endline="881">p2p_engine.protocol.noise.NoiseSecurity._handshake_as_initiator</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_1a4bd538480922ac57e6243ff8c1ee7a18" compoundref="noise_8py" startline="887" endline="917">p2p_engine.protocol.noise.NoiseSecurity._handshake_as_responder</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>优化的 Yamux 会话
+
+改进：
+1. 流 ID 预分配池
+2. 批量流创建
+3. 快速路径帧发送
+4. 连接统计
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession</label>
+        <link refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.muxer.yamux.YamuxSession</label>
+        <link refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>IntEnum</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession</label>
+        <link refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>p2p_engine.muxer.yamux.GoAwayCode</label>
+        <link refid="classp2p__engine_1_1muxer_1_1yamux_1_1_go_away_code"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.muxer.yamux.YamuxSession</label>
+        <link refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_accept_queue</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_goaway_code</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>p2p_engine.muxer.yamux.YamuxStream</label>
+        <link refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream"/>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/muxer/yamux_optimized.py" line="168" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="168" bodyend="347"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a066d08c25390a3b17987a10faf48df3f" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>__aenter__</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a26d8be3e98c2f2077c43c7e37a671e90" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>__aexit__</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1af13c40671b86ce9e22be1f475350a97b" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a32c3d4d125a9340e41795ee5e4c49a60" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_accept_queue</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1aca099ceabb7144d05255c62ef7efd76c" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_close_lock</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_closed</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1ad170e14e58ed9480493b068dab30552c" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_config</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a7eda8589c9bbc4d0009cb800042a5110" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_goaway_code</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a8ae2a38b8a57e956f6aaa2505a2bab8f" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_handle_frame</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a0d148127f3f8352b3f57d90d4d6588b3" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_handle_session_frame</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a2bf10e698e9d30cf72fe254c2c077577" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_is_client</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1ae8ef3f88ce48d928a3a1286327eef927" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_keepalive_task</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1ab7ea849413dda1fb20b5ba0de85f65bf" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_next_stream_id</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a57999397b59b7ac36b2122b8210fff3d" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_pending_pings</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a2cf7eb248eed8dc38de7d39dd3c63f73" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_ping_counter</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1ab6b4f6a628f3dc3af5778674abda95b9" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_ping_lock</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1aa6c22f12d6e33c4cea3935fadfd5aabc" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_read_loop</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1aac89d0ca027173f04051451483803b67" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_read_task</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1abb1019ffb81c11598ea2aba3263ef761" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_reader</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1ac8832e8cd7f08253cc50250f9203cc6d" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_send_frame</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a5f0cb1be2682c71925c8a03e9cb58604" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_send_frames_batch</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a605c4d95fa35d0c34907bb81ddf27f5d" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_start_keepalive</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1ac71d1af8ed0f4f126e57aa4bcd130b75" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_start_read_loop</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_stats</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a0554195a79fb43c0c71877ced7a482aa" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_stream_id_lock</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1adc8e2c02bd2e1d3d1108040867c840b9" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_stream_id_pool</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a646d937f75d6ef53e2a7a930d88e288d" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_streams</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a3cb379326b80edb504078edb851aa2e4" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_streams_lock</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a9c205c477a82eddb0412296c203c5850" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_unacked_streams</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" prot="protected" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>_writer</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1ae61919b674e274ae507a64e3f07b4ab4" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>accept_stream</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a737be79b12f402bd70ab515a596a214b" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>close</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a3d9b05e989c7143745fc5da1ed374cf4" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>create_client</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a29c2a2e7ef89e6550bdb332b9114d5e3" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>create_server_session</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a95d325974e21f09de8ce92886df1457c" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>get_performance_metrics</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a2fa72d6172d724993ad886938422f028" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>is_client</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1aafe1bd33524da4dbc40a5c2541177cfa" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>is_closed</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1acbf12c7d93305c993290edb64570697b" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>open_stream</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa9f5cf8aab9b19aaeba6eff14613f83c" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>open_streams_batch</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1adb6d98ee2dab4b6175641946658844ed" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>ping</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1aa31f82576e961b7fca79c7f518d53260" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</scope><name>statistics</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

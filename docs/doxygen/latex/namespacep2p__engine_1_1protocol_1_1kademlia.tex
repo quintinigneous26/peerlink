@@ -1,0 +1,115 @@
+\doxysection{p2p\+\_\+engine.\+protocol.\+kademlia 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1protocol_1_1kademlia}{}\label{namespacep2p__engine_1_1protocol_1_1kademlia}\index{p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler}{Kademlia\+Protocol\+Handler}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler}{Kademlia\+Protocol\+Handler}} \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1kademlia_a95611487655a9e9b553f4b2980f341f9}{create\+\_\+kademlia\+\_\+handler}} (bytes local\+\_\+peer\+\_\+id, bytes local\+\_\+public\+\_\+key, Optional\+[Callable\+[\+[bytes, bytes, str]\+, Awaitable\+[bytes]\+]\+]\+ network\+\_\+send\+\_\+func=None)
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1kademlia_a0234101afd211a54577f5536d7b7eafe}{find\+\_\+peer\+\_\+async}} (bytes local\+\_\+peer\+\_\+id, bytes target\+\_\+peer\+\_\+id, List\+[tuple\+[bytes, List\+[str]\+]\+]\+ bootstrap\+\_\+peers, Callable\+[\+[bytes, bytes, str]\+, Awaitable\+[bytes]\+]\+ network\+\_\+send\+\_\+func)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1kademlia_a2d445de36f9d9e4187558b35be3b58f0}{logger}} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1kademlia_ae5e3e00ba5237c6d8ec545d1c852e786}{PROTOCOL\+\_\+\+ID}} = "{}/\+ipfs/\+kad/\+1.\+0.\+0"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Kademlia DHT Protocol Handler
+
+Integrates the Kademlia DHT implementation with the p2p_engine protocol layer.
+This module provides the protocol handler interface for DHT operations.
+
+Compatible with libp2p Kademlia DHT specification:
+https://github.com/libp2p/specs/tree/master/kad-dht
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1kademlia_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1kademlia_a95611487655a9e9b553f4b2980f341f9}\index{p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}!create\_kademlia\_handler@{create\_kademlia\_handler}}
+\index{create\_kademlia\_handler@{create\_kademlia\_handler}!p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}}
+\doxysubsubsection{\texorpdfstring{create\_kademlia\_handler()}{create\_kademlia\_handler()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1kademlia_a95611487655a9e9b553f4b2980f341f9} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler}{Kademlia\+Protocol\+Handler}} p2p\+\_\+engine.\+protocol.\+kademlia.\+create\+\_\+kademlia\+\_\+handler (\begin{DoxyParamCaption}\item[{bytes}]{local\+\_\+peer\+\_\+id}{, }\item[{bytes}]{local\+\_\+public\+\_\+key}{, }\item[{Optional\+[Callable\+[\+[bytes, bytes, str]\+, Awaitable\+[bytes]\+]\+]\+ }]{network\+\_\+send\+\_\+func}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Factory function to create a Kademlia protocol handler.
+
+Args:
+    local_peer_id: Local peer's ID (32 bytes)
+    local_public_key: Local peer's public key
+    network_send_func: Async function to send DHT messages
+
+Returns:
+    KademliaProtocolHandler instance
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{protocol_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00264}{264}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00294}{find\+\_\+peer\+\_\+async()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1kademlia_a0234101afd211a54577f5536d7b7eafe}\index{p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}!find\_peer\_async@{find\_peer\_async}}
+\index{find\_peer\_async@{find\_peer\_async}!p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}}
+\doxysubsubsection{\texorpdfstring{find\_peer\_async()}{find\_peer\_async()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1kademlia_a0234101afd211a54577f5536d7b7eafe} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ p2p\+\_\+engine.\+protocol.\+kademlia.\+find\+\_\+peer\+\_\+async (\begin{DoxyParamCaption}\item[{bytes}]{local\+\_\+peer\+\_\+id}{, }\item[{bytes}]{target\+\_\+peer\+\_\+id}{, }\item[{List\+[tuple\+[bytes, List\+[str]\+]\+]\+}]{bootstrap\+\_\+peers}{, }\item[{Callable\+[\+[bytes, bytes, str]\+, Awaitable\+[bytes]\+]\+}]{network\+\_\+send\+\_\+func}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convenience function to find a peer without persistent DHT instance.
+
+Args:
+    local_peer_id: Local peer ID
+    target_peer_id: Target peer ID to find
+    bootstrap_peers: List of (peer_id, addresses) tuples
+    network_send_func: Function to send DHT messages
+
+Returns:
+    Peer entry if found, None otherwise
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{protocol_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00289}{289}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00268}{create\+\_\+kademlia\+\_\+handler()}}.
+
+函数调用图:\+
+% FIG 1
+
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1kademlia_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1kademlia_a2d445de36f9d9e4187558b35be3b58f0}\index{p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1kademlia_a2d445de36f9d9e4187558b35be3b58f0} 
+p2p\+\_\+engine.\+protocol.\+kademlia.\+logger = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00024}{24}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1kademlia_ae5e3e00ba5237c6d8ec545d1c852e786}\index{p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}!PROTOCOL\_ID@{PROTOCOL\_ID}}
+\index{PROTOCOL\_ID@{PROTOCOL\_ID}!p2p\_engine.protocol.kademlia@{p2p\_engine.protocol.kademlia}}
+\doxysubsubsection{\texorpdfstring{PROTOCOL\_ID}{PROTOCOL\_ID}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1kademlia_ae5e3e00ba5237c6d8ec545d1c852e786} 
+str p2p\+\_\+engine.\+protocol.\+kademlia.\+PROTOCOL\+\_\+\+ID = "{}/\+ipfs/\+kad/\+1.\+0.\+0"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00027}{27}} 行定义.
+

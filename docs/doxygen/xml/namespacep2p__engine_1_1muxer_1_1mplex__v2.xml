@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1muxer_1_1mplex__v2" kind="namespace" language="Python">
+    <compoundname>p2p_engine::muxer::mplex_v2</compoundname>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_flag" prot="public">p2p_engine::muxer::mplex_v2::MplexFlag</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_stream_state" prot="public">p2p_engine::muxer::mplex_v2::StreamState</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_error" prot="public">p2p_engine::muxer::mplex_v2::MplexError</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_protocol_error" prot="public">p2p_engine::muxer::mplex_v2::MplexProtocolError</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_closed_error" prot="public">p2p_engine::muxer::mplex_v2::MplexClosedError</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_stream_closed" prot="public">p2p_engine::muxer::mplex_v2::MplexStreamClosed</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_stream_reset" prot="public">p2p_engine::muxer::mplex_v2::MplexStreamReset</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_window_exceeded" prot="public">p2p_engine::muxer::mplex_v2::MplexWindowExceeded</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_frame" prot="public">p2p_engine::muxer::mplex_v2::MplexFrame</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_stream_priority" prot="public">p2p_engine::muxer::mplex_v2::StreamPriority</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_stream" prot="public">p2p_engine::muxer::mplex_v2::MplexStream</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool" prot="public">p2p_engine::muxer::mplex_v2::MplexSessionPool</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session" prot="public">p2p_engine::muxer::mplex_v2::MplexSession</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a68f52eb983e62e9a5f194d7f03c494fc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::muxer::mplex_v2.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.logger</qualifiedname>
+        <initializer>=  logging.getLogger(&quot;p2p_engine.muxer.mplex&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="31" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a62f0a0b2ca133c245cd50590fc591f66" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::muxer::mplex_v2.PROTOCOL_STRING</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_STRING</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.PROTOCOL_STRING</qualifiedname>
+        <initializer>=  &quot;/mplex/6.7.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="36" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1adad3bca9c771b6cf91eaec5aaa3b9b53" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::mplex_v2.INITIAL_CLIENT_STREAM_ID</definition>
+        <argsstring></argsstring>
+        <name>INITIAL_CLIENT_STREAM_ID</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.INITIAL_CLIENT_STREAM_ID</qualifiedname>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="39" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a8269ebacf292151cddb606888371bddd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::mplex_v2.INITIAL_SERVER_STREAM_ID</definition>
+        <argsstring></argsstring>
+        <name>INITIAL_SERVER_STREAM_ID</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.INITIAL_SERVER_STREAM_ID</qualifiedname>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="40" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1ade595572c264836b1ccb28d52c3d0a68" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::mplex_v2.DEFAULT_BUFFER_SIZE</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_BUFFER_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.DEFAULT_BUFFER_SIZE</qualifiedname>
+        <initializer>=  64 * 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="43" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a05ee422249678bea683135051e254671" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::mplex_v2.MAX_BUFFER_SIZE</definition>
+        <argsstring></argsstring>
+        <name>MAX_BUFFER_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.MAX_BUFFER_SIZE</qualifiedname>
+        <initializer>=  16 * 1024 * 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="44" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a9a1c779d6dfe5b851412fdc4d63eef86" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::mplex_v2.DEFAULT_WINDOW_SIZE</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_WINDOW_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.DEFAULT_WINDOW_SIZE</qualifiedname>
+        <initializer>=  256 * 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="47" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a998a0a5d5f4c05bb4a3a79e65b29fe0d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine::muxer::mplex_v2.DEFAULT_ACCEPT_TIMEOUT</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_ACCEPT_TIMEOUT</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.DEFAULT_ACCEPT_TIMEOUT</qualifiedname>
+        <initializer>=  30.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="50" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a9a193f058187cf661b1976ea9f3aed08" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::mplex_v2.MAX_STREAM_ID</definition>
+        <argsstring></argsstring>
+        <name>MAX_STREAM_ID</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.MAX_STREAM_ID</qualifiedname>
+        <initializer>=  2**63 - 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="53" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a86c7fc2bbf2ca17ee75abf19222fc8cb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::mplex_v2.DEFAULT_MAX_SESSIONS</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_MAX_SESSIONS</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.DEFAULT_MAX_SESSIONS</qualifiedname>
+        <initializer>=  100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="56" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1aed7a652e1340d789612730e0fc9a6859" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine::muxer::mplex_v2.SESSION_IDLE_TIMEOUT</definition>
+        <argsstring></argsstring>
+        <name>SESSION_IDLE_TIMEOUT</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.SESSION_IDLE_TIMEOUT</qualifiedname>
+        <initializer>=  300.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="57" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a0f9aba2c67b0193ab47b74c6bc63019a" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::muxer::mplex_v2.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.__all__</qualifiedname>
+        <initializer>=  [
+    # Protocol identifier
+    &quot;PROTOCOL_STRING&quot;,
+    &quot;MPLEX_PROTOCOL_ID&quot;,
+
+    # Exceptions
+    &quot;MplexError&quot;,
+    &quot;MplexProtocolError&quot;,
+    &quot;MplexClosedError&quot;,
+    &quot;MplexStreamClosed&quot;,
+    &quot;MplexStreamReset&quot;,
+    &quot;MplexWindowExceeded&quot;,
+
+    # Main API
+    &quot;MplexSession&quot;,
+    &quot;MplexStream&quot;,
+    &quot;MplexFrame&quot;,
+    &quot;MplexSessionPool&quot;,
+
+    # Enums
+    &quot;MplexFlag&quot;,
+    &quot;StreamState&quot;,
+    &quot;StreamPriority&quot;,
+
+    # Utilities
+    &quot;write_uvarint&quot;,
+    &quot;read_uvarint&quot;,
+    &quot;encode_uvarint&quot;,
+    &quot;decode_uvarint&quot;,
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="1004" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="1004" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1aaf1f9b3ff09e48241a10ce0e6f045927" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::muxer::mplex_v2.MPLEX_PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>MPLEX_PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.MPLEX_PROTOCOL_ID</qualifiedname>
+        <initializer>=  <ref refid="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a62f0a0b2ca133c245cd50590fc591f66" kindref="member">PROTOCOL_STRING</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="1037" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="1037" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1aab227971895098fe9db3bbf78b3b73a0" prot="public" static="no" mutable="no">
+        <type>None</type>
+        <definition>None p2p_engine::muxer::mplex_v2.encode_uvarint</definition>
+        <argsstring></argsstring>
+        <name>encode_uvarint</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.encode_uvarint</qualifiedname>
+        <initializer>=  <ref refid="namespacep2p__engine_1_1muxer_1_1mplex__v2_1ad43367bc9852ad71a6b2b67b93591d90" kindref="member">write_uvarint</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="1038" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="1038" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a6a8be166f6c793198a94fcdf6e039d94" prot="public" static="no" mutable="no">
+        <type>tuple[int, int]</type>
+        <definition>tuple[int, int] p2p_engine::muxer::mplex_v2.decode_uvarint</definition>
+        <argsstring></argsstring>
+        <name>decode_uvarint</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.decode_uvarint</qualifiedname>
+        <initializer>=  <ref refid="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a266c1caf9c410502b2fd5675cd93da02" kindref="member">read_uvarint</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="1039" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="1039" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1ad43367bc9852ad71a6b2b67b93591d90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.muxer.mplex_v2.write_uvarint</definition>
+        <argsstring>(bytearray data, int value)</argsstring>
+        <name>write_uvarint</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.write_uvarint</qualifiedname>
+        <param>
+          <type>bytearray</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Write a variable-length integer to bytearray.
+
+Uses unsigned LEB128 encoding.
+
+Args:
+    data: Bytearray to write to
+    value: Integer value to encode
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="117" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="117" bodyend="132"/>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_frame_1ac76b577496bfd9e603f9895f0685bf08" compoundref="mplex__v2_8py" startline="175" endline="195">p2p_engine.muxer.mplex_v2.MplexFrame.pack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1muxer_1_1mplex__v2_1a266c1caf9c410502b2fd5675cd93da02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple[int, int]</type>
+        <definition> tuple[int, int] p2p_engine.muxer.mplex_v2.read_uvarint</definition>
+        <argsstring>(bytes data, int offset=0)</argsstring>
+        <name>read_uvarint</name>
+        <qualifiedname>p2p_engine.muxer.mplex_v2.read_uvarint</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Read a variable-length integer from bytes.
+
+Args:
+    data: Bytes to read from
+    offset: Starting offset
+
+Returns:
+    Tuple of (value, bytes_consumed)
+
+Raises:
+    MplexProtocolError: If encoding is invalid
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/mplex_v2.py" line="133" column="1" bodyfile="p2p_engine/muxer/mplex_v2.py" bodystart="133" bodyend="168"/>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a101cf988c46e4f1ee229fbf339db4e47" compoundref="mplex__v2_8py" startline="883" endline="947">p2p_engine.muxer.mplex_v2.MplexSession._read_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_frame_1a4fb5334fb64448b2f80b7dc65290f318" compoundref="mplex__v2_8py" startline="197" endline="229">p2p_engine.muxer.mplex_v2.MplexFrame.unpack</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Mplex Stream Multiplexer Implementation for libp2p
+
+Based on libp2p mplex specification:
+https://github.com/libp2p/specs/blob/master/mplex.md
+
+Protocol string: /mplex/6.7.0
+
+Features:
+- Stream multiplexing over a single connection
+- Simple framing with variable-length integer encoding
+- Backpressure via receive window
+- Half-close support
+- Optimized frame handling (v2)
+
+Mplex uses a tag-based framing system:
+- Tag format: [MSB flag][stream ID]
+- MSB flag: 0 for initiator, 1 for receiver
+- Stream ID: Variable-length integer
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/muxer/mplex_v2.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

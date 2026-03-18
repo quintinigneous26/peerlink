@@ -1,0 +1,181 @@
+\doxysection{src.\+signaling\+\_\+server.\+models.\+Device\+Info类 参考}
+\hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info}{}\label{classsrc_1_1signaling__server_1_1models_1_1_device_info}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+
+
+src.\+signaling\+\_\+server.\+models.\+Device\+Info 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a1cc22d3b2c839d00d802f910ab2c6c4d}{to\+\_\+dict}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a8b2d360be34dbc1234358b73718781f8}{device\+\_\+id}}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a882733a3daa2c123f79b8b8cbf66c53f}{public\+\_\+key}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a8fd6bb0881b73d3c3208894c56d1a8aa}{capabilities}} \+[str]\+
+\item 
+\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_n_a_t_type}{NATType}} \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a75a092982324596d8dbfd822bd673e80}{nat\+\_\+type}} = \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_n_a_t_type_a0846b37535a1c40d295d3cbeb7803483}{NATType.\+UNKNOWN}}
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_ada583dce6518694f6471dc6c7152559a}{public\+\_\+ip}} = None
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a48226f1df954a162ecafdccd28ccf339}{public\+\_\+port}} = None
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_af409c61510a4d9db3e9f316a43bd2547}{connected\+\_\+at}} = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a0bfee6b0deb03ac12065615db6c765fc}{last\+\_\+heartbeat}} = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))
+\item 
+\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_connection_status}{Connection\+Status}} \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_ac18d34c3684b60a1d116db7067bfb136}{status}} = \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_connection_status_afa4c7b1391d9de878808db7faf3139f1}{Connection\+Status.\+CONNECTED}}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_device_info_a912221de93424967d4133b8a6f3f7470}{metadata}} = field(default\+\_\+factory=dict)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Connected device information.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00068}{68}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a1cc22d3b2c839d00d802f910ab2c6c4d}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a1cc22d3b2c839d00d802f910ab2c6c4d} 
+ dict src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert to dictionary (without WebSocket).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00083}{83}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00121}{src.\+signaling\+\_\+server.\+models.\+Message.\+to\+\_\+json()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a8fd6bb0881b73d3c3208894c56d1a8aa}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!capabilities@{capabilities}}
+\index{capabilities@{capabilities}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{capabilities}{capabilities}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a8fd6bb0881b73d3c3208894c56d1a8aa} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+capabilities \+[str]\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00074}{74}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_af409c61510a4d9db3e9f316a43bd2547}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!connected\_at@{connected\_at}}
+\index{connected\_at@{connected\_at}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{connected\_at}{connected\_at}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_af409c61510a4d9db3e9f316a43bd2547} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+connected\+\_\+at = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00078}{78}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a8b2d360be34dbc1234358b73718781f8}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!device\_id@{device\_id}}
+\index{device\_id@{device\_id}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{device\_id}{device\_id}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a8b2d360be34dbc1234358b73718781f8} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+device\+\_\+id}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00086}{86}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a0bfee6b0deb03ac12065615db6c765fc}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!last\_heartbeat@{last\_heartbeat}}
+\index{last\_heartbeat@{last\_heartbeat}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{last\_heartbeat}{last\_heartbeat}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a0bfee6b0deb03ac12065615db6c765fc} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+last\+\_\+heartbeat = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00079}{79}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a912221de93424967d4133b8a6f3f7470}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!metadata@{metadata}}
+\index{metadata@{metadata}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{metadata}{metadata}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a912221de93424967d4133b8a6f3f7470} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+metadata = field(default\+\_\+factory=dict)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00081}{81}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a75a092982324596d8dbfd822bd673e80}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!nat\_type@{nat\_type}}
+\index{nat\_type@{nat\_type}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{nat\_type}{nat\_type}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a75a092982324596d8dbfd822bd673e80} 
+\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_n_a_t_type}{NATType}} src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+nat\+\_\+type = \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_n_a_t_type_a0846b37535a1c40d295d3cbeb7803483}{NATType.\+UNKNOWN}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00075}{75}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_ada583dce6518694f6471dc6c7152559a}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!public\_ip@{public\_ip}}
+\index{public\_ip@{public\_ip}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{public\_ip}{public\_ip}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_ada583dce6518694f6471dc6c7152559a} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+public\+\_\+ip = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00076}{76}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a882733a3daa2c123f79b8b8cbf66c53f}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!public\_key@{public\_key}}
+\index{public\_key@{public\_key}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{public\_key}{public\_key}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a882733a3daa2c123f79b8b8cbf66c53f} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+public\+\_\+key}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00087}{87}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tls_8py_source_l00175}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSHandshake\+Payload.\+encode()}}.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_a48226f1df954a162ecafdccd28ccf339}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!public\_port@{public\_port}}
+\index{public\_port@{public\_port}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{public\_port}{public\_port}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_a48226f1df954a162ecafdccd28ccf339} 
+src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+public\+\_\+port = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00077}{77}} 行定义.
+
+\Hypertarget{classsrc_1_1signaling__server_1_1models_1_1_device_info_ac18d34c3684b60a1d116db7067bfb136}\index{src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}!status@{status}}
+\index{status@{status}!src.signaling\_server.models.DeviceInfo@{src.signaling\_server.models.DeviceInfo}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classsrc_1_1signaling__server_1_1models_1_1_device_info_ac18d34c3684b60a1d116db7067bfb136} 
+\doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_connection_status}{Connection\+Status}} src.\+signaling\+\_\+server.\+models.\+Device\+Info.\+status = \doxymbox{\hyperlink{classsrc_1_1signaling__server_1_1models_1_1_connection_status_afa4c7b1391d9de878808db7faf3139f1}{Connection\+Status.\+CONNECTED}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00080}{80}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+signaling-\/server/\+src/\+signaling\+\_\+server/\+\doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py}{models.\+py}}\end{DoxyCompactItemize}

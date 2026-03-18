@@ -1,0 +1,430 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler" kind="class" language="Python" prot="public">
+    <compoundname>src::signaling_server::handlers::MessageHandler</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>src.signaling_server.handlers.MessageHandler::manager</definition>
+        <argsstring></argsstring>
+        <name>manager</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler.manager</qualifiedname>
+        <initializer>=  get_connection_manager()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="26" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1aae823bf26fb25fcc17685c0c11bea7a3" compoundref="handlers_8py" startline="213" endline="265">src.signaling_server.handlers.MessageHandler._handle_answer</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a3273db2f78628b35e39272162276ec55" compoundref="handlers_8py" startline="92" endline="162">src.signaling_server.handlers.MessageHandler._handle_connect</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a8f1d4636e1dac364c1847ace8d374bd6" compoundref="handlers_8py" startline="324" endline="333">src.signaling_server.handlers.MessageHandler._handle_heartbeat</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1add6c3be7cf5853aaa7aff261e16f2530" compoundref="handlers_8py" startline="266" endline="323">src.signaling_server.handlers.MessageHandler._handle_ice_candidate</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a64e2bf0b35802562ae13376f5beed928" compoundref="handlers_8py" startline="163" endline="212">src.signaling_server.handlers.MessageHandler._handle_offer</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1afc1e3efa9cb13654b6ccc8dff69e5549" compoundref="handlers_8py" startline="342" endline="380">src.signaling_server.handlers.MessageHandler._handle_query_device</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a5d2c4e9790f4dd0c80471b79dc3396c5" compoundref="handlers_8py" startline="381" endline="430">src.signaling_server.handlers.MessageHandler._handle_relay_request</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a4ebc0de77f96e2621f5e3df31829a0af" compoundref="handlers_8py" startline="83" endline="91">src.signaling_server.handlers.MessageHandler._handle_unregister</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1af0ee0ae80a1b98d8b72dfda158e32090" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>src.signaling_server.handlers.MessageHandler.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Initialize message handler.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="24" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[dict]</type>
+        <definition> Optional[dict] src.signaling_server.handlers.MessageHandler.handle_message</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>handle_message</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler.handle_message</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Route message to appropriate handler.
+
+Args:
+    device_id: Sender device ID
+    message: Received message
+
+Returns:
+    Optional response message
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="28" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="32" bodyend="73"/>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a8307842e9e30c1fda5d663a99e7bc5fd" compoundref="webrtc_8py" startline="788" endline="804">p2p_engine.transport.webrtc.WebRTCTransport._handle_answer</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1aae823bf26fb25fcc17685c0c11bea7a3" compoundref="handlers_8py" startline="213" endline="265">src.signaling_server.handlers.MessageHandler._handle_answer</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae30862bff4698478160cda92d21cd4fa" compoundref="engine_8py" startline="253" endline="260">p2p_engine.engine.P2PEngine._handle_connect</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a3273db2f78628b35e39272162276ec55" compoundref="handlers_8py" startline="92" endline="162">src.signaling_server.handlers.MessageHandler._handle_connect</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a8f1d4636e1dac364c1847ace8d374bd6" compoundref="handlers_8py" startline="324" endline="333">src.signaling_server.handlers.MessageHandler._handle_heartbeat</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a0ed21505b61ca6e8aec1e4e6a9a37560" compoundref="webrtc_8py" startline="805" endline="816">p2p_engine.transport.webrtc.WebRTCTransport._handle_ice_candidate</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1add6c3be7cf5853aaa7aff261e16f2530" compoundref="handlers_8py" startline="266" endline="323">src.signaling_server.handlers.MessageHandler._handle_ice_candidate</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a35824d4ef3371f20d6215274ed474f40" compoundref="webrtc_8py" startline="759" endline="787">p2p_engine.transport.webrtc.WebRTCTransport._handle_offer</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a64e2bf0b35802562ae13376f5beed928" compoundref="handlers_8py" startline="163" endline="212">src.signaling_server.handlers.MessageHandler._handle_offer</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a282f0b9165db1e8ce72b56656b18b6b1" compoundref="handlers_8py" startline="334" endline="341">src.signaling_server.handlers.MessageHandler._handle_ping</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1afc1e3efa9cb13654b6ccc8dff69e5549" compoundref="handlers_8py" startline="342" endline="380">src.signaling_server.handlers.MessageHandler._handle_query_device</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae709355f7df60e490c9a0422b727f5ad" compoundref="handlers_8py" startline="74" endline="82">src.signaling_server.handlers.MessageHandler._handle_register</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a5d2c4e9790f4dd0c80471b79dc3396c5" compoundref="handlers_8py" startline="381" endline="430">src.signaling_server.handlers.MessageHandler._handle_relay_request</references>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a4ebc0de77f96e2621f5e3df31829a0af" compoundref="handlers_8py" startline="83" endline="91">src.signaling_server.handlers.MessageHandler._handle_unregister</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae709355f7df60e490c9a0422b727f5ad" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_register</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_register</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_register</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle device registration (handled during connection).</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="74" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="74" bodyend="82"/>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a4ebc0de77f96e2621f5e3df31829a0af" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_unregister</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_unregister</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_unregister</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle device unregistration.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="83" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="83" bodyend="91"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a3273db2f78628b35e39272162276ec55" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[dict]</type>
+        <definition> Optional[dict] src.signaling_server.handlers.MessageHandler._handle_connect</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_connect</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_connect</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle connection request to another device.
+
+Initiates P2P connection between two devices.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="92" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="92" bodyend="162"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a64e2bf0b35802562ae13376f5beed928" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_offer</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_offer</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_offer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle SDP offer from caller.
+
+Forwards offer to callee.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="163" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="163" bodyend="212"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1aae823bf26fb25fcc17685c0c11bea7a3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_answer</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_answer</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_answer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle SDP answer from callee.
+
+Forwards answer to caller.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="213" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="213" bodyend="265"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1add6c3be7cf5853aaa7aff261e16f2530" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_ice_candidate</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_ice_candidate</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_ice_candidate</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle ICE candidate.
+
+Forwards candidate to the other peer.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="266" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="266" bodyend="323"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a8f1d4636e1dac364c1847ace8d374bd6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_heartbeat</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_heartbeat</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_heartbeat</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle heartbeat message.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="324" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="324" bodyend="333"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a282f0b9165db1e8ce72b56656b18b6b1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_ping</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_ping</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_ping</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle ping message.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="334" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="334" bodyend="341"/>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1afc1e3efa9cb13654b6ccc8dff69e5549" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_query_device</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_query_device</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_query_device</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle query for device information.
+
+Returns info about whether a device is online and its capabilities.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="342" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="342" bodyend="380"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a5d2c4e9790f4dd0c80471b79dc3396c5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.signaling_server.handlers.MessageHandler._handle_relay_request</definition>
+        <argsstring>(self, str device_id, Message message)</argsstring>
+        <name>_handle_relay_request</name>
+        <qualifiedname>src.signaling_server.handlers.MessageHandler._handle_relay_request</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1signaling__server_1_1models_1_1_message" kindref="compound">Message</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle request to use relay server.
+
+Called when P2P connection fails.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="signaling-server/src/signaling_server/handlers.py" line="381" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="381" bodyend="430"/>
+        <references refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" compoundref="handlers_8py" startline="26">src.signaling_server.handlers.MessageHandler.manager</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Handle WebSocket messages from clients.</verbatim> </para>
+    </detaileddescription>
+    <location file="signaling-server/src/signaling_server/handlers.py" line="21" column="1" bodyfile="signaling-server/src/signaling_server/handlers.py" bodystart="21" bodyend="430"/>
+    <listofallmembers>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1af0ee0ae80a1b98d8b72dfda158e32090" prot="public" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>__init__</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1aae823bf26fb25fcc17685c0c11bea7a3" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_answer</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a3273db2f78628b35e39272162276ec55" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_connect</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a8f1d4636e1dac364c1847ace8d374bd6" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_heartbeat</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1add6c3be7cf5853aaa7aff261e16f2530" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_ice_candidate</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a64e2bf0b35802562ae13376f5beed928" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_offer</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a282f0b9165db1e8ce72b56656b18b6b1" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_ping</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1afc1e3efa9cb13654b6ccc8dff69e5549" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_query_device</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae709355f7df60e490c9a0422b727f5ad" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_register</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a5d2c4e9790f4dd0c80471b79dc3396c5" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_relay_request</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a4ebc0de77f96e2621f5e3df31829a0af" prot="protected" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>_handle_unregister</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" prot="public" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>handle_message</name></member>
+      <member refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1ae2634aa3b00ba4b954c7638d7b45104a" prot="public" virt="non-virtual"><scope>src::signaling_server::handlers::MessageHandler</scope><name>manager</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

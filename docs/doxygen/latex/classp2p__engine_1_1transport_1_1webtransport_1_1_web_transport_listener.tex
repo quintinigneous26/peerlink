@@ -1,0 +1,253 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener}{}\label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+
+
+类 p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a9c209de7797b1e2c13177b41ed700a3a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str host, int port, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{Certificate\+Manager}} certificate\+\_\+manager, Optional\+[\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a16ebe2007a7c70e83517b14a2f9ccb5b}{Quic\+Configuration}}]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}}=None)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_af53137f2c2cd0db7ffa4e1a39638326e}{is\+\_\+closed}} (self)
+\item 
+List\+[tuple]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a0e1f5d427e6250f5af7fbec961e29fd8}{addresses}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6e8144342439d75e703e0067c9376527}{accept}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ae2c2b795b137a64f5ed3f173f6e50bf7}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a16ebe2007a7c70e83517b14a2f9ccb5b}{Quic\+Configuration}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a233ae0c34b2b6c68201325ed4172758c}{\+\_\+create\+\_\+server\+\_\+config}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_aee6fc689311b9019d862a85c256d9828}{\+\_\+host}} = host
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_afa3a7ab4846c11d563d1ea8c59e60c44}{\+\_\+port}} = port
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a42b3352806a6906ce54698b267fb8bd6}{\+\_\+cert\+\_\+manager}} = certificate\+\_\+manager
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a16ebe2007a7c70e83517b14a2f9ccb5b}{Quic\+Configuration}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a5b0d8fae69d70a7201704d233279365a}{\+\_\+config}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}} or self.\+\_\+create\+\_\+server\+\_\+config()
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ab44cf607bd4d4023cbef1352d5ffbae0}{\+\_\+closed}} = False
+\item 
+Optional\+[asyncio.\+Server]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a2017069a9aaaf6d5b1b7e58391f389fc}{\+\_\+server}} = None
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6430c16f1c22a0c73fbc8b895d64f1d2}{\+\_\+connections}} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}WebTransport listener
+
+Accepts incoming WebTransport connections.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00313}{313}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a9c209de7797b1e2c13177b41ed700a3a}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a9c209de7797b1e2c13177b41ed700a3a} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{host}{, }\item[{int}]{port}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{Certificate\+Manager}}}]{certificate\+\_\+manager}{, }\item[{Optional\+[\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a16ebe2007a7c70e83517b14a2f9ccb5b}{Quic\+Configuration}}]\+ }]{config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00320}{320}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a233ae0c34b2b6c68201325ed4172758c}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_create\_server\_config@{\_create\_server\_config}}
+\index{\_create\_server\_config@{\_create\_server\_config}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_create\_server\_config()}{\_create\_server\_config()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a233ae0c34b2b6c68201325ed4172758c} 
+ \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a16ebe2007a7c70e83517b14a2f9ccb5b}{Quic\+Configuration}} p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+create\+\_\+server\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create QUIC server configuration\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00367}{367}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6e8144342439d75e703e0067c9376527}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!accept@{accept}}
+\index{accept@{accept}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6e8144342439d75e703e0067c9376527} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+accept (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Accept incoming connection\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_a763aea3f721c1ceb0837afd44b377cac}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00348}{348}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a0e1f5d427e6250f5af7fbec961e29fd8}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!addresses@{addresses}}
+\index{addresses@{addresses}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{addresses()}{addresses()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a0e1f5d427e6250f5af7fbec961e29fd8} 
+ List\+[tuple]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+addresses (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get listen addresses\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_a09d07c0fadd4bd2feac56c82aceac6bc}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00342}{342}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00141}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00435}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00581}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+closed}}, \doxymbox{\hyperlink{webtransport_8py_source_l00239}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{webtransport_8py_source_l00332}{\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00480}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+host}}, \doxymbox{\hyperlink{webtransport_8py_source_l00327}{\+\_\+host}}, \doxymbox{\hyperlink{quic_8py_source_l00481}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+port}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00328}{\+\_\+port}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ae2c2b795b137a64f5ed3f173f6e50bf7}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ae2c2b795b137a64f5ed3f173f6e50bf7} 
+ None p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the listener\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_a3992ec1c95c846aed552dbf38ced9e8f}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00355}{355}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_af53137f2c2cd0db7ffa4e1a39638326e}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_af53137f2c2cd0db7ffa4e1a39638326e} 
+ bool p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if listener is closed\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_aeb320acb7b0eddfcc52f1237380c955b}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00337}{337}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00141}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00435}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00581}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+closed}}, \doxymbox{\hyperlink{webtransport_8py_source_l00239}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+\_\+closed}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00332}{\+\_\+closed}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a42b3352806a6906ce54698b267fb8bd6}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_cert\_manager@{\_cert\_manager}}
+\index{\_cert\_manager@{\_cert\_manager}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_cert\_manager}{\_cert\_manager}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a42b3352806a6906ce54698b267fb8bd6} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+cert\+\_\+manager = certificate\+\_\+manager\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00329}{329}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ab44cf607bd4d4023cbef1352d5ffbae0}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_closed@{\_closed}}
+\index{\_closed@{\_closed}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_closed}{\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ab44cf607bd4d4023cbef1352d5ffbae0} 
+bool p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00332}{332}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webtransport_8py_source_l00342}{addresses()}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00337}{is\+\_\+closed()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a5b0d8fae69d70a7201704d233279365a}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_config@{\_config}}
+\index{\_config@{\_config}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_config}{\_config}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a5b0d8fae69d70a7201704d233279365a} 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a16ebe2007a7c70e83517b14a2f9ccb5b}{Quic\+Configuration}} p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+config = \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}} or self.\+\_\+create\+\_\+server\+\_\+config()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00330}{330}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6430c16f1c22a0c73fbc8b895d64f1d2}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_connections@{\_connections}}
+\index{\_connections@{\_connections}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_connections}{\_connections}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6430c16f1c22a0c73fbc8b895d64f1d2} 
+list p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+connections = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00334}{334}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_aee6fc689311b9019d862a85c256d9828}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_host@{\_host}}
+\index{\_host@{\_host}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_host}{\_host}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_aee6fc689311b9019d862a85c256d9828} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+host = host\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00327}{327}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webtransport_8py_source_l00342}{addresses()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_afa3a7ab4846c11d563d1ea8c59e60c44}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_port@{\_port}}
+\index{\_port@{\_port}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_port}{\_port}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_afa3a7ab4846c11d563d1ea8c59e60c44} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+port = port\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00328}{328}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webtransport_8py_source_l00342}{addresses()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a2017069a9aaaf6d5b1b7e58391f389fc}\index{p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}!\_server@{\_server}}
+\index{\_server@{\_server}!p2p\_engine.transport.webtransport.WebTransportListener@{p2p\_engine.transport.webtransport.WebTransportListener}}
+\doxysubsubsection{\texorpdfstring{\_server}{\_server}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a2017069a9aaaf6d5b1b7e58391f389fc} 
+Optional\+[asyncio.\+Server]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+\_\+server = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00333}{333}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{webtransport_8py}{webtransport.\+py}}\end{DoxyCompactItemize}

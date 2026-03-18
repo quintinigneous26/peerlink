@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1protocol_1_1tls" kind="namespace" language="Python">
+    <compoundname>p2p_engine::protocol::tls</compoundname>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error" prot="public">p2p_engine::protocol::tls::TLSError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_error" prot="public">p2p_engine::protocol::tls::TLSHandshakeError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_certificate_error" prot="public">p2p_engine::protocol::tls::TLSCertificateError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_verification_error" prot="public">p2p_engine::protocol::tls::TLSVerificationError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config" prot="public">p2p_engine::protocol::tls::CertificateConfig</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload" prot="public">p2p_engine::protocol::tls::TLSHandshakePayload</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config" prot="public">p2p_engine::protocol::tls::TLSConfig</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport" prot="public">p2p_engine::protocol::tls::TLSSecurityTransport</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security" prot="public">p2p_engine::protocol::tls::TLSSecurity</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration" prot="public">p2p_engine::protocol::tls::TLSConfiguration</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session" prot="public">p2p_engine::protocol::tls::TLSSession</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1tls_1ac727b165fd532983ab81f1133d935b2d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::tls.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.protocol.tls.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="28" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1tls_1ab9de3ee052afdd23885ebe5fcf3eb81a" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::tls.PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.protocol.tls.PROTOCOL_ID</qualifiedname>
+        <initializer>=  &quot;/tls/1.0.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="31" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1tls_1ad3e3f87114d0cfd6832c2587b764cbd9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::protocol::tls.MAX_MESSAGE_SIZE</definition>
+        <argsstring></argsstring>
+        <name>MAX_MESSAGE_SIZE</name>
+        <qualifiedname>p2p_engine.protocol.tls.MAX_MESSAGE_SIZE</qualifiedname>
+        <initializer>=  65535</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="34" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1tls_1a1353622f2e70fa1145f727fe5b95e68d" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::tls.TLS_VERSION</definition>
+        <argsstring></argsstring>
+        <name>TLS_VERSION</name>
+        <qualifiedname>p2p_engine.protocol.tls.TLS_VERSION</qualifiedname>
+        <initializer>=  ssl.TLSVersion.TLSv1_3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="35" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1tls_1a54076f8e0d68115ebbb2d94bc8ca0617" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::tls.TLS_1_3_PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>TLS_1_3_PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.protocol.tls.TLS_1_3_PROTOCOL_ID</qualifiedname>
+        <initializer>=  <ref refid="namespacep2p__engine_1_1protocol_1_1tls_1ab9de3ee052afdd23885ebe5fcf3eb81a" kindref="member">PROTOCOL_ID</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="629" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="629" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1tls_1a81baac187cd5b12b8b5e5308c825b8b1" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::protocol::tls.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.protocol.tls.__all__</qualifiedname>
+        <initializer>=  [
+    # Protocol identifier
+    &quot;PROTOCOL_ID&quot;,
+    &quot;TLS_1_3_PROTOCOL_ID&quot;,
+
+    # Exceptions
+    &quot;TLSError&quot;,
+    &quot;TLSHandshakeError&quot;,
+    &quot;TLSCertificateError&quot;,
+    &quot;TLSVerificationError&quot;,
+
+    # Certificate management
+    &quot;CertificateConfig&quot;,
+    &quot;generate_self_signed_cert&quot;,
+    &quot;generate_ed25519_keypair&quot;,
+    &quot;generate_selfsigned_cert&quot;,
+
+    # Configuration
+    &quot;TLSConfig&quot;,
+    &quot;TLSHandshakePayload&quot;,
+    &quot;TLSConfiguration&quot;,
+
+    # Main API
+    &quot;TLSSecurity&quot;,
+    &quot;TLSSecurityTransport&quot;,
+    &quot;TLSSession&quot;,
+
+    # Convenience
+    &quot;create_tls_security&quot;,
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="670" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="670" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1tls_1aa4944bf2aabc3da0557b8ab42287cf28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[bytes, bytes]</type>
+        <definition> Tuple[bytes, bytes] p2p_engine.protocol.tls.generate_self_signed_cert</definition>
+        <argsstring>(ed25519.Ed25519PrivateKey private_key, CertificateConfig config)</argsstring>
+        <name>generate_self_signed_cert</name>
+        <qualifiedname>p2p_engine.protocol.tls.generate_self_signed_cert</qualifiedname>
+        <param>
+          <type>ed25519.Ed25519PrivateKey</type>
+          <declname>private_key</declname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config" kindref="compound">CertificateConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate a self-signed certificate.
+
+Args:
+    private_key: Ed25519 private key for signing
+    config: Certificate configuration
+
+Returns:
+    Tuple of (certificate_bytes, private_key_bytes)
+
+Raises:
+    TLSCertificateError: If certificate generation fails
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="78" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="81" bodyend="136"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_1a0ca170cc720981eabdb8ffb7b83580b5" compoundref="tls_8py" startline="380" endline="390">p2p_engine.protocol.tls.TLSSecurity._generate_certificate</referencedby>
+        <referencedby refid="namespacep2p__engine_1_1protocol_1_1tls_1a384e2e0d72f0bb44d15326c1a80fd9b7" compoundref="tls_8py" startline="663" endline="669">p2p_engine.protocol.tls.generate_selfsigned_cert</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1tls_1ad21861e34e057d4d44744b4c07aadc61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[bytes, bytes]</type>
+        <definition> Tuple[bytes, bytes] p2p_engine.protocol.tls.generate_ed25519_keypair</definition>
+        <argsstring>()</argsstring>
+        <name>generate_ed25519_keypair</name>
+        <qualifiedname>p2p_engine.protocol.tls.generate_ed25519_keypair</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate an Ed25519 key pair.
+
+Returns:
+    Tuple of (private_key_bytes, public_key_bytes)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="137" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="137" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1tls_1ae40baa7a0d26dcfb65582f36bfc47132" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security" kindref="compound">TLSSecurity</ref></type>
+        <definition> TLSSecurity p2p_engine.protocol.tls.create_tls_security</definition>
+        <argsstring>(bytes identity_private_key, bytes identity_public_key, str peer_id, Optional[List[str]] stream_muxers=None)</argsstring>
+        <name>create_tls_security</name>
+        <qualifiedname>p2p_engine.protocol.tls.create_tls_security</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>identity_private_key</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>identity_public_key</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <param>
+          <type>Optional]</type>
+          <declname>stream_muxers</declname>
+          <array>[List[str]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a TLS security instance.
+
+Args:
+    identity_private_key: Local libp2p identity private key
+    identity_public_key: Local libp2p identity public key
+    peer_id: Local peer ID
+    stream_muxers: Optional list of supported stream muxers
+
+Returns:
+    Configured TLSSecurity instance
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="599" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="604" bodyend="628"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1tls_1a384e2e0d72f0bb44d15326c1a80fd9b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[bytes, bytes]</type>
+        <definition> Tuple[bytes, bytes] p2p_engine.protocol.tls.generate_selfsigned_cert</definition>
+        <argsstring>(str peer_id)</argsstring>
+        <name>generate_selfsigned_cert</name>
+        <qualifiedname>p2p_engine.protocol.tls.generate_selfsigned_cert</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate self-signed certificate for a peer ID.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/tls.py" line="663" column="1" bodyfile="p2p_engine/protocol/tls.py" bodystart="663" bodyend="669"/>
+        <references refid="namespacep2p__engine_1_1protocol_1_1tls_1aa4944bf2aabc3da0557b8ab42287cf28" compoundref="tls_8py" startline="81" endline="136">p2p_engine.protocol.tls.generate_self_signed_cert</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>TLS 1.3 Secure Channel Implementation for libp2p
+
+This module implements the libp2p TLS 1.3 secure channel protocol using
+Python&apos;s ssl standard library. It provides:
+- TLS 1.3 handshake for secure communication
+- Certificate-based peer authentication
+- Compatibility with multistream-select protocol negotiation
+- Coexistence with Noise as alternative security transport
+
+Reference: https://github.com/libp2p/specs/blob/master/tls/README.md
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/tls.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

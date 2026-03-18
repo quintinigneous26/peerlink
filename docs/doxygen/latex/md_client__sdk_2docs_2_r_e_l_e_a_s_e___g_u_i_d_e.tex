@@ -1,0 +1,475 @@
+\chapter{P2P SDK 发布指南 }
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e}{}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e}\index{P2P SDK 发布指南@{P2P SDK 发布指南}}
+\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md169}%
+\Hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md169}%
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md182}{}\doxysection{\texorpdfstring{构建和发布流程}{构建和发布流程}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md182}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md183}{}\doxysubsection{\texorpdfstring{1. 准备发布}{1. 准备发布}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md183}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md184}{}\doxysubsubsection{\texorpdfstring{1.\+1 更新版本号}{1.\+1 更新版本号}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md184}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 使用版本管理脚本}
+\DoxyCodeLine{./bump\_version.sh\ 0.2.0}
+
+\end{DoxyCode}
+
+
+这将自动更新：
+\begin{DoxyItemize}
+\item {\ttfamily pyproject.\+toml}
+\item {\ttfamily \doxylink{client__sdk_2src_2p2p__sdk_2____init_____8py}{src/\+p2p\+\_\+sdk/\+\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}
+\item {\ttfamily conda/\+meta.\+yaml}
+\item {\ttfamily \doxylink{_c_h_a_n_g_e_l_o_g_8md}{CHANGELOG.\+md}}
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md186}{}\doxysubsubsection{\texorpdfstring{1.\+2 更新 CHANGELOG}{1.\+2 更新 CHANGELOG}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md186}
+编辑 {\ttfamily \doxylink{_c_h_a_n_g_e_l_o_g_8md}{CHANGELOG.\+md}}，添加本次发布的详细变更：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\ [0.2.0]\ -\/\ 2026-\/03-\/20}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ Added}
+\DoxyCodeLine{-\/\ 新功能\ 1}
+\DoxyCodeLine{-\/\ 新功能\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ Changed}
+\DoxyCodeLine{-\/\ 改进\ 1}
+\DoxyCodeLine{-\/\ 改进\ 2}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\ Fixed}
+\DoxyCodeLine{-\/\ 修复\ 1}
+\DoxyCodeLine{-\/\ 修复\ 2}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md188}{}\doxysubsubsection{\texorpdfstring{1.\+3 运行测试}{1.\+3 运行测试}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md188}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 运行所有测试}
+\DoxyCodeLine{pytest\ tests/\ -\/v}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 检查覆盖率}
+\DoxyCodeLine{pytest\ -\/-\/cov=p2p\_sdk\ tests/}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行类型检查}
+\DoxyCodeLine{mypy\ src/}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行代码格式检查}
+\DoxyCodeLine{black\ -\/-\/check\ src/}
+\DoxyCodeLine{ruff\ check\ src/}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md189}{}\doxysubsection{\texorpdfstring{2. 构建包}{2. 构建包}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md189}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md191}{}\doxysubsubsection{\texorpdfstring{2.\+1 构建 Python Wheel}{2.\+1 构建 Python Wheel}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md191}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 运行构建脚本}
+\DoxyCodeLine{./build.sh}
+
+\end{DoxyCode}
+
+
+这将：
+\begin{DoxyEnumerate}
+\item 清理旧的构建文件
+\item 安装构建依赖
+\item 构建 wheel 和 sdist
+\item 验证包完整性
+\end{DoxyEnumerate}
+
+输出文件位于 {\ttfamily dist/\+} 目录：
+\begin{DoxyItemize}
+\item {\ttfamily p2p\+\_\+sdk-\/0.\+2.\+0-\/py3-\/none-\/any.\+whl}
+\item {\ttfamily p2p\+\_\+sdk-\/0.\+2.\+0.\+tar.\+gz}
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md194}{}\doxysubsubsection{\texorpdfstring{2.\+2 构建 Conda 包}{2.\+2 构建 Conda 包}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md194}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 运行\ conda\ 构建脚本}
+\DoxyCodeLine{cd\ conda}
+\DoxyCodeLine{./build.sh}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md197}{}\doxysubsection{\texorpdfstring{3. 本地测试}{3. 本地测试}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md197}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md198}{}\doxysubsubsection{\texorpdfstring{3.\+1 测试 Wheel 包}{3.\+1 测试 Wheel 包}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md198}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 创建虚拟环境}
+\DoxyCodeLine{python3\ -\/m\ venv\ test\_env}
+\DoxyCodeLine{source\ test\_env/bin/activate}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 安装构建的包}
+\DoxyCodeLine{pip\ install\ dist/p2p\_sdk-\/0.2.0-\/py3-\/none-\/any.whl}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 测试导入}
+\DoxyCodeLine{python\ -\/c\ "{}from\ p2p\_sdk\ import\ P2PClient;\ print('OK')"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行示例}
+\DoxyCodeLine{python\ examples/basic\_usage.py}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 清理}
+\DoxyCodeLine{deactivate}
+\DoxyCodeLine{rm\ -\/rf\ test\_env}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md199}{}\doxysubsubsection{\texorpdfstring{3.\+2 测试 Conda 包}{3.\+2 测试 Conda 包}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md199}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 安装本地包}
+\DoxyCodeLine{conda\ install\ -\/-\/use-\/local\ p2p-\/sdk}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 测试}
+\DoxyCodeLine{python\ -\/c\ "{}from\ p2p\_sdk\ import\ P2PClient;\ print('OK')"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 卸载}
+\DoxyCodeLine{conda\ remove\ p2p-\/sdk}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md200}{}\doxysubsection{\texorpdfstring{4. 发布到 Test Py\+PI}{4. 发布到 Test Py\+PI}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md200}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md201}{}\doxysubsubsection{\texorpdfstring{4.\+1 配置凭证}{4.\+1 配置凭证}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md201}
+复制模板并填写 Test Py\+PI token：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cp\ .pypirc.template\ \string~/.pypirc}
+\DoxyCodeLine{\#\ 编辑\ \string~/.pypirc，填写\ testpypi\ token}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md202}{}\doxysubsubsection{\texorpdfstring{4.\+2 上传到 Test Py\+PI}{4.\+2 上传到 Test Py\+PI}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md202}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 上传到\ Test\ PyPI}
+\DoxyCodeLine{./publish.sh\ test}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md203}{}\doxysubsubsection{\texorpdfstring{4.\+3 从 Test Py\+PI 安装测试}{4.\+3 从 Test Py\+PI 安装测试}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md203}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 创建测试环境}
+\DoxyCodeLine{python3\ -\/m\ venv\ test\_pypi\_env}
+\DoxyCodeLine{source\ test\_pypi\_env/bin/activate}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 从\ Test\ PyPI\ 安装}
+\DoxyCodeLine{pip\ install\ -\/-\/index-\/url\ https://test.pypi.org/simple/\ p2p-\/sdk}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 测试}
+\DoxyCodeLine{python\ -\/c\ "{}from\ p2p\_sdk\ import\ P2PClient;\ print('OK')"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 清理}
+\DoxyCodeLine{deactivate}
+\DoxyCodeLine{rm\ -\/rf\ test\_pypi\_env}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md204}{}\doxysubsection{\texorpdfstring{5. 发布到生产 Py\+PI}{5. 发布到生产 Py\+PI}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md204}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md205}{}\doxysubsubsection{\texorpdfstring{5.\+1 最终检查}{5.\+1 最终检查}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md205}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 所有测试通过
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 文档已更新
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] CHANGELOG 已更新
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 版本号正确
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Test Py\+PI 测试成功
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md207}{}\doxysubsubsection{\texorpdfstring{5.\+2 创建 Git 标签}{5.\+2 创建 Git 标签}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md207}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 提交版本变更}
+\DoxyCodeLine{git\ add\ -\/A}
+\DoxyCodeLine{git\ commit\ -\/m\ "{}chore:\ bump\ version\ to\ 0.2.0"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 创建标签}
+\DoxyCodeLine{git\ tag\ -\/a\ v0.2.0\ -\/m\ "{}Release\ v0.2.0"{}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 推送到远程}
+\DoxyCodeLine{git\ push\ origin\ main}
+\DoxyCodeLine{git\ push\ origin\ v0.2.0}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md208}{}\doxysubsubsection{\texorpdfstring{5.\+3 上传到 Py\+PI}{5.\+3 上传到 Py\+PI}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md208}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 上传到生产\ PyPI}
+\DoxyCodeLine{./publish.sh\ prod}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md210}{}\doxysubsubsection{\texorpdfstring{5.\+4 验证发布}{5.\+4 验证发布}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md210}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 等待几分钟让\ PyPI\ 索引更新}
+\DoxyCodeLine{sleep\ 60}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 安装并测试}
+\DoxyCodeLine{pip\ install\ p2p-\/sdk==0.2.0}
+\DoxyCodeLine{python\ -\/c\ "{}from\ p2p\_sdk\ import\ P2PClient;\ print('OK')"{}}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md212}{}\doxysubsection{\texorpdfstring{6. 发布到 Conda}{6. 发布到 Conda}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md212}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md213}{}\doxysubsubsection{\texorpdfstring{6.\+1 上传到 Anaconda Cloud}{6.\+1 上传到 Anaconda Cloud}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md213}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 获取包路径}
+\DoxyCodeLine{PACKAGE\_PATH=\$(conda-\/build\ conda/\ -\/-\/output)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 上传}
+\DoxyCodeLine{anaconda\ upload\ \$PACKAGE\_PATH}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md215}{}\doxysubsubsection{\texorpdfstring{6.\+2 验证}{6.\+2 验证}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md215}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 从\ Anaconda\ Cloud\ 安装}
+\DoxyCodeLine{conda\ install\ -\/c\ your-\/channel\ p2p-\/sdk}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 测试}
+\DoxyCodeLine{python\ -\/c\ "{}from\ p2p\_sdk\ import\ P2PClient;\ print('OK')"{}}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md216}{}\doxysubsection{\texorpdfstring{7. 发布 Git\+Hub Release}{7. 发布 Git\+Hub Release}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md216}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md218}{}\doxysubsubsection{\texorpdfstring{7.\+1 创建 Release}{7.\+1 创建 Release}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md218}
+
+\begin{DoxyEnumerate}
+\item 访问 Git\+Hub 仓库
+\item 点击 "{}\+Releases"{} → "{}\+Create a new release"{}
+\item 选择标签 {\ttfamily v0.\+2.\+0}
+\item 填写 Release 标题：{\ttfamily v0.\+2.\+0}
+\item 复制 CHANGELOG 内容到描述
+\item 上传构建产物：
+\begin{DoxyItemize}
+\item {\ttfamily dist/\+p2p\+\_\+sdk-\/0.\+2.\+0-\/py3-\/none-\/any.\+whl}
+\item {\ttfamily dist/\+p2p\+\_\+sdk-\/0.\+2.\+0.\+tar.\+gz}
+\end{DoxyItemize}
+\item 点击 "{}\+Publish release"{}
+\end{DoxyEnumerate}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md221}{}\doxysubsubsection{\texorpdfstring{7.\+2 更新文档}{7.\+2 更新文档}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md221}
+如果使用 Git\+Hub Pages 或 Read the Docs：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 构建文档}
+\DoxyCodeLine{cd\ docs}
+\DoxyCodeLine{make\ html}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 部署到\ GitHub\ Pages}
+\DoxyCodeLine{\#\ （根据你的文档托管方式）}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md223}{}\doxysection{\texorpdfstring{发布检查清单}{发布检查清单}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md223}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md224}{}\doxysubsection{\texorpdfstring{发布前}{发布前}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md224}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 所有测试通过（单元测试、集成测试）
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 代码覆盖率 ≥ 80\%
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 类型检查通过（mypy）
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 代码格式检查通过（black, ruff）
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 文档已更新
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] CHANGELOG 已更新
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 版本号已更新（所有文件一致）
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 示例代码可运行
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 无已知的严重 bug
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md226}{}\doxysubsection{\texorpdfstring{构建}{构建}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md226}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Wheel 包构建成功
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Source distribution 构建成功
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Conda 包构建成功（如果适用）
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 包完整性检查通过（twine check）
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md228}{}\doxysubsection{\texorpdfstring{测试}{测试}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md228}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 本地安装测试通过
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Test Py\+PI 安装测试通过
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 示例代码在新环境中可运行
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 依赖项正确安装
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md229}{}\doxysubsection{\texorpdfstring{发布}{发布}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md229}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Git 标签已创建
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 代码已推送到 Git\+Hub
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Py\+PI 发布成功
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Conda 发布成功（如果适用）
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Git\+Hub Release 已创建
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 文档已更新
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md230}{}\doxysubsection{\texorpdfstring{发布后}{发布后}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md230}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Py\+PI 页面显示正常
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 从 Py\+PI 安装测试通过
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Git\+Hub Release 页面正常
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 文档链接正常
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 通知用户（邮件列表、社交媒体等）
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md231}{}\doxysection{\texorpdfstring{回滚流程}{回滚流程}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md231}
+如果发布后发现严重问题：\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md232}{}\doxysubsection{\texorpdfstring{1. Py\+PI 回滚}{1. Py\+PI 回滚}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md232}
+Py\+PI 不支持删除已发布的版本，但可以：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 发布修复版本}
+\DoxyCodeLine{./bump\_version.sh\ 0.2.1}
+\DoxyCodeLine{\#\ 修复问题}
+\DoxyCodeLine{./build.sh}
+\DoxyCodeLine{./publish.sh\ prod}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md233}{}\doxysubsection{\texorpdfstring{2. 标记为 Yanked}{2. 标记为 Yanked}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md233}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 使用\ twine\ 标记版本为\ yanked}
+\DoxyCodeLine{python3\ -\/m\ twine\ upload\ -\/-\/skip-\/existing\ -\/-\/repository\ pypi\ dist/*}
+\DoxyCodeLine{\#\ 然后在\ PyPI\ 网页上标记为\ yanked}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md234}{}\doxysubsection{\texorpdfstring{3. Git 回滚}{3. Git 回滚}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md234}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 删除远程标签}
+\DoxyCodeLine{git\ push\ -\/-\/delete\ origin\ v0.2.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 删除本地标签}
+\DoxyCodeLine{git\ tag\ -\/d\ v0.2.0}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 回滚提交（如果需要）}
+\DoxyCodeLine{git\ revert\ <commit-\/hash>}
+\DoxyCodeLine{git\ push\ origin\ main}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md235}{}\doxysection{\texorpdfstring{自动化发布}{自动化发布}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md235}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md236}{}\doxysubsection{\texorpdfstring{Git\+Hub Actions 工作流}{Git\+Hub Actions 工作流}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md236}
+创建 {\ttfamily .github/\+workflows/\+release.\+yml}：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{name:\ Release}
+\DoxyCodeLine{}
+\DoxyCodeLine{on:}
+\DoxyCodeLine{\ \ push:}
+\DoxyCodeLine{\ \ \ \ tags:}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ 'v*'}
+\DoxyCodeLine{}
+\DoxyCodeLine{jobs:}
+\DoxyCodeLine{\ \ build-\/and-\/publish:}
+\DoxyCodeLine{\ \ \ \ runs-\/on:\ ubuntu-\/latest}
+\DoxyCodeLine{\ \ \ \ steps:}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ uses:\ actions/checkout@v3}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ name:\ Set\ up\ Python}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ uses:\ actions/setup-\/python@v4}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ with:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ python-\/version:\ '3.11'}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ name:\ Install\ dependencies}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ run:\ |}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ python\ -\/m\ pip\ install\ -\/-\/upgrade\ pip}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ pip\ install\ build\ twine}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ name:\ Build\ package}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ run:\ python\ -\/m\ build}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ name:\ Check\ package}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ run:\ twine\ check\ dist/*}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ name:\ Publish\ to\ PyPI}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ env:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ TWINE\_USERNAME:\ \_\_token\_\_}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ TWINE\_PASSWORD:\ \$\{\{\ secrets.PYPI\_TOKEN\ \}\}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ run:\ twine\ upload\ dist/*}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ -\/\ name:\ Create\ GitHub\ Release}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ uses:\ softprops/action-\/gh-\/release@v1}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ with:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ files:\ dist/*}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ body\_path:\ CHANGELOG.md}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md237}{}\doxysection{\texorpdfstring{版本策略}{版本策略}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md237}
+遵循语义化版本（\+Semantic Versioning）：
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}主版本号（\+Major）\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}：不兼容的 API 变更
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}次版本号（\+Minor）\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}：向后兼容的功能新增
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}修订号（\+Patch）\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}：向后兼容的问题修复
+\end{DoxyItemize}
+
+示例：
+\begin{DoxyItemize}
+\item {\ttfamily 0.\+1.\+0} → {\ttfamily 0.\+2.\+0}：新增功能
+\item {\ttfamily 0.\+2.\+0} → {\ttfamily 0.\+2.\+1}：bug 修复
+\item {\ttfamily 0.\+2.\+1} → {\ttfamily 1.\+0.\+0}：稳定版本，\+API 冻结
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md238}{}\doxysection{\texorpdfstring{支持的 Python 版本}{支持的 Python 版本}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md238}
+当前支持：
+\begin{DoxyItemize}
+\item Python 3.\+11
+\item Python 3.\+12
+\end{DoxyItemize}
+
+计划支持：
+\begin{DoxyItemize}
+\item Python 3.\+13（下一个版本）
+\end{DoxyItemize}
+
+停止支持：
+\begin{DoxyItemize}
+\item 当 Python 版本达到 EOL（\+End of Life）时
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md239}{}\doxysection{\texorpdfstring{许可证}{许可证}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md239}
+确保所有文件包含正确的许可证头：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ Copyright\ (c)\ 2026\ P2P\ Platform\ Team}}
+\DoxyCodeLine{\textcolor{comment}{\#\ Licensed\ under\ the\ MIT\ License}}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md240}{}\doxysection{\texorpdfstring{联系方式}{联系方式}}\label{md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_autotoc_md240}
+发布相关问题：
+\begin{DoxyItemize}
+\item Email:\+ \href{mailto:dev@p2p-platform.example.com}{\texttt{dev@p2p-\/platform.\+example.\+com}}
+\item Git\+Hub Issues:\+ \href{https://github.com/p2p-platform/python-sdk/issues}{\texttt{https:\+/\+/\+github.\+com/\+p2p-\/platform/\+python-\/sdk/\+issues}} 
+\end{DoxyItemize}

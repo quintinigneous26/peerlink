@@ -1,0 +1,705 @@
+\doxysection{tls.\+py}
+\hypertarget{tls_8py_source}{}\label{tls_8py_source}\index{p2p\_engine/protocol/tls.py@{p2p\_engine/protocol/tls.py}}
+\doxymbox{\hyperlink{tls_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00002}00002\ \textcolor{stringliteral}{TLS\ 1.3\ Secure\ Channel\ Implementation\ for\ libp2p}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00004}00004\ \textcolor{stringliteral}{This\ module\ implements\ the\ libp2p\ TLS\ 1.3\ secure\ channel\ protocol\ using}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00005}00005\ \textcolor{stringliteral}{Python's\ ssl\ standard\ library.\ It\ provides:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00006}00006\ \textcolor{stringliteral}{-\/\ TLS\ 1.3\ handshake\ for\ secure\ communication}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00007}00007\ \textcolor{stringliteral}{-\/\ Certificate-\/based\ peer\ authentication}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00008}00008\ \textcolor{stringliteral}{-\/\ Compatibility\ with\ multistream-\/select\ protocol\ negotiation}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00009}00009\ \textcolor{stringliteral}{-\/\ Coexistence\ with\ Noise\ as\ alternative\ security\ transport}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00010}00010\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00011}00011\ \textcolor{stringliteral}{Reference:\ https://github.com/libp2p/specs/blob/master/tls/README.md}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00012}00012\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00014}00014\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00015}00015\ \textcolor{keyword}{import}\ ssl}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00016}00016\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00017}00017\ \textcolor{keyword}{import}\ struct}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00018}00018\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ Tuple,\ List,\ Callable,\ Awaitable}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00019}00019\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00020}00020\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ IntEnum}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00021}00021\ \textcolor{keyword}{import}\ hashlib}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00022}00022\ \textcolor{keyword}{from}\ cryptography\ \textcolor{keyword}{import}\ x509}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00023}00023\ \textcolor{keyword}{from}\ cryptography.hazmat.primitives\ \textcolor{keyword}{import}\ hashes,\ serialization}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00024}00024\ \textcolor{keyword}{from}\ cryptography.hazmat.primitives.asymmetric\ \textcolor{keyword}{import}\ ed25519}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00025}00025\ \textcolor{keyword}{from}\ cryptography.x509.oid\ \textcolor{keyword}{import}\ NameOID}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00026}00026\ \textcolor{keyword}{import}\ datetime}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00028}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_ac727b165fd532983ab81f1133d935b2d}{00028}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00030}00030\ \textcolor{comment}{\#\ Protocol\ identifier}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00031}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_ab9de3ee052afdd23885ebe5fcf3eb81a}{00031}}\ PROTOCOL\_ID\ =\ \textcolor{stringliteral}{"{}/tls/1.0.0"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00033}00033\ \textcolor{comment}{\#\ TLS\ constants}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00034}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_ad3e3f87114d0cfd6832c2587b764cbd9}{00034}}\ MAX\_MESSAGE\_SIZE\ =\ 65535}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00035}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_a1353622f2e70fa1145f727fe5b95e68d}{00035}}\ TLS\_VERSION\ =\ ssl.TLSVersion.TLSv1\_3}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00038}00038\ \textcolor{comment}{\#\ ====================\ Exceptions\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00040}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error}{00040}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error}{TLSError}}(Exception):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00041}00041\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Base\ exception\ for\ TLS\ protocol\ errors."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00045}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_error}{00045}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_error}{TLSHandshakeError}}(\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error}{TLSError}}):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00046}00046\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Raised\ when\ TLS\ handshake\ fails."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00050}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_certificate_error}{00050}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_certificate_error}{TLSCertificateError}}(\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error}{TLSError}}):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00051}00051\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Raised\ when\ certificate\ operations\ fail."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00055}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_verification_error}{00055}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_verification_error}{TLSVerificationError}}(\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error}{TLSError}}):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00056}00056\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Raised\ when\ peer\ verification\ fails."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00060}00060\ \textcolor{comment}{\#\ ====================\ Certificate\ Management\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00062}00062\ @dataclass}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00063}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config}{00063}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config}{CertificateConfig}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00064}00064\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Configuration\ for\ TLS\ certificate\ generation."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00065}00065\ \ \ \ \ common\_name:\ str}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00066}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config_a78622808a6f147f01d45d33a85081236}{00066}}\ \ \ \ \ country:\ str\ =\ \textcolor{stringliteral}{"{}US"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00067}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config_a0c7175fa2e9b709747ada19f9ad22949}{00067}}\ \ \ \ \ organization:\ str\ =\ \textcolor{stringliteral}{"{}libp2p"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00068}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config_aa2d850fcfdbcafdcaa1dadc9f1cbf7a3}{00068}}\ \ \ \ \ valid\_days:\ int\ =\ 365}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00070}00070\ \ \ \ \ \textcolor{preprocessor}{@classmethod}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00071}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config_aa2cb6f58d6f38f1ac97a7a7b4bb4a14f}{00071}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_certificate_config_aa2cb6f58d6f38f1ac97a7a7b4bb4a14f}{from\_peer\_id}}(cls,\ peer\_id:\ str)\ -\/>\ \textcolor{stringliteral}{"{}CertificateConfig"{}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Create\ certificate\ config\ from\ peer\ ID."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Use\ first\ 16\ chars\ of\ peer\ ID\ as\ common\ name}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ common\_name\ =\ peer\_id[:16]\ \textcolor{keywordflow}{if}\ len(peer\_id)\ >\ 16\ \textcolor{keywordflow}{else}\ peer\_id}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cls(common\_name=common\_name)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00078}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_aa4944bf2aabc3da0557b8ab42287cf28}{00078}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_aa4944bf2aabc3da0557b8ab42287cf28}{generate\_self\_signed\_cert}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00079}00079\ \ \ \ \ private\_key:\ ed25519.Ed25519PrivateKey,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00080}00080\ \ \ \ \ config:\ CertificateConfig}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00081}00081\ )\ -\/>\ Tuple[bytes,\ bytes]:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00082}00082\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00083}00083\ \textcolor{stringliteral}{\ \ \ \ Generate\ a\ self-\/signed\ certificate.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00084}00084\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00085}00085\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00086}00086\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ private\_key:\ Ed25519\ private\ key\ for\ signing}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00087}00087\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ config:\ Certificate\ configuration}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00088}00088\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00089}00089\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Tuple\ of\ (certificate\_bytes,\ private\_key\_bytes)}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00091}00091\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00092}00092\ \textcolor{stringliteral}{\ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ TLSCertificateError:\ If\ certificate\ generation\ fails}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ subject\ =\ issuer\ =\ x509.Name([}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.COUNTRY\_NAME,\ config.country),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.ORGANIZATION\_NAME,\ config.organization),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.COMMON\_NAME,\ config.common\_name),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ ])}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ cert\ =\ (}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ x509.CertificateBuilder()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ .subject\_name(subject)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ .issuer\_name(issuer)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ .public\_key(private\_key.public\_key())}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ .serial\_number(x509.random\_serial\_number())}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ .not\_valid\_before(datetime.datetime.now(datetime.timezone.utc))}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ .not\_valid\_after(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ datetime.datetime.now(datetime.timezone.utc)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ datetime.timedelta(days=config.valid\_days)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ .add\_extension(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.SubjectKeyIdentifier.from\_public\_key(private\_key.public\_key()),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ critical=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ .add\_extension(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.BasicConstraints(ca=\textcolor{keyword}{True},\ path\_length=\textcolor{keywordtype}{None}),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ critical=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ .sign(private\_key,\ \textcolor{keywordtype}{None})\ \ \textcolor{comment}{\#\ Ed25519\ requires\ None\ for\ hash\ algorithm}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ cert\_bytes\ =\ cert.public\_bytes(serialization.Encoding.PEM)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ key\_bytes\ =\ private\_key.private\_bytes(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ encoding=serialization.Encoding.PEM,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ format=serialization.PrivateFormat.PKCS8,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ encryption\_algorithm=serialization.NoEncryption()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cert\_bytes,\ key\_bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_certificate_error}{TLSCertificateError}}(f\textcolor{stringliteral}{"{}Certificate\ generation\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00137}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_ad21861e34e057d4d44744b4c07aadc61}{00137}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_ad21861e34e057d4d44744b4c07aadc61}{generate\_ed25519\_keypair}}()\ -\/>\ Tuple[bytes,\ bytes]:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00138}00138\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00139}00139\ \textcolor{stringliteral}{\ \ \ \ Generate\ an\ Ed25519\ key\ pair.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00140}00140\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00141}00141\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00142}00142\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Tuple\ of\ (private\_key\_bytes,\ public\_key\_bytes)}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00143}00143\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00144}00144\ \ \ \ \ private\_key\ =\ ed25519.Ed25519PrivateKey.generate()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00145}00145\ \ \ \ \ public\_key\ =\ private\_key.public\_key()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00147}00147\ \ \ \ \ private\_bytes\ =\ private\_key.private\_bytes(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ encoding=serialization.Encoding.Raw,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ format=serialization.PrivateFormat.Raw,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ encryption\_algorithm=serialization.NoEncryption()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00151}00151\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00153}00153\ \ \ \ \ public\_bytes\ =\ public\_key.public\_bytes(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ encoding=serialization.Encoding.Raw,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ format=serialization.PublicFormat.Raw}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00156}00156\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{return}\ private\_bytes,\ public\_bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00161}00161\ \textcolor{comment}{\#\ ====================\ TLS\ Handshake\ Payload\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00163}00163\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00164}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload}{00164}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload}{TLSHandshakePayload}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00165}00165\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00166}00166\ \textcolor{stringliteral}{\ \ \ \ libp2p\ TLS\ handshake\ payload.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00167}00167\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00168}00168\ \textcolor{stringliteral}{\ \ \ \ Contains\ peer\ identity\ and\ supported\ protocols.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00169}00169\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00170}00170\ \ \ \ \ peer\_id:\ bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00171}00171\ \ \ \ \ public\_key:\ bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00172}00172\ \ \ \ \ signed\_payload:\ bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00173}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_ac6ac8571611db00bde42e5e11706dc62}{00173}}\ \ \ \ \ extensions:\ List[str]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00175}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_aa2733cafafba711b0aa95fd4d147d6d2}{00175}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_aa2733cafafba711b0aa95fd4d147d6d2}{encode}}(self)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ payload\ to\ bytes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ parts\ =\ [}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ struct.pack(\textcolor{stringliteral}{'>H'},\ len(self.peer\_id)),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ self.peer\_id,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ struct.pack(\textcolor{stringliteral}{'>H'},\ len(self.public\_key)),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ self.public\_key,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ struct.pack(\textcolor{stringliteral}{'>H'},\ len(self.signed\_payload)),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ self.signed\_payload,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ struct.pack(\textcolor{stringliteral}{'>H'},\ len(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_ac6ac8571611db00bde42e5e11706dc62}{extensions}})),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ ext\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_ac6ac8571611db00bde42e5e11706dc62}{extensions}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ ext\_bytes\ =\ ext.encode(\textcolor{stringliteral}{'utf-\/8'})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ parts.append(struct.pack(\textcolor{stringliteral}{'>H'},\ len(ext\_bytes)))}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ parts.append(ext\_bytes)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ b\textcolor{stringliteral}{''}.join(parts)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00194}00194\ \ \ \ \ \textcolor{preprocessor}{@classmethod}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00195}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_a9026ae0220bffc3d8b2e0571d0612d3f}{00195}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_a9026ae0220bffc3d8b2e0571d0612d3f}{decode}}(cls,\ data:\ bytes)\ -\/>\ \textcolor{stringliteral}{"{}TLSHandshakePayload"{}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Decode\ payload\ from\ bytes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ offset\ =\ 0}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ peer\_id\_len\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ data[offset:offset+2])[0]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ offset\ +=\ 2}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ peer\_id\ =\ data[offset:offset+peer\_id\_len]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ offset\ +=\ peer\_id\_len}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ public\_key\_len\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ data[offset:offset+2])[0]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ offset\ +=\ 2}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ public\_key\ =\ data[offset:offset+public\_key\_len]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ offset\ +=\ public\_key\_len}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ signed\_payload\_len\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ data[offset:offset+2])[0]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ offset\ +=\ 2}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ signed\_payload\ =\ data[offset:offset+signed\_payload\_len]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ offset\ +=\ signed\_payload\_len}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ extensions\_count\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ data[offset:offset+2])[0]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ offset\ +=\ 2}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ extensions\ =\ []}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ \_\ \textcolor{keywordflow}{in}\ range(extensions\_count):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ ext\_len\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ data[offset:offset+2])[0]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ offset\ +=\ 2}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ ext\ =\ data[offset:offset+ext\_len].\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_a9026ae0220bffc3d8b2e0571d0612d3f}{decode}}(\textcolor{stringliteral}{'utf-\/8'})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ extensions.append(ext)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ offset\ +=\ ext\_len}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cls(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=peer\_id,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ public\_key=public\_key,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ signed\_payload=signed\_payload,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ extensions=extensions}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00233}00233\ \textcolor{comment}{\#\ ====================\ TLS\ Configuration\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00235}00235\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00236}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config}{00236}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config}{TLSConfig}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00237}00237\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Configuration\ for\ TLS\ 1.3\ connection."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00238}00238\ \ \ \ \ \textcolor{comment}{\#\ Identity\ keys\ (libp2p\ peer\ identity)}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00239}00239\ \ \ \ \ identity\_private\_key:\ bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00240}00240\ \ \ \ \ identity\_public\_key:\ bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00242}00242\ \ \ \ \ \textcolor{comment}{\#\ Peer\ ID}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00243}00243\ \ \ \ \ peer\_id:\ str}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00245}00245\ \ \ \ \ \textcolor{comment}{\#\ Certificate\ configuration}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00246}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_a781ab68842a66497e3f383e0a3e90391}{00246}}\ \ \ \ \ certificate\_config:\ Optional[CertificateConfig]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00248}00248\ \ \ \ \ \textcolor{comment}{\#\ Supported\ stream\ muxers}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00249}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_aa50cddc91cf77fb5efb4cfc3802a219c}{00249}}\ \ \ \ \ stream\_muxers:\ List[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00251}00251\ \ \ \ \ \textcolor{comment}{\#\ Whether\ to\ verify\ peer\ certificates}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00252}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_ac2db4c3b796014f20121d1bf596652a4}{00252}}\ \ \ \ \ verify\_peer:\ bool\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00254}00254\ \ \ \ \ \textcolor{comment}{\#\ ALPN\ protocols}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00255}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_aa76198aac1f73a3e55fc99565d5f945b}{00255}}\ \ \ \ \ alpn\_protocols:\ List[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00257}00257\ \ \ \ \ \textcolor{comment}{\#\ Callbacks}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00258}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_aa24f3d99fe59fca3b566a8a0a4591c57}{00258}}\ \ \ \ \ verify\_peer\_callback:\ Optional[Callable[[bytes,\ bytes],\ Awaitable[bool]]]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00260}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_afc0250a2ce05728019eff99c36151490}{00260}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_afc0250a2ce05728019eff99c36151490}{\_\_post\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_aa50cddc91cf77fb5efb4cfc3802a219c}{stream\_muxers}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_aa50cddc91cf77fb5efb4cfc3802a219c}{stream\_muxers}}\ =\ [\textcolor{stringliteral}{"{}/yamux/1.0.0"{}},\ \textcolor{stringliteral}{"{}/mplex/6.7.0"{}}]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_aa76198aac1f73a3e55fc99565d5f945b}{alpn\_protocols}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config_aa76198aac1f73a3e55fc99565d5f945b}{alpn\_protocols}}\ =\ [\textcolor{stringliteral}{"{}libp2p"{}}]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00267}00267\ \textcolor{comment}{\#\ ====================\ TLS\ Security\ Transport\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00269}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport}{00269}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport}{TLSSecurityTransport}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00270}00270\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00271}00271\ \textcolor{stringliteral}{\ \ \ \ TLS\ 1.3\ secure\ transport\ wrapper.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00272}00272\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00273}00273\ \textcolor{stringliteral}{\ \ \ \ Wraps\ a\ TLS\ socket\ with\ libp2p\ framing\ for\ encrypted\ communication.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00274}00274\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00276}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a1cd229f10bacf8683da6726b56e5eb45}{00276}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a1cd229f10bacf8683da6726b56e5eb45}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ reader:\ asyncio.StreamReader,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ writer:\ asyncio.StreamWriter,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00280}00280\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00282}00282\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ TLS\ transport.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00283}00283\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00284}00284\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00285}00285\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ reader:\ Stream\ reader\ for\ TLS\ connection}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00286}00286\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ writer:\ Stream\ writer\ for\ TLS\ connection}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00287}00287\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00288}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a86b0d7d79bf9306ef0ced7fa03cbb5cf}{00288}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a86b0d7d79bf9306ef0ced7fa03cbb5cf}{reader}}\ =\ reader}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00289}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_ad4babc4137b6d333df9da0763cb17b2e}{00289}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_ad4babc4137b6d333df9da0763cb17b2e}{writer}}\ =\ writer}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00290}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a8c9afca03d78020b4fbda170eb1a6443}{00290}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a8c9afca03d78020b4fbda170eb1a6443}{\_closed}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00291}00291\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00292}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a6e7a56231f4f86315a8cbd9bdee70a5d}{00292}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a6e7a56231f4f86315a8cbd9bdee70a5d}{send}}(self,\ data:\ bytes)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00294}00294\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Send\ data\ with\ libp2p\ framing.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00295}00295\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00296}00296\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00297}00297\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ data:\ Data\ to\ send}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00298}00298\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00299}00299\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Frame\ format:\ <2-\/byte\ big-\/endian\ length><data>}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00300}00300\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a8c9afca03d78020b4fbda170eb1a6443}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ RuntimeError(\textcolor{stringliteral}{"{}Transport\ is\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(data)\ >\ MAX\_MESSAGE\_SIZE:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error}{TLSError}}(f\textcolor{stringliteral}{"{}Data\ too\ large:\ \{len(data)\}\ (max\ \{MAX\_MESSAGE\_SIZE\})"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ frame\ =\ struct.pack(\textcolor{stringliteral}{'>H'},\ len(data))\ +\ data}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_ad4babc4137b6d333df9da0763cb17b2e}{writer}}.write(frame)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_ad4babc4137b6d333df9da0763cb17b2e}{writer}}.drain()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00311}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a50e32f67c995c1ac24813d8881bebd0d}{00311}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a50e32f67c995c1ac24813d8881bebd0d}{recv}}(self)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00313}00313\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Receive\ framed\ data.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00314}00314\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00315}00315\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00316}00316\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Received\ data}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00317}00317\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00318}00318\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00319}00319\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TLSError:\ If\ framing\ is\ invalid}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00320}00320\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a8c9afca03d78020b4fbda170eb1a6443}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ RuntimeError(\textcolor{stringliteral}{"{}Transport\ is\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ length\_bytes\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a86b0d7d79bf9306ef0ced7fa03cbb5cf}{reader}}.readexactly(2)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ length\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ length\_bytes)[0]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ length\ >\ MAX\_MESSAGE\_SIZE:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_error}{TLSError}}(f\textcolor{stringliteral}{"{}Invalid\ message\ length:\ \{length\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00329}00329\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a86b0d7d79bf9306ef0ced7fa03cbb5cf}{reader}}.readexactly(length)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00332}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_afcb9809aa6da525907fc7bc7699f3247}{00332}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_afcb9809aa6da525907fc7bc7699f3247}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Close\ the\ transport."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a8c9afca03d78020b4fbda170eb1a6443}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a8c9afca03d78020b4fbda170eb1a6443}{\_closed}}\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_ad4babc4137b6d333df9da0763cb17b2e}{writer}}.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_afcb9809aa6da525907fc7bc7699f3247}{close}}()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_ad4babc4137b6d333df9da0763cb17b2e}{writer}}.wait\_closed()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Error\ closing\ TLS\ transport:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00343}00343\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00344}00344\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00345}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a139bf75aaa96144ee38bfb0f2da2548d}{00345}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a139bf75aaa96144ee38bfb0f2da2548d}{closed}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ transport\ is\ closed."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_a8c9afca03d78020b4fbda170eb1a6443}{\_closed}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00350}00350\ \textcolor{comment}{\#\ ====================\ TLS\ 1.3\ Security\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00352}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security}{00352}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security}{TLSSecurity}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00353}00353\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00354}00354\ \textcolor{stringliteral}{\ \ \ \ TLS\ 1.3\ security\ channel\ for\ libp2p.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00355}00355\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00356}00356\ \textcolor{stringliteral}{\ \ \ \ This\ class\ provides\ the\ main\ interface\ for\ performing\ TLS\ 1.3}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00357}00357\ \textcolor{stringliteral}{\ \ \ \ handshakes\ and\ establishing\ secure\ channels.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00358}00358\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00360}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a4b19982db5c97d3b8f401b017851b77f}{00360}}\ \ \ \ \ PROTOCOL\_ID\ =\ PROTOCOL\_ID}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00361}00361\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00362}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a54280db5478a1028b96d3597686b5894}{00362}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a54280db5478a1028b96d3597686b5894}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ config:\ TLSConfig,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00365}00365\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00367}00367\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ TLS\ security.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00368}00368\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00369}00369\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00370}00370\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ config:\ TLS\ configuration}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00371}00371\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00372}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{00372}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}\ =\ config}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00373}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a540561415068ac1d87e04daa7269cb9a}{00373}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a540561415068ac1d87e04daa7269cb9a}{\_cert\_bytes}}:\ Optional[bytes]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00374}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_aaa4fb26cccd46e5e2d97814444984e7d}{00374}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_aaa4fb26cccd46e5e2d97814444984e7d}{\_key\_bytes}}:\ Optional[bytes]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00375}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a9fb627a9d424dc8dea4abb2cebfc7f3e}{00375}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a9fb627a9d424dc8dea4abb2cebfc7f3e}{\_ssl\_context}}:\ Optional[ssl.SSLContext]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00376}00376\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ certificate\ on\ init}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00378}00378\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a0ca170cc720981eabdb8ffb7b83580b5}{\_generate\_certificate}}()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00380}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a0ca170cc720981eabdb8ffb7b83580b5}{00380}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a0ca170cc720981eabdb8ffb7b83580b5}{\_generate\_certificate}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ self-\/signed\ certificate\ for\ TLS."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00382}00382\ \ \ \ \ \ \ \ \ cert\_config\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.certificate\_config}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ cert\_config\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ cert\_config\ =\ CertificateConfig.from\_peer\_id(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.peer\_id)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00385}00385\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ private\_key\ =\ ed25519.Ed25519PrivateKey.generate()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00387}00387\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a540561415068ac1d87e04daa7269cb9a}{\_cert\_bytes}},\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_aaa4fb26cccd46e5e2d97814444984e7d}{\_key\_bytes}}\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_aa4944bf2aabc3da0557b8ab42287cf28}{generate\_self\_signed\_cert}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ private\_key,\ cert\_config}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00389}00389\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00391}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a5e8496af823ffd05e1a5dc1b69c9d378}{00391}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a5e8496af823ffd05e1a5dc1b69c9d378}{\_create\_ssl\_context}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ is\_initiator:\ bool}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00394}00394\ \ \ \ \ )\ -\/>\ ssl.SSLContext:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00396}00396\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Create\ SSL\ context\ for\ TLS\ 1.3.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00397}00397\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00398}00398\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00399}00399\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ is\_initiator:\ True\ if\ initiating\ connection}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00400}00400\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00401}00401\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00402}00402\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Configured\ SSL\ context}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00403}00403\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00404}00404\ \ \ \ \ \ \ \ \ context\ =\ ssl.SSLContext(ssl.PROTOCOL\_TLS\_SERVER\ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ is\_initiator\ \textcolor{keywordflow}{else}\ ssl.PROTOCOL\_TLS\_CLIENT)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ context.minimum\_version\ =\ TLS\_VERSION}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ context.maximum\_version\ =\ TLS\_VERSION}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00407}00407\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Load\ certificate\ and\ key}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ context.load\_cert\_chain(certfile=self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a540561415068ac1d87e04daa7269cb9a}{\_cert\_bytes}})\ \ \textcolor{comment}{\#\ type:\ ignore}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00410}00410\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00411}00411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ is\_initiator:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Client:\ verify\ server\ certificate}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ context.check\_hostname\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ context.verify\_mode\ =\ ssl.CERT\_REQUIRED}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Set\ ALPN}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ context.set\_alpn\_protocols(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.alpn\_protocols)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Server:\ request\ client\ certificate}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ context.verify\_mode\ =\ ssl.CERT\_OPTIONAL}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ context.set\_alpn\_protocols(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.alpn\_protocols)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00422}00422\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ context}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00425}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a51ba67b354a12317ef6c4e1de1a313e5}{00425}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a51ba67b354a12317ef6c4e1de1a313e5}{handshake}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ reader:\ asyncio.StreamReader,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ writer:\ asyncio.StreamWriter,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00429}00429\ \ \ \ \ \ \ \ \ is\_initiator:\ bool,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00430}00430\ \ \ \ \ )\ -\/>\ TLSSecurityTransport:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00432}00432\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Perform\ TLS\ 1.3\ handshake.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00433}00433\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00434}00434\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00435}00435\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ reader:\ Stream\ reader\ for\ underlying\ transport}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00436}00436\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ writer:\ Stream\ writer\ for\ underlying\ transport}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00437}00437\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ is\_initiator:\ True\ if\ initiating,\ False\ if\ responding}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00438}00438\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00439}00439\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00440}00440\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TLSSecurityTransport\ for\ secure\ communication}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00441}00441\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00442}00442\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00443}00443\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TLSHandshakeError:\ If\ handshake\ fails}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00444}00444\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TLSVerificationError:\ If\ peer\ verification\ fails}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00445}00445\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ context\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a5e8496af823ffd05e1a5dc1b69c9d378}{\_create\_ssl\_context}}(is\_initiator)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00447}00447\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wrap\ the\ socket\ with\ SSL}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ socket\ =\ writer.get\_extra\_info(\textcolor{stringliteral}{'socket'})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ socket\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_error}{TLSHandshakeError}}(\textcolor{stringliteral}{"{}Could\ not\ get\ underlying\ socket"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00453}00453\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ ssl\_socket\ =\ context.wrap\_socket(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ socket,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ server\_side=\textcolor{keywordflow}{not}\ is\_initiator,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\_handshake\_on\_connect=\textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Perform\ handshake}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ loop\ =\ asyncio.get\_event\_loop()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ await\ loop.sock\_wait\_writable(ssl\_socket)\ \ \textcolor{comment}{\#\ type:\ ignore}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00463}00463\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ loop.run\_in\_executor(\textcolor{keywordtype}{None},\ ssl\_socket.do\_handshake)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ssl.SSLError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_error}{TLSHandshakeError}}(f\textcolor{stringliteral}{"{}TLS\ handshake\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00468}00468\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ new\ reader/writer}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ ssl\_reader\ =\ asyncio.StreamReader()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ ssl\_protocol\ =\ asyncio.StreamReaderProtocol(ssl\_reader)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ transport,\ \_\ =\ await\ loop.connect\_accepted\_socket(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{lambda}:\ ssl\_protocol,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ssl\_socket\ \ \textcolor{comment}{\#\ type:\ ignore}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ ssl\_writer\ =\ asyncio.StreamWriter(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transport,\ ssl\_protocol,\ ssl\_reader,\ loop}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00481}00481\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Exchange\ libp2p\ payloads}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a57e4a2a283ca421dcb2c0c6206126114}{\_exchange\_payloads}}(ssl\_reader,\ ssl\_writer,\ is\_initiator)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00484}00484\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}TLS\ 1.3\ handshake\ completed\ as\ \{'initiator'\ if\ is\_initiator\ else\ 'responder'\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00486}00486\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport}{TLSSecurityTransport}}(ssl\_reader,\ ssl\_writer)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00488}00488\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ TLSHandshakeError:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00491}00491\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_error}{TLSHandshakeError}}(f\textcolor{stringliteral}{"{}TLS\ handshake\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00493}00493\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00494}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a57e4a2a283ca421dcb2c0c6206126114}{00494}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a57e4a2a283ca421dcb2c0c6206126114}{\_exchange\_payloads}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00495}00495\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00496}00496\ \ \ \ \ \ \ \ \ reader:\ asyncio.StreamReader,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00497}00497\ \ \ \ \ \ \ \ \ writer:\ asyncio.StreamWriter,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00498}00498\ \ \ \ \ \ \ \ \ is\_initiator:\ bool,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00499}00499\ \ \ \ \ )\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00500}00500\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00501}00501\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Exchange\ libp2p\ handshake\ payloads\ over\ TLS.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00502}00502\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00503}00503\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00504}00504\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ reader:\ TLS\ stream\ reader}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00505}00505\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ writer:\ TLS\ stream\ writer}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00506}00506\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ is\_initiator:\ True\ if\ initiating}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00507}00507\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00508}00508\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00509}00509\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TLSVerificationError:\ If\ payload\ verification\ fails}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00510}00510\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00511}00511\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Build\ local\ payload}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00512}00512\ \ \ \ \ \ \ \ \ local\_payload\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload}{TLSHandshakePayload}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.peer\_id.encode(),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ public\_key=self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.identity\_public\_key,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ signed\_payload=self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_affd8c9dcde7c718e4a047f449a88b17e}{\_sign\_payload}}(),}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ extensions=self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.stream\_muxers}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00517}00517\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00518}00518\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00519}00519\ \ \ \ \ \ \ \ \ local\_payload\_bytes\ =\ local\_payload.encode()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00521}00521\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Send\ payload}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00522}00522\ \ \ \ \ \ \ \ \ frame\ =\ struct.pack(\textcolor{stringliteral}{'>H'},\ len(local\_payload\_bytes))\ +\ local\_payload\_bytes}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00523}00523\ \ \ \ \ \ \ \ \ writer.write(frame)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ await\ writer.drain()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00525}00525\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00526}00526\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Receive\ remote\ payload}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00527}00527\ \ \ \ \ \ \ \ \ length\_bytes\ =\ await\ reader.readexactly(2)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00528}00528\ \ \ \ \ \ \ \ \ remote\_payload\_len\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ length\_bytes)[0]}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00529}00529\ \ \ \ \ \ \ \ \ remote\_payload\_bytes\ =\ await\ reader.readexactly(remote\_payload\_len)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00530}00530\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00531}00531\ \ \ \ \ \ \ \ \ remote\_payload\ =\ TLSHandshakePayload.decode(remote\_payload\_bytes)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00533}00533\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Verify\ remote\ payload}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00534}00534\ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a660a65e26081216042126906a7b1afaf}{\_verify\_remote\_payload}}(remote\_payload)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00535}00535\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00536}00536\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Exchanged\ payloads\ with\ peer:\ \{remote\_payload.peer\_id.decode()\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00537}00537\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00538}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_affd8c9dcde7c718e4a047f449a88b17e}{00538}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_affd8c9dcde7c718e4a047f449a88b17e}{\_sign\_payload}}(self)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00540}00540\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Sign\ handshake\ payload\ with\ identity\ key.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00541}00541\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00542}00542\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00543}00543\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Signature\ bytes}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00544}00544\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00545}00545\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ data\ to\ sign}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ data\_to\_sign\ =\ (}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.peer\_id.encode()\ +}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.identity\_public\_key}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00549}00549\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00550}00550\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00551}00551\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Sign\ with\ Ed25519}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00552}00552\ \ \ \ \ \ \ \ \ private\_key\ =\ ed25519.Ed25519PrivateKey.from\_private\_bytes(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.identity\_private\_key}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00554}00554\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00555}00555\ \ \ \ \ \ \ \ \ signature\ =\ private\_key.sign(data\_to\_sign)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00556}00556\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00557}00557\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ signature}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00558}00558\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00559}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a660a65e26081216042126906a7b1afaf}{00559}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a660a65e26081216042126906a7b1afaf}{\_verify\_remote\_payload}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00560}00560\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00561}00561\ \ \ \ \ \ \ \ \ payload:\ TLSHandshakePayload}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00562}00562\ \ \ \ \ )\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00563}00563\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00564}00564\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Verify\ remote\ handshake\ payload.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00565}00565\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00566}00566\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00567}00567\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ payload:\ Remote\ payload\ to\ verify}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00568}00568\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00569}00569\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00570}00570\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TLSVerificationError:\ If\ verification\ fails}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00571}00571\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00572}00572\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ If\ callback\ provided,\ use\ it}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00573}00573\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.verify\_peer\_callback:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_a90c0ea0bd291cf423cb9d615611699bf}{config}}.verify\_peer\_callback(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ payload.peer\_id,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ payload.signed\_payload}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_verification_error}{TLSVerificationError}}(\textcolor{stringliteral}{"{}Peer\ verification\ callback\ failed"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00579}00579\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00580}00580\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Verify\ signature}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00581}00581\ \ \ \ \ \ \ \ \ data\_to\_verify\ =\ payload.peer\_id\ +\ payload.public\_key}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00582}00582\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00583}00583\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ public\_key\ =\ ed25519.Ed25519PublicKey.from\_public\_bytes(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ payload.public\_key}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ public\_key.verify(payload.signed\_payload,\ data\_to\_verify)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00588}00588\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_verification_error}{TLSVerificationError}}(f\textcolor{stringliteral}{"{}Signature\ verification\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00590}00590\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00591}00591\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Verified\ peer:\ \{payload.peer\_id.decode()\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00592}00592\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00593}00593\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ payload.extensions:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Remote\ stream\ muxers:\ \{payload.extensions\}"{}})}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00595}00595\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00596}00596\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00597}00597\ \textcolor{comment}{\#\ ====================\ Convenience\ Functions\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00598}00598\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00599}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_ae40baa7a0d26dcfb65582f36bfc47132}{00599}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_ae40baa7a0d26dcfb65582f36bfc47132}{create\_tls\_security}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00600}00600\ \ \ \ \ identity\_private\_key:\ bytes,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00601}00601\ \ \ \ \ identity\_public\_key:\ bytes,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00602}00602\ \ \ \ \ peer\_id:\ str,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00603}00603\ \ \ \ \ stream\_muxers:\ Optional[List[str]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00604}00604\ )\ -\/>\ TLSSecurity:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00605}00605\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00606}00606\ \textcolor{stringliteral}{\ \ \ \ Create\ a\ TLS\ security\ instance.}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00607}00607\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00608}00608\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00609}00609\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ identity\_private\_key:\ Local\ libp2p\ identity\ private\ key}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00610}00610\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ identity\_public\_key:\ Local\ libp2p\ identity\ public\ key}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00611}00611\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ peer\_id:\ Local\ peer\ ID}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00612}00612\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ stream\_muxers:\ Optional\ list\ of\ supported\ stream\ muxers}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00613}00613\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00614}00614\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00615}00615\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Configured\ TLSSecurity\ instance}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00616}00616\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00617}00617\ \ \ \ \ config\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_config}{TLSConfig}}(}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00618}00618\ \ \ \ \ \ \ \ \ identity\_private\_key=identity\_private\_key,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00619}00619\ \ \ \ \ \ \ \ \ identity\_public\_key=identity\_public\_key,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00620}00620\ \ \ \ \ \ \ \ \ peer\_id=peer\_id,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00621}00621\ \ \ \ \ \ \ \ \ stream\_muxers=stream\_muxers,}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00622}00622\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00623}00623\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00624}00624\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security}{TLSSecurity}}(config)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00625}00625\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00626}00626\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00627}00627\ \textcolor{comment}{\#\ ====================\ Compatibility\ Aliases\ ====================}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00628}00628\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00629}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_a54076f8e0d68115ebbb2d94bc8ca0617}{00629}}\ TLS\_1\_3\_PROTOCOL\_ID\ =\ PROTOCOL\_ID}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00630}00630\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00631}00631\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00632}00632\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00633}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration}{00633}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration}{TLSConfiguration}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00634}00634\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}TLS\ configuration\ for\ compatibility\ with\ tests."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00635}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration_af011c13b1016531835c2f729f2c7a5af}{00635}}\ \ \ \ \ is\_server:\ bool\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00636}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration_ad326530e5a66322a9d6f7b606197f9e2}{00636}}\ \ \ \ \ protocol\_version:\ str\ =\ \textcolor{stringliteral}{"{}TLSv1.3"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00637}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration_a4e003b51ed0a9b19ff760d7f834a1d0d}{00637}}\ \ \ \ \ verify\_mode:\ str\ =\ \textcolor{stringliteral}{"{}required"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00638}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration_ac150fcb1819cb294807ec9c20315cbb2}{00638}}\ \ \ \ \ cert\_pem:\ Optional[bytes]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00639}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration_ac70d45fd3389fdca0124b146d6a13db7}{00639}}\ \ \ \ \ key\_pem:\ Optional[bytes]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00640}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_configuration_a855acac257d4d4f80ee4a846d09b4b2d}{00640}}\ \ \ \ \ handshake\_timeout:\ float\ =\ 30.0}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00641}00641\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00642}00642\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00643}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session}{00643}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session}{TLSSession}}:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00644}00644\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}TLS\ session\ wrapper\ for\ compatibility\ with\ tests."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00645}00645\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00646}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a113db97d65af588c805b94c8e8a2e82a}{00646}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a113db97d65af588c805b94c8e8a2e82a}{\_\_init\_\_}}(self,\ config:\ TLSConfiguration):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00647}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a7d8be3d7ac07644c9e8915bef67a8731}{00647}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a7d8be3d7ac07644c9e8915bef67a8731}{config}}\ =\ config}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00648}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_acfae555e6df360a9d2545ce15ee78e6f}{00648}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_acfae555e6df360a9d2545ce15ee78e6f}{\_closed}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00649}00649\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00650}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a8ce2ced5aa35effb8f3c67662ce27247}{00650}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a8ce2ced5aa35effb8f3c67662ce27247}{handshake}}(self,\ reader,\ writer):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00651}00651\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Perform\ TLS\ handshake\ (compatibility\ stub)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00652}00652\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_acfae555e6df360a9d2545ce15ee78e6f}{\_closed}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00653}00653\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00654}00654\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00655}00655\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00656}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a13da2ffd615980d3f90e151bf8eb4034}{00656}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a13da2ffd615980d3f90e151bf8eb4034}{closed}}(self):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00657}00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_acfae555e6df360a9d2545ce15ee78e6f}{\_closed}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00658}00658\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00659}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a9e41933a900769d1ef04984f74a38945}{00659}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_a9e41933a900769d1ef04984f74a38945}{close}}(self):}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00660}00660\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_acfae555e6df360a9d2545ce15ee78e6f}{\_closed}}\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00661}00661\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00662}00662\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00663}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_a384e2e0d72f0bb44d15326c1a80fd9b7}{00663}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_a384e2e0d72f0bb44d15326c1a80fd9b7}{generate\_selfsigned\_cert}}(peer\_id:\ str)\ -\/>\ Tuple[bytes,\ bytes]:}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00664}00664\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Generate\ self-\/signed\ certificate\ for\ a\ peer\ ID."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00665}00665\ \ \ \ \ private\_key\ =\ ed25519.Ed25519PrivateKey.generate()}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00666}00666\ \ \ \ \ config\ =\ CertificateConfig.from\_peer\_id(peer\_id)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00667}00667\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_aa4944bf2aabc3da0557b8ab42287cf28}{generate\_self\_signed\_cert}}(private\_key,\ config)}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00668}00668\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00669}00669\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00670}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1tls_a81baac187cd5b12b8b5e5308c825b8b1}{00670}}\ \_\_all\_\_\ =\ [}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00671}00671\ \ \ \ \ \textcolor{comment}{\#\ Protocol\ identifier}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00672}00672\ \ \ \ \ \textcolor{stringliteral}{"{}PROTOCOL\_ID"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00673}00673\ \ \ \ \ \textcolor{stringliteral}{"{}TLS\_1\_3\_PROTOCOL\_ID"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00674}00674\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00675}00675\ \ \ \ \ \textcolor{comment}{\#\ Exceptions}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00676}00676\ \ \ \ \ \textcolor{stringliteral}{"{}TLSError"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00677}00677\ \ \ \ \ \textcolor{stringliteral}{"{}TLSHandshakeError"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00678}00678\ \ \ \ \ \textcolor{stringliteral}{"{}TLSCertificateError"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00679}00679\ \ \ \ \ \textcolor{stringliteral}{"{}TLSVerificationError"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00680}00680\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00681}00681\ \ \ \ \ \textcolor{comment}{\#\ Certificate\ management}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00682}00682\ \ \ \ \ \textcolor{stringliteral}{"{}CertificateConfig"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00683}00683\ \ \ \ \ \textcolor{stringliteral}{"{}generate\_self\_signed\_cert"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00684}00684\ \ \ \ \ \textcolor{stringliteral}{"{}generate\_ed25519\_keypair"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00685}00685\ \ \ \ \ \textcolor{stringliteral}{"{}generate\_selfsigned\_cert"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00686}00686\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00687}00687\ \ \ \ \ \textcolor{comment}{\#\ Configuration}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00688}00688\ \ \ \ \ \textcolor{stringliteral}{"{}TLSConfig"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00689}00689\ \ \ \ \ \textcolor{stringliteral}{"{}TLSHandshakePayload"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00690}00690\ \ \ \ \ \textcolor{stringliteral}{"{}TLSConfiguration"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00691}00691\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00692}00692\ \ \ \ \ \textcolor{comment}{\#\ Main\ API}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00693}00693\ \ \ \ \ \textcolor{stringliteral}{"{}TLSSecurity"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00694}00694\ \ \ \ \ \textcolor{stringliteral}{"{}TLSSecurityTransport"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00695}00695\ \ \ \ \ \textcolor{stringliteral}{"{}TLSSession"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00696}00696\ }
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00697}00697\ \ \ \ \ \textcolor{comment}{\#\ Convenience}}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00698}00698\ \ \ \ \ \textcolor{stringliteral}{"{}create\_tls\_security"{}},}
+\DoxyCodeLine{\Hypertarget{tls_8py_source_l00699}00699\ ]}
+
+\end{DoxyCode}

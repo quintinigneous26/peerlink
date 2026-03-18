@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.engine.P2PConfig类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1engine_1_1_p2_p_config.html','','classp2p__engine_1_1engine_1_1_p2_p_config-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.engine.P2PConfig类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:a271e89e0ae1224761739fcba37942785" id="r_a271e89e0ae1224761739fcba37942785"><td class="memItemLeft">list&#160;</td><td class="memItemRight"><a class="el" href="#a271e89e0ae1224761739fcba37942785">stun_servers</a></td></tr>
+<tr class="memitem:ad97303f2a7e8f45af7a92c84fa7c0192" id="r_ad97303f2a7e8f45af7a92c84fa7c0192"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad97303f2a7e8f45af7a92c84fa7c0192">stun_timeout_ms</a> = 3000</td></tr>
+<tr class="memitem:a937abbbf92e80613de984c15f8d2d730" id="r_a937abbbf92e80613de984c15f8d2d730"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a937abbbf92e80613de984c15f8d2d730">debug</a> = False</td></tr>
+<tr class="memitem:ad774c5f236898ca289aabe6619bc1573" id="r_ad774c5f236898ca289aabe6619bc1573"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#ad774c5f236898ca289aabe6619bc1573">log_level</a> = &quot;INFO&quot;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">P2P引擎配置数据类
+
+包含P2P引擎的所有配置参数，用于初始化和控制引擎行为。
+
+属性:
+    stun_servers (list): STUN服务器地址列表，格式为 "host:port"
+        默认使用Google的公共STUN服务器
+    stun_timeout_ms (int): STUN请求超时时间（毫秒），默认3000ms
+    debug (bool): 是否启用调试模式，默认False
+    log_level (str): 日志级别，可选值：DEBUG, INFO, WARNING, ERROR, CRITICAL
+</pre> 
+<p class="definition">在文件 <a class="el" href="engine_8py_source.html">engine.py</a> 第 <a class="el" href="engine_8py_source.html#l00035">35</a> 行定义.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a937abbbf92e80613de984c15f8d2d730" name="a937abbbf92e80613de984c15f8d2d730"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a937abbbf92e80613de984c15f8d2d730">&#9670;&#160;</a></span>debug</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool p2p_engine.engine.P2PConfig.debug = False</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="engine_8py_source.html">engine.py</a> 第 <a class="el" href="engine_8py_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad774c5f236898ca289aabe6619bc1573" name="ad774c5f236898ca289aabe6619bc1573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad774c5f236898ca289aabe6619bc1573">&#9670;&#160;</a></span>log_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str p2p_engine.engine.P2PConfig.log_level = &quot;INFO&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="engine_8py_source.html">engine.py</a> 第 <a class="el" href="engine_8py_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a271e89e0ae1224761739fcba37942785" name="a271e89e0ae1224761739fcba37942785"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271e89e0ae1224761739fcba37942785">&#9670;&#160;</a></span>stun_servers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list p2p_engine.engine.P2PConfig.stun_servers</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=  field(default_factory=<span class="keyword">lambda</span>: [</div>
+<div class="line">        <span class="stringliteral">&quot;stun.l.google.com:19302&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;stun1.l.google.com:19302&quot;</span>,</div>
+<div class="line">    ])</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="engine_8py_source.html">engine.py</a> 第 <a class="el" href="engine_8py_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad97303f2a7e8f45af7a92c84fa7c0192" name="ad97303f2a7e8f45af7a92c84fa7c0192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad97303f2a7e8f45af7a92c84fa7c0192">&#9670;&#160;</a></span>stun_timeout_ms</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int p2p_engine.engine.P2PConfig.stun_timeout_ms = 3000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="engine_8py_source.html">engine.py</a> 第 <a class="el" href="engine_8py_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/<a class="el" href="engine_8py_source.html">engine.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1engine.html">engine</a></li><li class="navelem"><a href="classp2p__engine_1_1engine_1_1_p2_p_config.html">P2PConfig</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

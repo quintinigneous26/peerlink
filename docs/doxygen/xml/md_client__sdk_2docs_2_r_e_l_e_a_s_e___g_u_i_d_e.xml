@@ -1,0 +1,460 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e" kind="page">
+    <compoundname>md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e</compoundname>
+    <title>P2P SDK 发布指南</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md169"/></para>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md182">
+<title>构建和发布流程</title><sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md183">
+<title>1. 准备发布</title><sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md184">
+<title>1.1 更新版本号</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>使用版本管理脚本</highlight></codeline>
+<codeline><highlight class="normal">./bump_version.sh<sp/>0.2.0</highlight></codeline>
+</programlisting></para>
+<para>这将自动更新：<itemizedlist>
+<listitem><para><computeroutput>pyproject.toml</computeroutput></para>
+</listitem><listitem><para><computeroutput><ref refid="client__sdk_2src_2p2p__sdk_2____init_____8py" kindref="compound">src/p2p_sdk/__init__.py</ref></computeroutput></para>
+</listitem><listitem><para><computeroutput>conda/meta.yaml</computeroutput></para>
+</listitem><listitem><para><computeroutput><ref refid="_c_h_a_n_g_e_l_o_g_8md" kindref="compound">CHANGELOG.md</ref></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md186">
+<title>1.2 更新 CHANGELOG</title><para>编辑 <computeroutput><ref refid="_c_h_a_n_g_e_l_o_g_8md" kindref="compound">CHANGELOG.md</ref></computeroutput>，添加本次发布的详细变更：</para>
+<para><programlisting filename=".markdown"><codeline><highlight class="normal">##<sp/>[0.2.0]<sp/>-<sp/>2026-03-20</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Added</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>新功能<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>新功能<sp/>2</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Changed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>改进<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>改进<sp/>2</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Fixed</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>修复<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>修复<sp/>2</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md188">
+<title>1.3 运行测试</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>运行所有测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>检查覆盖率</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>--cov=p2p_sdk<sp/>tests/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行类型检查</highlight></codeline>
+<codeline><highlight class="normal">mypy<sp/>src/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行代码格式检查</highlight></codeline>
+<codeline><highlight class="normal">black<sp/>--check<sp/>src/</highlight></codeline>
+<codeline><highlight class="normal">ruff<sp/>check<sp/>src/</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md189">
+<title>2. 构建包</title><sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md191">
+<title>2.1 构建 Python Wheel</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>运行构建脚本</highlight></codeline>
+<codeline><highlight class="normal">./build.sh</highlight></codeline>
+</programlisting></para>
+<para>这将：<orderedlist>
+<listitem><para>清理旧的构建文件</para>
+</listitem><listitem><para>安装构建依赖</para>
+</listitem><listitem><para>构建 wheel 和 sdist</para>
+</listitem><listitem><para>验证包完整性</para>
+</listitem></orderedlist>
+</para>
+<para>输出文件位于 <computeroutput>dist/</computeroutput> 目录：<itemizedlist>
+<listitem><para><computeroutput>p2p_sdk-0.2.0-py3-none-any.whl</computeroutput></para>
+</listitem><listitem><para><computeroutput>p2p_sdk-0.2.0.tar.gz</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md194">
+<title>2.2 构建 Conda 包</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>运行<sp/>conda<sp/>构建脚本</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>conda</highlight></codeline>
+<codeline><highlight class="normal">./build.sh</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md197">
+<title>3. 本地测试</title><sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md198">
+<title>3.1 测试 Wheel 包</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>创建虚拟环境</highlight></codeline>
+<codeline><highlight class="normal">python3<sp/>-m<sp/>venv<sp/>test_env</highlight></codeline>
+<codeline><highlight class="normal">source<sp/>test_env/bin/activate</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装构建的包</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>dist/p2p_sdk-0.2.0-py3-none-any.whl</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>测试导入</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>-c<sp/>&quot;from<sp/>p2p_sdk<sp/>import<sp/>P2PClient;<sp/>print(&apos;OK&apos;)&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行示例</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>examples/basic_usage.py</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>清理</highlight></codeline>
+<codeline><highlight class="normal">deactivate</highlight></codeline>
+<codeline><highlight class="normal">rm<sp/>-rf<sp/>test_env</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md199">
+<title>3.2 测试 Conda 包</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>安装本地包</highlight></codeline>
+<codeline><highlight class="normal">conda<sp/>install<sp/>--use-local<sp/>p2p-sdk</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>测试</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>-c<sp/>&quot;from<sp/>p2p_sdk<sp/>import<sp/>P2PClient;<sp/>print(&apos;OK&apos;)&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>卸载</highlight></codeline>
+<codeline><highlight class="normal">conda<sp/>remove<sp/>p2p-sdk</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md200">
+<title>4. 发布到 Test PyPI</title><sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md201">
+<title>4.1 配置凭证</title><para>复制模板并填写 Test PyPI token：</para>
+<para><programlisting filename=".bash"><codeline><highlight class="normal">cp<sp/>.pypirc.template<sp/>~/.pypirc</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>编辑<sp/>~/.pypirc，填写<sp/>testpypi<sp/>token</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md202">
+<title>4.2 上传到 Test PyPI</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>上传到<sp/>Test<sp/>PyPI</highlight></codeline>
+<codeline><highlight class="normal">./publish.sh<sp/>test</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md203">
+<title>4.3 从 Test PyPI 安装测试</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>创建测试环境</highlight></codeline>
+<codeline><highlight class="normal">python3<sp/>-m<sp/>venv<sp/>test_pypi_env</highlight></codeline>
+<codeline><highlight class="normal">source<sp/>test_pypi_env/bin/activate</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>从<sp/>Test<sp/>PyPI<sp/>安装</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>--index-url<sp/>https://test.pypi.org/simple/<sp/>p2p-sdk</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>测试</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>-c<sp/>&quot;from<sp/>p2p_sdk<sp/>import<sp/>P2PClient;<sp/>print(&apos;OK&apos;)&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>清理</highlight></codeline>
+<codeline><highlight class="normal">deactivate</highlight></codeline>
+<codeline><highlight class="normal">rm<sp/>-rf<sp/>test_pypi_env</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md204">
+<title>5. 发布到生产 PyPI</title><sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md205">
+<title>5.1 最终检查</title><para><itemizedlist>
+<listitem override="unchecked"><para>所有测试通过</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>文档已更新</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>CHANGELOG 已更新</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>版本号正确</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>Test PyPI 测试成功</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md207">
+<title>5.2 创建 Git 标签</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>提交版本变更</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>add<sp/>-A</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>commit<sp/>-m<sp/>&quot;chore:<sp/>bump<sp/>version<sp/>to<sp/>0.2.0&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>创建标签</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>tag<sp/>-a<sp/>v0.2.0<sp/>-m<sp/>&quot;Release<sp/>v0.2.0&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>推送到远程</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>push<sp/>origin<sp/>main</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>push<sp/>origin<sp/>v0.2.0</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md208">
+<title>5.3 上传到 PyPI</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>上传到生产<sp/>PyPI</highlight></codeline>
+<codeline><highlight class="normal">./publish.sh<sp/>prod</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md210">
+<title>5.4 验证发布</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>等待几分钟让<sp/>PyPI<sp/>索引更新</highlight></codeline>
+<codeline><highlight class="normal">sleep<sp/>60</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装并测试</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>p2p-sdk==0.2.0</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>-c<sp/>&quot;from<sp/>p2p_sdk<sp/>import<sp/>P2PClient;<sp/>print(&apos;OK&apos;)&quot;</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md212">
+<title>6. 发布到 Conda</title><sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md213">
+<title>6.1 上传到 Anaconda Cloud</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>获取包路径</highlight></codeline>
+<codeline><highlight class="normal">PACKAGE_PATH=$(conda-build<sp/>conda/<sp/>--output)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>上传</highlight></codeline>
+<codeline><highlight class="normal">anaconda<sp/>upload<sp/>$PACKAGE_PATH</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md215">
+<title>6.2 验证</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>从<sp/>Anaconda<sp/>Cloud<sp/>安装</highlight></codeline>
+<codeline><highlight class="normal">conda<sp/>install<sp/>-c<sp/>your-channel<sp/>p2p-sdk</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>测试</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>-c<sp/>&quot;from<sp/>p2p_sdk<sp/>import<sp/>P2PClient;<sp/>print(&apos;OK&apos;)&quot;</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md216">
+<title>7. 发布 GitHub Release</title><sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md218">
+<title>7.1 创建 Release</title><para><orderedlist>
+<listitem><para>访问 GitHub 仓库</para>
+</listitem><listitem><para>点击 &quot;Releases&quot; → &quot;Create a new release&quot;</para>
+</listitem><listitem><para>选择标签 <computeroutput>v0.2.0</computeroutput></para>
+</listitem><listitem><para>填写 Release 标题：<computeroutput>v0.2.0</computeroutput></para>
+</listitem><listitem><para>复制 CHANGELOG 内容到描述</para>
+</listitem><listitem><para>上传构建产物：<itemizedlist>
+<listitem><para><computeroutput>dist/p2p_sdk-0.2.0-py3-none-any.whl</computeroutput></para>
+</listitem><listitem><para><computeroutput>dist/p2p_sdk-0.2.0.tar.gz</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para>点击 &quot;Publish release&quot;</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+<sect3 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md221">
+<title>7.2 更新文档</title><para>如果使用 GitHub Pages 或 Read the Docs：</para>
+<para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>构建文档</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>docs</highlight></codeline>
+<codeline><highlight class="normal">make<sp/>html</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>部署到<sp/>GitHub<sp/>Pages</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>（根据你的文档托管方式）</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+</sect1>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md223">
+<title>发布检查清单</title><sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md224">
+<title>发布前</title><para><itemizedlist>
+<listitem override="unchecked"><para>所有测试通过（单元测试、集成测试）</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>代码覆盖率 ≥ 80%</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>类型检查通过（mypy）</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>代码格式检查通过（black, ruff）</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>文档已更新</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>CHANGELOG 已更新</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>版本号已更新（所有文件一致）</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>示例代码可运行</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>无已知的严重 bug</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md226">
+<title>构建</title><para><itemizedlist>
+<listitem override="unchecked"><para>Wheel 包构建成功</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>Source distribution 构建成功</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>Conda 包构建成功（如果适用）</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>包完整性检查通过（twine check）</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md228">
+<title>测试</title><para><itemizedlist>
+<listitem override="unchecked"><para>本地安装测试通过</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>Test PyPI 安装测试通过</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>示例代码在新环境中可运行</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>依赖项正确安装</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md229">
+<title>发布</title><para><itemizedlist>
+<listitem override="unchecked"><para>Git 标签已创建</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>代码已推送到 GitHub</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>PyPI 发布成功</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>Conda 发布成功（如果适用）</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>GitHub Release 已创建</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>文档已更新</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md230">
+<title>发布后</title><para><itemizedlist>
+<listitem override="unchecked"><para>PyPI 页面显示正常</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>从 PyPI 安装测试通过</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>GitHub Release 页面正常</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>文档链接正常</para>
+</listitem></itemizedlist>
+<itemizedlist>
+<listitem override="unchecked"><para>通知用户（邮件列表、社交媒体等）</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md231">
+<title>回滚流程</title><para>如果发布后发现严重问题：</para>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md232">
+<title>1. PyPI 回滚</title><para>PyPI 不支持删除已发布的版本，但可以：</para>
+<para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>发布修复版本</highlight></codeline>
+<codeline><highlight class="normal">./bump_version.sh<sp/>0.2.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>修复问题</highlight></codeline>
+<codeline><highlight class="normal">./build.sh</highlight></codeline>
+<codeline><highlight class="normal">./publish.sh<sp/>prod</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md233">
+<title>2. 标记为 Yanked</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>使用<sp/>twine<sp/>标记版本为<sp/>yanked</highlight></codeline>
+<codeline><highlight class="normal">python3<sp/>-m<sp/>twine<sp/>upload<sp/>--skip-existing<sp/>--repository<sp/>pypi<sp/>dist/*</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>然后在<sp/>PyPI<sp/>网页上标记为<sp/>yanked</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md234">
+<title>3. Git 回滚</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>删除远程标签</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>push<sp/>--delete<sp/>origin<sp/>v0.2.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>删除本地标签</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>tag<sp/>-d<sp/>v0.2.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>回滚提交（如果需要）</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>revert<sp/>&lt;commit-hash&gt;</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>push<sp/>origin<sp/>main</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md235">
+<title>自动化发布</title><sect2 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md236">
+<title>GitHub Actions 工作流</title><para>创建 <computeroutput>.github/workflows/release.yml</computeroutput>：</para>
+<para><programlisting filename=".yaml"><codeline><highlight class="normal">name:<sp/>Release</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">on:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>push:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tags:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>&apos;v*&apos;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">jobs:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>build-and-publish:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>runs-on:<sp/>ubuntu-latest</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>steps:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>uses:<sp/>actions/checkout@v3</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>name:<sp/>Set<sp/>up<sp/>Python</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uses:<sp/>actions/setup-python@v4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>python-version:<sp/>&apos;3.11&apos;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>name:<sp/>Install<sp/>dependencies</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run:<sp/>|</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>python<sp/>-m<sp/>pip<sp/>install<sp/>--upgrade<sp/>pip</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pip<sp/>install<sp/>build<sp/>twine</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>name:<sp/>Build<sp/>package</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run:<sp/>python<sp/>-m<sp/>build</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>name:<sp/>Check<sp/>package</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run:<sp/>twine<sp/>check<sp/>dist/*</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>name:<sp/>Publish<sp/>to<sp/>PyPI</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TWINE_USERNAME:<sp/>__token__</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TWINE_PASSWORD:<sp/>${{<sp/>secrets.PYPI_TOKEN<sp/>}}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>run:<sp/>twine<sp/>upload<sp/>dist/*</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>name:<sp/>Create<sp/>GitHub<sp/>Release</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uses:<sp/>softprops/action-gh-release@v1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>with:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>files:<sp/>dist/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>body_path:<sp/>CHANGELOG.md</highlight></codeline>
+</programlisting></para>
+</sect2>
+</sect1>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md237">
+<title>版本策略</title><para>遵循语义化版本（Semantic Versioning）：</para>
+<para><itemizedlist>
+<listitem><para>**主版本号（Major）**：不兼容的 API 变更</para>
+</listitem><listitem><para>**次版本号（Minor）**：向后兼容的功能新增</para>
+</listitem><listitem><para>**修订号（Patch）**：向后兼容的问题修复</para>
+</listitem></itemizedlist>
+</para>
+<para>示例：<itemizedlist>
+<listitem><para><computeroutput>0.1.0</computeroutput> → <computeroutput>0.2.0</computeroutput>：新增功能</para>
+</listitem><listitem><para><computeroutput>0.2.0</computeroutput> → <computeroutput>0.2.1</computeroutput>：bug 修复</para>
+</listitem><listitem><para><computeroutput>0.2.1</computeroutput> → <computeroutput>1.0.0</computeroutput>：稳定版本，API 冻结</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md238">
+<title>支持的 Python 版本</title><para>当前支持：<itemizedlist>
+<listitem><para>Python 3.11</para>
+</listitem><listitem><para>Python 3.12</para>
+</listitem></itemizedlist>
+</para>
+<para>计划支持：<itemizedlist>
+<listitem><para>Python 3.13（下一个版本）</para>
+</listitem></itemizedlist>
+</para>
+<para>停止支持：<itemizedlist>
+<listitem><para>当 Python 版本达到 EOL（End of Life）时</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md239">
+<title>许可证</title><para>确保所有文件包含正确的许可证头：</para>
+<para><programlisting filename=".py"><codeline><highlight class="comment">#<sp/>Copyright<sp/>(c)<sp/>2026<sp/>P2P<sp/>Platform<sp/>Team</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>Licensed<sp/>under<sp/>the<sp/>MIT<sp/>License</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="md_client__sdk_2docs_2_r_e_l_e_a_s_e___g_u_i_d_e_1autotoc_md240">
+<title>联系方式</title><para>发布相关问题：<itemizedlist>
+<listitem><para>Email: <ulink url="mailto:dev@p2p-platform.example.com">dev@p2p-platform.example.com</ulink></para>
+</listitem><listitem><para>GitHub Issues: <ulink url="https://github.com/p2p-platform/python-sdk/issues">https://github.com/p2p-platform/python-sdk/issues</ulink> </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="client_sdk/docs/RELEASE_GUIDE.md"/>
+  </compounddef>
+</doxygen>

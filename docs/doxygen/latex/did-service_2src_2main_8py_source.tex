@@ -1,0 +1,44 @@
+\doxysection{main.\+py}
+\hypertarget{did-service_2src_2main_8py_source}{}\label{did-service_2src_2main_8py_source}\index{did-\/service/src/main.py@{did-\/service/src/main.py}}
+\doxymbox{\hyperlink{did-service_2src_2main_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00001}00001\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00003}00003\ \textcolor{stringliteral}{DID\ Service\ Entry\ Point}}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00004}00004\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00006}00006\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00007}00007\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00008}00008\ \textcolor{keyword}{import}\ uvicorn}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00010}00010\ \textcolor{keyword}{from}\ did\_service.config\ \textcolor{keyword}{import}\ config}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00011}00011\ \textcolor{keyword}{from}\ did\_service.service\ \textcolor{keyword}{import}\ app}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00013}00013\ \textcolor{comment}{\#\ Configure\ logging}}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00014}00014\ logging.basicConfig(}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00015}00015\ \ \ \ \ level=logging.INFO,}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00016}00016\ \ \ \ \ format=\textcolor{stringliteral}{"{}\%(asctime)s\ [\%(levelname)8s]\ \%(name)s:\ \%(message)s"{}},}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00017}00017\ \ \ \ \ datefmt=\textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}},}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00018}00018\ )}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00020}00020\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00023}00023\ \textcolor{keyword}{def\ }main():}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00024}00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ the\ DID\ service."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00025}00025\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Starting\ DID\ Service\ on\ \{config.host\}:\{config.port\}"{}})}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00027}00027\ \ \ \ \ uvicorn.run(}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}did\_service.service:app"{}},}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ host=config.host,}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ port=config.port,}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ reload=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ access\_log=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ log\_level=\textcolor{stringliteral}{"{}info"{}},}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00034}00034\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00037}00037\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{did-service_2src_2main_8py_source_l00038}00038\ \ \ \ \ sys.exit(main()\ \textcolor{keywordflow}{or}\ 0)}
+
+\end{DoxyCode}

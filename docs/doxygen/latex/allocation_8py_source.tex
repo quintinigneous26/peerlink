@@ -1,0 +1,368 @@
+\doxysection{allocation.\+py}
+\hypertarget{allocation_8py_source}{}\label{allocation_8py_source}\index{relay-\/server/src/allocation.py@{relay-\/server/src/allocation.py}}
+\doxymbox{\hyperlink{allocation_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00001}\doxymbox{\hyperlink{namespacesrc_1_1allocation}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00002}00002\ \textcolor{stringliteral}{TURN\ Allocation\ Manager}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00004}00004\ \textcolor{stringliteral}{Manages\ TURN\ allocations,\ port\ allocation,\ and\ permission\ handling.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00007}00007\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00008}00008\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00009}00009\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00010}00010\ \textcolor{keyword}{import}\ random}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00011}00011\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00012}00012\ \textcolor{keyword}{import}\ uuid}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00013}00013\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ Optional,\ Set,\ Tuple}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00015}00015\ \textcolor{keyword}{from}\ .messages\ \textcolor{keyword}{import}\ TurnAllocation}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00017}\doxymbox{\hyperlink{namespacesrc_1_1allocation_aefcfd7f0758dd522b7da2ff044d224da}{00017}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}relay-\/server"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00019}00019\ \textcolor{comment}{\#\ Configuration}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00020}\doxymbox{\hyperlink{namespacesrc_1_1allocation_abf8f8b738b191b5d170009784c438ce0}{00020}}\ DEFAULT\_MIN\_PORT\ =\ int(os.environ.get(\textcolor{stringliteral}{"{}RELAY\_MIN\_PORT"{}},\ \textcolor{stringliteral}{"{}50000"{}}))}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00021}\doxymbox{\hyperlink{namespacesrc_1_1allocation_aef361d16e7ecdcc3808c499caf1724b1}{00021}}\ DEFAULT\_MAX\_PORT\ =\ int(os.environ.get(\textcolor{stringliteral}{"{}RELAY\_MAX\_PORT"{}},\ \textcolor{stringliteral}{"{}50100"{}}))}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00022}\doxymbox{\hyperlink{namespacesrc_1_1allocation_a753502b4dbf8e2c55de5e8502a533482}{00022}}\ DEFAULT\_ALLOCATION\_LIFETIME\ =\ int(os.environ.get(\textcolor{stringliteral}{"{}RELAY\_ALLOCATION\_LIFETIME"{}},\ \textcolor{stringliteral}{"{}600"{}}))}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00023}\doxymbox{\hyperlink{namespacesrc_1_1allocation_aa1f2407069c30f1807d43b9e26b5d825}{00023}}\ DEFAULT\_MAX\_ALLOCATIONS\ =\ int(os.environ.get(\textcolor{stringliteral}{"{}RELAY\_MAX\_ALLOCATIONS"{}},\ \textcolor{stringliteral}{"{}1000"{}}))}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00026}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool}{00026}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool}{PortPool}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00027}00027\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ Manages\ a\ pool\ of\ available\ relay\ ports.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00029}00029\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ Uses\ a\ bitmap\ to\ track\ port\ availability\ for\ efficient\ allocation.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00033}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a0516e3f139e6e397584a6d536838d340}{00033}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a0516e3f139e6e397584a6d536838d340}{\_\_init\_\_}}(self,\ min\_port:\ int\ =\ DEFAULT\_MIN\_PORT,\ max\_port:\ int\ =\ DEFAULT\_MAX\_PORT):}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00035}00035\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ port\ pool.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00036}00036\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00037}00037\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ min\_port:\ Minimum\ port\ number}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00039}00039\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ max\_port:\ Maximum\ port\ number\ (inclusive)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00041}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{00041}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\_port}}\ =\ min\_port}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00042}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{00042}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\_port}}\ =\ max\_port}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00043}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a46c49f78e71dff59112f714421465f0b}{00043}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a46c49f78e71dff59112f714421465f0b}{total\_ports}}\ =\ max\_port\ -\/\ min\_port\ +\ 1}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00044}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{00044}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}}:\ Set[int]\ =\ set(range(min\_port,\ max\_port\ +\ 1))}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00045}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a5a4fb0b4655e0b4306bc2c18c877c99a}{00045}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a5a4fb0b4655e0b4306bc2c18c877c99a}{\_lock}}\ =\ asyncio.Lock()}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00047}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a40c32a0550dfe6c6f932f62d899b8545}{00047}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a40c32a0550dfe6c6f932f62d899b8545}{acquire}}(self)\ -\/>\ Optional[int]:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00049}00049\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Acquire\ a\ port\ from\ the\ pool.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00050}00050\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00051}00051\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00052}00052\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Port\ number\ or\ None\ if\ pool\ exhausted}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00053}00053\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a5a4fb0b4655e0b4306bc2c18c877c99a}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Random\ selection\ for\ load\ distribution}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ port\ =\ random.choice(tuple(self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}}))}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}}.remove(port)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Acquired\ port\ \{port\},\ \{len(self.\_available\_ports)\}\ remaining"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ port}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00063}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a0f25ae8ece9700bf3b9ad6629aa1e40f}{00063}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a0f25ae8ece9700bf3b9ad6629aa1e40f}{release}}(self,\ port:\ int)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Release\ a\ port\ back\ to\ the\ pool.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00066}00066\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00067}00067\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ port:\ Port\ to\ release}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00069}00069\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ port\ was\ released,\ False\ if\ not\ in\ pool}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00072}00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a5a4fb0b4655e0b4306bc2c18c877c99a}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\_port}}\ <=\ port\ <=\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\_port}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ port\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}}.add(port)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Released\ port\ \{port\},\ \{len(self.\_available\_ports)\}\ available"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00081}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_abd146c79972f8ceb8c5e85aea6452320}{00081}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_abd146c79972f8ceb8c5e85aea6452320}{available\_count}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ number\ of\ available\ ports."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ len(self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00085}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a23f236a47ae1941791eb2aefbb1eb6b0}{00085}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a23f236a47ae1941791eb2aefbb1eb6b0}{usage\_percentage}}(self)\ -\/>\ float:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ port\ pool\ usage\ as\ percentage."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ used\ =\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a46c49f78e71dff59112f714421465f0b}{total\_ports}}\ -\/\ len(self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\_available\_ports}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (used\ /\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a46c49f78e71dff59112f714421465f0b}{total\_ports}})\ *\ 100}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00091}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager}{00091}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager}{AllocationManager}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00092}00092\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ Manages\ TURN\ allocations.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00094}00094\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ Handles\ allocation\ creation,\ refresh,\ permission\ management,\ and\ cleanup.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00096}00096\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00098}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a1644ae237de6f9c606748bdb682e5271}{00098}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a1644ae237de6f9c606748bdb682e5271}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ min\_port:\ int\ =\ DEFAULT\_MIN\_PORT,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ max\_port:\ int\ =\ DEFAULT\_MAX\_PORT,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ default\_lifetime:\ int\ =\ DEFAULT\_ALLOCATION\_LIFETIME,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ max\_allocations:\ int\ =\ DEFAULT\_MAX\_ALLOCATIONS,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00104}00104\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ allocation\ manager.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00107}00107\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ min\_port:\ Minimum\ relay\ port}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00110}00110\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ max\_port:\ Maximum\ relay\ port}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ default\_lifetime:\ Default\ allocation\ lifetime\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ max\_allocations:\ Maximum\ concurrent\ allocations}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00114}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb}{00114}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb}{port\_pool}}\ =\ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool}{PortPool}}(min\_port,\ max\_port)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00115}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d}{00115}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d}{default\_lifetime}}\ =\ default\_lifetime}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00116}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56}{00116}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56}{max\_allocations}}\ =\ max\_allocations}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00117}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{00117}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}:\ Dict[str,\ TurnAllocation]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00118}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}{00118}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}{\_client\_to\_allocation}}:\ Dict[Tuple[str,\ int],\ str]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00119}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b}{00119}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b}{\_relay\_to\_allocation}}:\ Dict[Tuple[str,\ int],\ str]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00120}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}{00120}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}{\_lock}}\ =\ asyncio.Lock()}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00121}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}{00121}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}{\_cleanup\_task}}:\ Optional[asyncio.Task]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00123}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a97fb101b8616aa7008784ca4d4264d98}{00123}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a97fb101b8616aa7008784ca4d4264d98}{start}}(self):}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Start\ allocation\ manager\ and\ cleanup\ task."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}{\_cleanup\_task}}\ =\ asyncio.create\_task(self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6}{\_cleanup\_loop}}())}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Allocation\ manager\ started"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00128}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aa083435a757aec5c7323169ea430de41}{00128}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aa083435a757aec5c7323169ea430de41}{stop}}(self):}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stop\ allocation\ manager."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}{\_cleanup\_task}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}{\_cleanup\_task}}.cancel()}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}{\_cleanup\_task}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.CancelledError:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Allocation\ manager\ stopped"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00138}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6}{00138}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6}{\_cleanup\_loop}}(self):}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Periodically\ cleanup\ expired\ allocations."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ \textcolor{keyword}{True}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncio.sleep(60)\ \ \textcolor{comment}{\#\ Check\ every\ minute}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb}{cleanup\_expired}}()}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.CancelledError:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Error\ in\ cleanup\ loop:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00149}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a92530e60801e2825077aeb1b672259b2}{00149}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a92530e60801e2825077aeb1b672259b2}{create\_allocation}}(}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ client\_addr:\ Tuple[str,\ int],}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ relay\_addr:\ Tuple[str,\ int],}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ transport:\ str\ =\ \textcolor{stringliteral}{"{}udp"{}},}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ lifetime:\ Optional[int]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00155}00155\ \ \ \ \ )\ -\/>\ Optional[TurnAllocation]:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00157}00157\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Create\ a\ new\ allocation.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00158}00158\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ client\_addr:\ Client's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ relay\_addr:\ Relay\ server's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00162}00162\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ transport:\ Transport\ protocol}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00163}00163\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ lifetime:\ Requested\ lifetime\ (uses\ default\ if\ None)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00164}00164\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00165}00165\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00166}00166\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TurnAllocation\ or\ None\ if\ max\ allocations\ reached}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00167}00167\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ allocation\ limit}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}})\ >=\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56}{max\_allocations}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Max\ allocations\ (\{self.max\_allocations\})\ reached"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ if\ client\ already\ has\ allocation}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ client\_addr\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}{\_client\_to\_allocation}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Client\ \{client\_addr\}\ already\ has\ allocation"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Allocate\ port}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ port\ =\ await\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb}{port\_pool}}.acquire()}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ port\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(\textcolor{stringliteral}{"{}No\ available\ ports\ for\ allocation"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ allocation}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ allocation\_id\ =\ str(uuid.uuid4())}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ lifetime\ =\ lifetime\ \textcolor{keywordflow}{or}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d}{default\_lifetime}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ allocation\ =\ \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{TurnAllocation}}(}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ allocation\_id=allocation\_id,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ client\_addr=client\_addr,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ relay\_addr=(relay\_addr[0],\ port),}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lifetime=lifetime,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ transport=transport,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Store\ allocation}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}[allocation\_id]\ =\ allocation}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}{\_client\_to\_allocation}}[client\_addr]\ =\ allocation\_id}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b}{\_relay\_to\_allocation}}[allocation.relay\_addr]\ =\ allocation\_id}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}Created\ allocation\ \{allocation\_id\}\ for\ \{client\_addr\}\ -\/>\ \{allocation.relay\_addr\}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ allocation}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00208}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_ae4a0b73401a5136b04af249216f2c0f6}{00208}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_ae4a0b73401a5136b04af249216f2c0f6}{get\_allocation}}(self,\ allocation\_id:\ str)\ -\/>\ Optional[TurnAllocation]:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00210}00210\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ allocation\ by\ ID.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00211}00211\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00212}00212\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00213}00213\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ allocation\_id:\ Allocation\ ID}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00214}00214\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00215}00215\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00216}00216\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TurnAllocation\ or\ None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00217}00217\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.get(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00220}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a202d44f4a0eb5348c87f86ceed872762}{00220}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a202d44f4a0eb5348c87f86ceed872762}{get\_allocation\_by\_client}}(self,\ client\_addr:\ Tuple[str,\ int])\ -\/>\ Optional[TurnAllocation]:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00222}00222\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ allocation\ by\ client\ address.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00223}00223\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00224}00224\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00225}00225\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ client\_addr:\ Client's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00226}00226\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00227}00227\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00228}00228\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TurnAllocation\ or\ None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00229}00229\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ allocation\_id\ =\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}{\_client\_to\_allocation}}.get(client\_addr)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ allocation\_id:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.get(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00235}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a741eaacab3a89d2463068d7ac787cd20}{00235}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a741eaacab3a89d2463068d7ac787cd20}{get\_allocation\_by\_relay}}(self,\ relay\_addr:\ Tuple[str,\ int])\ -\/>\ Optional[TurnAllocation]:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00237}00237\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ allocation\ by\ relay\ address.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00238}00238\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00239}00239\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00240}00240\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ relay\_addr:\ Relay's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00241}00241\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00242}00242\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00243}00243\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ TurnAllocation\ or\ None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00244}00244\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ allocation\_id\ =\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b}{\_relay\_to\_allocation}}.get(relay\_addr)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ allocation\_id:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.get(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00250}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aea693ee65c6b6722bcd7d10045183c45}{00250}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aea693ee65c6b6722bcd7d10045183c45}{refresh\_allocation}}(}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ self,\ allocation\_id:\ str,\ lifetime:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00252}00252\ \ \ \ \ )\ -\/>\ Optional[TurnAllocation]:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00254}00254\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Refresh\ an\ allocation's\ lifetime.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00255}00255\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00256}00256\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00257}00257\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ allocation\_id:\ Allocation\ ID}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00258}00258\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ lifetime:\ New\ lifetime\ (uses\ default\ if\ None)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00259}00259\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00260}00260\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00261}00261\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Updated\ TurnAllocation\ or\ None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00262}00262\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ allocation\ =\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.get(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ allocation:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ lifetime\ (extends\ from\ now)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ allocation.lifetime\ =\ lifetime\ \textcolor{keywordflow}{or}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d}{default\_lifetime}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ allocation.created\_at\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Refreshed\ allocation\ \{allocation\_id\}"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ allocation}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00275}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6}{00275}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6}{delete\_allocation}}(self,\ allocation\_id:\ str)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00277}00277\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Delete\ an\ allocation.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00278}00278\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00279}00279\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00280}00280\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ allocation\_id:\ Allocation\ ID}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00281}00281\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00282}00282\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00283}00283\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ allocation\ was\ deleted}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00284}00284\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ allocation\ =\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.get(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ allocation:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Release\ port}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb}{port\_pool}}.release(allocation.relay\_addr[1])}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Remove\ from\ indexes}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}{\_client\_to\_allocation}}.pop(allocation.client\_addr,\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b}{\_relay\_to\_allocation}}.pop(allocation.relay\_addr,\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.pop(allocation\_id,\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Deleted\ allocation\ \{allocation\_id\}"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00301}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a873bcac4f12c8ee66bc28f5e9513a64d}{00301}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a873bcac4f12c8ee66bc28f5e9513a64d}{add\_permission}}(}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ self,\ allocation\_id:\ str,\ peer\_addr:\ Tuple[str,\ int]}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00303}00303\ \ \ \ \ )\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00305}00305\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Add\ permission\ for\ a\ peer.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00306}00306\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00307}00307\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00308}00308\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ allocation\_id:\ Allocation\ ID}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00309}00309\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ peer\_addr:\ Peer's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00310}00310\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00311}00311\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00312}00312\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ permission\ was\ added}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00313}00313\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ allocation\ =\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.get(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ allocation:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ allocation.add\_permission(peer\_addr)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00320}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb}{00320}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb}{cleanup\_expired}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00322}00322\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Remove\ all\ expired\ allocations.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00323}00323\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00324}00324\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00325}00325\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Number\ of\ allocations\ removed}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00326}00326\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ expired\_ids\ =\ []}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00328}00328\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ allocation\_id,\ allocation\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.items():}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ allocation.is\_expired():}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expired\_ids.append(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ allocation\_id\ \textcolor{keywordflow}{in}\ expired\_ids:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6}{delete\_allocation}}(allocation\_id)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ expired\_ids:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Cleaned\ up\ \{len(expired\_ids)\}\ expired\ allocations"{}})}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ len(expired\_ids)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00342}\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a7a4dc817c042545f58d88ccc52f54396}{00342}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a7a4dc817c042545f58d88ccc52f54396}{get\_stats}}(self)\ -\/>\ dict:}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00344}00344\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ allocation\ manager\ statistics.}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00345}00345\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00346}00346\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00347}00347\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Statistics\ dictionary}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00348}00348\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ active\_allocations\ =\ [a\ \textcolor{keywordflow}{for}\ a\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}.values()\ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ a.is\_expired()]}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00350}00350\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ total\_bytes\_sent\ =\ sum(a.bytes\_sent\ \textcolor{keywordflow}{for}\ a\ \textcolor{keywordflow}{in}\ active\_allocations)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ total\_bytes\_received\ =\ sum(a.bytes\_received\ \textcolor{keywordflow}{for}\ a\ \textcolor{keywordflow}{in}\ active\_allocations)}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00353}00353\ }
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_allocations"{}}:\ len(self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\_allocations}}),}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}active\_allocations"{}}:\ len(active\_allocations),}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}max\_allocations"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56}{max\_allocations}},}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}port\_pool\_available"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb}{port\_pool}}.available\_count(),}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}port\_pool\_usage"{}}:\ f\textcolor{stringliteral}{"{}\{self.port\_pool.usage\_percentage():.1f\}\%"{}},}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_bytes\_sent"{}}:\ total\_bytes\_sent,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_bytes\_received"{}}:\ total\_bytes\_received,}
+\DoxyCodeLine{\Hypertarget{allocation_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}

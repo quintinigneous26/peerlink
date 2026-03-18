@@ -1,0 +1,129 @@
+\doxysection{p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry类 参考}
+\hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{}\label{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}\index{p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}}
+
+
+p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a883f97e9a0cca6026d531ed73a37aa49}{is\+\_\+stale}} (self, float stale\+\_\+threshold=3600.\+0)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a2aa1f8b6a7068e26ccfc6f5e58e706ac}{update\+\_\+seen}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+List \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a59e949da8a068ef48ccd2adf14f590c9}{addresses}} = field(default\+\_\+factory=list)
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_ae93551d90e7c12dd2eb1db9fa31813be}{last\+\_\+seen}} = field(default\+\_\+factory=time.\+time)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_state}{Peer\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_ab3ad82944f348e62af87141bd02051e5}{state}} = \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_state_a333e70820341aad536e7236d4fa5e5c3}{Peer\+State.\+CONNECTED}}
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a58e3745d2a1abe555ae6d0794f67c689}{latency\+\_\+ms}} = 0.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Represents a peer entry in the routing table.
+
+Attributes:
+    peer_id: Peer identifier (32 bytes)
+    addresses: List of multiaddresses where peer can be reached
+    last_seen: Timestamp of last successful interaction
+    state: Connection state
+    latency_ms: Last measured latency in milliseconds
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00037}{37}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a883f97e9a0cca6026d531ed73a37aa49}\index{p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}!is\_stale@{is\_stale}}
+\index{is\_stale@{is\_stale}!p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}}
+\doxysubsubsection{\texorpdfstring{is\_stale()}{is\_stale()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a883f97e9a0cca6026d531ed73a37aa49} 
+ bool p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry.\+is\+\_\+stale (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{float }]{stale\+\_\+threshold}{ = {\ttfamily 3600.0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if peer entry is stale (not seen recently).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00054}{54}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00050}{last\+\_\+seen}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a2aa1f8b6a7068e26ccfc6f5e58e706ac}\index{p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}!update\_seen@{update\_seen}}
+\index{update\_seen@{update\_seen}!p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}}
+\doxysubsubsection{\texorpdfstring{update\_seen()}{update\_seen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a2aa1f8b6a7068e26ccfc6f5e58e706ac} 
+ None p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry.\+update\+\_\+seen (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update last_seen timestamp to current time.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00058}{58}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00050}{last\+\_\+seen}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a59e949da8a068ef48ccd2adf14f590c9}\index{p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}!addresses@{addresses}}
+\index{addresses@{addresses}!p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}}
+\doxysubsubsection{\texorpdfstring{addresses}{addresses}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a59e949da8a068ef48ccd2adf14f590c9} 
+List p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry.\+addresses = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00049}{49}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_ae93551d90e7c12dd2eb1db9fa31813be}\index{p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}!last\_seen@{last\_seen}}
+\index{last\_seen@{last\_seen}!p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}}
+\doxysubsubsection{\texorpdfstring{last\_seen}{last\_seen}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_ae93551d90e7c12dd2eb1db9fa31813be} 
+float p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry.\+last\+\_\+seen = field(default\+\_\+factory=time.\+time)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00050}{50}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{routing_8py_source_l00054}{is\+\_\+stale()}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00058}{update\+\_\+seen()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a58e3745d2a1abe555ae6d0794f67c689}\index{p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}!latency\_ms@{latency\_ms}}
+\index{latency\_ms@{latency\_ms}!p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}}
+\doxysubsubsection{\texorpdfstring{latency\_ms}{latency\_ms}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_a58e3745d2a1abe555ae6d0794f67c689} 
+float p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry.\+latency\+\_\+ms = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00052}{52}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_ab3ad82944f348e62af87141bd02051e5}\index{p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}!state@{state}}
+\index{state@{state}!p2p\_engine.dht.routing.PeerEntry@{p2p\_engine.dht.routing.PeerEntry}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_ab3ad82944f348e62af87141bd02051e5} 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_state}{Peer\+State}} p2p\+\_\+engine.\+dht.\+routing.\+Peer\+Entry.\+state = \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_state_a333e70820341aad536e7236d4fa5e5c3}{Peer\+State.\+CONNECTED}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00051}{51}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+dht/\+\doxymbox{\hyperlink{routing_8py}{routing.\+py}}\end{DoxyCompactItemize}

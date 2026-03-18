@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package libp2p.identify;
+
+// Identify message for peer identity exchange
+message Identify {
+  // Protocol version (e.g., "/ipfs/0.1.0")
+  optional string protocolVersion = 5;
+
+  // Agent version (e.g., "p2p-platform/2.0.0")
+  optional string agentVersion = 6;
+
+  // Public key of the peer
+  optional bytes publicKey = 1;
+
+  // Listen addresses (multiaddr encoded)
+  repeated bytes listenAddrs = 2;
+
+  // Observed address as seen by remote peer
+  optional bytes observedAddr = 4;
+
+  // Supported protocols
+  repeated string protocols = 3;
+
+  // Extension field for custom data (ISP, NAT type, device vendor, etc.)
+  // This is wrapped in a nested message to maintain libp2p compatibility
+  optional bytes ext = 7;
+}
+
+// Extension data for carrier-specific information
+message IdentifyExtension {
+  // ISP identifier (enum value as string)
+  optional string isp = 1;
+
+  // NAT type (enum value as string)
+  optional string nat_type = 2;
+
+  // Device vendor (enum value as string)
+  optional string device_vendor = 3;
+
+  // NAT level (number of NAT layers)
+  optional uint32 nat_level = 4;
+
+  // Whether CGNAT is detected
+  optional bool is_cgnat = 5;
+
+  // Whether IPv6 is available
+  optional bool ipv6_available = 6;
+
+  // Region identifier
+  optional string region = 7;
+}

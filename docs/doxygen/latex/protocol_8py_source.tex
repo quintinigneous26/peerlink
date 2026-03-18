@@ -1,0 +1,216 @@
+\doxysection{protocol.\+py}
+\hypertarget{protocol_8py_source}{}\label{protocol_8py_source}\index{client\_sdk/src/p2p\_sdk/protocol.py@{client\_sdk/src/p2p\_sdk/protocol.py}}
+\doxymbox{\hyperlink{protocol_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00002}00002\ \textcolor{stringliteral}{P2P\ Protocol\ Definition}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00004}00004\ \textcolor{stringliteral}{Defines\ the\ message\ formats\ and\ protocol\ for\ P2P\ communication.}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00007}00007\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00008}00008\ \textcolor{keyword}{import}\ struct}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00009}00009\ \textcolor{keyword}{import}\ uuid}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00010}00010\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00011}00011\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ Enum}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00012}00012\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ Dict,\ Any,\ Tuple}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00015}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types}{00015}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types}{MessageTypes}}(Enum):}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00016}00016\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Message\ type\ identifiers."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00018}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_a1bdeb1f3df9c909b5c4756d81e92884f}{00018}}\ \ \ \ \ HANDSHAKE\ =\ \textcolor{stringliteral}{"{}handshake"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00019}00019\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Connection\ establishment\ handshake."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00021}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_a0ee030b3f937f0d274b1cfd0e8da6c93}{00021}}\ \ \ \ \ HANDSHAKE\_ACK\ =\ \textcolor{stringliteral}{"{}handshake\_ack"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00022}00022\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Handshake\ acknowledgment."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00024}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_a36b927229d69bb4c8bc286e6ba3a3b2f}{00024}}\ \ \ \ \ KEEPALIVE\ =\ \textcolor{stringliteral}{"{}keepalive"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00025}00025\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Keepalive/ping\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00027}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_aacf129ce48c3723c9f2834b58b6d955d}{00027}}\ \ \ \ \ CHANNEL\_DATA\ =\ \textcolor{stringliteral}{"{}channel\_data"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00028}00028\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Data\ on\ a\ specific\ channel."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00030}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_af485880030ab81029776a7c8cbb3b163}{00030}}\ \ \ \ \ CHANNEL\_OPEN\ =\ \textcolor{stringliteral}{"{}channel\_open"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00031}00031\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Open\ a\ new\ channel."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00033}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_ae4154f1efc09b95bf0ab04820b515cac}{00033}}\ \ \ \ \ CHANNEL\_CLOSE\ =\ \textcolor{stringliteral}{"{}channel\_close"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00034}00034\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Close\ a\ channel."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00036}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_aeaa07dc5ce7084c073f280b1c82678b7}{00036}}\ \ \ \ \ DISCONNECT\ =\ \textcolor{stringliteral}{"{}disconnect"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00037}00037\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Graceful\ disconnection."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00039}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types_a5640d87ae9a5e569e97260e8244bc4d8}{00039}}\ \ \ \ \ ERROR\ =\ \textcolor{stringliteral}{"{}error"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00040}00040\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Error\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00043}00043\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00044}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{00044}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{P2PMessage}}:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00045}00045\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Base\ P2P\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00047}00047\ \ \ \ \ msg\_type:\ MessageTypes}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00048}00048\ \ \ \ \ sender\_did:\ str}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00049}00049\ \ \ \ \ receiver\_did:\ str}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00050}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aa7672c60cb04a66b5e32bdfed69d1685}{00050}}\ \ \ \ \ message\_id:\ str\ =\ field(default\_factory=\textcolor{keyword}{lambda}:\ str(uuid.uuid4()))}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00051}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a5ebedfcdd320821ca720c2969fa229bd}{00051}}\ \ \ \ \ channel\_id:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00052}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a3c4454ed3f59f09b8f710556ff06d461}{00052}}\ \ \ \ \ payload:\ bytes\ =\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00053}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a960b2a0fc61ed08854df531cbcd07324}{00053}}\ \ \ \ \ timestamp:\ float\ =\ 0.0}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00054}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aeec87a806b35890e633714bee75de86d}{00054}}\ \ \ \ \ metadata:\ Dict[str,\ Any]\ =\ field(default\_factory=dict)}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00056}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_affe86774875519b67b8dd44b40f8d849}{00056}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_affe86774875519b67b8dd44b40f8d849}{encode}}(self)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ message\ to\ bytes\ for\ transmission."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ message\ dict}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ msg\_dict\ =\ \{}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}msg\_type"{}}:\ self.msg\_type.value,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sender\_did"{}}:\ self.sender\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}receiver\_did"{}}:\ self.receiver\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}message\_id"{}}:\ self.\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aa7672c60cb04a66b5e32bdfed69d1685}{message\_id}},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}channel\_id"{}}:\ self.\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a5ebedfcdd320821ca720c2969fa229bd}{channel\_id}},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}timestamp"{}}:\ self.\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a960b2a0fc61ed08854df531cbcd07324}{timestamp}},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}metadata"{}}:\ self.\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aeec87a806b35890e633714bee75de86d}{metadata}},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Convert\ to\ JSON}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ json\_bytes\ =\ json.dumps(msg\_dict).\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_affe86774875519b67b8dd44b40f8d849}{encode}}(\textcolor{stringliteral}{"{}utf-\/8"{}})}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Format:\ [length(4)][json\_length(4)][json\_bytes][payload]}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ header\ =\ struct.pack(\textcolor{stringliteral}{"{}>II"{}},\ len(json\_bytes)\ +\ len(self.\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a3c4454ed3f59f09b8f710556ff06d461}{payload}}),\ len(json\_bytes))}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ header\ +\ json\_bytes\ +\ self.\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a3c4454ed3f59f09b8f710556ff06d461}{payload}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00077}00077\ \ \ \ \ \textcolor{preprocessor}{@classmethod}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00078}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_ac25f2c1f420b53f6c515fb3bd97bd81a}{00078}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_ac25f2c1f420b53f6c515fb3bd97bd81a}{decode}}(cls,\ data:\ bytes)\ -\/>\ Optional[\textcolor{stringliteral}{"{}P2PMessage"{}}]:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Decode\ message\ from\ bytes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(data)\ <\ 8:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ header}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ total\_length,\ json\_length\ =\ struct.unpack(\textcolor{stringliteral}{"{}>II"{}},\ data[:8])}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(data)\ <\ total\_length\ +\ 8:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ JSON}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ json\_bytes\ =\ data[8\ :\ 8\ +\ json\_length]}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ msg\_dict\ =\ json.loads(json\_bytes.decode(\textcolor{stringliteral}{"{}utf-\/8"{}}))}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Extract\ payload}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ payload\ =\ data[8\ +\ json\_length\ :\ 8\ +\ total\_length]}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ message}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cls(}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg\_type=\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_message_types}{MessageTypes}}(msg\_dict[\textcolor{stringliteral}{"{}msg\_type"{}}]),}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sender\_did=msg\_dict[\textcolor{stringliteral}{"{}sender\_did"{}}],}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ receiver\_did=msg\_dict[\textcolor{stringliteral}{"{}receiver\_did"{}}],}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\_id=msg\_dict.get(\textcolor{stringliteral}{"{}message\_id"{}},\ str(uuid.uuid4())),}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ channel\_id=msg\_dict.get(\textcolor{stringliteral}{"{}channel\_id"{}}),}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ payload=payload,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timestamp=msg\_dict.get(\textcolor{stringliteral}{"{}timestamp"{}},\ 0.0),}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ metadata=msg\_dict.get(\textcolor{stringliteral}{"{}metadata"{}},\ \{\}),}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00113}00113\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00114}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message}{00114}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message}{HandshakeMessage}}(\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{P2PMessage}}):}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00115}00115\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Handshake\ message\ for\ connection\ establishment."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00117}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a1b1f1bc8e1f1b727ad87fe57f0f67e2a}{00117}}\ \ \ \ \ public\_ip:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00118}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a9558e3ccc1a2ea428d40fc7d1e1a62c2}{00118}}\ \ \ \ \ public\_port:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00119}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_aca8f06d4a6c5d3b6536959a375037207}{00119}}\ \ \ \ \ local\_ip:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00120}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a3c62ad32415b13eaed0a36ec8f54baf8}{00120}}\ \ \ \ \ local\_port:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00121}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a2eea66c7b40be1b741ec70b3885f22c6}{00121}}\ \ \ \ \ nat\_type:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00122}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_aa22a4e68b7adf33fdd8773008355e6c5}{00122}}\ \ \ \ \ is\_ack:\ bool\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00123}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a23745222d6917edf8446f698803fd457}{00123}}\ \ \ \ \ capabilities:\ list\ =\ field(default\_factory=list)}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00126}00126\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00127}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_channel_message}{00127}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_channel_message}{ChannelMessage}}(\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{P2PMessage}}):}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00128}00128\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Channel-\/specific\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00130}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_channel_message_ab8d2ef385b5402353060a75e3c2bd8da}{00130}}\ \ \ \ \ channel\_type:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00131}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_channel_message_a61aa362d82f0a2919f7933f6162525e1}{00131}}\ \ \ \ \ reliable:\ bool\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00132}\doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_channel_message_a6c6f3f2bfef4c0ba36e7214f17f1ff70}{00132}}\ \ \ \ \ priority:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00135}\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_ad880a3fbbbda91b49b7db7b5b61f2783}{00135}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_ad880a3fbbbda91b49b7db7b5b61f2783}{create\_handshake}}(}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00136}00136\ \ \ \ \ sender\_did:\ str,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00137}00137\ \ \ \ \ receiver\_did:\ str,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00138}00138\ \ \ \ \ public\_ip:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00139}00139\ \ \ \ \ public\_port:\ Optional[int]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00140}00140\ \ \ \ \ local\_ip:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00141}00141\ \ \ \ \ local\_port:\ Optional[int]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00142}00142\ \ \ \ \ nat\_type:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00143}00143\ \ \ \ \ is\_ack:\ bool\ =\ \textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00144}00144\ \ \ \ \ capabilities:\ list\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00145}00145\ )\ -\/>\ HandshakeMessage:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00146}00146\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Create\ a\ handshake\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00147}00147\ \ \ \ \ msg\ =\ \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message}{HandshakeMessage}}(}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ msg\_type=MessageTypes.HANDSHAKE\_ACK\ \textcolor{keywordflow}{if}\ is\_ack\ \textcolor{keywordflow}{else}\ MessageTypes.HANDSHAKE,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ sender\_did=sender\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ receiver\_did=receiver\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ public\_ip=public\_ip,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ public\_port=public\_port,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ local\_ip=local\_ip,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ local\_port=local\_port,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ nat\_type=nat\_type,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ is\_ack=is\_ack,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ capabilities=capabilities\ \textcolor{keywordflow}{or}\ [],}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00158}00158\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00159}00159\ \ \ \ \ msg.metadata.update(\{}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}public\_ip"{}}:\ public\_ip,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}public\_port"{}}:\ public\_port,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}local\_ip"{}}:\ local\_ip,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}local\_port"{}}:\ local\_port,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}nat\_type"{}}:\ nat\_type,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}is\_ack"{}}:\ is\_ack,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}capabilities"{}}:\ capabilities\ \textcolor{keywordflow}{or}\ [],}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00167}00167\ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{return}\ msg}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00171}\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a63c9b0458d61aec613f8dbb0c869f721}{00171}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a63c9b0458d61aec613f8dbb0c869f721}{parse\_message}}(data:\ bytes)\ -\/>\ Optional[P2PMessage]:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00172}00172\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Parse\ incoming\ message\ data."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{return}\ P2PMessage.decode(data)}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00176}\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a624145ae4e9966aff0268bbd1e9aa1ee}{00176}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a624145ae4e9966aff0268bbd1e9aa1ee}{create\_channel\_data}}(}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00177}00177\ \ \ \ \ sender\_did:\ str,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00178}00178\ \ \ \ \ receiver\_did:\ str,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00179}00179\ \ \ \ \ channel\_id:\ int,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00180}00180\ \ \ \ \ payload:\ bytes,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00181}00181\ )\ -\/>\ P2PMessage:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00182}00182\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Create\ a\ channel\ data\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00183}00183\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{P2PMessage}}(}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ msg\_type=MessageTypes.CHANNEL\_DATA,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ sender\_did=sender\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ receiver\_did=receiver\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ channel\_id=channel\_id,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ payload=payload,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00189}00189\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00192}\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a6b08f4a7a3663446e16ec79e082e75a8}{00192}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a6b08f4a7a3663446e16ec79e082e75a8}{create\_keepalive}}(sender\_did:\ str,\ receiver\_did:\ str)\ -\/>\ P2PMessage:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00193}00193\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Create\ a\ keepalive\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00194}00194\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{P2PMessage}}(}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ msg\_type=MessageTypes.KEEPALIVE,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ sender\_did=sender\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ receiver\_did=receiver\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00198}00198\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00201}\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a08a1e8c9e0fae9c12710b8ad07761ce9}{00201}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__sdk_1_1protocol_a08a1e8c9e0fae9c12710b8ad07761ce9}{create\_disconnect}}(sender\_did:\ str,\ receiver\_did:\ str,\ reason:\ str\ =\ \textcolor{stringliteral}{"{}"{}})\ -\/>\ P2PMessage:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00202}00202\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Create\ a\ disconnect\ message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00203}00203\ \ \ \ \ msg\ =\ \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{P2PMessage}}(}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ msg\_type=MessageTypes.DISCONNECT,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ sender\_did=sender\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ receiver\_did=receiver\_did,}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00207}00207\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{if}\ reason:}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ msg.metadata[\textcolor{stringliteral}{"{}reason"{}}]\ =\ reason}
+\DoxyCodeLine{\Hypertarget{protocol_8py_source_l00210}00210\ \ \ \ \ \textcolor{keywordflow}{return}\ msg}
+
+\end{DoxyCode}

@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: P2P Platform</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('md__r_e_a_d_m_e.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">P2P Platform </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md265"></a></p>
+<div align="center"></div><div align="center"><b>基于 WebRTC 和 libp2p 技术的去中心化 P2P 通信平台</b></div><div align="center"><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" style="pointer-events: none;" class="inline"/></a> <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.11+-blue.svg" alt="Python 3.11+" style="pointer-events: none;" class="inline"/></a> <img src="https://img.shields.io/badge/coverage-80%25+-green.svg" alt="Test Coverage" style="pointer-events: none;" class="inline"/> <a href="./docker-compose.yml"><img src="https://img.shields.io/badge/docker-ready-blue.svg" alt="Docker" style="pointer-events: none;" class="inline"/></a></div><div align="center">特性 • 快速开始 • 安装 • 文档 • 贡献</div><div align="center"></div><hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md267"></a>
+📖 项目简介</h1>
+<p>P2P Platform 是一套完整的去中心化 P2P 通信解决方案，实现了 libp2p 协议栈和 WebRTC 技术的深度集成。平台提供了从 NAT 穿透、设备发现、安全传输到流复用的全栈能力，支持构建高性能、可扩展的 P2P 应用。</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md268"></a>
+核心优势</h2>
+<ul>
+<li>🚀 <b>高性能</b>: P2P 直连吞吐量 ~150 Mbps，本地连接延迟 ~50ms</li>
+<li>🔒 <b>安全可靠</b>: TLS 1.3 加密，Ed25519 签名，完整的证书链验证</li>
+<li>🌐 <b>libp2p 兼容</b>: 完整实现 libp2p 协议栈，与 go-libp2p 互操作</li>
+<li>📦 <b>开箱即用</b>: Docker Compose 一键部署，支持 RPM/DEB/pip 安装</li>
+<li>🧪 <b>测试完善</b>: 575 个测试用例，95.1% 通过率，≥80% 代码覆盖率</li>
+<li>🛠️ <b>易于集成</b>: 简洁的客户端 SDK，支持 Python/Go/Rust/JavaScript</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md270"></a>
+✨ 主要特性</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md271"></a>
+核心服务</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">服务  </th><th class="markdownTableHeadNone">功能  </th><th class="markdownTableHeadNone">端口  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>STUN 服务器</b>  </td><td class="markdownTableBodyNone">NAT 穿透、公网 IP 获取、NAT 类型检测  </td><td class="markdownTableBodyNone">3478 (UDP), 3479 (TCP)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Relay 服务器</b>  </td><td class="markdownTableBodyNone">TURN 中继、UDP/TCP 转发、带宽管理  </td><td class="markdownTableBodyNone">50000-50010  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>信令服务器</b>  </td><td class="markdownTableBodyNone">设备注册、SDP 交换、连接协调  </td><td class="markdownTableBodyNone">8080 (WS), 8443 (WSS)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>DID 服务</b>  </td><td class="markdownTableBodyNone">设备身份认证、访问令牌管理  </td><td class="markdownTableBodyNone">9000 (HTTP)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>客户端 SDK</b>  </td><td class="markdownTableBodyNone">简化 P2P 连接开发  </td><td class="markdownTableBodyNone">-  </td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md272"></a>
+libp2p 协议栈</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md273"></a>
+安全传输</h3>
+<ul>
+<li>✅ TLS 1.3 (<span class="tt">/tls/1.0.0</span>)</li>
+<li>✅ Noise (<span class="tt">/noise</span>)</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md274"></a>
+流复用</h3>
+<ul>
+<li>✅ mplex (<span class="tt">/mplex/6.7.0</span>)</li>
+<li>✅ yamux (<span class="tt">/yamux/1.0.0</span>)</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md275"></a>
+核心协议</h3>
+<ul>
+<li>✅ multistream-select (<span class="tt">/multistream/1.0.0</span>)</li>
+<li>✅ Identify (<span class="tt">/ipfs/id/1.0.0</span>)</li>
+<li>✅ AutoNAT (<span class="tt">/libp2p/autonat/1.0.0</span>)</li>
+<li>✅ Circuit Relay v2 (<span class="tt">/libp2p/circuit/relay/0.2.0/hop</span>)</li>
+<li>✅ DCUtR (<span class="tt">/libp2p/dcutr/1.0.0</span>)</li>
+<li>✅ Ping (<span class="tt">/ipfs/ping/1.0.0</span>)</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md276"></a>
+高级功能</h3>
+<ul>
+<li>✅ Kademlia DHT (<span class="tt">/ipfs/kad/1.0.0</span>) - 分布式哈希表</li>
+<li>✅ GossipSub v1.1 (<span class="tt">/meshsub/1.1.0</span>) - 发布订阅</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md277"></a>
+传输层</h3>
+<ul>
+<li>✅ TCP</li>
+<li>✅ QUIC (<span class="tt">/quic-v1</span>)</li>
+<li>✅ WebRTC (<span class="tt">/webrtc-direct</span>)</li>
+<li>✅ WebTransport (<span class="tt">/webtransport/1.0.0</span>)</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md278"></a>
+网络优化</h2>
+<ul>
+<li>🌍 28 个全球运营商配置</li>
+<li>📱 22 个设备厂商检测</li>
+<li>💓 智能心跳和降级策略</li>
+<li>🔍 NAT 类型检测 (Full Cone, Restricted, Port Restricted, Symmetric)</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md280"></a>
+🚀 快速开始</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md281"></a>
+前置要求</h2>
+<ul>
+<li>Docker 20.10+</li>
+<li>Docker Compose 2.0+</li>
+<li>Python 3.11+ (如果不使用 Docker)</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md282"></a>
+使用 Docker Compose (推荐)</h2>
+<div class="fragment"><div class="line"># 克隆项目</div>
+<div class="line">git clone https://github.com/your-org/p2p-platform.git</div>
+<div class="line">cd p2p-platform</div>
+<div class="line"> </div>
+<div class="line"># 启动所有服务</div>
+<div class="line">docker-compose up -d</div>
+<div class="line"> </div>
+<div class="line"># 查看服务状态</div>
+<div class="line">docker-compose ps</div>
+<div class="line"> </div>
+<div class="line"># 查看日志</div>
+<div class="line">docker-compose logs -f</div>
+<div class="line"> </div>
+<div class="line"># 停止服务</div>
+<div class="line">docker-compose down</div>
+</div><!-- fragment --><p>服务启动后，可以通过以下地址访问：</p>
+<ul>
+<li>STUN 服务器: <span class="tt">udp://localhost:3478</span></li>
+<li>Relay 服务器: <span class="tt">udp://localhost:50000-50010</span></li>
+<li>信令服务器: <span class="tt">ws://localhost:8080</span></li>
+<li>DID 服务: <span class="tt"><a href="http://localhost:9000">http://localhost:9000</a></span></li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md283"></a>
+使用客户端 SDK</h2>
+<div class="fragment"><div class="line"><span class="keyword">from</span> client_sdk <span class="keyword">import</span> P2PClient</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 创建客户端</span></div>
+<div class="line">client = P2PClient(</div>
+<div class="line">    signaling_url=<span class="stringliteral">&quot;ws://localhost:8080&quot;</span>,</div>
+<div class="line">    stun_server=<span class="stringliteral">&quot;localhost:3478&quot;</span></div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 注册设备</span></div>
+<div class="line">await client.register(device_id=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 连接到另一个设备</span></div>
+<div class="line">connection = await client.connect(target_device=<span class="stringliteral">&quot;device-002&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 发送数据</span></div>
+<div class="line">await connection.send(b<span class="stringliteral">&quot;Hello, P2P!&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 接收数据</span></div>
+<div class="line">data = await connection.receive()</div>
+<div class="line">print(f<span class="stringliteral">&quot;Received: {data}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 关闭连接</span></div>
+<div class="line">await connection.close()</div>
+</div><!-- fragment --><hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md285"></a>
+📦 安装方式</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md286"></a>
+方式 1: Docker (推荐)</h2>
+<div class="fragment"><div class="line">docker-compose up -d</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md287"></a>
+方式 2: RPM 包 (CentOS/RHEL/Fedora)</h2>
+<div class="fragment"><div class="line"># 下载 RPM 包</div>
+<div class="line">wget https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform-1.0.0.rpm</div>
+<div class="line"> </div>
+<div class="line"># 安装</div>
+<div class="line">sudo rpm -ivh p2p-platform-1.0.0.rpm</div>
+<div class="line"> </div>
+<div class="line"># 启动服务</div>
+<div class="line">sudo systemctl start p2p-stun</div>
+<div class="line">sudo systemctl start p2p-relay</div>
+<div class="line">sudo systemctl start p2p-signaling</div>
+<div class="line">sudo systemctl start p2p-did</div>
+<div class="line"> </div>
+<div class="line"># 设置开机自启</div>
+<div class="line">sudo systemctl enable p2p-stun p2p-relay p2p-signaling p2p-did</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md288"></a>
+方式 3: DEB 包 (Ubuntu/Debian)</h2>
+<div class="fragment"><div class="line"># 下载 DEB 包</div>
+<div class="line">wget https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform_1.0.0_amd64.deb</div>
+<div class="line"> </div>
+<div class="line"># 安装</div>
+<div class="line">sudo dpkg -i p2p-platform_1.0.0_amd64.deb</div>
+<div class="line">sudo apt-get install -f  # 安装依赖</div>
+<div class="line"> </div>
+<div class="line"># 启动服务</div>
+<div class="line">sudo systemctl start p2p-stun</div>
+<div class="line">sudo systemctl start p2p-relay</div>
+<div class="line">sudo systemctl start p2p-signaling</div>
+<div class="line">sudo systemctl start p2p-did</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md289"></a>
+方式 4: pip 安装 (仅客户端 SDK)</h2>
+<div class="fragment"><div class="line">pip install p2p-platform-sdk</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md290"></a>
+方式 5: 源码安装</h2>
+<div class="fragment"><div class="line"># 克隆项目</div>
+<div class="line">git clone https://github.com/your-org/p2p-platform.git</div>
+<div class="line">cd p2p-platform</div>
+<div class="line"> </div>
+<div class="line"># 安装依赖</div>
+<div class="line">pip install -r requirements.txt</div>
+<div class="line"> </div>
+<div class="line"># 运行测试</div>
+<div class="line">pytest tests/ -v</div>
+<div class="line"> </div>
+<div class="line"># 启动服务 (需要分别启动各个服务)</div>
+<div class="line">python stun-server/main.py &amp;</div>
+<div class="line">python relay-server/main.py &amp;</div>
+<div class="line">python signaling-server/main.py &amp;</div>
+<div class="line">python did-service/main.py &amp;</div>
+</div><!-- fragment --><hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md292"></a>
+📚 文档</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md293"></a>
+核心文档</h2>
+<ul>
+<li>架构设计 - 系统架构和组件说明</li>
+<li>API 规范 - REST API 和 WebSocket 接口</li>
+<li>开发指南 - 开发环境搭建和贡献流程</li>
+<li>测试指南 - 测试框架和测试用例</li>
+<li>部署指南 - 生产环境部署步骤</li>
+<li>运维手册 - 服务管理和故障排查</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md294"></a>
+技术文档</h2>
+<ul>
+<li>libp2p 对比分析</li>
+<li>客户端 SDK 设计</li>
+<li>性能优化报告</li>
+<li>项目完成报告</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md295"></a>
+发布说明</h2>
+<ul>
+<li>CHANGELOG - 版本变更历史</li>
+<li>RELEASE NOTES - v1.0.0 发布说明</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md297"></a>
+🧪 测试</h1>
+<div class="fragment"><div class="line"># 运行所有测试</div>
+<div class="line">pytest tests/ -v --cov=p2p_engine --cov-report=html</div>
+<div class="line"> </div>
+<div class="line"># 运行单元测试</div>
+<div class="line">pytest tests/unit/ -v</div>
+<div class="line"> </div>
+<div class="line"># 运行集成测试</div>
+<div class="line">pytest tests/integration/ -v</div>
+<div class="line"> </div>
+<div class="line"># 运行互操作性测试</div>
+<div class="line">pytest tests/interop/ -v</div>
+<div class="line"> </div>
+<div class="line"># 运行性能测试</div>
+<div class="line">pytest tests/benchmark/ -v -m benchmark</div>
+<div class="line"> </div>
+<div class="line"># 查看覆盖率报告</div>
+<div class="line">open htmlcov/index.html</div>
+</div><!-- fragment --><hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md299"></a>
+🛠️ 配置</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md300"></a>
+环境变量</h2>
+<div class="fragment"><div class="line"># STUN 服务器</div>
+<div class="line">STUN_PORT=3478</div>
+<div class="line">STUN_TCP_PORT=3479</div>
+<div class="line"> </div>
+<div class="line"># Relay 服务器</div>
+<div class="line">RELAY_MIN_PORT=50000</div>
+<div class="line">RELAY_MAX_PORT=50010</div>
+<div class="line">RELAY_MAX_ALLOCATIONS=1000</div>
+<div class="line">RELAY_ALLOCATION_LIFETIME=600</div>
+<div class="line"> </div>
+<div class="line"># 信令服务器</div>
+<div class="line">SIGNALING_WS_PORT=8080</div>
+<div class="line">SIGNALING_WSS_PORT=8443</div>
+<div class="line">REDIS_URL=redis://localhost:6379</div>
+<div class="line"> </div>
+<div class="line"># DID 服务</div>
+<div class="line">DID_SERVICE_PORT=9000</div>
+<div class="line">JWT_SECRET=your-secret-key-change-in-production</div>
+<div class="line">JWT_EXPIRATION=3600</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md301"></a>
+配置文件</h2>
+<p>详细配置请参考 <a href="./docker-compose.yml">docker-compose.yml</a> 和各服务目录下的配置文件。</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md303"></a>
+📊 性能指标</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">指标  </th><th class="markdownTableHeadNone">目标  </th><th class="markdownTableHeadNone">实际  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">本地连接延迟  </td><td class="markdownTableBodyNone">&lt; 100ms  </td><td class="markdownTableBodyNone">~50ms ✅  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">远程连接延迟  </td><td class="markdownTableBodyNone">&lt; 500ms  </td><td class="markdownTableBodyNone">~200ms ✅  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">中继连接延迟  </td><td class="markdownTableBodyNone">&lt; 1000ms  </td><td class="markdownTableBodyNone">~500ms ✅  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">P2P 直连吞吐量  </td><td class="markdownTableBodyNone">&gt; 100 Mbps  </td><td class="markdownTableBodyNone">~150 Mbps ✅  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">中继吞吐量  </td><td class="markdownTableBodyNone">&gt; 10 Mbps  </td><td class="markdownTableBodyNone">~15 Mbps ✅  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">并发连接数  </td><td class="markdownTableBodyNone">100+  </td><td class="markdownTableBodyNone">500+ ✅  </td></tr>
+</table>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md305"></a>
+🤝 贡献指南</h1>
+<p>我们欢迎所有形式的贡献！</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md306"></a>
+如何贡献</h2>
+<ol type="1">
+<li>Fork 本项目</li>
+<li>创建特性分支 (<span class="tt">git checkout -b feature/AmazingFeature</span>)</li>
+<li>提交更改 (<span class="tt">git commit -m 'feat: Add some AmazingFeature'</span>)</li>
+<li>推送到分支 (<span class="tt">git push origin feature/AmazingFeature</span>)</li>
+<li>开启 Pull Request</li>
+</ol>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md307"></a>
+提交规范</h2>
+<p>我们使用 <a href="https://www.conventionalcommits.org/">Conventional Commits</a> 规范：</p>
+<ul>
+<li><span class="tt">feat</span>: 新功能</li>
+<li><span class="tt">fix</span>: 修复 bug</li>
+<li><span class="tt">docs</span>: 文档更新</li>
+<li><span class="tt">test</span>: 测试相关</li>
+<li><span class="tt">refactor</span>: 代码重构</li>
+<li><span class="tt">perf</span>: 性能优化</li>
+<li><span class="tt">chore</span>: 构建/工具链更新</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md308"></a>
+代码规范</h2>
+<ul>
+<li>Python 代码遵循 PEP 8</li>
+<li>使用 <span class="tt">black</span> 格式化代码</li>
+<li>使用 <span class="tt">mypy</span> 进行类型检查</li>
+<li>测试覆盖率 ≥ 80%</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md310"></a>
+📄 许可证</h1>
+<p>本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件</p>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md312"></a>
+🙏 致谢</h1>
+<p>感谢以下项目和社区：</p>
+<ul>
+<li><a href="https://libp2p.io/">libp2p</a> - 模块化网络栈</li>
+<li><a href="https://webrtc.org/">WebRTC</a> - 实时通信技术</li>
+<li><a href="https://github.com/aiortc/aioquic">aioquic</a> - Python QUIC 实现</li>
+<li><a href="https://github.com/aiortc/aiortc">aiortc</a> - Python WebRTC 实现</li>
+</ul>
+<hr  />
+<h1 class="doxsection"><a class="anchor" id="autotoc_md314"></a>
+📞 联系我们</h1>
+<ul>
+<li>问题反馈: <a href="https://github.com/your-org/p2p-platform/issues">GitHub Issues</a></li>
+<li>功能建议: <a href="https://github.com/your-org/p2p-platform/discussions">GitHub Discussions</a></li>
+<li>邮件: <a href="#" onclick="location.href='mai'+'lto:'+'sup'+'po'+'rt@'+'yo'+'ur-'+'or'+'g.c'+'om'; return false;">suppo<span class="obfuscator">.nosp@m.</span>rt@y<span class="obfuscator">.nosp@m.</span>our-o<span class="obfuscator">.nosp@m.</span>rg.c<span class="obfuscator">.nosp@m.</span>om</a></li>
+</ul>
+<hr  />
+<div align="center"></div><div align="center"><b>⬆ 回到顶部</b></div><div align="center">Made with ❤️ by P2P Platform Team</div><div align="center"></div> </div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

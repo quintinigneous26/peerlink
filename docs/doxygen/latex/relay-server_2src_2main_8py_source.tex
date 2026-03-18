@@ -1,0 +1,44 @@
+\doxysection{main.\+py}
+\hypertarget{relay-server_2src_2main_8py_source}{}\label{relay-server_2src_2main_8py_source}\index{relay-\/server/src/main.py@{relay-\/server/src/main.py}}
+\doxymbox{\hyperlink{relay-server_2src_2main_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00001}\doxymbox{\hyperlink{namespacesrc_1_1main}{00001}}\ \textcolor{comment}{\#!/usr/bin/env\ python3}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00002}00002\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00003}00003\ \textcolor{stringliteral}{Relay\ Server\ Entry\ Point}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00004}00004\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00006}00006\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00007}00007\ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00008}00008\ \textcolor{keyword}{import}\ uvicorn}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00010}00010\ \textcolor{keyword}{from}\ relay\_server.config\ \textcolor{keyword}{import}\ config}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00011}00011\ \textcolor{keyword}{from}\ relay\_server.service\ \textcolor{keyword}{import}\ app}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00013}00013\ \textcolor{comment}{\#\ Configure\ logging}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00014}00014\ logging.basicConfig(}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00015}\doxymbox{\hyperlink{namespacesrc_1_1main_a22720a1db2d24cc9198b570bd0853f31}{00015}}\ \ \ \ \ level=getattr(logging,\ config.log\_level),}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00016}\doxymbox{\hyperlink{namespacesrc_1_1main_a880c5560831858497acd82697e0b5b89}{00016}}\ \ \ \ \ format=\textcolor{stringliteral}{"{}\%(asctime)s\ [\%(levelname)8s]\ \%(name)s:\ \%(message)s"{}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00017}\doxymbox{\hyperlink{namespacesrc_1_1main_a504d79d95676d4f3def32c2f69dee379}{00017}}\ \ \ \ \ datefmt=\textcolor{stringliteral}{"{}\%Y-\/\%m-\/\%d\ \%H:\%M:\%S"{}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00018}00018\ )}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00020}\doxymbox{\hyperlink{namespacesrc_1_1main_ac915698013f4f55f87f3161f3e98d036}{00020}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00023}\doxymbox{\hyperlink{namespacesrc_1_1main_a0e182c3ebc04f12eb9873f6493d95eef}{00023}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacesrc_1_1main_a0e182c3ebc04f12eb9873f6493d95eef}{main}}():}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00024}00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ the\ relay\ server."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00025}00025\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Starting\ Relay\ Server\ on\ \{config.host\}:\{config.port\}"{}})}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00027}00027\ \ \ \ \ uvicorn.run(}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}relay\_server.service:app"{}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ host=config.host,}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ port=config.api\_port,}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ reload=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ access\_log=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ log\_level=config.log\_level.lower(),}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00034}00034\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00037}00037\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2main_8py_source_l00038}00038\ \ \ \ \ sys.exit(\doxymbox{\hyperlink{namespacesrc_1_1main_a0e182c3ebc04f12eb9873f6493d95eef}{main}}()\ \textcolor{keywordflow}{or}\ 0)}
+
+\end{DoxyCode}

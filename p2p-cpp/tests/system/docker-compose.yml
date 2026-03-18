@@ -1,0 +1,77 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  stun-server:
+    build:
+      context: ../..
+      dockerfile: docker/Dockerfile.stun
+    ports:
+      - "3478:3478/udp"
+    healthcheck:
+      test: ["CMD", "nc", "-zu", "localhost", "3478"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  signaling-server:
+    build:
+      context: ../..
+      dockerfile: docker/Dockerfile.signaling
+    ports:
+      - "8080:8080"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  relay-server:
+    build:
+      context: ../..
+      dockerfile: docker/Dockerfile.relay
+    ports:
+      - "3479:3479/udp"
+      - "49152-49252:49152-49252/udp"
+    healthcheck:
+      test: ["CMD", "nc", "-zu", "localhost", "3479"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  did-service:
+    build:
+      context: ../..
+      dockerfile: docker/Dockerfile.did
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+networks:
+  default:
+    name: p2p-test-network

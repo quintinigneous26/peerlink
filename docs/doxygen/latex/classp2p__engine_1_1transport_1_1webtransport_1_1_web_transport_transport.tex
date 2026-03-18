@@ -1,0 +1,251 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport}{}\label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+
+
+类 p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a33a8317a474e03fd39fbd87c80b24731}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{Certificate\+Manager}}]\+ certificate\+\_\+manager=None, float max\+\_\+idle\+\_\+timeout=\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a2dad0618b299d26219b74127f0c44285}{DEFAULT\+\_\+\+IDLE\+\_\+\+TIMEOUT}})
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a10af0579345e0860223d12c21ad6a314}{protocols}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaf73bf57e04631e2d54db74a7ad660c5}{dial}} (self, str addr)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener}{Listener}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a8ab5e5d9d7aa2b135ea39aabb2140950}{listen}} (self, str addr)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ae633f072792f769c300ce804513cd103}{close}} (self)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a4a5a0057a35f22ab61dcc91ce2762dea}{get\+\_\+certificate\+\_\+hashes}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[tuple]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaa0b7af9d9e2905c5b5d4baf620a0350}{\+\_\+parse\+\_\+multiaddr}} (str addr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a188450e55a3f2c9da8e497e8ef5f4f4e}{\+\_\+cert\+\_\+manager}} = certificate\+\_\+manager or \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{Certificate\+Manager}}()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ad82f7b65b8d0040f9bee6f720beacc5f}{\+\_\+max\+\_\+idle\+\_\+timeout}} = max\+\_\+idle\+\_\+timeout
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_abe8cefea6ab2bcb26fb89fd19defea7a}{\+\_\+closed}} = False
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a713d57ab03cafc995b5e7866946cb8eb}{\+\_\+listeners}} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}WebTransport transport implementation
+
+Provides HTTP/3-based transport with support for:
+- Self-signed certificates with hash verification
+- Stream multiplexing
+- Bidirectional communication
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00390}{390}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a33a8317a474e03fd39fbd87c80b24731}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a33a8317a474e03fd39fbd87c80b24731} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{Certificate\+Manager}}]\+ }]{certificate\+\_\+manager}{ = {\ttfamily None}, }\item[{float }]{max\+\_\+idle\+\_\+timeout}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a2dad0618b299d26219b74127f0c44285}{DEFAULT\+\_\+\+IDLE\+\_\+\+TIMEOUT}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize WebTransport transport
+
+Args:
+    certificate_manager: Certificate manager for TLS
+    max_idle_timeout: Maximum idle timeout in seconds
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00400}{400}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaa0b7af9d9e2905c5b5d4baf620a0350}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!\_parse\_multiaddr@{\_parse\_multiaddr}}
+\index{\_parse\_multiaddr@{\_parse\_multiaddr}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{\_parse\_multiaddr()}{\_parse\_multiaddr()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaa0b7af9d9e2905c5b5d4baf620a0350} 
+ Optional\+[tuple]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+\_\+parse\+\_\+multiaddr (\begin{DoxyParamCaption}\item[{str}]{addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse WebTransport multiaddr
+
+Supports formats:
+- /ip4/<ip>/udp/<port>/quic/webtransport
+- /ip4/<ip>/udp/<port>/quic/webtransport/certhash/<hash1>/certhash/<hash2>
+
+Returns:
+    Tuple of (host, port, cert_hashes) or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00545}{545}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ae633f072792f769c300ce804513cd103}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ae633f072792f769c300ce804513cd103} 
+ None p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close transport and all listeners\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adb257dcbc0d5b57b08611a4b1e0ac285}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00523}{523}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaf73bf57e04631e2d54db74a7ad660c5}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!dial@{dial}}
+\index{dial@{dial}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{dial()}{dial()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaf73bf57e04631e2d54db74a7ad660c5} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+dial (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish WebTransport connection to remote peer
+
+Args:
+    addr: Multiaddr (e.g., /ip4/192.0.2.0/udp/443/quic/webtransport/...)
+
+Returns:
+    Established connection
+
+Raises:
+    ConnectionError: If connection fails
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_a75e857ad1537e55cb8c1c0c33bae9e16}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00429}{429}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a4a5a0057a35f22ab61dcc91ce2762dea}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!get\_certificate\_hashes@{get\_certificate\_hashes}}
+\index{get\_certificate\_hashes@{get\_certificate\_hashes}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{get\_certificate\_hashes()}{get\_certificate\_hashes()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a4a5a0057a35f22ab61dcc91ce2762dea} 
+ List\+[str]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+get\+\_\+certificate\+\_\+hashes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get certificate hashes for multiaddr advertisement
+
+Returns:
+    List of certificate hashes
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00535}{535}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a8ab5e5d9d7aa2b135ea39aabb2140950}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!listen@{listen}}
+\index{listen@{listen}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a8ab5e5d9d7aa2b135ea39aabb2140950} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener}{Listener}} p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+listen (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start listening for WebTransport connections
+
+Args:
+    addr: Multiaddr to listen on (e.g., /ip4/0.0.0.0/udp/443/quic/webtransport)
+
+Returns:
+    Listener instance
+
+Raises:
+    ListenerError: If listen fails
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_ad6b5a798b3530fb18570596f66334843}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00490}{490}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a10af0579345e0860223d12c21ad6a314}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!protocols@{protocols}}
+\index{protocols@{protocols}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{protocols()}{protocols()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a10af0579345e0860223d12c21ad6a314} 
+ List\+[str]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+protocols (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return supported protocol IDs\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adfb364ee5a07f98fb541d346966a79ce}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00425}{425}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a188450e55a3f2c9da8e497e8ef5f4f4e}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!\_cert\_manager@{\_cert\_manager}}
+\index{\_cert\_manager@{\_cert\_manager}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{\_cert\_manager}{\_cert\_manager}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a188450e55a3f2c9da8e497e8ef5f4f4e} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+\_\+cert\+\_\+manager = certificate\+\_\+manager or \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{Certificate\+Manager}}()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00415}{415}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_abe8cefea6ab2bcb26fb89fd19defea7a}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!\_closed@{\_closed}}
+\index{\_closed@{\_closed}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{\_closed}{\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_abe8cefea6ab2bcb26fb89fd19defea7a} 
+bool p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00422}{422}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a713d57ab03cafc995b5e7866946cb8eb}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!\_listeners@{\_listeners}}
+\index{\_listeners@{\_listeners}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{\_listeners}{\_listeners}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a713d57ab03cafc995b5e7866946cb8eb} 
+list p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+\_\+listeners = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00423}{423}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ad82f7b65b8d0040f9bee6f720beacc5f}\index{p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}!\_max\_idle\_timeout@{\_max\_idle\_timeout}}
+\index{\_max\_idle\_timeout@{\_max\_idle\_timeout}!p2p\_engine.transport.webtransport.WebTransportTransport@{p2p\_engine.transport.webtransport.WebTransportTransport}}
+\doxysubsubsection{\texorpdfstring{\_max\_idle\_timeout}{\_max\_idle\_timeout}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ad82f7b65b8d0040f9bee6f720beacc5f} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport.\+\_\+max\+\_\+idle\+\_\+timeout = max\+\_\+idle\+\_\+timeout\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00416}{416}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{webtransport_8py}{webtransport.\+py}}\end{DoxyCompactItemize}

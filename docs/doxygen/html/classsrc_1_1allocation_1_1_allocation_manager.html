@@ -1,0 +1,800 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: src.allocation.AllocationManager类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classsrc_1_1allocation_1_1_allocation_manager.html','','classsrc_1_1allocation_1_1_allocation_manager-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">src.allocation.AllocationManager类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a1644ae237de6f9c606748bdb682e5271" id="r_a1644ae237de6f9c606748bdb682e5271"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1644ae237de6f9c606748bdb682e5271">__init__</a> (self, int min_port=<a class="el" href="namespacesrc_1_1allocation.html#abf8f8b738b191b5d170009784c438ce0">DEFAULT_MIN_PORT</a>, int max_port=<a class="el" href="namespacesrc_1_1allocation.html#aef361d16e7ecdcc3808c499caf1724b1">DEFAULT_MAX_PORT</a>, int <a class="el" href="#a430ba1e61a7d0f6023418c5d585c919d">default_lifetime</a>=<a class="el" href="namespacesrc_1_1allocation.html#a753502b4dbf8e2c55de5e8502a533482">DEFAULT_ALLOCATION_LIFETIME</a>, int <a class="el" href="#a6d611a2209aabead0a2b17f330996e56">max_allocations</a>=<a class="el" href="namespacesrc_1_1allocation.html#aa1f2407069c30f1807d43b9e26b5d825">DEFAULT_MAX_ALLOCATIONS</a>)</td></tr>
+<tr class="memitem:a97fb101b8616aa7008784ca4d4264d98" id="r_a97fb101b8616aa7008784ca4d4264d98"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a97fb101b8616aa7008784ca4d4264d98">start</a> (self)</td></tr>
+<tr class="memitem:aa083435a757aec5c7323169ea430de41" id="r_aa083435a757aec5c7323169ea430de41"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa083435a757aec5c7323169ea430de41">stop</a> (self)</td></tr>
+<tr class="memitem:a92530e60801e2825077aeb1b672259b2" id="r_a92530e60801e2825077aeb1b672259b2"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a92530e60801e2825077aeb1b672259b2">create_allocation</a> (self, Tuple[str, int] client_addr, Tuple[str, int] relay_addr, str transport=&quot;udp&quot;, Optional[int] lifetime=None)</td></tr>
+<tr class="memitem:ae4a0b73401a5136b04af249216f2c0f6" id="r_ae4a0b73401a5136b04af249216f2c0f6"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>]&#160;</td><td class="memItemRight"><a class="el" href="#ae4a0b73401a5136b04af249216f2c0f6">get_allocation</a> (self, str allocation_id)</td></tr>
+<tr class="memitem:a202d44f4a0eb5348c87f86ceed872762" id="r_a202d44f4a0eb5348c87f86ceed872762"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a202d44f4a0eb5348c87f86ceed872762">get_allocation_by_client</a> (self, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:a741eaacab3a89d2463068d7ac787cd20" id="r_a741eaacab3a89d2463068d7ac787cd20"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a741eaacab3a89d2463068d7ac787cd20">get_allocation_by_relay</a> (self, Tuple[str, int] relay_addr)</td></tr>
+<tr class="memitem:aea693ee65c6b6722bcd7d10045183c45" id="r_aea693ee65c6b6722bcd7d10045183c45"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>]&#160;</td><td class="memItemRight"><a class="el" href="#aea693ee65c6b6722bcd7d10045183c45">refresh_allocation</a> (self, str allocation_id, Optional[int] lifetime=None)</td></tr>
+<tr class="memitem:a11ec9edff7b51bec1a822e50aed428f6" id="r_a11ec9edff7b51bec1a822e50aed428f6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a11ec9edff7b51bec1a822e50aed428f6">delete_allocation</a> (self, str allocation_id)</td></tr>
+<tr class="memitem:a873bcac4f12c8ee66bc28f5e9513a64d" id="r_a873bcac4f12c8ee66bc28f5e9513a64d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a873bcac4f12c8ee66bc28f5e9513a64d">add_permission</a> (self, str allocation_id, Tuple[str, int] peer_addr)</td></tr>
+<tr class="memitem:a6dde83e610d06544adc30f7ee9b085cb" id="r_a6dde83e610d06544adc30f7ee9b085cb"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a6dde83e610d06544adc30f7ee9b085cb">cleanup_expired</a> (self)</td></tr>
+<tr class="memitem:a7a4dc817c042545f58d88ccc52f54396" id="r_a7a4dc817c042545f58d88ccc52f54396"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a7a4dc817c042545f58d88ccc52f54396">get_stats</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:aec78bebd6a2d00aa047bdb5b4cd583cb" id="r_aec78bebd6a2d00aa047bdb5b4cd583cb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aec78bebd6a2d00aa047bdb5b4cd583cb">port_pool</a> = <a class="el" href="classsrc_1_1allocation_1_1_port_pool.html">PortPool</a>(min_port, max_port)</td></tr>
+<tr class="memitem:a430ba1e61a7d0f6023418c5d585c919d" id="r_a430ba1e61a7d0f6023418c5d585c919d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a430ba1e61a7d0f6023418c5d585c919d">default_lifetime</a> = default_lifetime</td></tr>
+<tr class="memitem:a6d611a2209aabead0a2b17f330996e56" id="r_a6d611a2209aabead0a2b17f330996e56"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6d611a2209aabead0a2b17f330996e56">max_allocations</a> = max_allocations</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a401c633380b1455c5d01ca369b0d32e6" id="r_a401c633380b1455c5d01ca369b0d32e6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a401c633380b1455c5d01ca369b0d32e6">_cleanup_loop</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a6d8a849ac5f9c41d83ddfb8cd910299f" id="r_a6d8a849ac5f9c41d83ddfb8cd910299f"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a6d8a849ac5f9c41d83ddfb8cd910299f">_allocations</a> = {}</td></tr>
+<tr class="memitem:aad0b969efbdc91c7becff69e5c7a24ae" id="r_aad0b969efbdc91c7becff69e5c7a24ae"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#aad0b969efbdc91c7becff69e5c7a24ae">_client_to_allocation</a> = {}</td></tr>
+<tr class="memitem:a9780ad55e2605fc0cfeda70af969e13b" id="r_a9780ad55e2605fc0cfeda70af969e13b"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a9780ad55e2605fc0cfeda70af969e13b">_relay_to_allocation</a> = {}</td></tr>
+<tr class="memitem:a71f99925044a1ba82065e08c734e5dc1" id="r_a71f99925044a1ba82065e08c734e5dc1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a71f99925044a1ba82065e08c734e5dc1">_lock</a> = asyncio.Lock()</td></tr>
+<tr class="memitem:a061dafd9fd67598f5dfc239d0983289f" id="r_a061dafd9fd67598f5dfc239d0983289f"><td class="memItemLeft">Optional[asyncio.Task]&#160;</td><td class="memItemRight"><a class="el" href="#a061dafd9fd67598f5dfc239d0983289f">_cleanup_task</a> = None</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Manages TURN allocations.
+
+Handles allocation creation, refresh, permission management, and cleanup.
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00091">91</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a1644ae237de6f9c606748bdb682e5271" name="a1644ae237de6f9c606748bdb682e5271"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1644ae237de6f9c606748bdb682e5271">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>min_port</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1allocation.html#abf8f8b738b191b5d170009784c438ce0">DEFAULT_MIN_PORT</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>max_port</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1allocation.html#aef361d16e7ecdcc3808c499caf1724b1">DEFAULT_MAX_PORT</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>default_lifetime</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1allocation.html#a753502b4dbf8e2c55de5e8502a533482">DEFAULT_ALLOCATION_LIFETIME</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>max_allocations</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1allocation.html#aa1f2407069c30f1807d43b9e26b5d825">DEFAULT_MAX_ALLOCATIONS</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize allocation manager.
+
+Args:
+    min_port: Minimum relay port
+    max_port: Maximum relay port
+    default_lifetime: Default allocation lifetime in seconds
+    max_allocations: Maximum concurrent allocations
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00098">98</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a401c633380b1455c5d01ca369b0d32e6" name="a401c633380b1455c5d01ca369b0d32e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a401c633380b1455c5d01ca369b0d32e6">&#9670;&#160;</a></span>_cleanup_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager._cleanup_loop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Periodically cleanup expired allocations.</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00138">138</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="provider_8py_source.html#l00245">p2p_engine.dht.provider.ProviderManager.cleanup_expired()</a>, <a class="el" href="query__optimizer_8py_source.html#l00158">p2p_engine.dht.query_optimizer.QueryCache.cleanup_expired()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00320">cleanup_expired()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00123">start()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6_cgraph.png" border="0" usemap="#aclasssrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6_icgraph.png" border="0" usemap="#aclasssrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a873bcac4f12c8ee66bc28f5e9513a64d" name="a873bcac4f12c8ee66bc28f5e9513a64d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a873bcac4f12c8ee66bc28f5e9513a64d">&#9670;&#160;</a></span>add_permission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.allocation.AllocationManager.add_permission </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>peer_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Add permission for a peer.
+
+Args:
+    allocation_id: Allocation ID
+    peer_addr: Peer's (ip, port)
+
+Returns:
+    True if permission was added
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00301">301</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a>.</p>
+
+</div>
+</div>
+<a id="a6dde83e610d06544adc30f7ee9b085cb" name="a6dde83e610d06544adc30f7ee9b085cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dde83e610d06544adc30f7ee9b085cb">&#9670;&#160;</a></span>cleanup_expired()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int src.allocation.AllocationManager.cleanup_expired </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Remove all expired allocations.
+
+Returns:
+    Number of allocations removed
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00320">320</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">_lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a> , 以及 <a class="el" href="allocation_8py_source.html#l00275">delete_allocation()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00138">_cleanup_loop()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb_cgraph.png" border="0" usemap="#aclasssrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb_icgraph.png" border="0" usemap="#aclasssrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a92530e60801e2825077aeb1b672259b2" name="a92530e60801e2825077aeb1b672259b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92530e60801e2825077aeb1b672259b2">&#9670;&#160;</a></span>create_allocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>] src.allocation.AllocationManager.create_allocation </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]</td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]</td>          <td class="paramname"><span class="paramname"><em>relay_addr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>transport</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;udp&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[int] </td>          <td class="paramname"><span class="paramname"><em>lifetime</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Create a new allocation.
+
+Args:
+    client_addr: Client's (ip, port)
+    relay_addr: Relay server's (ip, port)
+    transport: Transport protocol
+    lifetime: Requested lifetime (uses default if None)
+
+Returns:
+    TurnAllocation or None if max allocations reached
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00149">149</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a>, <a class="el" href="allocation_8py_source.html#l00118">_client_to_allocation</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">_lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="allocation_8py_source.html#l00119">_relay_to_allocation</a>, <a class="el" href="allocation_8py_source.html#l00115">default_lifetime</a>, <a class="el" href="allocation_8py_source.html#l00116">max_allocations</a> , 以及 <a class="el" href="allocation_8py_source.html#l00114">port_pool</a>.</p>
+
+</div>
+</div>
+<a id="a11ec9edff7b51bec1a822e50aed428f6" name="a11ec9edff7b51bec1a822e50aed428f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11ec9edff7b51bec1a822e50aed428f6">&#9670;&#160;</a></span>delete_allocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.allocation.AllocationManager.delete_allocation </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Delete an allocation.
+
+Args:
+    allocation_id: Allocation ID
+
+Returns:
+    True if allocation was deleted
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00275">275</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a>, <a class="el" href="allocation_8py_source.html#l00118">_client_to_allocation</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">_lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="allocation_8py_source.html#l00119">_relay_to_allocation</a> , 以及 <a class="el" href="allocation_8py_source.html#l00114">port_pool</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00320">cleanup_expired()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6_icgraph.png" border="0" usemap="#aclasssrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ae4a0b73401a5136b04af249216f2c0f6" name="ae4a0b73401a5136b04af249216f2c0f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4a0b73401a5136b04af249216f2c0f6">&#9670;&#160;</a></span>get_allocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>] src.allocation.AllocationManager.get_allocation </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get allocation by ID.
+
+Args:
+    allocation_id: Allocation ID
+
+Returns:
+    TurnAllocation or None
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00208">208</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a>.</p>
+
+</div>
+</div>
+<a id="a202d44f4a0eb5348c87f86ceed872762" name="a202d44f4a0eb5348c87f86ceed872762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a202d44f4a0eb5348c87f86ceed872762">&#9670;&#160;</a></span>get_allocation_by_client()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>] src.allocation.AllocationManager.get_allocation_by_client </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]</td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get allocation by client address.
+
+Args:
+    client_addr: Client's (ip, port)
+
+Returns:
+    TurnAllocation or None
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00220">220</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a> , 以及 <a class="el" href="allocation_8py_source.html#l00118">_client_to_allocation</a>.</p>
+
+</div>
+</div>
+<a id="a741eaacab3a89d2463068d7ac787cd20" name="a741eaacab3a89d2463068d7ac787cd20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a741eaacab3a89d2463068d7ac787cd20">&#9670;&#160;</a></span>get_allocation_by_relay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>] src.allocation.AllocationManager.get_allocation_by_relay </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]</td>          <td class="paramname"><span class="paramname"><em>relay_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get allocation by relay address.
+
+Args:
+    relay_addr: Relay's (ip, port)
+
+Returns:
+    TurnAllocation or None
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00235">235</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a> , 以及 <a class="el" href="allocation_8py_source.html#l00119">_relay_to_allocation</a>.</p>
+
+</div>
+</div>
+<a id="a7a4dc817c042545f58d88ccc52f54396" name="a7a4dc817c042545f58d88ccc52f54396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a4dc817c042545f58d88ccc52f54396">&#9670;&#160;</a></span>get_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> dict src.allocation.AllocationManager.get_stats </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get allocation manager statistics.
+
+Returns:
+    Statistics dictionary
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00342">342</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a>, <a class="el" href="allocation_8py_source.html#l00116">max_allocations</a> , 以及 <a class="el" href="allocation_8py_source.html#l00114">port_pool</a>.</p>
+
+</div>
+</div>
+<a id="aea693ee65c6b6722bcd7d10045183c45" name="aea693ee65c6b6722bcd7d10045183c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea693ee65c6b6722bcd7d10045183c45">&#9670;&#160;</a></span>refresh_allocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a>] src.allocation.AllocationManager.refresh_allocation </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[int] </td>          <td class="paramname"><span class="paramname"><em>lifetime</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Refresh an allocation's lifetime.
+
+Args:
+    allocation_id: Allocation ID
+    lifetime: New lifetime (uses default if None)
+
+Returns:
+    Updated TurnAllocation or None
+</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00250">250</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="allocation_8py_source.html#l00117">_allocations</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">_lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a> , 以及 <a class="el" href="allocation_8py_source.html#l00115">default_lifetime</a>.</p>
+
+</div>
+</div>
+<a id="a97fb101b8616aa7008784ca4d4264d98" name="a97fb101b8616aa7008784ca4d4264d98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97fb101b8616aa7008784ca4d4264d98">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager.start </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Start allocation manager and cleanup task.</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00123">123</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__v2_8py_source.html#l00617">p2p_engine.muxer.mplex_v2.MplexSessionPool._cleanup_loop()</a>, <a class="el" href="quic__0rtt_8py_source.html#l00208">p2p_engine.transport.quic_0rtt.SessionTicketStore._cleanup_loop()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00263">p2p_engine.transport.tcp_optimized.ConnectionPool._cleanup_loop()</a>, <a class="el" href="allocation_8py_source.html#l00138">_cleanup_loop()</a>, <a class="el" href="mplex__v2_8py_source.html#l00550">p2p_engine.muxer.mplex_v2.MplexSessionPool._cleanup_task</a>, <a class="el" href="quic__0rtt_8py_source.html#l00117">p2p_engine.transport.quic_0rtt.SessionTicketStore._cleanup_task</a>, <a class="el" href="tcp__optimized_8py_source.html#l00192">p2p_engine.transport.tcp_optimized.ConnectionPool._cleanup_task</a> , 以及 <a class="el" href="allocation_8py_source.html#l00121">_cleanup_task</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1allocation_1_1_allocation_manager_a97fb101b8616aa7008784ca4d4264d98_cgraph.png" border="0" usemap="#aclasssrc_1_1allocation_1_1_allocation_manager_a97fb101b8616aa7008784ca4d4264d98_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aa083435a757aec5c7323169ea430de41" name="aa083435a757aec5c7323169ea430de41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa083435a757aec5c7323169ea430de41">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager.stop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Stop allocation manager.</pre> 
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00128">128</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__v2_8py_source.html#l00550">p2p_engine.muxer.mplex_v2.MplexSessionPool._cleanup_task</a>, <a class="el" href="quic__0rtt_8py_source.html#l00117">p2p_engine.transport.quic_0rtt.SessionTicketStore._cleanup_task</a>, <a class="el" href="tcp__optimized_8py_source.html#l00192">p2p_engine.transport.tcp_optimized.ConnectionPool._cleanup_task</a> , 以及 <a class="el" href="allocation_8py_source.html#l00121">_cleanup_task</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a6d8a849ac5f9c41d83ddfb8cd910299f" name="a6d8a849ac5f9c41d83ddfb8cd910299f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d8a849ac5f9c41d83ddfb8cd910299f">&#9670;&#160;</a></span>_allocations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager._allocations = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00117">117</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00303">add_permission()</a>, <a class="el" href="allocation_8py_source.html#l00320">cleanup_expired()</a>, <a class="el" href="allocation_8py_source.html#l00155">create_allocation()</a>, <a class="el" href="allocation_8py_source.html#l00275">delete_allocation()</a>, <a class="el" href="allocation_8py_source.html#l00208">get_allocation()</a>, <a class="el" href="allocation_8py_source.html#l00220">get_allocation_by_client()</a>, <a class="el" href="allocation_8py_source.html#l00235">get_allocation_by_relay()</a>, <a class="el" href="allocation_8py_source.html#l00342">get_stats()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00252">refresh_allocation()</a>.</p>
+
+</div>
+</div>
+<a id="a061dafd9fd67598f5dfc239d0983289f" name="a061dafd9fd67598f5dfc239d0983289f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a061dafd9fd67598f5dfc239d0983289f">&#9670;&#160;</a></span>_cleanup_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[asyncio.Task] src.allocation.AllocationManager._cleanup_task = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00121">121</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00123">start()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00128">stop()</a>.</p>
+
+</div>
+</div>
+<a id="aad0b969efbdc91c7becff69e5c7a24ae" name="aad0b969efbdc91c7becff69e5c7a24ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad0b969efbdc91c7becff69e5c7a24ae">&#9670;&#160;</a></span>_client_to_allocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict src.allocation.AllocationManager._client_to_allocation = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00118">118</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00155">create_allocation()</a>, <a class="el" href="allocation_8py_source.html#l00275">delete_allocation()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00220">get_allocation_by_client()</a>.</p>
+
+</div>
+</div>
+<a id="a71f99925044a1ba82065e08c734e5dc1" name="a71f99925044a1ba82065e08c734e5dc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71f99925044a1ba82065e08c734e5dc1">&#9670;&#160;</a></span>_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager._lock = asyncio.Lock()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00120">120</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00320">cleanup_expired()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00220">src.relay_server.relay.RelayHandler.cleanup_expired()</a>, <a class="el" href="connection_8py_source.html#l00304">src.signaling_server.connection.ConnectionManager.cleanup_stale()</a>, <a class="el" href="connection_8py_source.html#l00042">src.signaling_server.connection.ConnectionManager.connect()</a>, <a class="el" href="bandwidth_8py_source.html#l00056">src.bandwidth.TokenBucket.consume()</a>, <a class="el" href="allocation_8py_source.html#l00155">create_allocation()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00060">src.relay_server.relay.RelayHandler.create_session()</a>, <a class="el" href="allocation_8py_source.html#l00275">delete_allocation()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00116">src.relay_server.relay.RelayHandler.delete_session()</a>, <a class="el" href="connection_8py_source.html#l00079">src.signaling_server.connection.ConnectionManager.disconnect()</a>, <a class="el" href="bandwidth_8py_source.html#l00302">src.bandwidth.ThroughputMonitor.get_read_rate()</a>, <a class="el" href="bandwidth_8py_source.html#l00317">src.bandwidth.ThroughputMonitor.get_write_rate()</a>, <a class="el" href="bandwidth_8py_source.html#l00273">src.bandwidth.ThroughputMonitor.record_read()</a>, <a class="el" href="bandwidth_8py_source.html#l00284">src.bandwidth.ThroughputMonitor.record_write()</a>, <a class="el" href="allocation_8py_source.html#l00252">refresh_allocation()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00080">src.bandwidth.TokenBucket.wait_for_tokens()</a>.</p>
+
+</div>
+</div>
+<a id="a9780ad55e2605fc0cfeda70af969e13b" name="a9780ad55e2605fc0cfeda70af969e13b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9780ad55e2605fc0cfeda70af969e13b">&#9670;&#160;</a></span>_relay_to_allocation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict src.allocation.AllocationManager._relay_to_allocation = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00119">119</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00155">create_allocation()</a>, <a class="el" href="allocation_8py_source.html#l00275">delete_allocation()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00235">get_allocation_by_relay()</a>.</p>
+
+</div>
+</div>
+<a id="a430ba1e61a7d0f6023418c5d585c919d" name="a430ba1e61a7d0f6023418c5d585c919d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a430ba1e61a7d0f6023418c5d585c919d">&#9670;&#160;</a></span>default_lifetime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager.default_lifetime = default_lifetime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00115">115</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00155">create_allocation()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00252">refresh_allocation()</a>.</p>
+
+</div>
+</div>
+<a id="a6d611a2209aabead0a2b17f330996e56" name="a6d611a2209aabead0a2b17f330996e56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d611a2209aabead0a2b17f330996e56">&#9670;&#160;</a></span>max_allocations</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager.max_allocations = max_allocations</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00116">116</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00155">create_allocation()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00342">get_stats()</a>.</p>
+
+</div>
+</div>
+<a id="aec78bebd6a2d00aa047bdb5b4cd583cb" name="aec78bebd6a2d00aa047bdb5b4cd583cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec78bebd6a2d00aa047bdb5b4cd583cb">&#9670;&#160;</a></span>port_pool</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.allocation.AllocationManager.port_pool = <a class="el" href="classsrc_1_1allocation_1_1_port_pool.html">PortPool</a>(min_port, max_port)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="allocation_8py_source.html">allocation.py</a> 第 <a class="el" href="allocation_8py_source.html#l00114">114</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="allocation_8py_source.html#l00155">create_allocation()</a>, <a class="el" href="allocation_8py_source.html#l00275">delete_allocation()</a> , 以及 <a class="el" href="allocation_8py_source.html#l00342">get_stats()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>relay-server/src/<a class="el" href="allocation_8py_source.html">allocation.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacesrc.html">src</a></li><li class="navelem"><a href="namespacesrc_1_1allocation.html">allocation</a></li><li class="navelem"><a href="classsrc_1_1allocation_1_1_allocation_manager.html">AllocationManager</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

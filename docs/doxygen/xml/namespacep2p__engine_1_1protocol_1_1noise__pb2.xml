@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1protocol_1_1noise__pb2" kind="namespace" language="Python">
+    <compoundname>p2p_engine::protocol::noise_pb2</compoundname>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise__pb2_1_1_noise_extensions" prot="public">p2p_engine::protocol::noise_pb2::NoiseExtensions</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise__pb2_1_1_noise_handshake_payload" prot="public">p2p_engine::protocol::noise_pb2::NoiseHandshakePayload</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1noise__pb2_1ab7394e74f59b675e2e8bc23925467125" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.noise_pb2._encode_field</definition>
+        <argsstring>(bytearray buf, int field_num, bytes value)</argsstring>
+        <name>_encode_field</name>
+        <qualifiedname>p2p_engine.protocol.noise_pb2._encode_field</qualifiedname>
+        <param>
+          <type>bytearray</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>field_num</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encode a length-delimited field.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise_pb2.py" line="137" column="1" bodyfile="p2p_engine/protocol/noise_pb2.py" bodystart="137" bodyend="144"/>
+        <references refid="namespacep2p__engine_1_1protocol_1_1noise__pb2_1a87ae61f7b4c35d8efff1dddfa745e394" compoundref="noise__pb2_8py" startline="145" endline="155">p2p_engine.protocol.noise_pb2._encode_varint</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise__pb2_1_1_noise_handshake_payload_1ac313a896bf6c9404d23f5ad2ca000b20" compoundref="noise__pb2_8py" startline="73" endline="92">p2p_engine.protocol.noise_pb2.NoiseHandshakePayload.SerializeToString</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1noise__pb2_1a87ae61f7b4c35d8efff1dddfa745e394" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.noise_pb2._encode_varint</definition>
+        <argsstring>(bytearray buf, int value)</argsstring>
+        <name>_encode_varint</name>
+        <qualifiedname>p2p_engine.protocol.noise_pb2._encode_varint</qualifiedname>
+        <param>
+          <type>bytearray</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encode a varint.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise_pb2.py" line="145" column="1" bodyfile="p2p_engine/protocol/noise_pb2.py" bodystart="145" bodyend="155"/>
+        <referencedby refid="namespacep2p__engine_1_1protocol_1_1noise__pb2_1ab7394e74f59b675e2e8bc23925467125" compoundref="noise__pb2_8py" startline="137" endline="144">p2p_engine.protocol.noise_pb2._encode_field</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1noise__pb2_1a9b9e378451127b46b36a294072c779a8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple[int, int]</type>
+        <definition> tuple[int, int] p2p_engine.protocol.noise_pb2._decode_varint</definition>
+        <argsstring>(bytes data, int pos)</argsstring>
+        <name>_decode_varint</name>
+        <qualifiedname>p2p_engine.protocol.noise_pb2._decode_varint</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Decode a varint, returns (value, new_pos).</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise_pb2.py" line="156" column="1" bodyfile="p2p_engine/protocol/noise_pb2.py" bodystart="156" bodyend="170"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise__pb2_1_1_noise_handshake_payload_1a5d4c7c68715d7985719c8d0a9d33b138" compoundref="noise__pb2_8py" startline="93" endline="119">p2p_engine.protocol.noise_pb2.NoiseHandshakePayload.ParseFromString</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Simplified protobuf definitions for Noise handshake payload.
+
+This file contains protobuf message definitions for the libp2p Noise
+handshake protocol.
+
+Reference: https://github.com/libp2p/specs/blob/master/noise/README.md
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/noise_pb2.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

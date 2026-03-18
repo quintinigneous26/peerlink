@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="dir_3aa92ae5fcdc883c2c79aff165da28a0" kind="dir">
+    <compoundname>client_sdk</compoundname>
+    <innerdir refid="dir_e632f5cf078eed0fa0511630770bf840">client_sdk/docs</innerdir>
+    <innerdir refid="dir_1911159a05fe271b978b15e84bf3b4ee">client_sdk/examples</innerdir>
+    <innerdir refid="dir_170c7f113792c8d246b9b95671710d1a">client_sdk/src</innerdir>
+    <innerdir refid="dir_5a9f6a0b09253ba8fb36779792cf8954">client_sdk/tests</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md241">
+<title>P2P Platform Client SDK (Python)</title><para>A Python SDK for P2P device communication with NAT traversal, UDP hole punching, and automatic relay fallback.</para>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md242">
+<title>Features</title><para><itemizedlist>
+<listitem><para><bold>NAT Detection</bold>: Automatic NAT type detection using STUN</para>
+</listitem><listitem><para><bold>UDP Hole Punching</bold>: Direct P2P connection establishment</para>
+</listitem><listitem><para><bold>Multi-Channel Support</bold>: Separate channels for control, data, video, audio</para>
+</listitem><listitem><para><bold>Automatic Relay Fallback</bold>: Seamless fallback to relay when P2P fails</para>
+</listitem><listitem><para><bold>Auto-Reconnection</bold>: Automatic reconnection on network failures</para>
+</listitem><listitem><para><bold>Event-Driven</bold>: Async/await based API with event handlers</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md243">
+<title>Installation</title><para><programlisting filename=".bash"><codeline><highlight class="normal">pip<sp/>install<sp/>p2p-sdk</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md244">
+<title>Quick Start</title><para><programlisting filename=".py"><codeline><highlight class="keyword">import</highlight><highlight class="normal"><sp/>asyncio</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>p2p_sdk<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>P2PClient,<sp/>P2PConfig,<sp/>ChannelType</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal">main():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Configure<sp/>client</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>config<sp/>=<sp/>P2PConfig(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>signaling_server=</highlight><highlight class="stringliteral">&quot;localhost&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>signaling_port=8443,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto_relay=</highlight><highlight class="keyword">True</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>and<sp/>initialize<sp/>client</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(did=</highlight><highlight class="stringliteral">&quot;my-device&quot;</highlight><highlight class="normal">,<sp/>config=config)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Connect<sp/>to<sp/>peer</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>await<sp/>client.connect(</highlight><highlight class="stringliteral">&quot;peer-device&quot;</highlight><highlight class="normal">):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>channel<sp/>and<sp/>send<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>channel<sp/>=<sp/>client.create_channel(ChannelType.DATA)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.send_data(channel,<sp/>b</highlight><highlight class="stringliteral">&quot;Hello,<sp/>peer!&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Receive<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data<sp/>=<sp/>await<sp/>client.recv_data(channel)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">asyncio.run(main())</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md245">
+<title>API Reference</title><sect2 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md246">
+<title>P2PClient</title><para>Main client class for P2P communication.</para>
+<sect3 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md247">
+<title>Methods</title><sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md248">
+<title><computeroutput>async initialize()</computeroutput></title><para>Initialize the client (NAT detection, signaling connection).</para>
+</sect4>
+<sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md249">
+<title><computeroutput>async detect_nat() -&gt; NATType</computeroutput></title><para>Detect NAT type.</para>
+</sect4>
+<sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md250">
+<title><computeroutput>async connect(did: str) -&gt; bool</computeroutput></title><para>Connect to a device by ID.</para>
+</sect4>
+<sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md251">
+<title><computeroutput>async send_data(channel: int, data: bytes) -&gt; None</computeroutput></title><para>Send data on a channel.</para>
+</sect4>
+<sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md252">
+<title><computeroutput>async recv_data(channel: int, timeout: float = None) -&gt; bytes</computeroutput></title><para>Receive data from a channel.</para>
+</sect4>
+<sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md253">
+<title><computeroutput>create_channel(channel_type: ChannelType, reliable: bool = True, priority: int = 0) -&gt; int</computeroutput></title><para>Create a new data channel.</para>
+</sect4>
+<sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md254">
+<title><computeroutput>close_channel(channel_id: int) -&gt; None</computeroutput></title><para>Close a data channel.</para>
+</sect4>
+<sect4 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md255">
+<title><computeroutput>async close() -&gt; None</computeroutput></title><para>Close the connection and cleanup.</para>
+</sect4>
+</sect3>
+<sect3 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md256">
+<title>Event Handlers</title><para><programlisting filename=".py"><codeline><highlight class="preprocessor">@client.on_connected</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal">on_connected():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Connected!&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">@client.on_disconnected</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal">on_disconnected():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(</highlight><highlight class="stringliteral">&quot;Disconnected&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">@client.on_data</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal">on_data(channel_id:<sp/>int,<sp/>data:<sp/>bytes):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Received<sp/>{len(data)}<sp/>bytes<sp/>on<sp/>channel<sp/>{channel_id}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">@client.on_error</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal">on_error(error:<sp/>Exception):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f</highlight><highlight class="stringliteral">&quot;Error:<sp/>{error}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+</programlisting></para>
+</sect3>
+</sect2>
+<sect2 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md257">
+<title>P2PConfig</title><para>Configuration for P2P client.</para>
+<para><table rows="13" cols="4"><row>
+<entry thead="yes"><para>Parameter  </para>
+</entry><entry thead="yes"><para>Type  </para>
+</entry><entry thead="yes"><para>Default  </para>
+</entry><entry thead="yes"><para>Description  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>signaling_server</computeroutput>  </para>
+</entry><entry thead="no"><para>str  </para>
+</entry><entry thead="no"><para>&quot;localhost&quot;  </para>
+</entry><entry thead="no"><para>Signaling server address  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>signaling_port</computeroutput>  </para>
+</entry><entry thead="no"><para>int  </para>
+</entry><entry thead="no"><para>8443  </para>
+</entry><entry thead="no"><para>Signaling server port  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>stun_server</computeroutput>  </para>
+</entry><entry thead="no"><para>str  </para>
+</entry><entry thead="no"><para>&quot;stun.l.google.com&quot;  </para>
+</entry><entry thead="no"><para>STUN server  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>stun_port</computeroutput>  </para>
+</entry><entry thead="no"><para>int  </para>
+</entry><entry thead="no"><para>19302  </para>
+</entry><entry thead="no"><para>STUN server port  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>relay_server</computeroutput>  </para>
+</entry><entry thead="no"><para>str  </para>
+</entry><entry thead="no"><para>&quot;localhost&quot;  </para>
+</entry><entry thead="no"><para>Relay server address  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>relay_port</computeroutput>  </para>
+</entry><entry thead="no"><para>int  </para>
+</entry><entry thead="no"><para>5000  </para>
+</entry><entry thead="no"><para>Relay server port  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>local_port</computeroutput>  </para>
+</entry><entry thead="no"><para>int  </para>
+</entry><entry thead="no"><para>0  </para>
+</entry><entry thead="no"><para>Local UDP port (0 = auto)  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>connection_timeout</computeroutput>  </para>
+</entry><entry thead="no"><para>float  </para>
+</entry><entry thead="no"><para>30.0  </para>
+</entry><entry thead="no"><para>Connection timeout (seconds)  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>punch_timeout</computeroutput>  </para>
+</entry><entry thead="no"><para>float  </para>
+</entry><entry thead="no"><para>10.0  </para>
+</entry><entry thead="no"><para>Hole punch timeout (seconds)  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>keepalive_interval</computeroutput>  </para>
+</entry><entry thead="no"><para>float  </para>
+</entry><entry thead="no"><para>5.0  </para>
+</entry><entry thead="no"><para>Keepalive interval (seconds)  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>max_retries</computeroutput>  </para>
+</entry><entry thead="no"><para>int  </para>
+</entry><entry thead="no"><para>3  </para>
+</entry><entry thead="no"><para>Max connection retries  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput>auto_relay</computeroutput>  </para>
+</entry><entry thead="no"><para>bool  </para>
+</entry><entry thead="no"><para>True  </para>
+</entry><entry thead="no"><para>Auto fallback to relay  </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md258">
+<title>ChannelType</title><para>Types of data channels.</para>
+<para><itemizedlist>
+<listitem><para><computeroutput>ChannelType.CONTROL</computeroutput> - Control/signaling channel</para>
+</listitem><listitem><para><computeroutput>ChannelType.DATA</computeroutput> - General data channel</para>
+</listitem><listitem><para><computeroutput>ChannelType.VIDEO</computeroutput> - Video streaming</para>
+</listitem><listitem><para><computeroutput>ChannelType.AUDIO</computeroutput> - Audio streaming</para>
+</listitem><listitem><para><computeroutput>ChannelType.CUSTOM</computeroutput> - Custom application channel</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md259">
+<title>NATType</title><para>Detected NAT types.</para>
+<para><itemizedlist>
+<listitem><para><computeroutput>NATType.PUBLIC_IP</computeroutput> - No NAT, public IP</para>
+</listitem><listitem><para><computeroutput>NATType.FULL_CONE</computeroutput> - Full cone NAT</para>
+</listitem><listitem><para><computeroutput>NATType.RESTRICTED_CONE</computeroutput> - Restricted cone NAT</para>
+</listitem><listitem><para><computeroutput>NATType.PORT_RESTRICTED_CONE</computeroutput> - Port restricted cone NAT</para>
+</listitem><listitem><para><computeroutput>NATType.SYMMETRIC</computeroutput> - Symmetric NAT (requires relay)</para>
+</listitem><listitem><para><computeroutput>NATType.UNKNOWN</computeroutput> - Could not detect</para>
+</listitem><listitem><para><computeroutput>NATType.BLOCKED</computeroutput> - UDP blocked</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md260">
+<title>Protocol</title><para>The SDK uses a custom binary protocol with the following format:</para>
+<para><programlisting><codeline><highlight class="normal">[total_length(4)][json_length(4)][json_header][payload]</highlight></codeline>
+</programlisting></para>
+<sect2 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md261">
+<title>Message Types</title><para><itemizedlist>
+<listitem><para><computeroutput>handshake</computeroutput> - Connection establishment</para>
+</listitem><listitem><para><computeroutput>keepalive</computeroutput> - Connection keepalive</para>
+</listitem><listitem><para><computeroutput>channel_data</computeroutput> - Channel data transfer</para>
+</listitem><listitem><para><computeroutput>channel_open</computeroutput> - Open new channel</para>
+</listitem><listitem><para><computeroutput>channel_close</computeroutput> - Close channel</para>
+</listitem><listitem><para><computeroutput>disconnect</computeroutput> - Graceful disconnect</para>
+</listitem><listitem><para><computeroutput>error</computeroutput> - Error notification</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md262">
+<title>Testing</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>Run<sp/>tests</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Run<sp/>with<sp/>coverage</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>--cov=p2p_sdk<sp/>tests/</highlight></codeline>
+</programlisting></para>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md263">
+<title>Examples</title><para>See the <computeroutput>examples/</computeroutput> directory for complete examples:<itemizedlist>
+<listitem><para><computeroutput><ref refid="basic__usage_8py" kindref="compound">basic_usage.py</ref></computeroutput> - Basic P2P connection</para>
+</listitem><listitem><para><computeroutput><ref refid="multi__channel_8py" kindref="compound">multi_channel.py</ref></computeroutput> - Multi-channel communication</para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+<sect1 id="dir_3aa92ae5fcdc883c2c79aff165da28a0_1autotoc_md264">
+<title>License</title><para>MIT License </para>
+</sect1>
+    </detaileddescription>
+    <location file="client_sdk/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,135 @@
+\doxysection{src.\+did\+\_\+service.\+crypto.\+Key\+Generator类 参考}
+\hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator}{}\label{classsrc_1_1did__service_1_1crypto_1_1_key_generator}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection*{静态 Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+tuple\+[bytes, bytes]\+ \doxymbox{\hyperlink{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a8f1fff88fa9b7d15b0a5b7ab44f66ca5}{generate\+\_\+keypair}} ()
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ae15741a2a416ddb1aeabb200069bea79}{serialize\+\_\+public\+\_\+key}} (bytes public\+\_\+key)
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a5f5bcd4f34046806fa029b3617cfae27}{serialize\+\_\+private\+\_\+key}} (bytes private\+\_\+key)
+\item 
+bytes \doxymbox{\hyperlink{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ad65d67ac8de3b4c55c54755df7efa34f}{deserialize\+\_\+public\+\_\+key}} (str hex\+\_\+key)
+\item 
+bytes \doxymbox{\hyperlink{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ae4ad9cb89a7db516e4e55ef64b73e887}{deserialize\+\_\+private\+\_\+key}} (str hex\+\_\+key)
+\item 
+bytes \doxymbox{\hyperlink{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ac7522b6d10b225c6fcce3cc0c740ccbc}{sign}} (bytes private\+\_\+key, bytes message)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a8582de0dfc1df45541815616c92b9301}{verify}} (bytes public\+\_\+key, bytes message, bytes signature)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Generate and manage cryptographic keys.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00012}{12}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ae4ad9cb89a7db516e4e55ef64b73e887}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}!deserialize\_private\_key@{deserialize\_private\_key}}
+\index{deserialize\_private\_key@{deserialize\_private\_key}!src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection{\texorpdfstring{deserialize\_private\_key()}{deserialize\_private\_key()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ae4ad9cb89a7db516e4e55ef64b73e887} 
+ bytes src.\+did\+\_\+service.\+crypto.\+Key\+Generator.\+deserialize\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{str}]{hex\+\_\+key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Deserialize private key from hex string.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00055}{55}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ad65d67ac8de3b4c55c54755df7efa34f}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}!deserialize\_public\_key@{deserialize\_public\_key}}
+\index{deserialize\_public\_key@{deserialize\_public\_key}!src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection{\texorpdfstring{deserialize\_public\_key()}{deserialize\_public\_key()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ad65d67ac8de3b4c55c54755df7efa34f} 
+ bytes src.\+did\+\_\+service.\+crypto.\+Key\+Generator.\+deserialize\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{str}]{hex\+\_\+key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Deserialize public key from hex string.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00050}{50}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a8f1fff88fa9b7d15b0a5b7ab44f66ca5}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}!generate\_keypair@{generate\_keypair}}
+\index{generate\_keypair@{generate\_keypair}!src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection{\texorpdfstring{generate\_keypair()}{generate\_keypair()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a8f1fff88fa9b7d15b0a5b7ab44f66ca5} 
+ tuple\+[bytes, bytes]\+ src.\+did\+\_\+service.\+crypto.\+Key\+Generator.\+generate\+\_\+keypair (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Generate Ed25519 keypair for device authentication.
+
+Returns:
+    Tuple of (private_key, public_key) as bytes
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00016}{16}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a5f5bcd4f34046806fa029b3617cfae27}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}!serialize\_private\_key@{serialize\_private\_key}}
+\index{serialize\_private\_key@{serialize\_private\_key}!src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection{\texorpdfstring{serialize\_private\_key()}{serialize\_private\_key()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a5f5bcd4f34046806fa029b3617cfae27} 
+ str src.\+did\+\_\+service.\+crypto.\+Key\+Generator.\+serialize\+\_\+private\+\_\+key (\begin{DoxyParamCaption}\item[{bytes}]{private\+\_\+key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Serialize private key to hex string.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00045}{45}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ae15741a2a416ddb1aeabb200069bea79}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}!serialize\_public\_key@{serialize\_public\_key}}
+\index{serialize\_public\_key@{serialize\_public\_key}!src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection{\texorpdfstring{serialize\_public\_key()}{serialize\_public\_key()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ae15741a2a416ddb1aeabb200069bea79} 
+ str src.\+did\+\_\+service.\+crypto.\+Key\+Generator.\+serialize\+\_\+public\+\_\+key (\begin{DoxyParamCaption}\item[{bytes}]{public\+\_\+key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Serialize public key to hex string.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00040}{40}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ac7522b6d10b225c6fcce3cc0c740ccbc}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}!sign@{sign}}
+\index{sign@{sign}!src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection{\texorpdfstring{sign()}{sign()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1crypto_1_1_key_generator_ac7522b6d10b225c6fcce3cc0c740ccbc} 
+ bytes src.\+did\+\_\+service.\+crypto.\+Key\+Generator.\+sign (\begin{DoxyParamCaption}\item[{bytes}]{private\+\_\+key}{, }\item[{bytes}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Sign a message using Ed25519.
+
+Args:
+    private_key: Private key bytes
+    message: Message to sign
+
+Returns:
+    Signature bytes
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00060}{60}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a8582de0dfc1df45541815616c92b9301}\index{src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}!verify@{verify}}
+\index{verify@{verify}!src.did\_service.crypto.KeyGenerator@{src.did\_service.crypto.KeyGenerator}}
+\doxysubsubsection{\texorpdfstring{verify()}{verify()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1crypto_1_1_key_generator_a8582de0dfc1df45541815616c92b9301} 
+ bool src.\+did\+\_\+service.\+crypto.\+Key\+Generator.\+verify (\begin{DoxyParamCaption}\item[{bytes}]{public\+\_\+key}{, }\item[{bytes}]{message}{, }\item[{bytes}]{signature}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Verify a signature using Ed25519.
+
+Args:
+    public_key: Public key bytes
+    message: Original message
+    signature: Signature to verify
+
+Returns:
+    True if signature is valid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source}{crypto.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py_source_l00076}{76}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+did-\/service/\+src/\+did\+\_\+service/\+\doxymbox{\hyperlink{did-service_2src_2did__service_2crypto_8py}{crypto.\+py}}\end{DoxyCompactItemize}

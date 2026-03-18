@@ -1,0 +1,71 @@
+\doxysection{src.\+did\+\_\+service.\+rate\+\_\+limiter 命名空间参考}
+\hypertarget{namespacesrc_1_1did__service_1_1rate__limiter}{}\label{namespacesrc_1_1did__service_1_1rate__limiter}\index{src.did\_service.rate\_limiter@{src.did\_service.rate\_limiter}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limit_config}{Rate\+Limit\+Config}}
+\item 
+class \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_client_state}{Client\+State}}
+\item 
+class \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter}{Rate\+Limiter}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter}{Rate\+Limiter}} \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1rate__limiter_a6270c8fd594e42bc64daac1775dbcd97}{get\+\_\+rate\+\_\+limiter}} ()
+\item 
+Callable \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1rate__limiter_a9ae8e36b365e8547f292125638fd8f71}{rate\+\_\+limit\+\_\+decorator}} (Callable func)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}API Rate Limiting
+
+Implements rate limiting for API endpoints using sliding window algorithm.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacesrc_1_1did__service_1_1rate__limiter_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacesrc_1_1did__service_1_1rate__limiter_a6270c8fd594e42bc64daac1775dbcd97}\index{src.did\_service.rate\_limiter@{src.did\_service.rate\_limiter}!get\_rate\_limiter@{get\_rate\_limiter}}
+\index{get\_rate\_limiter@{get\_rate\_limiter}!src.did\_service.rate\_limiter@{src.did\_service.rate\_limiter}}
+\doxysubsubsection{\texorpdfstring{get\_rate\_limiter()}{get\_rate\_limiter()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1rate__limiter_a6270c8fd594e42bc64daac1775dbcd97} 
+ \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter}{Rate\+Limiter}} src.\+did\+\_\+service.\+rate\+\_\+limiter.\+get\+\_\+rate\+\_\+limiter (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get global rate limiter instance.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00269}{269}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{rate__limiter_8py_source_l00277}{rate\+\_\+limit\+\_\+decorator()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{namespacesrc_1_1did__service_1_1rate__limiter_a9ae8e36b365e8547f292125638fd8f71}\index{src.did\_service.rate\_limiter@{src.did\_service.rate\_limiter}!rate\_limit\_decorator@{rate\_limit\_decorator}}
+\index{rate\_limit\_decorator@{rate\_limit\_decorator}!src.did\_service.rate\_limiter@{src.did\_service.rate\_limiter}}
+\doxysubsubsection{\texorpdfstring{rate\_limit\_decorator()}{rate\_limit\_decorator()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1rate__limiter_a9ae8e36b365e8547f292125638fd8f71} 
+ Callable src.\+did\+\_\+service.\+rate\+\_\+limiter.\+rate\+\_\+limit\+\_\+decorator (\begin{DoxyParamCaption}\item[{Callable}]{func}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decorator for rate limiting individual endpoints.
+
+Usage:
+    @app.get("/api/endpoint")
+    @rate_limit_decorator
+    async def my_endpoint(request: Request):
+        ...
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00277}{277}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{rate__limiter_8py_source_l00269}{get\+\_\+rate\+\_\+limiter()}}.
+
+函数调用图:\+
+% FIG 1

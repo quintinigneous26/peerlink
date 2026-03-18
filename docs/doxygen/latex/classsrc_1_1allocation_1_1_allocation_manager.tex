@@ -1,0 +1,483 @@
+\doxysection{src.\+allocation.\+Allocation\+Manager类 参考}
+\hypertarget{classsrc_1_1allocation_1_1_allocation_manager}{}\label{classsrc_1_1allocation_1_1_allocation_manager}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a1644ae237de6f9c606748bdb682e5271}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int min\+\_\+port=\doxymbox{\hyperlink{namespacesrc_1_1allocation_abf8f8b738b191b5d170009784c438ce0}{DEFAULT\+\_\+\+MIN\+\_\+\+PORT}}, int max\+\_\+port=\doxymbox{\hyperlink{namespacesrc_1_1allocation_aef361d16e7ecdcc3808c499caf1724b1}{DEFAULT\+\_\+\+MAX\+\_\+\+PORT}}, int \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d}{default\+\_\+lifetime}}=\doxymbox{\hyperlink{namespacesrc_1_1allocation_a753502b4dbf8e2c55de5e8502a533482}{DEFAULT\+\_\+\+ALLOCATION\+\_\+\+LIFETIME}}, int \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56}{max\+\_\+allocations}}=\doxymbox{\hyperlink{namespacesrc_1_1allocation_aa1f2407069c30f1807d43b9e26b5d825}{DEFAULT\+\_\+\+MAX\+\_\+\+ALLOCATIONS}})
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a97fb101b8616aa7008784ca4d4264d98}{start}} (self)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aa083435a757aec5c7323169ea430de41}{stop}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a92530e60801e2825077aeb1b672259b2}{create\+\_\+allocation}} (self, Tuple\+[str, int]\+ client\+\_\+addr, Tuple\+[str, int]\+ relay\+\_\+addr, str transport="{}udp"{}, Optional\+[int]\+ lifetime=None)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_ae4a0b73401a5136b04af249216f2c0f6}{get\+\_\+allocation}} (self, str allocation\+\_\+id)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a202d44f4a0eb5348c87f86ceed872762}{get\+\_\+allocation\+\_\+by\+\_\+client}} (self, Tuple\+[str, int]\+ client\+\_\+addr)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a741eaacab3a89d2463068d7ac787cd20}{get\+\_\+allocation\+\_\+by\+\_\+relay}} (self, Tuple\+[str, int]\+ relay\+\_\+addr)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aea693ee65c6b6722bcd7d10045183c45}{refresh\+\_\+allocation}} (self, str allocation\+\_\+id, Optional\+[int]\+ lifetime=None)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6}{delete\+\_\+allocation}} (self, str allocation\+\_\+id)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a873bcac4f12c8ee66bc28f5e9513a64d}{add\+\_\+permission}} (self, str allocation\+\_\+id, Tuple\+[str, int]\+ peer\+\_\+addr)
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb}{cleanup\+\_\+expired}} (self)
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a7a4dc817c042545f58d88ccc52f54396}{get\+\_\+stats}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb}{port\+\_\+pool}} = \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool}{Port\+Pool}}(min\+\_\+port, max\+\_\+port)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d}{default\+\_\+lifetime}} = default\+\_\+lifetime
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56}{max\+\_\+allocations}} = max\+\_\+allocations
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6}{\+\_\+cleanup\+\_\+loop}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}{\+\_\+allocations}} = \{\}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}{\+\_\+client\+\_\+to\+\_\+allocation}} = \{\}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b}{\+\_\+relay\+\_\+to\+\_\+allocation}} = \{\}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}{\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}{\+\_\+cleanup\+\_\+task}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Manages TURN allocations.
+
+Handles allocation creation, refresh, permission management, and cleanup.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00091}{91}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a1644ae237de6f9c606748bdb682e5271}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a1644ae237de6f9c606748bdb682e5271} 
+src.\+allocation.\+Allocation\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{min\+\_\+port}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1allocation_abf8f8b738b191b5d170009784c438ce0}{DEFAULT\+\_\+\+MIN\+\_\+\+PORT}}}, }\item[{int }]{max\+\_\+port}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1allocation_aef361d16e7ecdcc3808c499caf1724b1}{DEFAULT\+\_\+\+MAX\+\_\+\+PORT}}}, }\item[{int }]{default\+\_\+lifetime}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1allocation_a753502b4dbf8e2c55de5e8502a533482}{DEFAULT\+\_\+\+ALLOCATION\+\_\+\+LIFETIME}}}, }\item[{int }]{max\+\_\+allocations}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1allocation_aa1f2407069c30f1807d43b9e26b5d825}{DEFAULT\+\_\+\+MAX\+\_\+\+ALLOCATIONS}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize allocation manager.
+
+Args:
+    min_port: Minimum relay port
+    max_port: Maximum relay port
+    default_lifetime: Default allocation lifetime in seconds
+    max_allocations: Maximum concurrent allocations
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00098}{98}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!\_cleanup\_loop@{\_cleanup\_loop}}
+\index{\_cleanup\_loop@{\_cleanup\_loop}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_loop()}{\_cleanup\_loop()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a401c633380b1455c5d01ca369b0d32e6} 
+src.\+allocation.\+Allocation\+Manager.\+\_\+cleanup\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Periodically cleanup expired allocations.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00138}{138}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00245}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00158}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+cleanup\+\_\+expired()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00320}{cleanup\+\_\+expired()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00123}{start()}}.
+
+函数调用图:\+
+% FIG 0
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a873bcac4f12c8ee66bc28f5e9513a64d}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!add\_permission@{add\_permission}}
+\index{add\_permission@{add\_permission}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{add\_permission()}{add\_permission()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a873bcac4f12c8ee66bc28f5e9513a64d} 
+ bool src.\+allocation.\+Allocation\+Manager.\+add\+\_\+permission (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{, }\item[{Tuple\+[str, int]\+     }]{peer\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add permission for a peer.
+
+Args:
+    allocation_id: Allocation ID
+    peer_addr: Peer's (ip, port)
+
+Returns:
+    True if permission was added
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00301}{301}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!cleanup\_expired@{cleanup\_expired}}
+\index{cleanup\_expired@{cleanup\_expired}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{cleanup\_expired()}{cleanup\_expired()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a6dde83e610d06544adc30f7ee9b085cb} 
+ int src.\+allocation.\+Allocation\+Manager.\+cleanup\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove all expired allocations.
+
+Returns:
+    Number of allocations removed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00320}{320}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00275}{delete\+\_\+allocation()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00138}{\+\_\+cleanup\+\_\+loop()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a92530e60801e2825077aeb1b672259b2}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!create\_allocation@{create\_allocation}}
+\index{create\_allocation@{create\_allocation}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{create\_allocation()}{create\_allocation()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a92530e60801e2825077aeb1b672259b2} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ src.\+allocation.\+Allocation\+Manager.\+create\+\_\+allocation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{client\+\_\+addr}{, }\item[{Tuple\+[str, int]\+}]{relay\+\_\+addr}{, }\item[{str }]{transport}{ = {\ttfamily "{}udp"{}}, }\item[{Optional\+[int]\+ }]{lifetime}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a new allocation.
+
+Args:
+    client_addr: Client's (ip, port)
+    relay_addr: Relay server's (ip, port)
+    transport: Transport protocol
+    lifetime: Requested lifetime (uses default if None)
+
+Returns:
+    TurnAllocation or None if max allocations reached
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00149}{149}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}}, \doxymbox{\hyperlink{allocation_8py_source_l00118}{\+\_\+client\+\_\+to\+\_\+allocation}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00119}{\+\_\+relay\+\_\+to\+\_\+allocation}}, \doxymbox{\hyperlink{allocation_8py_source_l00115}{default\+\_\+lifetime}}, \doxymbox{\hyperlink{allocation_8py_source_l00116}{max\+\_\+allocations}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00114}{port\+\_\+pool}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!delete\_allocation@{delete\_allocation}}
+\index{delete\_allocation@{delete\_allocation}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{delete\_allocation()}{delete\_allocation()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a11ec9edff7b51bec1a822e50aed428f6} 
+ bool src.\+allocation.\+Allocation\+Manager.\+delete\+\_\+allocation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delete an allocation.
+
+Args:
+    allocation_id: Allocation ID
+
+Returns:
+    True if allocation was deleted
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00275}{275}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}}, \doxymbox{\hyperlink{allocation_8py_source_l00118}{\+\_\+client\+\_\+to\+\_\+allocation}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00119}{\+\_\+relay\+\_\+to\+\_\+allocation}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00114}{port\+\_\+pool}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00320}{cleanup\+\_\+expired()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_ae4a0b73401a5136b04af249216f2c0f6}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!get\_allocation@{get\_allocation}}
+\index{get\_allocation@{get\_allocation}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{get\_allocation()}{get\_allocation()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_ae4a0b73401a5136b04af249216f2c0f6} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ src.\+allocation.\+Allocation\+Manager.\+get\+\_\+allocation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get allocation by ID.
+
+Args:
+    allocation_id: Allocation ID
+
+Returns:
+    TurnAllocation or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00208}{208}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a202d44f4a0eb5348c87f86ceed872762}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!get\_allocation\_by\_client@{get\_allocation\_by\_client}}
+\index{get\_allocation\_by\_client@{get\_allocation\_by\_client}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{get\_allocation\_by\_client()}{get\_allocation\_by\_client()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a202d44f4a0eb5348c87f86ceed872762} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ src.\+allocation.\+Allocation\+Manager.\+get\+\_\+allocation\+\_\+by\+\_\+client (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{client\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get allocation by client address.
+
+Args:
+    client_addr: Client's (ip, port)
+
+Returns:
+    TurnAllocation or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00220}{220}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00118}{\+\_\+client\+\_\+to\+\_\+allocation}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a741eaacab3a89d2463068d7ac787cd20}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!get\_allocation\_by\_relay@{get\_allocation\_by\_relay}}
+\index{get\_allocation\_by\_relay@{get\_allocation\_by\_relay}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{get\_allocation\_by\_relay()}{get\_allocation\_by\_relay()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a741eaacab3a89d2463068d7ac787cd20} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ src.\+allocation.\+Allocation\+Manager.\+get\+\_\+allocation\+\_\+by\+\_\+relay (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{relay\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get allocation by relay address.
+
+Args:
+    relay_addr: Relay's (ip, port)
+
+Returns:
+    TurnAllocation or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00235}{235}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00119}{\+\_\+relay\+\_\+to\+\_\+allocation}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a7a4dc817c042545f58d88ccc52f54396}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!get\_stats@{get\_stats}}
+\index{get\_stats@{get\_stats}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{get\_stats()}{get\_stats()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a7a4dc817c042545f58d88ccc52f54396} 
+ dict src.\+allocation.\+Allocation\+Manager.\+get\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get allocation manager statistics.
+
+Returns:
+    Statistics dictionary
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00342}{342}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}}, \doxymbox{\hyperlink{allocation_8py_source_l00116}{max\+\_\+allocations}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00114}{port\+\_\+pool}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_aea693ee65c6b6722bcd7d10045183c45}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!refresh\_allocation@{refresh\_allocation}}
+\index{refresh\_allocation@{refresh\_allocation}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{refresh\_allocation()}{refresh\_allocation()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_aea693ee65c6b6722bcd7d10045183c45} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{Turn\+Allocation}}]\+ src.\+allocation.\+Allocation\+Manager.\+refresh\+\_\+allocation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{, }\item[{Optional\+[int]\+ }]{lifetime}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Refresh an allocation's lifetime.
+
+Args:
+    allocation_id: Allocation ID
+    lifetime: New lifetime (uses default if None)
+
+Returns:
+    Updated TurnAllocation or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00250}{250}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00117}{\+\_\+allocations}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00115}{default\+\_\+lifetime}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a97fb101b8616aa7008784ca4d4264d98}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!start@{start}}
+\index{start@{start}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a97fb101b8616aa7008784ca4d4264d98} 
+src.\+allocation.\+Allocation\+Manager.\+start (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start allocation manager and cleanup task.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00123}{123}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00263}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{allocation_8py_source_l00138}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00550}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+task}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00117}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+task}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00192}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+task}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00121}{\+\_\+cleanup\+\_\+task}}.
+
+函数调用图:\+
+% FIG 5
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_aa083435a757aec5c7323169ea430de41}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!stop@{stop}}
+\index{stop@{stop}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_aa083435a757aec5c7323169ea430de41} 
+src.\+allocation.\+Allocation\+Manager.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop allocation manager.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00128}{128}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__v2_8py_source_l00550}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+task}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00117}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+task}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00192}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+task}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00121}{\+\_\+cleanup\+\_\+task}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!\_allocations@{\_allocations}}
+\index{\_allocations@{\_allocations}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{\_allocations}{\_allocations}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a6d8a849ac5f9c41d83ddfb8cd910299f} 
+src.\+allocation.\+Allocation\+Manager.\+\_\+allocations = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00117}{117}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00303}{add\+\_\+permission()}}, \doxymbox{\hyperlink{allocation_8py_source_l00320}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{create\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{delete\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00208}{get\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00220}{get\+\_\+allocation\+\_\+by\+\_\+client()}}, \doxymbox{\hyperlink{allocation_8py_source_l00235}{get\+\_\+allocation\+\_\+by\+\_\+relay()}}, \doxymbox{\hyperlink{allocation_8py_source_l00342}{get\+\_\+stats()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00252}{refresh\+\_\+allocation()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!\_cleanup\_task@{\_cleanup\_task}}
+\index{\_cleanup\_task@{\_cleanup\_task}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_task}{\_cleanup\_task}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a061dafd9fd67598f5dfc239d0983289f} 
+Optional\+[asyncio.\+Task]\+ src.\+allocation.\+Allocation\+Manager.\+\_\+cleanup\+\_\+task = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00121}{121}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00123}{start()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00128}{stop()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!\_client\_to\_allocation@{\_client\_to\_allocation}}
+\index{\_client\_to\_allocation@{\_client\_to\_allocation}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{\_client\_to\_allocation}{\_client\_to\_allocation}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_aad0b969efbdc91c7becff69e5c7a24ae} 
+dict src.\+allocation.\+Allocation\+Manager.\+\_\+client\+\_\+to\+\_\+allocation = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00118}{118}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00155}{create\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{delete\+\_\+allocation()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00220}{get\+\_\+allocation\+\_\+by\+\_\+client()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a71f99925044a1ba82065e08c734e5dc1} 
+src.\+allocation.\+Allocation\+Manager.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00120}{120}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00320}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{src.\+bandwidth.\+Token\+Bucket.\+consume()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{create\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{delete\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}}, \doxymbox{\hyperlink{allocation_8py_source_l00252}{refresh\+\_\+allocation()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!\_relay\_to\_allocation@{\_relay\_to\_allocation}}
+\index{\_relay\_to\_allocation@{\_relay\_to\_allocation}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{\_relay\_to\_allocation}{\_relay\_to\_allocation}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a9780ad55e2605fc0cfeda70af969e13b} 
+dict src.\+allocation.\+Allocation\+Manager.\+\_\+relay\+\_\+to\+\_\+allocation = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00119}{119}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00155}{create\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{delete\+\_\+allocation()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00235}{get\+\_\+allocation\+\_\+by\+\_\+relay()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!default\_lifetime@{default\_lifetime}}
+\index{default\_lifetime@{default\_lifetime}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{default\_lifetime}{default\_lifetime}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a430ba1e61a7d0f6023418c5d585c919d} 
+src.\+allocation.\+Allocation\+Manager.\+default\+\_\+lifetime = default\+\_\+lifetime}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00115}{115}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00155}{create\+\_\+allocation()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00252}{refresh\+\_\+allocation()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!max\_allocations@{max\_allocations}}
+\index{max\_allocations@{max\_allocations}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{max\_allocations}{max\_allocations}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_a6d611a2209aabead0a2b17f330996e56} 
+src.\+allocation.\+Allocation\+Manager.\+max\+\_\+allocations = max\+\_\+allocations}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00116}{116}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00155}{create\+\_\+allocation()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00342}{get\+\_\+stats()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb}\index{src.allocation.AllocationManager@{src.allocation.AllocationManager}!port\_pool@{port\_pool}}
+\index{port\_pool@{port\_pool}!src.allocation.AllocationManager@{src.allocation.AllocationManager}}
+\doxysubsubsection{\texorpdfstring{port\_pool}{port\_pool}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_allocation_manager_aec78bebd6a2d00aa047bdb5b4cd583cb} 
+src.\+allocation.\+Allocation\+Manager.\+port\+\_\+pool = \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool}{Port\+Pool}}(min\+\_\+port, max\+\_\+port)}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00114}{114}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00155}{create\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{delete\+\_\+allocation()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00342}{get\+\_\+stats()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+\doxymbox{\hyperlink{allocation_8py}{allocation.\+py}}\end{DoxyCompactItemize}

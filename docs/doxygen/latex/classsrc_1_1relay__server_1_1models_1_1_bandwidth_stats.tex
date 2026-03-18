@@ -1,0 +1,148 @@
+\doxysection{src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats类 参考}
+\hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats}{}\label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a24d603042f94cf5403fbb3f2be014e6b}{add\+\_\+sample}} (self, int bytes\+\_\+count)
+\item 
+float \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a79266c554bd8edc61a2ae9ecd0409b03}{get\+\_\+current\+\_\+rate}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a56eed4892f846dd99e56ee93739df56e}{current\+\_\+bps}} = 0.\+0
+\item 
+float \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a87dda5971c8380f6ab0e1ab490636919}{peak\+\_\+bps}} = 0.\+0
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a5e1d61f6e809afb196fa08fe81c607c2}{total\+\_\+bytes}} = 0
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a115431f886ac88aa89f038a316b4ce13}{window\+\_\+size}} = 60
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a855e1de14c9279055689a160a95f7b1b}{\+\_\+samples}} = field(default\+\_\+factory=list)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Bandwidth statistics.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00090}{90}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a24d603042f94cf5403fbb3f2be014e6b}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}!add\_sample@{add\_sample}}
+\index{add\_sample@{add\_sample}!src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection{\texorpdfstring{add\_sample()}{add\_sample()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a24d603042f94cf5403fbb3f2be014e6b} 
+ None src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats.\+add\+\_\+sample (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{bytes\+\_\+count}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a sample.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00099}{99}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00097}{\+\_\+samples}}, \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00095}{total\+\_\+bytes}}, \doxymbox{\hyperlink{yamux_8py_source_l00166}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Config.\+window\+\_\+size}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00096}{window\+\_\+size}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a79266c554bd8edc61a2ae9ecd0409b03}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}!get\_current\_rate@{get\_current\_rate}}
+\index{get\_current\_rate@{get\_current\_rate}!src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection{\texorpdfstring{get\_current\_rate()}{get\_current\_rate()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a79266c554bd8edc61a2ae9ecd0409b03} 
+ float src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats.\+get\+\_\+current\+\_\+rate (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get current rate in bytes per second.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00109}{109}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00097}{\+\_\+samples}}, \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00093}{current\+\_\+bps}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00094}{peak\+\_\+bps}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a855e1de14c9279055689a160a95f7b1b}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}!\_samples@{\_samples}}
+\index{\_samples@{\_samples}!src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection{\texorpdfstring{\_samples}{\_samples}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a855e1de14c9279055689a160a95f7b1b} 
+src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats.\+\_\+samples = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00097}{97}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00099}{add\+\_\+sample()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00109}{get\+\_\+current\+\_\+rate()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a56eed4892f846dd99e56ee93739df56e}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}!current\_bps@{current\_bps}}
+\index{current\_bps@{current\_bps}!src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection{\texorpdfstring{current\_bps}{current\_bps}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a56eed4892f846dd99e56ee93739df56e} 
+float src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats.\+current\+\_\+bps = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00093}{93}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00109}{get\+\_\+current\+\_\+rate()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a87dda5971c8380f6ab0e1ab490636919}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}!peak\_bps@{peak\_bps}}
+\index{peak\_bps@{peak\_bps}!src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection{\texorpdfstring{peak\_bps}{peak\_bps}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a87dda5971c8380f6ab0e1ab490636919} 
+float src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats.\+peak\+\_\+bps = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00094}{94}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00109}{get\+\_\+current\+\_\+rate()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a5e1d61f6e809afb196fa08fe81c607c2}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}!total\_bytes@{total\_bytes}}
+\index{total\_bytes@{total\_bytes}!src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection{\texorpdfstring{total\_bytes}{total\_bytes}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a5e1d61f6e809afb196fa08fe81c607c2} 
+int src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats.\+total\+\_\+bytes = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00095}{95}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00099}{add\+\_\+sample()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a115431f886ac88aa89f038a316b4ce13}\index{src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}!window\_size@{window\_size}}
+\index{window\_size@{window\_size}!src.relay\_server.models.BandwidthStats@{src.relay\_server.models.BandwidthStats}}
+\doxysubsubsection{\texorpdfstring{window\_size}{window\_size}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats_a115431f886ac88aa89f038a316b4ce13} 
+int src.\+relay\+\_\+server.\+models.\+Bandwidth\+Stats.\+window\+\_\+size = 60\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00096}{96}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00099}{add\+\_\+sample()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+relay\+\_\+server/\+\doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py}{models.\+py}}\end{DoxyCompactItemize}

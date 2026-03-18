@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1dht_1_1routing" kind="namespace" language="Python">
+    <compoundname>p2p_engine::dht::routing</compoundname>
+    <innerclass refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_state" prot="public">p2p_engine::dht::routing::PeerState</innerclass>
+    <innerclass refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" prot="public">p2p_engine::dht::routing::PeerEntry</innerclass>
+    <innerclass refid="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket" prot="public">p2p_engine::dht::routing::KBucket</innerclass>
+    <innerclass refid="classp2p__engine_1_1dht_1_1routing_1_1_routing_table" prot="public">p2p_engine::dht::routing::RoutingTable</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1routing_1a8a23ed3a5c5ca6415f8f96c37ce2d4e9" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::dht::routing.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.dht.routing.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="21" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1routing_1a2efbaa120a62c3e3f7c98853c53a8108" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::routing.ALPHA</definition>
+        <argsstring></argsstring>
+        <name>ALPHA</name>
+        <qualifiedname>p2p_engine.dht.routing.ALPHA</qualifiedname>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="24" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1routing_1ae9a0f57b017a18d993877306e54b1b1a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::routing.K</definition>
+        <argsstring></argsstring>
+        <name>K</name>
+        <qualifiedname>p2p_engine.dht.routing.K</qualifiedname>
+        <initializer>=  20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="25" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1routing_1aff2f8a6de6b0c273a5bb43ee83baebce" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::routing.BIT_COUNT</definition>
+        <argsstring></argsstring>
+        <name>BIT_COUNT</name>
+        <qualifiedname>p2p_engine.dht.routing.BIT_COUNT</qualifiedname>
+        <initializer>=  256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="26" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1routing_1a118dcd7794e789d5cca18da96bc99751" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::routing.BYTE_COUNT</definition>
+        <argsstring></argsstring>
+        <name>BYTE_COUNT</name>
+        <qualifiedname>p2p_engine.dht.routing.BYTE_COUNT</qualifiedname>
+        <initializer>=  <ref refid="namespacep2p__engine_1_1dht_1_1routing_1aff2f8a6de6b0c273a5bb43ee83baebce" kindref="member">BIT_COUNT</ref> // 8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="27" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1dht_1_1routing_1ad46cc9d7518be0344d714435e2bd2c8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.dht.routing.calculate_peer_id</definition>
+        <argsstring>(bytes public_key)</argsstring>
+        <name>calculate_peer_id</name>
+        <qualifiedname>p2p_engine.dht.routing.calculate_peer_id</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>public_key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate peer ID from public key using SHA-256.
+
+Args:
+    public_key: Peer&apos;s public key bytes
+
+Returns:
+    32-byte peer ID
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="63" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="63" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1dht_1_1routing_1ada6b1e799940d399d593b25681befcd8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.dht.routing.calculate_distance</definition>
+        <argsstring>(bytes id1, bytes id2)</argsstring>
+        <name>calculate_distance</name>
+        <qualifiedname>p2p_engine.dht.routing.calculate_distance</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>id1</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate XOR distance between two peer IDs.
+
+The XOR distance is defined as the integer value of the XOR of two IDs.
+Lower distance means closer in the DHT.
+
+Args:
+    id1: First peer ID (32 bytes)
+    id2: Second peer ID (32 bytes)
+
+Returns:
+    Integer distance value
+
+Raises:
+    ValueError: If IDs are not 32 bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="76" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="76" bodyend="100"/>
+        <referencedby refid="classp2p__engine_1_1dht_1_1routing_1_1_routing_table_1ae7b48aec3a1374573409737469f072b8" compoundref="routing_8py" startline="416" endline="442">p2p_engine.dht.routing.RoutingTable.find_closest_peers</referencedby>
+        <referencedby refid="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_1a2b45c413f053d91772124d4529d2065a" compoundref="routing_8py" startline="290" endline="307">p2p_engine.dht.routing.KBucket.get_closest_peers</referencedby>
+        <referencedby refid="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_1a59ad89647b2cda56c52597cb4cf94d91" compoundref="routing_8py" startline="266" endline="285">p2p_engine.dht.routing.KBucket.get_furthest_peers</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1dht_1_1routing_1a7bce851ca465c3828fac24c39d683478" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.dht.routing.common_prefix_length</definition>
+        <argsstring>(bytes id1, bytes id2)</argsstring>
+        <name>common_prefix_length</name>
+        <qualifiedname>p2p_engine.dht.routing.common_prefix_length</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>id1</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>id2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate the number of leading bits that are identical.
+
+Used to determine which k-bucket a peer belongs to.
+
+Args:
+    id1: First peer ID (32 bytes)
+    id2: Second peer ID (32 bytes)
+
+Returns:
+    Number of leading identical bits (0-256)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="101" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="101" bodyend="130"/>
+        <referencedby refid="classp2p__engine_1_1dht_1_1routing_1_1_routing_table_1a39ff3570bbd19c0ee18b5fd311adb40e" compoundref="routing_8py" startline="443" endline="458">p2p_engine.dht.routing.RoutingTable._find_bucket</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Kademlia Routing Table (k-bucket) Implementation
+
+Implements the k-bucket routing table structure for Kademlia DHT.
+Uses XOR distance metric for peer discovery and routing.
+
+Reference:
+- Kademlia paper: https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf
+- libp2p DHT: https://github.com/libp2p/specs/tree/master/kad-dht
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/dht/routing.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

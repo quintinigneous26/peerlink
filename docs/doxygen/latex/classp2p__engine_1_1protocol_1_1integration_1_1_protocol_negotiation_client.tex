@@ -1,0 +1,154 @@
+\doxysection{p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Negotiation\+Client类 参考}
+\hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client}{}\label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client}\index{p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a8caf8075e6300290ad8a132d77349627}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry}{Protocol\+Registry}} \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_aa86a43ac4b213c89571a03b52781626f}{registry}}, float timeout=30.\+0)
+\item 
+tuple\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a3fb068afad10a9600b8785098d1b31c7}{dial}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer}{Stream\+Reader\+Writer}} conn, list\+[str]\+ protocols)
+\item 
+tuple\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a10cc4b144df0cca91f10b21a7c56e7b3}{accept}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer}{Stream\+Reader\+Writer}} conn)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_aa86a43ac4b213c89571a03b52781626f}{registry}} = registry
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_aa8c8a349476f3126f92ae01c7c20160c}{negotiator}} = \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator}{Protocol\+Negotiator}}(timeout=timeout)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}High-level client for protocol negotiation and execution.
+
+Combines multistream-select negotiation with protocol handler execution.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00134}{134}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a8caf8075e6300290ad8a132d77349627}\index{p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a8caf8075e6300290ad8a132d77349627} 
+p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Negotiation\+Client.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry}{Protocol\+Registry}}}]{registry}{, }\item[{float }]{timeout}{ = {\ttfamily 30.0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize the negotiation client.
+
+Args:
+    registry: Protocol registry
+    timeout: Negotiation timeout in seconds
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00141}{141}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a10cc4b144df0cca91f10b21a7c56e7b3}\index{p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}!accept@{accept}}
+\index{accept@{accept}!p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a10cc4b144df0cca91f10b21a7c56e7b3} 
+ tuple\+[str, Any]\+ p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Negotiation\+Client.\+accept (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer}{Stream\+Reader\+Writer}}}]{conn}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Accept an incoming connection and handle protocol negotiation.
+
+Acts as the responder in the negotiation.
+
+Args:
+    conn: Incoming connection
+
+Returns:
+    Tuple of (negotiated_protocol, handler_result)
+
+Raises:
+    NegotiationError: If negotiation fails
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00188}{188}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{integration_8py_source_l00154}{negotiator}} , 以及 \doxymbox{\hyperlink{integration_8py_source_l00153}{registry}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00517}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+accept\+\_\+stream()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a3fb068afad10a9600b8785098d1b31c7}\index{p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}!dial@{dial}}
+\index{dial@{dial}!p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}}
+\doxysubsubsection{\texorpdfstring{dial()}{dial()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_a3fb068afad10a9600b8785098d1b31c7} 
+ tuple\+[str, Any]\+ p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Negotiation\+Client.\+dial (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer}{Stream\+Reader\+Writer}}}]{conn}{, }\item[{list\+[str]\+}]{protocols}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Dial a peer and negotiate a protocol.
+
+Acts as the initiator in the negotiation.
+
+Args:
+    conn: Connection to the peer
+    protocols: Preferred protocols (in priority order)
+
+Returns:
+    Tuple of (negotiated_protocol, handler_result)
+
+Raises:
+    NegotiationError: If negotiation fails
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00156}{156}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{integration_8py_source_l00154}{negotiator}} , 以及 \doxymbox{\hyperlink{integration_8py_source_l00153}{registry}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_aa8c8a349476f3126f92ae01c7c20160c}\index{p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}!negotiator@{negotiator}}
+\index{negotiator@{negotiator}!p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}}
+\doxysubsubsection{\texorpdfstring{negotiator}{negotiator}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_aa8c8a349476f3126f92ae01c7c20160c} 
+p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Negotiation\+Client.\+negotiator = \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator}{Protocol\+Negotiator}}(timeout=timeout)}
+
+
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00154}{154}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{integration_8py_source_l00191}{accept()}}, \doxymbox{\hyperlink{integration_8py_source_l00160}{dial()}}, \doxymbox{\hyperlink{integration_8py_source_l00314}{p2p\+\_\+engine.\+protocol.\+integration.\+Identify\+Client.\+handle\+\_\+query()}}, \doxymbox{\hyperlink{integration_8py_source_l00288}{p2p\+\_\+engine.\+protocol.\+integration.\+Identify\+Client.\+push\+\_\+identity()}} , 以及 \doxymbox{\hyperlink{integration_8py_source_l00257}{p2p\+\_\+engine.\+protocol.\+integration.\+Identify\+Client.\+query\+\_\+peer()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_aa86a43ac4b213c89571a03b52781626f}\index{p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}!registry@{registry}}
+\index{registry@{registry}!p2p\_engine.protocol.integration.ProtocolNegotiationClient@{p2p\_engine.protocol.integration.ProtocolNegotiationClient}}
+\doxysubsubsection{\texorpdfstring{registry}{registry}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_negotiation_client_aa86a43ac4b213c89571a03b52781626f} 
+p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Negotiation\+Client.\+registry = registry}
+
+
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00153}{153}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{integration_8py_source_l00191}{accept()}} , 以及 \doxymbox{\hyperlink{integration_8py_source_l00160}{dial()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+protocol/\+\doxymbox{\hyperlink{integration_8py}{integration.\+py}}\end{DoxyCompactItemize}

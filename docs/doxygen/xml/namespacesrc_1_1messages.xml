@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacesrc_1_1messages" kind="namespace" language="Python">
+    <compoundname>src::messages</compoundname>
+    <innerclass refid="classsrc_1_1messages_1_1_message_type" prot="public">src::messages::MessageType</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_attribute_type" prot="public">src::messages::AttributeType</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_error_code" prot="public">src::messages::ErrorCode</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_stun_attribute" prot="public">src::messages::StunAttribute</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_stun_message" prot="public">src::messages::StunMessage</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_turn_method" prot="public">src::messages::TurnMethod</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_turn_attribute_type" prot="public">src::messages::TurnAttributeType</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_turn_error_code" prot="public">src::messages::TurnErrorCode</innerclass>
+    <innerclass refid="classsrc_1_1messages_1_1_turn_allocation" prot="public">src::messages::TurnAllocation</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacesrc_1_1messages_1ac87e83ff7526fc6a63eb7ea57f6c4bef" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int src::messages::MAGIC_COOKIE</definition>
+        <argsstring></argsstring>
+        <name>MAGIC_COOKIE</name>
+        <qualifiedname>src.messages.MAGIC_COOKIE</qualifiedname>
+        <initializer>=  0x2112A442</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="45" column="1" bodyfile="stun-server/src/messages.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacesrc_1_1messages_1a9b242362395dd91516c33becc10615ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[Tuple[str, int]]</type>
+        <definition> Optional[Tuple[str, int]] src.messages.parse_mapped_address</definition>
+        <argsstring>(bytes data)</argsstring>
+        <name>parse_mapped_address</name>
+        <qualifiedname>src.messages.parse_mapped_address</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Parse MAPPED-ADDRESS or XOR-MAPPED-ADDRESS attribute.
+
+Args:
+    data: Attribute value bytes
+
+Returns:
+    Tuple of (ip_address, port) or None
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="165" column="1" bodyfile="stun-server/src/messages.py" bodystart="165" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacesrc_1_1messages_1a2e52c40e222149c42903198c2e9a59b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes src.messages.create_mapped_address_attr</definition>
+        <argsstring>(str ip, int port)</argsstring>
+        <name>create_mapped_address_attr</name>
+        <qualifiedname>src.messages.create_mapped_address_attr</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>ip</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create MAPPED-ADDRESS attribute.
+
+Args:
+    ip: IP address string
+    port: Port number
+
+Returns:
+    Attribute value bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="198" column="1" bodyfile="stun-server/src/messages.py" bodystart="198" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacesrc_1_1messages_1af73a92834a2b11aebc5c7d099c899d27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes src.messages.create_xor_mapped_address_attr</definition>
+        <argsstring>(str ip, int port, bytes transaction_id)</argsstring>
+        <name>create_xor_mapped_address_attr</name>
+        <qualifiedname>src.messages.create_xor_mapped_address_attr</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>ip</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>transaction_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create XOR-MAPPED-ADDRESS attribute (RFC 5389 Section 15.2).
+
+Args:
+    ip: IP address string
+    port: Port number
+    transaction_id: 96-bit transaction ID
+
+Returns:
+    Attribute value bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="221" column="1" bodyfile="stun-server/src/messages.py" bodystart="223" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacesrc_1_1messages_1ab30b52165c498b25d1873d16776be700" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes src.messages.create_error_response</definition>
+        <argsstring>(bytes transaction_id, ErrorCode error_code, str message)</argsstring>
+        <name>create_error_response</name>
+        <qualifiedname>src.messages.create_error_response</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>transaction_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1messages_1_1_error_code" kindref="compound">ErrorCode</ref></type>
+          <declname>error_code</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create STUN error response.
+
+Args:
+    transaction_id: Transaction ID from request
+    error_code: Error code
+    message: Error message
+
+Returns:
+    Serialized error response
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="265" column="1" bodyfile="stun-server/src/messages.py" bodystart="267" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacesrc_1_1messages_1adaaa790265d257d66ec12e81b48c4709" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes src.messages.create_xor_address_attr</definition>
+        <argsstring>(str ip, int port, bytes transaction_id)</argsstring>
+        <name>create_xor_address_attr</name>
+        <qualifiedname>src.messages.create_xor_address_attr</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>ip</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>transaction_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create XOR address attribute (for XOR-MAPPED-ADDRESS, XOR-PEER-ADDRESS, XOR-RELAYED-ADDRESS).
+
+Args:
+    ip: IP address string
+    port: Port number
+    transaction_id: 96-bit transaction ID
+
+Returns:
+    Attribute value bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/messages.py" line="204" column="1" bodyfile="relay-server/src/messages.py" bodystart="204" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacesrc_1_1messages_1af7c4e27674378493ec18c1f764489956" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes src.messages.create_lifetime_attr</definition>
+        <argsstring>(int lifetime)</argsstring>
+        <name>create_lifetime_attr</name>
+        <qualifiedname>src.messages.create_lifetime_attr</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>lifetime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create LIFETIME attribute.
+
+Args:
+    lifetime: Lifetime in seconds
+
+Returns:
+    Attribute value bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/messages.py" line="244" column="1" bodyfile="relay-server/src/messages.py" bodystart="244" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacesrc_1_1messages_1ad92891c1b7a2236109d6c07b6b54fcc6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes src.messages.create_requested_transport_attr</definition>
+        <argsstring>(int protocol=17)</argsstring>
+        <name>create_requested_transport_attr</name>
+        <qualifiedname>src.messages.create_requested_transport_attr</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>protocol</declname>
+          <defval>17</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create REQUESTED-TRANSPORT attribute.
+
+Args:
+    protocol: Protocol number (17 = UDP)
+
+Returns:
+    Attribute value bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/messages.py" line="257" column="1" bodyfile="relay-server/src/messages.py" bodystart="257" bodyend="269"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacesrc_1_1messages_1a9dd1768d7a7e3dade5a23c45c078e373" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int src.messages.parse_lifetime_attr</definition>
+        <argsstring>(bytes data)</argsstring>
+        <name>parse_lifetime_attr</name>
+        <qualifiedname>src.messages.parse_lifetime_attr</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Parse LIFETIME attribute.
+
+Args:
+    data: Attribute value bytes
+
+Returns:
+    Lifetime in seconds
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/messages.py" line="270" column="1" bodyfile="relay-server/src/messages.py" bodystart="270" bodyend="283"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>STUN Protocol Messages (RFC 5389)
+
+Implements STUN message format and attribute parsing.
+</verbatim></para>
+<para><verbatim>TURN Protocol Messages (RFC 8656)
+
+Implements TURN protocol messages for relay allocation and data relay.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="stun-server/src/messages.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

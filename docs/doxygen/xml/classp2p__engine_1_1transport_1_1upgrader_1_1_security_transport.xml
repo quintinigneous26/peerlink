@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::upgrader::SecurityTransport</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ABC</basecompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport_1ace3a683cf5b143434a5f857074b8f495" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>&quot;SecureConnection&quot;</type>
+        <definition> &quot;SecureConnection&quot; p2p_engine.transport.upgrader.SecurityTransport.secure_inbound</definition>
+        <argsstring>(self, Connection conn, Optional[str] peer_id=None)</argsstring>
+        <name>secure_inbound</name>
+        <qualifiedname>p2p_engine.transport.upgrader.SecurityTransport.secure_inbound</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" kindref="compound">Connection</ref></type>
+          <declname>conn</declname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>peer_id</declname>
+          <array>[str]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>作为接收方，升级入站连接为安全连接
+
+Args:
+    conn: 原始连接
+    peer_id: 可选的对等节点ID
+
+Returns:
+    安全连接
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="24" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="28" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport_1a0c09372aed4c41b4742ec595f7970266" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>&quot;SecureConnection&quot;</type>
+        <definition> &quot;SecureConnection&quot; p2p_engine.transport.upgrader.SecurityTransport.secure_outbound</definition>
+        <argsstring>(self, Connection conn, str peer_id)</argsstring>
+        <name>secure_outbound</name>
+        <qualifiedname>p2p_engine.transport.upgrader.SecurityTransport.secure_outbound</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" kindref="compound">Connection</ref></type>
+          <declname>conn</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>作为发起方，升级出站连接为安全连接
+
+Args:
+    conn: 原始连接
+    peer_id: 目标对等节点ID
+
+Returns:
+    安全连接
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="42" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="46" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport_1a05131addd734c74e4dfc9a0cadfe8a3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str p2p_engine.transport.upgrader.SecurityTransport.get_protocol_id</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_protocol_id</name>
+        <qualifiedname>p2p_engine.transport.upgrader.SecurityTransport.get_protocol_id</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>返回协议ID</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="60" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="60" bodyend="64"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>安全传输抽象接口</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.upgrader.SecurityTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.upgrader.SecurityTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/transport/upgrader.py" line="20" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="20" bodyend="64"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport_1a05131addd734c74e4dfc9a0cadfe8a3b" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::SecurityTransport</scope><name>get_protocol_id</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport_1ace3a683cf5b143434a5f857074b8f495" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::SecurityTransport</scope><name>secure_inbound</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport_1a0c09372aed4c41b4742ec595f7970266" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::SecurityTransport</scope><name>secure_outbound</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::protocol::noise::SymmetricState</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a3b3ade80ec7f43c0f1a109b55ef5ad55" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.noise.SymmetricState::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.h</qualifiedname>
+        <initializer>=  hashlib.sha256(protocol_name).digest()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="217" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="217" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a59d45345ff663a85bbad069d8bb667ec" compoundref="noise_8py" startline="263" endline="279">p2p_engine.protocol.noise.SymmetricState.decrypt_and_hash</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a19ae46c3e68b59acec9a0ced901de707" compoundref="noise_8py" startline="246" endline="262">p2p_engine.protocol.noise.SymmetricState.encrypt_and_hash</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1acac282d88c16d1d08a83a96b4714089b" compoundref="noise_8py" startline="237" endline="245">p2p_engine.protocol.noise.SymmetricState.mix_hash</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1ad1a8d5d2cac362cc4351e9a45eabd345" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.noise.SymmetricState::ck</definition>
+        <argsstring></argsstring>
+        <name>ck</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.ck</qualifiedname>
+        <initializer>=  self.h</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="219" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="219" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a1b79c89519000dbcd9d526458a2a1531" compoundref="noise_8py" startline="224" endline="236">p2p_engine.protocol.noise.SymmetricState.mix_key</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a7f661aa7ea0113710f09a8a2fd6b5296" compoundref="noise_8py" startline="280" endline="290">p2p_engine.protocol.noise.SymmetricState.split</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a38a9d2df090c6481cf6452262c88a7a6" prot="public" static="no" mutable="no">
+        <type>Optional[<ref refid="classp2p__engine_1_1protocol_1_1noise_1_1_cipher_state" kindref="compound">CipherState</ref>]</type>
+        <definition>Optional[CipherState] p2p_engine.protocol.noise.SymmetricState::cipher1</definition>
+        <argsstring></argsstring>
+        <name>cipher1</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.cipher1</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="221" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="221" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a59d45345ff663a85bbad069d8bb667ec" compoundref="noise_8py" startline="263" endline="279">p2p_engine.protocol.noise.SymmetricState.decrypt_and_hash</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a19ae46c3e68b59acec9a0ced901de707" compoundref="noise_8py" startline="246" endline="262">p2p_engine.protocol.noise.SymmetricState.encrypt_and_hash</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a1b79c89519000dbcd9d526458a2a1531" compoundref="noise_8py" startline="224" endline="236">p2p_engine.protocol.noise.SymmetricState.mix_key</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a097006db941a9b86febf649ac17cc405" prot="public" static="no" mutable="no">
+        <type>Optional[<ref refid="classp2p__engine_1_1protocol_1_1noise_1_1_cipher_state" kindref="compound">CipherState</ref>]</type>
+        <definition>Optional[CipherState] p2p_engine.protocol.noise.SymmetricState::cipher2</definition>
+        <argsstring></argsstring>
+        <name>cipher2</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.cipher2</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="222" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="222" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a1b79c89519000dbcd9d526458a2a1531" compoundref="noise_8py" startline="224" endline="236">p2p_engine.protocol.noise.SymmetricState.mix_key</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a19ed5da5018c944e40f52dfab570504f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.protocol.noise.SymmetricState.__init__</definition>
+        <argsstring>(self, bytes protocol_name)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>protocol_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Initialize symmetric state.
+
+Args:
+    protocol_name: Noise protocol name bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="209" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="209" bodyend="223"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a1b79c89519000dbcd9d526458a2a1531" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.noise.SymmetricState.mix_key</definition>
+        <argsstring>(self, bytes input_key_material)</argsstring>
+        <name>mix_key</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.mix_key</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>input_key_material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Derive new cipher keys using HKDF.
+
+Args:
+    input_key_material: Input key material
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="224" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="224" bodyend="236"/>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a4729ec3ebba7ba7823431313030292ae" compoundref="noise_8py" startline="292" endline="321">p2p_engine.protocol.noise.SymmetricState._hkdf</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a38a9d2df090c6481cf6452262c88a7a6" compoundref="noise_8py" startline="221">p2p_engine.protocol.noise.SymmetricState.cipher1</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a097006db941a9b86febf649ac17cc405" compoundref="noise_8py" startline="222">p2p_engine.protocol.noise.SymmetricState.cipher2</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1ad1a8d5d2cac362cc4351e9a45eabd345" compoundref="noise_8py" startline="219">p2p_engine.protocol.noise.SymmetricState.ck</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1acac282d88c16d1d08a83a96b4714089b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.noise.SymmetricState.mix_hash</definition>
+        <argsstring>(self, bytes data)</argsstring>
+        <name>mix_hash</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.mix_hash</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Mix data into handshake hash.
+
+Args:
+    data: Data to mix into h
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="237" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="237" bodyend="245"/>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a3b3ade80ec7f43c0f1a109b55ef5ad55" compoundref="noise_8py" startline="217">p2p_engine.protocol.noise.SymmetricState.h</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a59d45345ff663a85bbad069d8bb667ec" compoundref="noise_8py" startline="263" endline="279">p2p_engine.protocol.noise.SymmetricState.decrypt_and_hash</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a19ae46c3e68b59acec9a0ced901de707" compoundref="noise_8py" startline="246" endline="262">p2p_engine.protocol.noise.SymmetricState.encrypt_and_hash</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a19ae46c3e68b59acec9a0ced901de707" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.noise.SymmetricState.encrypt_and_hash</definition>
+        <argsstring>(self, bytes plaintext)</argsstring>
+        <name>encrypt_and_hash</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.encrypt_and_hash</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>plaintext</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encrypt plaintext and mix into hash.
+
+Args:
+    plaintext: Data to encrypt
+
+Returns:
+    Ciphertext (or plaintext if no cipher)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="246" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="246" bodyend="262"/>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a38a9d2df090c6481cf6452262c88a7a6" compoundref="noise_8py" startline="221">p2p_engine.protocol.noise.SymmetricState.cipher1</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a3b3ade80ec7f43c0f1a109b55ef5ad55" compoundref="noise_8py" startline="217">p2p_engine.protocol.noise.SymmetricState.h</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1acac282d88c16d1d08a83a96b4714089b" compoundref="noise_8py" startline="237" endline="245">p2p_engine.protocol.noise.SymmetricState.mix_hash</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a59d45345ff663a85bbad069d8bb667ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.noise.SymmetricState.decrypt_and_hash</definition>
+        <argsstring>(self, bytes ciphertext)</argsstring>
+        <name>decrypt_and_hash</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.decrypt_and_hash</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>ciphertext</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Decrypt ciphertext and mix into hash.
+
+Args:
+    ciphertext: Data to decrypt
+
+Returns:
+    Plaintext (or ciphertext if no cipher)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="263" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="263" bodyend="279"/>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a38a9d2df090c6481cf6452262c88a7a6" compoundref="noise_8py" startline="221">p2p_engine.protocol.noise.SymmetricState.cipher1</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a3b3ade80ec7f43c0f1a109b55ef5ad55" compoundref="noise_8py" startline="217">p2p_engine.protocol.noise.SymmetricState.h</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1acac282d88c16d1d08a83a96b4714089b" compoundref="noise_8py" startline="237" endline="245">p2p_engine.protocol.noise.SymmetricState.mix_hash</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a7f661aa7ea0113710f09a8a2fd6b5296" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[<ref refid="classp2p__engine_1_1protocol_1_1noise_1_1_cipher_state" kindref="compound">CipherState</ref>, <ref refid="classp2p__engine_1_1protocol_1_1noise_1_1_cipher_state" kindref="compound">CipherState</ref>]</type>
+        <definition> Tuple[CipherState, CipherState] p2p_engine.protocol.noise.SymmetricState.split</definition>
+        <argsstring>(self)</argsstring>
+        <name>split</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState.split</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Split into two cipher states for transport.
+
+Returns:
+    Tuple of (encrypt_cipher, decrypt_cipher)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="280" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="280" bodyend="290"/>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a4729ec3ebba7ba7823431313030292ae" compoundref="noise_8py" startline="292" endline="321">p2p_engine.protocol.noise.SymmetricState._hkdf</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1ad1a8d5d2cac362cc4351e9a45eabd345" compoundref="noise_8py" startline="219">p2p_engine.protocol.noise.SymmetricState.ck</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a4729ec3ebba7ba7823431313030292ae" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list[bytes]</type>
+        <definition> list[bytes] p2p_engine.protocol.noise.SymmetricState._hkdf</definition>
+        <argsstring>(bytes chain_key, bytes input_key_material, int num_outputs)</argsstring>
+        <name>_hkdf</name>
+        <qualifiedname>p2p_engine.protocol.noise.SymmetricState._hkdf</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>chain_key</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>input_key_material</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_outputs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>HKDF as specified in Noise spec.
+
+Args:
+    chain_key: Current chain key
+    input_key_material: Input key material
+    num_outputs: Number of keys to derive
+
+Returns:
+    List of derived keys (32 bytes each)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="292" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="292" bodyend="321"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a1b79c89519000dbcd9d526458a2a1531" compoundref="noise_8py" startline="224" endline="236">p2p_engine.protocol.noise.SymmetricState.mix_key</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a7f661aa7ea0113710f09a8a2fd6b5296" compoundref="noise_8py" startline="280" endline="290">p2p_engine.protocol.noise.SymmetricState.split</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Symmetric state for Noise handshake.
+Maintains CK, h, and cipher states per Noise spec.
+</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>p2p_engine.protocol.noise.SymmetricState</label>
+        <link refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>cipher1</edgelabel>
+          <edgelabel>cipher2</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.protocol.noise.CipherState</label>
+        <link refid="classp2p__engine_1_1protocol_1_1noise_1_1_cipher_state"/>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/protocol/noise.py" line="203" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="203" bodyend="321"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a19ed5da5018c944e40f52dfab570504f" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a4729ec3ebba7ba7823431313030292ae" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>_hkdf</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a38a9d2df090c6481cf6452262c88a7a6" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>cipher1</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a097006db941a9b86febf649ac17cc405" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>cipher2</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1ad1a8d5d2cac362cc4351e9a45eabd345" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>ck</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a59d45345ff663a85bbad069d8bb667ec" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>decrypt_and_hash</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a19ae46c3e68b59acec9a0ced901de707" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>encrypt_and_hash</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a3b3ade80ec7f43c0f1a109b55ef5ad55" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>h</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1acac282d88c16d1d08a83a96b4714089b" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>mix_hash</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a1b79c89519000dbcd9d526458a2a1531" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>mix_key</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state_1a7f661aa7ea0113710f09a8a2fd6b5296" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::SymmetricState</scope><name>split</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

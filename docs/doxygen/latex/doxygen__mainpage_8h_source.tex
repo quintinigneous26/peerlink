@@ -1,0 +1,242 @@
+\doxysection{doxygen\+\_\+mainpage.\+h}
+\hypertarget{doxygen__mainpage_8h_source}{}\label{doxygen__mainpage_8h_source}\index{docs/doxygen\_mainpage.h@{docs/doxygen\_mainpage.h}}
+\doxymbox{\hyperlink{doxygen__mainpage_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @mainpage\ P2P\ Platform\ 文档}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00003}00003\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00004}00004\ \textcolor{comment}{\ *\ @section\ intro\ 项目介绍}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00006}00006\ \textcolor{comment}{\ *\ P2P\ Platform\ 是一个基于WebRTC技术的去中心化P2P通信平台，提供完整的P2P连接解决方案。}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00007}00007\ \textcolor{comment}{\ *\ 平台包含STUN服务器、TURN中继服务器、信令服务器、DID身份服务和客户端SDK等核心组件。}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00009}00009\ \textcolor{comment}{\ *\ @section\ features\ 主要特性}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00010}00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00011}00011\ \textcolor{comment}{\ *\ -\/\ **智能NAT穿透**:\ 支持多种NAT类型的穿透，包括对称型NAT的端口预测}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00012}00012\ \textcolor{comment}{\ *\ -\/\ **运营商差异化**:\ 针对不同运营商的网络特性进行优化}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00013}00013\ \textcolor{comment}{\ *\ -\/\ **自动降级**:\ 连接失败时自动降级到中继服务}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00014}00014\ \textcolor{comment}{\ *\ -\/\ **心跳保活**:\ 保持连接活跃，防止NAT映射超时}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00015}00015\ \textcolor{comment}{\ *\ -\/\ **事件驱动**:\ 基于事件总线的异步架构}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00016}00016\ \textcolor{comment}{\ *\ -\/\ **完整的SDK**:\ 提供易用的客户端SDK}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00017}00017\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00018}00018\ \textcolor{comment}{\ *\ @section\ architecture\ 架构设计}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00019}00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00020}00020\ \textcolor{comment}{\ *\ @subsection\ core\_modules\ 核心模块}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00021}00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00022}00022\ \textcolor{comment}{\ *\ -\/\ **p2p\_engine**:\ 核心P2P引擎}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00023}00023\ \textcolor{comment}{\ *\ \ \ -\/\ engine.py:\ 主引擎类}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00024}00024\ \textcolor{comment}{\ *\ \ \ -\/\ types.py:\ 核心类型定义}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00025}00025\ \textcolor{comment}{\ *\ \ \ -\/\ event.py:\ 事件系统}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00026}00026\ \textcolor{comment}{\ *\ \ \ -\/\ config/:\ 配置管理}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00027}00027\ \textcolor{comment}{\ *\ \ \ -\/\ detection/:\ 网络检测}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00028}00028\ \textcolor{comment}{\ *\ \ \ -\/\ puncher/:\ NAT穿透}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00029}00029\ \textcolor{comment}{\ *\ \ \ -\/\ keeper/:\ 心跳保活}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00030}00030\ \textcolor{comment}{\ *\ \ \ -\/\ fallback/:\ 降级策略}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00031}00031\ \textcolor{comment}{\ *\ \ \ -\/\ protocol/:\ 协议实现}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00032}00032\ \textcolor{comment}{\ *\ \ \ -\/\ transport/:\ 传输层}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00033}00033\ \textcolor{comment}{\ *\ \ \ -\/\ muxer/:\ 多路复用}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00034}00034\ \textcolor{comment}{\ *\ \ \ -\/\ dht/:\ 分布式哈希表}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00035}00035\ \textcolor{comment}{\ *\ \ \ -\/\ security/:\ 安全模块}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00036}00036\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00037}00037\ \textcolor{comment}{\ *\ -\/\ **client\_sdk**:\ 客户端SDK}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00038}00038\ \textcolor{comment}{\ *\ \ \ -\/\ 简化的API接口}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00039}00039\ \textcolor{comment}{\ *\ \ \ -\/\ 事件回调机制}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00040}00040\ \textcolor{comment}{\ *\ \ \ -\/\ 连接管理}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00041}00041\ \textcolor{comment}{\ *\ \ \ -\/\ 数据传输}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00042}00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00043}00043\ \textcolor{comment}{\ *\ -\/\ **stun-\/server**:\ STUN服务器}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00044}00044\ \textcolor{comment}{\ *\ \ \ -\/\ NAT类型检测}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00045}00045\ \textcolor{comment}{\ *\ \ \ -\/\ 公网地址获取}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00046}00046\ \textcolor{comment}{\ *\ \ \ -\/\ RFC\ 5389标准实现}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00047}00047\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00048}00048\ \textcolor{comment}{\ *\ -\/\ **relay-\/server**:\ TURN中继服务器}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00049}00049\ \textcolor{comment}{\ *\ \ \ -\/\ 数据中继转发}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00050}00050\ \textcolor{comment}{\ *\ \ \ -\/\ 带宽管理}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00051}00051\ \textcolor{comment}{\ *\ \ \ -\/\ 连接管理}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00052}00052\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00053}00053\ \textcolor{comment}{\ *\ -\/\ **signaling-\/server**:\ 信令服务器}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00054}00054\ \textcolor{comment}{\ *\ \ \ -\/\ 设备注册}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00055}00055\ \textcolor{comment}{\ *\ \ \ -\/\ 连接协调}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00056}00056\ \textcolor{comment}{\ *\ \ \ -\/\ 信息交换}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00057}00057\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00058}00058\ \textcolor{comment}{\ *\ -\/\ **did-\/service**:\ DID身份服务}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00059}00059\ \textcolor{comment}{\ *\ \ \ -\/\ 设备身份认证}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00060}00060\ \textcolor{comment}{\ *\ \ \ -\/\ 密钥管理}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00061}00061\ \textcolor{comment}{\ *\ \ \ -\/\ 权限控制}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00062}00062\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00063}00063\ \textcolor{comment}{\ *\ @section\ quick\_start\ 快速开始}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00064}00064\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00065}00065\ \textcolor{comment}{\ *\ @subsection\ installation\ 安装}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00066}00066\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00067}00067\ \textcolor{comment}{\ *\ \`{}\`{}\`{}bash}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00068}00068\ \textcolor{comment}{\ *\ \#\ 克隆项目}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00069}00069\ \textcolor{comment}{\ *\ git\ clone\ <repo-\/url>}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00070}00070\ \textcolor{comment}{\ *\ cd\ p2p-\/platform}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00071}00071\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00072}00072\ \textcolor{comment}{\ *\ \#\ 安装依赖}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00073}00073\ \textcolor{comment}{\ *\ pip\ install\ -\/r\ requirements.txt}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00074}00074\ \textcolor{comment}{\ *\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00075}00075\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00076}00076\ \textcolor{comment}{\ *\ @subsection\ basic\_usage\ 基本使用}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00077}00077\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00078}00078\ \textcolor{comment}{\ *\ \`{}\`{}\`{}python}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00079}00079\ \textcolor{comment}{\ *\ from\ p2p\_engine\ import\ P2PEngine,\ P2PConfig}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00080}00080\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00081}00081\ \textcolor{comment}{\ *\ \#\ 创建引擎}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00082}00082\ \textcolor{comment}{\ *\ config\ =\ P2PConfig(}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00083}00083\ \textcolor{comment}{\ *\ \ \ \ \ stun\_servers=["{}stun.l.google.com:19302"{}],}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00084}00084\ \textcolor{comment}{\ *\ \ \ \ \ debug=True}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00085}00085\ \textcolor{comment}{\ *\ )}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00086}00086\ \textcolor{comment}{\ *\ engine\ =\ P2PEngine(config)}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00087}00087\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00088}00088\ \textcolor{comment}{\ *\ \#\ 初始化}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00089}00089\ \textcolor{comment}{\ *\ await\ engine.initialize()}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00090}00090\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00091}00091\ \textcolor{comment}{\ *\ \#\ 连接到对端}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00092}00092\ \textcolor{comment}{\ *\ result\ =\ await\ engine.connect\_to\_peer(peer\_id,\ peer\_info)}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00093}00093\ \textcolor{comment}{\ *\ if\ result.success:}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00094}00094\ \textcolor{comment}{\ *\ \ \ \ \ print(f"{}连接成功:\ \{result.connection\_type\}"{})}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00095}00095\ \textcolor{comment}{\ *\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00096}00096\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00097}00097\ \textcolor{comment}{\ *\ @section\ api\_reference\ API参考}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00098}00098\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00099}00099\ \textcolor{comment}{\ *\ @subsection\ types\ 核心类型}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00100}00100\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00101}00101\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.ConnectionState\ "{}连接状态"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00102}00102\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.ConnectionType\ "{}连接类型"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00103}00103\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.NATType\ "{}NAT类型"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00104}00104\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.NATInfo\ "{}NAT信息"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00105}00105\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.NetworkEnvironment\ "{}网络环境"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00106}00106\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.ConnectionResult\ "{}连接结果"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00107}00107\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.PeerInfo\ "{}对端信息"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00108}00108\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.ISP\ "{}ISP运营商"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00109}00109\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.types.Region\ "{}地理区域"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00110}00110\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00111}00111\ \textcolor{comment}{\ *\ @subsection\ engine\ 引擎类}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00112}00112\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00113}00113\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.engine.P2PEngine\ "{}P2P引擎主类"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00114}00114\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.engine.P2PConfig\ "{}引擎配置"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00115}00115\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.engine.P2PState\ "{}引擎状态"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00116}00116\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00117}00117\ \textcolor{comment}{\ *\ @subsection\ events\ 事件系统}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00118}00118\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00119}00119\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.event.EventBus\ "{}事件总线"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00120}00120\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.event.EventTopic\ "{}事件主题"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00121}00121\ \textcolor{comment}{\ *\ -\/\ @ref\ p2p\_engine.event.P2PEventType\ "{}事件类型"{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00122}00122\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00123}00123\ \textcolor{comment}{\ *\ @section\ examples\ 使用示例}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00124}00124\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00125}00125\ \textcolor{comment}{\ *\ @subsection\ example\_basic\ 基本连接示例}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00126}00126\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00127}00127\ \textcolor{comment}{\ *\ \`{}\`{}\`{}python}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00128}00128\ \textcolor{comment}{\ *\ import\ asyncio}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00129}00129\ \textcolor{comment}{\ *\ from\ p2p\_engine\ import\ P2PEngine,\ P2PConfig,\ PeerInfo}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00130}00130\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00131}00131\ \textcolor{comment}{\ *\ async\ def\ main():}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00132}00132\ \textcolor{comment}{\ *\ \ \ \ \ \#\ 创建引擎}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00133}00133\ \textcolor{comment}{\ *\ \ \ \ \ engine\ =\ P2PEngine()}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00134}00134\ \textcolor{comment}{\ *\ \ \ \ \ await\ engine.initialize()}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00135}00135\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00136}00136\ \textcolor{comment}{\ *\ \ \ \ \ \#\ 创建对端信息}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00137}00137\ \textcolor{comment}{\ *\ \ \ \ \ peer\_info\ =\ PeerInfo(}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00138}00138\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ peer\_id="{}peer-\/123"{},}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00139}00139\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ public\_ip="{}203.0.113.1"{},}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00140}00140\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ public\_port=5000}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00141}00141\ \textcolor{comment}{\ *\ \ \ \ \ )}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00142}00142\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00143}00143\ \textcolor{comment}{\ *\ \ \ \ \ \#\ 连接}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00144}00144\ \textcolor{comment}{\ *\ \ \ \ \ result\ =\ await\ engine.connect\_to\_peer("{}peer-\/123"{},\ peer\_info)}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00145}00145\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00146}00146\ \textcolor{comment}{\ *\ \ \ \ \ if\ result.success:}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00147}00147\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ print(f"{}连接成功!"{})}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00148}00148\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ print(f"{}连接类型:\ \{result.connection\_type\}"{})}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00149}00149\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ print(f"{}延迟:\ \{result.latency\_ms\}ms"{})}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00150}00150\ \textcolor{comment}{\ *\ \ \ \ \ else:}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00151}00151\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ print(f"{}连接失败:\ \{result.error\}"{})}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00152}00152\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00153}00153\ \textcolor{comment}{\ *\ asyncio.run(main())}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00154}00154\ \textcolor{comment}{\ *\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00155}00155\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00156}00156\ \textcolor{comment}{\ *\ @subsection\ example\_events\ 事件处理示例}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00157}00157\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00158}00158\ \textcolor{comment}{\ *\ \`{}\`{}\`{}python}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00159}00159\ \textcolor{comment}{\ *\ from\ p2p\_engine.event\ import\ EventBus,\ EventTopic,\ P2PEventType}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00160}00160\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00161}00161\ \textcolor{comment}{\ *\ async\ def\ on\_peer\_connected(event):}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00162}00162\ \textcolor{comment}{\ *\ \ \ \ \ print(f"{}对端已连接:\ \{event.data['peer\_id']\}"{})}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00163}00163\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00164}00164\ \textcolor{comment}{\ *\ async\ def\ on\_error(event):}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00165}00165\ \textcolor{comment}{\ *\ \ \ \ \ print(f"{}错误:\ \{event.data['error']\}"{})}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00166}00166\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00167}00167\ \textcolor{comment}{\ *\ bus\ =\ EventBus()}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00168}00168\ \textcolor{comment}{\ *\ bus.subscribe(EventTopic.CONNECTION,\ on\_peer\_connected)}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00169}00169\ \textcolor{comment}{\ *\ bus.subscribe(EventTopic.ERROR,\ on\_error)}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00170}00170\ \textcolor{comment}{\ *\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00171}00171\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00172}00172\ \textcolor{comment}{\ *\ @section\ deployment\ 部署指南}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00173}00173\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00174}00174\ \textcolor{comment}{\ *\ @subsection\ docker\_deployment\ Docker部署}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00175}00175\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00176}00176\ \textcolor{comment}{\ *\ \`{}\`{}\`{}bash}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00177}00177\ \textcolor{comment}{\ *\ \#\ 使用docker-\/compose启动所有服务}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00178}00178\ \textcolor{comment}{\ *\ docker-\/compose\ up\ -\/d}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00179}00179\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00180}00180\ \textcolor{comment}{\ *\ \#\ 查看日志}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00181}00181\ \textcolor{comment}{\ *\ docker-\/compose\ logs\ -\/f}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00182}00182\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00183}00183\ \textcolor{comment}{\ *\ \#\ 停止服务}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00184}00184\ \textcolor{comment}{\ *\ docker-\/compose\ down}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00185}00185\ \textcolor{comment}{\ *\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00186}00186\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00187}00187\ \textcolor{comment}{\ *\ @subsection\ configuration\ 配置说明}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00188}00188\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00189}00189\ \textcolor{comment}{\ *\ 详见\ \`{}docs/`\ 目录下的配置文档。}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00190}00190\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00191}00191\ \textcolor{comment}{\ *\ @section\ troubleshooting\ 故障排除}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00192}00192\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00193}00193\ \textcolor{comment}{\ *\ @subsection\ nat\_issues\ NAT穿透问题}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00194}00194\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00195}00195\ \textcolor{comment}{\ *\ 如果NAT穿透失败，请检查：}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00196}00196\ \textcolor{comment}{\ *\ -\/\ STUN服务器是否可达}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00197}00197\ \textcolor{comment}{\ *\ -\/\ 防火墙是否阻止了UDP/TCP连接}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00198}00198\ \textcolor{comment}{\ *\ -\/\ 对端是否在线}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00199}00199\ \textcolor{comment}{\ *\ -\/\ 网络延迟是否过高}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00200}00200\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00201}00201\ \textcolor{comment}{\ *\ @subsection\ connection\_issues\ 连接问题}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00202}00202\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00203}00203\ \textcolor{comment}{\ *\ 如果连接建立失败，请检查：}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00204}00204\ \textcolor{comment}{\ *\ -\/\ 信令服务器是否正常运行}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00205}00205\ \textcolor{comment}{\ *\ -\/\ 对端信息是否正确}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00206}00206\ \textcolor{comment}{\ *\ -\/\ 网络环境是否支持P2P连接}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00207}00207\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00208}00208\ \textcolor{comment}{\ *\ @section\ performance\ 性能优化}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00209}00209\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00210}00210\ \textcolor{comment}{\ *\ -\/\ 使用UDP而不是TCP以降低延迟}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00211}00211\ \textcolor{comment}{\ *\ -\/\ 启用多路复用以提高吞吐量}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00212}00212\ \textcolor{comment}{\ *\ -\/\ 配置合适的心跳间隔}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00213}00213\ \textcolor{comment}{\ *\ -\/\ 使用DHT加速对端发现}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00214}00214\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00215}00215\ \textcolor{comment}{\ *\ @section\ security\ 安全性}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00216}00216\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00217}00217\ \textcolor{comment}{\ *\ -\/\ 所有连接都支持DTLS加密}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00218}00218\ \textcolor{comment}{\ *\ -\/\ 支持SRTP保护媒体流}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00219}00219\ \textcolor{comment}{\ *\ -\/\ DID服务提供身份认证}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00220}00220\ \textcolor{comment}{\ *\ -\/\ 支持权限控制和访问列表}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00221}00221\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00222}00222\ \textcolor{comment}{\ *\ @section\ contributing\ 贡献指南}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00223}00223\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00224}00224\ \textcolor{comment}{\ *\ 欢迎提交Issue和Pull\ Request！}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00225}00225\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00226}00226\ \textcolor{comment}{\ *\ @section\ license\ 许可证}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00227}00227\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00228}00228\ \textcolor{comment}{\ *\ MIT\ License}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00229}00229\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00230}00230\ \textcolor{comment}{\ *\ @section\ contact\ 联系方式}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00231}00231\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00232}00232\ \textcolor{comment}{\ *\ 如有问题，请通过以下方式联系：}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00233}00233\ \textcolor{comment}{\ *\ -\/\ GitHub\ Issues}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00234}00234\ \textcolor{comment}{\ *\ -\/\ 项目文档}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00235}00235\ \textcolor{comment}{\ *\ -\/\ 开发者邮箱}}
+\DoxyCodeLine{\Hypertarget{doxygen__mainpage_8h_source_l00236}00236\ \textcolor{comment}{\ */}}
+
+\end{DoxyCode}

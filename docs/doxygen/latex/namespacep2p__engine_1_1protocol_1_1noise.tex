@@ -1,0 +1,190 @@
+\doxysection{p2p\+\_\+engine.\+protocol.\+noise 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1protocol_1_1noise}{}\label{namespacep2p__engine_1_1protocol_1_1noise}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_noise_error}{Noise\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_handshake_error}{Handshake\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_crypto_error}{Crypto\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_invalid_signature_error}{Invalid\+Signature\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state}{DHState}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_cipher_state}{Cipher\+State}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state}{Symmetric\+State}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_handshake_result}{Handshake\+Result}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_handshake_config}{Handshake\+Config}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake}{Noise\+Handshake}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport}{Noise\+Security\+Transport}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1noise_1_1_noise_security}{Noise\+Security}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a1b30accf4670c30b3f585eedeb59cfc8}{logger}} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a0792774e15dff1b38820721cfbdbb509}{PROTOCOL\+\_\+\+ID}} = "{}/\+noise"{}
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a4eaf8a4b07585bdb456a3cac558eabe0}{PROTOCOL\+\_\+\+NAME}} = "{}Noise\+\_\+\+XX\+\_\+25519\+\_\+\+Cha\+Cha\+Poly\+\_\+\+SHA256"{}
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a9df91580a01874d13f57051269f49ba7}{MAX\+\_\+\+MESSAGE\+\_\+\+SIZE}} = 65535
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a647e32d16321572fe5be6a8db16d77d2}{DH\+\_\+\+LEN}} = 32
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a173c4c8eef2b65e3150d09b8c9781c30}{MAC\+\_\+\+LEN}} = 16
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a5dd4f91e9d0c72f220a65ccd65d2ada1}{HASH\+\_\+\+LEN}} = 32
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_a5bb454eeb593ca769f8179ff36c1df62}{SIGNATURE\+\_\+\+PREFIX}} = b"{}noise-\/libp2p-\/static-\/key:\+"{}
+\item 
+list \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1noise_ae6df228a6945462a98de4c5192b959ce}{\+\_\+\+\_\+all\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Noise Secure Channel Implementation for libp2p
+
+This module implements the libp2p Noise secure channel protocol using
+the Noise Protocol Framework. It provides:
+- XX handshake pattern for mutual authentication
+- Noise_XX_25519_ChaChaPoly_SHA256 cipher suite
+- Static key authentication using libp2p identity keys (Ed25519)
+- Early data exchange for protocol negotiation
+
+Reference: https://github.com/libp2p/specs/blob/master/noise/README.md
+\end{DoxyVerb}
+ 
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_ae6df228a6945462a98de4c5192b959ce}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!\_\_all\_\_@{\_\_all\_\_}}
+\index{\_\_all\_\_@{\_\_all\_\_}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{\_\_all\_\_}{\_\_all\_\_}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_ae6df228a6945462a98de4c5192b959ce} 
+list p2p\+\_\+engine.\+protocol.\+noise.\+\_\+\+\_\+all\+\_\+\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{comment}{\#\ Protocol\ identifiers}}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}PROTOCOL\_ID"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}PROTOCOL\_NAME"{}},}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{comment}{\#\ Exceptions}}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{stringliteral}{"{}NoiseError"{}},}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{stringliteral}{"{}HandshakeError"{}},}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{stringliteral}{"{}CryptoError"{}},}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{stringliteral}{"{}InvalidSignatureError"{}},}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{comment}{\#\ Configuration}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{stringliteral}{"{}HandshakeConfig"{}},}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{stringliteral}{"{}HandshakeResult"{}},}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{\#\ Main\ API}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{stringliteral}{"{}NoiseSecurity"{}},}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{stringliteral}{"{}NoiseSecurityTransport"{}},}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{\#\ Handshake\ (for\ advanced\ usage)}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{stringliteral}{"{}NoiseHandshake"{}},}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{\#\ Crypto\ primitives}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{"{}DHState"{}},}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{stringliteral}{"{}CipherState"{}},}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{stringliteral}{"{}SymmetricState"{}},}
+\DoxyCodeLine{00027\ ]}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00995}{995}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a647e32d16321572fe5be6a8db16d77d2}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!DH\_LEN@{DH\_LEN}}
+\index{DH\_LEN@{DH\_LEN}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{DH\_LEN}{DH\_LEN}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a647e32d16321572fe5be6a8db16d77d2} 
+int p2p\+\_\+engine.\+protocol.\+noise.\+DH\+\_\+\+LEN = 32}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00044}{44}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a5dd4f91e9d0c72f220a65ccd65d2ada1}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!HASH\_LEN@{HASH\_LEN}}
+\index{HASH\_LEN@{HASH\_LEN}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{HASH\_LEN}{HASH\_LEN}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a5dd4f91e9d0c72f220a65ccd65d2ada1} 
+int p2p\+\_\+engine.\+protocol.\+noise.\+HASH\+\_\+\+LEN = 32}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00046}{46}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a1b30accf4670c30b3f585eedeb59cfc8}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a1b30accf4670c30b3f585eedeb59cfc8} 
+p2p\+\_\+engine.\+protocol.\+noise.\+logger = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00036}{36}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a173c4c8eef2b65e3150d09b8c9781c30}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!MAC\_LEN@{MAC\_LEN}}
+\index{MAC\_LEN@{MAC\_LEN}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{MAC\_LEN}{MAC\_LEN}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a173c4c8eef2b65e3150d09b8c9781c30} 
+int p2p\+\_\+engine.\+protocol.\+noise.\+MAC\+\_\+\+LEN = 16}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00045}{45}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a9df91580a01874d13f57051269f49ba7}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!MAX\_MESSAGE\_SIZE@{MAX\_MESSAGE\_SIZE}}
+\index{MAX\_MESSAGE\_SIZE@{MAX\_MESSAGE\_SIZE}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{MAX\_MESSAGE\_SIZE}{MAX\_MESSAGE\_SIZE}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a9df91580a01874d13f57051269f49ba7} 
+int p2p\+\_\+engine.\+protocol.\+noise.\+MAX\+\_\+\+MESSAGE\+\_\+\+SIZE = 65535}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00043}{43}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a0792774e15dff1b38820721cfbdbb509}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!PROTOCOL\_ID@{PROTOCOL\_ID}}
+\index{PROTOCOL\_ID@{PROTOCOL\_ID}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{PROTOCOL\_ID}{PROTOCOL\_ID}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a0792774e15dff1b38820721cfbdbb509} 
+str p2p\+\_\+engine.\+protocol.\+noise.\+PROTOCOL\+\_\+\+ID = "{}/\+noise"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00039}{39}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a4eaf8a4b07585bdb456a3cac558eabe0}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!PROTOCOL\_NAME@{PROTOCOL\_NAME}}
+\index{PROTOCOL\_NAME@{PROTOCOL\_NAME}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{PROTOCOL\_NAME}{PROTOCOL\_NAME}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a4eaf8a4b07585bdb456a3cac558eabe0} 
+str p2p\+\_\+engine.\+protocol.\+noise.\+PROTOCOL\+\_\+\+NAME = "{}Noise\+\_\+\+XX\+\_\+25519\+\_\+\+Cha\+Cha\+Poly\+\_\+\+SHA256"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00040}{40}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1protocol_1_1noise_a5bb454eeb593ca769f8179ff36c1df62}\index{p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}!SIGNATURE\_PREFIX@{SIGNATURE\_PREFIX}}
+\index{SIGNATURE\_PREFIX@{SIGNATURE\_PREFIX}!p2p\_engine.protocol.noise@{p2p\_engine.protocol.noise}}
+\doxysubsubsection{\texorpdfstring{SIGNATURE\_PREFIX}{SIGNATURE\_PREFIX}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1protocol_1_1noise_a5bb454eeb593ca769f8179ff36c1df62} 
+str p2p\+\_\+engine.\+protocol.\+noise.\+SIGNATURE\+\_\+\+PREFIX = b"{}noise-\/libp2p-\/static-\/key:\+"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{noise_8py_source}{noise.\+py}} 第 \doxymbox{\hyperlink{noise_8py_source_l00049}{49}} 行定义.
+

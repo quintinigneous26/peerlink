@@ -1,0 +1,606 @@
+\doxysection{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub类 参考}
+\hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub}{}\label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+
+
+类 p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a2ef6e23aefd43b30f61d73c579d35c8c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}{peer\+\_\+id}}, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_config}{Gossip\+Sub\+Config}}]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}}=None, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_signature_policy}{Signature\+Policy}} \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a4eecfcc106f408a304ef977f4be227a4}{signature\+\_\+policy}}=\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_signature_policy_ac9f3bb466eaeb7e63286968f323609c5}{Signature\+Policy.\+STRICT\+\_\+\+NO\+\_\+\+SIGN}})
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aec705507331376b7f1db21b848be2aed}{start}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a1d77fcf6db5eb5404fceadaef1953a22}{stop}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_subscription}{Subscription}} \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a404a6361a8d0ac0fd4770e0297dea298}{subscribe}} (self, str topic)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aa8ebafab696cf97f4ff6524267c91d15}{unsubscribe}} (self, str topic)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aa83c94eabbde80808bf957a6e27ef5e6}{publish}} (self, str topic, bytes data)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a4376cd6fa77d0ffa79de2a65558e7ff3}{list\+\_\+peers}} (self, str topic)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a53f01733a4adfa1aa14aad97b5a9bb4d}{get\+\_\+topics}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ac116d5cfe0ab3e746543bad0678ec2a2}{add\+\_\+peer}} (self, str \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}{peer\+\_\+id}}, Any connection)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abbba43e60a59bddf68199e5eab713db4}{remove\+\_\+peer}} (self, str \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}{peer\+\_\+id}})
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ac43b05398a7e77d3582322c77e020166}{handle\+\_\+rpc}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}} rpc, str from\+\_\+peer)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a6a323342de63384e48c79463ce3caccb}{add\+\_\+topic\+\_\+handler}} (self, str topic, Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message}{Pub\+Sub\+Message}}]\+, Awaitable\+[None]\+]\+ handler)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_af564e488d45294cc4fb14fc23cbfd874}{remove\+\_\+topic\+\_\+handler}} (self, str topic, Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message}{Pub\+Sub\+Message}}]\+, Awaitable\+[None]\+]\+ handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}{peer\+\_\+id}} = peer\+\_\+id
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a5ffbb776b55c70588b137f964089bce7}{router}} = \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_router}{Gossip\+Sub\+Router}}(\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}{peer\+\_\+id}}, \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a4eecfcc106f408a304ef977f4be227a4}{signature\+\_\+policy}} = signature\+\_\+policy
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aedd3521b91c1e83ce6beb820826ec0a5}{\+\_\+handle\+\_\+control}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_control_message}{Control\+Message}} control, str from\+\_\+peer)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a1587f085c1bf6f78326769b55ffdae0c}{\+\_\+announce\+\_\+subscription}} (self, str topic, bool \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a404a6361a8d0ac0fd4770e0297dea298}{subscribe}})
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ab69dd6459bf055ee88945be45ba1a3fc}{\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers}} (self, List\+[str]\+ peers, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}} rpc)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a3c305ecf556936817cb55a5588d44393}{\+\_\+send\+\_\+rpc}} (self, str \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}{peer\+\_\+id}}, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}} rpc)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abdd1bd9b01e33f990d55890b29bcfb69}{\+\_\+heartbeat\+\_\+loop}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message}{Pub\+Sub\+Message}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abe28a6a62e9ac23ed8d14c9b6e6aa6ec}{\+\_\+get\+\_\+next\+\_\+message}} (self, str topic)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a5be95c97717f7079b3de125f1782b771}{\+\_\+topic\+\_\+handlers}} = \{\}
+\item 
+Dict\+[str, asyncio.\+Queue]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a9e077723af8b71af1cbca1e1f17e5704}{\+\_\+message\+\_\+queues}} = defaultdict(asyncio.\+Queue)
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ae09098dd9d374f52161346904fc95a9c}{\+\_\+heartbeat\+\_\+task}} = None
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a513712cdfb0094e4d9d3f1bf8d1493fa}{\+\_\+running}} = False
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a35e734e0a748b686a7a16126ac9fc664}{\+\_\+peer\+\_\+connections}} = \{\}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_acbe63df4e729fbcfa3f8b50cb9b089ed}{\+\_\+seqno\+\_\+lock}} = asyncio.\+Lock()
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ad142a49cca4724607f8d45421c3fc089}{\+\_\+seqno}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}GossipSub v1.1 implementation.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00795}{795}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a2ef6e23aefd43b30f61d73c579d35c8c}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a2ef6e23aefd43b30f61d73c579d35c8c} 
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+id}{, }\item[{Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_config}{Gossip\+Sub\+Config}}]\+ }]{config}{ = {\ttfamily None}, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_signature_policy}{Signature\+Policy}} }]{signature\+\_\+policy}{ = {\ttfamily \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_signature_policy_ac9f3bb466eaeb7e63286968f323609c5}{Signature\+Policy.\+STRICT\+\_\+\+NO\+\_\+\+SIGN}}}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00798}{798}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a1587f085c1bf6f78326769b55ffdae0c}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_announce\_subscription@{\_announce\_subscription}}
+\index{\_announce\_subscription@{\_announce\_subscription}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_announce\_subscription()}{\_announce\_subscription()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a1587f085c1bf6f78326769b55ffdae0c} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+announce\+\_\+subscription (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{, }\item[{bool}]{subscribe}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Announce subscription to all peers.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l01018}{1018}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l01024}{\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00848}{subscribe()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00857}{unsubscribe()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abe28a6a62e9ac23ed8d14c9b6e6aa6ec}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_get\_next\_message@{\_get\_next\_message}}
+\index{\_get\_next\_message@{\_get\_next\_message}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_get\_next\_message()}{\_get\_next\_message()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abe28a6a62e9ac23ed8d14c9b6e6aa6ec} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message}{Pub\+Sub\+Message}}]\+ p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+get\+\_\+next\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get next message from topic queue (for subscription iteration).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l01068}{1068}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00810}{\+\_\+message\+\_\+queues}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aedd3521b91c1e83ce6beb820826ec0a5}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_handle\_control@{\_handle\_control}}
+\index{\_handle\_control@{\_handle\_control}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_handle\_control()}{\_handle\_control()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aedd3521b91c1e83ce6beb820826ec0a5} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}}]\+ p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+handle\+\_\+control (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_control_message}{Control\+Message}}}]{control}{, }\item[{str}]{from\+\_\+peer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Handle control messages.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00983}{983}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00930}{handle\+\_\+rpc()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abdd1bd9b01e33f990d55890b29bcfb69}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_heartbeat\_loop@{\_heartbeat\_loop}}
+\index{\_heartbeat\_loop@{\_heartbeat\_loop}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_heartbeat\_loop()}{\_heartbeat\_loop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abdd1bd9b01e33f990d55890b29bcfb69} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+heartbeat\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Heartbeat loop.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l01051}{1051}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01024}{\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00823}{start()}}.
+
+函数调用图:\+
+% FIG 5
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a3c305ecf556936817cb55a5588d44393}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_send\_rpc@{\_send\_rpc}}
+\index{\_send\_rpc@{\_send\_rpc}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_send\_rpc()}{\_send\_rpc()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a3c305ecf556936817cb55a5588d44393} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+send\+\_\+rpc (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}}}]{rpc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Send RPC to a specific peer.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l01033}{1033}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00817}{\+\_\+peer\+\_\+connections}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01219}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l01024}{\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 7
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ab69dd6459bf055ee88945be45ba1a3fc}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_send\_rpc\_to\_peers@{\_send\_rpc\_to\_peers}}
+\index{\_send\_rpc\_to\_peers@{\_send\_rpc\_to\_peers}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_send\_rpc\_to\_peers()}{\_send\_rpc\_to\_peers()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ab69dd6459bf055ee88945be45ba1a3fc} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\+[str]\+}]{peers}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}}}]{rpc}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Send RPC to multiple peers.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l01024}{1024}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00817}{\+\_\+peer\+\_\+connections}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l01033}{\+\_\+send\+\_\+rpc()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01018}{\+\_\+announce\+\_\+subscription()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01051}{\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01205}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+handle\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00930}{handle\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01172}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+publish()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00868}{publish()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l01162}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+unsubscribe()}}.
+
+函数调用图:\+
+% FIG 8
+这是这个函数的调用关系图:\+
+% FIG 9
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ac116d5cfe0ab3e746543bad0678ec2a2}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!add\_peer@{add\_peer}}
+\index{add\_peer@{add\_peer}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{add\_peer()}{add\_peer()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ac116d5cfe0ab3e746543bad0678ec2a2} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+add\+\_\+peer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+id}{, }\item[{Any}]{connection}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a peer connection.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00920}{920}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00817}{\+\_\+peer\+\_\+connections}}, \doxymbox{\hyperlink{pubsub_8py_source_l00920}{add\+\_\+peer()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00920}{add\+\_\+peer()}}.
+
+函数调用图:\+
+% FIG 10
+这是这个函数的调用关系图:\+
+% FIG 11
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a6a323342de63384e48c79463ce3caccb}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!add\_topic\_handler@{add\_topic\_handler}}
+\index{add\_topic\_handler@{add\_topic\_handler}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{add\_topic\_handler()}{add\_topic\_handler()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a6a323342de63384e48c79463ce3caccb} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+add\+\_\+topic\+\_\+handler (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{, }\item[{Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message}{Pub\+Sub\+Message}}]\+, Awaitable\+[None]\+]\+}]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a message handler for a topic.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l01078}{1078}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00809}{\+\_\+topic\+\_\+handlers}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a53f01733a4adfa1aa14aad97b5a9bb4d}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!get\_topics@{get\_topics}}
+\index{get\_topics@{get\_topics}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{get\_topics()}{get\_topics()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a53f01733a4adfa1aa14aad97b5a9bb4d} 
+ List\+[str]\+ p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+get\+\_\+topics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get list of known topics.\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_a8f0b65cf55f68491f8b1d4ed2c195c90}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub}} .
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00916}{916}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ac43b05398a7e77d3582322c77e020166}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!handle\_rpc@{handle\_rpc}}
+\index{handle\_rpc@{handle\_rpc}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{handle\_rpc()}{handle\_rpc()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ac43b05398a7e77d3582322c77e020166} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}}]\+ p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+handle\+\_\+rpc (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c}{RPC}}}]{rpc}{, }\item[{str}]{from\+\_\+peer}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Handle incoming RPC from peer. Returns optional response RPC.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00930}{930}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00983}{\+\_\+handle\+\_\+control()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00810}{\+\_\+message\+\_\+queues}}, \doxymbox{\hyperlink{pubsub_8py_source_l01024}{\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00809}{\+\_\+topic\+\_\+handlers}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+函数调用图:\+
+% FIG 12
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a4376cd6fa77d0ffa79de2a65558e7ff3}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!list\_peers@{list\_peers}}
+\index{list\_peers@{list\_peers}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{list\_peers()}{list\_peers()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a4376cd6fa77d0ffa79de2a65558e7ff3} 
+ List\+[str]\+ p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+list\+\_\+peers (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}List peers subscribed to a topic.\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_ae34d1099a982481fb4e0009c752400aa}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub}} .
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00912}{912}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aa83c94eabbde80808bf957a6e27ef5e6}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!publish@{publish}}
+\index{publish@{publish}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{publish()}{publish()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aa83c94eabbde80808bf957a6e27ef5e6} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+publish (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Publish a message to a topic.\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_a57c44dd5f1c07d84b3eeacebcb9eadff}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub}} .
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00868}{868}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l01024}{\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00821}{\+\_\+seqno}}, \doxymbox{\hyperlink{pubsub_8py_source_l00820}{\+\_\+seqno\+\_\+lock}}, \doxymbox{\hyperlink{pubsub_8py_source_l00536}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub\+Router.\+\_\+seqno\+\_\+lock}}, \doxymbox{\hyperlink{autonat_8py_source_l00402}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATClient.\+peer\+\_\+id}}, \doxymbox{\hyperlink{autonat_8py_source_l00060}{p2p\+\_\+engine.\+detection.\+autonat.\+Dial\+Peer\+Info.\+peer\+\_\+id}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00075}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+peer\+\_\+id}}, \doxymbox{\hyperlink{event_8py_source_l00152}{p2p\+\_\+engine.\+event.\+P2\+PEvent.\+peer\+\_\+id}}, \doxymbox{\hyperlink{pubsub_8py_source_l00804}{peer\+\_\+id}}, \doxymbox{\hyperlink{pubsub_8py_source_l00509}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub\+Router.\+peer\+\_\+id}}, \doxymbox{\hyperlink{pubsub_8py_source_l00322}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Peer\+Info\+PB.\+peer\+\_\+id}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+函数调用图:\+
+% FIG 13
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abbba43e60a59bddf68199e5eab713db4}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!remove\_peer@{remove\_peer}}
+\index{remove\_peer@{remove\_peer}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{remove\_peer()}{remove\_peer()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_abbba43e60a59bddf68199e5eab713db4} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+remove\+\_\+peer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove a peer.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00925}{925}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00817}{\+\_\+peer\+\_\+connections}}, \doxymbox{\hyperlink{pubsub_8py_source_l00925}{remove\+\_\+peer()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00925}{remove\+\_\+peer()}}.
+
+函数调用图:\+
+% FIG 14
+这是这个函数的调用关系图:\+
+% FIG 15
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_af564e488d45294cc4fb14fc23cbfd874}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!remove\_topic\_handler@{remove\_topic\_handler}}
+\index{remove\_topic\_handler@{remove\_topic\_handler}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{remove\_topic\_handler()}{remove\_topic\_handler()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_af564e488d45294cc4fb14fc23cbfd874} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+remove\+\_\+topic\+\_\+handler (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{, }\item[{Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message}{Pub\+Sub\+Message}}]\+, Awaitable\+[None]\+]\+}]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove a message handler for a topic.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l01084}{1084}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00809}{\+\_\+topic\+\_\+handlers}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aec705507331376b7f1db21b848be2aed}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!start@{start}}
+\index{start@{start}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aec705507331376b7f1db21b848be2aed} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+start (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start the GossipSub router.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00823}{823}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01051}{\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00813}{\+\_\+heartbeat\+\_\+task}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00814}{\+\_\+running}}.
+
+函数调用图:\+
+% FIG 16
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a1d77fcf6db5eb5404fceadaef1953a22}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!stop@{stop}}
+\index{stop@{stop}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a1d77fcf6db5eb5404fceadaef1953a22} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop the GossipSub router.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00832}{832}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00813}{\+\_\+heartbeat\+\_\+task}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00814}{\+\_\+running}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a404a6361a8d0ac0fd4770e0297dea298}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{subscribe()}{subscribe()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a404a6361a8d0ac0fd4770e0297dea298} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_subscription}{Subscription}} p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+subscribe (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Subscribe to a topic.\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_a35be28b30937b792453f0d4c7745bd8e}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub}} .
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00848}{848}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l01018}{\+\_\+announce\+\_\+subscription()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+函数调用图:\+
+% FIG 17
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aa8ebafab696cf97f4ff6524267c91d15}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!unsubscribe@{unsubscribe}}
+\index{unsubscribe@{unsubscribe}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{unsubscribe()}{unsubscribe()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_aa8ebafab696cf97f4ff6524267c91d15} 
+ None p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+unsubscribe (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{topic}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Unsubscribe from a topic.\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_ae83e2fa466cee39405d97b22a9907757}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub}} .
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00857}{857}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l01018}{\+\_\+announce\+\_\+subscription()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00810}{\+\_\+message\+\_\+queues}}, \doxymbox{\hyperlink{pubsub_8py_source_l00809}{\+\_\+topic\+\_\+handlers}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{router}}.
+
+函数调用图:\+
+% FIG 18
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ae09098dd9d374f52161346904fc95a9c}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_heartbeat\_task@{\_heartbeat\_task}}
+\index{\_heartbeat\_task@{\_heartbeat\_task}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_heartbeat\_task}{\_heartbeat\_task}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ae09098dd9d374f52161346904fc95a9c} 
+Optional\+[asyncio.\+Task]\+ p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+heartbeat\+\_\+task = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00813}{813}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00823}{start()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00832}{stop()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a9e077723af8b71af1cbca1e1f17e5704}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_message\_queues@{\_message\_queues}}
+\index{\_message\_queues@{\_message\_queues}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_message\_queues}{\_message\_queues}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a9e077723af8b71af1cbca1e1f17e5704} 
+Dict\+[str, asyncio.\+Queue]\+ p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+message\+\_\+queues = defaultdict(asyncio.\+Queue)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00810}{810}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01238}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+\_\+get\+\_\+next\+\_\+message()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01068}{\+\_\+get\+\_\+next\+\_\+message()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01205}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+handle\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00930}{handle\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01162}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+unsubscribe()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00857}{unsubscribe()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a35e734e0a748b686a7a16126ac9fc664}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_peer\_connections@{\_peer\_connections}}
+\index{\_peer\_connections@{\_peer\_connections}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_peer\_connections}{\_peer\_connections}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a35e734e0a748b686a7a16126ac9fc664} 
+dict p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+peer\+\_\+connections = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00817}{817}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01227}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+\_\+send\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01033}{\+\_\+send\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01219}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01024}{\+\_\+send\+\_\+rpc\+\_\+to\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01197}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+add\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00920}{add\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01201}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+remove\+\_\+peer()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00925}{remove\+\_\+peer()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a513712cdfb0094e4d9d3f1bf8d1493fa}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_running@{\_running}}
+\index{\_running@{\_running}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a513712cdfb0094e4d9d3f1bf8d1493fa} 
+bool p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00814}{814}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01051}{\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{client_8py_source_l00570}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+keepalive\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00292}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00154}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00446}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+ws\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{p2p\+\_\+client.\+P2\+PClient.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00744}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00403}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00322}{p2p\+\_\+client.\+P2\+PClient.\+initialize()}}, \doxymbox{\hyperlink{client_8py_source_l00218}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+initialize()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00823}{start()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01289}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+start()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00543}{p2p\+\_\+client.\+P2\+PClient.\+start\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00832}{stop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01294}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+stop()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+stop()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ad142a49cca4724607f8d45421c3fc089}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_seqno@{\_seqno}}
+\index{\_seqno@{\_seqno}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_seqno}{\_seqno}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_ad142a49cca4724607f8d45421c3fc089} 
+int p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+seqno = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00821}{821}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01172}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+publish()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00868}{publish()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_acbe63df4e729fbcfa3f8b50cb9b089ed}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_seqno\_lock@{\_seqno\_lock}}
+\index{\_seqno\_lock@{\_seqno\_lock}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_seqno\_lock}{\_seqno\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_acbe63df4e729fbcfa3f8b50cb9b089ed} 
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+seqno\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00820}{820}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01172}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+publish()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00868}{publish()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a5be95c97717f7079b3de125f1782b771}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!\_topic\_handlers@{\_topic\_handlers}}
+\index{\_topic\_handlers@{\_topic\_handlers}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{\_topic\_handlers}{\_topic\_handlers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a5be95c97717f7079b3de125f1782b771} 
+dict p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+topic\+\_\+handlers = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00809}{809}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01078}{add\+\_\+topic\+\_\+handler()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00930}{handle\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01084}{remove\+\_\+topic\+\_\+handler()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00857}{unsubscribe()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!peer\_id@{peer\_id}}
+\index{peer\_id@{peer\_id}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{peer\_id}{peer\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0} 
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+peer\+\_\+id = peer\+\_\+id}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00804}{804}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tls_8py_source_l00175}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSHandshake\+Payload.\+encode()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01172}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+publish()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00868}{publish()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00078}{p2p\+\_\+engine.\+transport.\+webrtc.\+Signaling\+Message.\+to\+\_\+json()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a5ffbb776b55c70588b137f964089bce7}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!router@{router}}
+\index{router@{router}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{router}{router}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a5ffbb776b55c70588b137f964089bce7} 
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+router = \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_router}{Gossip\+Sub\+Router}}(\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a598d42df51e9bd2b3ce95dbca3fccaa0}{peer\+\_\+id}}, \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}})}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00805}{805}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01018}{\+\_\+announce\+\_\+subscription()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00983}{\+\_\+handle\+\_\+control()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01051}{\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01197}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+add\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00920}{add\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01194}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+get\+\_\+topics()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00916}{get\+\_\+topics()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01205}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+handle\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00930}{handle\+\_\+rpc()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01191}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+list\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00912}{list\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01172}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+publish()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00868}{publish()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01201}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+remove\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00925}{remove\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00848}{subscribe()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01162}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+unsubscribe()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00857}{unsubscribe()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a4eecfcc106f408a304ef977f4be227a4}\index{p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}!signature\_policy@{signature\_policy}}
+\index{signature\_policy@{signature\_policy}!p2p\_engine.protocol.pubsub.GossipSub@{p2p\_engine.protocol.pubsub.GossipSub}}
+\doxysubsubsection{\texorpdfstring{signature\_policy}{signature\_policy}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_a4eecfcc106f408a304ef977f4be227a4} 
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+signature\+\_\+policy = signature\+\_\+policy}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00806}{806}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+protocol/\+\doxymbox{\hyperlink{pubsub_8py}{pubsub.\+py}}\end{DoxyCompactItemize}

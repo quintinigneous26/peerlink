@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::dht::query_optimizer::PeerSelector</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a87e4327f2ffab06d140ccd4eaa906f03" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.dht.query_optimizer.PeerSelector::_strategy</definition>
+        <argsstring></argsstring>
+        <name>_strategy</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector._strategy</qualifiedname>
+        <initializer>=  strategy</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="205" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="205" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac4258750859c2d5fdd90ed72e0ec0aff" compoundref="query__optimizer_8py" startline="213" endline="236">p2p_engine.dht.query_optimizer.PeerSelector.select_peers</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a4aac96efa62141b18a8f31026a81f714" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict p2p_engine.dht.query_optimizer.PeerSelector::_peer_performance</definition>
+        <argsstring></argsstring>
+        <name>_peer_performance</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector._peer_performance</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="206" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="206" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1aaa13e4466a097464d91fc632a5c0824c" compoundref="query__optimizer_8py" startline="288" endline="308">p2p_engine.dht.query_optimizer.PeerSelector._select_adaptive</referencedby>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ad9b21d5a497b22c0ebf972e15e16b3dc" compoundref="query__optimizer_8py" startline="265" endline="282">p2p_engine.dht.query_optimizer.PeerSelector._select_latency_aware</referencedby>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a7da8dcfda924aa26c2ee1251e2c9954b" compoundref="query__optimizer_8py" startline="325" endline="340">p2p_engine.dht.query_optimizer.PeerSelector.record_failure</referencedby>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a57f3c44df43ad367d38a3abf4acf08b0" compoundref="query__optimizer_8py" startline="309" endline="324">p2p_engine.dht.query_optimizer.PeerSelector.record_success</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ae9e6675662403c9108a18aa98dae4ff9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.dht.query_optimizer.PeerSelector.__init__</definition>
+        <argsstring>(self, PeerSelectionStrategy strategy=PeerSelectionStrategy.ADAPTIVE)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy" kindref="compound">PeerSelectionStrategy</ref></type>
+          <declname>strategy</declname>
+          <defval><ref refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy_1afa44dcdf3731f7c39c4a7964990337ce" kindref="member">PeerSelectionStrategy.ADAPTIVE</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="201" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="204" bodyend="207"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac4258750859c2d5fdd90ed72e0ec0aff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[<ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" kindref="compound">PeerEntry</ref>]</type>
+        <definition> List[PeerEntry] p2p_engine.dht.query_optimizer.PeerSelector.select_peers</definition>
+        <argsstring>(self, bytes target_id, List[PeerEntry] candidates, int count=ALPHA)</argsstring>
+        <name>select_peers</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector.select_peers</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>target_id</declname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>candidates</declname>
+          <array>[PeerEntry]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+          <defval>ALPHA</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Select peers for query.
+
+Args:
+    target_id: Target ID for distance calculation
+    candidates: Available peers
+    count: Number of peers to select
+
+Returns:
+    Selected peers
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="208" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="213" bodyend="236"/>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1aaa13e4466a097464d91fc632a5c0824c" compoundref="query__optimizer_8py" startline="288" endline="308">p2p_engine.dht.query_optimizer.PeerSelector._select_adaptive</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac1712238ba672d0a56df01819085cafa" compoundref="query__optimizer_8py" startline="242" endline="250">p2p_engine.dht.query_optimizer.PeerSelector._select_closest</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ad9b21d5a497b22c0ebf972e15e16b3dc" compoundref="query__optimizer_8py" startline="265" endline="282">p2p_engine.dht.query_optimizer.PeerSelector._select_latency_aware</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1acc497ee1089f9ca0ff61cb0336cfc184" compoundref="query__optimizer_8py" startline="255" endline="259">p2p_engine.dht.query_optimizer.PeerSelector._select_random</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a87e4327f2ffab06d140ccd4eaa906f03" compoundref="query__optimizer_8py" startline="205">p2p_engine.dht.query_optimizer.PeerSelector._strategy</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a57f3c44df43ad367d38a3abf4acf08b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.dht.query_optimizer.PeerSelector.record_success</definition>
+        <argsstring>(self, bytes peer_id, float latency_ms)</argsstring>
+        <name>record_success</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector.record_success</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>peer_id</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>latency_ms</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Record successful query.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="309" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="309" bodyend="324"/>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a4aac96efa62141b18a8f31026a81f714" compoundref="query__optimizer_8py" startline="206">p2p_engine.dht.query_optimizer.PeerSelector._peer_performance</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a7da8dcfda924aa26c2ee1251e2c9954b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.dht.query_optimizer.PeerSelector.record_failure</definition>
+        <argsstring>(self, bytes peer_id)</argsstring>
+        <name>record_failure</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector.record_failure</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>peer_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Record failed query.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="325" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="325" bodyend="340"/>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a4aac96efa62141b18a8f31026a81f714" compoundref="query__optimizer_8py" startline="206">p2p_engine.dht.query_optimizer.PeerSelector._peer_performance</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac1712238ba672d0a56df01819085cafa" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[<ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" kindref="compound">PeerEntry</ref>]</type>
+        <definition> List[PeerEntry] p2p_engine.dht.query_optimizer.PeerSelector._select_closest</definition>
+        <argsstring>(self, bytes target_id, List[PeerEntry] candidates, int count)</argsstring>
+        <name>_select_closest</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector._select_closest</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>target_id</declname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>candidates</declname>
+          <array>[PeerEntry]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Select closest peers by XOR distance.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="237" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="242" bodyend="250"/>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac4258750859c2d5fdd90ed72e0ec0aff" compoundref="query__optimizer_8py" startline="213" endline="236">p2p_engine.dht.query_optimizer.PeerSelector.select_peers</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1acc497ee1089f9ca0ff61cb0336cfc184" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[<ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" kindref="compound">PeerEntry</ref>]</type>
+        <definition> List[PeerEntry] p2p_engine.dht.query_optimizer.PeerSelector._select_random</definition>
+        <argsstring>(self, List[PeerEntry] candidates, int count)</argsstring>
+        <name>_select_random</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector._select_random</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>candidates</declname>
+          <array>[PeerEntry]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Random peer selection.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="251" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="255" bodyend="259"/>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac4258750859c2d5fdd90ed72e0ec0aff" compoundref="query__optimizer_8py" startline="213" endline="236">p2p_engine.dht.query_optimizer.PeerSelector.select_peers</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ad9b21d5a497b22c0ebf972e15e16b3dc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[<ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" kindref="compound">PeerEntry</ref>]</type>
+        <definition> List[PeerEntry] p2p_engine.dht.query_optimizer.PeerSelector._select_latency_aware</definition>
+        <argsstring>(self, bytes target_id, List[PeerEntry] candidates, int count)</argsstring>
+        <name>_select_latency_aware</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector._select_latency_aware</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>target_id</declname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>candidates</declname>
+          <array>[PeerEntry]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Select peers considering latency.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="260" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="265" bodyend="282"/>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a4aac96efa62141b18a8f31026a81f714" compoundref="query__optimizer_8py" startline="206">p2p_engine.dht.query_optimizer.PeerSelector._peer_performance</references>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac4258750859c2d5fdd90ed72e0ec0aff" compoundref="query__optimizer_8py" startline="213" endline="236">p2p_engine.dht.query_optimizer.PeerSelector.select_peers</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1aaa13e4466a097464d91fc632a5c0824c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[<ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" kindref="compound">PeerEntry</ref>]</type>
+        <definition> List[PeerEntry] p2p_engine.dht.query_optimizer.PeerSelector._select_adaptive</definition>
+        <argsstring>(self, bytes target_id, List[PeerEntry] candidates, int count)</argsstring>
+        <name>_select_adaptive</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.PeerSelector._select_adaptive</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>target_id</declname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>candidates</declname>
+          <array>[PeerEntry]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Adaptive peer selection based on historical performance.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="283" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="288" bodyend="308"/>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a4aac96efa62141b18a8f31026a81f714" compoundref="query__optimizer_8py" startline="206">p2p_engine.dht.query_optimizer.PeerSelector._peer_performance</references>
+        <referencedby refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac4258750859c2d5fdd90ed72e0ec0aff" compoundref="query__optimizer_8py" startline="213" endline="236">p2p_engine.dht.query_optimizer.PeerSelector.select_peers</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Selects optimal peers for DHT queries.
+
+Uses various strategies to optimize query performance.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/dht/query_optimizer.py" line="194" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="194" bodyend="340"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ae9e6675662403c9108a18aa98dae4ff9" prot="public" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a4aac96efa62141b18a8f31026a81f714" prot="protected" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>_peer_performance</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1aaa13e4466a097464d91fc632a5c0824c" prot="protected" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>_select_adaptive</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac1712238ba672d0a56df01819085cafa" prot="protected" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>_select_closest</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ad9b21d5a497b22c0ebf972e15e16b3dc" prot="protected" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>_select_latency_aware</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1acc497ee1089f9ca0ff61cb0336cfc184" prot="protected" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>_select_random</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a87e4327f2ffab06d140ccd4eaa906f03" prot="protected" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>_strategy</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a7da8dcfda924aa26c2ee1251e2c9954b" prot="public" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>record_failure</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1a57f3c44df43ad367d38a3abf4acf08b0" prot="public" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>record_success</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_1ac4258750859c2d5fdd90ed72e0ec0aff" prot="public" virt="non-virtual"><scope>p2p_engine::dht::query_optimizer::PeerSelector</scope><name>select_peers</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

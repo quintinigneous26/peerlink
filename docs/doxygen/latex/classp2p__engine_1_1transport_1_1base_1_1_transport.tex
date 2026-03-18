@@ -1,0 +1,132 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+base.\+Transport类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1base_1_1_transport}{}\label{classp2p__engine_1_1transport_1_1base_1_1_transport}\index{p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}}
+
+
+类 p2p\+\_\+engine.\+transport.\+base.\+Transport 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+base.\+Transport 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_a75e857ad1537e55cb8c1c0c33bae9e16}{dial}} (self, str addr)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener}{Listener}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_ad6b5a798b3530fb18570596f66334843}{listen}} (self, str addr)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adfb364ee5a07f98fb541d346966a79ce}{protocols}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adb257dcbc0d5b57b08611a4b1e0ac285}{close}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}传输层抽象基类
+
+定义传输层的统一接口，所有传输实现都必须遵循。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00117}{117}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_transport_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_transport_adb257dcbc0d5b57b08611a4b1e0ac285}\index{p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_transport_adb257dcbc0d5b57b08611a4b1e0ac285} 
+ None p2p\+\_\+engine.\+transport.\+base.\+Transport.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭传输层，释放所有资源\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a32d96af9a030bd1bb59eb5f110a91960}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a5a5a2e75fe6d338067aa5178e94c8a30}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_a399c11aaf1c8c082a1392acc90866a29}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ae633f072792f769c300ce804513cd103}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00167}{167}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_transport_a75e857ad1537e55cb8c1c0c33bae9e16}\index{p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}!dial@{dial}}
+\index{dial@{dial}!p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}}
+\doxysubsubsection{\texorpdfstring{dial()}{dial()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_transport_a75e857ad1537e55cb8c1c0c33bae9e16} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} p2p\+\_\+engine.\+transport.\+base.\+Transport.\+dial (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}建立到指定地址的连接
+
+Args:
+    addr: 目标地址（格式取决于传输类型）
+
+Returns:
+    建立的连接
+
+Raises:
+    ConnectionError: 连接失败
+\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a59147e223c17ab793643a7fac6d6ee61}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8289ba9593d890276c29eff7c3a4b232}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_a734be440a3e0dda052e1baa3ed9115de}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaf73bf57e04631e2d54db74a7ad660c5}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00125}{125}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_transport_ad6b5a798b3530fb18570596f66334843}\index{p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}!listen@{listen}}
+\index{listen@{listen}!p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_transport_ad6b5a798b3530fb18570596f66334843} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener}{Listener}} p2p\+\_\+engine.\+transport.\+base.\+Transport.\+listen (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}在指定地址开始监听
+
+Args:
+    addr: 监听地址（格式取决于传输类型）
+
+Returns:
+    监听器实例
+
+Raises:
+    ListenerError: 监听失败
+\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a7adf433b81f9f8ac38a8c30346ef77a2}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8d2efed25932f102c3b71b3c5fbee0bf}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_a47c09e2d3c3d1ba10b0c9aee8b54f737}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a8ab5e5d9d7aa2b135ea39aabb2140950}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00141}{141}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_transport_adfb364ee5a07f98fb541d346966a79ce}\index{p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}!protocols@{protocols}}
+\index{protocols@{protocols}!p2p\_engine.transport.base.Transport@{p2p\_engine.transport.base.Transport}}
+\doxysubsubsection{\texorpdfstring{protocols()}{protocols()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_transport_adfb364ee5a07f98fb541d346966a79ce} 
+ List\+[str]\+ p2p\+\_\+engine.\+transport.\+base.\+Transport.\+protocols (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}返回支持的协议列表
+
+Returns:
+    协议ID列表
+\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a2426491c1c197cf5405d40deea3d063b}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ae282f67eb1ce27a0d35130e90e9ccb07}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_ad518cffa7952ba4029c746475ba62606}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a10af0579345e0860223d12c21ad6a314}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Transport}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00157}{157}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{base_8py}{base.\+py}}\end{DoxyCompactItemize}

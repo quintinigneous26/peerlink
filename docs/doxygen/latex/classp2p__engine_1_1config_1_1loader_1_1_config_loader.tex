@@ -1,0 +1,345 @@
+\doxysection{p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader类 参考}
+\hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader}{}\label{classp2p__engine_1_1config_1_1loader_1_1_config_loader}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+
+
+p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a323faf2ece394a81bf7aa0b10ee6c225}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a8764c494b9705aa00804e837fecc8629}{local\+\_\+config\+\_\+path}}=None, Optional\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_acec9e00487c483d59442fa670defecb9}{remote\+\_\+config\+\_\+url}}=None)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a7255847c8a63a32405fe88334f5f3790}{config}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_ab4d04ab818390315d6ee0f60a108dbe7}{isp\+\_\+profile}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a657b48f9f17685504ed6390ac9c32b84}{load}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a79f087740d43891f8efc195d93c8a5bd}{set\+\_\+isp}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} isp)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a71fc8e971b9169a9482624e622333eeb}{on\+\_\+update}} (self, Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}}]\+, Awaitable\+[None]\+]\+ callback)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a47f700eb6c1828f7d898072be94c086d}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a8764c494b9705aa00804e837fecc8629}{local\+\_\+config\+\_\+path}} = local\+\_\+config\+\_\+path
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_acec9e00487c483d59442fa670defecb9}{remote\+\_\+config\+\_\+url}} = remote\+\_\+config\+\_\+url
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a462ea1ddccf9a0962b1279653bca4005}{\+\_\+load\+\_\+local}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_af579c8cf83d33c3131ad1235e450e9b0}{\+\_\+load\+\_\+remote}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a18ab8022e4ae8f68385fdfa71dec683a}{\+\_\+merge\+\_\+config}} (self, dict data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a904c370fdcdb06f1864d808d2621ac49}{\+\_\+config}} = DEFAULT\+\_\+\+CONFIG
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a5e2841a489ff1e8955f51052d35a94db}{\+\_\+isp\+\_\+profile}} = None
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a6d7d3bd61c3539baedb071f4da2cfc90}{\+\_\+remote\+\_\+task}} = None
+\item 
+Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}}]\+, Awaitable\+[None]\+]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a50d9c878e425081c9b1f3d872430b649}{\+\_\+on\+\_\+update}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}配置加载器\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00050}{50}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a323faf2ece394a81bf7aa0b10ee6c225}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a323faf2ece394a81bf7aa0b10ee6c225} 
+p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[str]\+ }]{local\+\_\+config\+\_\+path}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{remote\+\_\+config\+\_\+url}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00053}{53}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a462ea1ddccf9a0962b1279653bca4005}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_load\_local@{\_load\_local}}
+\index{\_load\_local@{\_load\_local}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_load\_local()}{\_load\_local()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a462ea1ddccf9a0962b1279653bca4005} 
+ None p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+load\+\_\+local (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}加载本地配置\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00094}{94}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00141}{\+\_\+merge\+\_\+config()}} , 以及 \doxymbox{\hyperlink{loader_8py_source_l00058}{local\+\_\+config\+\_\+path}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00078}{load()}}.
+
+函数调用图:\+
+% FIG 1
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_af579c8cf83d33c3131ad1235e450e9b0}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_load\_remote@{\_load\_remote}}
+\index{\_load\_remote@{\_load\_remote}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_load\_remote()}{\_load\_remote()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_af579c8cf83d33c3131ad1235e450e9b0} 
+ None p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+load\+\_\+remote (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}加载远程配置（后台）\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00115}{115}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00061}{\+\_\+config}}, \doxymbox{\hyperlink{loader_8py_source_l00066}{\+\_\+on\+\_\+update}} , 以及 \doxymbox{\hyperlink{loader_8py_source_l00059}{remote\+\_\+config\+\_\+url}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00078}{load()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a18ab8022e4ae8f68385fdfa71dec683a}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_merge\_config@{\_merge\_config}}
+\index{\_merge\_config@{\_merge\_config}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_merge\_config()}{\_merge\_config()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a18ab8022e4ae8f68385fdfa71dec683a} 
+ None p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+merge\+\_\+config (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{dict}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}深度合并配置到当前配置
+
+支持嵌套配置合并，保留未指定的默认值
+
+Args:
+    data: 要合并的配置字典
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00141}{141}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00061}{\+\_\+config}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00094}{\+\_\+load\+\_\+local()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a47f700eb6c1828f7d898072be94c086d}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!close@{close}}
+\index{close@{close}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a47f700eb6c1828f7d898072be94c086d} 
+ None p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭加载器\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00162}{162}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00063}{\+\_\+remote\+\_\+task}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00793}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+\+\_\+aexit\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l01000}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+\+\_\+aexit\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{yamux_8py_source_l00958}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+\+\_\+aexit\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{dcutr_8py_source_l00705}{p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RProtocol.\+\_\+\+\_\+del\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00302}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+\_\+handle\+\_\+event()}}, \doxymbox{\hyperlink{yamux_8py_source_l00817}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+handle\+\_\+frame()}}, \doxymbox{\hyperlink{mplex_8py_source_l00683}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+read\+\_\+loop()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00883}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+read\+\_\+loop()}}, \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00382}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+data\+\_\+channel\+\_\+callbacks()}}, \doxymbox{\hyperlink{mplex_8py_source_l00670}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+start\+\_\+read\+\_\+loop()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00870}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+start\+\_\+read\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00754}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+start\+\_\+read\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a7255847c8a63a32405fe88334f5f3790}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!config@{config}}
+\index{config@{config}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{config()}{config()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a7255847c8a63a32405fe88334f5f3790} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}} p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+config (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取当前配置\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00069}{69}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00061}{\+\_\+config}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_ab4d04ab818390315d6ee0f60a108dbe7}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!isp\_profile@{isp\_profile}}
+\index{isp\_profile@{isp\_profile}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{isp\_profile()}{isp\_profile()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_ab4d04ab818390315d6ee0f60a108dbe7} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}} p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+isp\+\_\+profile (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取当前运营商配置\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00074}{74}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00062}{\+\_\+isp\+\_\+profile}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a657b48f9f17685504ed6390ac9c32b84}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!load@{load}}
+\index{load@{load}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a657b48f9f17685504ed6390ac9c32b84} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}} p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+load (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}加载配置（启动时调用）
+
+1. 立即加载本地配置
+2. 后台异步拉取远程配置
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00078}{78}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00061}{\+\_\+config}}, \doxymbox{\hyperlink{loader_8py_source_l00094}{\+\_\+load\+\_\+local()}}, \doxymbox{\hyperlink{loader_8py_source_l00115}{\+\_\+load\+\_\+remote()}}, \doxymbox{\hyperlink{loader_8py_source_l00063}{\+\_\+remote\+\_\+task}} , 以及 \doxymbox{\hyperlink{loader_8py_source_l00059}{remote\+\_\+config\+\_\+url}}.
+
+函数调用图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a71fc8e971b9169a9482624e622333eeb}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!on\_update@{on\_update}}
+\index{on\_update@{on\_update}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{on\_update()}{on\_update()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a71fc8e971b9169a9482624e622333eeb} 
+ None p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+on\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}}]\+, Awaitable\+[None]\+]\+}]{callback}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}注册配置更新回调\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00158}{158}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00066}{\+\_\+on\+\_\+update}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a79f087740d43891f8efc195d93c8a5bd}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!set\_isp@{set\_isp}}
+\index{set\_isp@{set\_isp}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{set\_isp()}{set\_isp()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a79f087740d43891f8efc195d93c8a5bd} 
+ None p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+set\+\_\+isp (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}}}]{isp}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}设置当前运营商（探测完成后调用）\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00153}{153}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00062}{\+\_\+isp\+\_\+profile}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a904c370fdcdb06f1864d808d2621ac49}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_config@{\_config}}
+\index{\_config@{\_config}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_config}{\_config}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a904c370fdcdb06f1864d808d2621ac49} 
+p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+config = DEFAULT\+\_\+\+CONFIG\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00061}{61}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux_8py_source_l00817}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+handle\+\_\+frame()}}, \doxymbox{\hyperlink{loader_8py_source_l00115}{\+\_\+load\+\_\+remote()}}, \doxymbox{\hyperlink{loader_8py_source_l00141}{\+\_\+merge\+\_\+config()}}, \doxymbox{\hyperlink{yamux_8py_source_l00767}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+start\+\_\+keepalive()}}, \doxymbox{\hyperlink{loader_8py_source_l00069}{config()}}, \doxymbox{\hyperlink{engine_8py_source_l00158}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+initialize()}}, \doxymbox{\hyperlink{loader_8py_source_l00078}{load()}}, \doxymbox{\hyperlink{yamux_8py_source_l00600}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+open\+\_\+stream()}} , 以及 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00240}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+open\+\_\+streams\+\_\+batch()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a5e2841a489ff1e8955f51052d35a94db}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_isp\_profile@{\_isp\_profile}}
+\index{\_isp\_profile@{\_isp\_profile}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_isp\_profile}{\_isp\_profile}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a5e2841a489ff1e8955f51052d35a94db} 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}]\+ p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+isp\+\_\+profile = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00062}{62}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00074}{isp\+\_\+profile()}} , 以及 \doxymbox{\hyperlink{loader_8py_source_l00153}{set\+\_\+isp()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a50d9c878e425081c9b1f3d872430b649}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_on\_update@{\_on\_update}}
+\index{\_on\_update@{\_on\_update}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_on\_update}{\_on\_update}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a50d9c878e425081c9b1f3d872430b649} 
+Optional\+[Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}}]\+, Awaitable\+[None]\+]\+]\+ p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+on\+\_\+update = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00066}{66}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00115}{\+\_\+load\+\_\+remote()}} , 以及 \doxymbox{\hyperlink{loader_8py_source_l00158}{on\+\_\+update()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a6d7d3bd61c3539baedb071f4da2cfc90}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!\_remote\_task@{\_remote\_task}}
+\index{\_remote\_task@{\_remote\_task}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{\_remote\_task}{\_remote\_task}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a6d7d3bd61c3539baedb071f4da2cfc90} 
+Optional\+[asyncio.\+Task]\+ p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+remote\+\_\+task = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00063}{63}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00162}{close()}} , 以及 \doxymbox{\hyperlink{loader_8py_source_l00078}{load()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a8764c494b9705aa00804e837fecc8629}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!local\_config\_path@{local\_config\_path}}
+\index{local\_config\_path@{local\_config\_path}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{local\_config\_path}{local\_config\_path}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_a8764c494b9705aa00804e837fecc8629} 
+p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+local\+\_\+config\+\_\+path = local\+\_\+config\+\_\+path}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00058}{58}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00094}{\+\_\+load\+\_\+local()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1loader_1_1_config_loader_acec9e00487c483d59442fa670defecb9}\index{p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}!remote\_config\_url@{remote\_config\_url}}
+\index{remote\_config\_url@{remote\_config\_url}!p2p\_engine.config.loader.ConfigLoader@{p2p\_engine.config.loader.ConfigLoader}}
+\doxysubsubsection{\texorpdfstring{remote\_config\_url}{remote\_config\_url}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1loader_1_1_config_loader_acec9e00487c483d59442fa670defecb9} 
+p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+remote\+\_\+config\+\_\+url = remote\+\_\+config\+\_\+url}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00059}{59}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00115}{\+\_\+load\+\_\+remote()}} , 以及 \doxymbox{\hyperlink{loader_8py_source_l00078}{load()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+config/\+\doxymbox{\hyperlink{loader_8py}{loader.\+py}}\end{DoxyCompactItemize}

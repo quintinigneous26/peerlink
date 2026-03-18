@@ -1,0 +1,156 @@
+\doxysection{defaults.\+py}
+\hypertarget{defaults_8py_source}{}\label{defaults_8py_source}\index{p2p\_engine/config/defaults.py@{p2p\_engine/config/defaults.py}}
+\doxymbox{\hyperlink{defaults_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1defaults}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00002}00002\ \textcolor{stringliteral}{默认配置}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00004}00004\ \textcolor{stringliteral}{分层配置结构：}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00005}00005\ \textcolor{stringliteral}{\ \ DEFAULT\_CONFIG\ →\ REGION\_CONFIG\ →\ ISP\_CONFIG\ →\ SCENARIO\_CONFIG}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00007}00007\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00008}00008\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ List,\ Optional}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00009}00009\ \textcolor{keyword}{import}\ json}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00012}00012\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00013}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config}{00013}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config}{STUNConfig}}:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00014}00014\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}STUN\ 配置"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00015}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config_a72a9894e91a1193377d1bd28b3d5f997}{00015}}\ \ \ \ \ servers:\ List[str]\ =\ field(default\_factory=\textcolor{keyword}{lambda}:\ [}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00016}00016\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stun.l.google.com:19302"{}},}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stun1.l.google.com:19302"{}},}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stun.stunprotocol.org:3478"{}},}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00019}00019\ \ \ \ \ ])}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00020}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config_a27370a45e03e022c3fe9832c1c5f16d5}{00020}}\ \ \ \ \ timeout\_ms:\ int\ =\ 3000}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00021}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config_afe7f51145920f40f4a6acb021e20c939}{00021}}\ \ \ \ \ retry\_count:\ int\ =\ 3}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00024}00024\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00025}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config}{00025}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config}{PunchConfig}}:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00026}00026\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}打孔配置"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00027}00027\ \ \ \ \ \textcolor{comment}{\#\ 并行端口数}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00028}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config_a9c9c1188d3a43a8712d3efaee029e0d3}{00028}}\ \ \ \ \ parallel\_ports:\ int\ =\ 4}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00029}00029\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00030}00030\ \ \ \ \ \textcolor{comment}{\#\ 端口策略:\ "{}sequential"{}\ |\ "{}random"{}\ |\ "{}hybrid"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00031}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config_ae7d14a573b748d71f405af7a37663f36}{00031}}\ \ \ \ \ port\_strategy:\ str\ =\ \textcolor{stringliteral}{"{}sequential"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00033}00033\ \ \ \ \ \textcolor{comment}{\#\ 端口预测范围}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00034}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config_a8c93ff18be0aff944e19fdf6a11f5460}{00034}}\ \ \ \ \ port\_predict\_range:\ int\ =\ 8\ \ \textcolor{comment}{\#\ 预测\ base+N\ 个端口}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00035}00035\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00036}00036\ \ \ \ \ \textcolor{comment}{\#\ 超时配置}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00037}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config_a717954915dfd7f5e22cd79856407caa0}{00037}}\ \ \ \ \ timeout\_ms:\ int\ =\ 5000}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00038}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config_a76ff042c6c342a602ce447d7056647a5}{00038}}\ \ \ \ \ retry\_count:\ int\ =\ 3}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00039}00039\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00040}00040\ \ \ \ \ \textcolor{comment}{\#\ 并发限制}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00041}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config_a2e2bb2d23866e1fbb96b39a71573e9ef}{00041}}\ \ \ \ \ max\_concurrent:\ int\ =\ 8}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00044}00044\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00045}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config}{00045}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config}{HeartbeatConfig}}:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00046}00046\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}心跳配置"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00047}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_a77403d1aaa088972a4105e122b7e6712}{00047}}\ \ \ \ \ interval\_ms:\ int\ =\ 30000\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 心跳间隔}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00048}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_a6da4831598cf5501852687ee9b3ac389}{00048}}\ \ \ \ \ min\_interval\_ms:\ int\ =\ 15000\ \ \ \ \ \ \textcolor{comment}{\#\ 最小间隔}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00049}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_ac72676582d562ea3a9596175a61b0765}{00049}}\ \ \ \ \ max\_interval\_ms:\ int\ =\ 60000\ \ \ \ \ \ \textcolor{comment}{\#\ 最大间隔}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00050}00050\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00051}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_a60c0c329b59f9ff038e3438640e8eb3f}{00051}}\ \ \ \ \ timeout\_ms:\ int\ =\ 5000\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 单次超时}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00052}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_ab8ff965d7012926988f7fcdd6328b438}{00052}}\ \ \ \ \ retry\_count:\ int\ =\ 3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 失败重试次数}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00053}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_a682a6671dcc110c3a6a28a371d619a1d}{00053}}\ \ \ \ \ retry\_interval\_ms:\ int\ =\ 2000\ \ \ \ \ \textcolor{comment}{\#\ 重试间隔}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00054}00054\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00055}00055\ \ \ \ \ \textcolor{comment}{\#\ 自适应}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00056}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_a3caa55b29385fad3fd33a59d1f04651a}{00056}}\ \ \ \ \ adaptive:\ bool\ =\ \textcolor{keyword}{True}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 是否启用自适应}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00057}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config_ac64eb6a72606bd52cefda996983de038}{00057}}\ \ \ \ \ success\_to\_extend:\ int\ =\ 10\ \ \ \ \ \ \ \textcolor{comment}{\#\ 连续成功多少次延长间隔}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00060}00060\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00061}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config}{00061}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config}{FallbackConfig}}:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00062}00062\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}降级配置"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00063}00063\ \ \ \ \ \textcolor{comment}{\#\ 降级触发阈值}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00064}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config_a8cd8cb3ba4e2c579d70bfb16c09d3a46}{00064}}\ \ \ \ \ punch\_fail\_count:\ int\ =\ 3\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 打孔失败多少次降级}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00065}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config_a46073d68ef0188f33655b97e269fe3a7}{00065}}\ \ \ \ \ udp\_loss\_rate:\ float\ =\ 0.3\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ UDP\ 丢包率阈值}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00066}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config_ab685b8cb310eb0ba9d6a43affa5fe2db}{00066}}\ \ \ \ \ udp\_latency\_ms:\ int\ =\ 500\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ UDP\ 延迟阈值}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00067}00067\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00068}00068\ \ \ \ \ \textcolor{comment}{\#\ 跨境配置}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00069}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config_ab70a80cefaefd84ddcb6bfc67c0c775c}{00069}}\ \ \ \ \ cross\_border\_loss\_rate:\ float\ =\ 0.2}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00070}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config_a6938134419aa6c12b9133d22d3ed9606}{00070}}\ \ \ \ \ cross\_border\_timeout\_ms:\ int\ =\ 10000}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00071}00071\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00072}00072\ \ \ \ \ \textcolor{comment}{\#\ Relay\ 配置}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00073}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config_a310bd3c3c1bb00416886ab7430caac02}{00073}}\ \ \ \ \ relay\_timeout\_ms:\ int\ =\ 5000}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00074}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config_a5ed486fd58676f0cb51f9fc9b17d0efc}{00074}}\ \ \ \ \ relay\_servers:\ List[str]\ =\ field(default\_factory=list)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00077}00077\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00078}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{00078}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}}:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00079}00079\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}完整配置"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00080}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ac633eae7e4ebc79ca75a0339da21b4ce}{00080}}\ \ \ \ \ stun:\ STUNConfig\ =\ field(default\_factory=STUNConfig)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00081}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a81b8440b8aeaea56dbd8f01d2ca5646a}{00081}}\ \ \ \ \ punch:\ PunchConfig\ =\ field(default\_factory=PunchConfig)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00082}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a803f65dd15aa0ced43fe2b27b55669b3}{00082}}\ \ \ \ \ heartbeat:\ HeartbeatConfig\ =\ field(default\_factory=HeartbeatConfig)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00083}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_adfd78de52eacb0ca21b3f4a9b861f0cb}{00083}}\ \ \ \ \ fallback:\ FallbackConfig\ =\ field(default\_factory=FallbackConfig)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00084}00084\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00085}00085\ \ \ \ \ \textcolor{comment}{\#\ 日志级别}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00086}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_af047a78bef3d9c3b39c7fb7f64e4b6f0}{00086}}\ \ \ \ \ log\_level:\ str\ =\ \textcolor{stringliteral}{"{}INFO"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00087}00087\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00088}00088\ \ \ \ \ \textcolor{comment}{\#\ 调试模式}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00089}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ae65ebf5cb5ccf2c146add1cace99f18f}{00089}}\ \ \ \ \ debug:\ bool\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00090}00090\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00091}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_afe9c3b5e25ef7a88b1032f62691f182d}{00091}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_afe9c3b5e25ef7a88b1032f62691f182d}{merge}}(self,\ other:\ dict)\ -\/>\ \textcolor{stringliteral}{"{}Config"{}}:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}深度合并配置（other\ 覆盖\ self）}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00093}00093\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ other:\ 要合并的配置字典，支持嵌套结构}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00096}00096\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00097}00097\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00098}00098\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 合并后的\ Config\ 对象}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00099}00099\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{def\ }deep\_merge(base:\ dict,\ update:\ dict)\ -\/>\ dict:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}递归合并字典"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ base.copy()}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ key,\ value\ \textcolor{keywordflow}{in}\ update.items():}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ key\ \textcolor{keywordflow}{in}\ result\ \textcolor{keywordflow}{and}\ isinstance(result[key],\ dict)\ \textcolor{keywordflow}{and}\ isinstance(value,\ dict):}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result[key]\ =\ deep\_merge(result[key],\ value)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result[key]\ =\ value}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}stun"{}}\ \textcolor{keywordflow}{in}\ other:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ stun\_dict\ =\ deep\_merge(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ac633eae7e4ebc79ca75a0339da21b4ce}{stun}}.\_\_dict\_\_.copy(),\ other[\textcolor{stringliteral}{"{}stun"{}}])}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k,\ v\ \textcolor{keywordflow}{in}\ stun\_dict.items():}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setattr(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ac633eae7e4ebc79ca75a0339da21b4ce}{stun}},\ k,\ v)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}punch"{}}\ \textcolor{keywordflow}{in}\ other:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ punch\_dict\ =\ deep\_merge(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a81b8440b8aeaea56dbd8f01d2ca5646a}{punch}}.\_\_dict\_\_.copy(),\ other[\textcolor{stringliteral}{"{}punch"{}}])}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k,\ v\ \textcolor{keywordflow}{in}\ punch\_dict.items():}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setattr(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a81b8440b8aeaea56dbd8f01d2ca5646a}{punch}},\ k,\ v)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}heartbeat"{}}\ \textcolor{keywordflow}{in}\ other:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ heartbeat\_dict\ =\ deep\_merge(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a803f65dd15aa0ced43fe2b27b55669b3}{heartbeat}}.\_\_dict\_\_.copy(),\ other[\textcolor{stringliteral}{"{}heartbeat"{}}])}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k,\ v\ \textcolor{keywordflow}{in}\ heartbeat\_dict.items():}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setattr(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a803f65dd15aa0ced43fe2b27b55669b3}{heartbeat}},\ k,\ v)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}fallback"{}}\ \textcolor{keywordflow}{in}\ other:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ fallback\_dict\ =\ deep\_merge(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_adfd78de52eacb0ca21b3f4a9b861f0cb}{fallback}}.\_\_dict\_\_.copy(),\ other[\textcolor{stringliteral}{"{}fallback"{}}])}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ k,\ v\ \textcolor{keywordflow}{in}\ fallback\_dict.items():}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setattr(self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_adfd78de52eacb0ca21b3f4a9b861f0cb}{fallback}},\ k,\ v)}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}log\_level"{}}\ \textcolor{keywordflow}{in}\ other:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_af047a78bef3d9c3b39c7fb7f64e4b6f0}{log\_level}}\ =\ other[\textcolor{stringliteral}{"{}log\_level"{}}]}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}debug"{}}\ \textcolor{keywordflow}{in}\ other:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ae65ebf5cb5ccf2c146add1cace99f18f}{debug}}\ =\ other[\textcolor{stringliteral}{"{}debug"{}}]}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00136}00136\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00137}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_aec0f20862d9e8497a29052ca1be0c00f}{00137}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_aec0f20862d9e8497a29052ca1be0c00f}{to\_dict}}(self)\ -\/>\ dict:}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}转换为字典"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stun"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ac633eae7e4ebc79ca75a0339da21b4ce}{stun}}.\_\_dict\_\_,}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}punch"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a81b8440b8aeaea56dbd8f01d2ca5646a}{punch}}.\_\_dict\_\_,}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}heartbeat"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a803f65dd15aa0ced43fe2b27b55669b3}{heartbeat}}.\_\_dict\_\_,}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}fallback"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_adfd78de52eacb0ca21b3f4a9b861f0cb}{fallback}}.\_\_dict\_\_,}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}log\_level"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_af047a78bef3d9c3b39c7fb7f64e4b6f0}{log\_level}},}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}debug"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ae65ebf5cb5ccf2c146add1cace99f18f}{debug}},}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00149}00149\ \textcolor{comment}{\#\ 默认配置（全局）}}
+\DoxyCodeLine{\Hypertarget{defaults_8py_source_l00150}\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1defaults_ab67d93b735a8889c18dec4a9cd00577c}{00150}}\ DEFAULT\_CONFIG\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config}{Config}}()}
+
+\end{DoxyCode}

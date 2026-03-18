@@ -1,0 +1,89 @@
+\doxysection{p2p\+\_\+engine.\+engine.\+P2\+PConfig类 参考}
+\hypertarget{classp2p__engine_1_1engine_1_1_p2_p_config}{}\label{classp2p__engine_1_1engine_1_1_p2_p_config}\index{p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_config_a271e89e0ae1224761739fcba37942785}{stun\+\_\+servers}}
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_config_ad97303f2a7e8f45af7a92c84fa7c0192}{stun\+\_\+timeout\+\_\+ms}} = 3000
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_config_a937abbbf92e80613de984c15f8d2d730}{debug}} = False
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_config_ad774c5f236898ca289aabe6619bc1573}{log\+\_\+level}} = "{}INFO"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}P2P引擎配置数据类
+
+包含P2P引擎的所有配置参数，用于初始化和控制引擎行为。
+
+属性:
+    stun_servers (list): STUN服务器地址列表，格式为 "host:port"
+        默认使用Google的公共STUN服务器
+    stun_timeout_ms (int): STUN请求超时时间（毫秒），默认3000ms
+    debug (bool): 是否启用调试模式，默认False
+    log_level (str): 日志级别，可选值：DEBUG, INFO, WARNING, ERROR, CRITICAL
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00035}{35}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_config_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_config_a937abbbf92e80613de984c15f8d2d730}\index{p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}!debug@{debug}}
+\index{debug@{debug}!p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_config_a937abbbf92e80613de984c15f8d2d730} 
+bool p2p\+\_\+engine.\+engine.\+P2\+PConfig.\+debug = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00053}{53}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_config_ad774c5f236898ca289aabe6619bc1573}\index{p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}!log\_level@{log\_level}}
+\index{log\_level@{log\_level}!p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}}
+\doxysubsubsection{\texorpdfstring{log\_level}{log\_level}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_config_ad774c5f236898ca289aabe6619bc1573} 
+str p2p\+\_\+engine.\+engine.\+P2\+PConfig.\+log\+\_\+level = "{}INFO"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00054}{54}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_config_a271e89e0ae1224761739fcba37942785}\index{p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}!stun\_servers@{stun\_servers}}
+\index{stun\_servers@{stun\_servers}!p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}}
+\doxysubsubsection{\texorpdfstring{stun\_servers}{stun\_servers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_config_a271e89e0ae1224761739fcba37942785} 
+list p2p\+\_\+engine.\+engine.\+P2\+PConfig.\+stun\+\_\+servers\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ field(default\_factory=\textcolor{keyword}{lambda}:\ [}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stun.l.google.com:19302"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stun1.l.google.com:19302"{}},}
+\DoxyCodeLine{\ \ \ \ ])}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00048}{48}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_config_ad97303f2a7e8f45af7a92c84fa7c0192}\index{p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}!stun\_timeout\_ms@{stun\_timeout\_ms}}
+\index{stun\_timeout\_ms@{stun\_timeout\_ms}!p2p\_engine.engine.P2PConfig@{p2p\_engine.engine.P2PConfig}}
+\doxysubsubsection{\texorpdfstring{stun\_timeout\_ms}{stun\_timeout\_ms}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_config_ad97303f2a7e8f45af7a92c84fa7c0192} 
+int p2p\+\_\+engine.\+engine.\+P2\+PConfig.\+stun\+\_\+timeout\+\_\+ms = 3000\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00052}{52}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+\doxymbox{\hyperlink{engine_8py}{engine.\+py}}\end{DoxyCompactItemize}

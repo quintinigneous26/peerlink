@@ -1,0 +1,328 @@
+\doxysection{src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter类 参考}
+\hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter}{}\label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+
+
+src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a6fe2176c2d4575420617011c808eb39f}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\+[\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limit_config}{Rate\+Limit\+Config}}]\+ \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a375a21e98f157a85902dc25c63f421fd}{config}}=None)
+\item 
+tuple\+[bool, dict]\+ \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a4019f6f69defbcc814284288beda0d58}{check\+\_\+rate\+\_\+limit}} (self, Request request)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_ab43c8b3a73c3e7c31a83103bd6432a99}{middleware}} (self, Request request, call\+\_\+next)
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_af34bfd91156c8d69c704658fbeb9da68}{get\+\_\+client\+\_\+stats}} (self, Request request)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_aed94edf8ddf8fb25846b9d0da9c10160}{reset\+\_\+client}} (self, str client\+\_\+id)
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a93e681a3a2ff99ea37bafdeb8e9edb02}{cleanup\+\_\+stale\+\_\+clients}} (self, int max\+\_\+age\+\_\+seconds=3600)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a375a21e98f157a85902dc25c63f421fd}{config}} = config or \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limit_config}{Rate\+Limit\+Config}}()
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a46aa7a38ee5c71f6d7a0f108dddd5147}{default\+\_\+limit}}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a150e4d7ad5c0779d70e854e622a999ea}{set\+\_\+limit}} = allocation\+\_\+id, limit)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a8731009ec5769a1e6f707335352f9a78}{\+\_\+cleanup\+\_\+old\+\_\+requests}} (self, list requests, float window\+\_\+seconds)
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a7212d2c7da40c8169d7fbc690ef59c44}{\+\_\+get\+\_\+client\+\_\+id}} (self, Request request)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Dict\+[str, \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_client_state}{Client\+State}}]\+ \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a9c49df335c918ba3d7c6a9d2f64421c1}{\+\_\+clients}} = defaultdict(\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_client_state}{Client\+State}})
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket}{Token\+Bucket}}( \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a7cae26943aed2847db8673432b1e4931}{\+\_\+global\+\_\+read\+\_\+bucket}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_af78ef825e37cdc71a7837794144ca2f2}{\+\_\+rate\+\_\+limiter}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Sliding window rate limiter.
+
+Tracks requests per client (by IP or device_id) and enforces limits.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00034}{34}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a6fe2176c2d4575420617011c808eb39f}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a6fe2176c2d4575420617011c808eb39f} 
+src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limit_config}{Rate\+Limit\+Config}}]\+ }]{config}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize rate limiter.
+
+Args:
+    config: Rate limit configuration
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00041}{41}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a8731009ec5769a1e6f707335352f9a78}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!\_cleanup\_old\_requests@{\_cleanup\_old\_requests}}
+\index{\_cleanup\_old\_requests@{\_cleanup\_old\_requests}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_old\_requests()}{\_cleanup\_old\_requests()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a8731009ec5769a1e6f707335352f9a78} 
+ list src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+\_\+cleanup\+\_\+old\+\_\+requests (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{list}]{requests}{, }\item[{float}]{window\+\_\+seconds}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Remove requests older than the window.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00073}{73}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{rate__limiter_8py_source_l00093}{check\+\_\+rate\+\_\+limit()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a7212d2c7da40c8169d7fbc690ef59c44}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!\_get\_client\_id@{\_get\_client\_id}}
+\index{\_get\_client\_id@{\_get\_client\_id}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{\_get\_client\_id()}{\_get\_client\_id()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a7212d2c7da40c8169d7fbc690ef59c44} 
+ str src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+\_\+get\+\_\+client\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Request}]{request}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get client identifier from request.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00078}{78}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{rate__limiter_8py_source_l00093}{check\+\_\+rate\+\_\+limit()}} , 以及 \doxymbox{\hyperlink{rate__limiter_8py_source_l00200}{get\+\_\+client\+\_\+stats()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a4019f6f69defbcc814284288beda0d58}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!check\_rate\_limit@{check\_rate\_limit}}
+\index{check\_rate\_limit@{check\_rate\_limit}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{check\_rate\_limit()}{check\_rate\_limit()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a4019f6f69defbcc814284288beda0d58} 
+ tuple\+[bool, dict]\+ src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+check\+\_\+rate\+\_\+limit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Request}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if request is allowed under rate limits.
+
+Args:
+    request: FastAPI request object
+
+Returns:
+    Tuple of (allowed: bool, info: dict with limit details)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00093}{93}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{rate__limiter_8py_source_l00073}{\+\_\+cleanup\+\_\+old\+\_\+requests()}}, \doxymbox{\hyperlink{rate__limiter_8py_source_l00049}{\+\_\+clients}}, \doxymbox{\hyperlink{rate__limiter_8py_source_l00078}{\+\_\+get\+\_\+client\+\_\+id()}}, \doxymbox{\hyperlink{noise_8py_source_l00367}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Handshake.\+config}}, \doxymbox{\hyperlink{pubsub_8py_source_l00510}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub\+Router.\+config}}, \doxymbox{\hyperlink{tls_8py_source_l00372}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity.\+config}}, \doxymbox{\hyperlink{tls_8py_source_l00647}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+config}}, \doxymbox{\hyperlink{client_8py_source_l00180}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+config}} , 以及 \doxymbox{\hyperlink{rate__limiter_8py_source_l00048}{config}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{rate__limiter_8py_source_l00162}{middleware()}}.
+
+函数调用图:\+
+% FIG 3
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a93e681a3a2ff99ea37bafdeb8e9edb02}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!cleanup\_stale\_clients@{cleanup\_stale\_clients}}
+\index{cleanup\_stale\_clients@{cleanup\_stale\_clients}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{cleanup\_stale\_clients()}{cleanup\_stale\_clients()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a93e681a3a2ff99ea37bafdeb8e9edb02} 
+ int src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+cleanup\+\_\+stale\+\_\+clients (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+age\+\_\+seconds}{ = {\ttfamily 3600}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove clients with no recent activity.
+
+Args:
+    max_age_seconds: Maximum age of inactive clients
+
+Returns:
+    Number of clients removed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00237}{237}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{rate__limiter_8py_source_l00049}{\+\_\+clients}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_af34bfd91156c8d69c704658fbeb9da68}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!get\_client\_stats@{get\_client\_stats}}
+\index{get\_client\_stats@{get\_client\_stats}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{get\_client\_stats()}{get\_client\_stats()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_af34bfd91156c8d69c704658fbeb9da68} 
+ dict src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+get\+\_\+client\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Request}]{request}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get rate limit stats for a client.
+
+Args:
+    request: FastAPI request
+
+Returns:
+    Dictionary with client stats
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00200}{200}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{rate__limiter_8py_source_l00049}{\+\_\+clients}} , 以及 \doxymbox{\hyperlink{rate__limiter_8py_source_l00078}{\+\_\+get\+\_\+client\+\_\+id()}}.
+
+函数调用图:\+
+% FIG 5
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_ab43c8b3a73c3e7c31a83103bd6432a99}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!middleware@{middleware}}
+\index{middleware@{middleware}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{middleware()}{middleware()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_ab43c8b3a73c3e7c31a83103bd6432a99} 
+src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+middleware (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Request}]{request}{, }\item[{}]{call\+\_\+next}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}ASGI middleware for rate limiting.
+
+Args:
+    request: FastAPI request
+    call_next: Next middleware/handler
+
+Returns:
+    Response or raises HTTPException
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00162}{162}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{rate__limiter_8py_source_l00093}{check\+\_\+rate\+\_\+limit()}}.
+
+函数调用图:\+
+% FIG 6
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_aed94edf8ddf8fb25846b9d0da9c10160}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!reset\_client@{reset\_client}}
+\index{reset\_client@{reset\_client}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{reset\_client()}{reset\_client()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_aed94edf8ddf8fb25846b9d0da9c10160} 
+ bool src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+reset\+\_\+client (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{client\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reset rate limit state for a client.
+
+Args:
+    client_id: Client identifier
+
+Returns:
+    True if client was found and reset
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00222}{222}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{rate__limiter_8py_source_l00049}{\+\_\+clients}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a9c49df335c918ba3d7c6a9d2f64421c1}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!\_clients@{\_clients}}
+\index{\_clients@{\_clients}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{\_clients}{\_clients}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a9c49df335c918ba3d7c6a9d2f64421c1} 
+Dict\+[str, \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_client_state}{Client\+State}}]\+ src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+\_\+clients = defaultdict(\doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_client_state}{Client\+State}})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00049}{49}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{rate__limiter_8py_source_l00093}{check\+\_\+rate\+\_\+limit()}}, \doxymbox{\hyperlink{rate__limiter_8py_source_l00237}{cleanup\+\_\+stale\+\_\+clients()}}, \doxymbox{\hyperlink{rate__limiter_8py_source_l00200}{get\+\_\+client\+\_\+stats()}} , 以及 \doxymbox{\hyperlink{rate__limiter_8py_source_l00222}{reset\+\_\+client()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a7cae26943aed2847db8673432b1e4931}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!\_global\_read\_bucket@{\_global\_read\_bucket}}
+\index{\_global\_read\_bucket@{\_global\_read\_bucket}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{\_global\_read\_bucket}{\_global\_read\_bucket}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a7cae26943aed2847db8673432b1e4931} 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket}{Token\+Bucket}}( src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+\_\+global\+\_\+read\+\_\+bucket\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00050}{50}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_af78ef825e37cdc71a7837794144ca2f2}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!\_rate\_limiter@{\_rate\_limiter}}
+\index{\_rate\_limiter@{\_rate\_limiter}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{\_rate\_limiter}{\_rate\_limiter}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_af78ef825e37cdc71a7837794144ca2f2} 
+Optional src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+\_\+rate\+\_\+limiter = None\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00266}{266}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a375a21e98f157a85902dc25c63f421fd}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!config@{config}}
+\index{config@{config}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a375a21e98f157a85902dc25c63f421fd} 
+src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+config = config or \doxymbox{\hyperlink{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limit_config}{Rate\+Limit\+Config}}()}
+
+
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00048}{48}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{rate__limiter_8py_source_l00093}{check\+\_\+rate\+\_\+limit()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a46aa7a38ee5c71f6d7a0f108dddd5147}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!default\_limit@{default\_limit}}
+\index{default\_limit@{default\_limit}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{default\_limit}{default\_limit}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a46aa7a38ee5c71f6d7a0f108dddd5147} 
+src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+default\+\_\+limit}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ default\_limit\ \textcolor{keywordflow}{or}\ BandwidthLimit(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ read\_bps=3\_000\_000,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ burst\_bps=6\_000\_000}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00055}{55}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a150e4d7ad5c0779d70e854e622a999ea}\index{src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}!set\_limit@{set\_limit}}
+\index{set\_limit@{set\_limit}!src.did\_service.rate\_limiter.RateLimiter@{src.did\_service.rate\_limiter.RateLimiter}}
+\doxysubsubsection{\texorpdfstring{set\_limit}{set\_limit}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_a150e4d7ad5c0779d70e854e622a999ea} 
+src.\+did\+\_\+service.\+rate\+\_\+limiter.\+Rate\+Limiter.\+set\+\_\+limit = allocation\+\_\+id, limit)}
+
+
+
+在文件 \doxymbox{\hyperlink{rate__limiter_8py_source}{rate\+\_\+limiter.\+py}} 第 \doxymbox{\hyperlink{rate__limiter_8py_source_l00069}{69}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+did-\/service/\+src/\+did\+\_\+service/\+\doxymbox{\hyperlink{rate__limiter_8py}{rate\+\_\+limiter.\+py}}\end{DoxyCompactItemize}

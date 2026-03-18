@@ -1,0 +1,340 @@
+\doxysection{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session类 参考}
+\hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session}{}\label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+
+
+类 p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_af13c40671b86ce9e22be1f475350a97b}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream}{Optimized\+Yamux\+Stream}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_acbf12c7d93305c993290edb64570697b}{open\+\_\+stream}} (self)
+\item 
+List\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream}{Optimized\+Yamux\+Stream}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_aa9f5cf8aab9b19aaeba6eff14613f83c}{open\+\_\+streams\+\_\+batch}} (self, int count)
+\item 
+Dict\+[str, int]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_aa31f82576e961b7fca79c7f518d53260}{statistics}} (self)
+\item 
+Dict\+[str, float]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a95d325974e21f09de8ce92886df1457c}{get\+\_\+performance\+\_\+metrics}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public 成员函数 继承自 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_af4f90af34fcba47e204bb88082913ce7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, asyncio.\+Stream\+Reader reader, asyncio.\+Stream\+Writer writer, bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a2fa72d6172d724993ad886938422f028}{is\+\_\+client}}=True, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config}{Yamux\+Config}}]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}}=None)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_aafe1bd33524da4dbc40a5c2541177cfa}{is\+\_\+closed}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a2fa72d6172d724993ad886938422f028}{is\+\_\+client}} (self)
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{Yamux\+Session}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a3d9b05e989c7143745fc5da1ed374cf4}{create\+\_\+client}} (cls, str host, int port, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config}{Yamux\+Config}}]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}}=None)
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{Yamux\+Session}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a29c2a2e7ef89e6550bdb332b9114d5e3}{create\+\_\+server\+\_\+session}} (cls, asyncio.\+Stream\+Reader reader, asyncio.\+Stream\+Writer writer, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config}{Yamux\+Config}}]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}}=None)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream}{Yamux\+Stream}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_ae61919b674e274ae507a64e3f07b4ab4}{accept\+\_\+stream}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a737be79b12f402bd70ab515a596a214b}{close}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_go_away_code}{Go\+Away\+Code}} code=\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_go_away_code_a87f82ec8d8154ab00f13f94c6970d855}{Go\+Away\+Code.\+NORMAL}})
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_adb6d98ee2dab4b6175641946658844ed}{ping}} (self, float timeout=5.\+0)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a066d08c25390a3b17987a10faf48df3f}{\+\_\+\+\_\+aenter\+\_\+\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a26d8be3e98c2f2077c43c7e37a671e90}{\+\_\+\+\_\+aexit\+\_\+\+\_\+}} (self, exc\+\_\+type, exc\+\_\+val, exc\+\_\+tb)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a5f0cb1be2682c71925c8a03e9cb58604}{\+\_\+send\+\_\+frames\+\_\+batch}} (self, List\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}}]\+ frames)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_ac8832e8cd7f08253cc50250f9203cc6d}{\+\_\+send\+\_\+frame}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}} frame)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected 成员函数 继承自 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_ac71d1af8ed0f4f126e57aa4bcd130b75}{\+\_\+start\+\_\+read\+\_\+loop}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a605c4d95fa35d0c34907bb81ddf27f5d}{\+\_\+start\+\_\+keepalive}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_aa6c22f12d6e33c4cea3935fadfd5aabc}{\+\_\+read\+\_\+loop}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a8ae2a38b8a57e956f6aaa2505a2bab8f}{\+\_\+handle\+\_\+frame}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}} frame)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a0d148127f3f8352b3f57d90d4d6588b3}{\+\_\+handle\+\_\+session\+\_\+frame}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}} frame)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_adc8e2c02bd2e1d3d1108040867c840b9}{\+\_\+stream\+\_\+id\+\_\+pool}}
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a71604159ffa7147b40e1e8a088bc3b2f}{\+\_\+stats}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected 属性 继承自 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_abb1019ffb81c11598ea2aba3263ef761}{\+\_\+reader}} = reader
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a142593b6c78a10a684a38583b7bde1f3}{\+\_\+writer}} = writer
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a2bf10e698e9d30cf72fe254c2c077577}{\+\_\+is\+\_\+client}} = \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a2fa72d6172d724993ad886938422f028}{is\+\_\+client}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_ad170e14e58ed9480493b068dab30552c}{\+\_\+config}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}} or \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config}{Yamux\+Config}}()
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a646d937f75d6ef53e2a7a930d88e288d}{\+\_\+streams}} = \{\}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a3cb379326b80edb504078edb851aa2e4}{\+\_\+streams\+\_\+lock}} = asyncio.\+Lock()
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_ab7ea849413dda1fb20b5ba0de85f65bf}{\+\_\+next\+\_\+stream\+\_\+id}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a4184bfc8ad9eb80d04b1e7b5668e455b}{INITIAL\+\_\+\+CLIENT\+\_\+\+STREAM\+\_\+\+ID}} if \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a2fa72d6172d724993ad886938422f028}{is\+\_\+client}} else \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a31b1ec1f75eaa4de6de3542f774161ab}{INITIAL\+\_\+\+SERVER\+\_\+\+STREAM\+\_\+\+ID}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a0554195a79fb43c0c71877ced7a482aa}{\+\_\+stream\+\_\+id\+\_\+lock}} = asyncio.\+Lock()
+\item 
+asyncio.\+Queue\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream}{Yamux\+Stream}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a32c3d4d125a9340e41795ee5e4c49a60}{\+\_\+accept\+\_\+queue}}
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a9c205c477a82eddb0412296c203c5850}{\+\_\+unacked\+\_\+streams}} = 0
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_acb8dae2c0482cb1d8319f56f50424ad1}{\+\_\+closed}} = False
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_aca099ceabb7144d05255c62ef7efd76c}{\+\_\+close\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_go_away_code}{Go\+Away\+Code}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a7eda8589c9bbc4d0009cb800042a5110}{\+\_\+goaway\+\_\+code}} = None
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a57999397b59b7ac36b2122b8210fff3d}{\+\_\+pending\+\_\+pings}} = \{\}
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a2cf7eb248eed8dc38de7d39dd3c63f73}{\+\_\+ping\+\_\+counter}} = 0
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_ab6b4f6a628f3dc3af5778674abda95b9}{\+\_\+ping\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_aac89d0ca027173f04051451483803b67}{\+\_\+read\+\_\+task}} = None
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_ae8ef3f88ce48d928a3a1286327eef927}{\+\_\+keepalive\+\_\+task}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}优化的 Yamux 会话
+
+改进：
+1. 流 ID 预分配池
+2. 批量流创建
+3. 快速路径帧发送
+4. 连接统计
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00168}{168}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_af13c40671b86ce9e22be1f475350a97b}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_af13c40671b86ce9e22be1f475350a97b} 
+p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00179}{179}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00179}{\+\_\+\+\_\+init\+\_\+\+\_\+()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00179}{\+\_\+\+\_\+init\+\_\+\+\_\+()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_ac8832e8cd7f08253cc50250f9203cc6d}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!\_send\_frame@{\_send\_frame}}
+\index{\_send\_frame@{\_send\_frame}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{\_send\_frame()}{\_send\_frame()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_ac8832e8cd7f08253cc50250f9203cc6d} 
+ None p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+send\+\_\+frame (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}}}]{frame}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}发送单帧（覆盖父类方法，添加统计）\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a8252a45c93f00f3b1bcdce46105ff0c0}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session}} .
+
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00312}{312}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{\+\_\+stats}}, \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{noise_8py_source_l00855}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security.\+\_\+handshake\+\_\+as\+\_\+initiator()}} , 以及 \doxymbox{\hyperlink{noise_8py_source_l00887}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security.\+\_\+handshake\+\_\+as\+\_\+responder()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a5f0cb1be2682c71925c8a03e9cb58604}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!\_send\_frames\_batch@{\_send\_frames\_batch}}
+\index{\_send\_frames\_batch@{\_send\_frames\_batch}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{\_send\_frames\_batch()}{\_send\_frames\_batch()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a5f0cb1be2682c71925c8a03e9cb58604} 
+ None p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+send\+\_\+frames\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}}]\+}]{frames}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}批量发送帧
+
+减少系统调用次数。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00294}{294}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{\+\_\+stats}}, \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00240}{open\+\_\+streams\+\_\+batch()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a95d325974e21f09de8ce92886df1457c}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!get\_performance\_metrics@{get\_performance\_metrics}}
+\index{get\_performance\_metrics@{get\_performance\_metrics}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{get\_performance\_metrics()}{get\_performance\_metrics()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a95d325974e21f09de8ce92886df1457c} 
+ Dict\+[str, float]\+ p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+get\+\_\+performance\+\_\+metrics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取性能指标\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00329}{329}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00183}{\+\_\+stream\+\_\+id\+\_\+pool}}, \doxymbox{\hyperlink{mplex_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00675}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+streams}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00533}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+streams}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_acbf12c7d93305c993290edb64570697b}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!open\_stream@{open\_stream}}
+\index{open\_stream@{open\_stream}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{open\_stream()}{open\_stream()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_acbf12c7d93305c993290edb64570697b} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream}{Optimized\+Yamux\+Stream}} p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+open\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}打开新流（优化版）
+
+使用预分配池，无锁快速路径。
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_a0b9e6b778124e0386f65e87e3b520496}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session}} .
+
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00198}{198}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00329}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+get\+\_\+or\+\_\+create\+\_\+stream()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_aa9f5cf8aab9b19aaeba6eff14613f83c}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!open\_streams\_batch@{open\_streams\_batch}}
+\index{open\_streams\_batch@{open\_streams\_batch}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{open\_streams\_batch()}{open\_streams\_batch()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_aa9f5cf8aab9b19aaeba6eff14613f83c} 
+ List\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream}{Optimized\+Yamux\+Stream}}]\+ p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+open\+\_\+streams\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{count}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}批量打开流
+
+比单独调用 open_stream() 更高效。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00237}{237}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{loader_8py_source_l00061}{p2p\+\_\+engine.\+config.\+loader.\+Config\+Loader.\+\_\+config}}, \doxymbox{\hyperlink{engine_8py_source_l00126}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+config}}, \doxymbox{\hyperlink{yamux_8py_source_l00530}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+config}}, \doxymbox{\hyperlink{yamux_8py_source_l00230}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+config}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00294}{\+\_\+send\+\_\+frames\+\_\+batch()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00183}{\+\_\+stream\+\_\+id\+\_\+pool}}, \doxymbox{\hyperlink{mplex_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00675}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{yamux_8py_source_l00533}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{mplex_8py_source_l00513}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+streams\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00676}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+streams\+\_\+lock}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00534}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+streams\+\_\+lock}}.
+
+函数调用图:\+
+% FIG 7
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_aa31f82576e961b7fca79c7f518d53260}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!statistics@{statistics}}
+\index{statistics@{statistics}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{statistics()}{statistics()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_aa31f82576e961b7fca79c7f518d53260} 
+ Dict\+[str, int]\+ p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+statistics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取会话统计\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00325}{325}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}} , 以及 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{\+\_\+stats}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a71604159ffa7147b40e1e8a088bc3b2f}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!\_stats@{\_stats}}
+\index{\_stats@{\_stats}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{\_stats}{\_stats}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_a71604159ffa7147b40e1e8a088bc3b2f} 
+dict p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+stats\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}streams\_opened"{}}:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}streams\_closed"{}}:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}frames\_sent"{}}:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}frames\_received"{}}:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}bytes\_sent"{}}:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}bytes\_received"{}}:\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{189}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{ping_8py_source_l00270}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+handle\+\_\+ping\+\_\+request()}}, \doxymbox{\hyperlink{ping_8py_source_l00225}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+on\+\_\+ping\+\_\+failure()}}, \doxymbox{\hyperlink{ping_8py_source_l00201}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+on\+\_\+ping\+\_\+success()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00312}{\+\_\+send\+\_\+frame()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00294}{\+\_\+send\+\_\+frames\+\_\+batch()}}, \doxymbox{\hyperlink{ping_8py_source_l00151}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+send\+\_\+ping()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00329}{get\+\_\+performance\+\_\+metrics()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00228}{src.\+bandwidth.\+Bandwidth\+Limiter.\+get\+\_\+stats()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00240}{open\+\_\+streams\+\_\+batch()}}, \doxymbox{\hyperlink{ping_8py_source_l00101}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+ping()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00218}{src.\+bandwidth.\+Bandwidth\+Limiter.\+remove\+\_\+allocation()}}, \doxymbox{\hyperlink{ping_8py_source_l00304}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+reset\+\_\+stats()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00325}{statistics()}}, \doxymbox{\hyperlink{ping_8py_source_l00092}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+stats()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00139}{src.\+bandwidth.\+Bandwidth\+Limiter.\+throttle\+\_\+read()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00169}{src.\+bandwidth.\+Bandwidth\+Limiter.\+throttle\+\_\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_adc8e2c02bd2e1d3d1108040867c840b9}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}!\_stream\_id\_pool@{\_stream\_id\_pool}}
+\index{\_stream\_id\_pool@{\_stream\_id\_pool}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxSession}}
+\doxysubsubsection{\texorpdfstring{\_stream\_id\_pool}{\_stream\_id\_pool}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_adc8e2c02bd2e1d3d1108040867c840b9} 
+p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+stream\+\_\+id\+\_\+pool\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ StreamIDPool(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ start\_id=self.\_next\_stream\_id,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ increment=STREAM\_ID\_INCREMENT,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00183}{183}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00329}{get\+\_\+performance\+\_\+metrics()}} , 以及 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00240}{open\+\_\+streams\+\_\+batch()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+muxer/\+\doxymbox{\hyperlink{yamux__optimized_8py}{yamux\+\_\+optimized.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,114 @@
+\doxysection{p2p\+\_\+engine.\+protocol.\+pubsub.\+Seen\+Cache类 参考}
+\hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache}{}\label{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache}\index{p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_aaa5ac1f15b49bc1eed1c2a3dfefd2935}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, float \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a100ade55f55c34fe50f15470b539db45}{ttl}}=120.\+0)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a8377019cd5f9c6fccce197d0888866b3}{seen}} (self, bytes msg\+\_\+id)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a7b583c9e1795c6c3fbcaa428f0e05dc5}{has}} (self, bytes msg\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a100ade55f55c34fe50f15470b539db45}{ttl}} = ttl
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_ad52a27a5d775b5d2b6c519e1cdd6f352}{cache}} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}LRU cache for seen message IDs.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00479}{479}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_aaa5ac1f15b49bc1eed1c2a3dfefd2935}\index{p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_aaa5ac1f15b49bc1eed1c2a3dfefd2935} 
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Seen\+Cache.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{float }]{ttl}{ = {\ttfamily 120.0}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00482}{482}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a7b583c9e1795c6c3fbcaa428f0e05dc5}\index{p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}!has@{has}}
+\index{has@{has}!p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}}
+\doxysubsubsection{\texorpdfstring{has()}{has()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a7b583c9e1795c6c3fbcaa428f0e05dc5} 
+ bool p2p\+\_\+engine.\+protocol.\+pubsub.\+Seen\+Cache.\+has (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{msg\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if message ID is in cache without updating.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00500}{500}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00484}{cache}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a8377019cd5f9c6fccce197d0888866b3}\index{p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}!seen@{seen}}
+\index{seen@{seen}!p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}}
+\doxysubsubsection{\texorpdfstring{seen()}{seen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a8377019cd5f9c6fccce197d0888866b3} 
+ bool p2p\+\_\+engine.\+protocol.\+pubsub.\+Seen\+Cache.\+seen (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{msg\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if message ID was seen.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00486}{486}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{pubsub_8py_source_l00484}{cache}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00483}{ttl}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_ad52a27a5d775b5d2b6c519e1cdd6f352}\index{p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}!cache@{cache}}
+\index{cache@{cache}!p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}}
+\doxysubsubsection{\texorpdfstring{cache}{cache}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_ad52a27a5d775b5d2b6c519e1cdd6f352} 
+dict p2p\+\_\+engine.\+protocol.\+pubsub.\+Seen\+Cache.\+cache = \{\}}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00484}{484}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00500}{has()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00486}{seen()}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a100ade55f55c34fe50f15470b539db45}\index{p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}!ttl@{ttl}}
+\index{ttl@{ttl}!p2p\_engine.protocol.pubsub.SeenCache@{p2p\_engine.protocol.pubsub.SeenCache}}
+\doxysubsubsection{\texorpdfstring{ttl}{ttl}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache_a100ade55f55c34fe50f15470b539db45} 
+p2p\+\_\+engine.\+protocol.\+pubsub.\+Seen\+Cache.\+ttl = ttl}
+
+
+
+在文件 \doxymbox{\hyperlink{pubsub_8py_source}{pubsub.\+py}} 第 \doxymbox{\hyperlink{pubsub_8py_source_l00483}{483}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l00486}{seen()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+protocol/\+\doxymbox{\hyperlink{pubsub_8py}{pubsub.\+py}}\end{DoxyCompactItemize}

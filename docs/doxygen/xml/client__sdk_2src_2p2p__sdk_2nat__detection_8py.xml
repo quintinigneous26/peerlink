@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="client__sdk_2src_2p2p__sdk_2nat__detection_8py" kind="file" language="Python">
+    <compoundname>nat_detection.py</compoundname>
+    <innerclass refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type" prot="public">p2p_sdk::nat_detection::NATType</innerclass>
+    <innerclass refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result" prot="public">p2p_sdk::nat_detection::NATDetectionResult</innerclass>
+    <innerclass refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client" prot="public">p2p_sdk::nat_detection::STUNClient</innerclass>
+    <innernamespace refid="namespacep2p__sdk">p2p_sdk</innernamespace>
+    <innernamespace refid="namespacep2p__sdk_1_1nat__detection">p2p_sdk::nat_detection</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacep2p__sdk_1_1nat__detection" refkind="compound"><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="2"><highlight class="stringliteral">NAT<sp/>Type<sp/>Detection<sp/>Module</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">Implements<sp/>STUN-based<sp/>NAT<sp/>detection<sp/>to<sp/>determine<sp/>the<sp/>type<sp/>of<sp/>NAT</highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">a<sp/>device<sp/>is<sp/>behind.<sp/>This<sp/>information<sp/>is<sp/>crucial<sp/>for<sp/>determining</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral">the<sp/>best<sp/>P2P<sp/>connection<sp/>strategy.</highlight></codeline>
+<codeline lineno="7"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>socket</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>asyncio</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>dataclasses<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>dataclass</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>enum<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Enum</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>typing<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Optional,<sp/>Tuple</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>logging</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="namespacep2p__sdk_1_1nat__detection_1afc9f7e8423220576f5a43159c6b1e9ec" refkind="member"><highlight class="normal">logger<sp/>=<sp/>logging.getLogger(__name__)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type" kindref="compound">NATType</ref>(Enum):</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;NAT<sp/>type<sp/>classification<sp/>according<sp/>to<sp/>RFC<sp/>3489<sp/>STUN<sp/>specification.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type_1a80f417e3d8b3597aecb9960f961f4573" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>PUBLIC_IP<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;public_ip&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;No<sp/>NAT,<sp/>device<sp/>has<sp/>a<sp/>public<sp/>IP<sp/>address.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type_1a2c363238be06763da1bdaaedb50ab580" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>FULL_CONE<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;full_cone&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Full<sp/>Cone<sp/>NAT:<sp/>Any<sp/>external<sp/>host<sp/>can<sp/>send<sp/>to<sp/>the<sp/>internal<sp/>host.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type_1ab4ee9080181bee88d4969f3e9f1c40a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>RESTRICTED_CONE<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;restricted_cone&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Restricted<sp/>Cone<sp/>NAT:<sp/>External<sp/>host<sp/>must<sp/>have<sp/>received<sp/>data<sp/>first.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type_1a2fa9780a7a8a56df3a71e47c7ede518c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>PORT_RESTRICTED_CONE<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;port_restricted_cone&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Port<sp/>Restricted<sp/>Cone<sp/>NAT:<sp/>Stricter<sp/>than<sp/>restricted<sp/>cone.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type_1ac331b4874c5bc4722f62b9933df8089a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SYMMETRIC<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;symmetric&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Symmetric<sp/>NAT:<sp/>Each<sp/>destination<sp/>gets<sp/>a<sp/>different<sp/>mapping.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type_1a1afe5d1e6213ee5f09ef87e0d22d41a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>UNKNOWN<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;unknown&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Could<sp/>not<sp/>determine<sp/>NAT<sp/>type.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_type_1ab324583d6b8182750dc98d263d1daff4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BLOCKED<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;blocked&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;UDP<sp/>is<sp/>completely<sp/>blocked.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">@dataclass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result" kindref="compound">NATDetectionResult</ref>:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Result<sp/>of<sp/>NAT<sp/>detection.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>nat_type:<sp/>NATType</highlight></codeline>
+<codeline lineno="49" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result_1af04a8ce1dc189f41c1c273d113aaf3fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>public_ip:<sp/>Optional[str]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result_1addf432de5b108de068534f15639f3e54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>public_port:<sp/>Optional[int]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result_1ad755bb1dfe8c629213c07510c0b6b64d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>local_ip:<sp/>Optional[str]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result_1a16f8ca7bc4b5260f41e4f438055e3487" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>local_port:<sp/>Optional[int]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client" kindref="compound">STUNClient</ref>:</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="57"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>STUN<sp/>protocol<sp/>client<sp/>for<sp/>NAT<sp/>detection.</highlight></codeline>
+<codeline lineno="58"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="59"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Implements<sp/>a<sp/>subset<sp/>of<sp/>RFC<sp/>5389<sp/>(STUN)<sp/>for<sp/>NAT<sp/>type<sp/>discovery.</highlight></codeline>
+<codeline lineno="60"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>STUN<sp/>message<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1aece7fc55bed77a1c5fb0922ddcd226dd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BINDING_REQUEST<sp/>=<sp/>0x0001</highlight></codeline>
+<codeline lineno="64" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1ab80796129ba002257ea4ce1c6311f40c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>BINDING_RESPONSE<sp/>=<sp/>0x0101</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>STUN<sp/>attributes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a4b1de573cd58b7a5b8d9f40ae3c32f73" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ATTR_MAPPED_ADDRESS<sp/>=<sp/>0x0001</highlight></codeline>
+<codeline lineno="68" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a7ae096e294161a13911255f322f4896e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ATTR_XOR_MAPPED_ADDRESS<sp/>=<sp/>0x0020</highlight></codeline>
+<codeline lineno="69" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a271e53899c42bb4e3a34ea32756f95bc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ATTR_CHANGE_REQUEST<sp/>=<sp/>0x0003</highlight></codeline>
+<codeline lineno="70" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a3786c65871de39c799aea300c10ead8b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ATTR_CHANGED_ADDRESS<sp/>=<sp/>0x0004</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a336841abd4da59453d3931996e35b640" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a336841abd4da59453d3931996e35b640" kindref="member">__init__</ref>(self,<sp/>stun_server:<sp/>str,<sp/>stun_port:<sp/>int<sp/>=<sp/>3478):</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="74"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Initialize<sp/>STUN<sp/>client.</highlight></codeline>
+<codeline lineno="75"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="76"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="77"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_server:<sp/>STUN<sp/>server<sp/>hostname<sp/>or<sp/>IP</highlight></codeline>
+<codeline lineno="78"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_port:<sp/>STUN<sp/>server<sp/>port<sp/>(default<sp/>3478)</highlight></codeline>
+<codeline lineno="79"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1acdd6dad832800aea41cb9c3ccb057deb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1acdd6dad832800aea41cb9c3ccb057deb" kindref="member">stun_server</ref><sp/>=<sp/>stun_server</highlight></codeline>
+<codeline lineno="81" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a5890bd816e2d2abc57c465fad26baed7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a5890bd816e2d2abc57c465fad26baed7" kindref="member">stun_port</ref><sp/>=<sp/>stun_port</highlight></codeline>
+<codeline lineno="82" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1ad4964de80352bc644fc7c461c4fd87a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1ad4964de80352bc644fc7c461c4fd87a6" kindref="member">timeout</ref><sp/>=<sp/>5.0</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a8726951196d368e532c968f11fc4d095" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a8726951196d368e532c968f11fc4d095" kindref="member">_pack_stun_request</ref>(self,<sp/>request_type:<sp/>int<sp/>=<sp/>BINDING_REQUEST)<sp/>-&gt;<sp/>bytes:</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Pack<sp/>a<sp/>STUN<sp/>request<sp/>message.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>STUN<sp/>magic<sp/>cookie<sp/>and<sp/>header</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>magic_cookie<sp/>=<sp/>bytes.fromhex(</highlight><highlight class="stringliteral">&quot;2112A442&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transaction_id<sp/>=<sp/>b</highlight><highlight class="stringliteral">&quot;0123456789ab&quot;</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">#<sp/>12<sp/>bytes<sp/>transaction<sp/>ID</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Message<sp/>header:<sp/>type<sp/>(2)<sp/>+<sp/>length<sp/>(2)<sp/>+<sp/>magic<sp/>cookie<sp/>(4)<sp/>+<sp/>transaction_id<sp/>(12)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>header<sp/>=<sp/>request_type.to_bytes(2,<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>header<sp/>+=<sp/>(0).to_bytes(2,<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)<sp/><sp/></highlight><highlight class="comment">#<sp/>Length<sp/>=<sp/>0<sp/>(no<sp/>attributes)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>header<sp/>+=<sp/>magic_cookie</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>header<sp/>+=<sp/>transaction_id</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>header</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1ab7850558d553bc246804fc97aee79167" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1ab7850558d553bc246804fc97aee79167" kindref="member">_unpack_stun_response</ref>(self,<sp/>data:<sp/>bytes)<sp/>-&gt;<sp/>Tuple[Optional[str],<sp/>Optional[int]]:</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="100"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Unpack<sp/>STUN<sp/>response<sp/>and<sp/>extract<sp/>mapped<sp/>address.</highlight></codeline>
+<codeline lineno="101"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="102"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="103"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Tuple<sp/>of<sp/>(ip,<sp/>port)<sp/>or<sp/>(None,<sp/>None)<sp/>if<sp/>parsing<sp/>fails</highlight></codeline>
+<codeline lineno="104"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>len(data)<sp/>&lt;<sp/>20:</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>message_type<sp/>=<sp/>int.from_bytes(data[0:2],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>message_len<sp/>=<sp/>int.from_bytes(data[2:4],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>magic_cookie<sp/>=<sp/>data[4:8]</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>magic_cookie<sp/>!=<sp/>bytes.fromhex(</highlight><highlight class="stringliteral">&quot;2112A442&quot;</highlight><highlight class="normal">):</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.warning(</highlight><highlight class="stringliteral">&quot;Invalid<sp/>STUN<sp/>magic<sp/>cookie&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Parse<sp/>attributes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx<sp/>=<sp/>20</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>idx<sp/>&lt;<sp/>len(data):</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>idx<sp/>+<sp/>4<sp/>&gt;<sp/>len(data):</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>attr_type<sp/>=<sp/>int.from_bytes(data[idx:idx<sp/>+<sp/>2],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>attr_len<sp/>=<sp/>int.from_bytes(data[idx<sp/>+<sp/>2:idx<sp/>+<sp/>4],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx<sp/>+=<sp/>4</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Padding<sp/>to<sp/>4-byte<sp/>boundary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>padding<sp/>=<sp/>(4<sp/>-<sp/>(attr_len<sp/>%<sp/>4))<sp/>%<sp/>4</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>idx<sp/>+<sp/>attr_len<sp/>&gt;<sp/>len(data):</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>attr_value<sp/>=<sp/>data[idx:idx<sp/>+<sp/>attr_len]</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx<sp/>+=<sp/>attr_len<sp/>+<sp/>padding</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Parse<sp/>XOR-MAPPED-ADDRESS<sp/>(preferred)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>attr_type<sp/>==<sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a7ae096e294161a13911255f322f4896e" kindref="member">ATTR_XOR_MAPPED_ADDRESS</ref><sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>attr_len<sp/>&gt;=<sp/>8:</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>family<sp/>=<sp/>attr_value[1]</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>family<sp/>==<sp/>0x01:<sp/><sp/></highlight><highlight class="comment">#<sp/>IPv4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xored_port<sp/>=<sp/>int.from_bytes(attr_value[2:4],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xored_ip<sp/>=<sp/>int.from_bytes(attr_value[4:8],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>magic<sp/>=<sp/>int.from_bytes(magic_cookie,<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>port<sp/>=<sp/>xored_port<sp/>^<sp/>(magic<sp/>&gt;&gt;<sp/>16)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ip<sp/>=<sp/>xored_ip<sp/>^<sp/>magic</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ip_str<sp/>=<sp/>socket.inet_ntoa(ip.to_bytes(4,<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ip_str,<sp/>port</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Parse<sp/>MAPPED-ADDRESS<sp/>(fallback)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">elif</highlight><highlight class="normal"><sp/>attr_type<sp/>==<sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a4b1de573cd58b7a5b8d9f40ae3c32f73" kindref="member">ATTR_MAPPED_ADDRESS</ref><sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>attr_len<sp/>&gt;=<sp/>8:</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>family<sp/>=<sp/>attr_value[1]</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>family<sp/>==<sp/>0x01:<sp/><sp/></highlight><highlight class="comment">#<sp/>IPv4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>port<sp/>=<sp/>int.from_bytes(attr_value[2:4],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ip<sp/>=<sp/>int.from_bytes(attr_value[4:8],<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ip_str<sp/>=<sp/>socket.inet_ntoa(ip.to_bytes(4,<sp/></highlight><highlight class="stringliteral">&quot;big&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ip_str,<sp/>port</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a0f466a214f66d44ad2c5e3a0297bea05" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a0f466a214f66d44ad2c5e3a0297bea05" kindref="member">send_request</ref>(self)<sp/>-&gt;<sp/>Tuple[Optional[str],<sp/>Optional[int]]:</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="161"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Send<sp/>STUN<sp/>binding<sp/>request<sp/>and<sp/>get<sp/>mapped<sp/>address.</highlight></codeline>
+<codeline lineno="162"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="163"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="164"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Tuple<sp/>of<sp/>(public_ip,<sp/>public_port)<sp/>or<sp/>(None,<sp/>None)<sp/>on<sp/>failure</highlight></codeline>
+<codeline lineno="165"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sock<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>UDP<sp/>socket</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sock<sp/>=<sp/>socket.socket(socket.AF_INET,<sp/>socket.SOCK_DGRAM)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sock.setsockopt(socket.SOL_SOCKET,<sp/>socket.SO_REUSEADDR,<sp/>1)</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sock.setblocking(</highlight><highlight class="keyword">False</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Get<sp/>local<sp/>address</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sock.bind((</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/>0))</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_port<sp/>=<sp/>sock.getsockname()[1]</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Send<sp/>STUN<sp/>request</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>request<sp/>=<sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a8726951196d368e532c968f11fc4d095" kindref="member">_pack_stun_request</ref>()</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Resolve<sp/>server<sp/>address</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop<sp/>=<sp/>asyncio.get_event_loop()</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>server_addr<sp/>=<sp/>await<sp/>loop.getaddrinfo(</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1acdd6dad832800aea41cb9c3ccb057deb" kindref="member">stun_server</ref>,<sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1a5890bd816e2d2abc57c465fad26baed7" kindref="member">stun_port</ref>,<sp/>proto=socket.IPPROTO_UDP</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>target<sp/>=<sp/>server_addr[0][4]</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sock.sendto(request,<sp/>target)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Wait<sp/>for<sp/>response<sp/>with<sp/>timeout</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop<sp/>=<sp/>asyncio.get_event_loop()</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data,<sp/>_<sp/>=<sp/>await<sp/>asyncio.wait_for(</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop.sock_recvfrom(sock,<sp/>512),<sp/>timeout=self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1ad4964de80352bc644fc7c461c4fd87a6" kindref="member">timeout</ref></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>asyncio.TimeoutError:</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.warning(f</highlight><highlight class="stringliteral">&quot;STUN<sp/>request<sp/>to<sp/>{self.stun_server}<sp/>timed<sp/>out&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Parse<sp/>response</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_ip,<sp/>public_port<sp/>=<sp/>self.<ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_1ab7850558d553bc246804fc97aee79167" kindref="member">_unpack_stun_response</ref>(data)</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>public_ip<sp/></highlight><highlight class="keywordflow">and</highlight><highlight class="normal"><sp/>public_port:</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.info(</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>f</highlight><highlight class="stringliteral">&quot;STUN<sp/>response:<sp/>{public_ip}:{public_port}<sp/>(local<sp/>port:<sp/>{local_port})&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>public_ip,<sp/>public_port</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>OSError<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Socket<sp/>error<sp/>during<sp/>STUN<sp/>request:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">finally</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>sock:</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sock.close()</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="namespacep2p__sdk_1_1nat__detection_1a232619d3347318d26d41cf779225514d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__sdk_1_1nat__detection_1a232619d3347318d26d41cf779225514d" kindref="member">detect_nat_type</ref>(</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>stun_server:<sp/>str<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;stun.l.google.com&quot;</highlight><highlight class="normal">,<sp/>stun_port:<sp/>int<sp/>=<sp/>19302</highlight></codeline>
+<codeline lineno="219"><highlight class="normal">)<sp/>-&gt;<sp/>NATDetectionResult:</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="221"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Detect<sp/>NAT<sp/>type<sp/>using<sp/>STUN<sp/>server.</highlight></codeline>
+<codeline lineno="222"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="223"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>This<sp/>is<sp/>a<sp/>simplified<sp/>detection<sp/>that<sp/>determines:</highlight></codeline>
+<codeline lineno="224"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>-<sp/>Public<sp/>IP<sp/>(no<sp/>NAT)</highlight></codeline>
+<codeline lineno="225"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>-<sp/>Symmetric<sp/>NAT<sp/>(different<sp/>port<sp/>for<sp/>each<sp/>destination)</highlight></codeline>
+<codeline lineno="226"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>-<sp/>Cone<sp/>NAT<sp/>(same<sp/>port<sp/>for<sp/>all<sp/>destinations)</highlight></codeline>
+<codeline lineno="227"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>-<sp/>Blocked<sp/>(UDP<sp/>filtered)</highlight></codeline>
+<codeline lineno="228"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="229"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Full<sp/>RFC<sp/>3489<sp/>detection<sp/>requires<sp/>multiple<sp/>STUN<sp/>servers<sp/>with</highlight></codeline>
+<codeline lineno="230"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>specific<sp/>IP<sp/>address<sp/>ranges.</highlight></codeline>
+<codeline lineno="231"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="232"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="233"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_server:<sp/>STUN<sp/>server<sp/>hostname</highlight></codeline>
+<codeline lineno="234"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_port:<sp/>STUN<sp/>server<sp/>port</highlight></codeline>
+<codeline lineno="235"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="236"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="237"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NATDetectionResult<sp/>with<sp/>detected<sp/>type<sp/>and<sp/>address<sp/>info</highlight></codeline>
+<codeline lineno="238"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/><ref refid="classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client" kindref="compound">STUNClient</ref>(stun_server,<sp/>stun_port)</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Test<sp/>1:<sp/>Basic<sp/>binding<sp/>request</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/>public_ip,<sp/>public_port<sp/>=<sp/>await<sp/>client.send_request()</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>public_ip<sp/></highlight><highlight class="keywordflow">is</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Could<sp/>be<sp/>blocked<sp/>or<sp/>network<sp/>issue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result" kindref="compound">NATDetectionResult</ref>(nat_type=NATType.BLOCKED)</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Get<sp/>local<sp/>IP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_ip<sp/>=<sp/>socket.gethostbyname(socket.gethostname())</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>OSError:</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Failed<sp/>to<sp/>resolve<sp/>hostname,<sp/>use<sp/>loopback</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_ip<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;127.0.0.1&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Check<sp/>if<sp/>we<sp/>have<sp/>a<sp/>public<sp/>IP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Simple<sp/>heuristic:<sp/>if<sp/>public<sp/>IP<sp/>matches<sp/>local<sp/>IP,<sp/>likely<sp/>no<sp/>NAT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>This<sp/>is<sp/>not<sp/>perfect<sp/>but<sp/>works<sp/>for<sp/>basic<sp/>detection</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Try<sp/>to<sp/>determine<sp/>if<sp/>we&apos;re<sp/>behind<sp/>NAT<sp/>by<sp/>checking<sp/>if<sp/>public<sp/>IP<sp/>is<sp/>private<sp/>range</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>ipaddress</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pub_addr<sp/>=<sp/>ipaddress.ip_address(public_ip)</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>pub_addr.is_private:</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>We<sp/>got<sp/>a<sp/>public<sp/>IP,<sp/>but<sp/>need<sp/>to<sp/>check<sp/>if<sp/>it&apos;s<sp/>our<sp/>actual<sp/>IP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>For<sp/>now,<sp/>assume<sp/>if<sp/>we<sp/>get<sp/>a<sp/>response,<sp/>we<sp/>can<sp/>do<sp/>P2P</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result" kindref="compound">NATDetectionResult</ref>(</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nat_type=NATType.PUBLIC_IP,</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_ip=public_ip,</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_port=public_port,</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_ip=local_ip,</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>(ValueError,<sp/>ipaddress.AddressValueError):</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Invalid<sp/>IP<sp/>address<sp/>format,<sp/>continue<sp/>with<sp/>default<sp/>assumption</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Test<sp/>2:<sp/>Check<sp/>for<sp/>symmetric<sp/>NAT<sp/>by<sp/>sending<sp/>to<sp/>another<sp/>server</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>(simplified<sp/>-<sp/>would<sp/>need<sp/>second<sp/>STUN<sp/>server<sp/>for<sp/>proper<sp/>detection)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Default<sp/>assumption<sp/>for<sp/>single<sp/>server<sp/>detection</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classp2p__sdk_1_1nat__detection_1_1_n_a_t_detection_result" kindref="compound">NATDetectionResult</ref>(</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nat_type=NATType.RESTRICTED_CONE,</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_ip=public_ip,</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>public_port=public_port,</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_ip=local_ip,</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288" refid="namespacep2p__sdk_1_1nat__detection_1ae88ac9844007cd28e0f58e94834fc2a8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__sdk_1_1nat__detection_1ae88ac9844007cd28e0f58e94834fc2a8" kindref="member">is_nat_p2p_capable</ref>(nat_type:<sp/>NATType)<sp/>-&gt;<sp/>bool:</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="290"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Check<sp/>if<sp/>a<sp/>NAT<sp/>type<sp/>is<sp/>capable<sp/>of<sp/>P2P<sp/>connection.</highlight></codeline>
+<codeline lineno="291"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="292"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="293"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nat_type:<sp/>The<sp/>detected<sp/>NAT<sp/>type</highlight></codeline>
+<codeline lineno="294"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="295"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="296"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>True<sp/>if<sp/>P2P<sp/>is<sp/>possible,<sp/>False<sp/>if<sp/>relay<sp/>is<sp/>needed</highlight></codeline>
+<codeline lineno="297"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>These<sp/>NAT<sp/>types<sp/>can<sp/>do<sp/>P2P</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>p2p_capable<sp/>=<sp/>[</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NATType.PUBLIC_IP,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NATType.FULL_CONE,</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NATType.RESTRICTED_CONE,</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NATType.PORT_RESTRICTED_CONE,</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>]</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>nat_type<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>p2p_capable</highlight></codeline>
+    </programlisting>
+    <location file="client_sdk/src/p2p_sdk/nat_detection.py"/>
+  </compounddef>
+</doxygen>

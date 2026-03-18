@@ -1,0 +1,268 @@
+\doxysection{src.\+did\+\_\+service.\+config.\+Config类 参考}
+\hypertarget{classsrc_1_1did__service_1_1config_1_1_config}{}\label{classsrc_1_1did__service_1_1config_1_1_config}\index{src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_acb334615731c423fc0e9a086b99d25b1}{is\+\_\+production}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_af52a6d0cea9af26a3389de542e5dc1cd}{validate}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+Literal \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a69d960844e3d30514fc0787d3870e4a4}{environment}} = os.\+getenv("{}ENVIRONMENT"{}, "{}development"{})
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a0d30e57c2f2bdda441cfb2dd26b039b2}{host}} = os.\+getenv("{}DID\+\_\+\+SERVICE\+\_\+\+HOST"{}, "{}0.\+0.\+0.\+0"{})
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_af5d3d864e3a9c2d1bc383e391e1764cf}{port}} = int(os.\+getenv("{}DID\+\_\+\+SERVICE\+\_\+\+PORT"{}, "{}9000"{}))
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a4cbd50b87df8da14e2e0e431cc0030f6}{redis\+\_\+url}} = os.\+getenv("{}REDIS\+\_\+\+URL"{}, "{}redis:\+/\+/\+localhost:\+6379"{})
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_ad99ab2364d1b79c0be38da8fca2bef44}{redis\+\_\+db}} = int(os.\+getenv("{}REDIS\+\_\+\+DB"{}, "{}0"{}))
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a07be901d19f08e860814b62703ec659a}{redis\+\_\+password}} = os.\+getenv("{}REDIS\+\_\+\+PASSWORD"{})
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a43bb4a487eb8087f1e85d7b8f9d63444}{did\+\_\+prefix}} = os.\+getenv("{}DID\+\_\+\+PREFIX"{}, "{}did:\+p2p"{})
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a35473e93efeb47921aafe94a7bdae637}{device\+\_\+id\+\_\+random\+\_\+bytes}} = int(os.\+getenv("{}DEVICE\+\_\+\+ID\+\_\+\+RANDOM\+\_\+\+BYTES"{}, "{}16"{}))
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a166e367f4bcc8ef4d19261d617e89995}{jwt\+\_\+secret}} = \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1config_a21742f3b9471eca39c9653417f509645}{\+\_\+get\+\_\+jwt\+\_\+secret}}()
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a0bd70e8cb3db64b47d01e6797e9c4070}{jwt\+\_\+expiration}} = int(os.\+getenv("{}JWT\+\_\+\+EXPIRATION"{}, "{}3600"{}))
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_aa1a4a63c35835a0977b144dd28643184}{jwt\+\_\+algorithm}} = os.\+getenv("{}JWT\+\_\+\+ALGORITHM"{}, "{}HS256"{})
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a459d8f2aff0dd524e187476403aa1f4a}{jwt\+\_\+previous\+\_\+secret}} = os.\+getenv("{}JWT\+\_\+\+PREVIOUS\+\_\+\+SECRET"{})
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a8b180ca08e075defe21ea10ac14c5bc9}{jwt\+\_\+rotation\+\_\+enabled}} = "{}true"{}
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a636e7d20cfc06884b026d07b4c57a58a}{heartbeat\+\_\+timeout}} = int(os.\+getenv("{}HEARTBEAT\+\_\+\+TIMEOUT"{}, "{}120"{}))
+\item 
+set \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config_a8465149ced5604d461f06ee7deebd045}{valid\+\_\+device\+\_\+types}} = frozenset(\{"{}ios"{}, "{}android"{}, "{}web"{}, "{}desktop"{}\})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Service configuration.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00047}{47}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_acb334615731c423fc0e9a086b99d25b1}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!is\_production@{is\_production}}
+\index{is\_production@{is\_production}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{is\_production()}{is\_production()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_acb334615731c423fc0e9a086b99d25b1} 
+ bool src.\+did\+\_\+service.\+config.\+Config.\+is\+\_\+production (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if running in production environment.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00081}{81}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00051}{environment}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_af52a6d0cea9af26a3389de542e5dc1cd}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!validate@{validate}}
+\index{validate@{validate}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{validate()}{validate()}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_af52a6d0cea9af26a3389de542e5dc1cd} 
+ bool src.\+did\+\_\+service.\+config.\+Config.\+validate (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate configuration.
+
+Returns:
+    True if valid
+
+Raises:
+    ValueError: If configuration is invalid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00085}{85}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00068}{jwt\+\_\+expiration}}, \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00067}{jwt\+\_\+secret}}, \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00058}{redis\+\_\+url}} , 以及 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2config_8py_source_l00019}{src.\+signaling\+\_\+server.\+config.\+Config.\+redis\+\_\+url}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a35473e93efeb47921aafe94a7bdae637}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!device\_id\_random\_bytes@{device\_id\_random\_bytes}}
+\index{device\_id\_random\_bytes@{device\_id\_random\_bytes}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{device\_id\_random\_bytes}{device\_id\_random\_bytes}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a35473e93efeb47921aafe94a7bdae637} 
+int src.\+did\+\_\+service.\+config.\+Config.\+device\+\_\+id\+\_\+random\+\_\+bytes = int(os.\+getenv("{}DEVICE\+\_\+\+ID\+\_\+\+RANDOM\+\_\+\+BYTES"{}, "{}16"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00064}{64}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a43bb4a487eb8087f1e85d7b8f9d63444}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!did\_prefix@{did\_prefix}}
+\index{did\_prefix@{did\_prefix}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{did\_prefix}{did\_prefix}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a43bb4a487eb8087f1e85d7b8f9d63444} 
+str src.\+did\+\_\+service.\+config.\+Config.\+did\+\_\+prefix = os.\+getenv("{}DID\+\_\+\+PREFIX"{}, "{}did:\+p2p"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00063}{63}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a69d960844e3d30514fc0787d3870e4a4}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!environment@{environment}}
+\index{environment@{environment}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{environment}{environment}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a69d960844e3d30514fc0787d3870e4a4} 
+Literal src.\+did\+\_\+service.\+config.\+Config.\+environment = os.\+getenv("{}ENVIRONMENT"{}, "{}development"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00051}{51}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00081}{is\+\_\+production()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a636e7d20cfc06884b026d07b4c57a58a}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!heartbeat\_timeout@{heartbeat\_timeout}}
+\index{heartbeat\_timeout@{heartbeat\_timeout}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{heartbeat\_timeout}{heartbeat\_timeout}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a636e7d20cfc06884b026d07b4c57a58a} 
+int src.\+did\+\_\+service.\+config.\+Config.\+heartbeat\+\_\+timeout = int(os.\+getenv("{}HEARTBEAT\+\_\+\+TIMEOUT"{}, "{}120"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00076}{76}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a0d30e57c2f2bdda441cfb2dd26b039b2}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!host@{host}}
+\index{host@{host}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a0d30e57c2f2bdda441cfb2dd26b039b2} 
+str src.\+did\+\_\+service.\+config.\+Config.\+host = os.\+getenv("{}DID\+\_\+\+SERVICE\+\_\+\+HOST"{}, "{}0.\+0.\+0.\+0"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00054}{54}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_aa1a4a63c35835a0977b144dd28643184}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!jwt\_algorithm@{jwt\_algorithm}}
+\index{jwt\_algorithm@{jwt\_algorithm}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{jwt\_algorithm}{jwt\_algorithm}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_aa1a4a63c35835a0977b144dd28643184} 
+str src.\+did\+\_\+service.\+config.\+Config.\+jwt\+\_\+algorithm = os.\+getenv("{}JWT\+\_\+\+ALGORITHM"{}, "{}HS256"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00069}{69}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a0bd70e8cb3db64b47d01e6797e9c4070}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!jwt\_expiration@{jwt\_expiration}}
+\index{jwt\_expiration@{jwt\_expiration}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{jwt\_expiration}{jwt\_expiration}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a0bd70e8cb3db64b47d01e6797e9c4070} 
+int src.\+did\+\_\+service.\+config.\+Config.\+jwt\+\_\+expiration = int(os.\+getenv("{}JWT\+\_\+\+EXPIRATION"{}, "{}3600"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00068}{68}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00085}{validate()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a459d8f2aff0dd524e187476403aa1f4a}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!jwt\_previous\_secret@{jwt\_previous\_secret}}
+\index{jwt\_previous\_secret@{jwt\_previous\_secret}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{jwt\_previous\_secret}{jwt\_previous\_secret}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a459d8f2aff0dd524e187476403aa1f4a} 
+str src.\+did\+\_\+service.\+config.\+Config.\+jwt\+\_\+previous\+\_\+secret = os.\+getenv("{}JWT\+\_\+\+PREVIOUS\+\_\+\+SECRET"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00072}{72}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a8b180ca08e075defe21ea10ac14c5bc9}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!jwt\_rotation\_enabled@{jwt\_rotation\_enabled}}
+\index{jwt\_rotation\_enabled@{jwt\_rotation\_enabled}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{jwt\_rotation\_enabled}{jwt\_rotation\_enabled}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a8b180ca08e075defe21ea10ac14c5bc9} 
+bool src.\+did\+\_\+service.\+config.\+Config.\+jwt\+\_\+rotation\+\_\+enabled = "{}true"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00073}{73}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a166e367f4bcc8ef4d19261d617e89995}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!jwt\_secret@{jwt\_secret}}
+\index{jwt\_secret@{jwt\_secret}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{jwt\_secret}{jwt\_secret}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a166e367f4bcc8ef4d19261d617e89995} 
+src.\+did\+\_\+service.\+config.\+Config.\+jwt\+\_\+secret = \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1config_a21742f3b9471eca39c9653417f509645}{\+\_\+get\+\_\+jwt\+\_\+secret}}()\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00067}{67}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00085}{validate()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_af5d3d864e3a9c2d1bc383e391e1764cf}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!port@{port}}
+\index{port@{port}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_af5d3d864e3a9c2d1bc383e391e1764cf} 
+int src.\+did\+\_\+service.\+config.\+Config.\+port = int(os.\+getenv("{}DID\+\_\+\+SERVICE\+\_\+\+PORT"{}, "{}9000"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00055}{55}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_ad99ab2364d1b79c0be38da8fca2bef44}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!redis\_db@{redis\_db}}
+\index{redis\_db@{redis\_db}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{redis\_db}{redis\_db}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_ad99ab2364d1b79c0be38da8fca2bef44} 
+int src.\+did\+\_\+service.\+config.\+Config.\+redis\+\_\+db = int(os.\+getenv("{}REDIS\+\_\+\+DB"{}, "{}0"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00059}{59}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a07be901d19f08e860814b62703ec659a}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!redis\_password@{redis\_password}}
+\index{redis\_password@{redis\_password}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{redis\_password}{redis\_password}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a07be901d19f08e860814b62703ec659a} 
+str src.\+did\+\_\+service.\+config.\+Config.\+redis\+\_\+password = os.\+getenv("{}REDIS\+\_\+\+PASSWORD"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00060}{60}} 行定义.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a4cbd50b87df8da14e2e0e431cc0030f6}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!redis\_url@{redis\_url}}
+\index{redis\_url@{redis\_url}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{redis\_url}{redis\_url}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a4cbd50b87df8da14e2e0e431cc0030f6} 
+str src.\+did\+\_\+service.\+config.\+Config.\+redis\+\_\+url = os.\+getenv("{}REDIS\+\_\+\+URL"{}, "{}redis:\+/\+/\+localhost:\+6379"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00058}{58}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{storage_8py_source_l00042}{src.\+did\+\_\+service.\+storage.\+Device\+Storage.\+\_\+get\+\_\+pool()}} , 以及 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00085}{validate()}}.
+
+\Hypertarget{classsrc_1_1did__service_1_1config_1_1_config_a8465149ced5604d461f06ee7deebd045}\index{src.did\_service.config.Config@{src.did\_service.config.Config}!valid\_device\_types@{valid\_device\_types}}
+\index{valid\_device\_types@{valid\_device\_types}!src.did\_service.config.Config@{src.did\_service.config.Config}}
+\doxysubsubsection{\texorpdfstring{valid\_device\_types}{valid\_device\_types}}
+{\footnotesize\ttfamily \label{classsrc_1_1did__service_1_1config_1_1_config_a8465149ced5604d461f06ee7deebd045} 
+set src.\+did\+\_\+service.\+config.\+Config.\+valid\+\_\+device\+\_\+types = frozenset(\{"{}ios"{}, "{}android"{}, "{}web"{}, "{}desktop"{}\})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00079}{79}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+did-\/service/\+src/\+did\+\_\+service/\+\doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py}{config.\+py}}\end{DoxyCompactItemize}

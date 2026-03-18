@@ -1,0 +1,213 @@
+\doxysection{mplex\+\_\+adapter.\+py}
+\hypertarget{mplex__adapter_8py_source}{}\label{mplex__adapter_8py_source}\index{p2p\_engine/muxer/mplex\_adapter.py@{p2p\_engine/muxer/mplex\_adapter.py}}
+\doxymbox{\hyperlink{mplex__adapter_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex__adapter}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00002}00002\ \textcolor{stringliteral}{Mplex\ StreamMuxer\ Adapter}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00004}00004\ \textcolor{stringliteral}{将\ MplexSession\ 适配到传输层的\ StreamMuxer\ 接口。}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00006}00006\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00007}00007\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00008}00008\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00010}00010\ \textcolor{keyword}{from}\ .mplex\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00011}00011\ \ \ \ \ MplexSession,}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00012}00012\ \ \ \ \ MplexStream,}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00013}00013\ \ \ \ \ PROTOCOL\_STRING\ \textcolor{keyword}{as}\ MPLEX\_PROTOCOL\_STRING,}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00014}00014\ \ \ \ \ MplexError,}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00015}00015\ )}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00017}00017\ \textcolor{keyword}{from}\ \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1upgrader}{p2p\_engine.transport.upgrader}}\ \textcolor{keyword}{import}\ StreamMuxer,\ MuxedSession}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00019}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex__adapter_a871eeb006ad77e76654473a39c434c82}{00019}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00022}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter}{00022}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter}{MplexMuxerAdapter}}(\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_stream_muxer}{StreamMuxer}}):}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00023}00023\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00024}00024\ \textcolor{stringliteral}{\ \ \ \ Mplex\ StreamMuxer\ 适配器}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00025}00025\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ 将\ MplexSession\ 适配到传输层的\ StreamMuxer\ 接口。}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00029}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_a84874fb9d243b5aaf4cba3e7f1c8de61}{00029}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_a84874fb9d243b5aaf4cba3e7f1c8de61}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00030}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_aafefe7e75eed0af55bf82caa770cfa05}{00030}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_aafefe7e75eed0af55bf82caa770cfa05}{\_sessions}}:\ list\ =\ []}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00032}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_a4e133de75e115501652bb8b3e5d4bea1}{00032}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_a4e133de75e115501652bb8b3e5d4bea1}{create\_session}}(}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ conn:\ \textcolor{stringliteral}{'p2p\_engine.transport.Connection'},}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ is\_initiator:\ bool}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00036}00036\ \ \ \ \ )\ -\/>\ \textcolor{stringliteral}{'MplexMuxedSession'}:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00038}00038\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 在连接上创建\ mplex\ 会话}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00039}00039\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ conn:\ 安全连接（实现\ read/write\ 接口）}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00042}00042\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ is\_initiator:\ 是否为发起方}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00043}00043\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ MplexMuxedSession\ 包装的会话}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 创建\ StreamReader/Writer\ 适配器}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ reader\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader}{ConnectionReader}}(conn)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ writer\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer}{ConnectionWriter}}(conn)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 创建\ mplex\ 会话}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ mplex\_session\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session}{MplexSession}}(}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ reader=reader,}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ writer=writer,}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ is\_client=is\_initiator}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 包装为\ MuxedSession}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ session\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{MplexMuxedSession}}(mplex\_session,\ conn)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_aafefe7e75eed0af55bf82caa770cfa05}{\_sessions}}.append(session)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ session}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00064}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_a5ab31656826055d25e1a97ddc1c54599}{00064}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_a5ab31656826055d25e1a97ddc1c54599}{get\_protocol\_id}}(self)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}返回协议ID"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MPLEX\_PROTOCOL\_STRING}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00069}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader}{00069}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader}{ConnectionReader}}:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00070}00070\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}连接\ -\/>\ StreamReader\ 适配器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00072}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ae67e3a86d4acd0c95390a7823e5e65fe}{00072}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ae67e3a86d4acd0c95390a7823e5e65fe}{\_\_init\_\_}}(self,\ conn:\ \textcolor{stringliteral}{'p2p\_engine.transport.Connection'}):}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00073}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a1ee8ec3eb8da7ef887259783d86cd019}{00073}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a1ee8ec3eb8da7ef887259783d86cd019}{\_conn}}\ =\ conn}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00074}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78}{00074}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78}{\_queue}}:\ asyncio.Queue[bytes]\ =\ asyncio.Queue()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00076}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a44403cbb4ce58588778045a8f6b6b514}{00076}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a44403cbb4ce58588778045a8f6b6b514}{read}}(self,\ n:\ int\ =\ -\/1)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}读取数据"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ n\ ==\ -\/1:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78}{\_queue}}.get()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78}{\_queue}}.get()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data[:n]\ \textcolor{keywordflow}{if}\ len(data)\ >\ n\ \textcolor{keywordflow}{else}\ data}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00085}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a7b549ea5cb3eca4c775141580e0e6c59}{00085}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a7b549ea5cb3eca4c775141580e0e6c59}{readexactly}}(self,\ n:\ int)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}读取精确字节数"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ data\ =\ bytearray()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ len(data)\ <\ n:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ chunk\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a44403cbb4ce58588778045a8f6b6b514}{read}}(n\ -\/\ len(data))}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ chunk:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ asyncio.IncompleteReadError(data,\ n)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ data.extend(chunk)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ bytes(data)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00095}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a5f7347f31a37ae6fd49d1d3d9d680e52}{00095}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a5f7347f31a37ae6fd49d1d3d9d680e52}{feed}}(self,\ data:\ bytes)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}喂入数据（用于写入后读取）"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78}{\_queue}}.put\_nowait(data)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00100}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer}{00100}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer}{ConnectionWriter}}:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00101}00101\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}连接\ -\/>\ StreamWriter\ 适配器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00103}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_ae7eadb3df0def8f180a0f7c378e073a9}{00103}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_ae7eadb3df0def8f180a0f7c378e073a9}{\_\_init\_\_}}(self,\ conn:\ \textcolor{stringliteral}{'p2p\_engine.transport.Connection'}):}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00104}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_aad65814f761029ddcb19a579ddf1b1e1}{00104}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_aad65814f761029ddcb19a579ddf1b1e1}{\_conn}}\ =\ conn}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00105}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a2f894d250e2badd2288d794d5702b0c0}{00105}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a2f894d250e2badd2288d794d5702b0c0}{\_closed}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00107}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a14ca9b1a853d02f6d14b6cb3c6e4e17a}{00107}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a14ca9b1a853d02f6d14b6cb3c6e4e17a}{write}}(self,\ data:\ bytes)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}写入数据"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a2f894d250e2badd2288d794d5702b0c0}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ asyncio.CancelledError(\textcolor{stringliteral}{"{}Writer\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 实际写入在\ drain()\ 中完成}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ len(data)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00115}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a763094b83424624def9acca7fb0cf52d}{00115}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a763094b83424624def9acca7fb0cf52d}{drain}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}刷新写入缓冲区"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 连接写入是同步的，直接返回}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00120}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_afd1e7adb33cd7e68057c4d8dd889b54f}{00120}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_afd1e7adb33cd7e68057c4d8dd889b54f}{wait\_closed}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}等待关闭完成"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00124}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_ace401f564024f6545c81cf310db602ca}{00124}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_ace401f564024f6545c81cf310db602ca}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}关闭写入器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ self.\_closed\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00128}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a7c2b2b9aafdb89f9c4f50347ca1acf88}{00128}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a7c2b2b9aafdb89f9c4f50347ca1acf88}{is\_closing}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}是否正在关闭"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_a2f894d250e2badd2288d794d5702b0c0}{\_closed}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00133}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{00133}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{MplexMuxedSession}}(\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{MuxedSession}}):}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00134}00134\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00135}00135\ \textcolor{stringliteral}{\ \ \ \ MplexSession\ 的\ MuxedSession\ 适配器}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00136}00136\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00138}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a35273542284873aecb032433520d8f53}{00138}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a35273542284873aecb032433520d8f53}{\_\_init\_\_}}(self,\ mplex\_session:\ MplexSession,\ conn:\ \textcolor{stringliteral}{'p2p\_engine.transport.Connection'}):}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00139}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_ad97bfe58800059b996e26d4855b0bc1b}{00139}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_ad97bfe58800059b996e26d4855b0bc1b}{\_mplex\_session}}\ =\ mplex\_session}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00140}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{00140}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{\_conn}}\ =\ conn}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00141}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{00141}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{\_closed}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00143}00143\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00144}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_afb23a5972b28785615cb996d6560a073}{00144}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_afb23a5972b28785615cb996d6560a073}{protocol\_id}}(self)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ MPLEX\_PROTOCOL\_STRING}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00147}00147\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00148}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a1b0605feafecf34e2a2c2c47538db3da}{00148}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a1b0605feafecf34e2a2c2c47538db3da}{is\_initiator}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_ad97bfe58800059b996e26d4855b0bc1b}{\_mplex\_session}}.is\_client}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00151}00151\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00152}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a279cf36575cf7b9da0488dbe398e5c08}{00152}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a279cf36575cf7b9da0488dbe398e5c08}{connection}}(self)\ -\/>\ 'p2p\_engine.transport.Connection':}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{\_conn}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00155}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_abf2e96be87df28ffb733ed164c002246}{00155}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_abf2e96be87df28ffb733ed164c002246}{is\_closed}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{\_closed}}\ \textcolor{keywordflow}{or}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_ad97bfe58800059b996e26d4855b0bc1b}{\_mplex\_session}}.is\_closed}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00158}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a719196094625932783e6afed39cfaa28}{00158}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a719196094625932783e6afed39cfaa28}{open\_stream}}(self)\ -\/>\ 'p2p\_engine.transport.upgrader.MuxedStream':}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}打开新的复用流"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ stream\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_ad97bfe58800059b996e26d4855b0bc1b}{\_mplex\_session}}.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a719196094625932783e6afed39cfaa28}{open\_stream}}()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream}{MplexMuxedStream}}(stream)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00163}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a17d246e95dc4488c3f04dab5ce00ad09}{00163}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a17d246e95dc4488c3f04dab5ce00ad09}{accept\_stream}}(self)\ -\/>\ 'p2p\_engine.transport.upgrader.MuxedStream':}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}接受传入的复用流"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ stream\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_ad97bfe58800059b996e26d4855b0bc1b}{\_mplex\_session}}.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a17d246e95dc4488c3f04dab5ce00ad09}{accept\_stream}}()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream}{MplexMuxedStream}}(stream)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00168}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_aabc82b97fc5151e3d93c216fc8a6b6e5}{00168}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_aabc82b97fc5151e3d93c216fc8a6b6e5}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}关闭会话"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session}{\_closed}}\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_ad97bfe58800059b996e26d4855b0bc1b}{\_mplex\_session}}.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_aabc82b97fc5151e3d93c216fc8a6b6e5}{close}}()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00174}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream}{00174}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream}{MplexMuxedStream}}:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00175}00175\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00176}00176\ \textcolor{stringliteral}{\ \ \ \ MplexStream\ 的\ MuxedStream\ 适配器}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00177}00177\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00179}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a35bb6742270141dd5af8183eb5113748}{00179}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a35bb6742270141dd5af8183eb5113748}{\_\_init\_\_}}(self,\ mplex\_stream:\ MplexStream):}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00180}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a92f7a7b9aadec5d00a183f8ce574c0df}{00180}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a92f7a7b9aadec5d00a183f8ce574c0df}{\_mplex\_stream}}\ =\ mplex\_stream}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00182}00182\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00183}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_ac955adc825c0e41b6db62f2958f23ce0}{00183}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_ac955adc825c0e41b6db62f2958f23ce0}{stream\_id}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a92f7a7b9aadec5d00a183f8ce574c0df}{\_mplex\_stream}}.id}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00186}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a9acc02e0deabab9d46e4209c2920b0d7}{00186}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a9acc02e0deabab9d46e4209c2920b0d7}{read}}(self,\ n:\ int\ =\ -\/1)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}读取数据"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a92f7a7b9aadec5d00a183f8ce574c0df}{\_mplex\_stream}}.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a9acc02e0deabab9d46e4209c2920b0d7}{read}}(n)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00190}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a27e5576e5a20990aa664cc20d63f52f7}{00190}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a27e5576e5a20990aa664cc20d63f52f7}{write}}(self,\ data:\ bytes)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}写入数据"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a92f7a7b9aadec5d00a183f8ce574c0df}{\_mplex\_stream}}.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a27e5576e5a20990aa664cc20d63f52f7}{write}}(data)}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00194}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a44c3714d8880d5a868988a2100702858}{00194}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a44c3714d8880d5a868988a2100702858}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}关闭流"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a92f7a7b9aadec5d00a183f8ce574c0df}{\_mplex\_stream}}.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a44c3714d8880d5a868988a2100702858}{close}}()}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00198}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a5780917445206cf887773fcae8ae1ba1}{00198}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a5780917445206cf887773fcae8ae1ba1}{is\_closed}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}检查是否关闭"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_a92f7a7b9aadec5d00a183f8ce574c0df}{\_mplex\_stream}}.is\_closed}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00203}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex__adapter_aa20168eccde1b573e41091e0ef86d0af}{00203}}\ \_\_all\_\_\ =\ [}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00204}00204\ \ \ \ \ \textcolor{stringliteral}{"{}MplexMuxerAdapter"{}},}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00205}00205\ \ \ \ \ \textcolor{stringliteral}{"{}MplexMuxedSession"{}},}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00206}00206\ \ \ \ \ \textcolor{stringliteral}{"{}MplexMuxedStream"{}},}
+\DoxyCodeLine{\Hypertarget{mplex__adapter_8py_source_l00207}00207\ ]}
+
+\end{DoxyCode}

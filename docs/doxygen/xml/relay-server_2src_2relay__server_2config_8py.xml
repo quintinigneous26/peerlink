@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="relay-server_2src_2relay__server_2config_8py" kind="file" language="Python">
+    <compoundname>config.py</compoundname>
+    <innerclass refid="classsrc_1_1relay__server_1_1config_1_1_config" prot="public">src::relay_server::config::Config</innerclass>
+    <innernamespace refid="namespacesrc">src</innernamespace>
+    <innernamespace refid="namespacesrc_1_1relay__server">src::relay_server</innernamespace>
+    <innernamespace refid="namespacesrc_1_1relay__server_1_1config">src::relay_server::config</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacesrc_1_1relay__server_1_1config" refkind="compound"><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="2"><highlight class="stringliteral">Relay<sp/>Server<sp/>Configuration</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>os</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>dataclasses<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>dataclass</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">@dataclass(frozen=True)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="classsrc_1_1relay__server_1_1config_1_1_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classsrc_1_1relay__server_1_1config_1_1_config" kindref="compound">Config</ref>:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Relay<sp/>server<sp/>configuration.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Server<sp/>settings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a59c13ef0bf61214c2a169ad43124fe3a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>host:<sp/>str<sp/>=<sp/>os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_HOST&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;0.0.0.0&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="15" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a3a1046741657933e62cdd42f78c5c669" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>port:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_PORT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;5000&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="16" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a735ee13f239d55dd2180f98f7734869b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>api_port:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_API_PORT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;5001&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Port<sp/>pool<sp/>settings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a02f15bfb4384d1b052a2531386175866" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>min_port:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_MIN_PORT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;50000&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="20" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a0b496c0d898f3c01cfa493c3aaf27662" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>max_port:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_MAX_PORT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;50100&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Allocation<sp/>settings</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classsrc_1_1relay__server_1_1config_1_1_config_1afee90c8515ff7696e5ea2683f521a031" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>allocation_lifetime:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_ALLOCATION_LIFETIME&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;600&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="24" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a6a3f88493726ae6cea8f581d00b4afd6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>max_allocations:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_MAX_ALLOCATIONS&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1000&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Rate<sp/>limiting</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a48b5d2faa8a35ddc92b923f78a3d15fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>bandwidth_limit:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_BANDWIDTH_LIMIT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;10485760&quot;</highlight><highlight class="normal">))<sp/><sp/></highlight><highlight class="comment">#<sp/>10MB/s</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="classsrc_1_1relay__server_1_1config_1_1_config_1adbdb78a9ed3b099c1659b53c88649ae0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>packet_rate_limit:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_PACKET_RATE_LIMIT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1000&quot;</highlight><highlight class="normal">))<sp/><sp/></highlight><highlight class="comment">#<sp/>packets/s</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Performance<sp/>monitoring</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a6d59f452fa819aa51aed66e5b31bc8f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>enable_metrics:<sp/>bool<sp/>=<sp/>os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_ENABLE_METRICS&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;true&quot;</highlight><highlight class="normal">).lower()<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;true&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classsrc_1_1relay__server_1_1config_1_1_config_1aa7b9df1d1c55681abf451517c6e89a58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>metrics_port:<sp/>int<sp/>=<sp/>int(os.getenv(</highlight><highlight class="stringliteral">&quot;RELAY_METRICS_PORT&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;9090&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Logging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classsrc_1_1relay__server_1_1config_1_1_config_1a53876c3f39b97a4b0ee931a241fabba7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>log_level:<sp/>str<sp/>=<sp/>os.getenv(</highlight><highlight class="stringliteral">&quot;LOG_LEVEL&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;INFO&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="namespacesrc_1_1relay__server_1_1config_1a410fcee297161f181f7ef82fbf02d586" refkind="member"><highlight class="normal">config<sp/>=<sp/><ref refid="classsrc_1_1relay__server_1_1config_1_1_config" kindref="compound">Config</ref>()</highlight></codeline>
+    </programlisting>
+    <location file="relay-server/src/relay_server/config.py"/>
+  </compounddef>
+</doxygen>

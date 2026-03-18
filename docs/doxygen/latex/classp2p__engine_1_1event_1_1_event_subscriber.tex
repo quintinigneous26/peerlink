@@ -1,0 +1,172 @@
+\doxysection{p2p\+\_\+engine.\+event.\+Event\+Subscriber类 参考}
+\hypertarget{classp2p__engine_1_1event_1_1_event_subscriber}{}\label{classp2p__engine_1_1event_1_1_event_subscriber}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_ae121957385852ac4ccb6b35280ffb5ce}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{namespacep2p__engine_1_1event_a8abfb96482590cbc7969e1daf9d1794b}{Event\+Handler}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a32d3cf9f1e384929f11094cc4a3f6b50}{handler}}, Optional\+[Set\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic}{Event\+Topic}}]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d}{filter\+\_\+topics}}=None, Optional\+[Set\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a}{filter\+\_\+types}}=None, Optional\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e}{filter\+\_\+peer}}=None)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_ab0fd66293381171c0e9a09993e29241f}{\+\_\+\+\_\+hash\+\_\+\+\_\+}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a9f1105cc844b40f8296d08bf618003e3}{matches}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{namespacep2p__engine_1_1event}{event}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a32d3cf9f1e384929f11094cc4a3f6b50}{handler}} = handler
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d}{filter\+\_\+topics}} = filter\+\_\+topics
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a}{filter\+\_\+types}} = filter\+\_\+types
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e}{filter\+\_\+peer}} = filter\+\_\+peer
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a9ee76e64e072c5add2a1ac7acb1b235f}{\+\_\+id}} = id(self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Event subscriber with filtering options\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00162}{162}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_ae121957385852ac4ccb6b35280ffb5ce}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_ae121957385852ac4ccb6b35280ffb5ce} 
+p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a8abfb96482590cbc7969e1daf9d1794b}{Event\+Handler}}}]{handler}{, }\item[{Optional\+[Set\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic}{Event\+Topic}}]\+]\+ }]{filter\+\_\+topics}{ = {\ttfamily None}, }\item[{Optional\+[Set\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}]\+]\+ }]{filter\+\_\+types}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{filter\+\_\+peer}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize event subscriber.
+
+Args:
+    handler: Async event handler function
+    filter_topics: Optional topic filter (only these topics)
+    filter_types: Optional event type filter
+    filter_peer: Optional peer ID filter (only events for this peer)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00165}{165}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_ab0fd66293381171c0e9a09993e29241f}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!\_\_hash\_\_@{\_\_hash\_\_}}
+\index{\_\_hash\_\_@{\_\_hash\_\_}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{\_\_hash\_\_()}{\_\_hash\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_ab0fd66293381171c0e9a09993e29241f} 
+ int p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+\_\+\+\_\+hash\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00187}{187}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00185}{\+\_\+id}}.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_a9f1105cc844b40f8296d08bf618003e3}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!matches@{matches}}
+\index{matches@{matches}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{matches()}{matches()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_a9f1105cc844b40f8296d08bf618003e3} 
+ bool p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+matches (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}}}]{event}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if this subscriber should receive the event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00190}{190}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00184}{filter\+\_\+peer}}, \doxymbox{\hyperlink{event_8py_source_l00182}{filter\+\_\+topics}} , 以及 \doxymbox{\hyperlink{event_8py_source_l00183}{filter\+\_\+types}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_a9ee76e64e072c5add2a1ac7acb1b235f}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!\_id@{\_id}}
+\index{\_id@{\_id}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{\_id}{\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_a9ee76e64e072c5add2a1ac7acb1b235f} 
+p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+\_\+id = id(self)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00185}{185}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{event_8py_source_l00187}{\+\_\+\+\_\+hash\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{yamux_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+send\+\_\+window\+\_\+update\+\_\+internal()}}, \doxymbox{\hyperlink{mplex_8py_source_l00400}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00444}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00409}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+close()}}, \doxymbox{\hyperlink{mplex_8py_source_l00275}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+id()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00301}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+id()}}, \doxymbox{\hyperlink{yamux_8py_source_l00255}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+id()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}, \doxymbox{\hyperlink{yamux_8py_source_l00433}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+reset()}}, \doxymbox{\hyperlink{mplex_8py_source_l00356}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+write()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00399}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+write()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!filter\_peer@{filter\_peer}}
+\index{filter\_peer@{filter\_peer}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{filter\_peer}{filter\_peer}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e} 
+p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+filter\+\_\+peer = filter\+\_\+peer}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00184}{184}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{event_8py_source_l00190}{matches()}}.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!filter\_topics@{filter\_topics}}
+\index{filter\_topics@{filter\_topics}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{filter\_topics}{filter\_topics}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d} 
+p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+filter\+\_\+topics = filter\+\_\+topics}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00182}{182}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{event_8py_source_l00190}{matches()}}.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!filter\_types@{filter\_types}}
+\index{filter\_types@{filter\_types}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{filter\_types}{filter\_types}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a} 
+p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+filter\+\_\+types = filter\+\_\+types}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00183}{183}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{event_8py_source_l00190}{matches()}}.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_subscriber_a32d3cf9f1e384929f11094cc4a3f6b50}\index{p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}!handler@{handler}}
+\index{handler@{handler}!p2p\_engine.event.EventSubscriber@{p2p\_engine.event.EventSubscriber}}
+\doxysubsubsection{\texorpdfstring{handler}{handler}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_subscriber_a32d3cf9f1e384929f11094cc4a3f6b50} 
+p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+handler = handler}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00181}{181}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00278}{src.\+relay\+\_\+server.\+relay.\+Relay\+Protocol.\+\_\+handle\+\_\+datagram()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+\doxymbox{\hyperlink{event_8py}{event.\+py}}\end{DoxyCompactItemize}

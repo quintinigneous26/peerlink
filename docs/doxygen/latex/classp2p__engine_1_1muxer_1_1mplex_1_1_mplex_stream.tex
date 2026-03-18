@@ -1,0 +1,579 @@
+\doxysection{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream类 参考}
+\hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream}{}\label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+
+
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a83a86600194776827b91b33cdfe4b95a}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int stream\+\_\+id, \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session}{Mplex\+Session}}\textquotesingle{} session, bool is\+\_\+initiator=False)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aaad14a9afee639b42fb008cc0332b56a}{id}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state}{Stream\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a08ecd318383b86bbfeef601cbb6a389b}{state}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a43ce8e5f4db8dbca77c0662104831bd4}{is\+\_\+closed}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a9bb60aa860eb17ea62900be667240e1e}{is\+\_\+established}} (self)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_af8b1c49af00db2fc26a7b0f630c5db31}{read}} (self, int n=-\/1)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aa7c1afe6a870b3eb44f521c72f73cbb3}{write}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a9d1d2049bfc72f66ffa88cd8ab28dbc5}{close}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a22b06f677da77d8ee93fc48e5edcde1c}{reset}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_add387fea099c61a3234fb8fb466d48ab}{\+\_\+handle\+\_\+data}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a7384e477b8416349f147db91e5078420}{\+\_\+handle\+\_\+close}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac20f068a10ed51594ea216c003e4753d}{\+\_\+handle\+\_\+reset}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a5400ce6ba7d64f9b64aae358c94bc9ed}{\+\_\+send\+\_\+window\+\_\+update}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_afc6e98652110f7644106a74f9a5800de}{\+\_\+set\+\_\+state}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state}{Stream\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a08ecd318383b86bbfeef601cbb6a389b}{state}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_af006eed5cf0975f00abb7c68356663d6}{\+\_\+id}} = stream\+\_\+id
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a124741b070caac03c951138b079711f0}{\+\_\+session}} = session
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a965b60d760c92d7132c81a1000412fcc}{\+\_\+is\+\_\+initiator}} = is\+\_\+initiator
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state}{Stream\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac6c26fae7c74b54f8e4bd3f0c0349575}{\+\_\+state}} = \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state_a8b1b82cbffa535642953eceeb446a5f6}{Stream\+State.\+INIT}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ad794130791fb9dea7b5037f072107794}{\+\_\+read\+\_\+lock}} = asyncio.\+Lock()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ad62788b81cd6c99088c5ada032273787}{\+\_\+write\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Deque\+[bytes]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac90ddb2a9484867ea9d901b0cfd9a67f}{\+\_\+recv\+\_\+buffer}} = deque()
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a98a9251062cee4feaa472a4564464d4a}{\+\_\+recv\+\_\+size}} = 0
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a1eaa3b85f9af0d517f6d33da44c5294a}{\+\_\+recv\+\_\+event}} = asyncio.\+Event()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a42831d4e38272c7da4442e0a45dfc18e}{\+\_\+recv\+\_\+window}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a80c181fa0b2b8677f49b604004a0aab0}{DEFAULT\+\_\+\+WINDOW\+\_\+\+SIZE}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a1070a5720c2f228b1f0d5809da383ea2}{\+\_\+send\+\_\+window}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a80c181fa0b2b8677f49b604004a0aab0}{DEFAULT\+\_\+\+WINDOW\+\_\+\+SIZE}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ae25aae83025e07cdeb9020e83239bb61}{\+\_\+send\+\_\+event}} = asyncio.\+Event()
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a247eeefbacc9ce6d2da5755692d84995}{\+\_\+local\+\_\+closed}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a512e8901a17583cd4821ab28fe026370}{\+\_\+remote\+\_\+closed}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_acdd504e2a90f2be4636561db467cc787}{\+\_\+reset}} = False
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aacdf63695533234c36242632fba876f9}{\+\_\+established}} = asyncio.\+Event()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Mplex logical stream.
+
+Implements:
+- Read/write operations
+- Half-close
+- Flow control
+- Reset
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00230}{230}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a83a86600194776827b91b33cdfe4b95a}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a83a86600194776827b91b33cdfe4b95a} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{stream\+\_\+id}{, }\item[{\textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session}{Mplex\+Session}}\textquotesingle{}}]{session}{, }\item[{bool }]{is\+\_\+initiator}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00241}{241}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a7384e477b8416349f147db91e5078420}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_handle\_close@{\_handle\_close}}
+\index{\_handle\_close@{\_handle\_close}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_handle\_close()}{\_handle\_close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a7384e477b8416349f147db91e5078420} 
+ None p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+handle\+\_\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Handle remote close.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00457}{457}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00267}{\+\_\+local\+\_\+closed}}, \doxymbox{\hyperlink{mplex_8py_source_l00259}{\+\_\+recv\+\_\+event}}, \doxymbox{\hyperlink{mplex_8py_source_l00268}{\+\_\+remote\+\_\+closed}}, \doxymbox{\hyperlink{engine_8py_source_l00127}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+state}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00252}{\+\_\+state}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_add387fea099c61a3234fb8fb466d48ab}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_handle\_data@{\_handle\_data}}
+\index{\_handle\_data@{\_handle\_data}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_handle\_data()}{\_handle\_data()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_add387fea099c61a3234fb8fb466d48ab} 
+ None p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+handle\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Handle received data.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00443}{443}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00257}{\+\_\+recv\+\_\+buffer}}, \doxymbox{\hyperlink{mplex_8py_source_l00259}{\+\_\+recv\+\_\+event}}, \doxymbox{\hyperlink{mplex_8py_source_l00258}{\+\_\+recv\+\_\+size}}, \doxymbox{\hyperlink{mplex_8py_source_l00269}{\+\_\+reset}}, \doxymbox{\hyperlink{decision_8py_source_l00158}{p2p\+\_\+engine.\+fallback.\+decision.\+Fallback\+Decider.\+reset()}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}}.
+
+函数调用图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac20f068a10ed51594ea216c003e4753d}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_handle\_reset@{\_handle\_reset}}
+\index{\_handle\_reset@{\_handle\_reset}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_handle\_reset()}{\_handle\_reset()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac20f068a10ed51594ea216c003e4753d} 
+ None p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+handle\+\_\+reset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Handle remote reset.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00467}{467}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00259}{\+\_\+recv\+\_\+event}}, \doxymbox{\hyperlink{mplex_8py_source_l00269}{\+\_\+reset}}, \doxymbox{\hyperlink{engine_8py_source_l00127}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+state}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00252}{\+\_\+state}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a5400ce6ba7d64f9b64aae358c94bc9ed}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_send\_window\_update@{\_send\_window\_update}}
+\index{\_send\_window\_update@{\_send\_window\_update}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_send\_window\_update()}{\_send\_window\_update()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a5400ce6ba7d64f9b64aae358c94bc9ed} 
+ None p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+send\+\_\+window\+\_\+update (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Send window update (implicit in mplex via backpressure).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00473}{473}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_afc6e98652110f7644106a74f9a5800de}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_set\_state@{\_set\_state}}
+\index{\_set\_state@{\_set\_state}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_set\_state()}{\_set\_state()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_afc6e98652110f7644106a74f9a5800de} 
+ None p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+set\+\_\+state (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state}{Stream\+State}}}]{state}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Set stream state.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00479}{479}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a9d1d2049bfc72f66ffa88cd8ab28dbc5}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!close@{close}}
+\index{close@{close}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a9d1d2049bfc72f66ffa88cd8ab28dbc5} 
+ None p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Half-close stream (close write side).
+
+Send CLOSE flag to indicate no more data will be sent.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00400}{400}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00185}{p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00247}{\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00267}{\+\_\+local\+\_\+closed}}, \doxymbox{\hyperlink{mplex_8py_source_l00268}{\+\_\+remote\+\_\+closed}}, \doxymbox{\hyperlink{mplex_8py_source_l00248}{\+\_\+session}}, \doxymbox{\hyperlink{engine_8py_source_l00127}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+state}}, \doxymbox{\hyperlink{mplex_8py_source_l00252}{\+\_\+state}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00254}{\+\_\+write\+\_\+lock}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00793}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+\+\_\+aexit\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l01000}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+\+\_\+aexit\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{yamux_8py_source_l00958}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+\+\_\+aexit\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{dcutr_8py_source_l00705}{p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RProtocol.\+\_\+\+\_\+del\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00302}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+\_\+handle\+\_\+event()}}, \doxymbox{\hyperlink{yamux_8py_source_l00817}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+handle\+\_\+frame()}}, \doxymbox{\hyperlink{mplex_8py_source_l00683}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+read\+\_\+loop()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00883}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+read\+\_\+loop()}}, \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00382}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+data\+\_\+channel\+\_\+callbacks()}}, \doxymbox{\hyperlink{mplex_8py_source_l00670}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+start\+\_\+read\+\_\+loop()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00870}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+start\+\_\+read\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00754}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+start\+\_\+read\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aaad14a9afee639b42fb008cc0332b56a}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!id@{id}}
+\index{id@{id}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{id()}{id()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aaad14a9afee639b42fb008cc0332b56a} 
+ int p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+id (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00275}{275}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00185}{p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+\_\+id}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00247}{\+\_\+id}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a43ce8e5f4db8dbca77c0662104831bd4}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a43ce8e5f4db8dbca77c0662104831bd4} 
+ bool p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00283}{283}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{engine_8py_source_l00127}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+state}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00252}{\+\_\+state}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a9bb60aa860eb17ea62900be667240e1e}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!is\_established@{is\_established}}
+\index{is\_established@{is\_established}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{is\_established()}{is\_established()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a9bb60aa860eb17ea62900be667240e1e} 
+ bool p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+is\+\_\+established (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00287}{287}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{engine_8py_source_l00127}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+state}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00252}{\+\_\+state}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_af8b1c49af00db2fc26a7b0f630c5db31}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!read@{read}}
+\index{read@{read}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_af8b1c49af00db2fc26a7b0f630c5db31} 
+ bytes p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{n}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Read data from stream.
+
+Args:
+    n: Number of bytes to read, -1 for all available
+
+Returns:
+    Read data
+
+Raises:
+    MplexStreamClosed: Stream is closed
+    MplexStreamReset: Stream was reset
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00290}{290}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00253}{\+\_\+read\+\_\+lock}}, \doxymbox{\hyperlink{mplex_8py_source_l00257}{\+\_\+recv\+\_\+buffer}}, \doxymbox{\hyperlink{mplex_8py_source_l00259}{\+\_\+recv\+\_\+event}}, \doxymbox{\hyperlink{mplex_8py_source_l00258}{\+\_\+recv\+\_\+size}}, \doxymbox{\hyperlink{mplex_8py_source_l00268}{\+\_\+remote\+\_\+closed}}, \doxymbox{\hyperlink{mplex_8py_source_l00269}{\+\_\+reset}}, \doxymbox{\hyperlink{mplex_8py_source_l00473}{\+\_\+send\+\_\+window\+\_\+update()}}, \doxymbox{\hyperlink{yamux_8py_source_l00244}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+send\+\_\+window\+\_\+update}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}} , 以及 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00085}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+readexactly()}}.
+
+函数调用图:\+
+% FIG 4
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a22b06f677da77d8ee93fc48e5edcde1c}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!reset@{reset}}
+\index{reset@{reset}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a22b06f677da77d8ee93fc48e5edcde1c} 
+ None p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+reset (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Immediately reset stream.
+
+Send RESET flag to abort stream.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00423}{423}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00185}{p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00247}{\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00257}{\+\_\+recv\+\_\+buffer}}, \doxymbox{\hyperlink{mplex_8py_source_l00259}{\+\_\+recv\+\_\+event}}, \doxymbox{\hyperlink{mplex_8py_source_l00258}{\+\_\+recv\+\_\+size}}, \doxymbox{\hyperlink{mplex_8py_source_l00269}{\+\_\+reset}}, \doxymbox{\hyperlink{mplex_8py_source_l00248}{\+\_\+session}}, \doxymbox{\hyperlink{engine_8py_source_l00127}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+state}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00252}{\+\_\+state}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00443}{\+\_\+handle\+\_\+data()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+data()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a08ecd318383b86bbfeef601cbb6a389b}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!state@{state}}
+\index{state@{state}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{state()}{state()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a08ecd318383b86bbfeef601cbb6a389b} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state}{Stream\+State}} p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+state (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00279}{279}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{engine_8py_source_l00127}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+state}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00252}{\+\_\+state}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aa7c1afe6a870b3eb44f521c72f73cbb3}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!write@{write}}
+\index{write@{write}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aa7c1afe6a870b3eb44f521c72f73cbb3} 
+ int p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Write data to stream.
+
+Args:
+    data: Data to write
+
+Returns:
+    Number of bytes written
+
+Raises:
+    MplexStreamClosed: Stream is closed
+    MplexStreamReset: Stream was reset
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00356}{356}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00272}{\+\_\+established}}, \doxymbox{\hyperlink{event_8py_source_l00185}{p2p\+\_\+engine.\+event.\+Event\+Subscriber.\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00247}{\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00267}{\+\_\+local\+\_\+closed}}, \doxymbox{\hyperlink{mplex_8py_source_l00269}{\+\_\+reset}}, \doxymbox{\hyperlink{mplex_8py_source_l00248}{\+\_\+session}} , 以及 \doxymbox{\hyperlink{mplex_8py_source_l00254}{\+\_\+write\+\_\+lock}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aacdf63695533234c36242632fba876f9}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_established@{\_established}}
+\index{\_established@{\_established}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_established}{\_established}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_aacdf63695533234c36242632fba876f9} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+established = asyncio.\+Event()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00272}{272}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux_8py_source_l00497}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+set\+\_\+state()}}, \doxymbox{\hyperlink{mplex_8py_source_l00356}{write()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00399}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+write()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_af006eed5cf0975f00abb7c68356663d6}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_id@{\_id}}
+\index{\_id@{\_id}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_id}{\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_af006eed5cf0975f00abb7c68356663d6} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+id = stream\+\_\+id\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00247}{247}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+send\+\_\+window\+\_\+update\+\_\+internal()}}, \doxymbox{\hyperlink{mplex_8py_source_l00400}{close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00444}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00409}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+close()}}, \doxymbox{\hyperlink{mplex_8py_source_l00275}{id()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00301}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+id()}}, \doxymbox{\hyperlink{yamux_8py_source_l00255}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+id()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}, \doxymbox{\hyperlink{yamux_8py_source_l00433}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+reset()}}, \doxymbox{\hyperlink{mplex_8py_source_l00356}{write()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00399}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+write()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a965b60d760c92d7132c81a1000412fcc}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_is\_initiator@{\_is\_initiator}}
+\index{\_is\_initiator@{\_is\_initiator}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_is\_initiator}{\_is\_initiator}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a965b60d760c92d7132c81a1000412fcc} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+is\+\_\+initiator = is\+\_\+initiator\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00249}{249}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+create\+\_\+answer()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00276}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+create\+\_\+offer()}}, \doxymbox{\hyperlink{quic_8py_source_l00128}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+is\+\_\+initiator()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00213}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+is\+\_\+initiator()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00171}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+is\+\_\+initiator()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a247eeefbacc9ce6d2da5755692d84995}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_local\_closed@{\_local\_closed}}
+\index{\_local\_closed@{\_local\_closed}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_local\_closed}{\_local\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a247eeefbacc9ce6d2da5755692d84995} 
+bool p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+local\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00267}{267}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00457}{\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00502}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00460}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00400}{close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00444}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00409}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+close()}}, \doxymbox{\hyperlink{mplex_8py_source_l00356}{write()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00399}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+write()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ad794130791fb9dea7b5037f072107794}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_read\_lock@{\_read\_lock}}
+\index{\_read\_lock@{\_read\_lock}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_read\_lock}{\_read\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ad794130791fb9dea7b5037f072107794} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+read\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00253}{253}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00270}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+read()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac90ddb2a9484867ea9d901b0cfd9a67f}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_recv\_buffer@{\_recv\_buffer}}
+\index{\_recv\_buffer@{\_recv\_buffer}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_recv\_buffer}{\_recv\_buffer}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac90ddb2a9484867ea9d901b0cfd9a67f} 
+Deque\+[bytes]\+ p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+recv\+\_\+buffer = deque()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00257}{257}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00443}{\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}}, \doxymbox{\hyperlink{yamux_8py_source_l00270}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+read()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a1eaa3b85f9af0d517f6d33da44c5294a}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_recv\_event@{\_recv\_event}}
+\index{\_recv\_event@{\_recv\_event}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_recv\_event}{\_recv\_event}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a1eaa3b85f9af0d517f6d33da44c5294a} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+recv\+\_\+event = asyncio.\+Event()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00259}{259}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00457}{\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00502}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{mplex_8py_source_l00443}{\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00467}{\+\_\+handle\+\_\+reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+reset()}}, \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a98a9251062cee4feaa472a4564464d4a}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_recv\_size@{\_recv\_size}}
+\index{\_recv\_size@{\_recv\_size}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_recv\_size}{\_recv\_size}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a98a9251062cee4feaa472a4564464d4a} 
+int p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+recv\+\_\+size = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00258}{258}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00443}{\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a42831d4e38272c7da4442e0a45dfc18e}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_recv\_window@{\_recv\_window}}
+\index{\_recv\_window@{\_recv\_window}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_recv\_window}{\_recv\_window}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a42831d4e38272c7da4442e0a45dfc18e} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+recv\+\_\+window = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a80c181fa0b2b8677f49b604004a0aab0}{DEFAULT\+\_\+\+WINDOW\+\_\+\+SIZE}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00260}{260}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux_8py_source_l00460}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+handle\+\_\+data()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+send\+\_\+window\+\_\+update\+\_\+internal()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a512e8901a17583cd4821ab28fe026370}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_remote\_closed@{\_remote\_closed}}
+\index{\_remote\_closed@{\_remote\_closed}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_remote\_closed}{\_remote\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a512e8901a17583cd4821ab28fe026370} 
+bool p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+remote\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00268}{268}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00457}{\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00502}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00460}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00400}{close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00444}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00409}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+close()}}, \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00270}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+read()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_acdd504e2a90f2be4636561db467cc787}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_reset@{\_reset}}
+\index{\_reset@{\_reset}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_reset}{\_reset}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_acdd504e2a90f2be4636561db467cc787} 
+bool p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+reset = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00269}{269}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00443}{\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{yamux_8py_source_l00460}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00467}{\+\_\+handle\+\_\+reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+reset()}}, \doxymbox{\hyperlink{mplex_8py_source_l00290}{read()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}}, \doxymbox{\hyperlink{yamux_8py_source_l00270}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+read()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}, \doxymbox{\hyperlink{yamux_8py_source_l00433}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+reset()}}, \doxymbox{\hyperlink{mplex_8py_source_l00356}{write()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00399}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+write()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ae25aae83025e07cdeb9020e83239bb61}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_send\_event@{\_send\_event}}
+\index{\_send\_event@{\_send\_event}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_send\_event}{\_send\_event}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ae25aae83025e07cdeb9020e83239bb61} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+send\+\_\+event = asyncio.\+Event()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00264}{264}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a1070a5720c2f228b1f0d5809da383ea2}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_send\_window@{\_send\_window}}
+\index{\_send\_window@{\_send\_window}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_send\_window}{\_send\_window}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a1070a5720c2f228b1f0d5809da383ea2} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+send\+\_\+window = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a80c181fa0b2b8677f49b604004a0aab0}{DEFAULT\+\_\+\+WINDOW\+\_\+\+SIZE}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00263}{263}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux_8py_source_l00481}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+handle\+\_\+window\+\_\+update()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a124741b070caac03c951138b079711f0}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_session@{\_session}}
+\index{\_session@{\_session}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_session}{\_session}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_a124741b070caac03c951138b079711f0} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+session = session\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00248}{248}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux_8py_source_l00487}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+send\+\_\+window\+\_\+update\+\_\+internal()}}, \doxymbox{\hyperlink{mplex_8py_source_l00400}{close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00444}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00409}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+close()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}, \doxymbox{\hyperlink{yamux_8py_source_l00433}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+reset()}}, \doxymbox{\hyperlink{mplex_8py_source_l00356}{write()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00399}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+write()}} , 以及 \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac6c26fae7c74b54f8e4bd3f0c0349575}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_state@{\_state}}
+\index{\_state@{\_state}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_state}{\_state}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ac6c26fae7c74b54f8e4bd3f0c0349575} 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state}{Stream\+State}} p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+state = \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state_a8b1b82cbffa535642953eceeb446a5f6}{Stream\+State.\+INIT}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00252}{252}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00457}{\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00502}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00460}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+handle\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00467}{\+\_\+handle\+\_\+reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+handle\+\_\+reset()}}, \doxymbox{\hyperlink{client_8py_source_l00570}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+keepalive\+\_\+loop()}}, \doxymbox{\hyperlink{yamux_8py_source_l00497}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+set\+\_\+state()}}, \doxymbox{\hyperlink{mplex_8py_source_l00400}{close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00444}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00409}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00744}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00309}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+connect()}}, \doxymbox{\hyperlink{mplex_8py_source_l00283}{is\+\_\+closed()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00313}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{yamux_8py_source_l00263}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{client_8py_source_l00795}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+is\+\_\+connected()}}, \doxymbox{\hyperlink{mplex_8py_source_l00287}{is\+\_\+established()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00317}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+is\+\_\+established()}}, \doxymbox{\hyperlink{yamux_8py_source_l00267}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+is\+\_\+established()}}, \doxymbox{\hyperlink{client_8py_source_l00800}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+is\+\_\+p2p()}}, \doxymbox{\hyperlink{mplex_8py_source_l00423}{reset()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00467}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+reset()}}, \doxymbox{\hyperlink{yamux_8py_source_l00433}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+reset()}}, \doxymbox{\hyperlink{client_8py_source_l00604}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+send\+\_\+data()}}, \doxymbox{\hyperlink{mplex_8py_source_l00279}{state()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00305}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+state()}}, \doxymbox{\hyperlink{yamux_8py_source_l00259}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+state()}} , 以及 \doxymbox{\hyperlink{client_8py_source_l00790}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+state()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ad62788b81cd6c99088c5ada032273787}\index{p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}!\_write\_lock@{\_write\_lock}}
+\index{\_write\_lock@{\_write\_lock}!p2p\_engine.muxer.mplex.MplexStream@{p2p\_engine.muxer.mplex.MplexStream}}
+\doxysubsubsection{\texorpdfstring{\_write\_lock}{\_write\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_ad62788b81cd6c99088c5ada032273787} 
+p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+write\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex_8py_source}{mplex.\+py}} 第 \doxymbox{\hyperlink{mplex_8py_source_l00254}{254}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00400}{close()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00444}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+close()}}, \doxymbox{\hyperlink{yamux_8py_source_l00409}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+close()}}, \doxymbox{\hyperlink{mplex_8py_source_l00356}{write()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00399}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+write()}}, \doxymbox{\hyperlink{yamux_8py_source_l00348}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+write()}}, \doxymbox{\hyperlink{quic_8py_source_l00173}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+write()}}, \doxymbox{\hyperlink{quic_8py_source_l00405}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+write()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00201}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+write()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+muxer/\+\doxymbox{\hyperlink{mplex_8py}{mplex.\+py}}\end{DoxyCompactItemize}

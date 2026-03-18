@@ -1,0 +1,599 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.protocol.noise.NoiseSecurity类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1protocol_1_1noise_1_1_noise_security.html','','classp2p__engine_1_1protocol_1_1noise_1_1_noise_security-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.protocol.noise.NoiseSecurity类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a60783dd7df94cff69deccb2e0a3d820c" id="r_a60783dd7df94cff69deccb2e0a3d820c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a60783dd7df94cff69deccb2e0a3d820c">__init__</a> (self, bytes <a class="el" href="#a119a39c295f76486c232e22dbefd11fb">identity_private_key</a>, bytes <a class="el" href="#a52d75ca4a5b958ae8bef4bbffef8285f">identity_public_key</a>, Optional[list[str]] <a class="el" href="#a013c1c0f5917f7a82cca4bbd00087463">stream_muxers</a>=None)</td></tr>
+<tr class="memitem:a02aecbc0c7d2e584b814849c374d2301" id="r_a02aecbc0c7d2e584b814849c374d2301"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport.html">NoiseSecurityTransport</a>&#160;</td><td class="memItemRight"><a class="el" href="#a02aecbc0c7d2e584b814849c374d2301">handshake</a> (self, asyncio.StreamReader reader, asyncio.StreamWriter writer, bool is_initiator)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a119a39c295f76486c232e22dbefd11fb" id="r_a119a39c295f76486c232e22dbefd11fb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a119a39c295f76486c232e22dbefd11fb">identity_private_key</a> = identity_private_key</td></tr>
+<tr class="memitem:a52d75ca4a5b958ae8bef4bbffef8285f" id="r_a52d75ca4a5b958ae8bef4bbffef8285f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a52d75ca4a5b958ae8bef4bbffef8285f">identity_public_key</a> = identity_public_key</td></tr>
+<tr class="memitem:a013c1c0f5917f7a82cca4bbd00087463" id="r_a013c1c0f5917f7a82cca4bbd00087463"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a013c1c0f5917f7a82cca4bbd00087463">stream_muxers</a> = stream_muxers or [&quot;/yamux/1.0.0&quot;, &quot;/mplex/6.7.0&quot;]</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:aa7cb8f5d8948ca4fcbc29192e1a18669" id="r_aa7cb8f5d8948ca4fcbc29192e1a18669"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa7cb8f5d8948ca4fcbc29192e1a18669">PROTOCOL_ID</a> = PROTOCOL_ID</td></tr>
+<tr class="memitem:a376f9b66e5b8e78f5565d4ae8671497b" id="r_a376f9b66e5b8e78f5565d4ae8671497b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a376f9b66e5b8e78f5565d4ae8671497b">PROTOCOL_NAME</a> = PROTOCOL_NAME</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:af542ea1d0e3cd1a1836f6701a80f8d0e" id="r_af542ea1d0e3cd1a1836f6701a80f8d0e"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport.html">NoiseSecurityTransport</a>&#160;</td><td class="memItemRight"><a class="el" href="#af542ea1d0e3cd1a1836f6701a80f8d0e">_handshake_as_initiator</a> (self, <a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake.html">NoiseHandshake</a> <a class="el" href="#a02aecbc0c7d2e584b814849c374d2301">handshake</a>, asyncio.StreamReader reader, asyncio.StreamWriter writer)</td></tr>
+<tr class="memitem:a4bd538480922ac57e6243ff8c1ee7a18" id="r_a4bd538480922ac57e6243ff8c1ee7a18"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport.html">NoiseSecurityTransport</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4bd538480922ac57e6243ff8c1ee7a18">_handshake_as_responder</a> (self, <a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake.html">NoiseHandshake</a> <a class="el" href="#a02aecbc0c7d2e584b814849c374d2301">handshake</a>, asyncio.StreamReader reader, asyncio.StreamWriter writer)</td></tr>
+<tr class="memitem:a98e1ae25c6b2d473f582c8f7c25324ad" id="r_a98e1ae25c6b2d473f582c8f7c25324ad"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a98e1ae25c6b2d473f582c8f7c25324ad">_verify_remote_payload</a> (self, bytes payload_bytes, <a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake.html">NoiseHandshake</a> <a class="el" href="#a02aecbc0c7d2e584b814849c374d2301">handshake</a>)</td></tr>
+<tr class="memitem:a7a8e2560b8ce0c0bb20c96baaa53b0f4" id="r_a7a8e2560b8ce0c0bb20c96baaa53b0f4"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a7a8e2560b8ce0c0bb20c96baaa53b0f4">_send_frame</a> (self, asyncio.StreamWriter writer, bytes data)</td></tr>
+<tr class="memitem:ad9bad491db59eb41dfa0d71989e161e9" id="r_ad9bad491db59eb41dfa0d71989e161e9"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#ad9bad491db59eb41dfa0d71989e161e9">_recv_frame</a> (self, asyncio.StreamReader reader)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Noise security channel for libp2p.
+
+This class provides the main interface for performing Noise
+handshakes and establishing secure channels.
+</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00784">784</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a60783dd7df94cff69deccb2e0a3d820c" name="a60783dd7df94cff69deccb2e0a3d820c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60783dd7df94cff69deccb2e0a3d820c">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.noise.NoiseSecurity.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>identity_private_key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>identity_public_key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[list[str]] </td>          <td class="paramname"><span class="paramname"><em>stream_muxers</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize Noise security.
+
+Args:
+    identity_private_key: Local libp2p identity private key
+    identity_public_key: Local libp2p identity public key
+    stream_muxers: Optional list of supported stream muxers
+</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00795">795</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="af542ea1d0e3cd1a1836f6701a80f8d0e" name="af542ea1d0e3cd1a1836f6701a80f8d0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af542ea1d0e3cd1a1836f6701a80f8d0e">&#9670;&#160;</a></span>_handshake_as_initiator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport.html">NoiseSecurityTransport</a> p2p_engine.protocol.noise.NoiseSecurity._handshake_as_initiator </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake.html">NoiseHandshake</a></td>          <td class="paramname"><span class="paramname"><em>handshake</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamReader</td>          <td class="paramname"><span class="paramname"><em>reader</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamWriter</td>          <td class="paramname"><span class="paramname"><em>writer</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Perform handshake as initiator.</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00850">850</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="noise_8py_source.html#l00976">_recv_frame()</a>, <a class="el" href="mplex_8py_source.html#l00659">p2p_engine.muxer.mplex.MplexSession._send_frame()</a>, <a class="el" href="mplex__v2_8py_source.html#l00858">p2p_engine.muxer.mplex_v2.MplexSession._send_frame()</a>, <a class="el" href="yamux_8py_source.html#l00743">p2p_engine.muxer.yamux.YamuxSession._send_frame()</a>, <a class="el" href="yamux__optimized_8py_source.html#l00312">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frame()</a>, <a class="el" href="noise_8py_source.html#l00961">_send_frame()</a> , 以及 <a class="el" href="noise_8py_source.html#l00922">_verify_remote_payload()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="noise_8py_source.html#l00818">handshake()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_af542ea1d0e3cd1a1836f6701a80f8d0e_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_af542ea1d0e3cd1a1836f6701a80f8d0e_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_af542ea1d0e3cd1a1836f6701a80f8d0e_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_af542ea1d0e3cd1a1836f6701a80f8d0e_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a4bd538480922ac57e6243ff8c1ee7a18" name="a4bd538480922ac57e6243ff8c1ee7a18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bd538480922ac57e6243ff8c1ee7a18">&#9670;&#160;</a></span>_handshake_as_responder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport.html">NoiseSecurityTransport</a> p2p_engine.protocol.noise.NoiseSecurity._handshake_as_responder </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake.html">NoiseHandshake</a></td>          <td class="paramname"><span class="paramname"><em>handshake</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamReader</td>          <td class="paramname"><span class="paramname"><em>reader</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamWriter</td>          <td class="paramname"><span class="paramname"><em>writer</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Perform handshake as responder.</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00882">882</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="noise_8py_source.html#l00976">_recv_frame()</a>, <a class="el" href="mplex_8py_source.html#l00659">p2p_engine.muxer.mplex.MplexSession._send_frame()</a>, <a class="el" href="mplex__v2_8py_source.html#l00858">p2p_engine.muxer.mplex_v2.MplexSession._send_frame()</a>, <a class="el" href="yamux_8py_source.html#l00743">p2p_engine.muxer.yamux.YamuxSession._send_frame()</a>, <a class="el" href="yamux__optimized_8py_source.html#l00312">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._send_frame()</a>, <a class="el" href="noise_8py_source.html#l00961">_send_frame()</a> , 以及 <a class="el" href="noise_8py_source.html#l00922">_verify_remote_payload()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="noise_8py_source.html#l00818">handshake()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a4bd538480922ac57e6243ff8c1ee7a18_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a4bd538480922ac57e6243ff8c1ee7a18_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a4bd538480922ac57e6243ff8c1ee7a18_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a4bd538480922ac57e6243ff8c1ee7a18_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ad9bad491db59eb41dfa0d71989e161e9" name="ad9bad491db59eb41dfa0d71989e161e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9bad491db59eb41dfa0d71989e161e9">&#9670;&#160;</a></span>_recv_frame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.protocol.noise.NoiseSecurity._recv_frame </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamReader</td>          <td class="paramname"><span class="paramname"><em>reader</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Receive data with Noise framing.
+
+Args:
+    reader: Stream reader
+
+Returns:
+    Received data
+</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00976">976</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="noise_8py_source.html#l00855">_handshake_as_initiator()</a> , 以及 <a class="el" href="noise_8py_source.html#l00887">_handshake_as_responder()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_ad9bad491db59eb41dfa0d71989e161e9_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_ad9bad491db59eb41dfa0d71989e161e9_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a7a8e2560b8ce0c0bb20c96baaa53b0f4" name="a7a8e2560b8ce0c0bb20c96baaa53b0f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a8e2560b8ce0c0bb20c96baaa53b0f4">&#9670;&#160;</a></span>_send_frame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.noise.NoiseSecurity._send_frame </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamWriter</td>          <td class="paramname"><span class="paramname"><em>writer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Send data with Noise framing.
+
+Args:
+    writer: Stream writer
+    data: Data to send
+</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00961">961</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="noise_8py_source.html#l00855">_handshake_as_initiator()</a> , 以及 <a class="el" href="noise_8py_source.html#l00887">_handshake_as_responder()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a7a8e2560b8ce0c0bb20c96baaa53b0f4_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a7a8e2560b8ce0c0bb20c96baaa53b0f4_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a98e1ae25c6b2d473f582c8f7c25324ad" name="a98e1ae25c6b2d473f582c8f7c25324ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98e1ae25c6b2d473f582c8f7c25324ad">&#9670;&#160;</a></span>_verify_remote_payload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.noise.NoiseSecurity._verify_remote_payload </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>payload_bytes</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake.html">NoiseHandshake</a></td>          <td class="paramname"><span class="paramname"><em>handshake</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Verify remote handshake payload.
+
+Args:
+    payload_bytes: Decrypted payload bytes
+    handshake: Current handshake state
+
+Raises:
+    InvalidSignatureError: If signature verification fails
+</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00918">918</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="tls_8py_source.html#l00499">p2p_engine.protocol.tls.TLSSecurity._exchange_payloads()</a>, <a class="el" href="noise_8py_source.html#l00855">_handshake_as_initiator()</a> , 以及 <a class="el" href="noise_8py_source.html#l00887">_handshake_as_responder()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a98e1ae25c6b2d473f582c8f7c25324ad_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a98e1ae25c6b2d473f582c8f7c25324ad_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a02aecbc0c7d2e584b814849c374d2301" name="a02aecbc0c7d2e584b814849c374d2301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02aecbc0c7d2e584b814849c374d2301">&#9670;&#160;</a></span>handshake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport.html">NoiseSecurityTransport</a> p2p_engine.protocol.noise.NoiseSecurity.handshake </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamReader</td>          <td class="paramname"><span class="paramname"><em>reader</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamWriter</td>          <td class="paramname"><span class="paramname"><em>writer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_initiator</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Perform Noise XX handshake.
+
+Args:
+    reader: Stream reader
+    writer: Stream writer
+    is_initiator: True if initiating, False if responding
+
+Returns:
+    NoiseSecurityTransport for secure communication
+
+Raises:
+    HandshakeError: If handshake fails
+    InvalidSignatureError: If signature verification fails
+</pre> 
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00813">813</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="noise_8py_source.html#l00855">_handshake_as_initiator()</a>, <a class="el" href="noise_8py_source.html#l00887">_handshake_as_responder()</a>, <a class="el" href="noise_8py_source.html#l00809">identity_private_key</a>, <a class="el" href="noise_8py_source.html#l00810">identity_public_key</a>, <a class="el" href="noise_8py_source.html#l00339">p2p_engine.protocol.noise.HandshakeConfig.stream_muxers</a> , 以及 <a class="el" href="noise_8py_source.html#l00811">stream_muxers</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a02aecbc0c7d2e584b814849c374d2301_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1noise_1_1_noise_security_a02aecbc0c7d2e584b814849c374d2301_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a119a39c295f76486c232e22dbefd11fb" name="a119a39c295f76486c232e22dbefd11fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a119a39c295f76486c232e22dbefd11fb">&#9670;&#160;</a></span>identity_private_key</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.noise.NoiseSecurity.identity_private_key = identity_private_key</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00809">809</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="noise_8py_source.html#l00818">handshake()</a>.</p>
+
+</div>
+</div>
+<a id="a52d75ca4a5b958ae8bef4bbffef8285f" name="a52d75ca4a5b958ae8bef4bbffef8285f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52d75ca4a5b958ae8bef4bbffef8285f">&#9670;&#160;</a></span>identity_public_key</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.noise.NoiseSecurity.identity_public_key = identity_public_key</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00810">810</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="noise_8py_source.html#l00818">handshake()</a>.</p>
+
+</div>
+</div>
+<a id="aa7cb8f5d8948ca4fcbc29192e1a18669" name="aa7cb8f5d8948ca4fcbc29192e1a18669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7cb8f5d8948ca4fcbc29192e1a18669">&#9670;&#160;</a></span>PROTOCOL_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.noise.NoiseSecurity.PROTOCOL_ID = PROTOCOL_ID</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00792">792</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a376f9b66e5b8e78f5565d4ae8671497b" name="a376f9b66e5b8e78f5565d4ae8671497b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a376f9b66e5b8e78f5565d4ae8671497b">&#9670;&#160;</a></span>PROTOCOL_NAME</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.noise.NoiseSecurity.PROTOCOL_NAME = PROTOCOL_NAME</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00793">793</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a013c1c0f5917f7a82cca4bbd00087463" name="a013c1c0f5917f7a82cca4bbd00087463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a013c1c0f5917f7a82cca4bbd00087463">&#9670;&#160;</a></span>stream_muxers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.noise.NoiseSecurity.stream_muxers = stream_muxers or [&quot;/yamux/1.0.0&quot;, &quot;/mplex/6.7.0&quot;]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="noise_8py_source.html">noise.py</a> 第 <a class="el" href="noise_8py_source.html#l00811">811</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="tls_8py_source.html#l00260">p2p_engine.protocol.tls.TLSConfig.__post_init__()</a>, <a class="el" href="noise__pb2_8py_source.html#l00055">p2p_engine.protocol.noise_pb2.NoiseExtensions.CopyFrom()</a>, <a class="el" href="noise__pb2_8py_source.html#l00049">p2p_engine.protocol.noise_pb2.NoiseExtensions.extend()</a>, <a class="el" href="noise_8py_source.html#l00818">handshake()</a> , 以及 <a class="el" href="noise__pb2_8py_source.html#l00024">p2p_engine.protocol.noise_pb2.NoiseExtensions.to_bytes()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/protocol/<a class="el" href="noise_8py_source.html">noise.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1protocol.html">protocol</a></li><li class="navelem"><a href="namespacep2p__engine_1_1protocol_1_1noise.html">noise</a></li><li class="navelem"><a href="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security.html">NoiseSecurity</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

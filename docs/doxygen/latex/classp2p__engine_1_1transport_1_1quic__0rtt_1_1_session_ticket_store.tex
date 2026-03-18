@@ -1,0 +1,278 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store}{}\label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a3f55f5c55820a2f31dc6c4ce7df063aa}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int max\+\_\+tickets=\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic__0rtt_ad586ae0def20f412aec9b1e72bae48c1}{MAX\+\_\+\+SESSION\+\_\+\+TICKETS}})
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a8804ad4ea1b1168648d6bb1b4f961d95}{start}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_abc2268ad831343a77b988cd39b050f36}{stop}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket}{Cached\+Session\+Ticket}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_ab233486610a1085d46abd5626de6a82f}{get\+\_\+ticket}} (self, str server\+\_\+name)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket}{Cached\+Session\+Ticket}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a33e7e1d602833e3d21cccec398ef360e}{store\+\_\+ticket}} (self, str server\+\_\+name, bytes ticket\+\_\+data, Dict\+[str, Any]\+ transport\+\_\+params)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a081ecb60ea5a1a4bfe3d985f04e74dfb}{revoke\+\_\+ticket}} (self, str server\+\_\+name)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a7db5940301663bd65fa1f283466071ec}{clear\+\_\+tickets}} (self)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a539cdb1c96a737e901a216778ffd7af7}{ticket\+\_\+count}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a781d0e991474a623f043865bddfefc89}{\+\_\+cleanup\+\_\+loop}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a6d8ed4182c7cd3e324a2756f7dde20c0}{\+\_\+max\+\_\+tickets}} = max\+\_\+tickets
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a603021bcb0e6cd7f914f0a43a97c3a99}{\+\_\+tickets}} = \{\}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a28f342951c805a3682b7acd03dc82b65}{\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a8168fd8ae3186904b719320e540921c1}{\+\_\+cleanup\+\_\+task}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Storage for QUIC session tickets.
+
+Implements LRU eviction and automatic cleanup.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00106}{106}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a3f55f5c55820a2f31dc6c4ce7df063aa}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a3f55f5c55820a2f31dc6c4ce7df063aa} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+tickets}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic__0rtt_ad586ae0def20f412aec9b1e72bae48c1}{MAX\+\_\+\+SESSION\+\_\+\+TICKETS}}}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00113}{113}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a781d0e991474a623f043865bddfefc89}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!\_cleanup\_loop@{\_cleanup\_loop}}
+\index{\_cleanup\_loop@{\_cleanup\_loop}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_loop()}{\_cleanup\_loop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a781d0e991474a623f043865bddfefc89} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Periodically cleanup expired tickets.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{208}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{\+\_\+lock}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00115}{\+\_\+tickets}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00119}{start()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00194}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+start()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00123}{src.\+allocation.\+Allocation\+Manager.\+start()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a7db5940301663bd65fa1f283466071ec}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!clear\_tickets@{clear\_tickets}}
+\index{clear\_tickets@{clear\_tickets}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{clear\_tickets()}{clear\_tickets()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a7db5940301663bd65fa1f283466071ec} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+clear\+\_\+tickets (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clear all tickets.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00203}{203}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{\+\_\+lock}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00115}{\+\_\+tickets}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_ab233486610a1085d46abd5626de6a82f}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!get\_ticket@{get\_ticket}}
+\index{get\_ticket@{get\_ticket}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{get\_ticket()}{get\_ticket()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_ab233486610a1085d46abd5626de6a82f} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket}{Cached\+Session\+Ticket}}]\+ p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+get\+\_\+ticket (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{server\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get a valid ticket for the server.
+
+Args:
+    server_name: Server hostname
+
+Returns:
+    CachedSessionTicket if available, None otherwise
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00133}{133}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{\+\_\+lock}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00115}{\+\_\+tickets}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a081ecb60ea5a1a4bfe3d985f04e74dfb}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!revoke\_ticket@{revoke\_ticket}}
+\index{revoke\_ticket@{revoke\_ticket}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{revoke\_ticket()}{revoke\_ticket()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a081ecb60ea5a1a4bfe3d985f04e74dfb} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+revoke\+\_\+ticket (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{server\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Revoke ticket for server.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00196}{196}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{\+\_\+lock}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00115}{\+\_\+tickets}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a8804ad4ea1b1168648d6bb1b4f961d95}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!start@{start}}
+\index{start@{start}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a8804ad4ea1b1168648d6bb1b4f961d95} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+start (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start background cleanup task.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00119}{119}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00550}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+task}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00117}{\+\_\+cleanup\+\_\+task}}.
+
+函数调用图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_abc2268ad831343a77b988cd39b050f36}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!stop@{stop}}
+\index{stop@{stop}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_abc2268ad831343a77b988cd39b050f36} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop cleanup task.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00124}{124}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__v2_8py_source_l00550}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+task}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00117}{\+\_\+cleanup\+\_\+task}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a33e7e1d602833e3d21cccec398ef360e}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!store\_ticket@{store\_ticket}}
+\index{store\_ticket@{store\_ticket}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{store\_ticket()}{store\_ticket()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a33e7e1d602833e3d21cccec398ef360e} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket}{Cached\+Session\+Ticket}} p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+store\+\_\+ticket (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{server\+\_\+name}{, }\item[{bytes}]{ticket\+\_\+data}{, }\item[{Dict\+[str, Any]\+}]{transport\+\_\+params}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Store a new session ticket.
+
+Args:
+    server_name: Server hostname
+    ticket_data: Raw ticket data
+    transport_params: QUIC transport parameters
+
+Returns:
+    CachedSessionTicket instance
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00159}{159}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00114}{\+\_\+max\+\_\+tickets}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00115}{\+\_\+tickets}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a539cdb1c96a737e901a216778ffd7af7}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!ticket\_count@{ticket\_count}}
+\index{ticket\_count@{ticket\_count}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{ticket\_count()}{ticket\_count()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a539cdb1c96a737e901a216778ffd7af7} 
+ int p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+ticket\+\_\+count (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get number of stored tickets.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00233}{233}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00115}{\+\_\+tickets}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a8168fd8ae3186904b719320e540921c1}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!\_cleanup\_task@{\_cleanup\_task}}
+\index{\_cleanup\_task@{\_cleanup\_task}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_task}{\_cleanup\_task}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a8168fd8ae3186904b719320e540921c1} 
+Optional\+[asyncio.\+Task]\+ p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+task = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00117}{117}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00119}{start()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00194}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+start()}}, \doxymbox{\hyperlink{allocation_8py_source_l00123}{src.\+allocation.\+Allocation\+Manager.\+start()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00124}{stop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00199}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+stop()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00128}{src.\+allocation.\+Allocation\+Manager.\+stop()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a28f342951c805a3682b7acd03dc82b65}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a28f342951c805a3682b7acd03dc82b65} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{116}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00263}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00269}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{allocation_8py_source_l00047}{src.\+allocation.\+Port\+Pool.\+acquire()}}, \doxymbox{\hyperlink{allocation_8py_source_l00320}{src.\+allocation.\+Allocation\+Manager.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00203}{clear\+\_\+tickets()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00309}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+connect()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{src.\+bandwidth.\+Token\+Bucket.\+consume()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{src.\+allocation.\+Allocation\+Manager.\+create\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{src.\+allocation.\+Allocation\+Manager.\+delete\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00216}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+get()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00136}{get\+\_\+ticket()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+open\+\_\+stream()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00239}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+put()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}}, \doxymbox{\hyperlink{allocation_8py_source_l00252}{src.\+allocation.\+Allocation\+Manager.\+refresh\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00063}{src.\+allocation.\+Port\+Pool.\+release()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00251}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+remove()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00196}{revoke\+\_\+ticket()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00199}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+stop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00164}{store\+\_\+ticket()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a6d8ed4182c7cd3e324a2756f7dde20c0}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!\_max\_tickets@{\_max\_tickets}}
+\index{\_max\_tickets@{\_max\_tickets}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{\_max\_tickets}{\_max\_tickets}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a6d8ed4182c7cd3e324a2756f7dde20c0} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+max\+\_\+tickets = max\+\_\+tickets\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00114}{114}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00164}{store\+\_\+ticket()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a603021bcb0e6cd7f914f0a43a97c3a99}\index{p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}!\_tickets@{\_tickets}}
+\index{\_tickets@{\_tickets}!p2p\_engine.transport.quic\_0rtt.SessionTicketStore@{p2p\_engine.transport.quic\_0rtt.SessionTicketStore}}
+\doxysubsubsection{\texorpdfstring{\_tickets}{\_tickets}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_a603021bcb0e6cd7f914f0a43a97c3a99} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+tickets = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00115}{115}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00203}{clear\+\_\+tickets()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00136}{get\+\_\+ticket()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00196}{revoke\+\_\+ticket()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00164}{store\+\_\+ticket()}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00233}{ticket\+\_\+count()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{quic__0rtt_8py}{quic\+\_\+0rtt.\+py}}\end{DoxyCompactItemize}

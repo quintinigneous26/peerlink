@@ -1,0 +1,178 @@
+\doxysection{p2p\+\_\+engine.\+config.\+defaults.\+Config类 参考}
+\hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config}{}\label{classp2p__engine_1_1config_1_1defaults_1_1_config}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+
+
+p2p\+\_\+engine.\+config.\+defaults.\+Config 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+"{}Config"{} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_afe9c3b5e25ef7a88b1032f62691f182d}{merge}} (self, dict other)
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_aec0f20862d9e8497a29052ca1be0c00f}{to\+\_\+dict}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config}{STUNConfig}} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ac633eae7e4ebc79ca75a0339da21b4ce}{stun}} = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config}{STUNConfig}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config}{Punch\+Config}} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a81b8440b8aeaea56dbd8f01d2ca5646a}{punch}} = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config}{Punch\+Config}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config}{Heartbeat\+Config}} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_a803f65dd15aa0ced43fe2b27b55669b3}{heartbeat}} = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config}{Heartbeat\+Config}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config}{Fallback\+Config}} \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_adfd78de52eacb0ca21b3f4a9b861f0cb}{fallback}} = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config}{Fallback\+Config}})
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_af047a78bef3d9c3b39c7fb7f64e4b6f0}{log\+\_\+level}} = "{}INFO"{}
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_config_ae65ebf5cb5ccf2c146add1cace99f18f}{debug}} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}完整配置\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00078}{78}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_afe9c3b5e25ef7a88b1032f62691f182d}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!merge@{merge}}
+\index{merge@{merge}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{merge()}{merge()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_afe9c3b5e25ef7a88b1032f62691f182d} 
+ "{}Config"{} p2p\+\_\+engine.\+config.\+defaults.\+Config.\+merge (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{dict}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}深度合并配置（other 覆盖 self）
+
+Args:
+    other: 要合并的配置字典，支持嵌套结构
+
+Returns:
+    合并后的 Config 对象
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00091}{91}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{defaults_8py_source_l00089}{debug}}, \doxymbox{\hyperlink{defaults_8py_source_l00083}{fallback}}, \doxymbox{\hyperlink{defaults_8py_source_l00082}{heartbeat}}, \doxymbox{\hyperlink{defaults_8py_source_l00086}{log\+\_\+level}}, \doxymbox{\hyperlink{defaults_8py_source_l00081}{punch}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00080}{stun}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_aec0f20862d9e8497a29052ca1be0c00f}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_aec0f20862d9e8497a29052ca1be0c00f} 
+ dict p2p\+\_\+engine.\+config.\+defaults.\+Config.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}转换为字典\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00137}{137}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{defaults_8py_source_l00089}{debug}}, \doxymbox{\hyperlink{defaults_8py_source_l00083}{fallback}}, \doxymbox{\hyperlink{defaults_8py_source_l00082}{heartbeat}}, \doxymbox{\hyperlink{defaults_8py_source_l00086}{log\+\_\+level}}, \doxymbox{\hyperlink{defaults_8py_source_l00081}{punch}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00080}{stun}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{identify_8py_source_l00073}{p2p\+\_\+engine.\+protocol.\+identify.\+Identify\+Extension.\+to\+\_\+bytes()}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00116}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+to\+\_\+json()}} , 以及 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00121}{src.\+signaling\+\_\+server.\+models.\+Message.\+to\+\_\+json()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_ae65ebf5cb5ccf2c146add1cace99f18f}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!debug@{debug}}
+\index{debug@{debug}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{debug}{debug}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_ae65ebf5cb5ccf2c146add1cace99f18f} 
+p2p\+\_\+engine.\+config.\+defaults.\+Config.\+debug = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00089}{89}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{defaults_8py_source_l00091}{merge()}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00137}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_adfd78de52eacb0ca21b3f4a9b861f0cb}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!fallback@{fallback}}
+\index{fallback@{fallback}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{fallback}{fallback}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_adfd78de52eacb0ca21b3f4a9b861f0cb} 
+p2p\+\_\+engine.\+config.\+defaults.\+Config.\+fallback = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_fallback_config}{Fallback\+Config}})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00083}{83}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{defaults_8py_source_l00091}{merge()}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00137}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_a803f65dd15aa0ced43fe2b27b55669b3}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!heartbeat@{heartbeat}}
+\index{heartbeat@{heartbeat}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{heartbeat}{heartbeat}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_a803f65dd15aa0ced43fe2b27b55669b3} 
+p2p\+\_\+engine.\+config.\+defaults.\+Config.\+heartbeat = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_heartbeat_config}{Heartbeat\+Config}})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00082}{82}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{defaults_8py_source_l00091}{merge()}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00137}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_af047a78bef3d9c3b39c7fb7f64e4b6f0}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!log\_level@{log\_level}}
+\index{log\_level@{log\_level}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{log\_level}{log\_level}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_af047a78bef3d9c3b39c7fb7f64e4b6f0} 
+p2p\+\_\+engine.\+config.\+defaults.\+Config.\+log\+\_\+level = "{}INFO"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00086}{86}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{defaults_8py_source_l00091}{merge()}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00137}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_a81b8440b8aeaea56dbd8f01d2ca5646a}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!punch@{punch}}
+\index{punch@{punch}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{punch}{punch}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_a81b8440b8aeaea56dbd8f01d2ca5646a} 
+p2p\+\_\+engine.\+config.\+defaults.\+Config.\+punch = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_punch_config}{Punch\+Config}})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00081}{81}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{defaults_8py_source_l00091}{merge()}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00137}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1config_1_1defaults_1_1_config_ac633eae7e4ebc79ca75a0339da21b4ce}\index{p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}!stun@{stun}}
+\index{stun@{stun}!p2p\_engine.config.defaults.Config@{p2p\_engine.config.defaults.Config}}
+\doxysubsubsection{\texorpdfstring{stun}{stun}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1config_1_1defaults_1_1_config_ac633eae7e4ebc79ca75a0339da21b4ce} 
+p2p\+\_\+engine.\+config.\+defaults.\+Config.\+stun = field(default\+\_\+factory=\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1defaults_1_1_s_t_u_n_config}{STUNConfig}})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{defaults_8py_source}{defaults.\+py}} 第 \doxymbox{\hyperlink{defaults_8py_source_l00080}{80}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{defaults_8py_source_l00091}{merge()}} , 以及 \doxymbox{\hyperlink{defaults_8py_source_l00137}{to\+\_\+dict()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+config/\+\doxymbox{\hyperlink{defaults_8py}{defaults.\+py}}\end{DoxyCompactItemize}

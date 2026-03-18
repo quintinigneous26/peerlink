@@ -1,0 +1,195 @@
+\doxysection{heartbeat.\+py}
+\hypertarget{heartbeat_8py_source}{}\label{heartbeat_8py_source}\index{p2p\_engine/keeper/heartbeat.py@{p2p\_engine/keeper/heartbeat.py}}
+\doxymbox{\hyperlink{heartbeat_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1keeper_1_1heartbeat}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00002}00002\ \textcolor{stringliteral}{心跳保活模块}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00004}00004\ \textcolor{stringliteral}{实现自适应心跳，分运营商配置}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00006}00006\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00007}00007\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00008}00008\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00009}00009\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00010}00010\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ Callable,\ Awaitable}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00012}00012\ \textcolor{keyword}{from}\ ..types\ \textcolor{keyword}{import}\ ConnectionState,\ ISP}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00013}00013\ \textcolor{keyword}{from}\ ..config.isp\_profiles\ \textcolor{keyword}{import}\ ISPProfile,\ get\_isp\_profile}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00015}\doxymbox{\hyperlink{namespacep2p__engine_1_1keeper_1_1heartbeat_acfe542062e709a4543904fff7adcb567}{00015}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.heartbeat"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00018}00018\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00019}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{00019}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{HeartbeatStats}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00020}00020\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}心跳统计"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00021}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats_a48d4254d5cee5c96f446cd1765677e6e}{00021}}\ \ \ \ \ total\_sent:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00022}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats_a61363c2474f1c702ee43955ee537512e}{00022}}\ \ \ \ \ total\_received:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00023}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats_a4e78e11d153a5b8f7cf0bcb86daaf9be}{00023}}\ \ \ \ \ consecutive\_success:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00024}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats_a247318079fc4f2f76189387bf073641e}{00024}}\ \ \ \ \ consecutive\_failure:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00025}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats_a161ecdb0a8042538e0211ab29e5d0ba4}{00025}}\ \ \ \ \ last\_latency\_ms:\ float\ =\ 0.0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00026}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats_a36dac092fe77994770b4f38ce4101fbc}{00026}}\ \ \ \ \ avg\_latency\_ms:\ float\ =\ 0.0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00027}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats_ae0ab41b46e79343d65d47a14fc20264d}{00027}}\ \ \ \ \ last\_success\_time:\ float\ =\ 0.0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00030}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper}{00030}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper}{HeartbeatKeeper}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00031}00031\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}心跳保活器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00033}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_adf64336ecfcb6348a593d3e4486a0fae}{00033}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_adf64336ecfcb6348a593d3e4486a0fae}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ send\_func:\ Callable[[bytes],\ Awaitable[bool]],}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ on\_timeout:\ Callable[[],\ Awaitable[\textcolor{keywordtype}{None}]],}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ isp:\ ISP\ =\ ISP.UNKNOWN,}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00038}00038\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00040}00040\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 初始化}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00042}00042\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ send\_func:\ 发送心跳包的函数}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ on\_timeout:\ 心跳超时回调}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ isp:\ 当前运营商}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00047}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a7624e138fca3b564d4db834039576e59}{00047}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a7624e138fca3b564d4db834039576e59}{\_send\_func}}\ =\ send\_func}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00048}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a522634ea10be66bba50dc72449836430}{00048}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a522634ea10be66bba50dc72449836430}{\_on\_timeout}}\ =\ on\_timeout}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00049}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abec1dd8584f22a8234910512a2f48360}{00049}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abec1dd8584f22a8234910512a2f48360}{\_isp}}\ =\ isp}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00051}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{00051}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}:\ Optional[ISPProfile]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00052}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{00052}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}:\ int\ =\ 30000}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00053}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{00053}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{\_task}}:\ Optional[asyncio.Task]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00054}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}{00054}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}{\_running}}:\ bool\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00055}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{00055}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{HeartbeatStats}}()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 心跳内容}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00058}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a2d7bffd5754261a67de67287106b07c4}{00058}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a2d7bffd5754261a67de67287106b07c4}{\_heartbeat\_data}}\ =\ b\textcolor{stringliteral}{"{}\(\backslash\)x00\(\backslash\)x00"{}}\ \ \textcolor{comment}{\#\ 简单的空包}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00059}00059\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00060}00060\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00061}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a6b603e11130a37ba7b7fd10a098344b8}{00061}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a6b603e11130a37ba7b7fd10a098344b8}{stats}}(self)\ -\/>\ HeartbeatStats:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取统计信息"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00064}00064\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00065}00065\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00066}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa15348b75944175c98b03ed08f9f0bc2}{00066}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa15348b75944175c98b03ed08f9f0bc2}{current\_interval\_ms}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}当前心跳间隔"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00069}00069\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00070}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a935bf43c166068b9bd6e5091b1481e3f}{00070}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a935bf43c166068b9bd6e5091b1481e3f}{set\_isp}}(self,\ isp:\ ISP)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}设置运营商（更新心跳参数）"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abec1dd8584f22a8234910512a2f48360}{\_isp}}\ =\ isp}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}\ =\ get\_isp\_profile(isp)}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}.heartbeat\_initial\_ms}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}心跳参数已更新:\ ISP=\{isp.value\},\ 间隔=\{self.\_interval\_ms\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00076}00076\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00077}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a371014e6eeec65082e0c38f166926fc7}{00077}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a371014e6eeec65082e0c38f166926fc7}{start}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}启动心跳"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}{\_running}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(\textcolor{stringliteral}{"{}心跳已在运行"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}{\_running}}\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{\_task}}\ =\ asyncio.create\_task(self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ae61aced74b54162c1810727534d9debc}{\_heartbeat\_loop}}())}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}心跳已启动:\ 间隔=\{self.\_interval\_ms\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00086}00086\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00087}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a3a0830db28d1a68ccc64059a44d2d14f}{00087}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a3a0830db28d1a68ccc64059a44d2d14f}{stop}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}停止心跳"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}{\_running}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{\_task}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{\_task}}.cancel()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{\_task}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.CancelledError:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{\_task}}\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}心跳已停止"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00100}00100\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00101}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ae61aced74b54162c1810727534d9debc}{00101}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ae61aced74b54162c1810727534d9debc}{\_heartbeat\_loop}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}心跳循环"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}{\_running}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 发送心跳}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af8044a6104e86f53080d65a9f5132b4e}{\_send\_heartbeat}}()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ success:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa776ffb006a1e8bef705cecfd2c13125}{\_on\_heartbeat\_success}}()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a9b6adebe33bff6e2dcd5e58b7e82cc8a}{\_on\_heartbeat\_failure}}()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 等待下一次心跳}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncio.sleep(self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}\ /\ 1000)}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.CancelledError:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}心跳循环异常:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncio.sleep(1)}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00121}00121\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00122}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af8044a6104e86f53080d65a9f5132b4e}{00122}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af8044a6104e86f53080d65a9f5132b4e}{\_send\_heartbeat}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}发送心跳包"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ start\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a7624e138fca3b564d4db834039576e59}{\_send\_func}}(self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a2d7bffd5754261a67de67287106b07c4}{\_heartbeat\_data}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ latency\ =\ (time.time()\ -\/\ start\_time)\ *\ 1000}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.last\_latency\_ms\ =\ latency}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ success}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}发送心跳失败:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00137}00137\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00138}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa776ffb006a1e8bef705cecfd2c13125}{00138}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa776ffb006a1e8bef705cecfd2c13125}{\_on\_heartbeat\_success}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}心跳成功处理"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.total\_received\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.consecutive\_success\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.consecutive\_failure\ =\ 0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.last\_success\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 更新平均延迟}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.total\_received\ ==\ 1:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.avg\_latency\_ms\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.last\_latency\_ms}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 指数移动平均}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ alpha\ =\ 0.2}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.avg\_latency\_ms\ =\ (}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alpha\ *\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.last\_latency\_ms\ +}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (1\ -\/\ alpha)\ *\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.avg\_latency\_ms}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 自适应延长心跳间隔}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}\ \textcolor{keywordflow}{and}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}.heartbeat\_max\_ms\ >\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.consecutive\_success\ >=\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}.success\_to\_extend:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ new\_interval\ =\ min(}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}\ +\ 5000,}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}.heartbeat\_max\_ms}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ new\_interval\ !=\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}\ =\ new\_interval}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}心跳间隔延长至\ \{self.\_interval\_ms\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00166}00166\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00167}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a9b6adebe33bff6e2dcd5e58b7e82cc8a}{00167}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a9b6adebe33bff6e2dcd5e58b7e82cc8a}{\_on\_heartbeat\_failure}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}心跳失败处理"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.consecutive\_failure\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.consecutive\_success\ =\ 0}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}心跳失败\ (\{self.\_stats.consecutive\_failure\}次)"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 自适应缩短心跳间隔}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}\ =\ max(}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\_interval\_ms}}\ -\/\ 5000,}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\_profile}}.heartbeat\_min\_ms}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 连续失败超过阈值，触发超时回调}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}.consecutive\_failure\ >=\ 3:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(\textcolor{stringliteral}{"{}心跳连续失败\ 3\ 次，触发超时"{}})}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a522634ea10be66bba50dc72449836430}{\_on\_timeout}}:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a522634ea10be66bba50dc72449836430}{\_on\_timeout}}()}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00186}00186\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00187}\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aece21b19d1aa89c57d4b3a2576656cd7}{00187}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aece21b19d1aa89c57d4b3a2576656cd7}{reset\_stats}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}重置统计"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{heartbeat_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\_stats}}\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{HeartbeatStats}}()}
+
+\end{DoxyCode}

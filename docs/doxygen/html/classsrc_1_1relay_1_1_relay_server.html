@@ -1,0 +1,990 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: src.relay.RelayServer类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classsrc_1_1relay_1_1_relay_server.html','','classsrc_1_1relay_1_1_relay_server-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">src.relay.RelayServer类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a232895a8155993eb03ccf52d07e70510" id="r_a232895a8155993eb03ccf52d07e70510"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a232895a8155993eb03ccf52d07e70510">__init__</a> (self, str <a class="el" href="#af61323c6840703215c719bf8b78dad57">host</a>=<a class="el" href="namespacesrc_1_1relay.html#a1622e83f751c5c9f9c494850d5e03c6e">DEFAULT_RELAY_HOST</a>, int <a class="el" href="#a294d0cdf4ddeee22d662fd92856ae982">port</a>=<a class="el" href="namespacesrc_1_1relay.html#a83f7019c66ad314a0bfff7f174fd124f">DEFAULT_RELAY_PORT</a>, str <a class="el" href="#a00b4b9715922d8f2ea7bec82ea49a5c1">public_ip</a>=<a class="el" href="namespacesrc_1_1relay.html#a213c8209f4de35ceec37940c11fdd005">RELAY_PUBLIC_IP</a>, int min_port=50000, int max_port=50010, int default_lifetime=DEFAULT_ALLOCATION_LIFETIME)</td></tr>
+<tr class="memitem:af0b2c2f213b1a08ecab98f2582937b70" id="r_af0b2c2f213b1a08ecab98f2582937b70"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af0b2c2f213b1a08ecab98f2582937b70">start</a> (self)</td></tr>
+<tr class="memitem:acc1eeea9ae6bef586d31e4092758b601" id="r_acc1eeea9ae6bef586d31e4092758b601"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#acc1eeea9ae6bef586d31e4092758b601">stop</a> (self)</td></tr>
+<tr class="memitem:a9f022fd5f5ce3729dbf930487a8b934c" id="r_a9f022fd5f5ce3729dbf930487a8b934c"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a9f022fd5f5ce3729dbf930487a8b934c">get_stats</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:af61323c6840703215c719bf8b78dad57" id="r_af61323c6840703215c719bf8b78dad57"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af61323c6840703215c719bf8b78dad57">host</a> = host</td></tr>
+<tr class="memitem:a294d0cdf4ddeee22d662fd92856ae982" id="r_a294d0cdf4ddeee22d662fd92856ae982"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a294d0cdf4ddeee22d662fd92856ae982">port</a> = port</td></tr>
+<tr class="memitem:a00b4b9715922d8f2ea7bec82ea49a5c1" id="r_a00b4b9715922d8f2ea7bec82ea49a5c1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a00b4b9715922d8f2ea7bec82ea49a5c1">public_ip</a> = public_ip</td></tr>
+<tr class="memitem:a6aeec6a1f70c5a3115fa5c44ebb175c1" id="r_a6aeec6a1f70c5a3115fa5c44ebb175c1"><td class="memItemLeft">tuple&#160;</td><td class="memItemRight"><a class="el" href="#a6aeec6a1f70c5a3115fa5c44ebb175c1">relay_addr_base</a> = (<a class="el" href="#a00b4b9715922d8f2ea7bec82ea49a5c1">public_ip</a>, 0)</td></tr>
+<tr class="memitem:af9f81437fd301f5a85e198b7c9a79eca" id="r_af9f81437fd301f5a85e198b7c9a79eca"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af9f81437fd301f5a85e198b7c9a79eca">allocation_manager</a></td></tr>
+<tr class="memitem:ad1e17f7aa4292ba271a638d9564ee5d1" id="r_ad1e17f7aa4292ba271a638d9564ee5d1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad1e17f7aa4292ba271a638d9564ee5d1">bandwidth_limiter</a> = <a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html">BandwidthLimiter</a>()</td></tr>
+<tr class="memitem:a1bb8482fda776b84b0bea62d5bd04503" id="r_a1bb8482fda776b84b0bea62d5bd04503"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1bb8482fda776b84b0bea62d5bd04503">throughput_monitor</a> = <a class="el" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html">ThroughputMonitor</a>()</td></tr>
+<tr class="memitem:ae1ababe96fec5af66c0240b059ad9f03" id="r_ae1ababe96fec5af66c0240b059ad9f03"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae1ababe96fec5af66c0240b059ad9f03">running</a> = False</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ac883538c2d6031954cf5a9c9a03561cd" id="r_ac883538c2d6031954cf5a9c9a03561cd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac883538c2d6031954cf5a9c9a03561cd">_start_control_channel</a> (self)</td></tr>
+<tr class="memitem:a94f7dc638f24a27841d37b9b967bc456" id="r_a94f7dc638f24a27841d37b9b967bc456"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a94f7dc638f24a27841d37b9b967bc456">_control_loop</a> (self)</td></tr>
+<tr class="memitem:ab922626fc3178e1d085d56478288c26b" id="r_ab922626fc3178e1d085d56478288c26b"><td class="memItemLeft">Optional[bytes]&#160;</td><td class="memItemRight"><a class="el" href="#ab922626fc3178e1d085d56478288c26b">_handle_control_message</a> (self, bytes data, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:a03811f6840628fd2256b84d21f307fdc" id="r_a03811f6840628fd2256b84d21f307fdc"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a03811f6840628fd2256b84d21f307fdc">_create_binding_response</a> (self, <a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a> request, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:adcb6de538babcd7127d5e0f851ead22f" id="r_adcb6de538babcd7127d5e0f851ead22f"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#adcb6de538babcd7127d5e0f851ead22f">_handle_allocate</a> (self, <a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a> request, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:ace8d485a1ba91cfbdffd3e122646e270" id="r_ace8d485a1ba91cfbdffd3e122646e270"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#ace8d485a1ba91cfbdffd3e122646e270">_handle_refresh</a> (self, <a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a> request, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:acae2805a3ed5838a613e6da1842ef356" id="r_acae2805a3ed5838a613e6da1842ef356"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#acae2805a3ed5838a613e6da1842ef356">_handle_create_permission</a> (self, <a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a> request, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:a464d0a4b218afc584185e9e3c8d3399b" id="r_a464d0a4b218afc584185e9e3c8d3399b"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a464d0a4b218afc584185e9e3c8d3399b">_handle_send</a> (self, <a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a> request, Tuple[str, int] client_addr)</td></tr>
+<tr class="memitem:a9c870d0826fc250b9957ca512f234fbe" id="r_a9c870d0826fc250b9957ca512f234fbe"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9c870d0826fc250b9957ca512f234fbe">_create_relay_socket</a> (self, <a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a> <a class="el" href="namespacesrc_1_1allocation.html">allocation</a>)</td></tr>
+<tr class="memitem:ae9f5bc3923c8402b8bdd65dccb18ba70" id="r_ae9f5bc3923c8402b8bdd65dccb18ba70"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae9f5bc3923c8402b8bdd65dccb18ba70">_relay_loop</a> (self, <a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a> <a class="el" href="namespacesrc_1_1allocation.html">allocation</a>, socket.socket sock)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:ae6702ec77f23a45776e7269654caa9de" id="r_ae6702ec77f23a45776e7269654caa9de"><td class="memItemLeft">Optional[socket.socket]&#160;</td><td class="memItemRight"><a class="el" href="#ae6702ec77f23a45776e7269654caa9de">_control_socket</a> = None</td></tr>
+<tr class="memitem:a07b8263de0c9f8fb3d528ef44a456186" id="r_a07b8263de0c9f8fb3d528ef44a456186"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a07b8263de0c9f8fb3d528ef44a456186">_relay_sockets</a> = {}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">TURN Relay Server implementation.
+
+Handles allocation requests and relays data between clients and peers.
+</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00146">146</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a232895a8155993eb03ccf52d07e70510" name="a232895a8155993eb03ccf52d07e70510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a232895a8155993eb03ccf52d07e70510">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>host</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1relay.html#a1622e83f751c5c9f9c494850d5e03c6e">DEFAULT_RELAY_HOST</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>port</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1relay.html#a83f7019c66ad314a0bfff7f174fd124f">DEFAULT_RELAY_PORT</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>public_ip</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacesrc_1_1relay.html#a213c8209f4de35ceec37940c11fdd005">RELAY_PUBLIC_IP</a></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>min_port</em></span><span class="paramdefsep"> = </span><span class="paramdefval">50000</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>max_port</em></span><span class="paramdefsep"> = </span><span class="paramdefval">50010</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>default_lifetime</em></span><span class="paramdefsep"> = </span><span class="paramdefval">DEFAULT_ALLOCATION_LIFETIME</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize relay server.
+
+Args:
+    host: Host to bind control channel
+    port: Port for control channel
+    public_ip: Public IP address for relay addresses
+    min_port: Minimum relay port
+    max_port: Maximum relay port
+    default_lifetime: Default allocation lifetime
+</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00153">153</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a94f7dc638f24a27841d37b9b967bc456" name="a94f7dc638f24a27841d37b9b967bc456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94f7dc638f24a27841d37b9b967bc456">&#9670;&#160;</a></span>_control_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer._control_loop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle control channel messages.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00210">210</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00185">_control_socket</a>, <a class="el" href="relay_8py_source.html#l00231">_handle_control_message()</a>, <a class="el" href="relay_8py_source.html#l00184">running</a> , 以及 <a class="el" href="server_8py_source.html#l00062">src.server.STUNServer.running</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00198">_start_control_channel()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a94f7dc638f24a27841d37b9b967bc456_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a94f7dc638f24a27841d37b9b967bc456_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a94f7dc638f24a27841d37b9b967bc456_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a94f7dc638f24a27841d37b9b967bc456_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a03811f6840628fd2256b84d21f307fdc" name="a03811f6840628fd2256b84d21f307fdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03811f6840628fd2256b84d21f307fdc">&#9670;&#160;</a></span>_create_binding_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes src.relay.RelayServer._create_binding_response </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Create STUN binding response.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00276">276</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00118">src.relay._serialize_stun_message()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00231">_handle_control_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a03811f6840628fd2256b84d21f307fdc_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a03811f6840628fd2256b84d21f307fdc_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a03811f6840628fd2256b84d21f307fdc_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a03811f6840628fd2256b84d21f307fdc_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a9c870d0826fc250b9957ca512f234fbe" name="a9c870d0826fc250b9957ca512f234fbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c870d0826fc250b9957ca512f234fbe">&#9670;&#160;</a></span>_create_relay_socket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer._create_relay_socket </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a></td>          <td class="paramname"><span class="paramname"><em>allocation</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Create relay socket for allocation.
+
+Args:
+    allocation: Turn allocation
+</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00501">501</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00519">_relay_loop()</a> , 以及 <a class="el" href="relay_8py_source.html#l00186">_relay_sockets</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00301">_handle_allocate()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a9c870d0826fc250b9957ca512f234fbe_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a9c870d0826fc250b9957ca512f234fbe_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a9c870d0826fc250b9957ca512f234fbe_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a9c870d0826fc250b9957ca512f234fbe_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="adcb6de538babcd7127d5e0f851ead22f" name="adcb6de538babcd7127d5e0f851ead22f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcb6de538babcd7127d5e0f851ead22f">&#9670;&#160;</a></span>_handle_allocate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes src.relay.RelayServer._handle_allocate </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle ALLOCATE request.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00299">299</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00501">_create_relay_socket()</a>, <a class="el" href="relay_8py_source.html#l00118">src.relay._serialize_stun_message()</a>, <a class="el" href="relay_8py_source.html#l00177">allocation_manager</a>, <a class="el" href="relay_8py_source.html#l00087">src.relay.create_error_response()</a>, <a class="el" href="p2p__client_8py_source.html#l00314">p2p_client.P2PClient.public_ip</a>, <a class="el" href="types_8py_source.html#l00230">p2p_engine.types.NATInfo.public_ip</a>, <a class="el" href="types_8py_source.html#l00498">p2p_engine.types.PeerInfo.public_ip</a>, <a class="el" href="client_8py_source.html#l00099">p2p_sdk.client.PeerInfo.public_ip</a>, <a class="el" href="client__sdk_2src_2p2p__sdk_2nat__detection_8py_source.html#l00049">p2p_sdk.nat_detection.NATDetectionResult.public_ip</a>, <a class="el" href="protocol_8py_source.html#l00117">p2p_sdk.protocol.HandshakeMessage.public_ip</a>, <a class="el" href="stun-server_2src_2nat__detection_8py_source.html#l00031">src.nat_detection.NATTestResult.public_ip</a> , 以及 <a class="el" href="relay_8py_source.html#l00175">public_ip</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00231">_handle_control_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_adcb6de538babcd7127d5e0f851ead22f_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_adcb6de538babcd7127d5e0f851ead22f_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_adcb6de538babcd7127d5e0f851ead22f_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_adcb6de538babcd7127d5e0f851ead22f_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ab922626fc3178e1d085d56478288c26b" name="ab922626fc3178e1d085d56478288c26b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab922626fc3178e1d085d56478288c26b">&#9670;&#160;</a></span>_handle_control_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[bytes] src.relay.RelayServer._handle_control_message </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle TURN control message.
+
+Args:
+    data: Message data
+    client_addr: Client's (ip, port)
+
+Returns:
+    Response bytes or None
+</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00229">229</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00278">_create_binding_response()</a>, <a class="el" href="server_8py_source.html#l00105">src.server.STUNServer._create_binding_response()</a>, <a class="el" href="relay_8py_source.html#l00301">_handle_allocate()</a>, <a class="el" href="relay_8py_source.html#l00418">_handle_create_permission()</a>, <a class="el" href="relay_8py_source.html#l00376">_handle_refresh()</a>, <a class="el" href="relay_8py_source.html#l00456">_handle_send()</a> , 以及 <a class="el" href="relay_8py_source.html#l00087">src.relay.create_error_response()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00210">_control_loop()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_ab922626fc3178e1d085d56478288c26b_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_ab922626fc3178e1d085d56478288c26b_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_ab922626fc3178e1d085d56478288c26b_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_ab922626fc3178e1d085d56478288c26b_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="acae2805a3ed5838a613e6da1842ef356" name="acae2805a3ed5838a613e6da1842ef356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acae2805a3ed5838a613e6da1842ef356">&#9670;&#160;</a></span>_handle_create_permission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes src.relay.RelayServer._handle_create_permission </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle CREATE_PERMISSION request.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00416">416</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00118">src.relay._serialize_stun_message()</a>, <a class="el" href="relay_8py_source.html#l00177">allocation_manager</a> , 以及 <a class="el" href="relay_8py_source.html#l00087">src.relay.create_error_response()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00231">_handle_control_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_acae2805a3ed5838a613e6da1842ef356_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_acae2805a3ed5838a613e6da1842ef356_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_acae2805a3ed5838a613e6da1842ef356_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_acae2805a3ed5838a613e6da1842ef356_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ace8d485a1ba91cfbdffd3e122646e270" name="ace8d485a1ba91cfbdffd3e122646e270"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace8d485a1ba91cfbdffd3e122646e270">&#9670;&#160;</a></span>_handle_refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes src.relay.RelayServer._handle_refresh </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle REFRESH request.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00374">374</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00118">src.relay._serialize_stun_message()</a>, <a class="el" href="relay_8py_source.html#l00177">allocation_manager</a> , 以及 <a class="el" href="relay_8py_source.html#l00087">src.relay.create_error_response()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00231">_handle_control_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_ace8d485a1ba91cfbdffd3e122646e270_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_ace8d485a1ba91cfbdffd3e122646e270_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_ace8d485a1ba91cfbdffd3e122646e270_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_ace8d485a1ba91cfbdffd3e122646e270_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a464d0a4b218afc584185e9e3c8d3399b" name="a464d0a4b218afc584185e9e3c8d3399b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a464d0a4b218afc584185e9e3c8d3399b">&#9670;&#160;</a></span>_handle_send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes src.relay.RelayServer._handle_send </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_stun_message.html">StunMessage</a></td>          <td class="paramname"><span class="paramname"><em>request</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]
+    </td>          <td class="paramname"><span class="paramname"><em>client_addr</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle SEND indication (data from client to peer).</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00454">454</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00177">allocation_manager</a>, <a class="el" href="relay_8py_source.html#l00182">bandwidth_limiter</a> , 以及 <a class="el" href="relay_8py_source.html#l00183">throughput_monitor</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00231">_handle_control_message()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a464d0a4b218afc584185e9e3c8d3399b_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a464d0a4b218afc584185e9e3c8d3399b_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ae9f5bc3923c8402b8bdd65dccb18ba70" name="ae9f5bc3923c8402b8bdd65dccb18ba70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f5bc3923c8402b8bdd65dccb18ba70">&#9670;&#160;</a></span>_relay_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer._relay_loop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1messages_1_1_turn_allocation.html">TurnAllocation</a></td>          <td class="paramname"><span class="paramname"><em>allocation</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">socket.socket</td>          <td class="paramname"><span class="paramname"><em>sock</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Relay data loop for an allocation.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00519">519</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00186">_relay_sockets</a>, <a class="el" href="relay_8py_source.html#l00182">bandwidth_limiter</a> , 以及 <a class="el" href="relay_8py_source.html#l00183">throughput_monitor</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00501">_create_relay_socket()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_ae9f5bc3923c8402b8bdd65dccb18ba70_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_ae9f5bc3923c8402b8bdd65dccb18ba70_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac883538c2d6031954cf5a9c9a03561cd" name="ac883538c2d6031954cf5a9c9a03561cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac883538c2d6031954cf5a9c9a03561cd">&#9670;&#160;</a></span>_start_control_channel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer._start_control_channel </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Start control channel for TURN messages.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00198">198</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00210">_control_loop()</a>, <a class="el" href="relay_8py_source.html#l00185">_control_socket</a>, <a class="el" href="relay_8py_source.html#l00173">host</a>, <a class="el" href="server_8py_source.html#l00059">src.server.STUNServer.host</a>, <a class="el" href="signaling_8py_source.html#l00064">p2p_sdk.signaling.SignalingClient.port</a>, <a class="el" href="transport_8py_source.html#l00198">p2p_sdk.transport.RelayTransport.port</a> , 以及 <a class="el" href="relay_8py_source.html#l00174">port</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00188">start()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_ac883538c2d6031954cf5a9c9a03561cd_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_ac883538c2d6031954cf5a9c9a03561cd_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_ac883538c2d6031954cf5a9c9a03561cd_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_ac883538c2d6031954cf5a9c9a03561cd_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a9f022fd5f5ce3729dbf930487a8b934c" name="a9f022fd5f5ce3729dbf930487a8b934c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f022fd5f5ce3729dbf930487a8b934c">&#9670;&#160;</a></span>get_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> dict src.relay.RelayServer.get_stats </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get relay server statistics.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00568">568</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00186">_relay_sockets</a>, <a class="el" href="relay_8py_source.html#l00177">allocation_manager</a>, <a class="el" href="relay_8py_source.html#l00182">bandwidth_limiter</a> , 以及 <a class="el" href="relay_8py_source.html#l00568">get_stats()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00568">get_stats()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a9f022fd5f5ce3729dbf930487a8b934c_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a9f022fd5f5ce3729dbf930487a8b934c_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_a9f022fd5f5ce3729dbf930487a8b934c_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_a9f022fd5f5ce3729dbf930487a8b934c_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af0b2c2f213b1a08ecab98f2582937b70" name="af0b2c2f213b1a08ecab98f2582937b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0b2c2f213b1a08ecab98f2582937b70">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.start </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Start relay server.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00188">188</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00198">_start_control_channel()</a>, <a class="el" href="relay_8py_source.html#l00177">allocation_manager</a>, <a class="el" href="relay_8py_source.html#l00184">running</a>, <a class="el" href="server_8py_source.html#l00062">src.server.STUNServer.running</a> , 以及 <a class="el" href="relay_8py_source.html#l00188">start()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00188">start()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_af0b2c2f213b1a08ecab98f2582937b70_cgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_af0b2c2f213b1a08ecab98f2582937b70_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1relay_1_1_relay_server_af0b2c2f213b1a08ecab98f2582937b70_icgraph.png" border="0" usemap="#aclasssrc_1_1relay_1_1_relay_server_af0b2c2f213b1a08ecab98f2582937b70_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="acc1eeea9ae6bef586d31e4092758b601" name="acc1eeea9ae6bef586d31e4092758b601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1eeea9ae6bef586d31e4092758b601">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.stop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Stop relay server.</pre> 
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00554">554</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="relay_8py_source.html#l00185">_control_socket</a>, <a class="el" href="relay_8py_source.html#l00186">_relay_sockets</a>, <a class="el" href="relay_8py_source.html#l00184">running</a> , 以及 <a class="el" href="server_8py_source.html#l00062">src.server.STUNServer.running</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="ae6702ec77f23a45776e7269654caa9de" name="ae6702ec77f23a45776e7269654caa9de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6702ec77f23a45776e7269654caa9de">&#9670;&#160;</a></span>_control_socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer._control_socket = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00185">185</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00210">_control_loop()</a>, <a class="el" href="relay_8py_source.html#l00198">_start_control_channel()</a> , 以及 <a class="el" href="relay_8py_source.html#l00554">stop()</a>.</p>
+
+</div>
+</div>
+<a id="a07b8263de0c9f8fb3d528ef44a456186" name="a07b8263de0c9f8fb3d528ef44a456186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07b8263de0c9f8fb3d528ef44a456186">&#9670;&#160;</a></span>_relay_sockets</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer._relay_sockets = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00186">186</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00501">_create_relay_socket()</a>, <a class="el" href="relay_8py_source.html#l00519">_relay_loop()</a>, <a class="el" href="relay_8py_source.html#l00568">get_stats()</a> , 以及 <a class="el" href="relay_8py_source.html#l00554">stop()</a>.</p>
+
+</div>
+</div>
+<a id="af9f81437fd301f5a85e198b7c9a79eca" name="af9f81437fd301f5a85e198b7c9a79eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f81437fd301f5a85e198b7c9a79eca">&#9670;&#160;</a></span>allocation_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.allocation_manager</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=  AllocationManager(</div>
+<div class="line">            min_port=min_port,</div>
+<div class="line">            max_port=max_port,</div>
+<div class="line">            default_lifetime=default_lifetime,</div>
+<div class="line">        )</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00177">177</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00301">_handle_allocate()</a>, <a class="el" href="relay_8py_source.html#l00418">_handle_create_permission()</a>, <a class="el" href="relay_8py_source.html#l00376">_handle_refresh()</a>, <a class="el" href="relay_8py_source.html#l00456">_handle_send()</a>, <a class="el" href="relay_8py_source.html#l00568">get_stats()</a> , 以及 <a class="el" href="relay_8py_source.html#l00188">start()</a>.</p>
+
+</div>
+</div>
+<a id="ad1e17f7aa4292ba271a638d9564ee5d1" name="ad1e17f7aa4292ba271a638d9564ee5d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e17f7aa4292ba271a638d9564ee5d1">&#9670;&#160;</a></span>bandwidth_limiter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.bandwidth_limiter = <a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html">BandwidthLimiter</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00182">182</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00456">_handle_send()</a>, <a class="el" href="relay_8py_source.html#l00519">_relay_loop()</a> , 以及 <a class="el" href="relay_8py_source.html#l00568">get_stats()</a>.</p>
+
+</div>
+</div>
+<a id="af61323c6840703215c719bf8b78dad57" name="af61323c6840703215c719bf8b78dad57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af61323c6840703215c719bf8b78dad57">&#9670;&#160;</a></span>host</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.host = host</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00173">173</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00198">_start_control_channel()</a>.</p>
+
+</div>
+</div>
+<a id="a294d0cdf4ddeee22d662fd92856ae982" name="a294d0cdf4ddeee22d662fd92856ae982"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a294d0cdf4ddeee22d662fd92856ae982">&#9670;&#160;</a></span>port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.port = port</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00174">174</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00198">_start_control_channel()</a>.</p>
+
+</div>
+</div>
+<a id="a00b4b9715922d8f2ea7bec82ea49a5c1" name="a00b4b9715922d8f2ea7bec82ea49a5c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b4b9715922d8f2ea7bec82ea49a5c1">&#9670;&#160;</a></span>public_ip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.public_ip = public_ip</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00175">175</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00301">_handle_allocate()</a>.</p>
+
+</div>
+</div>
+<a id="a6aeec6a1f70c5a3115fa5c44ebb175c1" name="a6aeec6a1f70c5a3115fa5c44ebb175c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aeec6a1f70c5a3115fa5c44ebb175c1">&#9670;&#160;</a></span>relay_addr_base</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">tuple src.relay.RelayServer.relay_addr_base = (<a class="el" href="#a00b4b9715922d8f2ea7bec82ea49a5c1">public_ip</a>, 0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00176">176</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae1ababe96fec5af66c0240b059ad9f03" name="ae1ababe96fec5af66c0240b059ad9f03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1ababe96fec5af66c0240b059ad9f03">&#9670;&#160;</a></span>running</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool src.relay.RelayServer.running = False</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00184">184</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00210">_control_loop()</a>, <a class="el" href="relay_8py_source.html#l00188">start()</a> , 以及 <a class="el" href="relay_8py_source.html#l00554">stop()</a>.</p>
+
+</div>
+</div>
+<a id="a1bb8482fda776b84b0bea62d5bd04503" name="a1bb8482fda776b84b0bea62d5bd04503"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb8482fda776b84b0bea62d5bd04503">&#9670;&#160;</a></span>throughput_monitor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.relay.RelayServer.throughput_monitor = <a class="el" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html">ThroughputMonitor</a>()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="relay_8py_source.html">relay.py</a> 第 <a class="el" href="relay_8py_source.html#l00183">183</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00456">_handle_send()</a> , 以及 <a class="el" href="relay_8py_source.html#l00519">_relay_loop()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>relay-server/src/<a class="el" href="relay_8py_source.html">relay.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacesrc.html">src</a></li><li class="navelem"><a href="namespacesrc_1_1relay.html">relay</a></li><li class="navelem"><a href="classsrc_1_1relay_1_1_relay_server.html">RelayServer</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

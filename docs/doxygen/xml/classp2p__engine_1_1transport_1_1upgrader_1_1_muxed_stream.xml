@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::upgrader::MuxedStream</compoundname>
+    <basecompoundref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" prot="public" virt="non-virtual">p2p_engine.transport.base.Connection</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a0f582564fb6ff8e81f1eab7b38328d65" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine.transport.upgrader.MuxedStream::_stream_id</definition>
+        <argsstring></argsstring>
+        <name>_stream_id</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream._stream_id</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acc68f53c82e48ee35ea28e9af8eb308a" kindref="member">stream_id</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="148" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="148" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acc68f53c82e48ee35ea28e9af8eb308a" compoundref="upgrader_8py" startline="153" endline="156">p2p_engine.transport.upgrader.MuxedStream.stream_id</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a2877c879998a0decdd39c94c819ea217" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.MuxedStream::_reader</definition>
+        <argsstring></argsstring>
+        <name>_reader</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream._reader</qualifiedname>
+        <initializer>=  read_stream</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="149" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="149" bodyend="-1"/>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1aeb2a0413787cca99c57640cd5c43d307" compoundref="signaling_8py" startline="292" endline="310">p2p_sdk.signaling.SignalingClient._message_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a7627998cdb6af0f39632ab83119a811c" compoundref="transport_8py" startline="274" endline="295">p2p_sdk.transport.RelayTransport.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a1338b1e24c261dd54f667fa8de1a49d2" compoundref="signaling_8py" startline="80" endline="101">p2p_sdk.signaling.SignalingClient.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a0389f68009226545594f26ed39e987b9" compoundref="transport_8py" startline="206" endline="240">p2p_sdk.transport.RelayTransport.connect</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a46baabc18cadf74ec34a91f3695458f5" compoundref="upgrader_8py" startline="157" endline="163">p2p_engine.transport.upgrader.MuxedStream.read</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a1f6af886a2c2f9f17b95b447db0df9ea" compoundref="transport_8py" startline="256" endline="273">p2p_sdk.transport.RelayTransport.recv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1aa99dd8ae3c182d1a21ced5b7b6918e82" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.MuxedStream::_writer</definition>
+        <argsstring></argsstring>
+        <name>_writer</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream._writer</qualifiedname>
+        <initializer>=  write_stream</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="150" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="150" bodyend="-1"/>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1ac2f6c485b8ee09fccd47bc3c6abfdf37" compoundref="signaling_8py" startline="250" endline="291">p2p_sdk.signaling.SignalingClient._send_request</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acf14a5ec8c719c27fc8c14f4763ef31a" compoundref="upgrader_8py" startline="169" endline="172">p2p_engine.transport.upgrader.MuxedStream.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a7627998cdb6af0f39632ab83119a811c" compoundref="transport_8py" startline="274" endline="295">p2p_sdk.transport.RelayTransport.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a1338b1e24c261dd54f667fa8de1a49d2" compoundref="signaling_8py" startline="80" endline="101">p2p_sdk.signaling.SignalingClient.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a0389f68009226545594f26ed39e987b9" compoundref="transport_8py" startline="206" endline="240">p2p_sdk.transport.RelayTransport.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a471f4f7015a63b6dddd6494df6513c5a" compoundref="signaling_8py" startline="102" endline="119">p2p_sdk.signaling.SignalingClient.disconnect</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1abfdce4eecfaa85a474e260390a9fae6e" compoundref="upgrader_8py" startline="173" endline="175">p2p_engine.transport.upgrader.MuxedStream.is_closed</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1aef8d63fc2da6175be63783e6d804989d" compoundref="transport_8py" startline="241" endline="255">p2p_sdk.transport.RelayTransport.send</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a71faf0258926eb32e696346bfdbd3d65" compoundref="upgrader_8py" startline="164" endline="168">p2p_engine.transport.upgrader.MuxedStream.write</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1ae3c23efdf7061a914625a22de751e860" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.MuxedStream.__init__</definition>
+        <argsstring>(self, int stream_id, asyncio.StreamReader read_stream, asyncio.StreamWriter write_stream)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>stream_id</declname>
+        </param>
+        <param>
+          <type>asyncio.StreamReader</type>
+          <declname>read_stream</declname>
+        </param>
+        <param>
+          <type>asyncio.StreamWriter</type>
+          <declname>write_stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="142" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="147" bodyend="151"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acc68f53c82e48ee35ea28e9af8eb308a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.transport.upgrader.MuxedStream.stream_id</definition>
+        <argsstring>(self)</argsstring>
+        <name>stream_id</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.stream_id</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>流ID</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="153" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="153" bodyend="156"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a6f7ba367ec7f824833f1839f2a620b01" compoundref="quic_8py" startline="99">p2p_engine.transport.quic.QUICConnection._stream_id</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1aaa93ae26da61be03b2387ceee2330036" compoundref="quic_8py" startline="356">p2p_engine.transport.quic.QUICStream._stream_id</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a0f582564fb6ff8e81f1eab7b38328d65" compoundref="upgrader_8py" startline="148">p2p_engine.transport.upgrader.MuxedStream._stream_id</references>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_frame_1a5e376cf1f360f6d6719fbdd9a3e65aeb" compoundref="mplex_8py" startline="169" endline="188">p2p_engine.muxer.mplex.MplexFrame.pack</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_frame_1ac76b577496bfd9e603f9895f0685bf08" compoundref="mplex__v2_8py" startline="175" endline="195">p2p_engine.muxer.mplex_v2.MplexFrame.pack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a46baabc18cadf74ec34a91f3695458f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.transport.upgrader.MuxedStream.read</definition>
+        <argsstring>(self, int n=-1)</argsstring>
+        <name>read</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.read</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a4f82ab1576b25050f93e2a8679b5a055">read</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>读取数据
+
+Args:
+    n: 读取字节数，-1 表示读取所有可用数据
+
+Returns:
+    读取的数据
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="157" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="157" bodyend="163"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1a656b1940e4a75456d95295bebb11a4c8" compoundref="mplex_8py" startline="507">p2p_engine.muxer.mplex.MplexSession._reader</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1aefadadcafe276bcc73f307c2baa4b90f" compoundref="mplex__v2_8py" startline="670">p2p_engine.muxer.mplex_v2.MplexSession._reader</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1abb1019ffb81c11598ea2aba3263ef761" compoundref="yamux_8py" startline="527">p2p_engine.muxer.yamux.YamuxSession._reader</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a34ffe946459c1ff240ad422525161cac" compoundref="ping_8py" startline="78">p2p_engine.protocol.ping.PingProtocol._reader</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ab7149c5ddeb82225d5483e55d5a25cfa" compoundref="tcp__optimized_8py" startline="73">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._reader</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a2877c879998a0decdd39c94c819ea217" compoundref="upgrader_8py" startline="149">p2p_engine.transport.upgrader.MuxedStream._reader</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a46baabc18cadf74ec34a91f3695458f5" compoundref="upgrader_8py" startline="157" endline="163">p2p_engine.transport.upgrader.MuxedStream.read</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a46baabc18cadf74ec34a91f3695458f5" compoundref="upgrader_8py" startline="157" endline="163">p2p_engine.transport.upgrader.MuxedStream.read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a71faf0258926eb32e696346bfdbd3d65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.transport.upgrader.MuxedStream.write</definition>
+        <argsstring>(self, bytes data)</argsstring>
+        <name>write</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.write</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a1f8391923639cf4fd18b559d01bc345b">write</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>写入数据
+
+Args:
+    data: 要写入的数据
+
+Returns:
+    写入的字节数
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="164" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="164" bodyend="168"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" compoundref="ping_8py" startline="79">p2p_engine.protocol.ping.PingProtocol._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ade10148c647227f1e93d99e32584d8dd" compoundref="tcp__optimized_8py" startline="74">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1aa99dd8ae3c182d1a21ced5b7b6918e82" compoundref="upgrader_8py" startline="150">p2p_engine.transport.upgrader.MuxedStream._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a71faf0258926eb32e696346bfdbd3d65" compoundref="upgrader_8py" startline="164" endline="168">p2p_engine.transport.upgrader.MuxedStream.write</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a71faf0258926eb32e696346bfdbd3d65" compoundref="upgrader_8py" startline="164" endline="168">p2p_engine.transport.upgrader.MuxedStream.write</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acf14a5ec8c719c27fc8c14f4763ef31a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.upgrader.MuxedStream.close</definition>
+        <argsstring>(self)</argsstring>
+        <name>close</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.close</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a03bc6dc0ef2a59f073caa915a59e81da">close</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>关闭连接</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="169" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="169" bodyend="172"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" compoundref="ping_8py" startline="79">p2p_engine.protocol.ping.PingProtocol._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ade10148c647227f1e93d99e32584d8dd" compoundref="tcp__optimized_8py" startline="74">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1aa99dd8ae3c182d1a21ced5b7b6918e82" compoundref="upgrader_8py" startline="150">p2p_engine.transport.upgrader.MuxedStream._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acf14a5ec8c719c27fc8c14f4763ef31a" compoundref="upgrader_8py" startline="169" endline="172">p2p_engine.transport.upgrader.MuxedStream.close</references>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acf14a5ec8c719c27fc8c14f4763ef31a" compoundref="upgrader_8py" startline="169" endline="172">p2p_engine.transport.upgrader.MuxedStream.close</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1abfdce4eecfaa85a474e260390a9fae6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.transport.upgrader.MuxedStream.is_closed</definition>
+        <argsstring>(self)</argsstring>
+        <name>is_closed</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.is_closed</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1afd80c879b0a4036fce4ca9e8b8e34115">is_closed</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检查连接是否已关闭</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="173" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="173" bodyend="175"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" compoundref="ping_8py" startline="79">p2p_engine.protocol.ping.PingProtocol._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ade10148c647227f1e93d99e32584d8dd" compoundref="tcp__optimized_8py" startline="74">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._writer</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1aa99dd8ae3c182d1a21ced5b7b6918e82" compoundref="upgrader_8py" startline="150">p2p_engine.transport.upgrader.MuxedStream._writer</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a930aaa553e5493b69fb9c7be4adb9d30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.MuxedStream.remote_address</definition>
+        <argsstring>(self)</argsstring>
+        <name>remote_address</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.remote_address</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1acf8091530c3865d3c01d74895388af65">remote_address</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取远程地址</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="177" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="177" bodyend="179"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a158e0798b147e82fc3ccd3199b5fbb54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.MuxedStream.local_address</definition>
+        <argsstring>(self)</argsstring>
+        <name>local_address</name>
+        <qualifiedname>p2p_engine.transport.upgrader.MuxedStream.local_address</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a2c2fdec8d0b32b8b7804c2c437a86c1d">local_address</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取本地地址</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="181" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="181" bodyend="184"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>复用流
+
+在复用会话中的单个逻辑流。
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.upgrader.MuxedStream</label>
+        <link refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Connection</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_connection"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.upgrader.MuxedStream</label>
+        <link refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Connection</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_connection"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/transport/upgrader.py" line="135" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="135" bodyend="184"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1ae3c23efdf7061a914625a22de751e860" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a2877c879998a0decdd39c94c819ea217" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>_reader</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a0f582564fb6ff8e81f1eab7b38328d65" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>_stream_id</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1aa99dd8ae3c182d1a21ced5b7b6918e82" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>_writer</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acf14a5ec8c719c27fc8c14f4763ef31a" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>close</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1abfdce4eecfaa85a474e260390a9fae6e" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>is_closed</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a158e0798b147e82fc3ccd3199b5fbb54" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>local_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a46baabc18cadf74ec34a91f3695458f5" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>read</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a930aaa553e5493b69fb9c7be4adb9d30" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>remote_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acc68f53c82e48ee35ea28e9af8eb308a" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>stream_id</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a71faf0258926eb32e696346bfdbd3d65" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::MuxedStream</scope><name>write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

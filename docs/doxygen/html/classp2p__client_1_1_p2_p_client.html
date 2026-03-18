@@ -1,0 +1,956 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_client.P2PClient类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__client_1_1_p2_p_client.html','','classp2p__client_1_1_p2_p_client-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_client.P2PClient类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+p2p_client.P2PClient 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client__coll__graph.png" border="0" usemap="#ap2p__client_8_p2_p_client_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a5aed9034d00b6c171805967d672252f4" id="r_a5aed9034d00b6c171805967d672252f4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5aed9034d00b6c171805967d672252f4">__init__</a> (self, str <a class="el" href="#ab49fda6dcc9ad0fd405a9928a739fd1d">stun_server</a>=&quot;stun.l.google.com:19302&quot;, str <a class="el" href="#af92f046cc032b3bd1ed914a2909101ba">signaling_url</a>=&quot;ws://localhost:8080&quot;)</td></tr>
+<tr class="memitem:adbd41cfe90a99ec4f90d994aa7b027f5" id="r_adbd41cfe90a99ec4f90d994aa7b027f5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#adbd41cfe90a99ec4f90d994aa7b027f5">initialize</a> (self)</td></tr>
+<tr class="memitem:af673707f665ee4299a8e866a809bcb6b" id="r_af673707f665ee4299a8e866a809bcb6b"><td class="memItemLeft"><a class="el" href="classp2p__client_1_1_n_a_t_type.html">NATType</a>&#160;</td><td class="memItemRight"><a class="el" href="#af673707f665ee4299a8e866a809bcb6b">detect_nat_async</a> (self)</td></tr>
+<tr class="memitem:aab5cd66cf9003e1935c2786eed6cbeb8" id="r_aab5cd66cf9003e1935c2786eed6cbeb8"><td class="memItemLeft"><a class="el" href="classp2p__client_1_1_n_a_t_type.html">NATType</a>&#160;</td><td class="memItemRight"><a class="el" href="#aab5cd66cf9003e1935c2786eed6cbeb8">detect_nat</a> (self)</td></tr>
+<tr class="memitem:a4ff38ee31576dc4bca82ef0a50630019" id="r_a4ff38ee31576dc4bca82ef0a50630019"><td class="memItemLeft">Tuple[int, str]&#160;</td><td class="memItemRight"><a class="el" href="#a4ff38ee31576dc4bca82ef0a50630019">connect</a> (self, str target_did, int timeout=10)</td></tr>
+<tr class="memitem:af41a8b4972c2f1204829841a93f43330" id="r_af41a8b4972c2f1204829841a93f43330"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af41a8b4972c2f1204829841a93f43330">send_data_async</a> (self, int channel, bytes data)</td></tr>
+<tr class="memitem:a74d53e68374f9b7e82189dc589cc4635" id="r_a74d53e68374f9b7e82189dc589cc4635"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a74d53e68374f9b7e82189dc589cc4635">send_data</a> (self, int channel, bytes data)</td></tr>
+<tr class="memitem:a326d91809377c457b229925ae40faa34" id="r_a326d91809377c457b229925ae40faa34"><td class="memItemLeft">Optional[bytes]&#160;</td><td class="memItemRight"><a class="el" href="#a326d91809377c457b229925ae40faa34">recv_data_async</a> (self, int channel=0, int timeout_ms=5000)</td></tr>
+<tr class="memitem:a5b6968f5b519e3de4377028351880fb4" id="r_a5b6968f5b519e3de4377028351880fb4"><td class="memItemLeft">Optional[bytes]&#160;</td><td class="memItemRight"><a class="el" href="#a5b6968f5b519e3de4377028351880fb4">recv_data</a> (self, int channel=0, int timeout_ms=5000)</td></tr>
+<tr class="memitem:a3e24287ade363b211fdcd430d9603642" id="r_a3e24287ade363b211fdcd430d9603642"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3e24287ade363b211fdcd430d9603642">set_recv_callback</a> (self, Callable callback)</td></tr>
+<tr class="memitem:ae9d2f6e8e34b96288560be7a76bdc76e" id="r_ae9d2f6e8e34b96288560be7a76bdc76e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae9d2f6e8e34b96288560be7a76bdc76e">start_recv_loop</a> (self)</td></tr>
+<tr class="memitem:af1b0dad78e5e642b039785eb160ae5b2" id="r_af1b0dad78e5e642b039785eb160ae5b2"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af1b0dad78e5e642b039785eb160ae5b2">close</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:ab49fda6dcc9ad0fd405a9928a739fd1d" id="r_ab49fda6dcc9ad0fd405a9928a739fd1d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab49fda6dcc9ad0fd405a9928a739fd1d">stun_server</a> = stun_server</td></tr>
+<tr class="memitem:af92f046cc032b3bd1ed914a2909101ba" id="r_af92f046cc032b3bd1ed914a2909101ba"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#af92f046cc032b3bd1ed914a2909101ba">signaling_url</a> = signaling_url</td></tr>
+<tr class="memitem:af6716b870e18b9d5fd4b6f932b31d027" id="r_af6716b870e18b9d5fd4b6f932b31d027"><td class="memItemLeft">Optional[socket.socket]&#160;</td><td class="memItemRight"><a class="el" href="#af6716b870e18b9d5fd4b6f932b31d027">udp_socket</a> = None</td></tr>
+<tr class="memitem:a402d8b8ebfd5b8629fe7091561515de9" id="r_a402d8b8ebfd5b8629fe7091561515de9"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a402d8b8ebfd5b8629fe7091561515de9">local_port</a> = 0</td></tr>
+<tr class="memitem:a0c5818d860bc914566499b2928befd11" id="r_a0c5818d860bc914566499b2928befd11"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#a0c5818d860bc914566499b2928befd11">public_ip</a> = &quot;&quot;</td></tr>
+<tr class="memitem:ab2244cd83f26a3857c50c106ff1e9acb" id="r_ab2244cd83f26a3857c50c106ff1e9acb"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab2244cd83f26a3857c50c106ff1e9acb">public_port</a> = 0</td></tr>
+<tr class="memitem:a40587f11ed12fc391f4b51eb3d883b0d" id="r_a40587f11ed12fc391f4b51eb3d883b0d"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a40587f11ed12fc391f4b51eb3d883b0d">nat_type</a> = <a class="el" href="classp2p__client_1_1_n_a_t_type.html#a2c9fcb55f0ec115ea4449711cacdb6e7">NATType.UNKNOWN</a></td></tr>
+<tr class="memitem:a51fdf6ade8b011728f047b03df16b67d" id="r_a51fdf6ade8b011728f047b03df16b67d"><td class="memItemLeft">Optional[<a class="el" href="classp2p__client_1_1_session_info.html">SessionInfo</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a51fdf6ade8b011728f047b03df16b67d">session</a> = None</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:af35706d560e478606c6781b2d25364a1" id="r_af35706d560e478606c6781b2d25364a1"><td class="memItemLeft">Tuple[bytes, bytes]&#160;</td><td class="memItemRight"><a class="el" href="#af35706d560e478606c6781b2d25364a1">_build_stun_request</a> (self)</td></tr>
+<tr class="memitem:aa3e75bda4c7f48271edd2041ebb9f16a" id="r_aa3e75bda4c7f48271edd2041ebb9f16a"><td class="memItemLeft">Optional[Tuple[str, int]]&#160;</td><td class="memItemRight"><a class="el" href="#aa3e75bda4c7f48271edd2041ebb9f16a">_parse_stun_response</a> (self, bytes data, bytes transaction_id)</td></tr>
+<tr class="memitem:abcd7311f314b9dc1c393fd4c4031b817" id="r_abcd7311f314b9dc1c393fd4c4031b817"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#abcd7311f314b9dc1c393fd4c4031b817">_build_packet</a> (self, int channel, bytes data)</td></tr>
+<tr class="memitem:a9b1bcdd0af671071081a53f93e2d4b36" id="r_a9b1bcdd0af671071081a53f93e2d4b36"><td class="memItemLeft">Optional[bytes]&#160;</td><td class="memItemRight"><a class="el" href="#a9b1bcdd0af671071081a53f93e2d4b36">_parse_packet</a> (self, bytes data)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a5f4438b7c9892e0fb350518d41af96be" id="r_a5f4438b7c9892e0fb350518d41af96be"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5f4438b7c9892e0fb350518d41af96be">_running</a> = False</td></tr>
+<tr class="memitem:ad73ef02eda64d1b64dc2bbbb698e2e4f" id="r_ad73ef02eda64d1b64dc2bbbb698e2e4f"><td class="memItemLeft">Optional[Callable]&#160;</td><td class="memItemRight"><a class="el" href="#ad73ef02eda64d1b64dc2bbbb698e2e4f">_recv_callback</a> = None</td></tr>
+<tr class="memitem:a2e4ab46c8b63f721d1e76c425785dc22" id="r_a2e4ab46c8b63f721d1e76c425785dc22"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a2e4ab46c8b63f721d1e76c425785dc22">_transaction_id</a> = b&quot;&quot;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">P2P Client SDK with complete STUN support.</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00302">302</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a5aed9034d00b6c171805967d672252f4" name="a5aed9034d00b6c171805967d672252f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5aed9034d00b6c171805967d672252f4">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>stun_server</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;stun.l.google.com:19302&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str </td>          <td class="paramname"><span class="paramname"><em>signaling_url</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;ws://localhost:8080&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00305">305</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="abcd7311f314b9dc1c393fd4c4031b817" name="abcd7311f314b9dc1c393fd4c4031b817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcd7311f314b9dc1c393fd4c4031b817">&#9670;&#160;</a></span>_build_packet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_client.P2PClient._build_packet </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Build data packet: [size:4][type:1][channel:1][data:N]</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00508">508</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00485">send_data_async()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_abcd7311f314b9dc1c393fd4c4031b817_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_abcd7311f314b9dc1c393fd4c4031b817_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af35706d560e478606c6781b2d25364a1" name="af35706d560e478606c6781b2d25364a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af35706d560e478606c6781b2d25364a1">&#9670;&#160;</a></span>_build_stun_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Tuple[bytes, bytes] p2p_client.P2PClient._build_stun_request </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Build STUN Binding Request.
+
+Returns:
+    Tuple of (request_bytes, transaction_id)
+</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00390">390</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_af35706d560e478606c6781b2d25364a1_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_af35706d560e478606c6781b2d25364a1_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a9b1bcdd0af671071081a53f93e2d4b36" name="a9b1bcdd0af671071081a53f93e2d4b36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b1bcdd0af671071081a53f93e2d4b36">&#9670;&#160;</a></span>_parse_packet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[bytes] p2p_client.P2PClient._parse_packet </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Parse data packet.</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00533">533</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00514">recv_data_async()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00543">start_recv_loop()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_a9b1bcdd0af671071081a53f93e2d4b36_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_a9b1bcdd0af671071081a53f93e2d4b36_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aa3e75bda4c7f48271edd2041ebb9f16a" name="aa3e75bda4c7f48271edd2041ebb9f16a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3e75bda4c7f48271edd2041ebb9f16a">&#9670;&#160;</a></span>_parse_stun_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[Tuple[str, int]] p2p_client.P2PClient._parse_stun_response </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>transaction_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Parse STUN Binding Response, extract public address.
+
+Args:
+    data: Raw response bytes
+    transaction_id: Expected transaction ID
+
+Returns:
+    Tuple of (ip, port) or None if parsing fails
+</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00415">415</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00227">p2p_client.parse_mapped_address()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00164">p2p_client.parse_xor_mapped_address()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_aa3e75bda4c7f48271edd2041ebb9f16a_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_aa3e75bda4c7f48271edd2041ebb9f16a_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_aa3e75bda4c7f48271edd2041ebb9f16a_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_aa3e75bda4c7f48271edd2041ebb9f16a_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af1b0dad78e5e642b039785eb160ae5b2" name="af1b0dad78e5e642b039785eb160ae5b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1b0dad78e5e642b039785eb160ae5b2">&#9670;&#160;</a></span>close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.close </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Close connection.</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00558">558</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00318">_running</a>, <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">p2p_engine.dht.kademlia.KademliaDHT._running</a>, <a class="el" href="engine_8py_source.html#l00152">p2p_engine.engine.P2PEngine._running</a>, <a class="el" href="event_8py_source.html#l00236">p2p_engine.event.EventBus._running</a>, <a class="el" href="heartbeat_8py_source.html#l00054">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</a>, <a class="el" href="ping_8py_source.html#l00085">p2p_engine.protocol.ping.PingProtocol._running</a>, <a class="el" href="pubsub_8py_source.html#l00814">p2p_engine.protocol.pubsub.GossipSub._running</a>, <a class="el" href="pubsub_8py_source.html#l01282">p2p_engine.protocol.pubsub.PubSubProtocolHandler._running</a>, <a class="el" href="p2p__client_8py_source.html#l00558">close()</a>, <a class="el" href="p2p__client_8py_source.html#l00317">session</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00312">udp_socket</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="client_8py_source.html#l00516">p2p_sdk.client.P2PClient._receive_loop()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00558">close()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_af1b0dad78e5e642b039785eb160ae5b2_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_af1b0dad78e5e642b039785eb160ae5b2_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_af1b0dad78e5e642b039785eb160ae5b2_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_af1b0dad78e5e642b039785eb160ae5b2_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a4ff38ee31576dc4bca82ef0a50630019" name="a4ff38ee31576dc4bca82ef0a50630019"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ff38ee31576dc4bca82ef0a50630019">&#9670;&#160;</a></span>connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Tuple[int, str] p2p_client.P2PClient.connect </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>target_did</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">10</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Connect to target device.
+
+Args:
+    target_did: Target device ID
+    timeout: Connection timeout in seconds
+
+Returns:
+    Tuple of (error_code, mode_string)
+</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00465">465</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00313">local_port</a>, <a class="el" href="types_8py_source.html#l00233">p2p_engine.types.NATInfo.local_port</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00317">session</a>.</p>
+
+</div>
+</div>
+<a id="aab5cd66cf9003e1935c2786eed6cbeb8" name="aab5cd66cf9003e1935c2786eed6cbeb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab5cd66cf9003e1935c2786eed6cbeb8">&#9670;&#160;</a></span>detect_nat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__client_1_1_n_a_t_type.html">NATType</a> p2p_client.P2PClient.detect_nat </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Detect NAT type using STUN server (sync wrapper).
+
+Returns:
+    NATType enum value
+</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00381">381</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_aab5cd66cf9003e1935c2786eed6cbeb8_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_aab5cd66cf9003e1935c2786eed6cbeb8_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af673707f665ee4299a8e866a809bcb6b" name="af673707f665ee4299a8e866a809bcb6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af673707f665ee4299a8e866a809bcb6b">&#9670;&#160;</a></span>detect_nat_async()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__client_1_1_n_a_t_type.html">NATType</a> p2p_client.P2PClient.detect_nat_async </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Detect NAT type using STUN server (async version).
+
+Returns:
+    NATType enum value
+</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00337">337</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00390">_build_stun_request()</a>, <a class="el" href="p2p__client_8py_source.html#l00415">_parse_stun_response()</a>, <a class="el" href="p2p__client_8py_source.html#l00320">_transaction_id</a>, <a class="el" href="p2p__client_8py_source.html#l00316">nat_type</a>, <a class="el" href="identify_8py_source.html#l00041">p2p_engine.protocol.identify.IdentifyExtension.nat_type</a>, <a class="el" href="p2p__client_8py_source.html#l00314">public_ip</a>, <a class="el" href="types_8py_source.html#l00230">p2p_engine.types.NATInfo.public_ip</a>, <a class="el" href="types_8py_source.html#l00498">p2p_engine.types.PeerInfo.public_ip</a>, <a class="el" href="p2p__client_8py_source.html#l00315">public_port</a>, <a class="el" href="types_8py_source.html#l00231">p2p_engine.types.NATInfo.public_port</a>, <a class="el" href="types_8py_source.html#l00499">p2p_engine.types.PeerInfo.public_port</a>, <a class="el" href="p2p__client_8py_source.html#l00310">stun_server</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00312">udp_socket</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00381">detect_nat()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_af673707f665ee4299a8e866a809bcb6b_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_af673707f665ee4299a8e866a809bcb6b_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_af673707f665ee4299a8e866a809bcb6b_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_af673707f665ee4299a8e866a809bcb6b_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="adbd41cfe90a99ec4f90d994aa7b027f5" name="adbd41cfe90a99ec4f90d994aa7b027f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbd41cfe90a99ec4f90d994aa7b027f5">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_client.P2PClient.initialize </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize client, create UDP socket.</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00322">322</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00318">_running</a>, <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">p2p_engine.dht.kademlia.KademliaDHT._running</a>, <a class="el" href="engine_8py_source.html#l00152">p2p_engine.engine.P2PEngine._running</a>, <a class="el" href="event_8py_source.html#l00236">p2p_engine.event.EventBus._running</a>, <a class="el" href="heartbeat_8py_source.html#l00054">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</a>, <a class="el" href="ping_8py_source.html#l00085">p2p_engine.protocol.ping.PingProtocol._running</a>, <a class="el" href="pubsub_8py_source.html#l00814">p2p_engine.protocol.pubsub.GossipSub._running</a>, <a class="el" href="pubsub_8py_source.html#l01282">p2p_engine.protocol.pubsub.PubSubProtocolHandler._running</a>, <a class="el" href="p2p__client_8py_source.html#l00313">local_port</a>, <a class="el" href="types_8py_source.html#l00233">p2p_engine.types.NATInfo.local_port</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00312">udp_socket</a>.</p>
+
+</div>
+</div>
+<a id="a5b6968f5b519e3de4377028351880fb4" name="a5b6968f5b519e3de4377028351880fb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b6968f5b519e3de4377028351880fb4">&#9670;&#160;</a></span>recv_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[bytes] p2p_client.P2PClient.recv_data </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>channel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>timeout_ms</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5000</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Receive data (sync wrapper).</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00529">529</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00514">recv_data_async()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_a5b6968f5b519e3de4377028351880fb4_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_a5b6968f5b519e3de4377028351880fb4_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a326d91809377c457b229925ae40faa34" name="a326d91809377c457b229925ae40faa34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a326d91809377c457b229925ae40faa34">&#9670;&#160;</a></span>recv_data_async()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[bytes] p2p_client.P2PClient.recv_data_async </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>channel</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>timeout_ms</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5000</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Receive data (async version).</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00514">514</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00533">_parse_packet()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00312">udp_socket</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00529">recv_data()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_a326d91809377c457b229925ae40faa34_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_a326d91809377c457b229925ae40faa34_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_a326d91809377c457b229925ae40faa34_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_a326d91809377c457b229925ae40faa34_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a74d53e68374f9b7e82189dc589cc4635" name="a74d53e68374f9b7e82189dc589cc4635"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74d53e68374f9b7e82189dc589cc4635">&#9670;&#160;</a></span>send_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int p2p_client.P2PClient.send_data </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Send data to connected peer (sync wrapper).</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00504">504</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00485">send_data_async()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_a74d53e68374f9b7e82189dc589cc4635_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_a74d53e68374f9b7e82189dc589cc4635_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af41a8b4972c2f1204829841a93f43330" name="af41a8b4972c2f1204829841a93f43330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af41a8b4972c2f1204829841a93f43330">&#9670;&#160;</a></span>send_data_async()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int p2p_client.P2PClient.send_data_async </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>channel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Send data to connected peer (async version).</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00485">485</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00508">_build_packet()</a>, <a class="el" href="p2p__client_8py_source.html#l00317">session</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00312">udp_socket</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00504">send_data()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_af41a8b4972c2f1204829841a93f43330_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_af41a8b4972c2f1204829841a93f43330_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_af41a8b4972c2f1204829841a93f43330_icgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_af41a8b4972c2f1204829841a93f43330_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a3e24287ade363b211fdcd430d9603642" name="a3e24287ade363b211fdcd430d9603642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e24287ade363b211fdcd430d9603642">&#9670;&#160;</a></span>set_recv_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.set_recv_callback </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Callable</td>          <td class="paramname"><span class="paramname"><em>callback</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Set async receive callback.</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00539">539</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00319">_recv_callback</a>.</p>
+
+</div>
+</div>
+<a id="ae9d2f6e8e34b96288560be7a76bdc76e" name="ae9d2f6e8e34b96288560be7a76bdc76e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9d2f6e8e34b96288560be7a76bdc76e">&#9670;&#160;</a></span>start_recv_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.start_recv_loop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Start async receive loop.</pre> 
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00543">543</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="p2p__client_8py_source.html#l00533">_parse_packet()</a>, <a class="el" href="p2p__client_8py_source.html#l00319">_recv_callback</a>, <a class="el" href="p2p__client_8py_source.html#l00318">_running</a>, <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">p2p_engine.dht.kademlia.KademliaDHT._running</a>, <a class="el" href="engine_8py_source.html#l00152">p2p_engine.engine.P2PEngine._running</a>, <a class="el" href="event_8py_source.html#l00236">p2p_engine.event.EventBus._running</a>, <a class="el" href="heartbeat_8py_source.html#l00054">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</a>, <a class="el" href="ping_8py_source.html#l00085">p2p_engine.protocol.ping.PingProtocol._running</a>, <a class="el" href="pubsub_8py_source.html#l00814">p2p_engine.protocol.pubsub.GossipSub._running</a>, <a class="el" href="pubsub_8py_source.html#l01282">p2p_engine.protocol.pubsub.PubSubProtocolHandler._running</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00312">udp_socket</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__client_1_1_p2_p_client_ae9d2f6e8e34b96288560be7a76bdc76e_cgraph.png" border="0" usemap="#aclassp2p__client_1_1_p2_p_client_ae9d2f6e8e34b96288560be7a76bdc76e_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="ad73ef02eda64d1b64dc2bbbb698e2e4f" name="ad73ef02eda64d1b64dc2bbbb698e2e4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad73ef02eda64d1b64dc2bbbb698e2e4f">&#9670;&#160;</a></span>_recv_callback</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[Callable] p2p_client.P2PClient._recv_callback = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00319">319</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00539">set_recv_callback()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00543">start_recv_loop()</a>.</p>
+
+</div>
+</div>
+<a id="a5f4438b7c9892e0fb350518d41af96be" name="a5f4438b7c9892e0fb350518d41af96be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f4438b7c9892e0fb350518d41af96be">&#9670;&#160;</a></span>_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool p2p_client.P2PClient._running = False</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00318">318</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="client_8py_source.html#l00570">p2p_sdk.client.P2PClient._keepalive_loop()</a>, <a class="el" href="signaling_8py_source.html#l00292">p2p_sdk.signaling.SignalingClient._message_loop()</a>, <a class="el" href="client_8py_source.html#l00516">p2p_sdk.client.P2PClient._receive_loop()</a>, <a class="el" href="transport_8py_source.html#l00154">p2p_sdk.transport.UDPTransport._recv_loop()</a>, <a class="el" href="signaling_8py_source.html#l00446">p2p_sdk.signaling.WebSocketSignalingClient._ws_message_loop()</a>, <a class="el" href="p2p__client_8py_source.html#l00558">close()</a>, <a class="el" href="client_8py_source.html#l00744">p2p_sdk.client.P2PClient.close()</a>, <a class="el" href="signaling_8py_source.html#l00080">p2p_sdk.signaling.SignalingClient.connect()</a>, <a class="el" href="signaling_8py_source.html#l00102">p2p_sdk.signaling.SignalingClient.disconnect()</a>, <a class="el" href="signaling_8py_source.html#l00403">p2p_sdk.signaling.WebSocketSignalingClient.disconnect()</a>, <a class="el" href="p2p__client_8py_source.html#l00322">initialize()</a>, <a class="el" href="client_8py_source.html#l00218">p2p_sdk.client.P2PClient.initialize()</a>, <a class="el" href="transport_8py_source.html#l00059">p2p_sdk.transport.UDPTransport.start()</a>, <a class="el" href="p2p__client_8py_source.html#l00543">start_recv_loop()</a> , 以及 <a class="el" href="transport_8py_source.html#l00079">p2p_sdk.transport.UDPTransport.stop()</a>.</p>
+
+</div>
+</div>
+<a id="a2e4ab46c8b63f721d1e76c425785dc22" name="a2e4ab46c8b63f721d1e76c425785dc22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e4ab46c8b63f721d1e76c425785dc22">&#9670;&#160;</a></span>_transaction_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bytes p2p_client.P2PClient._transaction_id = b&quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00320">320</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>.</p>
+
+</div>
+</div>
+<a id="a402d8b8ebfd5b8629fe7091561515de9" name="a402d8b8ebfd5b8629fe7091561515de9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a402d8b8ebfd5b8629fe7091561515de9">&#9670;&#160;</a></span>local_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int p2p_client.P2PClient.local_port = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00313">313</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00465">connect()</a>, <a class="el" href="p2p__client_8py_source.html#l00322">initialize()</a> , 以及 <a class="el" href="transport_8py_source.html#l00059">p2p_sdk.transport.UDPTransport.start()</a>.</p>
+
+</div>
+</div>
+<a id="a40587f11ed12fc391f4b51eb3d883b0d" name="a40587f11ed12fc391f4b51eb3d883b0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40587f11ed12fc391f4b51eb3d883b0d">&#9670;&#160;</a></span>nat_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.nat_type = <a class="el" href="classp2p__client_1_1_n_a_t_type.html#a2c9fcb55f0ec115ea4449711cacdb6e7">NATType.UNKNOWN</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00316">316</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>.</p>
+
+</div>
+</div>
+<a id="a0c5818d860bc914566499b2928befd11" name="a0c5818d860bc914566499b2928befd11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c5818d860bc914566499b2928befd11">&#9670;&#160;</a></span>public_ip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.public_ip = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00314">314</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay_8py_source.html#l00301">src.relay.RelayServer._handle_allocate()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>.</p>
+
+</div>
+</div>
+<a id="ab2244cd83f26a3857c50c106ff1e9acb" name="ab2244cd83f26a3857c50c106ff1e9acb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2244cd83f26a3857c50c106ff1e9acb">&#9670;&#160;</a></span>public_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int p2p_client.P2PClient.public_port = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00315">315</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>.</p>
+
+</div>
+</div>
+<a id="a51fdf6ade8b011728f047b03df16b67d" name="a51fdf6ade8b011728f047b03df16b67d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51fdf6ade8b011728f047b03df16b67d">&#9670;&#160;</a></span>session</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[<a class="el" href="classp2p__client_1_1_session_info.html">SessionInfo</a>] p2p_client.P2PClient.session = None</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00317">317</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00558">close()</a>, <a class="el" href="p2p__client_8py_source.html#l00465">connect()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00485">send_data_async()</a>.</p>
+
+</div>
+</div>
+<a id="af92f046cc032b3bd1ed914a2909101ba" name="af92f046cc032b3bd1ed914a2909101ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af92f046cc032b3bd1ed914a2909101ba">&#9670;&#160;</a></span>signaling_url</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.signaling_url = signaling_url</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00311">311</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab49fda6dcc9ad0fd405a9928a739fd1d" name="ab49fda6dcc9ad0fd405a9928a739fd1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab49fda6dcc9ad0fd405a9928a739fd1d">&#9670;&#160;</a></span>stun_server</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.stun_server = stun_server</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00310">310</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a> , 以及 <a class="el" href="client__sdk_2src_2p2p__sdk_2nat__detection_8py_source.html#l00159">p2p_sdk.nat_detection.STUNClient.send_request()</a>.</p>
+
+</div>
+</div>
+<a id="af6716b870e18b9d5fd4b6f932b31d027" name="af6716b870e18b9d5fd4b6f932b31d027"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6716b870e18b9d5fd4b6f932b31d027">&#9670;&#160;</a></span>udp_socket</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_client.P2PClient.udp_socket = None</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="p2p__client_8py_source.html">p2p_client.py</a> 第 <a class="el" href="p2p__client_8py_source.html#l00312">312</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="p2p__client_8py_source.html#l00558">close()</a>, <a class="el" href="p2p__client_8py_source.html#l00337">detect_nat_async()</a>, <a class="el" href="p2p__client_8py_source.html#l00322">initialize()</a>, <a class="el" href="p2p__client_8py_source.html#l00514">recv_data_async()</a>, <a class="el" href="p2p__client_8py_source.html#l00485">send_data_async()</a> , 以及 <a class="el" href="p2p__client_8py_source.html#l00543">start_recv_loop()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>client_sdk/src/<a class="el" href="p2p__client_8py_source.html">p2p_client.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__client.html">p2p_client</a></li><li class="navelem"><a href="classp2p__client_1_1_p2_p_client.html">P2PClient</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

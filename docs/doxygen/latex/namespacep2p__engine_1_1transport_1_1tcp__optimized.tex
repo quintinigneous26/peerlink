@@ -1,0 +1,186 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized}{}\label{namespacep2p__engine_1_1transport_1_1tcp__optimized}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection}{TCPFast\+Open\+Connection}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool}{Connection\+Pool}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport}{Optimized\+TCPTransport}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener}{TCPOptimized\+Listener}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad3e6b84b56fd0874072006880f65cf0a}{is\+\_\+tcp\+\_\+fastopen\+\_\+available}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a7bdd9288cd137c5d9f2aaad8c0f386f4}{logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized"{})
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a40f35192ce71d980d46274931872fd5c}{DEFAULT\+\_\+\+PORT}} = 4242
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a1cf9a3a3501bcd4de5ba8856a71664a7}{TCP\+\_\+\+FASTOPEN\+\_\+\+QUEUE\+\_\+\+SIZE}} = 5
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_afb0acf0c5ac89b21b0e1203dac169f36}{TCP\+\_\+\+USER\+\_\+\+TIMEOUT}} = 10000
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a71707d04488eac18f9682b0b78573952}{KEEPALIVE\+\_\+\+IDLE}} = 60
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_afcd2cc666868b1cc631974bafa1351d2}{KEEPALIVE\+\_\+\+INTERVAL}} = 10
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad5e1745cc4901f5987c4bf6c130e9b2f}{KEEPALIVE\+\_\+\+COUNT}} = 3
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a8b82ac90504af5b63df6e54f385d4136}{DEFAULT\+\_\+\+MAX\+\_\+\+POOL\+\_\+\+SIZE}} = 100
+\item 
+float \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_aa6c5cbac2610019f4f4c05fec13ffa30}{CONNECTION\+\_\+\+IDLE\+\_\+\+TIMEOUT}} = 300.\+0
+\item 
+list \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a279e9fa40faa4eefcbdf7e34e1e9b76a}{\+\_\+\+\_\+all\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}优化的 TCP 传输实现
+
+提供高性能 TCP 传输，支持：
+- TCP Fast Open (TFO)
+- 连接池
+- Nagle 算法禁用
+- Keep-Alive 优化
+
+目标：连接延迟 < 20ms (对标 go-libp2p)
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad3e6b84b56fd0874072006880f65cf0a}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!is\_tcp\_fastopen\_available@{is\_tcp\_fastopen\_available}}
+\index{is\_tcp\_fastopen\_available@{is\_tcp\_fastopen\_available}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{is\_tcp\_fastopen\_available()}{is\_tcp\_fastopen\_available()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad3e6b84b56fd0874072006880f65cf0a} 
+ bool p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+is\+\_\+tcp\+\_\+fastopen\+\_\+available (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}检查系统是否支持 TCP Fast Open\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00044}{44}} 行定义.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_a279e9fa40faa4eefcbdf7e34e1e9b76a}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!\_\_all\_\_@{\_\_all\_\_}}
+\index{\_\_all\_\_@{\_\_all\_\_}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{\_\_all\_\_}{\_\_all\_\_}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_a279e9fa40faa4eefcbdf7e34e1e9b76a} 
+list p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+\_\+\+\_\+all\+\_\+\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}OptimizedTCPTransport"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}TCPFastOpenConnection"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}TCPOptimizedListener"{}},}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{stringliteral}{"{}ConnectionPool"{}},}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{stringliteral}{"{}is\_tcp\_fastopen\_available"{}},}
+\DoxyCodeLine{00007\ ]}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00505}{505}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_aa6c5cbac2610019f4f4c05fec13ffa30}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!CONNECTION\_IDLE\_TIMEOUT@{CONNECTION\_IDLE\_TIMEOUT}}
+\index{CONNECTION\_IDLE\_TIMEOUT@{CONNECTION\_IDLE\_TIMEOUT}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{CONNECTION\_IDLE\_TIMEOUT}{CONNECTION\_IDLE\_TIMEOUT}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_aa6c5cbac2610019f4f4c05fec13ffa30} 
+float p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+CONNECTION\+\_\+\+IDLE\+\_\+\+TIMEOUT = 300.\+0}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00039}{39}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_a8b82ac90504af5b63df6e54f385d4136}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!DEFAULT\_MAX\_POOL\_SIZE@{DEFAULT\_MAX\_POOL\_SIZE}}
+\index{DEFAULT\_MAX\_POOL\_SIZE@{DEFAULT\_MAX\_POOL\_SIZE}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_MAX\_POOL\_SIZE}{DEFAULT\_MAX\_POOL\_SIZE}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_a8b82ac90504af5b63df6e54f385d4136} 
+int p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+DEFAULT\+\_\+\+MAX\+\_\+\+POOL\+\_\+\+SIZE = 100}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00038}{38}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_a40f35192ce71d980d46274931872fd5c}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!DEFAULT\_PORT@{DEFAULT\_PORT}}
+\index{DEFAULT\_PORT@{DEFAULT\_PORT}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_PORT}{DEFAULT\_PORT}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_a40f35192ce71d980d46274931872fd5c} 
+int p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+DEFAULT\+\_\+\+PORT = 4242}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00030}{30}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad5e1745cc4901f5987c4bf6c130e9b2f}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!KEEPALIVE\_COUNT@{KEEPALIVE\_COUNT}}
+\index{KEEPALIVE\_COUNT@{KEEPALIVE\_COUNT}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{KEEPALIVE\_COUNT}{KEEPALIVE\_COUNT}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad5e1745cc4901f5987c4bf6c130e9b2f} 
+int p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+KEEPALIVE\+\_\+\+COUNT = 3}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00035}{35}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_a71707d04488eac18f9682b0b78573952}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!KEEPALIVE\_IDLE@{KEEPALIVE\_IDLE}}
+\index{KEEPALIVE\_IDLE@{KEEPALIVE\_IDLE}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{KEEPALIVE\_IDLE}{KEEPALIVE\_IDLE}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_a71707d04488eac18f9682b0b78573952} 
+int p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+KEEPALIVE\+\_\+\+IDLE = 60}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00033}{33}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_afcd2cc666868b1cc631974bafa1351d2}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!KEEPALIVE\_INTERVAL@{KEEPALIVE\_INTERVAL}}
+\index{KEEPALIVE\_INTERVAL@{KEEPALIVE\_INTERVAL}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{KEEPALIVE\_INTERVAL}{KEEPALIVE\_INTERVAL}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_afcd2cc666868b1cc631974bafa1351d2} 
+int p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+KEEPALIVE\+\_\+\+INTERVAL = 10}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00034}{34}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_a7bdd9288cd137c5d9f2aaad8c0f386f4}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_a7bdd9288cd137c5d9f2aaad8c0f386f4} 
+p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+logger = logging.\+get\+Logger("{}p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized"{})}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00025}{25}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_a1cf9a3a3501bcd4de5ba8856a71664a7}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!TCP\_FASTOPEN\_QUEUE\_SIZE@{TCP\_FASTOPEN\_QUEUE\_SIZE}}
+\index{TCP\_FASTOPEN\_QUEUE\_SIZE@{TCP\_FASTOPEN\_QUEUE\_SIZE}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{TCP\_FASTOPEN\_QUEUE\_SIZE}{TCP\_FASTOPEN\_QUEUE\_SIZE}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_a1cf9a3a3501bcd4de5ba8856a71664a7} 
+int p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCP\+\_\+\+FASTOPEN\+\_\+\+QUEUE\+\_\+\+SIZE = 5}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00031}{31}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1transport_1_1tcp__optimized_afb0acf0c5ac89b21b0e1203dac169f36}\index{p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}!TCP\_USER\_TIMEOUT@{TCP\_USER\_TIMEOUT}}
+\index{TCP\_USER\_TIMEOUT@{TCP\_USER\_TIMEOUT}!p2p\_engine.transport.tcp\_optimized@{p2p\_engine.transport.tcp\_optimized}}
+\doxysubsubsection{\texorpdfstring{TCP\_USER\_TIMEOUT}{TCP\_USER\_TIMEOUT}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1tcp__optimized_afb0acf0c5ac89b21b0e1203dac169f36} 
+int p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCP\+\_\+\+USER\+\_\+\+TIMEOUT = 10000}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00032}{32}} 行定义.
+

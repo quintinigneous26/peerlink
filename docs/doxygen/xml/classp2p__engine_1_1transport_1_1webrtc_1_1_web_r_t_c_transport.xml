@@ -1,0 +1,676 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::webrtc::WebRTCTransport</compoundname>
+    <basecompoundref refid="classp2p__engine_1_1transport_1_1base_1_1_transport" prot="public" virt="non-virtual">p2p_engine.transport.base.Transport</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a6d231fd525e26316ecf25ffb294aa08c" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.webrtc.WebRTCTransport::_stun_servers</definition>
+        <argsstring></argsstring>
+        <name>_stun_servers</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._stun_servers</qualifiedname>
+        <initializer>=  stun_servers or <ref refid="namespacep2p__engine_1_1transport_1_1webrtc_1aabc396993f393facc979835462becc44" kindref="member">DEFAULT_STUN_SERVERS</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="574" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="574" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a3c66ab3966a2bdd5c77096a14c32d0a8" compoundref="webrtc_8py" startline="705" endline="722">p2p_engine.transport.webrtc.WebRTCTransport._create_rtc_config</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a255c075a70811c9163df48ffa49668dd" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.webrtc.WebRTCTransport::_ice_servers</definition>
+        <argsstring></argsstring>
+        <name>_ice_servers</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._ice_servers</qualifiedname>
+        <initializer>=  ice_servers or []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="575" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="575" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a3c66ab3966a2bdd5c77096a14c32d0a8" compoundref="webrtc_8py" startline="705" endline="722">p2p_engine.transport.webrtc.WebRTCTransport._create_rtc_config</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a1f43a8c7ff976b938f48cd13c74395bb" prot="protected" static="no" mutable="no">
+        <type>&apos;<ref refid="namespacep2p__engine_1_1transport_1_1webrtc_1a9421959fab51e67801d78f6dce60abfb" kindref="member">RTCConfiguration</ref>&apos;</type>
+        <definition>&apos;RTCConfiguration&apos; p2p_engine.transport.webrtc.WebRTCTransport::_rtc_config</definition>
+        <argsstring></argsstring>
+        <name>_rtc_config</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._rtc_config</qualifiedname>
+        <initializer>=  self._create_rtc_config()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="578" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="578" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7bfecd75ba2176f595e9445d9dec28a8" compoundref="webrtc_8py" startline="723" endline="751">p2p_engine.transport.webrtc.WebRTCTransport._create_connection</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a25b0a38a0ff29eb0bb28258ad91f5681" compoundref="webrtc_8py" startline="589" endline="592">p2p_engine.transport.webrtc.WebRTCTransport.rtc_config</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.transport.webrtc.WebRTCTransport::_closed</definition>
+        <argsstring></argsstring>
+        <name>_closed</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._closed</qualifiedname>
+        <initializer>=  False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="581" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="581" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1a0e1f5d427e6250f5af7fbec961e29fd8" compoundref="webtransport_8py" startline="342" endline="347">p2p_engine.transport.webtransport.WebTransportListener.addresses</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29" compoundref="webrtc_8py" startline="652" endline="676">p2p_engine.transport.webrtc.WebRTCTransport.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de" compoundref="webrtc_8py" startline="597" endline="629">p2p_engine.transport.webrtc.WebRTCTransport.dial</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a3587fc10fb7c98dc708790297b0f60fe" compoundref="webtransport_8py" startline="249" endline="252">p2p_engine.transport.webtransport.WebTransportConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1af53137f2c2cd0db7ffa4e1a39638326e" compoundref="webtransport_8py" startline="337" endline="340">p2p_engine.transport.webtransport.WebTransportListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a47c09e2d3c3d1ba10b0c9aee8b54f737" compoundref="webrtc_8py" startline="630" endline="651">p2p_engine.transport.webrtc.WebRTCTransport.listen</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" compoundref="webtransport_8py" startline="253" endline="265">p2p_engine.transport.webtransport.WebTransportConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a64518eadb1d50405a40899b41fb79efd" compoundref="webtransport_8py" startline="266" endline="275">p2p_engine.transport.webtransport.WebTransportConnection.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1acba17b9e71e9c7eb70712ee7c9f10184" prot="protected" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine.transport.webrtc.WebRTCTransport::_connections</definition>
+        <argsstring></argsstring>
+        <name>_connections</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._connections</qualifiedname>
+        <initializer>=  []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="582" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="582" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7bfecd75ba2176f595e9445d9dec28a8" compoundref="webrtc_8py" startline="723" endline="751">p2p_engine.transport.webrtc.WebRTCTransport._create_connection</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a8307842e9e30c1fda5d663a99e7bc5fd" compoundref="webrtc_8py" startline="788" endline="804">p2p_engine.transport.webrtc.WebRTCTransport._handle_answer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a0ed21505b61ca6e8aec1e4e6a9a37560" compoundref="webrtc_8py" startline="805" endline="816">p2p_engine.transport.webrtc.WebRTCTransport._handle_ice_candidate</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29" compoundref="webrtc_8py" startline="652" endline="676">p2p_engine.transport.webrtc.WebRTCTransport.close</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1aa290af185f22b22d59d066a4b792694f" prot="protected" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine.transport.webrtc.WebRTCTransport::_listeners</definition>
+        <argsstring></argsstring>
+        <name>_listeners</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._listeners</qualifiedname>
+        <initializer>=  []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="583" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="583" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29" compoundref="webrtc_8py" startline="652" endline="676">p2p_engine.transport.webrtc.WebRTCTransport.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a47c09e2d3c3d1ba10b0c9aee8b54f737" compoundref="webrtc_8py" startline="630" endline="651">p2p_engine.transport.webrtc.WebRTCTransport.listen</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a87b0147f99df3703377f11e20d0b342f" prot="protected" static="no" mutable="no">
+        <type>Optional[Callable[[<ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message" kindref="compound">SignalingMessage</ref>], Awaitable[None]]]</type>
+        <definition>Optional[Callable[[SignalingMessage], Awaitable[None]]] p2p_engine.transport.webrtc.WebRTCTransport::_on_signaling_message</definition>
+        <argsstring></argsstring>
+        <name>_on_signaling_message</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._on_signaling_message</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="586" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="586" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7dc207e3ece125f4094a34e44b508c7b" compoundref="webrtc_8py" startline="752" endline="758">p2p_engine.transport.webrtc.WebRTCTransport._send_signaling_message</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1af4eaee8fcb329c7df6a6185611843ab6" compoundref="webrtc_8py" startline="680" endline="688">p2p_engine.transport.webrtc.WebRTCTransport.set_signaling_callback</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ace57d207d1253eec998c33344969d785" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.webrtc.WebRTCTransport.__init__</definition>
+        <argsstring>(self, Optional[List[str]] stun_servers=None, Optional[List[ICEServer]] ice_servers=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Optional]</type>
+          <declname>stun_servers</declname>
+          <array>[List[str]</array>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>Optional]</type>
+          <declname>ice_servers</declname>
+          <array>[List[ICEServer]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>初始化 WebRTC 传输
+
+Args:
+    stun_servers: STUN 服务器列表
+    ice_servers: ICE 服务器列表（包括 TURN）
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="556" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="560" bodyend="587"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a25b0a38a0ff29eb0bb28258ad91f5681" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type> &apos;<ref refid="namespacep2p__engine_1_1transport_1_1webrtc_1a9421959fab51e67801d78f6dce60abfb" kindref="member">RTCConfiguration</ref>&apos;</type>
+        <definition> &apos;RTCConfiguration&apos; p2p_engine.transport.webrtc.WebRTCTransport.rtc_config</definition>
+        <argsstring>(self)</argsstring>
+        <name>rtc_config</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.rtc_config</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取 RTC 配置</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="589" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="589" bodyend="592"/>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a1f43a8c7ff976b938f48cd13c74395bb" compoundref="webrtc_8py" startline="578">p2p_engine.transport.webrtc.WebRTCTransport._rtc_config</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad518cffa7952ba4029c746475ba62606" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] p2p_engine.transport.webrtc.WebRTCTransport.protocols</definition>
+        <argsstring>(self)</argsstring>
+        <name>protocols</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.protocols</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1adfb364ee5a07f98fb541d346966a79ce">protocols</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>返回支持的协议列表</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="593" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="593" bodyend="596"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection" kindref="compound">WebRTCConnection</ref></type>
+        <definition> WebRTCConnection p2p_engine.transport.webrtc.WebRTCTransport.dial</definition>
+        <argsstring>(self, str addr)</argsstring>
+        <name>dial</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.dial</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1a75e857ad1537e55cb8c1c0c33bae9e16">dial</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>建立到指定地址的连接
+
+WebRTC 连接需要通过信令交换 SDP，
+这里创建连接并返回 Offer。
+
+Args:
+    addr: 目标地址（信令通道标识符）
+
+Returns:
+    WebRTC 连接
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="597" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="597" bodyend="629"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a7b18c803b25e2eced193573d53f7052a" compoundref="tcp__optimized_8py" startline="462">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a510b95b7e8b5df698b87a65d100c9537" compoundref="upgrader_8py" startline="203">p2p_engine.transport.upgrader.MuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ae3dd15cd3eb5894d595702a813f1c70b" compoundref="webrtc_8py" startline="141">p2p_engine.transport.webrtc.WebRTCConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a8a2f2b96d07ba79f4a81c86840d2a79a" compoundref="webrtc_8py" startline="435">p2p_engine.transport.webrtc.WebRTCListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" compoundref="webrtc_8py" startline="581">p2p_engine.transport.webrtc.WebRTCTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7bfecd75ba2176f595e9445d9dec28a8" compoundref="webrtc_8py" startline="723" endline="751">p2p_engine.transport.webrtc.WebRTCTransport._create_connection</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7dc207e3ece125f4094a34e44b508c7b" compoundref="webrtc_8py" startline="752" endline="758">p2p_engine.transport.webrtc.WebRTCTransport._send_signaling_message</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a47c09e2d3c3d1ba10b0c9aee8b54f737" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener" kindref="compound">WebRTCListener</ref></type>
+        <definition> WebRTCListener p2p_engine.transport.webrtc.WebRTCTransport.listen</definition>
+        <argsstring>(self, str addr)</argsstring>
+        <name>listen</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.listen</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1ad6b5a798b3530fb18570596f66334843">listen</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>在指定地址开始监听
+
+Args:
+    addr: 监听地址（信令通道标识符）
+
+Returns:
+    WebRTC 监听器
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="630" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="630" bodyend="651"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a7b18c803b25e2eced193573d53f7052a" compoundref="tcp__optimized_8py" startline="462">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a510b95b7e8b5df698b87a65d100c9537" compoundref="upgrader_8py" startline="203">p2p_engine.transport.upgrader.MuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ae3dd15cd3eb5894d595702a813f1c70b" compoundref="webrtc_8py" startline="141">p2p_engine.transport.webrtc.WebRTCConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a8a2f2b96d07ba79f4a81c86840d2a79a" compoundref="webrtc_8py" startline="435">p2p_engine.transport.webrtc.WebRTCListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" compoundref="webrtc_8py" startline="581">p2p_engine.transport.webrtc.WebRTCTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1af2c509c116a6178234fd5887e77d6cc7" compoundref="manager_8py" startline="50">p2p_engine.transport.manager.TransportManager._listeners</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a50b1c4df754cf9b8786b37ae0a71bd9b" compoundref="quic_8py" startline="643">p2p_engine.transport.quic.QUICTransport._listeners</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1aa290af185f22b22d59d066a4b792694f" compoundref="webrtc_8py" startline="583">p2p_engine.transport.webrtc.WebRTCTransport._listeners</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webrtc.WebRTCTransport.close</definition>
+        <argsstring>(self)</argsstring>
+        <name>close</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.close</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1adb257dcbc0d5b57b08611a4b1e0ac285">close</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>关闭传输层</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="652" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="652" bodyend="676"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a7b18c803b25e2eced193573d53f7052a" compoundref="tcp__optimized_8py" startline="462">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a510b95b7e8b5df698b87a65d100c9537" compoundref="upgrader_8py" startline="203">p2p_engine.transport.upgrader.MuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ae3dd15cd3eb5894d595702a813f1c70b" compoundref="webrtc_8py" startline="141">p2p_engine.transport.webrtc.WebRTCConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a8a2f2b96d07ba79f4a81c86840d2a79a" compoundref="webrtc_8py" startline="435">p2p_engine.transport.webrtc.WebRTCListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" compoundref="webrtc_8py" startline="581">p2p_engine.transport.webrtc.WebRTCTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a59947c1cae2dc0e73db377cf54ea97e2" compoundref="quic_8py" startline="642">p2p_engine.transport.quic.QUICTransport._connections</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1acba17b9e71e9c7eb70712ee7c9f10184" compoundref="webrtc_8py" startline="582">p2p_engine.transport.webrtc.WebRTCTransport._connections</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1af2c509c116a6178234fd5887e77d6cc7" compoundref="manager_8py" startline="50">p2p_engine.transport.manager.TransportManager._listeners</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a50b1c4df754cf9b8786b37ae0a71bd9b" compoundref="quic_8py" startline="643">p2p_engine.transport.quic.QUICTransport._listeners</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1aa290af185f22b22d59d066a4b792694f" compoundref="webrtc_8py" startline="583">p2p_engine.transport.webrtc.WebRTCTransport._listeners</references>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1af4eaee8fcb329c7df6a6185611843ab6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webrtc.WebRTCTransport.set_signaling_callback</definition>
+        <argsstring>(self, Callable[[SignalingMessage], Awaitable[None]] callback)</argsstring>
+        <name>set_signaling_callback</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.set_signaling_callback</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <defname>callback</defname>
+          <array>[[SignalingMessage]</array>
+        </param>
+        <param>
+          <type>Awaitable]</type>
+          <declname>callback</declname>
+          <array>[None]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>设置信令消息回调
+
+Args:
+    callback: 信令消息处理回调
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="677" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="680" bodyend="688"/>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a87b0147f99df3703377f11e20d0b342f" compoundref="webrtc_8py" startline="586">p2p_engine.transport.webrtc.WebRTCTransport._on_signaling_message</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad7b90d152075ac1ec7051f731ce650c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webrtc.WebRTCTransport.handle_signaling_message</definition>
+        <argsstring>(self, SignalingMessage message)</argsstring>
+        <name>handle_signaling_message</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport.handle_signaling_message</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message" kindref="compound">SignalingMessage</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>处理信令消息
+
+Args:
+    message: 信令消息
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="689" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="689" bodyend="704"/>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a8307842e9e30c1fda5d663a99e7bc5fd" compoundref="webrtc_8py" startline="788" endline="804">p2p_engine.transport.webrtc.WebRTCTransport._handle_answer</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a0ed21505b61ca6e8aec1e4e6a9a37560" compoundref="webrtc_8py" startline="805" endline="816">p2p_engine.transport.webrtc.WebRTCTransport._handle_ice_candidate</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a35824d4ef3371f20d6215274ed474f40" compoundref="webrtc_8py" startline="759" endline="787">p2p_engine.transport.webrtc.WebRTCTransport._handle_offer</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a3c66ab3966a2bdd5c77096a14c32d0a8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type> &apos;<ref refid="namespacep2p__engine_1_1transport_1_1webrtc_1a9421959fab51e67801d78f6dce60abfb" kindref="member">RTCConfiguration</ref>&apos;</type>
+        <definition> &apos;RTCConfiguration&apos; p2p_engine.transport.webrtc.WebRTCTransport._create_rtc_config</definition>
+        <argsstring>(self)</argsstring>
+        <name>_create_rtc_config</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._create_rtc_config</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>创建 RTC 配置</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="705" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="705" bodyend="722"/>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a255c075a70811c9163df48ffa49668dd" compoundref="webrtc_8py" startline="575">p2p_engine.transport.webrtc.WebRTCTransport._ice_servers</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a6d231fd525e26316ecf25ffb294aa08c" compoundref="webrtc_8py" startline="574">p2p_engine.transport.webrtc.WebRTCTransport._stun_servers</references>
+        <references refid="namespacep2p__engine_1_1transport_1_1webrtc_1a9421959fab51e67801d78f6dce60abfb" compoundref="webrtc_8py" startline="33">p2p_engine.transport.webrtc.RTCConfiguration</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7bfecd75ba2176f595e9445d9dec28a8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection" kindref="compound">WebRTCConnection</ref></type>
+        <definition> WebRTCConnection p2p_engine.transport.webrtc.WebRTCTransport._create_connection</definition>
+        <argsstring>(self, bool is_initiator)</argsstring>
+        <name>_create_connection</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._create_connection</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_initiator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>创建 WebRTC 连接</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="723" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="723" bodyend="751"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a59947c1cae2dc0e73db377cf54ea97e2" compoundref="quic_8py" startline="642">p2p_engine.transport.quic.QUICTransport._connections</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1acba17b9e71e9c7eb70712ee7c9f10184" compoundref="webrtc_8py" startline="582">p2p_engine.transport.webrtc.WebRTCTransport._connections</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a1f43a8c7ff976b938f48cd13c74395bb" compoundref="webrtc_8py" startline="578">p2p_engine.transport.webrtc.WebRTCTransport._rtc_config</references>
+        <references refid="namespacep2p__engine_1_1transport_1_1webrtc_1a4dff7168b0b72c800ef565ebd109b9cf" compoundref="webrtc_8py" startline="31">p2p_engine.transport.webrtc.RTCPeerConnection</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a35824d4ef3371f20d6215274ed474f40" compoundref="webrtc_8py" startline="759" endline="787">p2p_engine.transport.webrtc.WebRTCTransport._handle_offer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de" compoundref="webrtc_8py" startline="597" endline="629">p2p_engine.transport.webrtc.WebRTCTransport.dial</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7dc207e3ece125f4094a34e44b508c7b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webrtc.WebRTCTransport._send_signaling_message</definition>
+        <argsstring>(self, SignalingMessage message)</argsstring>
+        <name>_send_signaling_message</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._send_signaling_message</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message" kindref="compound">SignalingMessage</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>发送信令消息</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="752" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="752" bodyend="758"/>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a87b0147f99df3703377f11e20d0b342f" compoundref="webrtc_8py" startline="586">p2p_engine.transport.webrtc.WebRTCTransport._on_signaling_message</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a35824d4ef3371f20d6215274ed474f40" compoundref="webrtc_8py" startline="759" endline="787">p2p_engine.transport.webrtc.WebRTCTransport._handle_offer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de" compoundref="webrtc_8py" startline="597" endline="629">p2p_engine.transport.webrtc.WebRTCTransport.dial</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a35824d4ef3371f20d6215274ed474f40" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webrtc.WebRTCTransport._handle_offer</definition>
+        <argsstring>(self, SignalingMessage message)</argsstring>
+        <name>_handle_offer</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._handle_offer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message" kindref="compound">SignalingMessage</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>处理 Offer 消息</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="759" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="759" bodyend="787"/>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7bfecd75ba2176f595e9445d9dec28a8" compoundref="webrtc_8py" startline="723" endline="751">p2p_engine.transport.webrtc.WebRTCTransport._create_connection</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7dc207e3ece125f4094a34e44b508c7b" compoundref="webrtc_8py" startline="752" endline="758">p2p_engine.transport.webrtc.WebRTCTransport._send_signaling_message</references>
+        <references refid="namespacep2p__engine_1_1transport_1_1webrtc_1afe9dbb6b67893274b1a60104245c89e0" compoundref="webrtc_8py" startline="32">p2p_engine.transport.webrtc.RTCSessionDescription</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad7b90d152075ac1ec7051f731ce650c3" compoundref="webrtc_8py" startline="689" endline="704">p2p_engine.transport.webrtc.WebRTCTransport.handle_signaling_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a8307842e9e30c1fda5d663a99e7bc5fd" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webrtc.WebRTCTransport._handle_answer</definition>
+        <argsstring>(self, SignalingMessage message)</argsstring>
+        <name>_handle_answer</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._handle_answer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message" kindref="compound">SignalingMessage</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>处理 Answer 消息</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="788" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="788" bodyend="804"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a59947c1cae2dc0e73db377cf54ea97e2" compoundref="quic_8py" startline="642">p2p_engine.transport.quic.QUICTransport._connections</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1acba17b9e71e9c7eb70712ee7c9f10184" compoundref="webrtc_8py" startline="582">p2p_engine.transport.webrtc.WebRTCTransport._connections</references>
+        <references refid="namespacep2p__engine_1_1transport_1_1webrtc_1afe9dbb6b67893274b1a60104245c89e0" compoundref="webrtc_8py" startline="32">p2p_engine.transport.webrtc.RTCSessionDescription</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad7b90d152075ac1ec7051f731ce650c3" compoundref="webrtc_8py" startline="689" endline="704">p2p_engine.transport.webrtc.WebRTCTransport.handle_signaling_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a0ed21505b61ca6e8aec1e4e6a9a37560" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webrtc.WebRTCTransport._handle_ice_candidate</definition>
+        <argsstring>(self, SignalingMessage message)</argsstring>
+        <name>_handle_ice_candidate</name>
+        <qualifiedname>p2p_engine.transport.webrtc.WebRTCTransport._handle_ice_candidate</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message" kindref="compound">SignalingMessage</ref></type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>处理 ICE 候选消息</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webrtc.py" line="805" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="805" bodyend="816"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a59947c1cae2dc0e73db377cf54ea97e2" compoundref="quic_8py" startline="642">p2p_engine.transport.quic.QUICTransport._connections</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1acba17b9e71e9c7eb70712ee7c9f10184" compoundref="webrtc_8py" startline="582">p2p_engine.transport.webrtc.WebRTCTransport._connections</references>
+        <referencedby refid="classsrc_1_1signaling__server_1_1handlers_1_1_message_handler_1a209c7d2b355b30cdc7aea3622586e3cb" compoundref="handlers_8py" startline="32" endline="73">src.signaling_server.handlers.MessageHandler.handle_message</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad7b90d152075ac1ec7051f731ce650c3" compoundref="webrtc_8py" startline="689" endline="704">p2p_engine.transport.webrtc.WebRTCTransport.handle_signaling_message</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>WebRTC 传输
+
+实现 libp2p WebRTC 传输协议，支持与浏览器互操作。
+
+协议ID: /webrtc-direct
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.webrtc.WebRTCTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Transport</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_transport"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.webrtc.WebRTCTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_on_signaling_message</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Transport</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_transport"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>p2p_engine.transport.webrtc.SignalingMessage</label>
+        <link refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message"/>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/transport/webrtc.py" line="547" column="1" bodyfile="p2p_engine/transport/webrtc.py" bodystart="547" bodyend="816"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ace57d207d1253eec998c33344969d785" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_closed</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1acba17b9e71e9c7eb70712ee7c9f10184" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_connections</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7bfecd75ba2176f595e9445d9dec28a8" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_create_connection</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a3c66ab3966a2bdd5c77096a14c32d0a8" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_create_rtc_config</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a8307842e9e30c1fda5d663a99e7bc5fd" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_handle_answer</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a0ed21505b61ca6e8aec1e4e6a9a37560" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_handle_ice_candidate</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a35824d4ef3371f20d6215274ed474f40" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_handle_offer</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a255c075a70811c9163df48ffa49668dd" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_ice_servers</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1aa290af185f22b22d59d066a4b792694f" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_listeners</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a87b0147f99df3703377f11e20d0b342f" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_on_signaling_message</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a1f43a8c7ff976b938f48cd13c74395bb" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_rtc_config</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7dc207e3ece125f4094a34e44b508c7b" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_send_signaling_message</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a6d231fd525e26316ecf25ffb294aa08c" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>_stun_servers</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>close</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>dial</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad7b90d152075ac1ec7051f731ce650c3" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>handle_signaling_message</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a47c09e2d3c3d1ba10b0c9aee8b54f737" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>listen</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad518cffa7952ba4029c746475ba62606" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>protocols</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a25b0a38a0ff29eb0bb28258ad91f5681" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>rtc_config</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1af4eaee8fcb329c7df6a6185611843ab6" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webrtc::WebRTCTransport</scope><name>set_signaling_callback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

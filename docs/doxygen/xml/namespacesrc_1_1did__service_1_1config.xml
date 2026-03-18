@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacesrc_1_1did__service_1_1config" kind="namespace" language="Python">
+    <compoundname>src::did_service::config</compoundname>
+    <innerclass refid="classsrc_1_1did__service_1_1config_1_1_config" prot="public">src::did_service::config::Config</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacesrc_1_1did__service_1_1config_1a934a5763b147ca8c51c70b02ede1b391" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>src::did_service::config.config</definition>
+        <argsstring></argsstring>
+        <name>config</name>
+        <qualifiedname>src.did_service.config.config</qualifiedname>
+        <initializer>=  <ref refid="classsrc_1_1did__service_1_1config_1_1_config" kindref="compound">Config</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="118" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="118" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacesrc_1_1did__service_1_1config_1a21742f3b9471eca39c9653417f509645" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str src.did_service.config._get_jwt_secret</definition>
+        <argsstring>()</argsstring>
+        <name>_get_jwt_secret</name>
+        <qualifiedname>src.did_service.config._get_jwt_secret</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get JWT secret with security validation.
+
+In production: JWT_SECRET is required (min 32 chars)
+In development: Allow default for convenience
+
+Returns:
+    JWT secret string
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="16" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="16" bodyend="46"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>DID Service Configuration
+
+Security Notice:
+- JWT_SECRET must be set via environment variable in production
+- Minimum key length: 32 characters
+- Use: python -c &quot;import secrets; print(secrets.token_urlsafe(32))&quot;
+</verbatim> </para>
+    </detaileddescription>
+    <location file="did-service/src/did_service/config.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classsrc_1_1did__service_1_1config_1_1_config" kind="class" language="Python" prot="public">
+    <compoundname>src::did_service::config::Config</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a69d960844e3d30514fc0787d3870e4a4" prot="public" static="yes" mutable="no">
+        <type>Literal</type>
+        <definition>Literal src.did_service.config.Config::environment</definition>
+        <argsstring></argsstring>
+        <name>environment</name>
+        <qualifiedname>src.did_service.config.Config.environment</qualifiedname>
+        <initializer>=  os.getenv(&quot;ENVIRONMENT&quot;, &quot;development&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="51" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1did__service_1_1config_1_1_config_1acb334615731c423fc0e9a086b99d25b1" compoundref="did-service_2src_2did__service_2config_8py" startline="81" endline="84">src.did_service.config.Config.is_production</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a0d30e57c2f2bdda441cfb2dd26b039b2" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str src.did_service.config.Config::host</definition>
+        <argsstring></argsstring>
+        <name>host</name>
+        <qualifiedname>src.did_service.config.Config.host</qualifiedname>
+        <initializer>=  os.getenv(&quot;DID_SERVICE_HOST&quot;, &quot;0.0.0.0&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="54" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1af5d3d864e3a9c2d1bc383e391e1764cf" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int src.did_service.config.Config::port</definition>
+        <argsstring></argsstring>
+        <name>port</name>
+        <qualifiedname>src.did_service.config.Config.port</qualifiedname>
+        <initializer>=  int(os.getenv(&quot;DID_SERVICE_PORT&quot;, &quot;9000&quot;))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="55" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a4cbd50b87df8da14e2e0e431cc0030f6" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str src.did_service.config.Config::redis_url</definition>
+        <argsstring></argsstring>
+        <name>redis_url</name>
+        <qualifiedname>src.did_service.config.Config.redis_url</qualifiedname>
+        <initializer>=  os.getenv(&quot;REDIS_URL&quot;, &quot;redis://localhost:6379&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="58" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="58" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1did__service_1_1storage_1_1_device_storage_1a7959f606c797a14dea16d6560363e6d1" compoundref="storage_8py" startline="42" endline="53">src.did_service.storage.DeviceStorage._get_pool</referencedby>
+        <referencedby refid="classsrc_1_1did__service_1_1config_1_1_config_1af52a6d0cea9af26a3389de542e5dc1cd" compoundref="did-service_2src_2did__service_2config_8py" startline="85" endline="117">src.did_service.config.Config.validate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1ad99ab2364d1b79c0be38da8fca2bef44" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int src.did_service.config.Config::redis_db</definition>
+        <argsstring></argsstring>
+        <name>redis_db</name>
+        <qualifiedname>src.did_service.config.Config.redis_db</qualifiedname>
+        <initializer>=  int(os.getenv(&quot;REDIS_DB&quot;, &quot;0&quot;))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="59" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a07be901d19f08e860814b62703ec659a" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str src.did_service.config.Config::redis_password</definition>
+        <argsstring></argsstring>
+        <name>redis_password</name>
+        <qualifiedname>src.did_service.config.Config.redis_password</qualifiedname>
+        <initializer>=  os.getenv(&quot;REDIS_PASSWORD&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="60" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a43bb4a487eb8087f1e85d7b8f9d63444" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str src.did_service.config.Config::did_prefix</definition>
+        <argsstring></argsstring>
+        <name>did_prefix</name>
+        <qualifiedname>src.did_service.config.Config.did_prefix</qualifiedname>
+        <initializer>=  os.getenv(&quot;DID_PREFIX&quot;, &quot;did:p2p&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="63" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a35473e93efeb47921aafe94a7bdae637" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int src.did_service.config.Config::device_id_random_bytes</definition>
+        <argsstring></argsstring>
+        <name>device_id_random_bytes</name>
+        <qualifiedname>src.did_service.config.Config.device_id_random_bytes</qualifiedname>
+        <initializer>=  int(os.getenv(&quot;DEVICE_ID_RANDOM_BYTES&quot;, &quot;16&quot;))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="64" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a166e367f4bcc8ef4d19261d617e89995" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>src.did_service.config.Config::jwt_secret</definition>
+        <argsstring></argsstring>
+        <name>jwt_secret</name>
+        <qualifiedname>src.did_service.config.Config.jwt_secret</qualifiedname>
+        <initializer>=  <ref refid="namespacesrc_1_1did__service_1_1config_1a21742f3b9471eca39c9653417f509645" kindref="member">_get_jwt_secret</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="67" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1did__service_1_1config_1_1_config_1af52a6d0cea9af26a3389de542e5dc1cd" compoundref="did-service_2src_2did__service_2config_8py" startline="85" endline="117">src.did_service.config.Config.validate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a0bd70e8cb3db64b47d01e6797e9c4070" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int src.did_service.config.Config::jwt_expiration</definition>
+        <argsstring></argsstring>
+        <name>jwt_expiration</name>
+        <qualifiedname>src.did_service.config.Config.jwt_expiration</qualifiedname>
+        <initializer>=  int(os.getenv(&quot;JWT_EXPIRATION&quot;, &quot;3600&quot;))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="68" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1did__service_1_1config_1_1_config_1af52a6d0cea9af26a3389de542e5dc1cd" compoundref="did-service_2src_2did__service_2config_8py" startline="85" endline="117">src.did_service.config.Config.validate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1aa1a4a63c35835a0977b144dd28643184" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str src.did_service.config.Config::jwt_algorithm</definition>
+        <argsstring></argsstring>
+        <name>jwt_algorithm</name>
+        <qualifiedname>src.did_service.config.Config.jwt_algorithm</qualifiedname>
+        <initializer>=  os.getenv(&quot;JWT_ALGORITHM&quot;, &quot;HS256&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="69" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a459d8f2aff0dd524e187476403aa1f4a" prot="public" static="yes" mutable="no">
+        <type>str</type>
+        <definition>str src.did_service.config.Config::jwt_previous_secret</definition>
+        <argsstring></argsstring>
+        <name>jwt_previous_secret</name>
+        <qualifiedname>src.did_service.config.Config.jwt_previous_secret</qualifiedname>
+        <initializer>=  os.getenv(&quot;JWT_PREVIOUS_SECRET&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="72" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a8b180ca08e075defe21ea10ac14c5bc9" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool src.did_service.config.Config::jwt_rotation_enabled</definition>
+        <argsstring></argsstring>
+        <name>jwt_rotation_enabled</name>
+        <qualifiedname>src.did_service.config.Config.jwt_rotation_enabled</qualifiedname>
+        <initializer>=  &quot;true&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="73" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a636e7d20cfc06884b026d07b4c57a58a" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int src.did_service.config.Config::heartbeat_timeout</definition>
+        <argsstring></argsstring>
+        <name>heartbeat_timeout</name>
+        <qualifiedname>src.did_service.config.Config.heartbeat_timeout</qualifiedname>
+        <initializer>=  int(os.getenv(&quot;HEARTBEAT_TIMEOUT&quot;, &quot;120&quot;))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="76" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1config_1_1_config_1a8465149ced5604d461f06ee7deebd045" prot="public" static="yes" mutable="no">
+        <type>set</type>
+        <definition>set src.did_service.config.Config::valid_device_types</definition>
+        <argsstring></argsstring>
+        <name>valid_device_types</name>
+        <qualifiedname>src.did_service.config.Config.valid_device_types</qualifiedname>
+        <initializer>=  frozenset({&quot;ios&quot;, &quot;android&quot;, &quot;web&quot;, &quot;desktop&quot;})</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="79" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="79" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1config_1_1_config_1acb334615731c423fc0e9a086b99d25b1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.did_service.config.Config.is_production</definition>
+        <argsstring>(self)</argsstring>
+        <name>is_production</name>
+        <qualifiedname>src.did_service.config.Config.is_production</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Check if running in production environment.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="81" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="81" bodyend="84"/>
+        <references refid="classsrc_1_1did__service_1_1config_1_1_config_1a69d960844e3d30514fc0787d3870e4a4" compoundref="did-service_2src_2did__service_2config_8py" startline="51">src.did_service.config.Config.environment</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1config_1_1_config_1af52a6d0cea9af26a3389de542e5dc1cd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.did_service.config.Config.validate</definition>
+        <argsstring>(self)</argsstring>
+        <name>validate</name>
+        <qualifiedname>src.did_service.config.Config.validate</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Validate configuration.
+
+Returns:
+    True if valid
+
+Raises:
+    ValueError: If configuration is invalid
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/config.py" line="85" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="85" bodyend="117"/>
+        <references refid="classsrc_1_1did__service_1_1config_1_1_config_1a0bd70e8cb3db64b47d01e6797e9c4070" compoundref="did-service_2src_2did__service_2config_8py" startline="68">src.did_service.config.Config.jwt_expiration</references>
+        <references refid="classsrc_1_1did__service_1_1config_1_1_config_1a166e367f4bcc8ef4d19261d617e89995" compoundref="did-service_2src_2did__service_2config_8py" startline="67">src.did_service.config.Config.jwt_secret</references>
+        <references refid="classsrc_1_1did__service_1_1config_1_1_config_1a4cbd50b87df8da14e2e0e431cc0030f6" compoundref="did-service_2src_2did__service_2config_8py" startline="58">src.did_service.config.Config.redis_url</references>
+        <references refid="classsrc_1_1signaling__server_1_1config_1_1_config_1ac8651136f8a1db63cf5d2f9fe2393bd9" compoundref="signaling-server_2src_2signaling__server_2config_8py" startline="19">src.signaling_server.config.Config.redis_url</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Service configuration.</verbatim> </para>
+    </detaileddescription>
+    <location file="did-service/src/did_service/config.py" line="47" column="1" bodyfile="did-service/src/did_service/config.py" bodystart="47" bodyend="117"/>
+    <listofallmembers>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a35473e93efeb47921aafe94a7bdae637" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>device_id_random_bytes</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a43bb4a487eb8087f1e85d7b8f9d63444" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>did_prefix</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a69d960844e3d30514fc0787d3870e4a4" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>environment</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a636e7d20cfc06884b026d07b4c57a58a" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>heartbeat_timeout</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a0d30e57c2f2bdda441cfb2dd26b039b2" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>host</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1acb334615731c423fc0e9a086b99d25b1" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>is_production</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1aa1a4a63c35835a0977b144dd28643184" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>jwt_algorithm</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a0bd70e8cb3db64b47d01e6797e9c4070" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>jwt_expiration</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a459d8f2aff0dd524e187476403aa1f4a" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>jwt_previous_secret</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a8b180ca08e075defe21ea10ac14c5bc9" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>jwt_rotation_enabled</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a166e367f4bcc8ef4d19261d617e89995" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>jwt_secret</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1af5d3d864e3a9c2d1bc383e391e1764cf" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>port</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1ad99ab2364d1b79c0be38da8fca2bef44" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>redis_db</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a07be901d19f08e860814b62703ec659a" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>redis_password</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a4cbd50b87df8da14e2e0e431cc0030f6" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>redis_url</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1a8465149ced5604d461f06ee7deebd045" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>valid_device_types</name></member>
+      <member refid="classsrc_1_1did__service_1_1config_1_1_config_1af52a6d0cea9af26a3389de542e5dc1cd" prot="public" virt="non-virtual"><scope>src::did_service::config::Config</scope><name>validate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

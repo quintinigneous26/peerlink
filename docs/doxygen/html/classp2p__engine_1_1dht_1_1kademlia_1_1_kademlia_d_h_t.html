@@ -1,0 +1,1381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.dht.kademlia.KademliaDHT类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t.html','','classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.dht.kademlia.KademliaDHT类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 p2p_engine.dht.kademlia.KademliaDHT 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t__inherit__graph.png" border="0" usemap="#ap2p__engine_8dht_8kademlia_8_kademlia_d_h_t_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+p2p_engine.dht.kademlia.KademliaDHT 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t__coll__graph.png" border="0" usemap="#ap2p__engine_8dht_8kademlia_8_kademlia_d_h_t_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a795c5ac1c502efba81ebdddcbbaf991f" id="r_a795c5ac1c502efba81ebdddcbbaf991f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a795c5ac1c502efba81ebdddcbbaf991f">__init__</a> (self, bytes <a class="el" href="#a4b9ce107bcb2f6fc21c2feb3ec78ee36">local_peer_id</a>, Optional[Callable[[bytes, bytes, str], Awaitable[bytes]]] network_send_func=None, int k_size=K)</td></tr>
+<tr class="memitem:a5c56363f7fc755615dd4450be59727f9" id="r_a5c56363f7fc755615dd4450be59727f9"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a5c56363f7fc755615dd4450be59727f9">start</a> (self)</td></tr>
+<tr class="memitem:aa2a1ac333aa194e3d88a8b4b2968b1a0" id="r_aa2a1ac333aa194e3d88a8b4b2968b1a0"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#aa2a1ac333aa194e3d88a8b4b2968b1a0">stop</a> (self)</td></tr>
+<tr class="memitem:a233dfabaf67490b0dd33cab024df9008" id="r_a233dfabaf67490b0dd33cab024df9008"><td class="memItemLeft">Optional[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a233dfabaf67490b0dd33cab024df9008">find_peer</a> (self, bytes peer_id)</td></tr>
+<tr class="memitem:a1ddd987f1d6072d170c1528d1fa0bc5c" id="r_a1ddd987f1d6072d170c1528d1fa0bc5c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1ddd987f1d6072d170c1528d1fa0bc5c">provide</a> (self, bytes cid, bool announce=True)</td></tr>
+<tr class="memitem:ad01933ff9d4773150c4beb90b15f96f9" id="r_ad01933ff9d4773150c4beb90b15f96f9"><td class="memItemLeft">List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]&#160;</td><td class="memItemRight"><a class="el" href="#ad01933ff9d4773150c4beb90b15f96f9">find_providers</a> (self, bytes cid, int count=20)</td></tr>
+<tr class="memitem:ac2b059ebc18060dfc7f14e8ae2c1a951" id="r_ac2b059ebc18060dfc7f14e8ae2c1a951"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac2b059ebc18060dfc7f14e8ae2c1a951">put_value</a> (self, bytes key, bytes value)</td></tr>
+<tr class="memitem:af2f1ee22475fa022b33a269f644f681e" id="r_af2f1ee22475fa022b33a269f644f681e"><td class="memItemLeft">Optional[bytes]&#160;</td><td class="memItemRight"><a class="el" href="#af2f1ee22475fa022b33a269f644f681e">get_value</a> (self, bytes key)</td></tr>
+<tr class="memitem:ad2529d1c37dfb264f3a6d080fee85f5c" id="r_ad2529d1c37dfb264f3a6d080fee85f5c"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#ad2529d1c37dfb264f3a6d080fee85f5c">handle_message</a> (self, bytes peer_id, bytes message)</td></tr>
+<tr class="memitem:ac21fec97033241fa7290f0392a91e6c0" id="r_ac21fec97033241fa7290f0392a91e6c0"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#ac21fec97033241fa7290f0392a91e6c0">add_bootstrap_peer</a> (self, bytes peer_id, List[str] addresses)</td></tr>
+<tr class="memitem:a3633d6b68ee9630df40dd59e8843afc2" id="r_a3633d6b68ee9630df40dd59e8843afc2"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a3633d6b68ee9630df40dd59e8843afc2">peer_count</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a4b9ce107bcb2f6fc21c2feb3ec78ee36" id="r_a4b9ce107bcb2f6fc21c2feb3ec78ee36"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4b9ce107bcb2f6fc21c2feb3ec78ee36">local_peer_id</a> = local_peer_id</td></tr>
+<tr class="memitem:a760b65b7d81586555d3418f909bcc86c" id="r_a760b65b7d81586555d3418f909bcc86c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a760b65b7d81586555d3418f909bcc86c">protocol_id</a> = <a class="el" href="namespacep2p__engine_1_1dht_1_1kademlia.html#a73d0553932da10342cd1a4038660338a">PROTOCOL_ID</a></td></tr>
+<tr class="memitem:a55bc3239c7f6de91372de33ce11c3227" id="r_a55bc3239c7f6de91372de33ce11c3227"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a55bc3239c7f6de91372de33ce11c3227">routing_table</a> = <a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_routing_table.html">RoutingTable</a>(<a class="el" href="#a4b9ce107bcb2f6fc21c2feb3ec78ee36">local_peer_id</a>, k_size)</td></tr>
+<tr class="memitem:a02676f4e06264e4a13ffef1e43d86e3f" id="r_a02676f4e06264e4a13ffef1e43d86e3f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a02676f4e06264e4a13ffef1e43d86e3f">provider_manager</a> = <a class="el" href="classp2p__engine_1_1dht_1_1provider_1_1_provider_manager.html">ProviderManager</a>(max_providers=k_size)</td></tr>
+<tr class="memitem:a2c5fbedac4580cbce0f112a66ada0c6e" id="r_a2c5fbedac4580cbce0f112a66ada0c6e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2c5fbedac4580cbce0f112a66ada0c6e">query_manager</a> = <a class="el" href="classp2p__engine_1_1dht_1_1query_1_1_query_manager.html">QueryManager</a>(alpha=3, timeout_ms=60000)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:af33c8f67f96f55133ac34b015aa8a8c1" id="r_af33c8f67f96f55133ac34b015aa8a8c1"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#af33c8f67f96f55133ac34b015aa8a8c1">_handle_find_node</a> (self, <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a> msg)</td></tr>
+<tr class="memitem:a91dd6d332765894102460968b6efab6c" id="r_a91dd6d332765894102460968b6efab6c"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a91dd6d332765894102460968b6efab6c">_handle_find_value</a> (self, <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a> msg)</td></tr>
+<tr class="memitem:a5131f9e847b185818b030d46e0d08d33" id="r_a5131f9e847b185818b030d46e0d08d33"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a5131f9e847b185818b030d46e0d08d33">_handle_put_value</a> (self, <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a> msg)</td></tr>
+<tr class="memitem:a2e43211e59ef807fa225991c46b2366c" id="r_a2e43211e59ef807fa225991c46b2366c"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a2e43211e59ef807fa225991c46b2366c">_handle_add_provider</a> (self, <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a> msg, bytes peer_id)</td></tr>
+<tr class="memitem:a8be1e4e6ad1aabc1220776360adebca0" id="r_a8be1e4e6ad1aabc1220776360adebca0"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a8be1e4e6ad1aabc1220776360adebca0">_handle_get_providers</a> (self, <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a> msg)</td></tr>
+<tr class="memitem:a90f1c76fb4ec2a755654113f55c87c6d" id="r_a90f1c76fb4ec2a755654113f55c87c6d"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a>&#160;</td><td class="memItemRight"><a class="el" href="#a90f1c76fb4ec2a755654113f55c87c6d">_create_error_response</a> (self, str error)</td></tr>
+<tr class="memitem:ac791c4656de8ba42614ef72d549aee11" id="r_ac791c4656de8ba42614ef72d549aee11"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a>&#160;</td><td class="memItemRight"><a class="el" href="#ac791c4656de8ba42614ef72d549aee11">_create_pong_response</a> (self)</td></tr>
+<tr class="memitem:aee54711ab037e58cf6384256f519fcf7" id="r_aee54711ab037e58cf6384256f519fcf7"><td class="memItemLeft">List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]&#160;</td><td class="memItemRight"><a class="el" href="#aee54711ab037e58cf6384256f519fcf7">_query_find_node</a> (self, bytes peer_id, bytes target)</td></tr>
+<tr class="memitem:a404dfdaeaae55cd6aba31e51632ab7f4" id="r_a404dfdaeaae55cd6aba31e51632ab7f4"><td class="memItemLeft">tuple[Optional[bytes], List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]]&#160;</td><td class="memItemRight"><a class="el" href="#a404dfdaeaae55cd6aba31e51632ab7f4">_query_get_value</a> (self, bytes peer_id, bytes key)</td></tr>
+<tr class="memitem:ac1014117e8aacd48ede3bb70b8f5bfb5" id="r_ac1014117e8aacd48ede3bb70b8f5bfb5"><td class="memItemLeft">tuple[List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>], List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]]&#160;</td><td class="memItemRight"><a class="el" href="#ac1014117e8aacd48ede3bb70b8f5bfb5">_query_get_providers</a> (self, bytes peer_id, bytes key)</td></tr>
+<tr class="memitem:a0c56c67368753a80130cbcf7616d210c" id="r_a0c56c67368753a80130cbcf7616d210c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0c56c67368753a80130cbcf7616d210c">_announce_provider</a> (self, bytes peer_id, bytes key, bytes provider_id)</td></tr>
+<tr class="memitem:ade2f150cbe827ff135fded9fc15a4f89" id="r_ade2f150cbe827ff135fded9fc15a4f89"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#ade2f150cbe827ff135fded9fc15a4f89">_refresh_loop</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a7bea7653bbae5b43271ec6007303666b" id="r_a7bea7653bbae5b43271ec6007303666b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7bea7653bbae5b43271ec6007303666b">_send_func</a> = network_send_func</td></tr>
+<tr class="memitem:a16ae6a991dbe91e686e020c62a179e84" id="r_a16ae6a991dbe91e686e020c62a179e84"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a16ae6a991dbe91e686e020c62a179e84">_local_store</a> = {}</td></tr>
+<tr class="memitem:aabd0678465825b90896ff3b99d3022d3" id="r_aabd0678465825b90896ff3b99d3022d3"><td class="memItemLeft">list&#160;</td><td class="memItemRight"><a class="el" href="#aabd0678465825b90896ff3b99d3022d3">_on_peer_found</a> = []</td></tr>
+<tr class="memitem:a02dd3553a96a48573ddf1f1258cb55ed" id="r_a02dd3553a96a48573ddf1f1258cb55ed"><td class="memItemLeft">list&#160;</td><td class="memItemRight"><a class="el" href="#a02dd3553a96a48573ddf1f1258cb55ed">_on_provider_found</a> = []</td></tr>
+<tr class="memitem:ae8299d4ddca2f15c67fafdc44568571f" id="r_ae8299d4ddca2f15c67fafdc44568571f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae8299d4ddca2f15c67fafdc44568571f">_running</a> = False</td></tr>
+<tr class="memitem:a2f613beebdddb44c041a85234c066868" id="r_a2f613beebdddb44c041a85234c066868"><td class="memItemLeft">Optional[asyncio.Task]&#160;</td><td class="memItemRight"><a class="el" href="#a2f613beebdddb44c041a85234c066868">_refresh_task</a> = None</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Kademlia DHT implementation.
+
+Implements the full Kademlia DHT protocol including:
+- Node discovery (find_peer)
+- Content routing (provide, find_providers)
+- Key-value storage (put_value, get_value)
+</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00220">220</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a795c5ac1c502efba81ebdddcbbaf991f" name="a795c5ac1c502efba81ebdddcbbaf991f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a795c5ac1c502efba81ebdddcbbaf991f">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.kademlia.KademliaDHT.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>local_peer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[Callable[[bytes, bytes, str], Awaitable[bytes]]] </td>          <td class="paramname"><span class="paramname"><em>network_send_func</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>k_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">K</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize Kademlia DHT.
+
+Args:
+    local_peer_id: Local peer's ID (32 bytes)
+    network_send_func: Async function to send DHT messages
+                     (target_peer_id, message_bytes, protocol_id) -&gt; response
+    k_size: Bucket size parameter (default 20)
+</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00230">230</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a0c56c67368753a80130cbcf7616d210c" name="a0c56c67368753a80130cbcf7616d210c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c56c67368753a80130cbcf7616d210c">&#9670;&#160;</a></span>_announce_provider()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.kademlia.KademliaDHT._announce_provider </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes
+    </td>          <td class="paramname"><span class="paramname"><em>provider_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Announce a provider to a peer.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00768">768</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00250">_send_func</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00249">protocol_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a0c56c67368753a80130cbcf7616d210c_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a0c56c67368753a80130cbcf7616d210c_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a90f1c76fb4ec2a755654113f55c87c6d" name="a90f1c76fb4ec2a755654113f55c87c6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f1c76fb4ec2a755654113f55c87c6d">&#9670;&#160;</a></span>_create_error_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a> p2p_engine.dht.kademlia.KademliaDHT._create_error_response </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>error</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Create an error response.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00638">638</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00592">_handle_add_provider()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00528">_handle_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00547">_handle_find_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00607">_handle_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00575">_handle_put_value()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a90f1c76fb4ec2a755654113f55c87c6d_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a90f1c76fb4ec2a755654113f55c87c6d_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac791c4656de8ba42614ef72d549aee11" name="ac791c4656de8ba42614ef72d549aee11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac791c4656de8ba42614ef72d549aee11">&#9670;&#160;</a></span>_create_pong_response()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a> p2p_engine.dht.kademlia.KademliaDHT._create_pong_response </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Create a PONG response.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00646">646</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ac791c4656de8ba42614ef72d549aee11_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ac791c4656de8ba42614ef72d549aee11_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a2e43211e59ef807fa225991c46b2366c" name="a2e43211e59ef807fa225991c46b2366c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e43211e59ef807fa225991c46b2366c">&#9670;&#160;</a></span>_handle_add_provider()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.dht.kademlia.KademliaDHT._handle_add_provider </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a></td>          <td class="paramname"><span class="paramname"><em>msg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle ADD_PROVIDER request.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00592">592</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00638">_create_error_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00254">provider_manager</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a2e43211e59ef807fa225991c46b2366c_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a2e43211e59ef807fa225991c46b2366c_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a2e43211e59ef807fa225991c46b2366c_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a2e43211e59ef807fa225991c46b2366c_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af33c8f67f96f55133ac34b015aa8a8c1" name="af33c8f67f96f55133ac34b015aa8a8c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af33c8f67f96f55133ac34b015aa8a8c1">&#9670;&#160;</a></span>_handle_find_node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.dht.kademlia.KademliaDHT._handle_find_node </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a></td>          <td class="paramname"><span class="paramname"><em>msg</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle FIND_NODE request.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00528">528</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00638">_create_error_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_af33c8f67f96f55133ac34b015aa8a8c1_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_af33c8f67f96f55133ac34b015aa8a8c1_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_af33c8f67f96f55133ac34b015aa8a8c1_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_af33c8f67f96f55133ac34b015aa8a8c1_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a91dd6d332765894102460968b6efab6c" name="a91dd6d332765894102460968b6efab6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91dd6d332765894102460968b6efab6c">&#9670;&#160;</a></span>_handle_find_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.dht.kademlia.KademliaDHT._handle_find_value </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a></td>          <td class="paramname"><span class="paramname"><em>msg</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle FIND_VALUE (GET_VALUE) request.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00547">547</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00638">_create_error_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00258">_local_store</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a91dd6d332765894102460968b6efab6c_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a91dd6d332765894102460968b6efab6c_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a91dd6d332765894102460968b6efab6c_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a91dd6d332765894102460968b6efab6c_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a8be1e4e6ad1aabc1220776360adebca0" name="a8be1e4e6ad1aabc1220776360adebca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8be1e4e6ad1aabc1220776360adebca0">&#9670;&#160;</a></span>_handle_get_providers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.dht.kademlia.KademliaDHT._handle_get_providers </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a></td>          <td class="paramname"><span class="paramname"><em>msg</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle GET_PROVIDERS request.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00607">607</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00638">_create_error_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00254">provider_manager</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a8be1e4e6ad1aabc1220776360adebca0_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a8be1e4e6ad1aabc1220776360adebca0_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a8be1e4e6ad1aabc1220776360adebca0_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a8be1e4e6ad1aabc1220776360adebca0_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a5131f9e847b185818b030d46e0d08d33" name="a5131f9e847b185818b030d46e0d08d33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5131f9e847b185818b030d46e0d08d33">&#9670;&#160;</a></span>_handle_put_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.dht.kademlia.KademliaDHT._handle_put_value </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message.html">KademliaMessage</a></td>          <td class="paramname"><span class="paramname"><em>msg</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle PUT_VALUE request.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00575">575</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00638">_create_error_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00258">_local_store</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5131f9e847b185818b030d46e0d08d33_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5131f9e847b185818b030d46e0d08d33_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5131f9e847b185818b030d46e0d08d33_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5131f9e847b185818b030d46e0d08d33_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aee54711ab037e58cf6384256f519fcf7" name="aee54711ab037e58cf6384256f519fcf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee54711ab037e58cf6384256f519fcf7">&#9670;&#160;</a></span>_query_find_node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>] p2p_engine.dht.kademlia.KademliaDHT._query_find_node </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Query a peer for FIND_NODE.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00653">653</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00250">_send_func</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00249">protocol_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00296">find_peer()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_aee54711ab037e58cf6384256f519fcf7_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_aee54711ab037e58cf6384256f519fcf7_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac1014117e8aacd48ede3bb70b8f5bfb5" name="ac1014117e8aacd48ede3bb70b8f5bfb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1014117e8aacd48ede3bb70b8f5bfb5">&#9670;&#160;</a></span>_query_get_providers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> tuple[List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>], List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]] p2p_engine.dht.kademlia.KademliaDHT._query_get_providers </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes
+    </td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Query a peer for GET_PROVIDERS.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00721">721</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00250">_send_func</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00249">protocol_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00358">find_providers()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ac1014117e8aacd48ede3bb70b8f5bfb5_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ac1014117e8aacd48ede3bb70b8f5bfb5_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a404dfdaeaae55cd6aba31e51632ab7f4" name="a404dfdaeaae55cd6aba31e51632ab7f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a404dfdaeaae55cd6aba31e51632ab7f4">&#9670;&#160;</a></span>_query_get_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> tuple[Optional[bytes], List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]] p2p_engine.dht.kademlia.KademliaDHT._query_get_value </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes
+    </td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Query a peer for GET_VALUE.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00685">685</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00250">_send_func</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00249">protocol_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00446">get_value()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a404dfdaeaae55cd6aba31e51632ab7f4_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a404dfdaeaae55cd6aba31e51632ab7f4_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ade2f150cbe827ff135fded9fc15a4f89" name="ade2f150cbe827ff135fded9fc15a4f89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade2f150cbe827ff135fded9fc15a4f89">&#9670;&#160;</a></span>_refresh_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.dht.kademlia.KademliaDHT._refresh_loop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Periodically refresh routing table buckets.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00792">792</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">_running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00254">provider_manager</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00255">query_manager</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00268">start()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ade2f150cbe827ff135fded9fc15a4f89_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ade2f150cbe827ff135fded9fc15a4f89_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac21fec97033241fa7290f0392a91e6c0" name="ac21fec97033241fa7290f0392a91e6c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac21fec97033241fa7290f0392a91e6c0">&#9670;&#160;</a></span>add_bootstrap_peer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.dht.kademlia.KademliaDHT.add_bootstrap_peer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List[str]</td>          <td class="paramname"><span class="paramname"><em>addresses</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Add a bootstrap peer to routing table.
+
+Args:
+    peer_id: Bootstrap peer's ID
+    addresses: List of multiaddresses
+</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00517">517</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+</div>
+</div>
+<a id="a233dfabaf67490b0dd33cab024df9008" name="a233dfabaf67490b0dd33cab024df9008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a233dfabaf67490b0dd33cab024df9008">&#9670;&#160;</a></span>find_peer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>] p2p_engine.dht.kademlia.KademliaDHT.find_peer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Find a peer by ID.
+
+First checks local routing table, then performs iterative lookup.
+
+Args:
+    peer_id: Peer ID to find (32 bytes)
+
+Returns:
+    Peer info if found, None otherwise
+</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_d_h_t.html#a19fbf682e78d0825178cd12dcb927240">p2p_engine.dht.kademlia.DHT</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00296">296</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00653">_query_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00296">find_peer()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00255">query_manager</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00296">find_peer()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00358">find_providers()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a233dfabaf67490b0dd33cab024df9008_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a233dfabaf67490b0dd33cab024df9008_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a233dfabaf67490b0dd33cab024df9008_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a233dfabaf67490b0dd33cab024df9008_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ad01933ff9d4773150c4beb90b15f96f9" name="ad01933ff9d4773150c4beb90b15f96f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad01933ff9d4773150c4beb90b15f96f9">&#9670;&#160;</a></span>find_providers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>] p2p_engine.dht.kademlia.KademliaDHT.find_providers </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>cid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>count</em></span><span class="paramdefsep"> = </span><span class="paramdefval">20</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Find providers for a content.
+
+Args:
+    cid: Content ID (CID)
+    count: Maximum number of providers to return
+
+Returns:
+    List of provider peers
+</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_d_h_t.html#af8589eac0ba3539be989bfe97eb67fac">p2p_engine.dht.kademlia.DHT</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00358">358</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00725">_query_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00296">find_peer()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00358">find_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00254">provider_manager</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00255">query_manager</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00358">find_providers()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ad01933ff9d4773150c4beb90b15f96f9_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ad01933ff9d4773150c4beb90b15f96f9_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ad01933ff9d4773150c4beb90b15f96f9_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ad01933ff9d4773150c4beb90b15f96f9_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af2f1ee22475fa022b33a269f644f681e" name="af2f1ee22475fa022b33a269f644f681e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2f1ee22475fa022b33a269f644f681e">&#9670;&#160;</a></span>get_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[bytes] p2p_engine.dht.kademlia.KademliaDHT.get_value </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Retrieve a value from DHT.
+
+Args:
+    key: Key to retrieve
+
+Returns:
+    Value if found, None otherwise
+</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_d_h_t.html#a4104bdcd76072003a0065aecb0a031a3">p2p_engine.dht.kademlia.DHT</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00446">446</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00258">_local_store</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00689">_query_get_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00250">_send_func</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00255">query_manager</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_af2f1ee22475fa022b33a269f644f681e_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_af2f1ee22475fa022b33a269f644f681e_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ad2529d1c37dfb264f3a6d080fee85f5c" name="ad2529d1c37dfb264f3a6d080fee85f5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2529d1c37dfb264f3a6d080fee85f5c">&#9670;&#160;</a></span>handle_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.dht.kademlia.KademliaDHT.handle_message </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>message</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Handle incoming DHT message.
+
+Args:
+    peer_id: Sender's peer ID
+    message: Raw message bytes
+
+Returns:
+    Response message bytes
+</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00481">481</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00638">_create_error_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00646">_create_pong_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00592">_handle_add_provider()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00528">_handle_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00547">_handle_find_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00607">_handle_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00575">_handle_put_value()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ad2529d1c37dfb264f3a6d080fee85f5c_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_ad2529d1c37dfb264f3a6d080fee85f5c_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a3633d6b68ee9630df40dd59e8843afc2" name="a3633d6b68ee9630df40dd59e8843afc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3633d6b68ee9630df40dd59e8843afc2">&#9670;&#160;</a></span>peer_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int p2p_engine.dht.kademlia.KademliaDHT.peer_count </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get number of peers in routing table.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00819">819</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+</div>
+</div>
+<a id="a1ddd987f1d6072d170c1528d1fa0bc5c" name="a1ddd987f1d6072d170c1528d1fa0bc5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ddd987f1d6072d170c1528d1fa0bc5c">&#9670;&#160;</a></span>provide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.kademlia.KademliaDHT.provide </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>cid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool </td>          <td class="paramname"><span class="paramname"><em>announce</em></span><span class="paramdefsep"> = </span><span class="paramdefval">True</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Announce that we provide a content.
+
+Args:
+    cid: Content ID (CID)
+    announce: Whether to announce to network
+
+Returns:
+    True if successful
+</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_d_h_t.html#ab11be3252fa2d244cd2cc749423252d8">p2p_engine.dht.kademlia.DHT</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00331">331</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00773">_announce_provider()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00250">_send_func</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00254">provider_manager</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00255">query_manager</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a1ddd987f1d6072d170c1528d1fa0bc5c_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a1ddd987f1d6072d170c1528d1fa0bc5c_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a1ddd987f1d6072d170c1528d1fa0bc5c_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a1ddd987f1d6072d170c1528d1fa0bc5c_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac2b059ebc18060dfc7f14e8ae2c1a951" name="ac2b059ebc18060dfc7f14e8ae2c1a951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2b059ebc18060dfc7f14e8ae2c1a951">&#9670;&#160;</a></span>put_value()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.kademlia.KademliaDHT.put_value </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Store a key-value pair in DHT.
+
+Args:
+    key: Key to store under
+    value: Value to store
+
+Returns:
+    True if successful
+</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1dht_1_1kademlia_1_1_d_h_t.html#a5d74356542ebcd1f8ebd88ac763240e7">p2p_engine.dht.kademlia.DHT</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00397">397</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00258">_local_store</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00250">_send_func</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00248">local_peer_id</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00249">protocol_id</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00253">routing_table</a>.</p>
+
+</div>
+</div>
+<a id="a5c56363f7fc755615dd4450be59727f9" name="a5c56363f7fc755615dd4450be59727f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c56363f7fc755615dd4450be59727f9">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.dht.kademlia.KademliaDHT.start </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Start DHT background tasks.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00268">268</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00792">_refresh_loop()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00266">_refresh_task</a>, <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00265">_running</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="protocol_2kademlia_8py_source.html#l00154">p2p_engine.protocol.kademlia.KademliaProtocolHandler.find_peer()</a>, <a class="el" href="protocol_2kademlia_8py_source.html#l00185">p2p_engine.protocol.kademlia.KademliaProtocolHandler.find_providers()</a>, <a class="el" href="protocol_2kademlia_8py_source.html#l00217">p2p_engine.protocol.kademlia.KademliaProtocolHandler.get_value()</a>, <a class="el" href="protocol_2kademlia_8py_source.html#l00169">p2p_engine.protocol.kademlia.KademliaProtocolHandler.provide()</a> , 以及 <a class="el" href="protocol_2kademlia_8py_source.html#l00201">p2p_engine.protocol.kademlia.KademliaProtocolHandler.put_value()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5c56363f7fc755615dd4450be59727f9_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5c56363f7fc755615dd4450be59727f9_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5c56363f7fc755615dd4450be59727f9_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_a5c56363f7fc755615dd4450be59727f9_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aa2a1ac333aa194e3d88a8b4b2968b1a0" name="aa2a1ac333aa194e3d88a8b4b2968b1a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2a1ac333aa194e3d88a8b4b2968b1a0">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.dht.kademlia.KademliaDHT.stop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Stop DHT background tasks.</pre> 
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00280">280</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="dht_2kademlia_8py_source.html#l00266">_refresh_task</a>, <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00265">_running</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a16ae6a991dbe91e686e020c62a179e84" name="a16ae6a991dbe91e686e020c62a179e84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16ae6a991dbe91e686e020c62a179e84">&#9670;&#160;</a></span>_local_store</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict p2p_engine.dht.kademlia.KademliaDHT._local_store = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00258">258</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00547">_handle_find_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00575">_handle_put_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00446">get_value()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00397">put_value()</a>.</p>
+
+</div>
+</div>
+<a id="aabd0678465825b90896ff3b99d3022d3" name="aabd0678465825b90896ff3b99d3022d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabd0678465825b90896ff3b99d3022d3">&#9670;&#160;</a></span>_on_peer_found</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list p2p_engine.dht.kademlia.KademliaDHT._on_peer_found = []</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00261">261</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a02dd3553a96a48573ddf1f1258cb55ed" name="a02dd3553a96a48573ddf1f1258cb55ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02dd3553a96a48573ddf1f1258cb55ed">&#9670;&#160;</a></span>_on_provider_found</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list p2p_engine.dht.kademlia.KademliaDHT._on_provider_found = []</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00262">262</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2f613beebdddb44c041a85234c066868" name="a2f613beebdddb44c041a85234c066868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f613beebdddb44c041a85234c066868">&#9670;&#160;</a></span>_refresh_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[asyncio.Task] p2p_engine.dht.kademlia.KademliaDHT._refresh_task = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00266">266</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00268">start()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00280">stop()</a>.</p>
+
+</div>
+</div>
+<a id="ae8299d4ddca2f15c67fafdc44568571f" name="ae8299d4ddca2f15c67fafdc44568571f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8299d4ddca2f15c67fafdc44568571f">&#9670;&#160;</a></span>_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool p2p_engine.dht.kademlia.KademliaDHT._running = False</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00265">265</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="heartbeat_8py_source.html#l00101">p2p_engine.keeper.heartbeat.HeartbeatKeeper._heartbeat_loop()</a>, <a class="el" href="pubsub_8py_source.html#l01051">p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop()</a>, <a class="el" href="client_8py_source.html#l00570">p2p_sdk.client.P2PClient._keepalive_loop()</a>, <a class="el" href="engine_8py_source.html#l00223">p2p_engine.engine.P2PEngine._main_loop()</a>, <a class="el" href="signaling_8py_source.html#l00292">p2p_sdk.signaling.SignalingClient._message_loop()</a>, <a class="el" href="client_8py_source.html#l00516">p2p_sdk.client.P2PClient._receive_loop()</a>, <a class="el" href="transport_8py_source.html#l00154">p2p_sdk.transport.UDPTransport._recv_loop()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00792">_refresh_loop()</a>, <a class="el" href="event_8py_source.html#l00438">p2p_engine.event.EventBus._worker()</a>, <a class="el" href="signaling_8py_source.html#l00446">p2p_sdk.signaling.WebSocketSignalingClient._ws_message_loop()</a>, <a class="el" href="p2p__client_8py_source.html#l00558">p2p_client.P2PClient.close()</a>, <a class="el" href="client_8py_source.html#l00744">p2p_sdk.client.P2PClient.close()</a>, <a class="el" href="signaling_8py_source.html#l00080">p2p_sdk.signaling.SignalingClient.connect()</a>, <a class="el" href="signaling_8py_source.html#l00102">p2p_sdk.signaling.SignalingClient.disconnect()</a>, <a class="el" href="signaling_8py_source.html#l00403">p2p_sdk.signaling.WebSocketSignalingClient.disconnect()</a>, <a class="el" href="event_8py_source.html#l00500">p2p_engine.event.EventBus.get_metrics()</a>, <a class="el" href="p2p__client_8py_source.html#l00322">p2p_client.P2PClient.initialize()</a>, <a class="el" href="engine_8py_source.html#l00158">p2p_engine.engine.P2PEngine.initialize()</a>, <a class="el" href="client_8py_source.html#l00218">p2p_sdk.client.P2PClient.initialize()</a>, <a class="el" href="ping_8py_source.html#l00097">p2p_engine.protocol.ping.PingProtocol.is_running()</a>, <a class="el" href="ping_8py_source.html#l00101">p2p_engine.protocol.ping.PingProtocol.ping()</a>, <a class="el" href="event_8py_source.html#l00378">p2p_engine.event.EventBus.publish()</a>, <a class="el" href="event_8py_source.html#l00415">p2p_engine.event.EventBus.publish_nowait()</a>, <a class="el" href="event_8py_source.html#l00401">p2p_engine.event.EventBus.publish_sync()</a>, <a class="el" href="ping_8py_source.html#l00231">p2p_engine.protocol.ping.PingProtocol.serve()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00268">start()</a>, <a class="el" href="event_8py_source.html#l00250">p2p_engine.event.EventBus.start()</a>, <a class="el" href="heartbeat_8py_source.html#l00077">p2p_engine.keeper.heartbeat.HeartbeatKeeper.start()</a>, <a class="el" href="pubsub_8py_source.html#l00823">p2p_engine.protocol.pubsub.GossipSub.start()</a>, <a class="el" href="pubsub_8py_source.html#l01289">p2p_engine.protocol.pubsub.PubSubProtocolHandler.start()</a>, <a class="el" href="transport_8py_source.html#l00059">p2p_sdk.transport.UDPTransport.start()</a>, <a class="el" href="p2p__client_8py_source.html#l00543">p2p_client.P2PClient.start_recv_loop()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00280">stop()</a>, <a class="el" href="event_8py_source.html#l00267">p2p_engine.event.EventBus.stop()</a>, <a class="el" href="heartbeat_8py_source.html#l00087">p2p_engine.keeper.heartbeat.HeartbeatKeeper.stop()</a>, <a class="el" href="ping_8py_source.html#l00287">p2p_engine.protocol.ping.PingProtocol.stop()</a>, <a class="el" href="pubsub_8py_source.html#l00832">p2p_engine.protocol.pubsub.GossipSub.stop()</a>, <a class="el" href="pubsub_8py_source.html#l01294">p2p_engine.protocol.pubsub.PubSubProtocolHandler.stop()</a> , 以及 <a class="el" href="transport_8py_source.html#l00079">p2p_sdk.transport.UDPTransport.stop()</a>.</p>
+
+</div>
+</div>
+<a id="a7bea7653bbae5b43271ec6007303666b" name="a7bea7653bbae5b43271ec6007303666b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bea7653bbae5b43271ec6007303666b">&#9670;&#160;</a></span>_send_func</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.kademlia.KademliaDHT._send_func = network_send_func</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00250">250</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00773">_announce_provider()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00653">_query_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00725">_query_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00689">_query_get_value()</a>, <a class="el" href="heartbeat_8py_source.html#l00122">p2p_engine.keeper.heartbeat.HeartbeatKeeper._send_heartbeat()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00446">get_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00397">put_value()</a>.</p>
+
+</div>
+</div>
+<a id="a4b9ce107bcb2f6fc21c2feb3ec78ee36" name="a4b9ce107bcb2f6fc21c2feb3ec78ee36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b9ce107bcb2f6fc21c2feb3ec78ee36">&#9670;&#160;</a></span>local_peer_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.kademlia.KademliaDHT.local_peer_id = local_peer_id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00248">248</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00638">_create_error_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00646">_create_pong_response()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00592">_handle_add_provider()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00528">_handle_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00547">_handle_find_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00607">_handle_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00575">_handle_put_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00653">_query_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00725">_query_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00689">_query_get_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00397">put_value()</a>.</p>
+
+</div>
+</div>
+<a id="a760b65b7d81586555d3418f909bcc86c" name="a760b65b7d81586555d3418f909bcc86c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760b65b7d81586555d3418f909bcc86c">&#9670;&#160;</a></span>protocol_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.kademlia.KademliaDHT.protocol_id = <a class="el" href="namespacep2p__engine_1_1dht_1_1kademlia.html#a73d0553932da10342cd1a4038660338a">PROTOCOL_ID</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00249">249</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00773">_announce_provider()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00653">_query_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00725">_query_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00689">_query_get_value()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00397">put_value()</a>.</p>
+
+</div>
+</div>
+<a id="a02676f4e06264e4a13ffef1e43d86e3f" name="a02676f4e06264e4a13ffef1e43d86e3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02676f4e06264e4a13ffef1e43d86e3f">&#9670;&#160;</a></span>provider_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.kademlia.KademliaDHT.provider_manager = <a class="el" href="classp2p__engine_1_1dht_1_1provider_1_1_provider_manager.html">ProviderManager</a>(max_providers=k_size)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00254">254</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00592">_handle_add_provider()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00607">_handle_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00792">_refresh_loop()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00358">find_providers()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a>.</p>
+
+</div>
+</div>
+<a id="a2c5fbedac4580cbce0f112a66ada0c6e" name="a2c5fbedac4580cbce0f112a66ada0c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c5fbedac4580cbce0f112a66ada0c6e">&#9670;&#160;</a></span>query_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.kademlia.KademliaDHT.query_manager = <a class="el" href="classp2p__engine_1_1dht_1_1query_1_1_query_manager.html">QueryManager</a>(alpha=3, timeout_ms=60000)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00255">255</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00792">_refresh_loop()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00296">find_peer()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00358">find_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00446">get_value()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a>.</p>
+
+</div>
+</div>
+<a id="a55bc3239c7f6de91372de33ce11c3227" name="a55bc3239c7f6de91372de33ce11c3227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55bc3239c7f6de91372de33ce11c3227">&#9670;&#160;</a></span>routing_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.kademlia.KademliaDHT.routing_table = <a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_routing_table.html">RoutingTable</a>(<a class="el" href="#a4b9ce107bcb2f6fc21c2feb3ec78ee36">local_peer_id</a>, k_size)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a> 第 <a class="el" href="dht_2kademlia_8py_source.html#l00253">253</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="dht_2kademlia_8py_source.html#l00528">_handle_find_node()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00547">_handle_find_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00607">_handle_get_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00792">_refresh_loop()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00517">add_bootstrap_peer()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00296">find_peer()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00358">find_providers()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00446">get_value()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00481">handle_message()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00819">peer_count()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00331">provide()</a> , 以及 <a class="el" href="dht_2kademlia_8py_source.html#l00397">put_value()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/dht/<a class="el" href="dht_2kademlia_8py_source.html">kademlia.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1dht.html">dht</a></li><li class="navelem"><a href="namespacep2p__engine_1_1dht_1_1kademlia.html">kademlia</a></li><li class="navelem"><a href="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t.html">KademliaDHT</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

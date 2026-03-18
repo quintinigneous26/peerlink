@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1base_1_1_transport" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::base::Transport</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ABC</basecompoundref>
+    <derivedcompoundref refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport" prot="public" virt="non-virtual">p2p_engine.transport.quic.QUICTransport</derivedcompoundref>
+    <derivedcompoundref refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport" prot="public" virt="non-virtual">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport</derivedcompoundref>
+    <derivedcompoundref refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport" prot="public" virt="non-virtual">p2p_engine.transport.webrtc.WebRTCTransport</derivedcompoundref>
+    <derivedcompoundref refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport" prot="public" virt="non-virtual">p2p_engine.transport.webtransport.WebTransportTransport</derivedcompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1base_1_1_transport_1a75e857ad1537e55cb8c1c0c33bae9e16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" kindref="compound">Connection</ref></type>
+        <definition> Connection p2p_engine.transport.base.Transport.dial</definition>
+        <argsstring>(self, str addr)</argsstring>
+        <name>dial</name>
+        <qualifiedname>p2p_engine.transport.base.Transport.dial</qualifiedname>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a59147e223c17ab793643a7fac6d6ee61">dial</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232">dial</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de">dial</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_1aaf73bf57e04631e2d54db74a7ad660c5">dial</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>建立到指定地址的连接
+
+Args:
+    addr: 目标地址（格式取决于传输类型）
+
+Returns:
+    建立的连接
+
+Raises:
+    ConnectionError: 连接失败
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/base.py" line="125" column="1" bodyfile="p2p_engine/transport/base.py" bodystart="125" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1base_1_1_transport_1ad6b5a798b3530fb18570596f66334843" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_listener" kindref="compound">Listener</ref></type>
+        <definition> Listener p2p_engine.transport.base.Transport.listen</definition>
+        <argsstring>(self, str addr)</argsstring>
+        <name>listen</name>
+        <qualifiedname>p2p_engine.transport.base.Transport.listen</qualifiedname>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a7adf433b81f9f8ac38a8c30346ef77a2">listen</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8d2efed25932f102c3b71b3c5fbee0bf">listen</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a47c09e2d3c3d1ba10b0c9aee8b54f737">listen</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_1a8ab5e5d9d7aa2b135ea39aabb2140950">listen</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>在指定地址开始监听
+
+Args:
+    addr: 监听地址（格式取决于传输类型）
+
+Returns:
+    监听器实例
+
+Raises:
+    ListenerError: 监听失败
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/base.py" line="141" column="1" bodyfile="p2p_engine/transport/base.py" bodystart="141" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1base_1_1_transport_1adfb364ee5a07f98fb541d346966a79ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] p2p_engine.transport.base.Transport.protocols</definition>
+        <argsstring>(self)</argsstring>
+        <name>protocols</name>
+        <qualifiedname>p2p_engine.transport.base.Transport.protocols</qualifiedname>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a2426491c1c197cf5405d40deea3d063b">protocols</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ae282f67eb1ce27a0d35130e90e9ccb07">protocols</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1ad518cffa7952ba4029c746475ba62606">protocols</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_1a10af0579345e0860223d12c21ad6a314">protocols</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>返回支持的协议列表
+
+Returns:
+    协议ID列表
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/base.py" line="157" column="1" bodyfile="p2p_engine/transport/base.py" bodystart="157" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1base_1_1_transport_1adb257dcbc0d5b57b08611a4b1e0ac285" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.base.Transport.close</definition>
+        <argsstring>(self)</argsstring>
+        <name>close</name>
+        <qualifiedname>p2p_engine.transport.base.Transport.close</qualifiedname>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a32d96af9a030bd1bb59eb5f110a91960">close</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a5a5a2e75fe6d338067aa5178e94c8a30">close</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29">close</reimplementedby>
+        <reimplementedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_1ae633f072792f769c300ce804513cd103">close</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>关闭传输层，释放所有资源</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/base.py" line="167" column="1" bodyfile="p2p_engine/transport/base.py" bodystart="167" bodyend="170"/>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>传输层抽象基类
+
+定义传输层的统一接口，所有传输实现都必须遵循。
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.base.Transport</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>p2p_engine.transport.quic.QUICTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>p2p_engine.transport.webrtc.WebRTCTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>p2p_engine.transport.webtransport.WebTransportTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.base.Transport</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/transport/base.py" line="117" column="1" bodyfile="p2p_engine/transport/base.py" bodystart="117" bodyend="170"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1adb257dcbc0d5b57b08611a4b1e0ac285" prot="public" virt="non-virtual"><scope>p2p_engine::transport::base::Transport</scope><name>close</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1a75e857ad1537e55cb8c1c0c33bae9e16" prot="public" virt="non-virtual"><scope>p2p_engine::transport::base::Transport</scope><name>dial</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1ad6b5a798b3530fb18570596f66334843" prot="public" virt="non-virtual"><scope>p2p_engine::transport::base::Transport</scope><name>listen</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1adfb364ee5a07f98fb541d346966a79ce" prot="public" virt="non-virtual"><scope>p2p_engine::transport::base::Transport</scope><name>protocols</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

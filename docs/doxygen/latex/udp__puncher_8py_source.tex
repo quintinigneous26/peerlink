@@ -1,0 +1,205 @@
+\doxysection{udp\+\_\+puncher.\+py}
+\hypertarget{udp__puncher_8py_source}{}\label{udp__puncher_8py_source}\index{p2p\_engine/puncher/udp\_puncher.py@{p2p\_engine/puncher/udp\_puncher.py}}
+\doxymbox{\hyperlink{udp__puncher_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1puncher_1_1udp__puncher}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00002}00002\ \textcolor{stringliteral}{UDP\ 打孔器}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00004}00004\ \textcolor{stringliteral}{实现\ UDP\ 穿透的核心逻辑}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00006}00006\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00007}00007\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00008}00008\ \textcolor{keyword}{import}\ socket}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00009}00009\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00010}00010\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00011}00011\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ List,\ Tuple}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00013}00013\ \textcolor{keyword}{from}\ ..types\ \textcolor{keyword}{import}\ NATInfo,\ ConnectionType,\ ISP}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00014}00014\ \textcolor{keyword}{from}\ ..config.isp\_profiles\ \textcolor{keyword}{import}\ ISPProfile,\ get\_isp\_profile}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00015}00015\ \textcolor{keyword}{from}\ .port\_predictor\ \textcolor{keyword}{import}\ PortPredictor}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00017}\doxymbox{\hyperlink{namespacep2p__engine_1_1puncher_1_1udp__puncher_a9e6249485aa9a9f3cf3bc57569d9d3e1}{00017}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.puncher"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00020}00020\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00021}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{00021}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00022}00022\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}打孔结果"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00023}00023\ \ \ \ \ success:\ bool}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00024}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result_ab7cc136352d8c579c0b406e1e0925fba}{00024}}\ \ \ \ \ connection\_type:\ ConnectionType\ =\ ConnectionType.FAILED}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00025}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result_a56aec499a6a0b264957763ec2aa0247a}{00025}}\ \ \ \ \ local\_addr:\ Tuple[str,\ int]\ =\ (\textcolor{stringliteral}{"{}"{}},\ 0)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00026}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result_aa31f3f1be503550597737e7569850a26}{00026}}\ \ \ \ \ peer\_addr:\ Tuple[str,\ int]\ =\ (\textcolor{stringliteral}{"{}"{}},\ 0)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00027}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result_a8052ca2ffcc76191fc5f85ab2ebb586f}{00027}}\ \ \ \ \ latency\_ms:\ float\ =\ 0.0}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00028}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result_a9aa780aef80615aefcbc34dc23a45d86}{00028}}\ \ \ \ \ error:\ str\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00031}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher}{00031}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher}{UDPPuncher}}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00032}00032\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}UDP\ 打孔器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00033}00033\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00034}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_aa1c34d96be3cd7df51d65bdd6d338642}{00034}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_aa1c34d96be3cd7df51d65bdd6d338642}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ local\_nat:\ NATInfo,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ peer\_nat:\ NATInfo,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ local\_isp:\ ISP,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ peer\_isp:\ ISP,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00040}00040\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00041}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a5911c22dedfe2d7827940c8fac2c921f}{00041}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a5911c22dedfe2d7827940c8fac2c921f}{local\_nat}}\ =\ local\_nat}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00042}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{00042}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{peer\_nat}}\ =\ peer\_nat}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00043}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_aaab2136fae1d7c29270d79ca961e7bcc}{00043}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_aaab2136fae1d7c29270d79ca961e7bcc}{local\_isp}}\ =\ local\_isp}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00044}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a3352fd3621f52945fc142d9e1a63aaa9}{00044}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a3352fd3621f52945fc142d9e1a63aaa9}{peer\_isp}}\ =\ peer\_isp}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00046}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{00046}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}:\ Optional[socket.socket]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00047}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad0ad2098a9ffd34b6cc4bdf07e6b27d8}{00047}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad0ad2098a9ffd34b6cc4bdf07e6b27d8}{\_local\_port}}:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00048}00048\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00049}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a2faa198f883ac01356efc9e030056078}{00049}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a2faa198f883ac01356efc9e030056078}{punch}}(self)\ -\/>\ PunchResult:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00051}00051\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 执行打孔}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00052}00052\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00053}00053\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 决策树：}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00054}00054\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 1.\ 双对称\ NAT\ →\ 直接失败，走中继}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00055}00055\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 2.\ 单对称\ NAT\ →\ 端口预测\ +\ 多端口并行}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00056}00056\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 3.\ 非对称\ NAT\ →\ 标准双向打孔}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00057}00057\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ start\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 获取运营商配置}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ local\_profile\ =\ get\_isp\_profile(self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_aaab2136fae1d7c29270d79ca961e7bcc}{local\_isp}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 决策：双对称\ NAT}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a5911c22dedfe2d7827940c8fac2c921f}{local\_nat}}.is\_symmetric()\ \textcolor{keywordflow}{and}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{peer\_nat}}.is\_symmetric():}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}双对称\ NAT，无法直接穿透"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}(}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ success=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error=\textcolor{stringliteral}{"{}symmetric\_symmetric"{}},}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 创建\ UDP\ socket}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}\ =\ socket.socket(socket.AF\_INET,\ socket.SOCK\_DGRAM)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}.setsockopt(socket.SOL\_SOCKET,\ socket.SO\_REUSEADDR,\ 1)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 绑定本地端口}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}.bind((\textcolor{stringliteral}{"{}0.0.0.0"{}},\ 0))}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad0ad2098a9ffd34b6cc4bdf07e6b27d8}{\_local\_port}}\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}.getsockname()[1]}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}.setblocking(\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}开始打孔，本地端口:\ \{self.\_local\_port\}"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 根据情况选择策略}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a5911c22dedfe2d7827940c8fac2c921f}{local\_nat}}.is\_symmetric()\ \textcolor{keywordflow}{or}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{peer\_nat}}.is\_symmetric():}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ae9570fad9f5db5f2d52df389f6b7e35b}{\_punch\_symmetric}}(local\_profile)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a53ae2a907c5485ee4d75ab807ffdb7d8}{\_punch\_standard}}(local\_profile)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.success:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result.latency\_ms\ =\ (time.time()\ -\/\ start\_time)\ *\ 1000}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}\ \textcolor{keywordflow}{and}\ \textcolor{keywordflow}{not}\ result.success:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad25bdfa615fd4a3ff01e4672d00ff1fe}{close}}()}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00097}00097\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00098}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a53ae2a907c5485ee4d75ab807ffdb7d8}{00098}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a53ae2a907c5485ee4d75ab807ffdb7d8}{\_punch\_standard}}(self,\ profile:\ ISPProfile)\ -\/>\ PunchResult:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00100}00100\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 标准双向打孔（非对称\ NAT）}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00102}00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 双方同时向对方发送数据包}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00103}00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ peer\_addr\ =\ (self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{peer\_nat}}.public\_ip,\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{peer\_nat}}.public\_port)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ timeout\ =\ profile.punch\_timeout\_ms\ /\ 1000}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ loop\ =\ asyncio.get\_event\_loop()}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 发送打洞包}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ punch\_packet\ =\ b\textcolor{stringliteral}{"{}PUNCH\_HELLO"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ await\ loop.sock\_sendto(self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}},\ punch\_packet,\ peer\_addr)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}发送打洞包到\ \{peer\_addr\}"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 等待响应}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{async\ def\ }receive():}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ \textcolor{keyword}{True}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data,\ addr\ =\ await\ loop.sock\_recvfrom(self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}},\ 1024)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ data.startswith(b\textcolor{stringliteral}{"{}PUNCH"{}}):}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}收到打洞响应:\ \{addr\}"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ addr}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ addr\ =\ await\ asyncio.wait\_for(receive(),\ timeout=timeout)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}(}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ success=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection\_type=ConnectionType.P2P\_UDP,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_addr=(\textcolor{stringliteral}{"{}0.0.0.0"{}},\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad0ad2098a9ffd34b6cc4bdf07e6b27d8}{\_local\_port}}),}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ peer\_addr=addr,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(\textcolor{stringliteral}{"{}打孔超时"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}(success=\textcolor{keyword}{False},\ error=\textcolor{stringliteral}{"{}timeout"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}打孔失败:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}(success=\textcolor{keyword}{False},\ error=str(e))}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00138}00138\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00139}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ae9570fad9f5db5f2d52df389f6b7e35b}{00139}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ae9570fad9f5db5f2d52df389f6b7e35b}{\_punch\_symmetric}}(self,\ profile:\ ISPProfile)\ -\/>\ PunchResult:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00141}00141\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 对称\ NAT\ 打孔（端口预测\ +\ 多端口并行）}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00142}00142\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 端口预测}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ predictor\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1port__predictor_1_1_port_predictor}{PortPredictor}}(}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ base\_port=self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{peer\_nat}}.public\_port,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ strategy=profile.punch\_port\_strategy,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ predict\_count=profile.punch\_parallel\_ports,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ prediction\ =\ predictor.predict()}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}端口预测:\ \{prediction.ports[:4]\}...\ (策略:\ \{prediction.strategy\})"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 并行向多个预测端口发送}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ peer\_ip\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_afaeb5d1920d9cddaa01c93ae2c118b31}{peer\_nat}}.public\_ip}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ timeout\ =\ profile.punch\_timeout\_ms\ /\ 1000}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ loop\ =\ asyncio.get\_event\_loop()}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 并行发送到多个端口}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ punch\_packet\ =\ b\textcolor{stringliteral}{"{}PUNCH\_HELLO"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ tasks\ =\ []}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ port\ \textcolor{keywordflow}{in}\ prediction.ports:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task\ =\ loop.sock\_sendto(self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}},\ punch\_packet,\ (peer\_ip,\ port))}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tasks.append(task)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncio.gather(*tasks,\ return\_exceptions=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}已向\ \{len(prediction.ports)\}\ 个预测端口发送打洞包"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 等待响应}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{async\ def\ }receive():}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ \textcolor{keyword}{True}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data,\ addr\ =\ await\ loop.sock\_recvfrom(self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}},\ 1024)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ data.startswith(b\textcolor{stringliteral}{"{}PUNCH"{}}):}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ addr}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ addr\ =\ await\ asyncio.wait\_for(receive(),\ timeout=timeout)}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}(}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ success=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ connection\_type=ConnectionType.P2P\_UDP,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_addr=(\textcolor{stringliteral}{"{}0.0.0.0"{}},\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad0ad2098a9ffd34b6cc4bdf07e6b27d8}{\_local\_port}}),}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ peer\_addr=addr,}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}(success=\textcolor{keyword}{False},\ error=\textcolor{stringliteral}{"{}timeout"{}})}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_punch_result}{PunchResult}}(success=\textcolor{keyword}{False},\ error=str(e))}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00190}00190\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00191}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ab9793fdf46ccf8638c3dc9bc2d8a07cc}{00191}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ab9793fdf46ccf8638c3dc9bc2d8a07cc}{get\_socket}}(self)\ -\/>\ Optional[socket.socket]:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取连接成功的\ socket"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00194}00194\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00195}\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad25bdfa615fd4a3ff01e4672d00ff1fe}{00195}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad25bdfa615fd4a3ff01e4672d00ff1fe}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}关闭\ socket"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}:}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_ad25bdfa615fd4a3ff01e4672d00ff1fe}{close}}()}
+\DoxyCodeLine{\Hypertarget{udp__puncher_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_a244f3cdd2ee41be88349e9d03854c6d2}{\_socket}}\ =\ \textcolor{keywordtype}{None}}
+
+\end{DoxyCode}

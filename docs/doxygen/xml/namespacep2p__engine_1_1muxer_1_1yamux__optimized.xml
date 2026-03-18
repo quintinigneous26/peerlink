@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1muxer_1_1yamux__optimized" kind="namespace" language="Python">
+    <compoundname>p2p_engine::muxer::yamux_optimized</compoundname>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream" prot="public">p2p_engine::muxer::yamux_optimized::OptimizedYamuxStream</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_stream_i_d_pool" prot="public">p2p_engine::muxer::yamux_optimized::StreamIDPool</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session" prot="public">p2p_engine::muxer::yamux_optimized::OptimizedYamuxSession</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux__optimized_1a6c1a387f6d6a78f58ab4c89275e1259f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::muxer::yamux_optimized.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.logger</qualifiedname>
+        <initializer>=  logging.getLogger(&quot;p2p_engine.muxer.yamux_optimized&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="44" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux__optimized_1abb3903209ac374b4717d345ab35f3348" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux_optimized.STREAM_ID_POOL_SIZE</definition>
+        <argsstring></argsstring>
+        <name>STREAM_ID_POOL_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.STREAM_ID_POOL_SIZE</qualifiedname>
+        <initializer>=  256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="49" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux__optimized_1a7f901c6459d54ff02edd85864853dadc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux_optimized.BATCH_STREAM_CREATE_MAX</definition>
+        <argsstring></argsstring>
+        <name>BATCH_STREAM_CREATE_MAX</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.BATCH_STREAM_CREATE_MAX</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="50" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux__optimized_1af50b25e62b709fa0a7324296ceb67a56" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::muxer::yamux_optimized.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.__all__</qualifiedname>
+        <initializer>=  [
+    &quot;OptimizedYamuxSession&quot;,
+    &quot;OptimizedYamuxStream&quot;,
+    &quot;StreamIDPool&quot;,
+    &quot;create_optimized_yamux_client&quot;,
+    &quot;create_optimized_yamux_server_session&quot;,
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="395" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="395" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1muxer_1_1yamux__optimized_1ade8d11056bd2fa8bee38938e4c9dd332" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session" kindref="compound">OptimizedYamuxSession</ref></type>
+        <definition> OptimizedYamuxSession p2p_engine.muxer.yamux_optimized.create_optimized_yamux_client</definition>
+        <argsstring>(str host, int port, Optional[YamuxConfig] config=None)</argsstring>
+        <name>create_optimized_yamux_client</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.create_optimized_yamux_client</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>config</declname>
+          <array>[YamuxConfig]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>创建优化的 Yamux 客户端会话
+
+目标: 连接建立 &lt; 30ms
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="348" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="352" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1muxer_1_1yamux__optimized_1adc6251f7779a5885a0cfd05b656692d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session" kindref="compound">OptimizedYamuxSession</ref></type>
+        <definition> OptimizedYamuxSession p2p_engine.muxer.yamux_optimized.create_optimized_yamux_server_session</definition>
+        <argsstring>(asyncio.StreamReader reader, asyncio.StreamWriter writer, Optional[YamuxConfig] config=None)</argsstring>
+        <name>create_optimized_yamux_server_session</name>
+        <qualifiedname>p2p_engine.muxer.yamux_optimized.create_optimized_yamux_server_session</qualifiedname>
+        <param>
+          <type>asyncio.StreamReader</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>asyncio.StreamWriter</type>
+          <declname>writer</declname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>config</declname>
+          <array>[YamuxConfig]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>创建优化的 Yamux 服务端会话
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux_optimized.py" line="375" column="1" bodyfile="p2p_engine/muxer/yamux_optimized.py" bodystart="379" bodyend="394"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>优化的 Yamux 流复用实现
+
+对标 go-libp2p yamux 性能：
+- 流创建延迟: &lt; 2ms
+- 消息吞吐: &gt; 200 Mbps
+- 并发流: &gt; 1000
+
+优化：
+1. 流 ID 预分配池
+2. 批量流创建
+3. 零拷贝帧处理
+4. 读写锁分离
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/muxer/yamux_optimized.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

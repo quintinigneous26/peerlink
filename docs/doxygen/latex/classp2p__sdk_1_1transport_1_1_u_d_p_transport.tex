@@ -1,0 +1,380 @@
+\doxysection{p2p\+\_\+sdk.\+transport.\+UDPTransport类 参考}
+\hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport}{}\label{classp2p__sdk_1_1transport_1_1_u_d_p_transport}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+
+
+类 p2p\+\_\+sdk.\+transport.\+UDPTransport 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+sdk.\+transport.\+UDPTransport 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a2744493040b4e25f9657055039593cd3}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a975c41287898c5ee65e1a87ee1ba2bc1}{local\+\_\+ip}}="{}0.\+0.\+0.\+0"{}, int \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5b668e42fa6b7458025547b2fb65acf2}{local\+\_\+port}}=0)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a1b23e9670a7b04db9e1362a6c985bd25}{start}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a139c98bad09a822d105ce9ec9835d632}{stop}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_affc6b11a25deabbf097571cc6c8d1d53}{set\+\_\+peer}} (self, str ip, int port)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5d2ffa3806caf70416555636e47925ec}{sendto}} (self, bytes data, str ip, int port)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a21670999ced5da21d543f0c742a1a9e7}{send}} (self, bytes data)
+\item 
+Tuple\+[bytes, Tuple\+[str, int]\+]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5216ed00eea8cb6a5be023a490df141b}{recvfrom}} (self)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_ab87067abb0b841b230c50f8718a3b03c}{recv}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public 成员函数 继承自 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_transport_base}{p2p\+\_\+sdk.\+transport.\+Transport\+Base}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_transport_base_abae803adfe16e4f22dda64e92e616563}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a975c41287898c5ee65e1a87ee1ba2bc1}{local\+\_\+ip}} = local\+\_\+ip
+\item 
+Optional\+[socket.\+socket]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5b668e42fa6b7458025547b2fb65acf2}{local\+\_\+port}} = local\+\_\+port
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a50c180497b8a59ec3e0a06e52962c31d}{\+\_\+recv\+\_\+loop}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[socket.\+socket]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a1faa40a5856d6d0ad92d6b83b2261ab8}{\+\_\+socket}} = None
+\item 
+bool \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a48da748c538322c88485effd5714ea6f}{\+\_\+running}} = False
+\item 
+Optional\+[Tuple\+[str, int]\+]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_afab84ccad65e0629f754cc2c102d83e0}{\+\_\+peer\+\_\+addr}} = None
+\item 
+asyncio.\+Queue\+[bytes]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5eeae113c21cc9aef6e2cbe04194ef7f}{\+\_\+recv\+\_\+queue}} = asyncio.\+Queue()
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a675e51143c40b4cd5fad47e87435bdcb}{\+\_\+recv\+\_\+task}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}UDP transport for direct P2P communication.
+
+Handles raw UDP socket operations for hole punching
+and direct peer-to-peer data transfer.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00035}{35}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a2744493040b4e25f9657055039593cd3}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a2744493040b4e25f9657055039593cd3} 
+p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str }]{local\+\_\+ip}{ = {\ttfamily "{}0.0.0.0"{}}, }\item[{int }]{local\+\_\+port}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize UDP transport.
+
+Args:
+    local_ip: Local IP to bind to
+    local_port: Local port (0 for auto-assign)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00043}{43}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a50c180497b8a59ec3e0a06e52962c31d}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!\_recv\_loop@{\_recv\_loop}}
+\index{\_recv\_loop@{\_recv\_loop}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{\_recv\_loop()}{\_recv\_loop()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a50c180497b8a59ec3e0a06e52962c31d} 
+ None p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+recv\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Background receive loop.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00154}{154}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{transport_8py_source_l00055}{\+\_\+peer\+\_\+addr}}, \doxymbox{\hyperlink{yamux_8py_source_l00240}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+recv\+\_\+queue}}, \doxymbox{\hyperlink{transport_8py_source_l00056}{\+\_\+recv\+\_\+queue}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{p2p\+\_\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{client_8py_source_l00214}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00071}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00387}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+running}}, \doxymbox{\hyperlink{transport_8py_source_l00054}{\+\_\+running}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00131}{recvfrom()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00327}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+connect()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00059}{start()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_ab87067abb0b841b230c50f8718a3b03c}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!recv@{recv}}
+\index{recv@{recv}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{recv()}{recv()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_ab87067abb0b841b230c50f8718a3b03c} 
+ bytes p2p\+\_\+sdk.\+transport.\+UDPTransport.\+recv (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive data from peer.
+
+Returns:
+    Received data
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_transport_base_a985e2fbf1f14e4698f07fa06cd1ad939}{p2p\+\_\+sdk.\+transport.\+Transport\+Base}} .
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00145}{145}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{yamux_8py_source_l00240}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+recv\+\_\+queue}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00056}{\+\_\+recv\+\_\+queue}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5216ed00eea8cb6a5be023a490df141b}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!recvfrom@{recvfrom}}
+\index{recvfrom@{recvfrom}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{recvfrom()}{recvfrom()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5216ed00eea8cb6a5be023a490df141b} 
+ Tuple\+[bytes, Tuple\+[str, int]\+]\+ p2p\+\_\+sdk.\+transport.\+UDPTransport.\+recvfrom (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive data from any source.
+
+Returns:
+    Tuple of (data, (ip, port))
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00131}{131}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00076}{p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+socket}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00046}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+socket}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00053}{\+\_\+socket}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00154}{\+\_\+recv\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a21670999ced5da21d543f0c742a1a9e7}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!send@{send}}
+\index{send@{send}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a21670999ced5da21d543f0c742a1a9e7} 
+ None p2p\+\_\+sdk.\+transport.\+UDPTransport.\+send (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send data to configured peer.
+
+Args:
+    data: Data to send
+
+Raises:
+    RuntimeError: If peer address not set
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_transport_base_a01bf7b150f45d31cd091a0c0d895e575}{p2p\+\_\+sdk.\+transport.\+Transport\+Base}} .
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00116}{116}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{transport_8py_source_l00055}{\+\_\+peer\+\_\+addr}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00101}{sendto()}}.
+
+函数调用图:\+
+% FIG 5
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5d2ffa3806caf70416555636e47925ec}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!sendto@{sendto}}
+\index{sendto@{sendto}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{sendto()}{sendto()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5d2ffa3806caf70416555636e47925ec} 
+ None p2p\+\_\+sdk.\+transport.\+UDPTransport.\+sendto (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{str}]{ip}{, }\item[{int}]{port}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send data to specific address.
+
+Args:
+    data: Data to send
+    ip: Target IP address
+    port: Target port
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00101}{101}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00076}{p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+socket}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00046}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+socket}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00053}{\+\_\+socket}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00116}{send()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_affc6b11a25deabbf097571cc6c8d1d53}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!set\_peer@{set\_peer}}
+\index{set\_peer@{set\_peer}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{set\_peer()}{set\_peer()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_affc6b11a25deabbf097571cc6c8d1d53} 
+ None p2p\+\_\+sdk.\+transport.\+UDPTransport.\+set\+\_\+peer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{ip}{, }\item[{int}]{port}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set the peer address for send operations.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00096}{96}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{transport_8py_source_l00055}{\+\_\+peer\+\_\+addr}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a1b23e9670a7b04db9e1362a6c985bd25}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!start@{start}}
+\index{start@{start}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a1b23e9670a7b04db9e1362a6c985bd25} 
+ None p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start the UDP transport.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00059}{59}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{transport_8py_source_l00154}{\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00057}{\+\_\+recv\+\_\+task}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{p2p\+\_\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{client_8py_source_l00214}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00071}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00387}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+running}}, \doxymbox{\hyperlink{transport_8py_source_l00054}{\+\_\+running}}, \doxymbox{\hyperlink{tcp__puncher_8py_source_l00076}{p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+socket}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00046}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+socket}}, \doxymbox{\hyperlink{transport_8py_source_l00053}{\+\_\+socket}}, \doxymbox{\hyperlink{types_8py_source_l00232}{p2p\+\_\+engine.\+types.\+NATInfo.\+local\+\_\+ip}}, \doxymbox{\hyperlink{client_8py_source_l00105}{p2p\+\_\+sdk.\+client.\+Peer\+Info.\+local\+\_\+ip}}, \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00051}{p2p\+\_\+sdk.\+nat\+\_\+detection.\+NATDetection\+Result.\+local\+\_\+ip}}, \doxymbox{\hyperlink{protocol_8py_source_l00119}{p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+local\+\_\+ip}}, \doxymbox{\hyperlink{transport_8py_source_l00051}{local\+\_\+ip}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00313}{p2p\+\_\+client.\+P2\+PClient.\+local\+\_\+port}}, \doxymbox{\hyperlink{types_8py_source_l00233}{p2p\+\_\+engine.\+types.\+NATInfo.\+local\+\_\+port}}, \doxymbox{\hyperlink{client_8py_source_l00140}{p2p\+\_\+sdk.\+client.\+P2\+PConfig.\+local\+\_\+port}}, \doxymbox{\hyperlink{client_8py_source_l00108}{p2p\+\_\+sdk.\+client.\+Peer\+Info.\+local\+\_\+port}}, \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00052}{p2p\+\_\+sdk.\+nat\+\_\+detection.\+NATDetection\+Result.\+local\+\_\+port}}, \doxymbox{\hyperlink{protocol_8py_source_l00120}{p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+local\+\_\+port}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00052}{local\+\_\+port}}.
+
+函数调用图:\+
+% FIG 7
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a139c98bad09a822d105ce9ec9835d632}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!stop@{stop}}
+\index{stop@{stop}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a139c98bad09a822d105ce9ec9835d632} 
+ None p2p\+\_\+sdk.\+transport.\+UDPTransport.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop the UDP transport.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00079}{79}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{transport_8py_source_l00057}{\+\_\+recv\+\_\+task}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{p2p\+\_\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{client_8py_source_l00214}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00071}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00387}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+running}}, \doxymbox{\hyperlink{transport_8py_source_l00054}{\+\_\+running}}, \doxymbox{\hyperlink{tcp__puncher_8py_source_l00076}{p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+socket}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00046}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+socket}}, \doxymbox{\hyperlink{transport_8py_source_l00053}{\+\_\+socket}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00030}{p2p\+\_\+sdk.\+transport.\+Transport\+Base.\+close()}}.
+
+函数调用图:\+
+% FIG 8
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_afab84ccad65e0629f754cc2c102d83e0}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!\_peer\_addr@{\_peer\_addr}}
+\index{\_peer\_addr@{\_peer\_addr}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{\_peer\_addr}{\_peer\_addr}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_afab84ccad65e0629f754cc2c102d83e0} 
+Optional\+[Tuple\+[str, int]\+]\+ p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+peer\+\_\+addr = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00055}{55}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00154}{\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00116}{send()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00096}{set\+\_\+peer()}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5eeae113c21cc9aef6e2cbe04194ef7f}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!\_recv\_queue@{\_recv\_queue}}
+\index{\_recv\_queue@{\_recv\_queue}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{\_recv\_queue}{\_recv\_queue}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5eeae113c21cc9aef6e2cbe04194ef7f} 
+asyncio.\+Queue\+[bytes]\+ p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+recv\+\_\+queue = asyncio.\+Queue()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00056}{56}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00154}{\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00366}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00145}{recv()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00352}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+recv()}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a675e51143c40b4cd5fad47e87435bdcb}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!\_recv\_task@{\_recv\_task}}
+\index{\_recv\_task@{\_recv\_task}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{\_recv\_task}{\_recv\_task}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a675e51143c40b4cd5fad47e87435bdcb} 
+Optional\+[asyncio.\+Task]\+ p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+recv\+\_\+task = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00057}{57}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00378}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+close()}}, \doxymbox{\hyperlink{transport_8py_source_l00327}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{start()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{stop()}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a48da748c538322c88485effd5714ea6f}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!\_running@{\_running}}
+\index{\_running@{\_running}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a48da748c538322c88485effd5714ea6f} 
+bool p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+running = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00054}{54}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00154}{\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{start()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{stop()}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a1faa40a5856d6d0ad92d6b83b2261ab8}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!\_socket@{\_socket}}
+\index{\_socket@{\_socket}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{\_socket}{\_socket}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a1faa40a5856d6d0ad92d6b83b2261ab8} 
+p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+socket = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00053}{53}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00131}{recvfrom()}}, \doxymbox{\hyperlink{transport_8py_source_l00101}{sendto()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{start()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{stop()}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a975c41287898c5ee65e1a87ee1ba2bc1}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!local\_ip@{local\_ip}}
+\index{local\_ip@{local\_ip}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{local\_ip}{local\_ip}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a975c41287898c5ee65e1a87ee1ba2bc1} 
+p2p\+\_\+sdk.\+transport.\+UDPTransport.\+local\+\_\+ip = local\+\_\+ip}
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00051}{51}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00059}{start()}}.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5b668e42fa6b7458025547b2fb65acf2}\index{p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}!local\_port@{local\_port}}
+\index{local\_port@{local\_port}!p2p\_sdk.transport.UDPTransport@{p2p\_sdk.transport.UDPTransport}}
+\doxysubsubsection{\texorpdfstring{local\_port}{local\_port}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a5b668e42fa6b7458025547b2fb65acf2} 
+p2p\+\_\+sdk.\+transport.\+UDPTransport.\+local\+\_\+port = local\+\_\+port}
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00052}{52}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00059}{start()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+client\+\_\+sdk/\+src/\+p2p\+\_\+sdk/\+\doxymbox{\hyperlink{transport_8py}{transport.\+py}}\end{DoxyCompactItemize}

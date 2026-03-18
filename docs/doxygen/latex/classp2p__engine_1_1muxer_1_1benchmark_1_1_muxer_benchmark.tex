@@ -1,0 +1,162 @@
+\doxysection{p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark类 参考}
+\hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark}{}\label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a3162f039172a2c88e8cf29179a28dca5}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_aaa63820d561c8238b9475d784a891429}{benchmark\+\_\+stream\+\_\+creation}} (self, Callable session\+\_\+factory, float target\+\_\+latency\+\_\+ms=2.\+0, int iterations=1000)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a2ad2133d6c8501dec7e41883c0902d3b}{benchmark\+\_\+message\+\_\+throughput}} (self, Callable stream\+\_\+factory, int message\+\_\+size=1024, float target\+\_\+mbps=200.\+0, float duration\+\_\+sec=5.\+0)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a81559640e3827c5ae7c914fe53b2a39d}{benchmark\+\_\+concurrent\+\_\+streams}} (self, Callable session\+\_\+factory, int target\+\_\+streams=1000, int messages\+\_\+per\+\_\+stream=10)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a7df739df0bf6a581582eefcc3d52b780}{benchmark\+\_\+memory\+\_\+usage}} (self, Callable session\+\_\+factory, int streams=100)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a53c9c462823a98bc927c327a52d8a26f}{print\+\_\+results}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{results}} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Benchmark suite for muxer implementations.
+
+Tests yamux and mplex against go-libp2p performance targets.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00045}{45}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a3162f039172a2c88e8cf29179a28dca5}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a3162f039172a2c88e8cf29179a28dca5} 
+p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00052}{52}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a81559640e3827c5ae7c914fe53b2a39d}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}!benchmark\_concurrent\_streams@{benchmark\_concurrent\_streams}}
+\index{benchmark\_concurrent\_streams@{benchmark\_concurrent\_streams}!p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection{\texorpdfstring{benchmark\_concurrent\_streams()}{benchmark\_concurrent\_streams()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a81559640e3827c5ae7c914fe53b2a39d} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+concurrent\+\_\+streams (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable}]{session\+\_\+factory}{, }\item[{int }]{target\+\_\+streams}{ = {\ttfamily 1000}, }\item[{int }]{messages\+\_\+per\+\_\+stream}{ = {\ttfamily 10}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Benchmark concurrent stream handling.
+
+Target: > 1000 concurrent streams
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00163}{163}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{query_8py_source_l00091}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+results}} , 以及 \doxymbox{\hyperlink{benchmark_8py_source_l00053}{results}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a7df739df0bf6a581582eefcc3d52b780}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}!benchmark\_memory\_usage@{benchmark\_memory\_usage}}
+\index{benchmark\_memory\_usage@{benchmark\_memory\_usage}!p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection{\texorpdfstring{benchmark\_memory\_usage()}{benchmark\_memory\_usage()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a7df739df0bf6a581582eefcc3d52b780} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+memory\+\_\+usage (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable}]{session\+\_\+factory}{, }\item[{int }]{streams}{ = {\ttfamily 100}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Benchmark memory usage for multiple streams.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00218}{218}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{query_8py_source_l00091}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+results}} , 以及 \doxymbox{\hyperlink{benchmark_8py_source_l00053}{results}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a2ad2133d6c8501dec7e41883c0902d3b}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}!benchmark\_message\_throughput@{benchmark\_message\_throughput}}
+\index{benchmark\_message\_throughput@{benchmark\_message\_throughput}!p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection{\texorpdfstring{benchmark\_message\_throughput()}{benchmark\_message\_throughput()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a2ad2133d6c8501dec7e41883c0902d3b} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+message\+\_\+throughput (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable}]{stream\+\_\+factory}{, }\item[{int }]{message\+\_\+size}{ = {\ttfamily 1024}, }\item[{float }]{target\+\_\+mbps}{ = {\ttfamily 200.0}, }\item[{float }]{duration\+\_\+sec}{ = {\ttfamily 5.0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Benchmark message throughput.
+
+Target: > 200 Mbps
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00107}{107}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{query_8py_source_l00091}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+results}} , 以及 \doxymbox{\hyperlink{benchmark_8py_source_l00053}{results}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_aaa63820d561c8238b9475d784a891429}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}!benchmark\_stream\_creation@{benchmark\_stream\_creation}}
+\index{benchmark\_stream\_creation@{benchmark\_stream\_creation}!p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection{\texorpdfstring{benchmark\_stream\_creation()}{benchmark\_stream\_creation()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_aaa63820d561c8238b9475d784a891429} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{Benchmark\+Result}} p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+stream\+\_\+creation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable}]{session\+\_\+factory}{, }\item[{float }]{target\+\_\+latency\+\_\+ms}{ = {\ttfamily 2.0}, }\item[{int }]{iterations}{ = {\ttfamily 1000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Benchmark stream creation latency.
+
+Target: < 2ms per stream
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00055}{55}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{query_8py_source_l00091}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+results}} , 以及 \doxymbox{\hyperlink{benchmark_8py_source_l00053}{results}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a53c9c462823a98bc927c327a52d8a26f}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}!print\_results@{print\_results}}
+\index{print\_results@{print\_results}!p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection{\texorpdfstring{print\_results()}{print\_results()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a53c9c462823a98bc927c327a52d8a26f} 
+ None p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+print\+\_\+results (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Print all benchmark results.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00278}{278}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{query_8py_source_l00091}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+results}} , 以及 \doxymbox{\hyperlink{benchmark_8py_source_l00053}{results}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}\index{p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}!results@{results}}
+\index{results@{results}!p2p\_engine.muxer.benchmark.MuxerBenchmark@{p2p\_engine.muxer.benchmark.MuxerBenchmark}}
+\doxysubsubsection{\texorpdfstring{results}{results}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7} 
+list p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+results = \+[$\,$]\+}
+
+
+
+在文件 \doxymbox{\hyperlink{benchmark_8py_source}{benchmark.\+py}} 第 \doxymbox{\hyperlink{benchmark_8py_source_l00053}{53}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{benchmark_8py_source_l00168}{benchmark\+\_\+concurrent\+\_\+streams()}}, \doxymbox{\hyperlink{benchmark_8py_source_l00222}{benchmark\+\_\+memory\+\_\+usage()}}, \doxymbox{\hyperlink{benchmark_8py_source_l00113}{benchmark\+\_\+message\+\_\+throughput()}}, \doxymbox{\hyperlink{benchmark_8py_source_l00060}{benchmark\+\_\+stream\+\_\+creation()}} , 以及 \doxymbox{\hyperlink{benchmark_8py_source_l00278}{print\+\_\+results()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+muxer/\+\doxymbox{\hyperlink{benchmark_8py}{benchmark.\+py}}\end{DoxyCompactItemize}

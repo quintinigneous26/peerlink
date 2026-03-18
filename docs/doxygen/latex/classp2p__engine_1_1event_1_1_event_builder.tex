@@ -1,0 +1,114 @@
+\doxysection{p2p\+\_\+engine.\+event.\+Event\+Builder类 参考}
+\hypertarget{classp2p__engine_1_1event_1_1_event_builder}{}\label{classp2p__engine_1_1event_1_1_event_builder}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection*{静态 Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_a2e12033e67466004ba29aa4c15505584}{connection\+\_\+event}} (\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}} event\+\_\+type, str peer\+\_\+id, Optional\+[str]\+ connection\+\_\+type=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}extra\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_ac6ffb1c568bb247d27eda6d643e2afe2}{stream\+\_\+event}} (\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}} event\+\_\+type, str peer\+\_\+id, Optional\+[str]\+ stream\+\_\+id=None, Optional\+[str]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol}{protocol}}=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}extra\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_a9838a39b6d56c433c9b379c9e6c19ef9}{protocol\+\_\+event}} (\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}} event\+\_\+type, str peer\+\_\+id, str \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol}{protocol}}, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}extra\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_abd3a21781b9a46fd9b2df61279d1d76a}{nat\+\_\+event}} (\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}} event\+\_\+type, Optional\+[str]\+ nat\+\_\+type=None, Optional\+[str]\+ public\+\_\+ip=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}extra\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_aa39753419b4f6d6483570e807ff217b0}{relay\+\_\+event}} (\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}} event\+\_\+type, str peer\+\_\+id, Optional\+[str]\+ relay\+\_\+peer=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}extra\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_abeb25f516dd3b32600ee3bd0d27776bd}{error\+\_\+event}} (Exception error, str source="{}"{}, Optional\+[str]\+ peer\+\_\+id=None, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}extra\+\_\+data)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_ab42bee016a1df414a65c6e0d796ca75c}{network\+\_\+event}} (\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}} event\+\_\+type, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}extra\+\_\+data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Helper class to build common P2P events\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00527}{527}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_a2e12033e67466004ba29aa4c15505584}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}!connection\_event@{connection\_event}}
+\index{connection\_event@{connection\_event}!p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection{\texorpdfstring{connection\_event()}{connection\_event()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_builder_a2e12033e67466004ba29aa4c15505584} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} p2p\+\_\+engine.\+event.\+Event\+Builder.\+connection\+\_\+event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}}]{event\+\_\+type}{, }\item[{str}]{peer\+\_\+id}{, }\item[{Optional\+[str]\+ }]{connection\+\_\+type}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{extra\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build a connection-related event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00531}{531}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_abeb25f516dd3b32600ee3bd0d27776bd}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}!error\_event@{error\_event}}
+\index{error\_event@{error\_event}!p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection{\texorpdfstring{error\_event()}{error\_event()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_builder_abeb25f516dd3b32600ee3bd0d27776bd} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} p2p\+\_\+engine.\+event.\+Event\+Builder.\+error\+\_\+event (\begin{DoxyParamCaption}\item[{Exception}]{error}{, }\item[{str }]{source}{ = {\ttfamily "{}"{}}, }\item[{Optional\+[str]\+ }]{peer\+\_\+id}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{extra\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build an error event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00629}{629}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_abd3a21781b9a46fd9b2df61279d1d76a}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}!nat\_event@{nat\_event}}
+\index{nat\_event@{nat\_event}!p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection{\texorpdfstring{nat\_event()}{nat\_event()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_builder_abd3a21781b9a46fd9b2df61279d1d76a} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} p2p\+\_\+engine.\+event.\+Event\+Builder.\+nat\+\_\+event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}}]{event\+\_\+type}{, }\item[{Optional\+[str]\+ }]{nat\+\_\+type}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{public\+\_\+ip}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{extra\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build a NAT-related event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00591}{591}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_ab42bee016a1df414a65c6e0d796ca75c}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}!network\_event@{network\_event}}
+\index{network\_event@{network\_event}!p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection{\texorpdfstring{network\_event()}{network\_event()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_builder_ab42bee016a1df414a65c6e0d796ca75c} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} p2p\+\_\+engine.\+event.\+Event\+Builder.\+network\+\_\+event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}}]{event\+\_\+type}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{extra\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build a network-related event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00650}{650}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_a9838a39b6d56c433c9b379c9e6c19ef9}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}!protocol\_event@{protocol\_event}}
+\index{protocol\_event@{protocol\_event}!p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection{\texorpdfstring{protocol\_event()}{protocol\_event()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_builder_a9838a39b6d56c433c9b379c9e6c19ef9} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} p2p\+\_\+engine.\+event.\+Event\+Builder.\+protocol\+\_\+event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}}]{event\+\_\+type}{, }\item[{str}]{peer\+\_\+id}{, }\item[{str}]{protocol}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{extra\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build a protocol-related event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00572}{572}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_aa39753419b4f6d6483570e807ff217b0}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}!relay\_event@{relay\_event}}
+\index{relay\_event@{relay\_event}!p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection{\texorpdfstring{relay\_event()}{relay\_event()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_builder_aa39753419b4f6d6483570e807ff217b0} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} p2p\+\_\+engine.\+event.\+Event\+Builder.\+relay\+\_\+event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}}]{event\+\_\+type}{, }\item[{str}]{peer\+\_\+id}{, }\item[{Optional\+[str]\+ }]{relay\+\_\+peer}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{extra\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build a relay-related event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00610}{610}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1event_1_1_event_builder_ac6ffb1c568bb247d27eda6d643e2afe2}\index{p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}!stream\_event@{stream\_event}}
+\index{stream\_event@{stream\_event}!p2p\_engine.event.EventBuilder@{p2p\_engine.event.EventBuilder}}
+\doxysubsubsection{\texorpdfstring{stream\_event()}{stream\_event()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1event_1_1_event_builder_ac6ffb1c568bb247d27eda6d643e2afe2} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}} p2p\+\_\+engine.\+event.\+Event\+Builder.\+stream\+\_\+event (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}}]{event\+\_\+type}{, }\item[{str}]{peer\+\_\+id}{, }\item[{Optional\+[str]\+ }]{stream\+\_\+id}{ = {\ttfamily None}, }\item[{Optional\+[str]\+ }]{protocol}{ = {\ttfamily None}, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{extra\+\_\+data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Build a stream-related event\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00551}{551}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+\doxymbox{\hyperlink{event_8py}{event.\+py}}\end{DoxyCompactItemize}

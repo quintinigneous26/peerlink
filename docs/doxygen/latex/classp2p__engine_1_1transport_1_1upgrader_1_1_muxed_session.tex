@@ -1,0 +1,387 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{}\label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+
+
+类 p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a6b933108fc659a7bbb981c80a15762bf}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} conn, str \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a84f2cb4d83d66c62fa00400eaf4c1206}{protocol\+\_\+id}}, bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e}{is\+\_\+initiator}})
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a84f2cb4d83d66c62fa00400eaf4c1206}{protocol\+\_\+id}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e}{is\+\_\+initiator}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a39b38a5e63f134073bf9f332bc7f2653}{connection}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a58863a19f3250663088cf287b9e89dc5}{is\+\_\+closed}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a4864ede2e7c21844c683199cc9c7b838}{open\+\_\+stream}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_ac635ca57b93cd43522b39f73f53953cf}{accept\+\_\+stream}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a3d43d2a558a18d7d4bbaf9d20963e372}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5901e4d980d850095697e5b80cf875da}{\+\_\+handle\+\_\+incoming\+\_\+stream}} (self, int stream\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a6212494d2dd4840851dae80f367005e8}{\+\_\+conn}} = conn
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a7c500e9ae5ff2920cdc7b26624396a7d}{\+\_\+protocol\+\_\+id}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a84f2cb4d83d66c62fa00400eaf4c1206}{protocol\+\_\+id}}
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_adf1c97c0b4a1953d9fe67aab6f925211}{\+\_\+is\+\_\+initiator}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e}{is\+\_\+initiator}}
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a9f9abbca5be7271ee581ead8d5202f2a}{\+\_\+streams}} = \{\}
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_acfe44633524b7873db5ed5c91cbb462f}{\+\_\+next\+\_\+stream\+\_\+id}} = 1 if \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e}{is\+\_\+initiator}} else 2
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a510b95b7e8b5df698b87a65d100c9537}{\+\_\+closed}} = False
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_acf8036294e8f9db96825af6699f1665a}{\+\_\+lock}} = asyncio.\+Lock()
+\item 
+asyncio.\+Queue\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a516427158d4cdb94f808c6e2e6409c0f}{\+\_\+incoming\+\_\+queue}} = asyncio.\+Queue()
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a18d46c6e4b41ac7aeb60239e0ca5fb2e}{\+\_\+accept\+\_\+timeout}} = 30.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}复用会话
+
+管理多个复用流。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00185}{185}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a6b933108fc659a7bbb981c80a15762bf}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a6b933108fc659a7bbb981c80a15762bf} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}}}]{conn}{, }\item[{str}]{protocol\+\_\+id}{, }\item[{bool     }]{is\+\_\+initiator}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00192}{192}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5901e4d980d850095697e5b80cf875da}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_handle\_incoming\_stream@{\_handle\_incoming\_stream}}
+\index{\_handle\_incoming\_stream@{\_handle\_incoming\_stream}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_handle\_incoming\_stream()}{\_handle\_incoming\_stream()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5901e4d980d850095697e5b80cf875da} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+handle\+\_\+incoming\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{stream\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}处理传入流，由复用器协议调用
+
+Args:
+    stream_id: 流ID
+
+Returns:
+    创建的传入流
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00269}{269}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00205}{\+\_\+incoming\+\_\+queue}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{\+\_\+lock}}, \doxymbox{\hyperlink{mplex_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00675}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{yamux_8py_source_l00533}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00211}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+streams}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00201}{\+\_\+streams}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_ac635ca57b93cd43522b39f73f53953cf}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!accept\_stream@{accept\_stream}}
+\index{accept\_stream@{accept\_stream}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{accept\_stream()}{accept\_stream()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_ac635ca57b93cd43522b39f73f53953cf} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+accept\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}接受传入的复用流
+
+等待并返回下一个传入的流。此方法会阻塞直到有新流到达
+或会话关闭。
+
+Returns:
+    传入的复用流
+
+Raises:
+    TransportError: 如果会话已关闭
+\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a17d246e95dc4488c3f04dab5ce00ad09}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00238}{238}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{\+\_\+closed}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00205}{\+\_\+incoming\+\_\+queue}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a3d43d2a558a18d7d4bbaf9d20963e372}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a3d43d2a558a18d7d4bbaf9d20963e372} 
+ None p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭会话\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_aabc82b97fc5151e3d93c216fc8a6b6e5}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00294}{294}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00073}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+\_\+conn}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00104}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+conn}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00140}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+conn}}, \doxymbox{\hyperlink{upgrader_8py_source_l00198}{\+\_\+conn}}, \doxymbox{\hyperlink{upgrader_8py_source_l00205}{\+\_\+incoming\+\_\+queue}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{\+\_\+lock}}, \doxymbox{\hyperlink{mplex_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00675}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{yamux_8py_source_l00533}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00211}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{upgrader_8py_source_l00201}{\+\_\+streams}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00294}{close()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00294}{close()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a39b38a5e63f134073bf9f332bc7f2653}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!connection@{connection}}
+\index{connection@{connection}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{connection()}{connection()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a39b38a5e63f134073bf9f332bc7f2653} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}} p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a279cf36575cf7b9da0488dbe398e5c08}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00217}{217}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00073}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+\_\+conn}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00104}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+conn}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00140}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+conn}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00198}{\+\_\+conn}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a58863a19f3250663088cf287b9e89dc5}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a58863a19f3250663088cf287b9e89dc5} 
+ bool p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_abf2e96be87df28ffb733ed164c002246}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00220}{220}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00203}{\+\_\+closed}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!is\_initiator@{is\_initiator}}
+\index{is\_initiator@{is\_initiator}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{is\_initiator()}{is\_initiator()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e} 
+ bool p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+is\+\_\+initiator (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a1b0605feafecf34e2a2c2c47538db3da}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00213}{213}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00249}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+\_\+is\+\_\+initiator}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00269}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+\_\+is\+\_\+initiator}}, \doxymbox{\hyperlink{yamux_8py_source_l00229}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream.\+\_\+is\+\_\+initiator}}, \doxymbox{\hyperlink{quic_8py_source_l00098}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+is\+\_\+initiator}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00200}{\+\_\+is\+\_\+initiator}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a4864ede2e7c21844c683199cc9c7b838}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!open\_stream@{open\_stream}}
+\index{open\_stream@{open\_stream}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{open\_stream()}{open\_stream()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a4864ede2e7c21844c683199cc9c7b838} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+open\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}打开新的复用流\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_a719196094625932783e6afed39cfaa28}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00223}{223}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{\+\_\+closed}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{\+\_\+lock}}, \doxymbox{\hyperlink{mplex_8py_source_l00516}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+next\+\_\+stream\+\_\+id}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00687}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+next\+\_\+stream\+\_\+id}}, \doxymbox{\hyperlink{yamux_8py_source_l00537}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+next\+\_\+stream\+\_\+id}}, \doxymbox{\hyperlink{quic_8py_source_l00113}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+next\+\_\+stream\+\_\+id}}, \doxymbox{\hyperlink{upgrader_8py_source_l00202}{\+\_\+next\+\_\+stream\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00512}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00675}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{yamux_8py_source_l00533}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+streams}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00211}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+streams}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00201}{\+\_\+streams}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a84f2cb4d83d66c62fa00400eaf4c1206}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!protocol\_id@{protocol\_id}}
+\index{protocol\_id@{protocol\_id}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{protocol\_id()}{protocol\_id()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a84f2cb4d83d66c62fa00400eaf4c1206} 
+ str p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+protocol\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_afb23a5972b28785615cb996d6560a073}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00209}{209}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00199}{\+\_\+protocol\+\_\+id}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+upgrader.\+Secure\+Connection.\+\_\+protocol\+\_\+id}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a18d46c6e4b41ac7aeb60239e0ca5fb2e}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_accept\_timeout@{\_accept\_timeout}}
+\index{\_accept\_timeout@{\_accept\_timeout}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_accept\_timeout}{\_accept\_timeout}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a18d46c6e4b41ac7aeb60239e0ca5fb2e} 
+float p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+accept\+\_\+timeout = 30.\+0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00206}{206}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a510b95b7e8b5df698b87a65d100c9537}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_closed@{\_closed}}
+\index{\_closed@{\_closed}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_closed}{\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a510b95b7e8b5df698b87a65d100c9537} 
+bool p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00203}{203}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00269}{\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00382}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+data\+\_\+channel\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00448}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+accept()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00238}{accept\+\_\+stream()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00342}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+addresses()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00224}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00460}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00652}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+close()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00276}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00597}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+dial()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00497}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+handle\+\_\+offer()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00220}{is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00254}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00486}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00249}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00337}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00630}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+listen()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{open\+\_\+stream()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00175}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+read()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00253}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+read()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00201}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+write()}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00266}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a6212494d2dd4840851dae80f367005e8}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_conn@{\_conn}}
+\index{\_conn@{\_conn}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_conn}{\_conn}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a6212494d2dd4840851dae80f367005e8} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+conn = conn\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00198}{198}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00294}{close()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00217}{connection()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a516427158d4cdb94f808c6e2e6409c0f}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_incoming\_queue@{\_incoming\_queue}}
+\index{\_incoming\_queue@{\_incoming\_queue}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_incoming\_queue}{\_incoming\_queue}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a516427158d4cdb94f808c6e2e6409c0f} 
+asyncio.\+Queue\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}}]\+ p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+incoming\+\_\+queue = asyncio.\+Queue()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00205}{205}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00269}{\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00238}{accept\+\_\+stream()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00294}{close()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_adf1c97c0b4a1953d9fe67aab6f925211}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_is\_initiator@{\_is\_initiator}}
+\index{\_is\_initiator@{\_is\_initiator}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_is\_initiator}{\_is\_initiator}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_adf1c97c0b4a1953d9fe67aab6f925211} 
+bool p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+is\+\_\+initiator = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e}{is\+\_\+initiator}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00200}{200}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+create\+\_\+answer()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00276}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+create\+\_\+offer()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00213}{is\+\_\+initiator()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00171}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+is\+\_\+initiator()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_acf8036294e8f9db96825af6699f1665a}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_acf8036294e8f9db96825af6699f1665a} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00204}{204}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00269}{\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{allocation_8py_source_l00047}{src.\+allocation.\+Port\+Pool.\+acquire()}}, \doxymbox{\hyperlink{allocation_8py_source_l00320}{src.\+allocation.\+Allocation\+Manager.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{close()}}, \doxymbox{\hyperlink{client_8py_source_l00309}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+connect()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{src.\+bandwidth.\+Token\+Bucket.\+consume()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{src.\+allocation.\+Allocation\+Manager.\+create\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{src.\+allocation.\+Allocation\+Manager.\+delete\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{open\+\_\+stream()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}}, \doxymbox{\hyperlink{allocation_8py_source_l00252}{src.\+allocation.\+Allocation\+Manager.\+refresh\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00063}{src.\+allocation.\+Port\+Pool.\+release()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_acfe44633524b7873db5ed5c91cbb462f}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_next\_stream\_id@{\_next\_stream\_id}}
+\index{\_next\_stream\_id@{\_next\_stream\_id}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_next\_stream\_id}{\_next\_stream\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_acfe44633524b7873db5ed5c91cbb462f} 
+int p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+next\+\_\+stream\+\_\+id = 1 if \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a5348d7dfba213e2ff34c42f709b3408e}{is\+\_\+initiator}} else 2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00202}{202}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00223}{open\+\_\+stream()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a7c500e9ae5ff2920cdc7b26624396a7d}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_protocol\_id@{\_protocol\_id}}
+\index{\_protocol\_id@{\_protocol\_id}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_protocol\_id}{\_protocol\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a7c500e9ae5ff2920cdc7b26624396a7d} 
+str p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+protocol\+\_\+id = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a84f2cb4d83d66c62fa00400eaf4c1206}{protocol\+\_\+id}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00199}{199}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00209}{protocol\+\_\+id()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a9f9abbca5be7271ee581ead8d5202f2a}\index{p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}!\_streams@{\_streams}}
+\index{\_streams@{\_streams}!p2p\_engine.transport.upgrader.MuxedSession@{p2p\_engine.transport.upgrader.MuxedSession}}
+\doxysubsubsection{\texorpdfstring{\_streams}{\_streams}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_a9f9abbca5be7271ee581ead8d5202f2a} 
+dict p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+streams = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00201}{201}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00269}{\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{close()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00223}{open\+\_\+stream()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{upgrader_8py}{upgrader.\+py}}\end{DoxyCompactItemize}

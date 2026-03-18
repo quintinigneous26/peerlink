@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1transport_1_1tcp__optimized" kind="namespace" language="Python">
+    <compoundname>p2p_engine::transport::tcp_optimized</compoundname>
+    <innerclass refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection" prot="public">p2p_engine::transport::tcp_optimized::TCPFastOpenConnection</innerclass>
+    <innerclass refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool" prot="public">p2p_engine::transport::tcp_optimized::ConnectionPool</innerclass>
+    <innerclass refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport" prot="public">p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</innerclass>
+    <innerclass refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener" prot="public">p2p_engine::transport::tcp_optimized::TCPOptimizedListener</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1a7bdd9288cd137c5d9f2aaad8c0f386f4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::transport::tcp_optimized.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.logger</qualifiedname>
+        <initializer>=  logging.getLogger(&quot;p2p_engine.transport.tcp_optimized&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="25" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1a40f35192ce71d980d46274931872fd5c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::transport::tcp_optimized.DEFAULT_PORT</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_PORT</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.DEFAULT_PORT</qualifiedname>
+        <initializer>=  4242</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="30" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1a1cf9a3a3501bcd4de5ba8856a71664a7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::transport::tcp_optimized.TCP_FASTOPEN_QUEUE_SIZE</definition>
+        <argsstring></argsstring>
+        <name>TCP_FASTOPEN_QUEUE_SIZE</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.TCP_FASTOPEN_QUEUE_SIZE</qualifiedname>
+        <initializer>=  5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="31" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1afb0acf0c5ac89b21b0e1203dac169f36" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::transport::tcp_optimized.TCP_USER_TIMEOUT</definition>
+        <argsstring></argsstring>
+        <name>TCP_USER_TIMEOUT</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.TCP_USER_TIMEOUT</qualifiedname>
+        <initializer>=  10000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="32" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1a71707d04488eac18f9682b0b78573952" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::transport::tcp_optimized.KEEPALIVE_IDLE</definition>
+        <argsstring></argsstring>
+        <name>KEEPALIVE_IDLE</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.KEEPALIVE_IDLE</qualifiedname>
+        <initializer>=  60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="33" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1afcd2cc666868b1cc631974bafa1351d2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::transport::tcp_optimized.KEEPALIVE_INTERVAL</definition>
+        <argsstring></argsstring>
+        <name>KEEPALIVE_INTERVAL</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.KEEPALIVE_INTERVAL</qualifiedname>
+        <initializer>=  10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="34" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1ad5e1745cc4901f5987c4bf6c130e9b2f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::transport::tcp_optimized.KEEPALIVE_COUNT</definition>
+        <argsstring></argsstring>
+        <name>KEEPALIVE_COUNT</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.KEEPALIVE_COUNT</qualifiedname>
+        <initializer>=  3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="35" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1a8b82ac90504af5b63df6e54f385d4136" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::transport::tcp_optimized.DEFAULT_MAX_POOL_SIZE</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_MAX_POOL_SIZE</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.DEFAULT_MAX_POOL_SIZE</qualifiedname>
+        <initializer>=  100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="38" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1aa6c5cbac2610019f4f4c05fec13ffa30" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine::transport::tcp_optimized.CONNECTION_IDLE_TIMEOUT</definition>
+        <argsstring></argsstring>
+        <name>CONNECTION_IDLE_TIMEOUT</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.CONNECTION_IDLE_TIMEOUT</qualifiedname>
+        <initializer>=  300.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="39" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1a279e9fa40faa4eefcbdf7e34e1e9b76a" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::transport::tcp_optimized.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.__all__</qualifiedname>
+        <initializer>=  [
+    &quot;OptimizedTCPTransport&quot;,
+    &quot;TCPFastOpenConnection&quot;,
+    &quot;TCPOptimizedListener&quot;,
+    &quot;ConnectionPool&quot;,
+    &quot;is_tcp_fastopen_available&quot;,
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="505" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="505" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1transport_1_1tcp__optimized_1ad3e6b84b56fd0874072006880f65cf0a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.transport.tcp_optimized.is_tcp_fastopen_available</definition>
+        <argsstring>()</argsstring>
+        <name>is_tcp_fastopen_available</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.is_tcp_fastopen_available</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检查系统是否支持 TCP Fast Open</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="44" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="44" bodyend="55"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>优化的 TCP 传输实现
+
+提供高性能 TCP 传输，支持：
+- TCP Fast Open (TFO)
+- 连接池
+- Nagle 算法禁用
+- Keep-Alive 优化
+
+目标：连接延迟 &lt; 20ms (对标 go-libp2p)
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/transport/tcp_optimized.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

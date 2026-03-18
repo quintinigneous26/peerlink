@@ -1,0 +1,340 @@
+\doxysection{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table类 参考}
+\hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table}{}\label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a05ed998b950fbed69e8100b787db0588}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, bytes \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a407b9934eccd60fed9efdd75212073fe}{local\+\_\+id}}, int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab274e78637e8bb89b90bfc0486182d73}{k\+\_\+size}}=\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1routing_ae9a0f57b017a18d993877306e54b1b1a}{K}})
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a38edc4349b633b0d32fed21ac9bd22b4}{add\+\_\+peer}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}} peer)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab323db6608be63b8cf636cfde5f6472a}{remove\+\_\+peer}} (self, bytes peer\+\_\+id)
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a827d3507a8f8eab8b7eda8f08f0c0cc4}{find\+\_\+peer}} (self, bytes peer\+\_\+id)
+\item 
+List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ae7b48aec3a1374573409737469f072b8}{find\+\_\+closest\+\_\+peers}} (self, bytes target\+\_\+id, int count=\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1routing_ae9a0f57b017a18d993877306e54b1b1a}{K}})
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ac0b80990db46884182719f4534468073}{peer\+\_\+count}} (self)
+\item 
+List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_k_bucket}{KBucket}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a1458cb33e25851b76f44299ec344403b}{buckets}} (self)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_aa349c7517505d4e94d50ed1a5b494b4f}{cleanup\+\_\+stale}} (self, float stale\+\_\+threshold=3600.\+0)
+\item 
+List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a593be59674421fdcd5e7e282e434b7c9}{get\+\_\+random\+\_\+peers}} (self, int count=1)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a407b9934eccd60fed9efdd75212073fe}{local\+\_\+id}} = local\+\_\+id
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab274e78637e8bb89b90bfc0486182d73}{k\+\_\+size}} = k\+\_\+size
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_k_bucket}{KBucket}} \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a39ff3570bbd19c0ee18b5fd311adb40e}{\+\_\+find\+\_\+bucket}} (self, bytes peer\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab5499ce6f13c9d8f7ed9ec468e5dcc5b}{\+\_\+buckets}} = \+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_k_bucket}{KBucket}}(0, \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab274e78637e8bb89b90bfc0486182d73}{k\+\_\+size}})]\+
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a83bc4b46e9b29218f6421e3dafa4c60d}{\+\_\+lock}} = asyncio.\+Lock()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Kademlia routing table with k-bucket tree structure.
+
+Maintains peers in a binary tree of k-buckets based on XOR distance.
+Each bucket covers a range of the ID space.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00329}{329}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a05ed998b950fbed69e8100b787db0588}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a05ed998b950fbed69e8100b787db0588} 
+p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{local\+\_\+id}{, }\item[{int }]{k\+\_\+size}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1routing_ae9a0f57b017a18d993877306e54b1b1a}{K}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize routing table.
+
+Args:
+    local_id: Local peer's ID (32 bytes)
+    k_size: Bucket size parameter (default 20)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00337}{337}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a39ff3570bbd19c0ee18b5fd311adb40e}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!\_find\_bucket@{\_find\_bucket}}
+\index{\_find\_bucket@{\_find\_bucket}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{\_find\_bucket()}{\_find\_bucket()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a39ff3570bbd19c0ee18b5fd311adb40e} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_k_bucket}{KBucket}} p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+find\+\_\+bucket (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{peer\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Find the bucket containing a given peer ID.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00443}{443}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00350}{\+\_\+buckets}}, \doxymbox{\hyperlink{routing_8py_source_l00101}{p2p\+\_\+engine.\+dht.\+routing.\+common\+\_\+prefix\+\_\+length()}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00348}{local\+\_\+id}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{routing_8py_source_l00353}{add\+\_\+peer()}}, \doxymbox{\hyperlink{routing_8py_source_l00399}{find\+\_\+peer()}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00385}{remove\+\_\+peer()}}.
+
+函数调用图:\+
+% FIG 0
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a38edc4349b633b0d32fed21ac9bd22b4}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!add\_peer@{add\_peer}}
+\index{add\_peer@{add\_peer}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{add\_peer()}{add\_peer()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a38edc4349b633b0d32fed21ac9bd22b4} 
+ bool p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+add\+\_\+peer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}}]{peer}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a peer to the routing table.
+
+Args:
+    peer: Peer entry to add
+
+Returns:
+    True if peer was added successfully
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00353}{353}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00350}{\+\_\+buckets}}, \doxymbox{\hyperlink{routing_8py_source_l00443}{\+\_\+find\+\_\+bucket()}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{\+\_\+lock}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00348}{local\+\_\+id}}.
+
+函数调用图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a1458cb33e25851b76f44299ec344403b}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!buckets@{buckets}}
+\index{buckets@{buckets}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{buckets()}{buckets()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a1458cb33e25851b76f44299ec344403b} 
+ List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_k_bucket}{KBucket}}]\+ p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+buckets (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get all buckets.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00465}{465}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00350}{\+\_\+buckets}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_aa349c7517505d4e94d50ed1a5b494b4f}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!cleanup\_stale@{cleanup\_stale}}
+\index{cleanup\_stale@{cleanup\_stale}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{cleanup\_stale()}{cleanup\_stale()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_aa349c7517505d4e94d50ed1a5b494b4f} 
+ int p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+cleanup\+\_\+stale (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{float }]{stale\+\_\+threshold}{ = {\ttfamily 3600.0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove stale peers from all buckets.
+
+Args:
+    stale_threshold: Seconds after which peer is considered stale
+
+Returns:
+    Total number of peers removed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00469}{469}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00350}{\+\_\+buckets}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00351}{\+\_\+lock}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ae7b48aec3a1374573409737469f072b8}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!find\_closest\_peers@{find\_closest\_peers}}
+\index{find\_closest\_peers@{find\_closest\_peers}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{find\_closest\_peers()}{find\_closest\_peers()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ae7b48aec3a1374573409737469f072b8} 
+ List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+find\+\_\+closest\+\_\+peers (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{target\+\_\+id}{, }\item[{int }]{count}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1routing_ae9a0f57b017a18d993877306e54b1b1a}{K}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find peers closest to target ID.
+
+This is the core lookup operation for Kademlia.
+
+Args:
+    target_id: Target ID to find close peers for
+    count: Maximum number of peers to return
+
+Returns:
+    List of closest peers sorted by distance
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00412}{412}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00350}{\+\_\+buckets}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00076}{p2p\+\_\+engine.\+dht.\+routing.\+calculate\+\_\+distance()}}.
+
+函数调用图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a827d3507a8f8eab8b7eda8f08f0c0cc4}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!find\_peer@{find\_peer}}
+\index{find\_peer@{find\_peer}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{find\_peer()}{find\_peer()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a827d3507a8f8eab8b7eda8f08f0c0cc4} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+find\+\_\+peer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{peer\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Find a peer by ID.
+
+Args:
+    peer_id: ID to search for
+
+Returns:
+    Peer entry if found, None otherwise
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00399}{399}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00443}{\+\_\+find\+\_\+bucket()}}.
+
+函数调用图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a593be59674421fdcd5e7e282e434b7c9}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!get\_random\_peers@{get\_random\_peers}}
+\index{get\_random\_peers@{get\_random\_peers}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{get\_random\_peers()}{get\_random\_peers()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a593be59674421fdcd5e7e282e434b7c9} 
+ List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_peer_entry}{Peer\+Entry}}]\+ p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+get\+\_\+random\+\_\+peers (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{count}{ = {\ttfamily 1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get random peers from routing table.
+
+Useful for bootstrapping and periodic refresh.
+
+Args:
+    count: Number of random peers to return
+
+Returns:
+    List of random peers
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00485}{485}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00350}{\+\_\+buckets}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ac0b80990db46884182719f4534468073}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!peer\_count@{peer\_count}}
+\index{peer\_count@{peer\_count}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{peer\_count()}{peer\_count()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ac0b80990db46884182719f4534468073} 
+ int p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+peer\+\_\+count (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get total number of peers in routing table.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00460}{460}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00350}{\+\_\+buckets}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab323db6608be63b8cf636cfde5f6472a}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!remove\_peer@{remove\_peer}}
+\index{remove\_peer@{remove\_peer}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{remove\_peer()}{remove\_peer()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab323db6608be63b8cf636cfde5f6472a} 
+ bool p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+remove\+\_\+peer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{peer\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove a peer from routing table.
+
+Args:
+    peer_id: ID of peer to remove
+
+Returns:
+    True if peer was found and removed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00385}{385}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{routing_8py_source_l00443}{\+\_\+find\+\_\+bucket()}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00351}{\+\_\+lock}}.
+
+函数调用图:\+
+% FIG 5
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab5499ce6f13c9d8f7ed9ec468e5dcc5b}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!\_buckets@{\_buckets}}
+\index{\_buckets@{\_buckets}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{\_buckets}{\_buckets}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab5499ce6f13c9d8f7ed9ec468e5dcc5b} 
+p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+buckets = \+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_k_bucket}{KBucket}}(0, \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab274e78637e8bb89b90bfc0486182d73}{k\+\_\+size}})]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00350}{350}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{routing_8py_source_l00443}{\+\_\+find\+\_\+bucket()}}, \doxymbox{\hyperlink{routing_8py_source_l00353}{add\+\_\+peer()}}, \doxymbox{\hyperlink{routing_8py_source_l00465}{buckets()}}, \doxymbox{\hyperlink{routing_8py_source_l00469}{cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{routing_8py_source_l00416}{find\+\_\+closest\+\_\+peers()}}, \doxymbox{\hyperlink{routing_8py_source_l00485}{get\+\_\+random\+\_\+peers()}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00460}{peer\+\_\+count()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a83bc4b46e9b29218f6421e3dafa4c60d}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a83bc4b46e9b29218f6421e3dafa4c60d} 
+p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00351}{351}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00263}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00269}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{event_8py_source_l00462}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+process\+\_\+event()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00155}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+refill\+\_\+async()}}, \doxymbox{\hyperlink{allocation_8py_source_l00047}{src.\+allocation.\+Port\+Pool.\+acquire()}}, \doxymbox{\hyperlink{routing_8py_source_l00353}{add\+\_\+peer()}}, \doxymbox{\hyperlink{allocation_8py_source_l00320}{src.\+allocation.\+Allocation\+Manager.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{routing_8py_source_l00469}{cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+clear\+\_\+tickets()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00309}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+connect()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{src.\+bandwidth.\+Token\+Bucket.\+consume()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{src.\+allocation.\+Allocation\+Manager.\+create\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{src.\+allocation.\+Allocation\+Manager.\+delete\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00216}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+get()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00579}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+get\+\_\+session()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00136}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+get\+\_\+ticket()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+open\+\_\+stream()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00239}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+put()}}, \doxymbox{\hyperlink{metrics_8py_source_l00082}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+record\+\_\+connection()}}, \doxymbox{\hyperlink{metrics_8py_source_l00111}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+record\+\_\+nat\+\_\+detection()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}}, \doxymbox{\hyperlink{allocation_8py_source_l00252}{src.\+allocation.\+Allocation\+Manager.\+refresh\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00063}{src.\+allocation.\+Port\+Pool.\+release()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00251}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+remove()}}, \doxymbox{\hyperlink{routing_8py_source_l00385}{remove\+\_\+peer()}}, \doxymbox{\hyperlink{metrics_8py_source_l00172}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+reset()}}, \doxymbox{\hyperlink{event_8py_source_l00516}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+reset\+\_\+metrics()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00196}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+revoke\+\_\+ticket()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00557}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+stop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00199}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+stop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00164}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+store\+\_\+ticket()}}, \doxymbox{\hyperlink{event_8py_source_l00294}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+subscribe()}}, \doxymbox{\hyperlink{event_8py_source_l00326}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+subscribe\+\_\+all()}}, \doxymbox{\hyperlink{event_8py_source_l00352}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+unsubscribe()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab274e78637e8bb89b90bfc0486182d73}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!k\_size@{k\_size}}
+\index{k\_size@{k\_size}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{k\_size}{k\_size}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_ab274e78637e8bb89b90bfc0486182d73} 
+p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+k\+\_\+size = k\+\_\+size}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00349}{349}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a407b9934eccd60fed9efdd75212073fe}\index{p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}!local\_id@{local\_id}}
+\index{local\_id@{local\_id}!p2p\_engine.dht.routing.RoutingTable@{p2p\_engine.dht.routing.RoutingTable}}
+\doxysubsubsection{\texorpdfstring{local\_id}{local\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1routing_1_1_routing_table_a407b9934eccd60fed9efdd75212073fe} 
+p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+local\+\_\+id = local\+\_\+id}
+
+
+
+在文件 \doxymbox{\hyperlink{routing_8py_source}{routing.\+py}} 第 \doxymbox{\hyperlink{routing_8py_source_l00348}{348}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{routing_8py_source_l00443}{\+\_\+find\+\_\+bucket()}} , 以及 \doxymbox{\hyperlink{routing_8py_source_l00353}{add\+\_\+peer()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+dht/\+\doxymbox{\hyperlink{routing_8py}{routing.\+py}}\end{DoxyCompactItemize}

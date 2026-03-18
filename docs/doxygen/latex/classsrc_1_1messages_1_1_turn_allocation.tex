@@ -1,0 +1,349 @@
+\doxysection{src.\+messages.\+Turn\+Allocation类 参考}
+\hypertarget{classsrc_1_1messages_1_1_turn_allocation}{}\label{classsrc_1_1messages_1_1_turn_allocation}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ad0382dcda3ce586cba6a7d9255ea1e59}{\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a89cc16378258c85b359a8c05579ddc80}{is\+\_\+expired}} (self)
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a9ed7e2ebadb9b2e8a3b865cbb3c57523}{get\+\_\+remaining\+\_\+time}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a81812b3fe6067aaf6a1eae12b7aea2a1}{add\+\_\+permission}} (self, Tuple\+[str, int]\+ \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a09d62020b482ce9be0e511a6e14a470e}{peer\+\_\+addr}})
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_afbbfe7e73fae0a9e3f7e0d97b56e3f31}{has\+\_\+permission}} (self, Tuple\+[str, int]\+ \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a09d62020b482ce9be0e511a6e14a470e}{peer\+\_\+addr}})
+\item 
+\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a77f7e3b27e74c5f8d5efd065b1d4a444}{record\+\_\+received}} (self, int bytes\+\_\+count)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a8b1b0fcc2bf9dbf43250e231b599567f}{record\+\_\+sent}} (self, int bytes\+\_\+count)
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ad325612be27c547bbcb15fd36c1d707f}{get\+\_\+stats}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a15a48bd032915e6eee14e82c69e6bc1f}{allocation\+\_\+id}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+Tuple \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6461da0c8a6e9ce320d71035a9feaab9}{client\+\_\+addr}} \+[str, int]\+
+\item 
+Tuple \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a92f7b000bf9c335cd75d356d597129a2}{relay\+\_\+addr}} \+[str, int]\+
+\item 
+Optional \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a09d62020b482ce9be0e511a6e14a470e}{peer\+\_\+addr}} = None
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a05cba92482ff40c3e72b33a5dfc14c34}{lifetime}} = 600
+\item 
+str \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a827dd5e41d641cecc7b94f3b02ea6219}{transport}} = "{}udp"{}
+\item 
+Optional \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_adeabcf4c66cd542f53457f117798645d}{channel\+\_\+number}} = None
+\item 
+List \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}{permissions}} = None
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a64b2864d52680640862bc920b05a7bbe}{bytes\+\_\+received}} = 0
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a510aa2b58442f22b356f93d63166574e}{bytes\+\_\+sent}} = 0
+\item 
+float \doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}{created\+\_\+at}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}TURN allocation represents a relay session.
+
+Attributes:
+    allocation_id: Unique allocation identifier
+    client_addr: Client's (ip, port)
+    relay_addr: Relay server's (ip, port) for this allocation
+    peer_addr: Peer's (ip, port) if connected
+    lifetime: Allocation lifetime in seconds
+    transport: Transport protocol (UDP/TCP)
+    channel_number: Channel number if using channel binding
+    permissions: List of allowed peer addresses
+    bytes_received: Total bytes received from peer
+    bytes_sent: Total bytes sent to peer
+    created_at: Timestamp when allocation was created
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00105}{105}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_ad0382dcda3ce586cba6a7d9255ea1e59}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!\_\_post\_init\_\_@{\_\_post\_init\_\_}}
+\index{\_\_post\_init\_\_@{\_\_post\_init\_\_}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{\_\_post\_init\_\_()}{\_\_post\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_ad0382dcda3ce586cba6a7d9255ea1e59} 
+src.\+messages.\+Turn\+Allocation.\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00135}{135}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00068}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+created\+\_\+at}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00133}{created\+\_\+at}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00130}{permissions}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a81812b3fe6067aaf6a1eae12b7aea2a1}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!add\_permission@{add\_permission}}
+\index{add\_permission@{add\_permission}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{add\_permission()}{add\_permission()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a81812b3fe6067aaf6a1eae12b7aea2a1} 
+ bool src.\+messages.\+Turn\+Allocation.\+add\+\_\+permission (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{peer\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add permission for a peer address.
+
+Args:
+    peer_addr: Peer's (ip, port)
+
+Returns:
+    True if permission was added, False if already exists
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00152}{152}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00130}{permissions}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a9ed7e2ebadb9b2e8a3b865cbb3c57523}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!get\_remaining\_time@{get\_remaining\_time}}
+\index{get\_remaining\_time@{get\_remaining\_time}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{get\_remaining\_time()}{get\_remaining\_time()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a9ed7e2ebadb9b2e8a3b865cbb3c57523} 
+ int src.\+messages.\+Turn\+Allocation.\+get\+\_\+remaining\+\_\+time (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get remaining lifetime in seconds.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00147}{147}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00068}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+created\+\_\+at}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00133}{created\+\_\+at}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00127}{lifetime}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_ad325612be27c547bbcb15fd36c1d707f}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!get\_stats@{get\_stats}}
+\index{get\_stats@{get\_stats}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{get\_stats()}{get\_stats()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_ad325612be27c547bbcb15fd36c1d707f} 
+ dict src.\+messages.\+Turn\+Allocation.\+get\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get allocation statistics.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00187}{187}} 行定义.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_afbbfe7e73fae0a9e3f7e0d97b56e3f31}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!has\_permission@{has\_permission}}
+\index{has\_permission@{has\_permission}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{has\_permission()}{has\_permission()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_afbbfe7e73fae0a9e3f7e0d97b56e3f31} 
+ bool src.\+messages.\+Turn\+Allocation.\+has\+\_\+permission (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{peer\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if peer has permission.
+
+Args:
+    peer_addr: Peer's (ip, port)
+
+Returns:
+    True if permission exists
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00167}{167}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00130}{permissions}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a89cc16378258c85b359a8c05579ddc80}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!is\_expired@{is\_expired}}
+\index{is\_expired@{is\_expired}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{is\_expired()}{is\_expired()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a89cc16378258c85b359a8c05579ddc80} 
+ bool src.\+messages.\+Turn\+Allocation.\+is\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if allocation has expired.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00142}{142}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00068}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+created\+\_\+at}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00133}{created\+\_\+at}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00127}{lifetime}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a77f7e3b27e74c5f8d5efd065b1d4a444}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!record\_received@{record\_received}}
+\index{record\_received@{record\_received}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{record\_received()}{record\_received()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a77f7e3b27e74c5f8d5efd065b1d4a444} 
+src.\+messages.\+Turn\+Allocation.\+record\+\_\+received (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{bytes\+\_\+count}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Record received bytes.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00179}{179}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00131}{bytes\+\_\+received}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a8b1b0fcc2bf9dbf43250e231b599567f}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!record\_sent@{record\_sent}}
+\index{record\_sent@{record\_sent}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{record\_sent()}{record\_sent()}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a8b1b0fcc2bf9dbf43250e231b599567f} 
+src.\+messages.\+Turn\+Allocation.\+record\+\_\+sent (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{bytes\+\_\+count}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Record sent bytes.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00183}{183}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00132}{bytes\+\_\+sent}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a15a48bd032915e6eee14e82c69e6bc1f}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!allocation\_id@{allocation\_id}}
+\index{allocation\_id@{allocation\_id}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{allocation\_id}{allocation\_id}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a15a48bd032915e6eee14e82c69e6bc1f} 
+src.\+messages.\+Turn\+Allocation.\+allocation\+\_\+id}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00191}{191}} 行定义.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a64b2864d52680640862bc920b05a7bbe}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!bytes\_received@{bytes\_received}}
+\index{bytes\_received@{bytes\_received}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{bytes\_received}{bytes\_received}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a64b2864d52680640862bc920b05a7bbe} 
+src.\+messages.\+Turn\+Allocation.\+bytes\+\_\+received = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00131}{131}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00179}{record\+\_\+received()}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a510aa2b58442f22b356f93d63166574e}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!bytes\_sent@{bytes\_sent}}
+\index{bytes\_sent@{bytes\_sent}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{bytes\_sent}{bytes\_sent}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a510aa2b58442f22b356f93d63166574e} 
+src.\+messages.\+Turn\+Allocation.\+bytes\+\_\+sent = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00132}{132}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00183}{record\+\_\+sent()}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_adeabcf4c66cd542f53457f117798645d}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!channel\_number@{channel\_number}}
+\index{channel\_number@{channel\_number}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{channel\_number}{channel\_number}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_adeabcf4c66cd542f53457f117798645d} 
+Optional src.\+messages.\+Turn\+Allocation.\+channel\+\_\+number = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00129}{129}} 行定义.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a6461da0c8a6e9ce320d71035a9feaab9}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!client\_addr@{client\_addr}}
+\index{client\_addr@{client\_addr}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{client\_addr}{client\_addr}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a6461da0c8a6e9ce320d71035a9feaab9} 
+Tuple src.\+messages.\+Turn\+Allocation.\+client\+\_\+addr \+[str, int]\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00124}{124}} 行定义.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!created\_at@{created\_at}}
+\index{created\_at@{created\_at}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{created\_at}{created\_at}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2} 
+src.\+messages.\+Turn\+Allocation.\+created\+\_\+at = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00133}{133}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00135}{\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00147}{get\+\_\+remaining\+\_\+time()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00142}{is\+\_\+expired()}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a05cba92482ff40c3e72b33a5dfc14c34}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!lifetime@{lifetime}}
+\index{lifetime@{lifetime}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{lifetime}{lifetime}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a05cba92482ff40c3e72b33a5dfc14c34} 
+src.\+messages.\+Turn\+Allocation.\+lifetime = 600\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00127}{127}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00147}{get\+\_\+remaining\+\_\+time()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00142}{is\+\_\+expired()}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a09d62020b482ce9be0e511a6e14a470e}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!peer\_addr@{peer\_addr}}
+\index{peer\_addr@{peer\_addr}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{peer\_addr}{peer\_addr}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a09d62020b482ce9be0e511a6e14a470e} 
+Optional src.\+messages.\+Turn\+Allocation.\+peer\+\_\+addr = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00126}{126}} 行定义.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!permissions@{permissions}}
+\index{permissions@{permissions}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{permissions}{permissions}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4} 
+List src.\+messages.\+Turn\+Allocation.\+permissions = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00130}{130}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00135}{\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00152}{add\+\_\+permission()}}, \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00060}{src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+add\+\_\+permission()}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00167}{has\+\_\+permission()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00067}{src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+has\+\_\+permission()}}.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a92f7b000bf9c335cd75d356d597129a2}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!relay\_addr@{relay\_addr}}
+\index{relay\_addr@{relay\_addr}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{relay\_addr}{relay\_addr}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a92f7b000bf9c335cd75d356d597129a2} 
+Tuple src.\+messages.\+Turn\+Allocation.\+relay\+\_\+addr \+[str, int]\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00125}{125}} 行定义.
+
+\Hypertarget{classsrc_1_1messages_1_1_turn_allocation_a827dd5e41d641cecc7b94f3b02ea6219}\index{src.messages.TurnAllocation@{src.messages.TurnAllocation}!transport@{transport}}
+\index{transport@{transport}!src.messages.TurnAllocation@{src.messages.TurnAllocation}}
+\doxysubsubsection{\texorpdfstring{transport}{transport}}
+{\footnotesize\ttfamily \label{classsrc_1_1messages_1_1_turn_allocation_a827dd5e41d641cecc7b94f3b02ea6219} 
+src.\+messages.\+Turn\+Allocation.\+transport = "{}udp"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source}{messages.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00128}{128}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00268}{src.\+relay\+\_\+server.\+relay.\+Relay\+Protocol.\+connection\+\_\+made()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+\doxymbox{\hyperlink{relay-server_2src_2messages_8py}{messages.\+py}}\end{DoxyCompactItemize}

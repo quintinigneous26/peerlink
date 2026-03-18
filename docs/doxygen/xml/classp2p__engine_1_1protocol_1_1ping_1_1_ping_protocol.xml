@@ -1,0 +1,622 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::protocol::ping::PingProtocol</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a34ffe946459c1ff240ad422525161cac" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.ping.PingProtocol::_reader</definition>
+        <argsstring></argsstring>
+        <name>_reader</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._reader</qualifiedname>
+        <initializer>=  reader</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="78" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="78" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" compoundref="ping_8py" startline="270" endline="286">p2p_engine.protocol.ping.PingProtocol._handle_ping_request</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1aeb2a0413787cca99c57640cd5c43d307" compoundref="signaling_8py" startline="292" endline="310">p2p_sdk.signaling.SignalingClient._message_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" compoundref="ping_8py" startline="151" endline="200">p2p_engine.protocol.ping.PingProtocol._send_ping</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a7627998cdb6af0f39632ab83119a811c" compoundref="transport_8py" startline="274" endline="295">p2p_sdk.transport.RelayTransport.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a1338b1e24c261dd54f667fa8de1a49d2" compoundref="signaling_8py" startline="80" endline="101">p2p_sdk.signaling.SignalingClient.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a0389f68009226545594f26ed39e987b9" compoundref="transport_8py" startline="206" endline="240">p2p_sdk.transport.RelayTransport.connect</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1abfd278bf124e329262c5f4cde9f825ec" compoundref="tcp__optimized_8py" startline="97" endline="118">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a46baabc18cadf74ec34a91f3695458f5" compoundref="upgrader_8py" startline="157" endline="163">p2p_engine.transport.upgrader.MuxedStream.read</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a1f6af886a2c2f9f17b95b447db0df9ea" compoundref="transport_8py" startline="256" endline="273">p2p_sdk.transport.RelayTransport.recv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.ping.PingProtocol::_writer</definition>
+        <argsstring></argsstring>
+        <name>_writer</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._writer</qualifiedname>
+        <initializer>=  writer</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="79" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="79" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" compoundref="ping_8py" startline="270" endline="286">p2p_engine.protocol.ping.PingProtocol._handle_ping_request</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" compoundref="ping_8py" startline="151" endline="200">p2p_engine.protocol.ping.PingProtocol._send_ping</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1ac2f6c485b8ee09fccd47bc3c6abfdf37" compoundref="signaling_8py" startline="250" endline="291">p2p_sdk.signaling.SignalingClient._send_request</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1aab0f00d4c837fb340f962d9af9a3cc4a" compoundref="tcp__optimized_8py" startline="136" endline="151">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acf14a5ec8c719c27fc8c14f4763ef31a" compoundref="upgrader_8py" startline="169" endline="172">p2p_engine.transport.upgrader.MuxedStream.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a7627998cdb6af0f39632ab83119a811c" compoundref="transport_8py" startline="274" endline="295">p2p_sdk.transport.RelayTransport.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a1338b1e24c261dd54f667fa8de1a49d2" compoundref="signaling_8py" startline="80" endline="101">p2p_sdk.signaling.SignalingClient.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a0389f68009226545594f26ed39e987b9" compoundref="transport_8py" startline="206" endline="240">p2p_sdk.transport.RelayTransport.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a471f4f7015a63b6dddd6494df6513c5a" compoundref="signaling_8py" startline="102" endline="119">p2p_sdk.signaling.SignalingClient.disconnect</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1abfdce4eecfaa85a474e260390a9fae6e" compoundref="upgrader_8py" startline="173" endline="175">p2p_engine.transport.upgrader.MuxedStream.is_closed</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1aef8d63fc2da6175be63783e6d804989d" compoundref="transport_8py" startline="241" endline="255">p2p_sdk.transport.RelayTransport.send</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a1e2c2061c6d4f2d212250f75f541c771" compoundref="ping_8py" startline="287" endline="303">p2p_engine.protocol.ping.PingProtocol.stop</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1a385b9902f0737efdf736ba02f31b3eb1" compoundref="tcp__optimized_8py" startline="119" endline="135">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1a71faf0258926eb32e696346bfdbd3d65" compoundref="upgrader_8py" startline="164" endline="168">p2p_engine.transport.upgrader.MuxedStream.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a78b452fd1784c68555192b52b94564dc" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.ping.PingProtocol::_is_dialer</definition>
+        <argsstring></argsstring>
+        <name>_is_dialer</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._is_dialer</qualifiedname>
+        <initializer>=  is_dialer</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="80" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="80" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" compoundref="ping_8py" startline="101" endline="150">p2p_engine.protocol.ping.PingProtocol.ping</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad916f332c673b47593434e9c83e65a63" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.ping.PingProtocol::_timeout</definition>
+        <argsstring></argsstring>
+        <name>_timeout</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._timeout</qualifiedname>
+        <initializer>=  timeout</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="81" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="81" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" compoundref="ping_8py" startline="270" endline="286">p2p_engine.protocol.ping.PingProtocol._handle_ping_request</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" compoundref="ping_8py" startline="151" endline="200">p2p_engine.protocol.ping.PingProtocol._send_ping</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a1f886cb31b3d661f938e8a62b4507079" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.ping.PingProtocol::_on_stats_update</definition>
+        <argsstring></argsstring>
+        <name>_on_stats_update</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._on_stats_update</qualifiedname>
+        <initializer>=  on_stats_update</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="82" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.ping.PingProtocol::_stats</definition>
+        <argsstring></argsstring>
+        <name>_stats</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._stats</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats" kindref="compound">PingStats</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="84" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="84" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" compoundref="ping_8py" startline="270" endline="286">p2p_engine.protocol.ping.PingProtocol._handle_ping_request</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad7458e8f9d146d5cf5027a2803c20e5e" compoundref="ping_8py" startline="225" endline="230">p2p_engine.protocol.ping.PingProtocol._on_ping_failure</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1af26faaa94cb5e7a4b2bc2ee5daf2762b" compoundref="ping_8py" startline="201" endline="224">p2p_engine.protocol.ping.PingProtocol._on_ping_success</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" compoundref="ping_8py" startline="151" endline="200">p2p_engine.protocol.ping.PingProtocol._send_ping</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1a3de8eb5c570f875b921b22792dba06b9" compoundref="bandwidth_8py" startline="228" endline="239">src.bandwidth.BandwidthLimiter.get_stats</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" compoundref="ping_8py" startline="101" endline="150">p2p_engine.protocol.ping.PingProtocol.ping</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1ab10791079e6da96fdd1f93484707bde4" compoundref="bandwidth_8py" startline="218" endline="227">src.bandwidth.BandwidthLimiter.remove_allocation</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a2a4514e58db0af927b6c2620abc79467" compoundref="ping_8py" startline="304" endline="310">p2p_engine.protocol.ping.PingProtocol.reset_stats</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a749fc9c7f9bba3e333e80081d2da652f" compoundref="ping_8py" startline="92" endline="95">p2p_engine.protocol.ping.PingProtocol.stats</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1af4609bbde00596273bb3a35b18bbbea6" compoundref="bandwidth_8py" startline="139" endline="168">src.bandwidth.BandwidthLimiter.throttle_read</referencedby>
+        <referencedby refid="classsrc_1_1bandwidth_1_1_bandwidth_limiter_1acc1e7b50b152006fd2cd87c7a11b6068" compoundref="bandwidth_8py" startline="169" endline="198">src.bandwidth.BandwidthLimiter.throttle_write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.protocol.ping.PingProtocol::_running</definition>
+        <argsstring></argsstring>
+        <name>_running</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._running</qualifiedname>
+        <initializer>=  False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="85" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="85" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abdd1bd9b01e33f990d55890b29bcfb69" compoundref="pubsub_8py" startline="1051" endline="1067">p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1ac5d54f40c68f486bbde4abc963672929" compoundref="client_8py" startline="570" endline="583">p2p_sdk.client.P2PClient._keepalive_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1aeb2a0413787cca99c57640cd5c43d307" compoundref="signaling_8py" startline="292" endline="310">p2p_sdk.signaling.SignalingClient._message_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a50c180497b8a59ec3e0a06e52962c31d" compoundref="transport_8py" startline="154" endline="173">p2p_sdk.transport.UDPTransport._recv_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_web_socket_signaling_client_1a795988da2a9272a6757210196868da73" compoundref="signaling_8py" startline="446" endline="458">p2p_sdk.signaling.WebSocketSignalingClient._ws_message_loop</referencedby>
+        <referencedby refid="classp2p__client_1_1_p2_p_client_1af1b0dad78e5e642b039785eb160ae5b2" compoundref="p2p__client_8py" startline="558" endline="565">p2p_client.P2PClient.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1ab50d95f03e1b4cf5b9517bd4a2d235c9" compoundref="client_8py" startline="744" endline="788">p2p_sdk.client.P2PClient.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a1338b1e24c261dd54f667fa8de1a49d2" compoundref="signaling_8py" startline="80" endline="101">p2p_sdk.signaling.SignalingClient.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a471f4f7015a63b6dddd6494df6513c5a" compoundref="signaling_8py" startline="102" endline="119">p2p_sdk.signaling.SignalingClient.disconnect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_web_socket_signaling_client_1aa8e7dfe42d5a2457c1cdd29b542f2d94" compoundref="signaling_8py" startline="403" endline="416">p2p_sdk.signaling.WebSocketSignalingClient.disconnect</referencedby>
+        <referencedby refid="classp2p__client_1_1_p2_p_client_1adbd41cfe90a99ec4f90d994aa7b027f5" compoundref="p2p__client_8py" startline="322" endline="336">p2p_client.P2PClient.initialize</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a6fe9834464b8dd8c86371bea92317aaf" compoundref="client_8py" startline="218" endline="262">p2p_sdk.client.P2PClient.initialize</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a0428d3ef63e5d0c44fdfb1ddb5bfdc46" compoundref="ping_8py" startline="97" endline="100">p2p_engine.protocol.ping.PingProtocol.is_running</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" compoundref="ping_8py" startline="101" endline="150">p2p_engine.protocol.ping.PingProtocol.ping</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a840136b084a5a72944bc93450fa095aa" compoundref="ping_8py" startline="231" endline="269">p2p_engine.protocol.ping.PingProtocol.serve</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aec705507331376b7f1db21b848be2aed" compoundref="pubsub_8py" startline="823" endline="831">p2p_engine.protocol.pubsub.GossipSub.start</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_protocol_handler_1a4bc676c547e8e4f1b6172782f6f2bdc7" compoundref="pubsub_8py" startline="1289" endline="1293">p2p_engine.protocol.pubsub.PubSubProtocolHandler.start</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a1b23e9670a7b04db9e1362a6c985bd25" compoundref="transport_8py" startline="59" endline="78">p2p_sdk.transport.UDPTransport.start</referencedby>
+        <referencedby refid="classp2p__client_1_1_p2_p_client_1ae9d2f6e8e34b96288560be7a76bdc76e" compoundref="p2p__client_8py" startline="543" endline="557">p2p_client.P2PClient.start_recv_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a1e2c2061c6d4f2d212250f75f541c771" compoundref="ping_8py" startline="287" endline="303">p2p_engine.protocol.ping.PingProtocol.stop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1d77fcf6db5eb5404fceadaef1953a22" compoundref="pubsub_8py" startline="832" endline="847">p2p_engine.protocol.pubsub.GossipSub.stop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_protocol_handler_1a120e606717ca6c068c387529cc940119" compoundref="pubsub_8py" startline="1294" endline="1298">p2p_engine.protocol.pubsub.PubSubProtocolHandler.stop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a139c98bad09a822d105ce9ec9835d632" compoundref="transport_8py" startline="79" endline="95">p2p_sdk.transport.UDPTransport.stop</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a71e9546cabe1e1839f6abfd843eeacfb" prot="protected" static="no" mutable="no">
+        <type>Optional[asyncio.Task]</type>
+        <definition>Optional[asyncio.Task] p2p_engine.protocol.ping.PingProtocol::_task</definition>
+        <argsstring></argsstring>
+        <name>_task</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._task</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="86" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="86" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a840136b084a5a72944bc93450fa095aa" compoundref="ping_8py" startline="231" endline="269">p2p_engine.protocol.ping.PingProtocol.serve</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a1e2c2061c6d4f2d212250f75f541c771" compoundref="ping_8py" startline="287" endline="303">p2p_engine.protocol.ping.PingProtocol.stop</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a78898c27e345aaaaaba4746895913167" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine.protocol.ping.PingProtocol::_max_streams_per_peer</definition>
+        <argsstring></argsstring>
+        <name>_max_streams_per_peer</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._max_streams_per_peer</qualifiedname>
+        <initializer>=  1 if is_dialer else 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="89" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="89" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a5a1abeef3fc276f95e0ef93b28315b67" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.protocol.ping.PingProtocol.__init__</definition>
+        <argsstring>(self, asyncio.StreamReader reader, asyncio.StreamWriter writer, bool is_dialer=True, float timeout=30.0, Optional[Callable[[PingStats], Awaitable[None]]] on_stats_update=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>asyncio.StreamReader</type>
+          <declname>reader</declname>
+        </param>
+        <param>
+          <type>asyncio.StreamWriter</type>
+          <declname>writer</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_dialer</declname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>timeout</declname>
+          <defval>30.0</defval>
+        </param>
+        <param>
+          <type>Optional</type>
+          <defname>on_stats_update</defname>
+          <array>[Callable[[PingStats]</array>
+        </param>
+        <param>
+          <type>Awaitable]]</type>
+          <declname>on_stats_update</declname>
+          <array>[None]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Initialize ping protocol
+
+Args:
+    reader: Stream reader for the connection
+    writer: Stream writer for the connection
+    is_dialer: True if this peer initiated the connection
+    timeout: Default timeout for ping operations (seconds)
+    on_stats_update: Optional callback when stats are updated
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="60" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="67" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a749fc9c7f9bba3e333e80081d2da652f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats" kindref="compound">PingStats</ref></type>
+        <definition> PingStats p2p_engine.protocol.ping.PingProtocol.stats</definition>
+        <argsstring>(self)</argsstring>
+        <name>stats</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol.stats</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get ping statistics</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="92" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="92" bodyend="95"/>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" compoundref="ping_8py" startline="84">p2p_engine.protocol.ping.PingProtocol._stats</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a0428d3ef63e5d0c44fdfb1ddb5bfdc46" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.protocol.ping.PingProtocol.is_running</definition>
+        <argsstring>(self)</argsstring>
+        <name>is_running</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol.is_running</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Check if ping is running</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="97" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="97" bodyend="100"/>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_1a4b48fbaa83eb1d7ef599f703a72bdf58" compoundref="autonat_8py" startline="651">p2p_engine.detection.autonat.AutoNATProtocol._running</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_1a31ffa381c27f7716a9795a4b91129cba" compoundref="autonat_8py" startline="496">p2p_engine.detection.autonat.AutoNATServer._running</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_1ae8299d4ddca2f15c67fafdc44568571f" compoundref="dht_2kademlia_8py" startline="265">p2p_engine.dht.kademlia.KademliaDHT._running</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae5ce415ef1a3e07cf7cf3cd50e7e4bd0" compoundref="engine_8py" startline="152">p2p_engine.engine.P2PEngine._running</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1af36d23d216579918560d6edbd1905aab" compoundref="event_8py" startline="236">p2p_engine.event.EventBus._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1abde5c530069af637a9fcf4284bd9b79e" compoundref="heartbeat_8py" startline="54">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" compoundref="ping_8py" startline="85">p2p_engine.protocol.ping.PingProtocol._running</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats" kindref="compound">PingStats</ref></type>
+        <definition> PingStats p2p_engine.protocol.ping.PingProtocol.ping</definition>
+        <argsstring>(self, int count=1, float interval=1.0)</argsstring>
+        <name>ping</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol.ping</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>interval</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Send ping requests and measure RTT
+
+Args:
+    count: Number of ping requests to send
+    interval: Interval between pings in seconds
+
+Returns:
+    Updated PingStats
+
+Raises:
+    RuntimeError: If not the dialing peer
+    asyncio.TimeoutError: If ping times out
+    ConnectionError: If connection fails
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="101" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="101" bodyend="150"/>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a78b452fd1784c68555192b52b94564dc" compoundref="ping_8py" startline="80">p2p_engine.protocol.ping.PingProtocol._is_dialer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad7458e8f9d146d5cf5027a2803c20e5e" compoundref="ping_8py" startline="225" endline="230">p2p_engine.protocol.ping.PingProtocol._on_ping_failure</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1af26faaa94cb5e7a4b2bc2ee5daf2762b" compoundref="ping_8py" startline="201" endline="224">p2p_engine.protocol.ping.PingProtocol._on_ping_success</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_1a4b48fbaa83eb1d7ef599f703a72bdf58" compoundref="autonat_8py" startline="651">p2p_engine.detection.autonat.AutoNATProtocol._running</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_1a31ffa381c27f7716a9795a4b91129cba" compoundref="autonat_8py" startline="496">p2p_engine.detection.autonat.AutoNATServer._running</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_1ae8299d4ddca2f15c67fafdc44568571f" compoundref="dht_2kademlia_8py" startline="265">p2p_engine.dht.kademlia.KademliaDHT._running</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae5ce415ef1a3e07cf7cf3cd50e7e4bd0" compoundref="engine_8py" startline="152">p2p_engine.engine.P2PEngine._running</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1af36d23d216579918560d6edbd1905aab" compoundref="event_8py" startline="236">p2p_engine.event.EventBus._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1abde5c530069af637a9fcf4284bd9b79e" compoundref="heartbeat_8py" startline="54">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" compoundref="ping_8py" startline="85">p2p_engine.protocol.ping.PingProtocol._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" compoundref="ping_8py" startline="151" endline="200">p2p_engine.protocol.ping.PingProtocol._send_ping</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" compoundref="ping_8py" startline="84">p2p_engine.protocol.ping.PingProtocol._stats</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a840136b084a5a72944bc93450fa095aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.ping.PingProtocol.serve</definition>
+        <argsstring>(self)</argsstring>
+        <name>serve</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol.serve</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle incoming ping requests (server side)
+
+This method echoes back received payloads. It runs until
+the connection is closed or stop() is called.
+
+Raises:
+    RuntimeError: If already running
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="231" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="231" bodyend="269"/>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" compoundref="ping_8py" startline="270" endline="286">p2p_engine.protocol.ping.PingProtocol._handle_ping_request</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_1a4b48fbaa83eb1d7ef599f703a72bdf58" compoundref="autonat_8py" startline="651">p2p_engine.detection.autonat.AutoNATProtocol._running</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_1a31ffa381c27f7716a9795a4b91129cba" compoundref="autonat_8py" startline="496">p2p_engine.detection.autonat.AutoNATServer._running</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_1ae8299d4ddca2f15c67fafdc44568571f" compoundref="dht_2kademlia_8py" startline="265">p2p_engine.dht.kademlia.KademliaDHT._running</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae5ce415ef1a3e07cf7cf3cd50e7e4bd0" compoundref="engine_8py" startline="152">p2p_engine.engine.P2PEngine._running</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1af36d23d216579918560d6edbd1905aab" compoundref="event_8py" startline="236">p2p_engine.event.EventBus._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1abde5c530069af637a9fcf4284bd9b79e" compoundref="heartbeat_8py" startline="54">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" compoundref="ping_8py" startline="85">p2p_engine.protocol.ping.PingProtocol._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ad9f14e34e027d4971c776a9b8a0d1505" compoundref="heartbeat_8py" startline="53">p2p_engine.keeper.heartbeat.HeartbeatKeeper._task</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a71e9546cabe1e1839f6abfd843eeacfb" compoundref="ping_8py" startline="86">p2p_engine.protocol.ping.PingProtocol._task</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a1e2c2061c6d4f2d212250f75f541c771" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.ping.PingProtocol.stop</definition>
+        <argsstring>(self)</argsstring>
+        <name>stop</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol.stop</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stop ping operation</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="287" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="287" bodyend="303"/>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_1a4b48fbaa83eb1d7ef599f703a72bdf58" compoundref="autonat_8py" startline="651">p2p_engine.detection.autonat.AutoNATProtocol._running</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_1a31ffa381c27f7716a9795a4b91129cba" compoundref="autonat_8py" startline="496">p2p_engine.detection.autonat.AutoNATServer._running</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_1ae8299d4ddca2f15c67fafdc44568571f" compoundref="dht_2kademlia_8py" startline="265">p2p_engine.dht.kademlia.KademliaDHT._running</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae5ce415ef1a3e07cf7cf3cd50e7e4bd0" compoundref="engine_8py" startline="152">p2p_engine.engine.P2PEngine._running</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1af36d23d216579918560d6edbd1905aab" compoundref="event_8py" startline="236">p2p_engine.event.EventBus._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1abde5c530069af637a9fcf4284bd9b79e" compoundref="heartbeat_8py" startline="54">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" compoundref="ping_8py" startline="85">p2p_engine.protocol.ping.PingProtocol._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ad9f14e34e027d4971c776a9b8a0d1505" compoundref="heartbeat_8py" startline="53">p2p_engine.keeper.heartbeat.HeartbeatKeeper._task</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a71e9546cabe1e1839f6abfd843eeacfb" compoundref="ping_8py" startline="86">p2p_engine.protocol.ping.PingProtocol._task</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" compoundref="ping_8py" startline="79">p2p_engine.protocol.ping.PingProtocol._writer</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a2a4514e58db0af927b6c2620abc79467" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.ping.PingProtocol.reset_stats</definition>
+        <argsstring>(self)</argsstring>
+        <name>reset_stats</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol.reset_stats</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reset statistics</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="304" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="304" bodyend="310"/>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" compoundref="ping_8py" startline="84">p2p_engine.protocol.ping.PingProtocol._stats</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition> float p2p_engine.protocol.ping.PingProtocol._send_ping</definition>
+        <argsstring>(self)</argsstring>
+        <name>_send_ping</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._send_ping</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Send a single ping request
+
+Returns:
+    RTT in seconds
+
+Raises:
+    asyncio.TimeoutError: If response times out
+    ConnectionError: If connection fails
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="151" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="151" bodyend="200"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1a656b1940e4a75456d95295bebb11a4c8" compoundref="mplex_8py" startline="507">p2p_engine.muxer.mplex.MplexSession._reader</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1aefadadcafe276bcc73f307c2baa4b90f" compoundref="mplex__v2_8py" startline="670">p2p_engine.muxer.mplex_v2.MplexSession._reader</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1abb1019ffb81c11598ea2aba3263ef761" compoundref="yamux_8py" startline="527">p2p_engine.muxer.yamux.YamuxSession._reader</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a34ffe946459c1ff240ad422525161cac" compoundref="ping_8py" startline="78">p2p_engine.protocol.ping.PingProtocol._reader</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" compoundref="ping_8py" startline="84">p2p_engine.protocol.ping.PingProtocol._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad916f332c673b47593434e9c83e65a63" compoundref="ping_8py" startline="81">p2p_engine.protocol.ping.PingProtocol._timeout</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" compoundref="ping_8py" startline="79">p2p_engine.protocol.ping.PingProtocol._writer</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" compoundref="ping_8py" startline="101" endline="150">p2p_engine.protocol.ping.PingProtocol.ping</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1af26faaa94cb5e7a4b2bc2ee5daf2762b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.ping.PingProtocol._on_ping_success</definition>
+        <argsstring>(self, float rtt)</argsstring>
+        <name>_on_ping_success</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._on_ping_success</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>rtt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle successful ping</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="201" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="201" bodyend="224"/>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" compoundref="ping_8py" startline="84">p2p_engine.protocol.ping.PingProtocol._stats</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" compoundref="ping_8py" startline="101" endline="150">p2p_engine.protocol.ping.PingProtocol.ping</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad7458e8f9d146d5cf5027a2803c20e5e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.ping.PingProtocol._on_ping_failure</definition>
+        <argsstring>(self, str reason)</argsstring>
+        <name>_on_ping_failure</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._on_ping_failure</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>reason</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle failed ping</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="225" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="225" bodyend="230"/>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" compoundref="ping_8py" startline="84">p2p_engine.protocol.ping.PingProtocol._stats</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" compoundref="ping_8py" startline="101" endline="150">p2p_engine.protocol.ping.PingProtocol.ping</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.ping.PingProtocol._handle_ping_request</definition>
+        <argsstring>(self)</argsstring>
+        <name>_handle_ping_request</name>
+        <qualifiedname>p2p_engine.protocol.ping.PingProtocol._handle_ping_request</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle a single ping request</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/ping.py" line="270" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="270" bodyend="286"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1a656b1940e4a75456d95295bebb11a4c8" compoundref="mplex_8py" startline="507">p2p_engine.muxer.mplex.MplexSession._reader</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1aefadadcafe276bcc73f307c2baa4b90f" compoundref="mplex__v2_8py" startline="670">p2p_engine.muxer.mplex_v2.MplexSession._reader</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1abb1019ffb81c11598ea2aba3263ef761" compoundref="yamux_8py" startline="527">p2p_engine.muxer.yamux.YamuxSession._reader</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a34ffe946459c1ff240ad422525161cac" compoundref="ping_8py" startline="78">p2p_engine.protocol.ping.PingProtocol._reader</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ade0dc3206a622881ca5464d2b4dde250" compoundref="heartbeat_8py" startline="55">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1a71604159ffa7147b40e1e8a088bc3b2f" compoundref="yamux__optimized_8py" startline="189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" compoundref="ping_8py" startline="84">p2p_engine.protocol.ping.PingProtocol._stats</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad916f332c673b47593434e9c83e65a63" compoundref="ping_8py" startline="81">p2p_engine.protocol.ping.PingProtocol._timeout</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1af0a941c548c75f47e0ba303e97870da2" compoundref="mplex_8py" startline="508">p2p_engine.muxer.mplex.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ac8dbd800119c01b9658a016e176d470c" compoundref="mplex__v2_8py" startline="671">p2p_engine.muxer.mplex_v2.MplexSession._writer</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a142593b6c78a10a684a38583b7bde1f3" compoundref="yamux_8py" startline="528">p2p_engine.muxer.yamux.YamuxSession._writer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" compoundref="ping_8py" startline="79">p2p_engine.protocol.ping.PingProtocol._writer</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a840136b084a5a72944bc93450fa095aa" compoundref="ping_8py" startline="231" endline="269">p2p_engine.protocol.ping.PingProtocol.serve</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>libp2p Ping Protocol Implementation
+
+The ping protocol measures RTT (Round Trip Time) between peers by:
+1. Dialing peer sends 32 random bytes
+2. Listening peer echoes back the same bytes
+3. Dialing peer measures RTT from send to receive
+
+The dialing peer may repeat the process on the same stream.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/ping.py" line="48" column="1" bodyfile="p2p_engine/protocol/ping.py" bodystart="48" bodyend="310"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a5a1abeef3fc276f95e0ef93b28315b67" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a3d23448be6372334d047a9ec57533c45" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_handle_ping_request</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a78b452fd1784c68555192b52b94564dc" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_is_dialer</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a78898c27e345aaaaaba4746895913167" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_max_streams_per_peer</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad7458e8f9d146d5cf5027a2803c20e5e" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_on_ping_failure</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1af26faaa94cb5e7a4b2bc2ee5daf2762b" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_on_ping_success</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a1f886cb31b3d661f938e8a62b4507079" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_on_stats_update</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a34ffe946459c1ff240ad422525161cac" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_reader</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_running</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1aef14a02403226f4ea8ccab1280aa39ef" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_send_ping</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a863140940292c6886e621ac69e4b04a6" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_stats</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a71e9546cabe1e1839f6abfd843eeacfb" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_task</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ad916f332c673b47593434e9c83e65a63" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_timeout</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a8e1ac410e50524eec8f83c7791b8d5a8" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>_writer</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a0428d3ef63e5d0c44fdfb1ddb5bfdc46" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>is_running</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1ab2f2322cb72c638ce23ef40437f6e1d2" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>ping</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a2a4514e58db0af927b6c2620abc79467" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>reset_stats</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a840136b084a5a72944bc93450fa095aa" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>serve</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a749fc9c7f9bba3e333e80081d2da652f" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>stats</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a1e2c2061c6d4f2d212250f75f541c771" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::ping::PingProtocol</scope><name>stop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

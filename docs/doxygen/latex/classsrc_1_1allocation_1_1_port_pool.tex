@@ -1,0 +1,219 @@
+\doxysection{src.\+allocation.\+Port\+Pool类 参考}
+\hypertarget{classsrc_1_1allocation_1_1_port_pool}{}\label{classsrc_1_1allocation_1_1_port_pool}\index{src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a0516e3f139e6e397584a6d536838d340}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\+\_\+port}}=\doxymbox{\hyperlink{namespacesrc_1_1allocation_abf8f8b738b191b5d170009784c438ce0}{DEFAULT\+\_\+\+MIN\+\_\+\+PORT}}, int \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\+\_\+port}}=\doxymbox{\hyperlink{namespacesrc_1_1allocation_aef361d16e7ecdcc3808c499caf1724b1}{DEFAULT\+\_\+\+MAX\+\_\+\+PORT}})
+\item 
+Optional\+[int]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a40c32a0550dfe6c6f932f62d899b8545}{acquire}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a0f25ae8ece9700bf3b9ad6629aa1e40f}{release}} (self, int port)
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_abd146c79972f8ceb8c5e85aea6452320}{available\+\_\+count}} (self)
+\item 
+float \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a23f236a47ae1941791eb2aefbb1eb6b0}{usage\+\_\+percentage}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\+\_\+port}} = min\+\_\+port
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\+\_\+port}} = max\+\_\+port
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a46c49f78e71dff59112f714421465f0b}{total\+\_\+ports}} = \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\+\_\+port}} -\/ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\+\_\+port}} + 1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Set\+[int]\+ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}{\+\_\+available\+\_\+ports}} = set(range(\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\+\_\+port}}, \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\+\_\+port}} + 1))
+\item 
+\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a5a4fb0b4655e0b4306bc2c18c877c99a}{\+\_\+lock}} = asyncio.\+Lock()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Manages a pool of available relay ports.
+
+Uses a bitmap to track port availability for efficient allocation.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00026}{26}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a0516e3f139e6e397584a6d536838d340}\index{src.allocation.PortPool@{src.allocation.PortPool}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a0516e3f139e6e397584a6d536838d340} 
+src.\+allocation.\+Port\+Pool.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{min\+\_\+port}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1allocation_abf8f8b738b191b5d170009784c438ce0}{DEFAULT\+\_\+\+MIN\+\_\+\+PORT}}}, }\item[{int }]{max\+\_\+port}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1allocation_aef361d16e7ecdcc3808c499caf1724b1}{DEFAULT\+\_\+\+MAX\+\_\+\+PORT}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize port pool.
+
+Args:
+    min_port: Minimum port number
+    max_port: Maximum port number (inclusive)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00033}{33}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a40c32a0550dfe6c6f932f62d899b8545}\index{src.allocation.PortPool@{src.allocation.PortPool}!acquire@{acquire}}
+\index{acquire@{acquire}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{acquire()}{acquire()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a40c32a0550dfe6c6f932f62d899b8545} 
+ Optional\+[int]\+ src.\+allocation.\+Port\+Pool.\+acquire (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Acquire a port from the pool.
+
+Returns:
+    Port number or None if pool exhausted
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00047}{47}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00044}{\+\_\+available\+\_\+ports}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00045}{\+\_\+lock}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_abd146c79972f8ceb8c5e85aea6452320}\index{src.allocation.PortPool@{src.allocation.PortPool}!available\_count@{available\_count}}
+\index{available\_count@{available\_count}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{available\_count()}{available\_count()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_abd146c79972f8ceb8c5e85aea6452320} 
+ int src.\+allocation.\+Port\+Pool.\+available\+\_\+count (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get number of available ports.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00081}{81}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00044}{\+\_\+available\+\_\+ports}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a0f25ae8ece9700bf3b9ad6629aa1e40f}\index{src.allocation.PortPool@{src.allocation.PortPool}!release@{release}}
+\index{release@{release}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{release()}{release()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a0f25ae8ece9700bf3b9ad6629aa1e40f} 
+ bool src.\+allocation.\+Port\+Pool.\+release (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{port}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Release a port back to the pool.
+
+Args:
+    port: Port to release
+
+Returns:
+    True if port was released, False if not in pool
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00063}{63}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00044}{\+\_\+available\+\_\+ports}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00042}{max\+\_\+port}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00041}{min\+\_\+port}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a23f236a47ae1941791eb2aefbb1eb6b0}\index{src.allocation.PortPool@{src.allocation.PortPool}!usage\_percentage@{usage\_percentage}}
+\index{usage\_percentage@{usage\_percentage}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{usage\_percentage()}{usage\_percentage()}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a23f236a47ae1941791eb2aefbb1eb6b0} 
+ float src.\+allocation.\+Port\+Pool.\+usage\+\_\+percentage (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get port pool usage as percentage.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00085}{85}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{allocation_8py_source_l00044}{\+\_\+available\+\_\+ports}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00043}{total\+\_\+ports}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e}\index{src.allocation.PortPool@{src.allocation.PortPool}!\_available\_ports@{\_available\_ports}}
+\index{\_available\_ports@{\_available\_ports}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{\_available\_ports}{\_available\_ports}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a730f9b630241ab6985d166cd92245c2e} 
+src.\+allocation.\+Port\+Pool.\+\_\+available\+\_\+ports = set(range(\doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\+\_\+port}}, \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\+\_\+port}} + 1))\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00044}{44}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00047}{acquire()}}, \doxymbox{\hyperlink{allocation_8py_source_l00081}{available\+\_\+count()}}, \doxymbox{\hyperlink{allocation_8py_source_l00063}{release()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00085}{usage\+\_\+percentage()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a5a4fb0b4655e0b4306bc2c18c877c99a}\index{src.allocation.PortPool@{src.allocation.PortPool}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a5a4fb0b4655e0b4306bc2c18c877c99a} 
+src.\+allocation.\+Port\+Pool.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00045}{45}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00047}{acquire()}}, \doxymbox{\hyperlink{allocation_8py_source_l00320}{src.\+allocation.\+Allocation\+Manager.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{src.\+bandwidth.\+Token\+Bucket.\+consume()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{src.\+allocation.\+Allocation\+Manager.\+create\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{src.\+allocation.\+Allocation\+Manager.\+delete\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}}, \doxymbox{\hyperlink{allocation_8py_source_l00252}{src.\+allocation.\+Allocation\+Manager.\+refresh\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00063}{release()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}\index{src.allocation.PortPool@{src.allocation.PortPool}!max\_port@{max\_port}}
+\index{max\_port@{max\_port}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{max\_port}{max\_port}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c} 
+src.\+allocation.\+Port\+Pool.\+max\+\_\+port = max\+\_\+port}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00042}{42}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00063}{release()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}\index{src.allocation.PortPool@{src.allocation.PortPool}!min\_port@{min\_port}}
+\index{min\_port@{min\_port}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{min\_port}{min\_port}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a} 
+src.\+allocation.\+Port\+Pool.\+min\+\_\+port = min\+\_\+port}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00041}{41}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00063}{release()}}.
+
+\Hypertarget{classsrc_1_1allocation_1_1_port_pool_a46c49f78e71dff59112f714421465f0b}\index{src.allocation.PortPool@{src.allocation.PortPool}!total\_ports@{total\_ports}}
+\index{total\_ports@{total\_ports}!src.allocation.PortPool@{src.allocation.PortPool}}
+\doxysubsubsection{\texorpdfstring{total\_ports}{total\_ports}}
+{\footnotesize\ttfamily \label{classsrc_1_1allocation_1_1_port_pool_a46c49f78e71dff59112f714421465f0b} 
+src.\+allocation.\+Port\+Pool.\+total\+\_\+ports = \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_a19ae558b2ee75edf4e7166f90652120c}{max\+\_\+port}} -\/ \doxymbox{\hyperlink{classsrc_1_1allocation_1_1_port_pool_af81531154a99c433c4872e24aae5ff8a}{min\+\_\+port}} + 1}
+
+
+
+在文件 \doxymbox{\hyperlink{allocation_8py_source}{allocation.\+py}} 第 \doxymbox{\hyperlink{allocation_8py_source_l00043}{43}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00085}{usage\+\_\+percentage()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+\doxymbox{\hyperlink{allocation_8py}{allocation.\+py}}\end{DoxyCompactItemize}

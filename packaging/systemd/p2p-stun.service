@@ -1,0 +1,29 @@
+[Unit]
+Description=P2P Platform STUN Server
+Documentation=https://github.com/your-org/p2p-platform
+After=network.target
+
+[Service]
+Type=simple
+User=p2p
+Group=p2p
+WorkingDirectory=/var/lib/p2p-platform
+ExecStart=/usr/bin/stun-server
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/log/p2p-platform /var/lib/p2p-platform
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target

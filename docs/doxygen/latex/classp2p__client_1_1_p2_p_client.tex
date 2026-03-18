@@ -1,0 +1,567 @@
+\doxysection{p2p\+\_\+client.\+P2\+PClient类 参考}
+\hypertarget{classp2p__client_1_1_p2_p_client}{}\label{classp2p__client_1_1_p2_p_client}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+
+
+p2p\+\_\+client.\+P2\+PClient 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a5aed9034d00b6c171805967d672252f4}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_ab49fda6dcc9ad0fd405a9928a739fd1d}{stun\+\_\+server}}="{}stun.\+l.\+google.\+com:\+19302"{}, str \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_af92f046cc032b3bd1ed914a2909101ba}{signaling\+\_\+url}}="{}ws:\+/\+/\+localhost:\+8080"{})
+\item 
+bool \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_adbd41cfe90a99ec4f90d994aa7b027f5}{initialize}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_n_a_t_type}{NATType}} \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_af673707f665ee4299a8e866a809bcb6b}{detect\+\_\+nat\+\_\+async}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_n_a_t_type}{NATType}} \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_aab5cd66cf9003e1935c2786eed6cbeb8}{detect\+\_\+nat}} (self)
+\item 
+Tuple\+[int, str]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a4ff38ee31576dc4bca82ef0a50630019}{connect}} (self, str target\+\_\+did, int timeout=10)
+\item 
+int \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_af41a8b4972c2f1204829841a93f43330}{send\+\_\+data\+\_\+async}} (self, int channel, bytes data)
+\item 
+int \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a74d53e68374f9b7e82189dc589cc4635}{send\+\_\+data}} (self, int channel, bytes data)
+\item 
+Optional\+[bytes]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a326d91809377c457b229925ae40faa34}{recv\+\_\+data\+\_\+async}} (self, int channel=0, int timeout\+\_\+ms=5000)
+\item 
+Optional\+[bytes]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a5b6968f5b519e3de4377028351880fb4}{recv\+\_\+data}} (self, int channel=0, int timeout\+\_\+ms=5000)
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a3e24287ade363b211fdcd430d9603642}{set\+\_\+recv\+\_\+callback}} (self, Callable callback)
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_ae9d2f6e8e34b96288560be7a76bdc76e}{start\+\_\+recv\+\_\+loop}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_af1b0dad78e5e642b039785eb160ae5b2}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_ab49fda6dcc9ad0fd405a9928a739fd1d}{stun\+\_\+server}} = stun\+\_\+server
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_af92f046cc032b3bd1ed914a2909101ba}{signaling\+\_\+url}} = signaling\+\_\+url
+\item 
+Optional\+[socket.\+socket]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_af6716b870e18b9d5fd4b6f932b31d027}{udp\+\_\+socket}} = None
+\item 
+int \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a402d8b8ebfd5b8629fe7091561515de9}{local\+\_\+port}} = 0
+\item 
+str \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a0c5818d860bc914566499b2928befd11}{public\+\_\+ip}} = "{}"{}
+\item 
+int \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_ab2244cd83f26a3857c50c106ff1e9acb}{public\+\_\+port}} = 0
+\item 
+\doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a40587f11ed12fc391f4b51eb3d883b0d}{nat\+\_\+type}} = \doxymbox{\hyperlink{classp2p__client_1_1_n_a_t_type_a2c9fcb55f0ec115ea4449711cacdb6e7}{NATType.\+UNKNOWN}}
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__client_1_1_session_info}{Session\+Info}}]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a51fdf6ade8b011728f047b03df16b67d}{session}} = None
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[bytes, bytes]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_af35706d560e478606c6781b2d25364a1}{\+\_\+build\+\_\+stun\+\_\+request}} (self)
+\item 
+Optional\+[Tuple\+[str, int]\+]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_aa3e75bda4c7f48271edd2041ebb9f16a}{\+\_\+parse\+\_\+stun\+\_\+response}} (self, bytes data, bytes transaction\+\_\+id)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_abcd7311f314b9dc1c393fd4c4031b817}{\+\_\+build\+\_\+packet}} (self, int channel, bytes data)
+\item 
+Optional\+[bytes]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a9b1bcdd0af671071081a53f93e2d4b36}{\+\_\+parse\+\_\+packet}} (self, bytes data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a5f4438b7c9892e0fb350518d41af96be}{\+\_\+running}} = False
+\item 
+Optional\+[Callable]\+ \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_ad73ef02eda64d1b64dc2bbbb698e2e4f}{\+\_\+recv\+\_\+callback}} = None
+\item 
+bytes \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client_a2e4ab46c8b63f721d1e76c425785dc22}{\+\_\+transaction\+\_\+id}} = b"{}"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}P2P Client SDK with complete STUN support.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00302}{302}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__client_1_1_p2_p_client_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__client_1_1_p2_p_client_a5aed9034d00b6c171805967d672252f4}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a5aed9034d00b6c171805967d672252f4} 
+p2p\+\_\+client.\+P2\+PClient.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str }]{stun\+\_\+server}{ = {\ttfamily "{}stun.l.google.com:\+19302"{}}, }\item[{str }]{signaling\+\_\+url}{ = {\ttfamily "{}ws:\+/\+/\+localhost:\+8080"{}}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00305}{305}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__client_1_1_p2_p_client_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__client_1_1_p2_p_client_abcd7311f314b9dc1c393fd4c4031b817}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_build\_packet@{\_build\_packet}}
+\index{\_build\_packet@{\_build\_packet}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_build\_packet()}{\_build\_packet()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_abcd7311f314b9dc1c393fd4c4031b817} 
+ bytes p2p\+\_\+client.\+P2\+PClient.\+\_\+build\+\_\+packet (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{channel}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Build data packet: [size:4][type:1][channel:1][data:N]\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00508}{508}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00485}{send\+\_\+data\+\_\+async()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__client_1_1_p2_p_client_af35706d560e478606c6781b2d25364a1}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_build\_stun\_request@{\_build\_stun\_request}}
+\index{\_build\_stun\_request@{\_build\_stun\_request}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_build\_stun\_request()}{\_build\_stun\_request()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_af35706d560e478606c6781b2d25364a1} 
+ Tuple\+[bytes, bytes]\+ p2p\+\_\+client.\+P2\+PClient.\+\_\+build\+\_\+stun\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Build STUN Binding Request.
+
+Returns:
+    Tuple of (request_bytes, transaction_id)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00390}{390}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__client_1_1_p2_p_client_a9b1bcdd0af671071081a53f93e2d4b36}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_parse\_packet@{\_parse\_packet}}
+\index{\_parse\_packet@{\_parse\_packet}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_parse\_packet()}{\_parse\_packet()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a9b1bcdd0af671071081a53f93e2d4b36} 
+ Optional\+[bytes]\+ p2p\+\_\+client.\+P2\+PClient.\+\_\+parse\+\_\+packet (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse data packet.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00533}{533}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00514}{recv\+\_\+data\+\_\+async()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00543}{start\+\_\+recv\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__client_1_1_p2_p_client_aa3e75bda4c7f48271edd2041ebb9f16a}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_parse\_stun\_response@{\_parse\_stun\_response}}
+\index{\_parse\_stun\_response@{\_parse\_stun\_response}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_parse\_stun\_response()}{\_parse\_stun\_response()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_aa3e75bda4c7f48271edd2041ebb9f16a} 
+ Optional\+[Tuple\+[str, int]\+]\+ p2p\+\_\+client.\+P2\+PClient.\+\_\+parse\+\_\+stun\+\_\+response (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{bytes}]{transaction\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Parse STUN Binding Response, extract public address.
+
+Args:
+    data: Raw response bytes
+    transaction_id: Expected transaction ID
+
+Returns:
+    Tuple of (ip, port) or None if parsing fails
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00415}{415}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00227}{p2p\+\_\+client.\+parse\+\_\+mapped\+\_\+address()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00164}{p2p\+\_\+client.\+parse\+\_\+xor\+\_\+mapped\+\_\+address()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}.
+
+函数调用图:\+
+% FIG 4
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__client_1_1_p2_p_client_af1b0dad78e5e642b039785eb160ae5b2}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!close@{close}}
+\index{close@{close}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_af1b0dad78e5e642b039785eb160ae5b2} 
+p2p\+\_\+client.\+P2\+PClient.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close connection.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{558}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{close()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00317}{session}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00312}{udp\+\_\+socket}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{close()}}.
+
+函数调用图:\+
+% FIG 6
+这是这个函数的调用关系图:\+
+% FIG 7
+\Hypertarget{classp2p__client_1_1_p2_p_client_a4ff38ee31576dc4bca82ef0a50630019}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!connect@{connect}}
+\index{connect@{connect}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a4ff38ee31576dc4bca82ef0a50630019} 
+ Tuple\+[int, str]\+ p2p\+\_\+client.\+P2\+PClient.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{target\+\_\+did}{, }\item[{int }]{timeout}{ = {\ttfamily 10}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to target device.
+
+Args:
+    target_did: Target device ID
+    timeout: Connection timeout in seconds
+
+Returns:
+    Tuple of (error_code, mode_string)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00465}{465}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00313}{local\+\_\+port}}, \doxymbox{\hyperlink{types_8py_source_l00233}{p2p\+\_\+engine.\+types.\+NATInfo.\+local\+\_\+port}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00317}{session}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_aab5cd66cf9003e1935c2786eed6cbeb8}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!detect\_nat@{detect\_nat}}
+\index{detect\_nat@{detect\_nat}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{detect\_nat()}{detect\_nat()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_aab5cd66cf9003e1935c2786eed6cbeb8} 
+ \doxymbox{\hyperlink{classp2p__client_1_1_n_a_t_type}{NATType}} p2p\+\_\+client.\+P2\+PClient.\+detect\+\_\+nat (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Detect NAT type using STUN server (sync wrapper).
+
+Returns:
+    NATType enum value
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00381}{381}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}.
+
+函数调用图:\+
+% FIG 8
+\Hypertarget{classp2p__client_1_1_p2_p_client_af673707f665ee4299a8e866a809bcb6b}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!detect\_nat\_async@{detect\_nat\_async}}
+\index{detect\_nat\_async@{detect\_nat\_async}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{detect\_nat\_async()}{detect\_nat\_async()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_af673707f665ee4299a8e866a809bcb6b} 
+ \doxymbox{\hyperlink{classp2p__client_1_1_n_a_t_type}{NATType}} p2p\+\_\+client.\+P2\+PClient.\+detect\+\_\+nat\+\_\+async (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Detect NAT type using STUN server (async version).
+
+Returns:
+    NATType enum value
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{337}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00390}{\+\_\+build\+\_\+stun\+\_\+request()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00415}{\+\_\+parse\+\_\+stun\+\_\+response()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00320}{\+\_\+transaction\+\_\+id}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00316}{nat\+\_\+type}}, \doxymbox{\hyperlink{identify_8py_source_l00041}{p2p\+\_\+engine.\+protocol.\+identify.\+Identify\+Extension.\+nat\+\_\+type}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00314}{public\+\_\+ip}}, \doxymbox{\hyperlink{types_8py_source_l00230}{p2p\+\_\+engine.\+types.\+NATInfo.\+public\+\_\+ip}}, \doxymbox{\hyperlink{types_8py_source_l00498}{p2p\+\_\+engine.\+types.\+Peer\+Info.\+public\+\_\+ip}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00315}{public\+\_\+port}}, \doxymbox{\hyperlink{types_8py_source_l00231}{p2p\+\_\+engine.\+types.\+NATInfo.\+public\+\_\+port}}, \doxymbox{\hyperlink{types_8py_source_l00499}{p2p\+\_\+engine.\+types.\+Peer\+Info.\+public\+\_\+port}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00310}{stun\+\_\+server}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00312}{udp\+\_\+socket}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00381}{detect\+\_\+nat()}}.
+
+函数调用图:\+
+% FIG 9
+这是这个函数的调用关系图:\+
+% FIG 10
+\Hypertarget{classp2p__client_1_1_p2_p_client_adbd41cfe90a99ec4f90d994aa7b027f5}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!initialize@{initialize}}
+\index{initialize@{initialize}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_adbd41cfe90a99ec4f90d994aa7b027f5} 
+ bool p2p\+\_\+client.\+P2\+PClient.\+initialize (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize client, create UDP socket.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00322}{322}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00313}{local\+\_\+port}}, \doxymbox{\hyperlink{types_8py_source_l00233}{p2p\+\_\+engine.\+types.\+NATInfo.\+local\+\_\+port}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00312}{udp\+\_\+socket}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_a5b6968f5b519e3de4377028351880fb4}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!recv\_data@{recv\_data}}
+\index{recv\_data@{recv\_data}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{recv\_data()}{recv\_data()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a5b6968f5b519e3de4377028351880fb4} 
+ Optional\+[bytes]\+ p2p\+\_\+client.\+P2\+PClient.\+recv\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{channel}{ = {\ttfamily 0}, }\item[{int }]{timeout\+\_\+ms}{ = {\ttfamily 5000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive data (sync wrapper).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00529}{529}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00514}{recv\+\_\+data\+\_\+async()}}.
+
+函数调用图:\+
+% FIG 11
+\Hypertarget{classp2p__client_1_1_p2_p_client_a326d91809377c457b229925ae40faa34}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!recv\_data\_async@{recv\_data\_async}}
+\index{recv\_data\_async@{recv\_data\_async}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{recv\_data\_async()}{recv\_data\_async()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a326d91809377c457b229925ae40faa34} 
+ Optional\+[bytes]\+ p2p\+\_\+client.\+P2\+PClient.\+recv\+\_\+data\+\_\+async (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{channel}{ = {\ttfamily 0}, }\item[{int }]{timeout\+\_\+ms}{ = {\ttfamily 5000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive data (async version).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00514}{514}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00533}{\+\_\+parse\+\_\+packet()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00312}{udp\+\_\+socket}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00529}{recv\+\_\+data()}}.
+
+函数调用图:\+
+% FIG 12
+这是这个函数的调用关系图:\+
+% FIG 13
+\Hypertarget{classp2p__client_1_1_p2_p_client_a74d53e68374f9b7e82189dc589cc4635}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!send\_data@{send\_data}}
+\index{send\_data@{send\_data}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{send\_data()}{send\_data()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a74d53e68374f9b7e82189dc589cc4635} 
+ int p2p\+\_\+client.\+P2\+PClient.\+send\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{channel}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send data to connected peer (sync wrapper).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00504}{504}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00485}{send\+\_\+data\+\_\+async()}}.
+
+函数调用图:\+
+% FIG 14
+\Hypertarget{classp2p__client_1_1_p2_p_client_af41a8b4972c2f1204829841a93f43330}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!send\_data\_async@{send\_data\_async}}
+\index{send\_data\_async@{send\_data\_async}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{send\_data\_async()}{send\_data\_async()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_af41a8b4972c2f1204829841a93f43330} 
+ int p2p\+\_\+client.\+P2\+PClient.\+send\+\_\+data\+\_\+async (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{channel}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send data to connected peer (async version).\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00485}{485}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00508}{\+\_\+build\+\_\+packet()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00317}{session}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00312}{udp\+\_\+socket}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00504}{send\+\_\+data()}}.
+
+函数调用图:\+
+% FIG 15
+这是这个函数的调用关系图:\+
+% FIG 16
+\Hypertarget{classp2p__client_1_1_p2_p_client_a3e24287ade363b211fdcd430d9603642}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!set\_recv\_callback@{set\_recv\_callback}}
+\index{set\_recv\_callback@{set\_recv\_callback}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{set\_recv\_callback()}{set\_recv\_callback()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a3e24287ade363b211fdcd430d9603642} 
+p2p\+\_\+client.\+P2\+PClient.\+set\+\_\+recv\+\_\+callback (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable}]{callback}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set async receive callback.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00539}{539}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00319}{\+\_\+recv\+\_\+callback}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_ae9d2f6e8e34b96288560be7a76bdc76e}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!start\_recv\_loop@{start\_recv\_loop}}
+\index{start\_recv\_loop@{start\_recv\_loop}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{start\_recv\_loop()}{start\_recv\_loop()}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_ae9d2f6e8e34b96288560be7a76bdc76e} 
+p2p\+\_\+client.\+P2\+PClient.\+start\+\_\+recv\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start async receive loop.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00543}{543}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{p2p__client_8py_source_l00533}{\+\_\+parse\+\_\+packet()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00319}{\+\_\+recv\+\_\+callback}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00312}{udp\+\_\+socket}}.
+
+函数调用图:\+
+% FIG 17
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__client_1_1_p2_p_client_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__client_1_1_p2_p_client_ad73ef02eda64d1b64dc2bbbb698e2e4f}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_recv\_callback@{\_recv\_callback}}
+\index{\_recv\_callback@{\_recv\_callback}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_recv\_callback}{\_recv\_callback}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_ad73ef02eda64d1b64dc2bbbb698e2e4f} 
+Optional\+[Callable]\+ p2p\+\_\+client.\+P2\+PClient.\+\_\+recv\+\_\+callback = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00319}{319}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00539}{set\+\_\+recv\+\_\+callback()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00543}{start\+\_\+recv\+\_\+loop()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_a5f4438b7c9892e0fb350518d41af96be}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_running@{\_running}}
+\index{\_running@{\_running}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a5f4438b7c9892e0fb350518d41af96be} 
+bool p2p\+\_\+client.\+P2\+PClient.\+\_\+running = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{318}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00570}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+keepalive\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00292}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00154}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00446}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+ws\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{close()}}, \doxymbox{\hyperlink{client_8py_source_l00744}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00403}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00322}{initialize()}}, \doxymbox{\hyperlink{client_8py_source_l00218}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+initialize()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00543}{start\+\_\+recv\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+stop()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_a2e4ab46c8b63f721d1e76c425785dc22}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!\_transaction\_id@{\_transaction\_id}}
+\index{\_transaction\_id@{\_transaction\_id}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{\_transaction\_id}{\_transaction\_id}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a2e4ab46c8b63f721d1e76c425785dc22} 
+bytes p2p\+\_\+client.\+P2\+PClient.\+\_\+transaction\+\_\+id = b"{}"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00320}{320}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_a402d8b8ebfd5b8629fe7091561515de9}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!local\_port@{local\_port}}
+\index{local\_port@{local\_port}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{local\_port}{local\_port}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a402d8b8ebfd5b8629fe7091561515de9} 
+int p2p\+\_\+client.\+P2\+PClient.\+local\+\_\+port = 0}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00313}{313}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00465}{connect()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00322}{initialize()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_a40587f11ed12fc391f4b51eb3d883b0d}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!nat\_type@{nat\_type}}
+\index{nat\_type@{nat\_type}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{nat\_type}{nat\_type}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a40587f11ed12fc391f4b51eb3d883b0d} 
+p2p\+\_\+client.\+P2\+PClient.\+nat\+\_\+type = \doxymbox{\hyperlink{classp2p__client_1_1_n_a_t_type_a2c9fcb55f0ec115ea4449711cacdb6e7}{NATType.\+UNKNOWN}}}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00316}{316}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_a0c5818d860bc914566499b2928befd11}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!public\_ip@{public\_ip}}
+\index{public\_ip@{public\_ip}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{public\_ip}{public\_ip}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a0c5818d860bc914566499b2928befd11} 
+p2p\+\_\+client.\+P2\+PClient.\+public\+\_\+ip = "{}"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00314}{314}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay_8py_source_l00301}{src.\+relay.\+Relay\+Server.\+\_\+handle\+\_\+allocate()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_ab2244cd83f26a3857c50c106ff1e9acb}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!public\_port@{public\_port}}
+\index{public\_port@{public\_port}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{public\_port}{public\_port}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_ab2244cd83f26a3857c50c106ff1e9acb} 
+int p2p\+\_\+client.\+P2\+PClient.\+public\+\_\+port = 0}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00315}{315}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_a51fdf6ade8b011728f047b03df16b67d}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!session@{session}}
+\index{session@{session}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{session}{session}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_a51fdf6ade8b011728f047b03df16b67d} 
+Optional\+[\doxymbox{\hyperlink{classp2p__client_1_1_session_info}{Session\+Info}}]\+ p2p\+\_\+client.\+P2\+PClient.\+session = None}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00317}{317}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{close()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00465}{connect()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00485}{send\+\_\+data\+\_\+async()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_af92f046cc032b3bd1ed914a2909101ba}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!signaling\_url@{signaling\_url}}
+\index{signaling\_url@{signaling\_url}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{signaling\_url}{signaling\_url}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_af92f046cc032b3bd1ed914a2909101ba} 
+p2p\+\_\+client.\+P2\+PClient.\+signaling\+\_\+url = signaling\+\_\+url}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00311}{311}} 行定义.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_ab49fda6dcc9ad0fd405a9928a739fd1d}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!stun\_server@{stun\_server}}
+\index{stun\_server@{stun\_server}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{stun\_server}{stun\_server}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_ab49fda6dcc9ad0fd405a9928a739fd1d} 
+p2p\+\_\+client.\+P2\+PClient.\+stun\+\_\+server = stun\+\_\+server}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00310}{310}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}} , 以及 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00159}{p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+send\+\_\+request()}}.
+
+\Hypertarget{classp2p__client_1_1_p2_p_client_af6716b870e18b9d5fd4b6f932b31d027}\index{p2p\_client.P2PClient@{p2p\_client.P2PClient}!udp\_socket@{udp\_socket}}
+\index{udp\_socket@{udp\_socket}!p2p\_client.P2PClient@{p2p\_client.P2PClient}}
+\doxysubsubsection{\texorpdfstring{udp\_socket}{udp\_socket}}
+{\footnotesize\ttfamily \label{classp2p__client_1_1_p2_p_client_af6716b870e18b9d5fd4b6f932b31d027} 
+p2p\+\_\+client.\+P2\+PClient.\+udp\+\_\+socket = None}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00312}{312}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{close()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00337}{detect\+\_\+nat\+\_\+async()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00322}{initialize()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00514}{recv\+\_\+data\+\_\+async()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00485}{send\+\_\+data\+\_\+async()}} , 以及 \doxymbox{\hyperlink{p2p__client_8py_source_l00543}{start\+\_\+recv\+\_\+loop()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+client\+\_\+sdk/\+src/\+\doxymbox{\hyperlink{p2p__client_8py}{p2p\+\_\+client.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::fallback::decision::FallbackDecider</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a801fad21a10396ce5aa91631296f5d58" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine.fallback.decision.FallbackDecider::_punch_fail_count</definition>
+        <argsstring></argsstring>
+        <name>_punch_fail_count</name>
+        <qualifiedname>p2p_engine.fallback.decision.FallbackDecider._punch_fail_count</qualifiedname>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/fallback/decision.py" line="45" column="1" bodyfile="p2p_engine/fallback/decision.py" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a25021fef221b71e2882b72d04ef45be1" compoundref="decision_8py" startline="63" endline="157">p2p_engine.fallback.decision.FallbackDecider.decide</referencedby>
+        <referencedby refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1ad07c58cdf93ef60eacbbd01a896325a0" compoundref="decision_8py" startline="48" endline="55">p2p_engine.fallback.decision.FallbackDecider.record_punch_attempt</referencedby>
+        <referencedby refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a91fda32ca41a13f09766d2a30ff3664b" compoundref="decision_8py" startline="158" endline="162">p2p_engine.fallback.decision.FallbackDecider.reset</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a0b7234e343bf71435c6576533ee2a1f4" prot="protected" static="no" mutable="no">
+        <type>Optional[float]</type>
+        <definition>Optional[float] p2p_engine.fallback.decision.FallbackDecider::_last_punch_time</definition>
+        <argsstring></argsstring>
+        <name>_last_punch_time</name>
+        <qualifiedname>p2p_engine.fallback.decision.FallbackDecider._last_punch_time</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/fallback/decision.py" line="46" column="1" bodyfile="p2p_engine/fallback/decision.py" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1ad07c58cdf93ef60eacbbd01a896325a0" compoundref="decision_8py" startline="48" endline="55">p2p_engine.fallback.decision.FallbackDecider.record_punch_attempt</referencedby>
+        <referencedby refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a91fda32ca41a13f09766d2a30ff3664b" compoundref="decision_8py" startline="158" endline="162">p2p_engine.fallback.decision.FallbackDecider.reset</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a4f220f5c578919904e6f7fb09aa40a4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.fallback.decision.FallbackDecider.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.fallback.decision.FallbackDecider.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/fallback/decision.py" line="44" column="1" bodyfile="p2p_engine/fallback/decision.py" bodystart="44" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1ad07c58cdf93ef60eacbbd01a896325a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.fallback.decision.FallbackDecider.record_punch_attempt</definition>
+        <argsstring>(self, bool success)</argsstring>
+        <name>record_punch_attempt</name>
+        <qualifiedname>p2p_engine.fallback.decision.FallbackDecider.record_punch_attempt</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>success</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>记录打孔尝试</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/fallback/decision.py" line="48" column="1" bodyfile="p2p_engine/fallback/decision.py" bodystart="48" bodyend="55"/>
+        <references refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a0b7234e343bf71435c6576533ee2a1f4" compoundref="decision_8py" startline="46">p2p_engine.fallback.decision.FallbackDecider._last_punch_time</references>
+        <references refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a801fad21a10396ce5aa91631296f5d58" compoundref="decision_8py" startline="45">p2p_engine.fallback.decision.FallbackDecider._punch_fail_count</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a25021fef221b71e2882b72d04ef45be1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision" kindref="compound">FallbackDecision</ref></type>
+        <definition> FallbackDecision p2p_engine.fallback.decision.FallbackDecider.decide</definition>
+        <argsstring>(self, NATInfo local_nat, NATInfo peer_nat, ISP local_isp, ISP peer_isp, int punch_duration_ms=0)</argsstring>
+        <name>decide</name>
+        <qualifiedname>p2p_engine.fallback.decision.FallbackDecider.decide</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1types_1_1_n_a_t_info" kindref="compound">NATInfo</ref></type>
+          <declname>local_nat</declname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1types_1_1_n_a_t_info" kindref="compound">NATInfo</ref></type>
+          <declname>peer_nat</declname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1types_1_1_i_s_p" kindref="compound">ISP</ref></type>
+          <declname>local_isp</declname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1types_1_1_i_s_p" kindref="compound">ISP</ref></type>
+          <declname>peer_isp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>punch_duration_ms</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>决定是否需要降级
+
+决策优先级：
+1. 双对称 NAT → 立即降级（0ms）
+2. 移动 CGNAT + 对称 → 快速降级（&lt;1s）
+3. 跨运营商失败多次 → 降级
+4. 跨境超时多次 → 降级
+5. 单次打孔超时 → 重试，3次后降级
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/fallback/decision.py" line="56" column="1" bodyfile="p2p_engine/fallback/decision.py" bodystart="63" bodyend="157"/>
+        <references refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a801fad21a10396ce5aa91631296f5d58" compoundref="decision_8py" startline="45">p2p_engine.fallback.decision.FallbackDecider._punch_fail_count</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a91fda32ca41a13f09766d2a30ff3664b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.fallback.decision.FallbackDecider.reset</definition>
+        <argsstring>(self)</argsstring>
+        <name>reset</name>
+        <qualifiedname>p2p_engine.fallback.decision.FallbackDecider.reset</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>重置状态</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/fallback/decision.py" line="158" column="1" bodyfile="p2p_engine/fallback/decision.py" bodystart="158" bodyend="162"/>
+        <references refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a0b7234e343bf71435c6576533ee2a1f4" compoundref="decision_8py" startline="46">p2p_engine.fallback.decision.FallbackDecider._last_punch_time</references>
+        <references refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a801fad21a10396ce5aa91631296f5d58" compoundref="decision_8py" startline="45">p2p_engine.fallback.decision.FallbackDecider._punch_fail_count</references>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_1add387fea099c61a3234fb8fb466d48ab" compoundref="mplex_8py" startline="443" endline="456">p2p_engine.muxer.mplex.MplexStream._handle_data</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_stream_1aa089ded38b95d16aff8faccc81636f18" compoundref="mplex__v2_8py" startline="487" endline="501">p2p_engine.muxer.mplex_v2.MplexStream._handle_data</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>降级决策器</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/fallback/decision.py" line="41" column="1" bodyfile="p2p_engine/fallback/decision.py" bodystart="41" bodyend="162"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a4f220f5c578919904e6f7fb09aa40a4d" prot="public" virt="non-virtual"><scope>p2p_engine::fallback::decision::FallbackDecider</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a0b7234e343bf71435c6576533ee2a1f4" prot="protected" virt="non-virtual"><scope>p2p_engine::fallback::decision::FallbackDecider</scope><name>_last_punch_time</name></member>
+      <member refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a801fad21a10396ce5aa91631296f5d58" prot="protected" virt="non-virtual"><scope>p2p_engine::fallback::decision::FallbackDecider</scope><name>_punch_fail_count</name></member>
+      <member refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a25021fef221b71e2882b72d04ef45be1" prot="public" virt="non-virtual"><scope>p2p_engine::fallback::decision::FallbackDecider</scope><name>decide</name></member>
+      <member refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1ad07c58cdf93ef60eacbbd01a896325a0" prot="public" virt="non-virtual"><scope>p2p_engine::fallback::decision::FallbackDecider</scope><name>record_punch_attempt</name></member>
+      <member refid="classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_1a91fda32ca41a13f09766d2a30ff3664b" prot="public" virt="non-virtual"><scope>p2p_engine::fallback::decision::FallbackDecider</scope><name>reset</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

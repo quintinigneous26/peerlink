@@ -1,0 +1,300 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener}{}\label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+
+
+类 p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a56629c0d7f69c77aa3fc9d3fcb5e25ff}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport}{Web\+RTCTransport}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_af44831f133526662ca172de3660e4a8e}{transport}}, str local\+\_\+address)
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport}{Web\+RTCTransport}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_af44831f133526662ca172de3660e4a8e}{transport}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection}{Web\+RTCConnection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_ac4e3ff693a7ccb2cb9f4f5a74911f6e4}{accept}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_aa20a81a3733e9f666d055d0a756488f5}{close}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a80a27b30b497da7bd5292ac6467c73f4}{is\+\_\+closed}} (self)
+\item 
+List\+[tuple]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_ab50699c545b129bc44cbff35d67fdc74}{addresses}} (self)
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a7d5dc8f447a4e5df0366bf0d8440905e}{handle\+\_\+offer}} (self, str peer\+\_\+id, str offer\+\_\+sdp)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection}{Web\+RTCConnection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a9c54fb7ba1a6ed0461a65a44e611378c}{finalize\+\_\+connection}} (self, str peer\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport}{Web\+RTCTransport}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a4a4704ad57c7e9a79872c0b7ffc9a964}{\+\_\+transport}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_af44831f133526662ca172de3660e4a8e}{transport}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_aca48d3436e23640e3fd2d094373abf73}{\+\_\+local\+\_\+address}} = local\+\_\+address
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a8a2f2b96d07ba79f4a81c86840d2a79a}{\+\_\+closed}} = False
+\item 
+asyncio.\+Queue\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection}{Web\+RTCConnection}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a26dbe0b7035b70f8a55c4be86a55a309}{\+\_\+accept\+\_\+queue}} = asyncio.\+Queue()
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_adfd4c27505fd1edd29d0196736fe1a67}{\+\_\+pending\+\_\+connections}} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}WebRTC 监听器
+
+监听传入的 WebRTC 连接请求。
+通过信令服务器接收 SDP Offer 并创建 Answer。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00420}{420}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a56629c0d7f69c77aa3fc9d3fcb5e25ff}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a56629c0d7f69c77aa3fc9d3fcb5e25ff} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport}{Web\+RTCTransport}}\textquotesingle{}}]{transport}{, }\item[{str}]{local\+\_\+address}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00428}{428}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_ac4e3ff693a7ccb2cb9f4f5a74911f6e4}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!accept@{accept}}
+\index{accept@{accept}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{accept()}{accept()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_ac4e3ff693a7ccb2cb9f4f5a74911f6e4} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection}{Web\+RTCConnection}} p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+accept (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}接受传入连接
+
+Returns:
+    新接受的连接
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_a763aea3f721c1ceb0837afd44b377cac}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00448}{448}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00520}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00691}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{yamux_8py_source_l00541}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{quic_8py_source_l00485}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{webrtc_8py_source_l00438}{\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00141}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+closed}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00435}{\+\_\+closed}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_ab50699c545b129bc44cbff35d67fdc74}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!addresses@{addresses}}
+\index{addresses@{addresses}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{addresses()}{addresses()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_ab50699c545b129bc44cbff35d67fdc74} 
+ List\+[tuple]\+ p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+addresses (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取监听地址列表\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_a09d07c0fadd4bd2feac56c82aceac6bc}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00491}{491}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00109}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+local\+\_\+address}}, \doxymbox{\hyperlink{webrtc_8py_source_l00147}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+local\+\_\+address}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00434}{\+\_\+local\+\_\+address}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_aa20a81a3733e9f666d055d0a756488f5}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_aa20a81a3733e9f666d055d0a756488f5} 
+ None p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭监听器\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_a3992ec1c95c846aed552dbf38ced9e8f}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00460}{460}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00520}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00691}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{yamux_8py_source_l00541}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{quic_8py_source_l00485}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{webrtc_8py_source_l00438}{\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00141}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00435}{\+\_\+closed}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00441}{\+\_\+pending\+\_\+connections}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a9c54fb7ba1a6ed0461a65a44e611378c}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!finalize\_connection@{finalize\_connection}}
+\index{finalize\_connection@{finalize\_connection}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{finalize\_connection()}{finalize\_connection()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a9c54fb7ba1a6ed0461a65a44e611378c} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection}{Web\+RTCConnection}} p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+finalize\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}完成连接建立
+
+Args:
+    peer_id: 对端 ID
+
+Returns:
+    建立的连接
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00527}{527}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00520}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00691}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{yamux_8py_source_l00541}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{quic_8py_source_l00485}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+accept\+\_\+queue}}, \doxymbox{\hyperlink{webrtc_8py_source_l00438}{\+\_\+accept\+\_\+queue}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00441}{\+\_\+pending\+\_\+connections}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a7d5dc8f447a4e5df0366bf0d8440905e}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!handle\_offer@{handle\_offer}}
+\index{handle\_offer@{handle\_offer}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{handle\_offer()}{handle\_offer()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a7d5dc8f447a4e5df0366bf0d8440905e} 
+ str p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+handle\+\_\+offer (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+id}{, }\item[{str}]{offer\+\_\+sdp}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}处理传入的 Offer
+
+Args:
+    peer_id: 对端 ID
+    offer_sdp: Offer SDP
+
+Returns:
+    Answer SDP
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00497}{497}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00141}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00435}{\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00441}{\+\_\+pending\+\_\+connections}}, \doxymbox{\hyperlink{quic_8py_source_l00479}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+transport}}, \doxymbox{\hyperlink{quic_8py_source_l00953}{p2p\+\_\+engine.\+transport.\+quic.\+Quic\+Protocol\+Factory.\+\_\+transport}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00461}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+transport}}, \doxymbox{\hyperlink{webrtc_8py_source_l00433}{\+\_\+transport}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00032}{p2p\+\_\+engine.\+transport.\+webrtc.\+RTCSession\+Description}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a80a27b30b497da7bd5292ac6467c73f4}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a80a27b30b497da7bd5292ac6467c73f4} 
+ bool p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}检查监听器是否已关闭\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener_aeb320acb7b0eddfcc52f1237380c955b}{p2p\+\_\+engine.\+transport.\+base.\+Listener}} .
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00486}{486}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00462}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+closed}}, \doxymbox{\hyperlink{upgrader_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{webrtc_8py_source_l00141}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+closed}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00435}{\+\_\+closed}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_af44831f133526662ca172de3660e4a8e}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!transport@{transport}}
+\index{transport@{transport}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{transport()}{transport()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_af44831f133526662ca172de3660e4a8e} 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport}{Web\+RTCTransport}}\textquotesingle{} p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+transport (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取关联的传输\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00444}{444}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00479}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+transport}}, \doxymbox{\hyperlink{quic_8py_source_l00953}{p2p\+\_\+engine.\+transport.\+quic.\+Quic\+Protocol\+Factory.\+\_\+transport}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00461}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+transport}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00433}{\+\_\+transport}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a26dbe0b7035b70f8a55c4be86a55a309}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!\_accept\_queue@{\_accept\_queue}}
+\index{\_accept\_queue@{\_accept\_queue}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{\_accept\_queue}{\_accept\_queue}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a26dbe0b7035b70f8a55c4be86a55a309} 
+asyncio.\+Queue\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection}{Web\+RTCConnection}}]\+ p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+accept\+\_\+queue = asyncio.\+Queue()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00438}{438}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00448}{accept()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00460}{close()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00527}{finalize\+\_\+connection()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a8a2f2b96d07ba79f4a81c86840d2a79a}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!\_closed@{\_closed}}
+\index{\_closed@{\_closed}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{\_closed}{\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a8a2f2b96d07ba79f4a81c86840d2a79a} 
+bool p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00435}{435}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00448}{accept()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00342}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+addresses()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00460}{close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00652}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+close()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00276}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00597}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+dial()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00497}{handle\+\_\+offer()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00486}{is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00249}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00337}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00630}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+listen()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00253}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+read()}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00266}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_aca48d3436e23640e3fd2d094373abf73}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!\_local\_address@{\_local\_address}}
+\index{\_local\_address@{\_local\_address}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{\_local\_address}{\_local\_address}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_aca48d3436e23640e3fd2d094373abf73} 
+p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+local\+\_\+address = local\+\_\+address\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00434}{434}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00491}{addresses()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_adfd4c27505fd1edd29d0196736fe1a67}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!\_pending\_connections@{\_pending\_connections}}
+\index{\_pending\_connections@{\_pending\_connections}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{\_pending\_connections}{\_pending\_connections}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_adfd4c27505fd1edd29d0196736fe1a67} 
+dict p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+pending\+\_\+connections = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00441}{441}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00460}{close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00527}{finalize\+\_\+connection()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00497}{handle\+\_\+offer()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a4a4704ad57c7e9a79872c0b7ffc9a964}\index{p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}!\_transport@{\_transport}}
+\index{\_transport@{\_transport}!p2p\_engine.transport.webrtc.WebRTCListener@{p2p\_engine.transport.webrtc.WebRTCListener}}
+\doxysubsubsection{\texorpdfstring{\_transport}{\_transport}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_a4a4704ad57c7e9a79872c0b7ffc9a964} 
+\textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport}{Web\+RTCTransport}}\textquotesingle{} p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+transport = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_af44831f133526662ca172de3660e4a8e}{transport}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webrtc_8py_source}{webrtc.\+py}} 第 \doxymbox{\hyperlink{webrtc_8py_source_l00433}{433}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00497}{handle\+\_\+offer()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00031}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+start()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00048}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+stop()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00444}{transport()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{webrtc_8py}{webrtc.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,406 @@
+\doxysection{benchmark.\+py}
+\hypertarget{benchmark_8py_source}{}\label{benchmark_8py_source}\index{p2p\_engine/muxer/benchmark.py@{p2p\_engine/muxer/benchmark.py}}
+\doxymbox{\hyperlink{benchmark_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00002}00002\ \textcolor{stringliteral}{Performance\ Benchmarks\ for\ Muxer\ Implementations}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00004}00004\ \textcolor{stringliteral}{This\ module\ provides\ benchmarks\ for\ yamux\ and\ mplex\ implementations}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00005}00005\ \textcolor{stringliteral}{to\ measure:}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00006}00006\ \textcolor{stringliteral}{-\/\ Stream\ creation\ latency}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00007}00007\ \textcolor{stringliteral}{-\/\ Message\ throughput}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00008}00008\ \textcolor{stringliteral}{-\/\ Concurrent\ stream\ handling}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00009}00009\ \textcolor{stringliteral}{-\/\ Memory\ usage}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00010}00010\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00011}00011\ \textcolor{stringliteral}{Target\ performance\ goals\ (aligned\ with\ go-\/libp2p):}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00012}00012\ \textcolor{stringliteral}{-\/\ Stream\ creation:\ <\ 2ms}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00013}00013\ \textcolor{stringliteral}{-\/\ Message\ throughput:\ >\ 200\ Mbps}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00014}00014\ \textcolor{stringliteral}{-\/\ Concurrent\ streams:\ >\ 1000}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00015}00015\ \textcolor{stringliteral}{-\/\ Connection\ establishment:\ <\ 30ms}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00016}00016\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00018}00018\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00019}00019\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00020}00020\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00021}00021\ \textcolor{keyword}{import}\ statistics}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00022}00022\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ List,\ Dict,\ Any,\ Callable}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00023}00023\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00024}00024\ \textcolor{keyword}{import}\ tracemalloc}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00026}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_a49bd59d9e66a4c91ce54dcfacc5164cb}{00026}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00029}00029\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00030}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{00030}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{BenchmarkResult}}:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00031}00031\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Result\ of\ a\ benchmark\ run."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00032}00032\ \ \ \ \ name:\ str}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00033}00033\ \ \ \ \ iterations:\ int}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00034}00034\ \ \ \ \ total\_time:\ float}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00035}00035\ \ \ \ \ avg\_time:\ float}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00036}00036\ \ \ \ \ min\_time:\ float}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00037}00037\ \ \ \ \ max\_time:\ float}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00038}00038\ \ \ \ \ p50\_time:\ float}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00039}00039\ \ \ \ \ p95\_time:\ float}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00040}00040\ \ \ \ \ p99\_time:\ float}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00041}00041\ \ \ \ \ throughput:\ float\ \ \textcolor{comment}{\#\ ops/sec\ or\ bytes/sec}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00042}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result_a98094ff4c15a210deb4d8688a0666fcf}{00042}}\ \ \ \ \ metadata:\ Dict[str,\ Any]}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00045}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark}{00045}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark}{MuxerBenchmark}}:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00046}00046\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00047}00047\ \textcolor{stringliteral}{\ \ \ \ Benchmark\ suite\ for\ muxer\ implementations.}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00048}00048\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00049}00049\ \textcolor{stringliteral}{\ \ \ \ Tests\ yamux\ and\ mplex\ against\ go-\/libp2p\ performance\ targets.}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00050}00050\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00052}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a3162f039172a2c88e8cf29179a28dca5}{00052}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a3162f039172a2c88e8cf29179a28dca5}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00053}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{00053}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{results}}:\ List[BenchmarkResult]\ =\ []}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00055}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_aaa63820d561c8238b9475d784a891429}{00055}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_aaa63820d561c8238b9475d784a891429}{benchmark\_stream\_creation}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ session\_factory:\ Callable,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ target\_latency\_ms:\ float\ =\ 2.0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ iterations:\ int\ =\ 1000,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00060}00060\ \ \ \ \ )\ -\/>\ BenchmarkResult:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Benchmark\ stream\ creation\ latency.}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00063}00063\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00064}00064\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Target:\ <\ 2ms\ per\ stream}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ latencies\ =\ []}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ \_\ \textcolor{keywordflow}{in}\ range(iterations):}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ session\ =\ session\_factory()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ start\ =\ time.perf\_counter()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ stream\ =\ await\ session.open\_stream()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ time.perf\_counter()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ latencies.append((end\ -\/\ start)\ *\ 1000)\ \ \textcolor{comment}{\#\ Convert\ to\ ms}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ await\ stream.close()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ await\ session.close()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ avg\ =\ statistics.mean(latencies)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ minimum\ =\ min(latencies)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ maximum\ =\ max(latencies)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ p50\ =\ statistics.median(latencies)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ p95\ =\ statistics.quantiles(latencies,\ n=20)[18]\ \ \textcolor{comment}{\#\ 95th\ percentile}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ p99\ =\ statistics.quantiles(latencies,\ n=100)[98]\ \ \textcolor{comment}{\#\ 99th\ percentile}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ result\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{BenchmarkResult}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}stream\_creation"{}},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ iterations=iterations,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time=sum(latencies)\ /\ 1000,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ avg\_time=avg,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ min\_time=minimum,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ max\_time=maximum,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ p50\_time=p50,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ p95\_time=p95,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ p99\_time=p99,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ throughput=1000\ /\ avg,\ \ \textcolor{comment}{\#\ streams\ per\ second}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ metadata=\{}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\_latency\_ms"{}}:\ target\_latency\_ms,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}passed"{}}:\ avg\ <\ target\_latency\_ms,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{results}}.append(result)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00107}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a2ad2133d6c8501dec7e41883c0902d3b}{00107}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a2ad2133d6c8501dec7e41883c0902d3b}{benchmark\_message\_throughput}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ stream\_factory:\ Callable,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ message\_size:\ int\ =\ 1024,\ \ \textcolor{comment}{\#\ 1KB}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ target\_mbps:\ float\ =\ 200.0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ duration\_sec:\ float\ =\ 5.0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00113}00113\ \ \ \ \ )\ -\/>\ BenchmarkResult:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Benchmark\ message\ throughput.}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00116}00116\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00117}00117\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Target:\ >\ 200\ Mbps}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00118}00118\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ stream\ =\ await\ stream\_factory()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ total\_bytes\ =\ 0}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ start\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ times\ =\ []}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ time.time()\ -\/\ start\_time\ <\ duration\_sec:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ b\textcolor{stringliteral}{"{}x"{}}\ *\ message\_size}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ write\_start\ =\ time.perf\_counter()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ await\ stream.write(data)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ write\_end\ =\ time.perf\_counter()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ times.append((write\_end\ -\/\ write\_start)\ *\ 1000)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ total\_bytes\ +=\ message\_size}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ await\ stream.close()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ total\_time\ =\ time.time()\ -\/\ start\_time}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ throughput\_mbps\ =\ (total\_bytes\ *\ 8)\ /\ (total\_time\ *\ 1\_000\_000)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ avg\_time\ =\ statistics.mean(times)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ result\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{BenchmarkResult}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}message\_throughput"{}},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ iterations=len(times),}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time=total\_time,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ avg\_time=avg\_time,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ min\_time=min(times),}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ max\_time=max(times),}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ p50\_time=statistics.median(times),}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ p95\_time=statistics.quantiles(times,\ n=20)[18],}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ p99\_time=statistics.quantiles(times,\ n=100)[98],}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ throughput=throughput\_mbps,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ metadata=\{}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}message\_size"{}}:\ message\_size,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\_mbps"{}}:\ target\_mbps,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}passed"{}}:\ throughput\_mbps\ >\ target\_mbps,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{results}}.append(result)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00162}00162\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00163}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a81559640e3827c5ae7c914fe53b2a39d}{00163}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a81559640e3827c5ae7c914fe53b2a39d}{benchmark\_concurrent\_streams}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ session\_factory:\ Callable,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ target\_streams:\ int\ =\ 1000,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ messages\_per\_stream:\ int\ =\ 10,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00168}00168\ \ \ \ \ )\ -\/>\ BenchmarkResult:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00170}00170\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Benchmark\ concurrent\ stream\ handling.}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00171}00171\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Target:\ >\ 1000\ concurrent\ streams}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00173}00173\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ session\ =\ session\_factory()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async\ def\ }use\_stream(stream\_id:\ int):}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Single\ stream\ workload."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ stream\ =\ await\ session.open\_stream()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ \_\ \textcolor{keywordflow}{in}\ range(messages\_per\_stream):}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ b\textcolor{stringliteral}{"{}test"{}}\ *\ 256\ \ \textcolor{comment}{\#\ 1KB}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ stream.write(data)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ received\ =\ await\ stream.read(len(data))}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ await\ stream.close()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ stream\_id}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ start\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ concurrent\ streams}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ tasks\ =\ [use\_stream(i)\ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(target\_streams)]}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ await\ asyncio.gather(*tasks)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ total\_time\ =\ time.time()\ -\/\ start\_time}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ result\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{BenchmarkResult}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}concurrent\_streams"{}},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ iterations=target\_streams,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time=total\_time,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ avg\_time=total\_time\ /\ target\_streams,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ min\_time=0,\ \ \textcolor{comment}{\#\ Not\ applicable\ for\ concurrent\ test}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ max\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ p50\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ p95\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ p99\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ throughput=target\_streams\ /\ total\_time,\ \ \textcolor{comment}{\#\ streams/sec}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ metadata=\{}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}messages\_per\_stream"{}}:\ messages\_per\_stream,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\_streams"{}}:\ target\_streams,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}passed"{}}:\ \textcolor{keyword}{True},\ \ \textcolor{comment}{\#\ If\ we\ completed,\ we\ passed}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{results}}.append(result)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ await\ session.close()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00218}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a7df739df0bf6a581582eefcc3d52b780}{00218}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a7df739df0bf6a581582eefcc3d52b780}{benchmark\_memory\_usage}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ session\_factory:\ Callable,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ streams:\ int\ =\ 100,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00222}00222\ \ \ \ \ )\ -\/>\ BenchmarkResult:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00224}00224\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Benchmark\ memory\ usage\ for\ multiple\ streams.}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00225}00225\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ tracemalloc.start()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Baseline\ memory}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ snapshot1\ =\ tracemalloc.take\_snapshot()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ streams}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ session\ =\ session\_factory()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ active\_streams\ =\ []}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ \_\ \textcolor{keywordflow}{in}\ range(streams):}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ stream\ =\ await\ session.open\_stream()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ active\_streams.append(stream)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Peak\ memory}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ snapshot2\ =\ tracemalloc.take\_snapshot()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Cleanup}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ stream\ \textcolor{keywordflow}{in}\ active\_streams:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ await\ stream.close()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ await\ session.close()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Final\ memory}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ snapshot3\ =\ tracemalloc.take\_snapshot()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ tracemalloc.stop()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Calculate\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ top\_stats\ =\ snapshot2.compare\_to(snapshot1,\ \textcolor{stringliteral}{'lineno'})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ total\_kb\ =\ sum(stat.size\_diff\ \textcolor{keywordflow}{for}\ stat\ \textcolor{keywordflow}{in}\ top\_stats)\ /\ 1024}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ per\_stream\_kb\ =\ total\_kb\ /\ streams}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ result\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result}{BenchmarkResult}}(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}memory\_usage"{}},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ iterations=streams,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ avg\_time=per\_stream\_kb,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ min\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ max\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ p50\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ p95\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ p99\_time=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ throughput=0,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ metadata=\{}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_memory\_kb"{}}:\ total\_kb,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}per\_stream\_kb"{}}:\ per\_stream\_kb,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}streams"{}}:\ streams,}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{results}}.append(result)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00278}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a53c9c462823a98bc927c327a52d8a26f}{00278}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a53c9c462823a98bc927c327a52d8a26f}{print\_results}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Print\ all\ benchmark\ results."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 80)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}MUXER\ PERFORMANCE\ BENCHMARK\ RESULTS"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}="{}}\ *\ 80)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ result\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_a9505f0258121465810d08d10b60770f7}{results}}:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n\{result.name.upper().replace('\_',\ '\ ')\}"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}-\/"{}}\ *\ 80)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Iterations:\ \ \ \ \ \ \ \ \{result.iterations:,\}"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Total\ time:\ \ \ \ \ \ \ \ \{result.total\_time:.3f\}s"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Avg\ time:\ \ \ \ \ \ \ \ \ \ \{result.avg\_time:.3f\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Min\ time:\ \ \ \ \ \ \ \ \ \ \{result.min\_time:.3f\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Max\ time:\ \ \ \ \ \ \ \ \ \ \{result.max\_time:.3f\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}P50\ time:\ \ \ \ \ \ \ \ \ \ \{result.p50\_time:.3f\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}P95\ time:\ \ \ \ \ \ \ \ \ \ \{result.p95\_time:.3f\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}P99\ time:\ \ \ \ \ \ \ \ \ \ \{result.p99\_time:.3f\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Throughput:\ \ \ \ \ \ \ \ \{result.throughput:.2f\}"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.metadata:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)nMetadata:"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ key,\ value\ \textcolor{keywordflow}{in}\ result.metadata.items():}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\ \ \{key\}:\ \{value\}"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}\ *\ 80)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00304}00304\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00305}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_aff4c9beb237068eec231485e6ee12909}{00305}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_aff4c9beb237068eec231485e6ee12909}{run\_yamux\_benchmarks}}()\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00306}00306\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ benchmarks\ for\ yamux\ implementation."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00307}00307\ \ \ \ \ \textcolor{keyword}{from}\ .yamux\ \textcolor{keyword}{import}\ YamuxSession}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00309}00309\ \ \ \ \ benchmark\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark}{MuxerBenchmark}}()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00311}00311\ \ \ \ \ \textcolor{comment}{\#\ Setup\ test\ server}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00312}00312\ \ \ \ \ \textcolor{keyword}{async\ def\ }yamux\_session\_factory():}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ For\ testing,\ create\ a\ loopback\ connection}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ socket}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00315}00315\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ pair\ of\ connected\ sockets}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ server\_sock\ =\ socket.socket(socket.AF\_INET,\ socket.SOCK\_STREAM)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ server\_sock.setsockopt(socket.SOL\_SOCKET,\ socket.SO\_REUSEADDR,\ 1)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00319}00319\ \ \ \ \ \ \ \ \ server\_sock.bind((\textcolor{stringliteral}{"{}127.0.0.1"{}},\ 0))}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ server\_sock.listen(1)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ port\ =\ server\_sock.getsockname()[1]}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Connect\ client}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ reader,\ writer\ =\ await\ asyncio.open\_connection(\textcolor{stringliteral}{"{}127.0.0.1"{}},\ port)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Accept\ server}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ server\_reader,\ server\_writer\ =\ await\ asyncio.open\_connection(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ sock=server\_sock.accept()[0]}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ session\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{YamuxSession}}(reader,\ writer,\ is\_client=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ session}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00334}00334\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00335}00335\ \ \ \ \ \textcolor{comment}{\#\ Run\ benchmarks}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00336}00336\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Running\ yamux\ benchmarks..."{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00338}00338\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ await\ benchmark.benchmark\_stream\_creation(yamux\_session\_factory)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00340}00340\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Stream\ creation\ benchmark\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00343}00343\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ await\ benchmark.benchmark\_message\_throughput(}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{lambda}:\ yamux\_session\_factory().open\_stream()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00347}00347\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Message\ throughput\ benchmark\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00349}00349\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00350}00350\ \ \ \ \ benchmark.print\_results()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00352}00352\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00353}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_acf5174c394e4ef5523826bac112b2f83}{00353}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_acf5174c394e4ef5523826bac112b2f83}{run\_mplex\_benchmarks}}()\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00354}00354\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ benchmarks\ for\ mplex\ implementation."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00355}00355\ \ \ \ \ \textcolor{keyword}{from}\ .mplex\ \textcolor{keyword}{import}\ MplexSession}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00357}00357\ \ \ \ \ benchmark\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark}{MuxerBenchmark}}()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00358}00358\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00359}00359\ \ \ \ \ \textcolor{keyword}{async\ def\ }mplex\_session\_factory():}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ socket}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00361}00361\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ pair\ of\ connected\ sockets}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ server\_sock\ =\ socket.socket(socket.AF\_INET,\ socket.SOCK\_STREAM)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ server\_sock.setsockopt(socket.SOL\_SOCKET,\ socket.SO\_REUSEADDR,\ 1)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ server\_sock.bind((\textcolor{stringliteral}{"{}127.0.0.1"{}},\ 0))}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ server\_sock.listen(1)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00367}00367\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ port\ =\ server\_sock.getsockname()[1]}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Connect\ client}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ reader,\ writer\ =\ await\ asyncio.open\_connection(\textcolor{stringliteral}{"{}127.0.0.1"{}},\ port)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ session\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session}{MplexSession}}(reader,\ writer,\ is\_client=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ session}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00375}00375\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00376}00376\ \ \ \ \ \textcolor{comment}{\#\ Run\ benchmarks}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00377}00377\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Running\ mplex\ benchmarks..."{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00379}00379\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ await\ benchmark.benchmark\_stream\_creation(mplex\_session\_factory)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00381}00381\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00382}00382\ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Stream\ creation\ benchmark\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00383}00383\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00384}00384\ \ \ \ \ benchmark.print\_results()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00385}00385\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00387}\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_afc52a610e8515b4e78d2cf3ecae6098e}{00387}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_afc52a610e8515b4e78d2cf3ecae6098e}{main}}():}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00388}00388\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ all\ muxer\ benchmarks."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00389}00389\ \ \ \ \ logging.basicConfig(level=logging.INFO)}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00391}00391\ \ \ \ \ print(\textcolor{stringliteral}{"{}P2P\ Muxer\ Performance\ Benchmarks"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00392}00392\ \ \ \ \ print(\textcolor{stringliteral}{"{}Target:\ go-\/libp2p\ compatibility"{}})}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00393}00393\ \ \ \ \ print()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00394}00394\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00395}00395\ \ \ \ \ await\ \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_aff4c9beb237068eec231485e6ee12909}{run\_yamux\_benchmarks}}()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00396}00396\ \ \ \ \ await\ \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_acf5174c394e4ef5523826bac112b2f83}{run\_mplex\_benchmarks}}()}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00397}00397\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00399}00399\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{benchmark_8py_source_l00400}00400\ \ \ \ \ asyncio.run(\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1benchmark_afc52a610e8515b4e78d2cf3ecae6098e}{main}}())}
+
+\end{DoxyCode}

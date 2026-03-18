@@ -1,0 +1,186 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{}\label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a4cc5f5cef845275ca569ea62d0f8655d}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info}{Certificate\+Info}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a94eb9d62359591aff901d6d9797b1682}{generate\+\_\+certificate}} (self, int validity\+\_\+days=\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a561e546ba3e25839b63821d5f2cab8dd}{MAX\+\_\+\+CERT\+\_\+\+VALIDITY\+\_\+\+DAYS}})
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a685d1adff34fae63d72156c049afe211}{get\+\_\+primary\+\_\+certificate\+\_\+hash}} (self)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a479f12af89592c1727b9d796f6388891}{get\+\_\+all\+\_\+certificate\+\_\+hashes}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info}{Certificate\+Info}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a8e3e6dab8f3a24110476a6163a9a944a}{get\+\_\+certificate}} (self, str cert\+\_\+hash)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a1efdeb116b78a7f60e8d7b84aa844521}{validate\+\_\+certificate\+\_\+hashes}} (self, List\+[str]\+ expected\+\_\+hashes)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea}{\+\_\+certificates}} = \{\}
+\item 
+Optional\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{\+\_\+primary\+\_\+cert\+\_\+hash}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Manages self-signed certificates for WebTransport
+
+Per libp2p spec:
+- Certificates are self-signed
+- Validity period ≤ 14 days
+- Cannot use RSA keys
+- Certificate hashes are advertised in multiaddr
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00084}{84}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a4cc5f5cef845275ca569ea62d0f8655d}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a4cc5f5cef845275ca569ea62d0f8655d} 
+p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00095}{95}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a94eb9d62359591aff901d6d9797b1682}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!generate\_certificate@{generate\_certificate}}
+\index{generate\_certificate@{generate\_certificate}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{generate\_certificate()}{generate\_certificate()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a94eb9d62359591aff901d6d9797b1682} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info}{Certificate\+Info}} p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+generate\+\_\+certificate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{validity\+\_\+days}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a561e546ba3e25839b63821d5f2cab8dd}{MAX\+\_\+\+CERT\+\_\+\+VALIDITY\+\_\+\+DAYS}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Generate a new self-signed certificate
+
+Args:
+    validity_days: Validity period in days (max 14)
+
+Returns:
+    CertificateInfo with certificate details
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00099}{99}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{webtransport_8py_source_l00096}{\+\_\+certificates}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00097}{\+\_\+primary\+\_\+cert\+\_\+hash}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a479f12af89592c1727b9d796f6388891}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!get\_all\_certificate\_hashes@{get\_all\_certificate\_hashes}}
+\index{get\_all\_certificate\_hashes@{get\_all\_certificate\_hashes}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{get\_all\_certificate\_hashes()}{get\_all\_certificate\_hashes()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a479f12af89592c1727b9d796f6388891} 
+ List\+[str]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+get\+\_\+all\+\_\+certificate\+\_\+hashes (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get all certificate hashes for advertisement\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00193}{193}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{webtransport_8py_source_l00096}{\+\_\+certificates}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a8e3e6dab8f3a24110476a6163a9a944a}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!get\_certificate@{get\_certificate}}
+\index{get\_certificate@{get\_certificate}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{get\_certificate()}{get\_certificate()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a8e3e6dab8f3a24110476a6163a9a944a} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info}{Certificate\+Info}}]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+get\+\_\+certificate (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{cert\+\_\+hash}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get certificate by hash\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00197}{197}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{webtransport_8py_source_l00096}{\+\_\+certificates}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a685d1adff34fae63d72156c049afe211}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!get\_primary\_certificate\_hash@{get\_primary\_certificate\_hash}}
+\index{get\_primary\_certificate\_hash@{get\_primary\_certificate\_hash}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{get\_primary\_certificate\_hash()}{get\_primary\_certificate\_hash()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a685d1adff34fae63d72156c049afe211} 
+ Optional\+[str]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+get\+\_\+primary\+\_\+certificate\+\_\+hash (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get the primary certificate hash\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00189}{189}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{webtransport_8py_source_l00097}{\+\_\+primary\+\_\+cert\+\_\+hash}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a1efdeb116b78a7f60e8d7b84aa844521}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!validate\_certificate\_hashes@{validate\_certificate\_hashes}}
+\index{validate\_certificate\_hashes@{validate\_certificate\_hashes}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{validate\_certificate\_hashes()}{validate\_certificate\_hashes()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a1efdeb116b78a7f60e8d7b84aa844521} 
+ bool p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+validate\+\_\+certificate\+\_\+hashes (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\+[str]\+}]{expected\+\_\+hashes}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate that primary certificate hash is in expected list
+
+Args:
+    expected_hashes: List of expected certificate hashes
+
+Returns:
+    True if primary hash is in expected list
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00201}{201}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{webtransport_8py_source_l00097}{\+\_\+primary\+\_\+cert\+\_\+hash}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!\_certificates@{\_certificates}}
+\index{\_certificates@{\_certificates}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{\_certificates}{\_certificates}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea} 
+dict p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+\_\+certificates = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00096}{96}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webtransport_8py_source_l00099}{generate\+\_\+certificate()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00193}{get\+\_\+all\+\_\+certificate\+\_\+hashes()}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00197}{get\+\_\+certificate()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}\index{p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}!\_primary\_cert\_hash@{\_primary\_cert\_hash}}
+\index{\_primary\_cert\_hash@{\_primary\_cert\_hash}!p2p\_engine.transport.webtransport.CertificateManager@{p2p\_engine.transport.webtransport.CertificateManager}}
+\doxysubsubsection{\texorpdfstring{\_primary\_cert\_hash}{\_primary\_cert\_hash}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d} 
+Optional\+[str]\+ p2p\+\_\+engine.\+transport.\+webtransport.\+Certificate\+Manager.\+\_\+primary\+\_\+cert\+\_\+hash = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{webtransport_8py_source}{webtransport.\+py}} 第 \doxymbox{\hyperlink{webtransport_8py_source_l00097}{97}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webtransport_8py_source_l00099}{generate\+\_\+certificate()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00189}{get\+\_\+primary\+\_\+certificate\+\_\+hash()}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00201}{validate\+\_\+certificate\+\_\+hashes()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{webtransport_8py}{webtransport.\+py}}\end{DoxyCompactItemize}

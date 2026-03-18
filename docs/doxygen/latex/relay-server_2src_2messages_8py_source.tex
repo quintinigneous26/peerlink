@@ -1,0 +1,288 @@
+\doxysection{messages.\+py}
+\hypertarget{relay-server_2src_2messages_8py_source}{}\label{relay-server_2src_2messages_8py_source}\index{relay-\/server/src/messages.py@{relay-\/server/src/messages.py}}
+\doxymbox{\hyperlink{relay-server_2src_2messages_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00001}00001\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00002}00002\ \textcolor{stringliteral}{TURN\ Protocol\ Messages\ (RFC\ 8656)}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00004}00004\ \textcolor{stringliteral}{Implements\ TURN\ protocol\ messages\ for\ relay\ allocation\ and\ data\ relay.}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00007}00007\ \textcolor{keyword}{import}\ struct}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00008}00008\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00009}00009\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ IntEnum}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00010}00010\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ List,\ Optional,\ Tuple}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00013}00013\ \textcolor{comment}{\#\ STUN/TURN\ shared\ constants}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00014}00014\ MAGIC\_COOKIE\ =\ 0x2112A442}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00017}00017\ \textcolor{keyword}{class\ }MessageType(IntEnum):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00018}00018\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}STUN\ Message\ Types."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00020}00020\ \ \ \ \ BINDING\_REQUEST\ =\ 0x0001}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00021}00021\ \ \ \ \ BINDING\_RESPONSE\ =\ 0x0101}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00022}00022\ \ \ \ \ BINDING\_ERROR\_RESPONSE\ =\ 0x0111}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00025}00025\ \textcolor{keyword}{class\ }AttributeType(IntEnum):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00026}00026\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}STUN\ Attribute\ Types."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00028}00028\ \ \ \ \ MAPPED\_ADDRESS\ =\ 0x0001}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00029}00029\ \ \ \ \ XOR\_MAPPED\_ADDRESS\ =\ 0x0020}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00030}00030\ \ \ \ \ ERROR\_CODE\ =\ 0x0009}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00031}00031\ \ \ \ \ UNKNOWN\_ATTRIBUTES\ =\ 0x000A}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00032}00032\ \ \ \ \ SOFTWARE\ =\ 0x8022}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00033}00033\ \ \ \ \ ALTERNATE\_SERVER\ =\ 0x8023}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00034}00034\ \ \ \ \ FINGERPRINT\ =\ 0x8028}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00037}00037\ \textcolor{keyword}{class\ }ErrorCode(IntEnum):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00038}00038\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}STUN\ Error\ Codes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00040}00040\ \ \ \ \ TRY\_ALTERNATE\ =\ 300}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00041}00041\ \ \ \ \ BAD\_REQUEST\ =\ 400}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00042}00042\ \ \ \ \ UNAUTHORIZED\ =\ 401}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00043}00043\ \ \ \ \ UNKNOWN\_ATTRIBUTE\ =\ 420}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00044}00044\ \ \ \ \ STALE\_NONCE\ =\ 438}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00045}00045\ \ \ \ \ SERVER\_ERROR\ =\ 500}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00048}00048\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00049}00049\ \textcolor{keyword}{class\ }StunAttribute:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00050}00050\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}STUN\ Attribute."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00052}00052\ \ \ \ \ type:\ int}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00053}00053\ \ \ \ \ value:\ bytes}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00056}00056\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00057}00057\ \textcolor{keyword}{class\ }StunMessage:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00058}00058\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}STUN\ Message."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00060}00060\ \ \ \ \ message\_type:\ int}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00061}00061\ \ \ \ \ message\_length:\ int}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00062}00062\ \ \ \ \ magic\_cookie:\ int}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00063}00063\ \ \ \ \ transaction\_id:\ bytes}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00064}00064\ \ \ \ \ attributes:\ List[StunAttribute]}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00067}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method}{00067}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method}{TurnMethod}}(IntEnum):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00068}00068\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}TURN\ methods."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00070}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method_af2342a4ce5537259e9eab2fc0edfb543}{00070}}\ \ \ \ \ ALLOCATE\ =\ 0x0003}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00071}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method_aa906b42e58b571161b285d6e05fb0ad1}{00071}}\ \ \ \ \ REFRESH\ =\ 0x0004}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00072}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method_aea844419796326cc71616883fcbada15}{00072}}\ \ \ \ \ SEND\ =\ 0x0006}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00073}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method_a03f28a0c44e13bdc374b769fc908bc5f}{00073}}\ \ \ \ \ DATA\ =\ 0x0007}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00074}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method_a6c78900e7159fba0560b5de7124dc22a}{00074}}\ \ \ \ \ CREATE\_PERMISSION\ =\ 0x0008}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00075}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_method_a7c2fafdea6dd38adf6bbef0aa5d5316e}{00075}}\ \ \ \ \ CHANNEL\_BIND\ =\ 0x0009}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00078}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type}{00078}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type}{TurnAttributeType}}(IntEnum):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00079}00079\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}TURN-\/specific\ attributes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00081}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_ac50d8e232e2ad2a14a4e97f075769f5b}{00081}}\ \ \ \ \ CHANNEL\_NUMBER\ =\ 0x000C}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00082}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_a680f07544ab6edee4bda87111b294b0a}{00082}}\ \ \ \ \ LIFETIME\ =\ 0x000D}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00083}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_a48378934628b6b1aa573f8596b7e8132}{00083}}\ \ \ \ \ XOR\_PEER\_ADDRESS\ =\ 0x0012}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00084}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_aa292ba8be539e218a462d6a8099a974a}{00084}}\ \ \ \ \ DATA\ =\ 0x0013}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00085}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_ac34eb74b60f45f75c57679ee0f0bfbde}{00085}}\ \ \ \ \ XOR\_RELAYED\_ADDRESS\ =\ 0x0016}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00086}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_a0f7fac3ad8a08c66fc89f689acf72f84}{00086}}\ \ \ \ \ EVEN\_PORT\ =\ 0x0018}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00087}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_a4efad55d7e9e76a217b0e98a631f00bf}{00087}}\ \ \ \ \ REQUESTED\_TRANSPORT\ =\ 0x0019}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00088}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_ab41c84f33761af1df6477e465aebfcf6}{00088}}\ \ \ \ \ DONT\_FRAGMENT\ =\ 0x001A}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00089}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_a698cccf076a1a98a5179000c3fab15d3}{00089}}\ \ \ \ \ TIMER\_VAL\ =\ 0x0021}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00090}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_attribute_type_a36c21eb628652307193b20c09636b656}{00090}}\ \ \ \ \ RESERVATION\_TOKEN\ =\ 0x0022}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00093}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code}{00093}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code}{TurnErrorCode}}(IntEnum):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00094}00094\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}TURN\ error\ codes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00096}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code_a084f4f3aa481a7564060df13b73ddc8c}{00096}}\ \ \ \ \ ALLOCATION\_MISMATCH\ =\ 437}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00097}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code_a563825ff9513d88bb61c06166de92cc4}{00097}}\ \ \ \ \ STALE\_NONCE\ =\ 438}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00098}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code_ac21290a387c6793a67ab61bc6ea5c567}{00098}}\ \ \ \ \ WRONG\_CREDENTIALS\ =\ 441}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00099}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code_aacbffd5b148ac2854cbb36345f4a2cb7}{00099}}\ \ \ \ \ UNSUPPORTED\_TRANSPORT\_PROTOCOL\ =\ 442}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00100}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code_a4f0f3f528239f226583cf2a93fb131a9}{00100}}\ \ \ \ \ ALLOCATION\_QUOTA\_REACHED\ =\ 486}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00101}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_error_code_a8ad54e2304913117ff83e17111a8a401}{00101}}\ \ \ \ \ INSUFFICIENT\_CAPACITY\ =\ 508}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00104}00104\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00105}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{00105}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation}{TurnAllocation}}:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00106}00106\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00107}00107\ \textcolor{stringliteral}{\ \ \ \ TURN\ allocation\ represents\ a\ relay\ session.}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00108}00108\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ Attributes:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00110}00110\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ allocation\_id:\ Unique\ allocation\ identifier}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ client\_addr:\ Client's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ relay\_addr:\ Relay\ server's\ (ip,\ port)\ for\ this\ allocation}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ peer\_addr:\ Peer's\ (ip,\ port)\ if\ connected}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ lifetime:\ Allocation\ lifetime\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ transport:\ Transport\ protocol\ (UDP/TCP)}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ channel\_number:\ Channel\ number\ if\ using\ channel\ binding}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00117}00117\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ permissions:\ List\ of\ allowed\ peer\ addresses}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00118}00118\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ bytes\_received:\ Total\ bytes\ received\ from\ peer}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00119}00119\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ bytes\_sent:\ Total\ bytes\ sent\ to\ peer}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ created\_at:\ Timestamp\ when\ allocation\ was\ created}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00123}00123\ \ \ \ \ allocation\_id:\ str}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00124}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6461da0c8a6e9ce320d71035a9feaab9}{00124}}\ \ \ \ \ client\_addr:\ Tuple[str,\ int]}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00125}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a92f7b000bf9c335cd75d356d597129a2}{00125}}\ \ \ \ \ relay\_addr:\ Tuple[str,\ int]}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00126}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a09d62020b482ce9be0e511a6e14a470e}{00126}}\ \ \ \ \ peer\_addr:\ Optional[Tuple[str,\ int]]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00127}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a05cba92482ff40c3e72b33a5dfc14c34}{00127}}\ \ \ \ \ lifetime:\ int\ =\ 600\ \ \textcolor{comment}{\#\ 10\ minutes\ default}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00128}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a827dd5e41d641cecc7b94f3b02ea6219}{00128}}\ \ \ \ \ transport:\ str\ =\ \textcolor{stringliteral}{"{}udp"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00129}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_adeabcf4c66cd542f53457f117798645d}{00129}}\ \ \ \ \ channel\_number:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00130}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}{00130}}\ \ \ \ \ permissions:\ List[Tuple[str,\ int]]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00131}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a64b2864d52680640862bc920b05a7bbe}{00131}}\ \ \ \ \ bytes\_received:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00132}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a510aa2b58442f22b356f93d63166574e}{00132}}\ \ \ \ \ bytes\_sent:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00133}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}{00133}}\ \ \ \ \ created\_at:\ float\ =\ 0}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00135}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ad0382dcda3ce586cba6a7d9255ea1e59}{00135}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ad0382dcda3ce586cba6a7d9255ea1e59}{\_\_post\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}{permissions}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}{permissions}}\ =\ []}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}{created\_at}}\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}{created\_at}}\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00142}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a89cc16378258c85b359a8c05579ddc80}{00142}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a89cc16378258c85b359a8c05579ddc80}{is\_expired}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ allocation\ has\ expired."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ time.time()\ -\/\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}{created\_at}}\ >\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a05cba92482ff40c3e72b33a5dfc14c34}{lifetime}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00147}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a9ed7e2ebadb9b2e8a3b865cbb3c57523}{00147}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a9ed7e2ebadb9b2e8a3b865cbb3c57523}{get\_remaining\_time}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ remaining\ lifetime\ in\ seconds."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ max(0,\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a05cba92482ff40c3e72b33a5dfc14c34}{lifetime}}\ -\/\ int(time.time()\ -\/\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}{created\_at}}))}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00152}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a81812b3fe6067aaf6a1eae12b7aea2a1}{00152}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a81812b3fe6067aaf6a1eae12b7aea2a1}{add\_permission}}(self,\ peer\_addr:\ Tuple[str,\ int])\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00154}00154\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Add\ permission\ for\ a\ peer\ address.}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00155}00155\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00156}00156\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00157}00157\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ peer\_addr:\ Peer's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00158}00158\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00159}00159\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00160}00160\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ permission\ was\ added,\ False\ if\ already\ exists}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00161}00161\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ peer\_addr\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}{permissions}}:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}{permissions}}.append(peer\_addr)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00167}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_afbbfe7e73fae0a9e3f7e0d97b56e3f31}{00167}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_afbbfe7e73fae0a9e3f7e0d97b56e3f31}{has\_permission}}(self,\ peer\_addr:\ Tuple[str,\ int])\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00169}00169\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Check\ if\ peer\ has\ permission.}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00170}00170\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00171}00171\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00172}00172\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ peer\_addr:\ Peer's\ (ip,\ port)}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00173}00173\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00174}00174\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00175}00175\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ permission\ exists}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00176}00176\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ peer\_addr\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ae6812d432edf0a3eaf0503ecd245d7d4}{permissions}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00179}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a77f7e3b27e74c5f8d5efd065b1d4a444}{00179}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a77f7e3b27e74c5f8d5efd065b1d4a444}{record\_received}}(self,\ bytes\_count:\ int):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Record\ received\ bytes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a64b2864d52680640862bc920b05a7bbe}{bytes\_received}}\ +=\ bytes\_count}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00183}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a8b1b0fcc2bf9dbf43250e231b599567f}{00183}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a8b1b0fcc2bf9dbf43250e231b599567f}{record\_sent}}(self,\ bytes\_count:\ int):}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Record\ sent\ bytes."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a510aa2b58442f22b356f93d63166574e}{bytes\_sent}}\ +=\ bytes\_count}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00187}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ad325612be27c547bbcb15fd36c1d707f}{00187}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_ad325612be27c547bbcb15fd36c1d707f}{get\_stats}}(self)\ -\/>\ dict:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ allocation\ statistics."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00191}\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a15a48bd032915e6eee14e82c69e6bc1f}{00191}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}allocation\_id"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a15a48bd032915e6eee14e82c69e6bc1f}{allocation\_id}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}client\_addr"{}}:\ f\textcolor{stringliteral}{"{}\{self.client\_addr[0]\}:\{self.client\_addr[1]\}"{}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}relay\_addr"{}}:\ f\textcolor{stringliteral}{"{}\{self.relay\_addr[0]\}:\{self.relay\_addr[1]\}"{}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}peer\_addr"{}}:\ f\textcolor{stringliteral}{"{}\{self.peer\_addr[0]\}:\{self.peer\_addr[1]\}"{}}\ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a09d62020b482ce9be0e511a6e14a470e}{peer\_addr}}\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}lifetime"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a05cba92482ff40c3e72b33a5dfc14c34}{lifetime}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}remaining"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a9ed7e2ebadb9b2e8a3b865cbb3c57523}{get\_remaining\_time}}(),}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}transport"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a827dd5e41d641cecc7b94f3b02ea6219}{transport}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}bytes\_received"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a64b2864d52680640862bc920b05a7bbe}{bytes\_received}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}bytes\_sent"{}}:\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a510aa2b58442f22b356f93d63166574e}{bytes\_sent}},}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}uptime"{}}:\ int(time.time()\ -\/\ self.\doxymbox{\hyperlink{classsrc_1_1messages_1_1_turn_allocation_a6e39ed67dfee85b6a511e43e80051df2}{created\_at}}),}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00204}\doxymbox{\hyperlink{namespacesrc_1_1messages_adaaa790265d257d66ec12e81b48c4709}{00204}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacesrc_1_1messages_adaaa790265d257d66ec12e81b48c4709}{create\_xor\_address\_attr}}(ip:\ str,\ port:\ int,\ transaction\_id:\ bytes)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00205}00205\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00206}00206\ \textcolor{stringliteral}{\ \ \ \ Create\ XOR\ address\ attribute\ (for\ XOR-\/MAPPED-\/ADDRESS,\ XOR-\/PEER-\/ADDRESS,\ XOR-\/RELAYED-\/ADDRESS).}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00207}00207\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00208}00208\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00209}00209\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ ip:\ IP\ address\ string}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00210}00210\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ port:\ Port\ number}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00211}00211\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ transaction\_id:\ 96-\/bit\ transaction\ ID}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00212}00212\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00213}00213\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00214}00214\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Attribute\ value\ bytes}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00215}00215\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00216}00216\ \ \ \ \ cookie\_bytes\ =\ struct.pack(\textcolor{stringliteral}{"{}!I"{}},\ MAGIC\_COOKIE)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00218}00218\ \ \ \ \ \textcolor{comment}{\#\ Determine\ IP\ family}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00219}00219\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}."{}}\ \textcolor{keywordflow}{in}\ ip:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ family\ =\ 0x01\ \ \textcolor{comment}{\#\ IPv4}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ ip\_bytes\ =\ bytes(map(int,\ ip.split(\textcolor{stringliteral}{"{}."{}})))}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00222}00222\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ XOR\ port\ with\ (magic\_cookie\ >>\ 16)}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ xor\_port\ =\ port\ \string^\ ((MAGIC\_COOKIE\ >>\ 16)\ \&\ 0xFFFF)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ XOR\ IP\ with\ magic\ cookie}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ xor\_ip\ =\ bytes(ip\_bytes[i]\ \string^\ cookie\_bytes[i]\ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(4))}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00228}00228\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ family\ =\ 0x02\ \ \textcolor{comment}{\#\ IPv6}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ ip\_bytes\ =\ bytes.fromhex(ip.replace(\textcolor{stringliteral}{"{}:"{}},\ \textcolor{stringliteral}{"{}"{}}))}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ XOR\ port}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ xor\_port\ =\ port\ \string^\ ((MAGIC\_COOKIE\ >>\ 16)\ \&\ 0xFFFF)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ XOR\ IP\ with\ magic\ cookie\ +\ transaction\ ID}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ xor\_ip\ =\ bytes(}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ ip\_bytes[i]\ \string^\ (cookie\_bytes[i\ \%\ 4]\ \textcolor{keywordflow}{if}\ i\ <\ 4\ \textcolor{keywordflow}{else}\ transaction\_id[i\ -\/\ 4])}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(16)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00241}00241\ \ \ \ \ \textcolor{keywordflow}{return}\ struct.pack(\textcolor{stringliteral}{"{}!BBH"{}},\ 0,\ family,\ xor\_port)\ +\ xor\_ip}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00244}\doxymbox{\hyperlink{namespacesrc_1_1messages_af7c4e27674378493ec18c1f764489956}{00244}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacesrc_1_1messages_af7c4e27674378493ec18c1f764489956}{create\_lifetime\_attr}}(lifetime:\ int)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00245}00245\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00246}00246\ \textcolor{stringliteral}{\ \ \ \ Create\ LIFETIME\ attribute.}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00247}00247\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00248}00248\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00249}00249\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ lifetime:\ Lifetime\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00250}00250\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00251}00251\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00252}00252\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Attribute\ value\ bytes}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00253}00253\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00254}00254\ \ \ \ \ \textcolor{keywordflow}{return}\ struct.pack(\textcolor{stringliteral}{"{}!I"{}},\ lifetime)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00256}00256\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00257}\doxymbox{\hyperlink{namespacesrc_1_1messages_ad92891c1b7a2236109d6c07b6b54fcc6}{00257}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacesrc_1_1messages_ad92891c1b7a2236109d6c07b6b54fcc6}{create\_requested\_transport\_attr}}(protocol:\ int\ =\ 17)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00258}00258\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00259}00259\ \textcolor{stringliteral}{\ \ \ \ Create\ REQUESTED-\/TRANSPORT\ attribute.}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00260}00260\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00261}00261\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00262}00262\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ protocol:\ Protocol\ number\ (17\ =\ UDP)}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00263}00263\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00264}00264\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00265}00265\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Attribute\ value\ bytes}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00266}00266\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00267}00267\ \ \ \ \ \textcolor{keywordflow}{return}\ struct.pack(\textcolor{stringliteral}{"{}!I"{}},\ protocol)}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00269}00269\ }
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00270}\doxymbox{\hyperlink{namespacesrc_1_1messages_a9dd1768d7a7e3dade5a23c45c078e373}{00270}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacesrc_1_1messages_a9dd1768d7a7e3dade5a23c45c078e373}{parse\_lifetime\_attr}}(data:\ bytes)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00271}00271\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00272}00272\ \textcolor{stringliteral}{\ \ \ \ Parse\ LIFETIME\ attribute.}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00273}00273\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00274}00274\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00275}00275\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ data:\ Attribute\ value\ bytes}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00276}00276\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00277}00277\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00278}00278\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Lifetime\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00279}00279\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00280}00280\ \ \ \ \ \textcolor{keywordflow}{if}\ len(data)\ >=\ 4:}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ struct.unpack(\textcolor{stringliteral}{"{}!I"{}},\ data[:4])[0]}
+\DoxyCodeLine{\Hypertarget{relay-server_2src_2messages_8py_source_l00282}00282\ \ \ \ \ \textcolor{keywordflow}{return}\ 0}
+
+\end{DoxyCode}

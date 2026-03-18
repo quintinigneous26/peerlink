@@ -1,0 +1,288 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager}{}\label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a651e29e535b1473d71f15358c56ed579}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store}{Session\+Ticket\+Store}}]\+ ticket\+\_\+store=None, bool enable\+\_\+0rtt=True, int max\+\_\+early\+\_\+data\+\_\+size=0\+RTT\+\_\+\+MAX\+\_\+\+EARLY\+\_\+\+DATA\+\_\+\+SIZE)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a6af7c8ff72b657800d69c5ec1382bd9f}{stop}} (self)
+\item 
+Tuple\+[Any, bool]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a5ed13ab8f70c70533cddffc4de1f0ac8}{connect\+\_\+with\+\_\+0rtt}} (self, str host, int port, Any configuration, Optional\+[bytes]\+ early\+\_\+data=None, Optional\+[Callable]\+ protocol\+\_\+factory=None)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_abec796ac258e3a575234de76f62569dd}{store\+\_\+session\+\_\+ticket}} (self, str server\+\_\+name, bytes ticket\+\_\+data, Dict\+[str, Any]\+ transport\+\_\+params)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_metrics}{Connection\+Metrics}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a3675f867f0d0346cbcf463fc8427ab64}{metrics}} (self)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_afad9eae4139f32362db791261b4c3c2f}{get\+\_\+statistics}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_acbd3ff7b4c33bf237795393e2b6c56c9}{\+\_\+record\+\_\+handshake}} (self, float duration\+\_\+sec, bool used\+\_\+0rtt)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a5a45b42a7fd55a6eb5f94393af13518a}{\+\_\+ticket\+\_\+store}} = ticket\+\_\+store or \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store}{Session\+Ticket\+Store}}()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a61ecb32de705569036d7eac26f13980b}{\+\_\+enable\+\_\+0rtt}} = enable\+\_\+0rtt
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a09314517356380e5b418f8b182ff61f4}{\+\_\+max\+\_\+early\+\_\+data\+\_\+size}} = max\+\_\+early\+\_\+data\+\_\+size
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_acc5c4b4536e707347ad480b1b406d494}{\+\_\+metrics}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_metrics}{Connection\+Metrics}}()
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_aef53a8cc0a26c3cf6a94f4753082936d}{\+\_\+handshake\+\_\+times}} = \+[$\,$]\+
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a36be0871e57e56c2740943285b06477f}{\+\_\+0rtt\+\_\+handshake\+\_\+times}} = \+[$\,$]\+
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Manages 0-RTT connections for QUIC.
+
+Provides:
+- Session ticket caching
+- Early data transmission
+- Connection establishment optimization
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00251}{251}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a651e29e535b1473d71f15358c56ed579}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a651e29e535b1473d71f15358c56ed579} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store}{Session\+Ticket\+Store}}]\+ }]{ticket\+\_\+store}{ = {\ttfamily None}, }\item[{bool }]{enable\+\_\+0rtt}{ = {\ttfamily True}, }\item[{int }]{max\+\_\+early\+\_\+data\+\_\+size}{ = {\ttfamily 0RTT\+\_\+MAX\+\_\+EARLY\+\_\+DATA\+\_\+SIZE}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00261}{261}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_acbd3ff7b4c33bf237795393e2b6c56c9}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_record\_handshake@{\_record\_handshake}}
+\index{\_record\_handshake@{\_record\_handshake}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_record\_handshake()}{\_record\_handshake()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_acbd3ff7b4c33bf237795393e2b6c56c9} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+record\+\_\+handshake (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{float}]{duration\+\_\+sec}{, }\item[{bool}]{used\+\_\+0rtt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Record handshake metrics.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00388}{388}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00274}{\+\_\+0rtt\+\_\+handshake\+\_\+times}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00273}{\+\_\+handshake\+\_\+times}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00272}{\+\_\+metrics}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00290}{connect\+\_\+with\+\_\+0rtt()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a5ed13ab8f70c70533cddffc4de1f0ac8}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!connect\_with\_0rtt@{connect\_with\_0rtt}}
+\index{connect\_with\_0rtt@{connect\_with\_0rtt}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{connect\_with\_0rtt()}{connect\_with\_0rtt()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a5ed13ab8f70c70533cddffc4de1f0ac8} 
+ Tuple\+[Any, bool]\+ p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+connect\+\_\+with\+\_\+0rtt (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{host}{, }\item[{int}]{port}{, }\item[{Any}]{configuration}{, }\item[{Optional\+[bytes]\+ }]{early\+\_\+data}{ = {\ttfamily None}, }\item[{Optional\+[Callable]\+ }]{protocol\+\_\+factory}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Establish QUIC connection with 0-RTT if possible.
+
+Args:
+    host: Target host
+    port: Target port
+    configuration: QUIC configuration
+    early_data: Data to send in 0-RTT
+    protocol_factory: Protocol factory function
+
+Returns:
+    Tuple of (connection, used_0rtt)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00283}{283}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00633}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+enable\+\_\+0rtt}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00268}{\+\_\+enable\+\_\+0rtt}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00269}{\+\_\+max\+\_\+early\+\_\+data\+\_\+size}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00272}{\+\_\+metrics}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00388}{\+\_\+record\+\_\+handshake()}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00267}{\+\_\+ticket\+\_\+store}}.
+
+函数调用图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_afad9eae4139f32362db791261b4c3c2f}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!get\_statistics@{get\_statistics}}
+\index{get\_statistics@{get\_statistics}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{get\_statistics()}{get\_statistics()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_afad9eae4139f32362db791261b4c3c2f} 
+ Dict\+[str, Any]\+ p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+get\+\_\+statistics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get detailed statistics.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00416}{416}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00272}{\+\_\+metrics}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00267}{\+\_\+ticket\+\_\+store}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a3675f867f0d0346cbcf463fc8427ab64}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!metrics@{metrics}}
+\index{metrics@{metrics}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{metrics()}{metrics()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a3675f867f0d0346cbcf463fc8427ab64} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_metrics}{Connection\+Metrics}} p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+metrics (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get connection metrics.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00412}{412}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00272}{\+\_\+metrics}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a6af7c8ff72b657800d69c5ec1382bd9f}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!stop@{stop}}
+\index{stop@{stop}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a6af7c8ff72b657800d69c5ec1382bd9f} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop the manager.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00279}{279}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00267}{\+\_\+ticket\+\_\+store}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00279}{stop()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00279}{stop()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_abec796ac258e3a575234de76f62569dd}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!store\_session\_ticket@{store\_session\_ticket}}
+\index{store\_session\_ticket@{store\_session\_ticket}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{store\_session\_ticket()}{store\_session\_ticket()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_abec796ac258e3a575234de76f62569dd} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+store\+\_\+session\+\_\+ticket (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{server\+\_\+name}{, }\item[{bytes}]{ticket\+\_\+data}{, }\item[{Dict\+[str, Any]\+}]{transport\+\_\+params}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Store session ticket from server.
+
+Args:
+    server_name: Server hostname
+    ticket_data: Raw ticket data
+    transport_params: QUIC transport parameters
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00368}{368}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00267}{\+\_\+ticket\+\_\+store}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a36be0871e57e56c2740943285b06477f}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_0rtt\_handshake\_times@{\_0rtt\_handshake\_times}}
+\index{\_0rtt\_handshake\_times@{\_0rtt\_handshake\_times}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_0rtt\_handshake\_times}{\_0rtt\_handshake\_times}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a36be0871e57e56c2740943285b06477f} 
+list p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+0rtt\+\_\+handshake\+\_\+times = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00274}{274}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00388}{\+\_\+record\+\_\+handshake()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a61ecb32de705569036d7eac26f13980b}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_enable\_0rtt@{\_enable\_0rtt}}
+\index{\_enable\_0rtt@{\_enable\_0rtt}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_enable\_0rtt}{\_enable\_0rtt}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a61ecb32de705569036d7eac26f13980b} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+enable\+\_\+0rtt = enable\+\_\+0rtt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00268}{268}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00290}{connect\+\_\+with\+\_\+0rtt()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_aef53a8cc0a26c3cf6a94f4753082936d}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_handshake\_times@{\_handshake\_times}}
+\index{\_handshake\_times@{\_handshake\_times}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_handshake\_times}{\_handshake\_times}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_aef53a8cc0a26c3cf6a94f4753082936d} 
+list p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+handshake\+\_\+times = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00273}{273}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00388}{\+\_\+record\+\_\+handshake()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a09314517356380e5b418f8b182ff61f4}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_max\_early\_data\_size@{\_max\_early\_data\_size}}
+\index{\_max\_early\_data\_size@{\_max\_early\_data\_size}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_max\_early\_data\_size}{\_max\_early\_data\_size}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a09314517356380e5b418f8b182ff61f4} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+max\+\_\+early\+\_\+data\+\_\+size = max\+\_\+early\+\_\+data\+\_\+size\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00269}{269}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00290}{connect\+\_\+with\+\_\+0rtt()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_acc5c4b4536e707347ad480b1b406d494}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_metrics@{\_metrics}}
+\index{\_metrics@{\_metrics}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_metrics}{\_metrics}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_acc5c4b4536e707347ad480b1b406d494} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+metrics = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_metrics}{Connection\+Metrics}}()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00272}{272}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00388}{\+\_\+record\+\_\+handshake()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00290}{connect\+\_\+with\+\_\+0rtt()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00416}{get\+\_\+statistics()}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00412}{metrics()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a5a45b42a7fd55a6eb5f94393af13518a}\index{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}!\_ticket\_store@{\_ticket\_store}}
+\index{\_ticket\_store@{\_ticket\_store}!p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager@{p2p\_engine.transport.quic\_0rtt.ZeroRTTConnectionManager}}
+\doxysubsubsection{\texorpdfstring{\_ticket\_store}{\_ticket\_store}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_zero_r_t_t_connection_manager_a5a45b42a7fd55a6eb5f94393af13518a} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+\_\+ticket\+\_\+store = ticket\+\_\+store or \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store}{Session\+Ticket\+Store}}()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00267}{267}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00290}{connect\+\_\+with\+\_\+0rtt()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00416}{get\+\_\+statistics()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00279}{stop()}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00373}{store\+\_\+session\+\_\+ticket()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{quic__0rtt_8py}{quic\+\_\+0rtt.\+py}}\end{DoxyCompactItemize}

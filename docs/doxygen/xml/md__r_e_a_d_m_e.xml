@@ -1,0 +1,447 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="md__r_e_a_d_m_e" kind="page">
+    <compoundname>md__r_e_a_d_m_e</compoundname>
+    <title>P2P Platform</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><anchor id="md__r_e_a_d_m_e_1autotoc_md265"/></para>
+<para></para>
+<para><bold>基于 WebRTC 和 libp2p 技术的去中心化 P2P 通信平台</bold></para>
+<para><ulink url="https://opensource.org/licenses/MIT"><image type="html" name="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" inline="yes"></image>
+</ulink> <ulink url="https://www.python.org/downloads/"><image type="html" name="https://img.shields.io/badge/python-3.11+-blue.svg" alt="Python 3.11+" inline="yes"></image>
+</ulink> <image type="html" name="https://img.shields.io/badge/coverage-80%25+-green.svg" alt="Test Coverage" inline="yes"></image>
+ <ulink url="./docker-compose.yml"><image type="html" name="https://img.shields.io/badge/docker-ready-blue.svg" alt="Docker" inline="yes"></image>
+</ulink></para>
+<para>特性 • 快速开始 • 安装 • 文档 • 贡献</para>
+<para></para>
+<para><hruler/>
+</para>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md267">
+<title>📖 项目简介</title><para>P2P Platform 是一套完整的去中心化 P2P 通信解决方案，实现了 libp2p 协议栈和 WebRTC 技术的深度集成。平台提供了从 NAT 穿透、设备发现、安全传输到流复用的全栈能力，支持构建高性能、可扩展的 P2P 应用。</para>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md268">
+<title>核心优势</title><para><itemizedlist>
+<listitem><para>🚀 <bold>高性能</bold>: P2P 直连吞吐量 ~150 Mbps，本地连接延迟 ~50ms</para>
+</listitem><listitem><para>🔒 <bold>安全可靠</bold>: TLS 1.3 加密，Ed25519 签名，完整的证书链验证</para>
+</listitem><listitem><para>🌐 <bold>libp2p 兼容</bold>: 完整实现 libp2p 协议栈，与 go-libp2p 互操作</para>
+</listitem><listitem><para>📦 <bold>开箱即用</bold>: Docker Compose 一键部署，支持 RPM/DEB/pip 安装</para>
+</listitem><listitem><para>🧪 <bold>测试完善</bold>: 575 个测试用例，95.1% 通过率，≥80% 代码覆盖率</para>
+</listitem><listitem><para>🛠️ <bold>易于集成</bold>: 简洁的客户端 SDK，支持 Python/Go/Rust/JavaScript</para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md270">
+<title>✨ 主要特性</title><sect2 id="md__r_e_a_d_m_e_1autotoc_md271">
+<title>核心服务</title><para><table rows="6" cols="3"><row>
+<entry thead="yes"><para>服务  </para>
+</entry><entry thead="yes"><para>功能  </para>
+</entry><entry thead="yes"><para>端口  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>STUN 服务器</bold>  </para>
+</entry><entry thead="no"><para>NAT 穿透、公网 IP 获取、NAT 类型检测  </para>
+</entry><entry thead="no"><para>3478 (UDP), 3479 (TCP)  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Relay 服务器</bold>  </para>
+</entry><entry thead="no"><para>TURN 中继、UDP/TCP 转发、带宽管理  </para>
+</entry><entry thead="no"><para>50000-50010  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>信令服务器</bold>  </para>
+</entry><entry thead="no"><para>设备注册、SDP 交换、连接协调  </para>
+</entry><entry thead="no"><para>8080 (WS), 8443 (WSS)  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>DID 服务</bold>  </para>
+</entry><entry thead="no"><para>设备身份认证、访问令牌管理  </para>
+</entry><entry thead="no"><para>9000 (HTTP)  </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>客户端 SDK</bold>  </para>
+</entry><entry thead="no"><para>简化 P2P 连接开发  </para>
+</entry><entry thead="no"><para>-  </para>
+</entry></row>
+</table>
+</para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md272">
+<title>libp2p 协议栈</title><sect3 id="md__r_e_a_d_m_e_1autotoc_md273">
+<title>安全传输</title><para><itemizedlist>
+<listitem><para>✅ TLS 1.3 (<computeroutput>/tls/1.0.0</computeroutput>)</para>
+</listitem><listitem><para>✅ Noise (<computeroutput>/noise</computeroutput>)</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="md__r_e_a_d_m_e_1autotoc_md274">
+<title>流复用</title><para><itemizedlist>
+<listitem><para>✅ mplex (<computeroutput>/mplex/6.7.0</computeroutput>)</para>
+</listitem><listitem><para>✅ yamux (<computeroutput>/yamux/1.0.0</computeroutput>)</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="md__r_e_a_d_m_e_1autotoc_md275">
+<title>核心协议</title><para><itemizedlist>
+<listitem><para>✅ multistream-select (<computeroutput>/multistream/1.0.0</computeroutput>)</para>
+</listitem><listitem><para>✅ Identify (<computeroutput>/ipfs/id/1.0.0</computeroutput>)</para>
+</listitem><listitem><para>✅ AutoNAT (<computeroutput>/libp2p/autonat/1.0.0</computeroutput>)</para>
+</listitem><listitem><para>✅ Circuit Relay v2 (<computeroutput>/libp2p/circuit/relay/0.2.0/hop</computeroutput>)</para>
+</listitem><listitem><para>✅ DCUtR (<computeroutput>/libp2p/dcutr/1.0.0</computeroutput>)</para>
+</listitem><listitem><para>✅ Ping (<computeroutput>/ipfs/ping/1.0.0</computeroutput>)</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="md__r_e_a_d_m_e_1autotoc_md276">
+<title>高级功能</title><para><itemizedlist>
+<listitem><para>✅ Kademlia DHT (<computeroutput>/ipfs/kad/1.0.0</computeroutput>) - 分布式哈希表</para>
+</listitem><listitem><para>✅ GossipSub v1.1 (<computeroutput>/meshsub/1.1.0</computeroutput>) - 发布订阅</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="md__r_e_a_d_m_e_1autotoc_md277">
+<title>传输层</title><para><itemizedlist>
+<listitem><para>✅ TCP</para>
+</listitem><listitem><para>✅ QUIC (<computeroutput>/quic-v1</computeroutput>)</para>
+</listitem><listitem><para>✅ WebRTC (<computeroutput>/webrtc-direct</computeroutput>)</para>
+</listitem><listitem><para>✅ WebTransport (<computeroutput>/webtransport/1.0.0</computeroutput>)</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md278">
+<title>网络优化</title><para><itemizedlist>
+<listitem><para>🌍 28 个全球运营商配置</para>
+</listitem><listitem><para>📱 22 个设备厂商检测</para>
+</listitem><listitem><para>💓 智能心跳和降级策略</para>
+</listitem><listitem><para>🔍 NAT 类型检测 (Full Cone, Restricted, Port Restricted, Symmetric)</para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md280">
+<title>🚀 快速开始</title><sect2 id="md__r_e_a_d_m_e_1autotoc_md281">
+<title>前置要求</title><para><itemizedlist>
+<listitem><para>Docker 20.10+</para>
+</listitem><listitem><para>Docker Compose 2.0+</para>
+</listitem><listitem><para>Python 3.11+ (如果不使用 Docker)</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md282">
+<title>使用 Docker Compose (推荐)</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>克隆项目</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/your-org/p2p-platform.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>p2p-platform</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动所有服务</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>up<sp/>-d</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>查看服务状态</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>ps</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>查看日志</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>logs<sp/>-f</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>停止服务</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>down</highlight></codeline>
+</programlisting></para>
+<para>服务启动后，可以通过以下地址访问：</para>
+<para><itemizedlist>
+<listitem><para>STUN 服务器: <computeroutput>udp://localhost:3478</computeroutput></para>
+</listitem><listitem><para>Relay 服务器: <computeroutput>udp://localhost:50000-50010</computeroutput></para>
+</listitem><listitem><para>信令服务器: <computeroutput>ws://localhost:8080</computeroutput></para>
+</listitem><listitem><para>DID 服务: <computeroutput><ulink url="http://localhost:9000">http://localhost:9000</ulink></computeroutput></para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md283">
+<title>使用客户端 SDK</title><para><programlisting filename=".py"><codeline><highlight class="keyword">from</highlight><highlight class="normal"><sp/>client_sdk<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>P2PClient</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>创建客户端</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>signaling_url=</highlight><highlight class="stringliteral">&quot;ws://localhost:8080&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_server=</highlight><highlight class="stringliteral">&quot;localhost:3478&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>注册设备</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">await<sp/>client.register(device_id=</highlight><highlight class="stringliteral">&quot;device-001&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>连接到另一个设备</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">connection<sp/>=<sp/>await<sp/>client.connect(target_device=</highlight><highlight class="stringliteral">&quot;device-002&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>发送数据</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">await<sp/>connection.send(b</highlight><highlight class="stringliteral">&quot;Hello,<sp/>P2P!&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>接收数据</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">data<sp/>=<sp/>await<sp/>connection.receive()</highlight></codeline>
+<codeline><highlight class="normal">print(f</highlight><highlight class="stringliteral">&quot;Received:<sp/>{data}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">#<sp/>关闭连接</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">await<sp/>connection.close()</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md285">
+<title>📦 安装方式</title><sect2 id="md__r_e_a_d_m_e_1autotoc_md286">
+<title>方式 1: Docker (推荐)</title><para><programlisting filename=".bash"><codeline><highlight class="normal">docker-compose<sp/>up<sp/>-d</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md287">
+<title>方式 2: RPM 包 (CentOS/RHEL/Fedora)</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>下载<sp/>RPM<sp/>包</highlight></codeline>
+<codeline><highlight class="normal">wget<sp/>https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform-1.0.0.rpm</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>rpm<sp/>-ivh<sp/>p2p-platform-1.0.0.rpm</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动服务</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-stun</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-relay</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-signaling</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-did</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>设置开机自启</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>enable<sp/>p2p-stun<sp/>p2p-relay<sp/>p2p-signaling<sp/>p2p-did</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md288">
+<title>方式 3: DEB 包 (Ubuntu/Debian)</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>下载<sp/>DEB<sp/>包</highlight></codeline>
+<codeline><highlight class="normal">wget<sp/>https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform_1.0.0_amd64.deb</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>dpkg<sp/>-i<sp/>p2p-platform_1.0.0_amd64.deb</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-f<sp/><sp/>#<sp/>安装依赖</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动服务</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-stun</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-relay</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-signaling</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-did</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md289">
+<title>方式 4: pip 安装 (仅客户端 SDK)</title><para><programlisting filename=".bash"><codeline><highlight class="normal">pip<sp/>install<sp/>p2p-platform-sdk</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md290">
+<title>方式 5: 源码安装</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>克隆项目</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/your-org/p2p-platform.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>p2p-platform</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装依赖</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>-r<sp/>requirements.txt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动服务<sp/>(需要分别启动各个服务)</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>stun-server/main.py<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>relay-server/main.py<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>signaling-server/main.py<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>did-service/main.py<sp/>&amp;</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md292">
+<title>📚 文档</title><sect2 id="md__r_e_a_d_m_e_1autotoc_md293">
+<title>核心文档</title><para><itemizedlist>
+<listitem><para>架构设计 - 系统架构和组件说明</para>
+</listitem><listitem><para>API 规范 - REST API 和 WebSocket 接口</para>
+</listitem><listitem><para>开发指南 - 开发环境搭建和贡献流程</para>
+</listitem><listitem><para>测试指南 - 测试框架和测试用例</para>
+</listitem><listitem><para>部署指南 - 生产环境部署步骤</para>
+</listitem><listitem><para>运维手册 - 服务管理和故障排查</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md294">
+<title>技术文档</title><para><itemizedlist>
+<listitem><para>libp2p 对比分析</para>
+</listitem><listitem><para>客户端 SDK 设计</para>
+</listitem><listitem><para>性能优化报告</para>
+</listitem><listitem><para>项目完成报告</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md295">
+<title>发布说明</title><para><itemizedlist>
+<listitem><para>CHANGELOG - 版本变更历史</para>
+</listitem><listitem><para>RELEASE NOTES - v1.0.0 发布说明</para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md297">
+<title>🧪 测试</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>运行所有测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/<sp/>-v<sp/>--cov=p2p_engine<sp/>--cov-report=html</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行单元测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/unit/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行集成测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/integration/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行互操作性测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/interop/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行性能测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/benchmark/<sp/>-v<sp/>-m<sp/>benchmark</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>查看覆盖率报告</highlight></codeline>
+<codeline><highlight class="normal">open<sp/>htmlcov/index.html</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md299">
+<title>🛠️ 配置</title><sect2 id="md__r_e_a_d_m_e_1autotoc_md300">
+<title>环境变量</title><para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>STUN<sp/>服务器</highlight></codeline>
+<codeline><highlight class="normal">STUN_PORT=3478</highlight></codeline>
+<codeline><highlight class="normal">STUN_TCP_PORT=3479</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Relay<sp/>服务器</highlight></codeline>
+<codeline><highlight class="normal">RELAY_MIN_PORT=50000</highlight></codeline>
+<codeline><highlight class="normal">RELAY_MAX_PORT=50010</highlight></codeline>
+<codeline><highlight class="normal">RELAY_MAX_ALLOCATIONS=1000</highlight></codeline>
+<codeline><highlight class="normal">RELAY_ALLOCATION_LIFETIME=600</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>信令服务器</highlight></codeline>
+<codeline><highlight class="normal">SIGNALING_WS_PORT=8080</highlight></codeline>
+<codeline><highlight class="normal">SIGNALING_WSS_PORT=8443</highlight></codeline>
+<codeline><highlight class="normal">REDIS_URL=redis://localhost:6379</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>DID<sp/>服务</highlight></codeline>
+<codeline><highlight class="normal">DID_SERVICE_PORT=9000</highlight></codeline>
+<codeline><highlight class="normal">JWT_SECRET=your-secret-key-change-in-production</highlight></codeline>
+<codeline><highlight class="normal">JWT_EXPIRATION=3600</highlight></codeline>
+</programlisting></para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md301">
+<title>配置文件</title><para>详细配置请参考 <ulink url="./docker-compose.yml">docker-compose.yml</ulink> 和各服务目录下的配置文件。</para>
+<para><hruler/>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md303">
+<title>📊 性能指标</title><para><table rows="7" cols="3"><row>
+<entry thead="yes"><para>指标  </para>
+</entry><entry thead="yes"><para>目标  </para>
+</entry><entry thead="yes"><para>实际  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>本地连接延迟  </para>
+</entry><entry thead="no"><para>&lt; 100ms  </para>
+</entry><entry thead="no"><para>~50ms ✅  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>远程连接延迟  </para>
+</entry><entry thead="no"><para>&lt; 500ms  </para>
+</entry><entry thead="no"><para>~200ms ✅  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>中继连接延迟  </para>
+</entry><entry thead="no"><para>&lt; 1000ms  </para>
+</entry><entry thead="no"><para>~500ms ✅  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>P2P 直连吞吐量  </para>
+</entry><entry thead="no"><para>&gt; 100 Mbps  </para>
+</entry><entry thead="no"><para>~150 Mbps ✅  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>中继吞吐量  </para>
+</entry><entry thead="no"><para>&gt; 10 Mbps  </para>
+</entry><entry thead="no"><para>~15 Mbps ✅  </para>
+</entry></row>
+<row>
+<entry thead="no"><para>并发连接数  </para>
+</entry><entry thead="no"><para>100+  </para>
+</entry><entry thead="no"><para>500+ ✅  </para>
+</entry></row>
+</table>
+</para>
+<para><hruler/>
+</para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md305">
+<title>🤝 贡献指南</title><para>我们欢迎所有形式的贡献！</para>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md306">
+<title>如何贡献</title><para><orderedlist>
+<listitem><para>Fork 本项目</para>
+</listitem><listitem><para>创建特性分支 (<computeroutput>git checkout -b feature/AmazingFeature</computeroutput>)</para>
+</listitem><listitem><para>提交更改 (<computeroutput>git commit -m &apos;feat: Add some AmazingFeature&apos;</computeroutput>)</para>
+</listitem><listitem><para>推送到分支 (<computeroutput>git push origin feature/AmazingFeature</computeroutput>)</para>
+</listitem><listitem><para>开启 Pull Request</para>
+</listitem></orderedlist>
+</para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md307">
+<title>提交规范</title><para>我们使用 <ulink url="https://www.conventionalcommits.org/">Conventional Commits</ulink> 规范：</para>
+<para><itemizedlist>
+<listitem><para><computeroutput>feat</computeroutput>: 新功能</para>
+</listitem><listitem><para><computeroutput>fix</computeroutput>: 修复 bug</para>
+</listitem><listitem><para><computeroutput>docs</computeroutput>: 文档更新</para>
+</listitem><listitem><para><computeroutput>test</computeroutput>: 测试相关</para>
+</listitem><listitem><para><computeroutput>refactor</computeroutput>: 代码重构</para>
+</listitem><listitem><para><computeroutput>perf</computeroutput>: 性能优化</para>
+</listitem><listitem><para><computeroutput>chore</computeroutput>: 构建/工具链更新</para>
+</listitem></itemizedlist>
+</para>
+</sect2>
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md308">
+<title>代码规范</title><para><itemizedlist>
+<listitem><para>Python 代码遵循 PEP 8</para>
+</listitem><listitem><para>使用 <computeroutput>black</computeroutput> 格式化代码</para>
+</listitem><listitem><para>使用 <computeroutput>mypy</computeroutput> 进行类型检查</para>
+</listitem><listitem><para>测试覆盖率 ≥ 80%</para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+</sect2>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md310">
+<title>📄 许可证</title><para>本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件</para>
+<para><hruler/>
+</para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md312">
+<title>🙏 致谢</title><para>感谢以下项目和社区：</para>
+<para><itemizedlist>
+<listitem><para><ulink url="https://libp2p.io/">libp2p</ulink> - 模块化网络栈</para>
+</listitem><listitem><para><ulink url="https://webrtc.org/">WebRTC</ulink> - 实时通信技术</para>
+</listitem><listitem><para><ulink url="https://github.com/aiortc/aioquic">aioquic</ulink> - Python QUIC 实现</para>
+</listitem><listitem><para><ulink url="https://github.com/aiortc/aiortc">aiortc</ulink> - Python WebRTC 实现</para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+</sect1>
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md314">
+<title>📞 联系我们</title><para><itemizedlist>
+<listitem><para>问题反馈: <ulink url="https://github.com/your-org/p2p-platform/issues">GitHub Issues</ulink></para>
+</listitem><listitem><para>功能建议: <ulink url="https://github.com/your-org/p2p-platform/discussions">GitHub Discussions</ulink></para>
+</listitem><listitem><para>邮件: <ulink url="mailto:support@your-org.com">support@your-org.com</ulink></para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+<para></para>
+<para><bold>⬆ 回到顶部</bold></para>
+<para>Made with ❤️ by P2P Platform Team</para>
+<para> </para>
+</sect1>
+    </detaileddescription>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

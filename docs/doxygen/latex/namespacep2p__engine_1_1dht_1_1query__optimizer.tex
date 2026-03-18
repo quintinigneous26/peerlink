@@ -1,0 +1,159 @@
+\doxysection{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer}{}\label{namespacep2p__engine_1_1dht_1_1query__optimizer}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result}{Cached\+Result}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache}{Query\+Cache}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy}{Peer\+Selection\+Strategy}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector}{Peer\+Selector}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager}{Optimized\+Query\+Manager}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_aa52c7da2764423afe95441173b81d705}{logger}} = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_ab19e1198621ea9f85c15cb082083fe4c}{DEFAULT\+\_\+\+CACHE\+\_\+\+SIZE}} = 1000
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a12dcb26e96fde51efacc97e4a887fe9f}{CACHE\+\_\+\+TTL}} = 300
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_aff6fd50db0f5bd6145941fa734f7fc92}{MAX\+\_\+\+PARALLEL\+\_\+\+QUERIES}} = 10
+\item 
+float \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_ad45eeb1fcbb41fc9451ce64120c6beba}{QUERY\+\_\+\+TIMEOUT}} = 30.\+0
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a2934941386d44eb51cc9407ce3df602f}{MIN\+\_\+\+ALPHA}} = 2
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_aa30d6902e0aefcee3bb5de853781d200}{MAX\+\_\+\+ALPHA}} = 10
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a8615a549e8ec9d4bcf3c1db406527f52}{ALPHA\+\_\+\+ADAPTATION\+\_\+\+INTERVAL}} = 100
+\item 
+list \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a8a785f6fd6453450952366aa54ace099}{\+\_\+\+\_\+all\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}DHT Query Optimization Module
+
+This module provides optimizations for Kademlia DHT queries to improve
+lookup performance and reduce network overhead.
+
+Optimizations:
+- Parallel query execution with adaptive concurrency
+- Result caching
+- Query pipelining
+- Peer selection heuristics
+- Request coalescing
+
+Target: Faster DHT lookups with reduced latency (< 100ms for common cases)
+\end{DoxyVerb}
+ 
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_a8a785f6fd6453450952366aa54ace099}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!\_\_all\_\_@{\_\_all\_\_}}
+\index{\_\_all\_\_@{\_\_all\_\_}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{\_\_all\_\_}{\_\_all\_\_}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_a8a785f6fd6453450952366aa54ace099} 
+list p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+\_\+\+\_\+all\+\_\+\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}QueryCache"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}CachedResult"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}PeerSelector"{}},}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{stringliteral}{"{}PeerSelectionStrategy"{}},}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{stringliteral}{"{}OptimizedQueryManager"{}},}
+\DoxyCodeLine{00007\ ]}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00555}{555}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_a8615a549e8ec9d4bcf3c1db406527f52}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!ALPHA\_ADAPTATION\_INTERVAL@{ALPHA\_ADAPTATION\_INTERVAL}}
+\index{ALPHA\_ADAPTATION\_INTERVAL@{ALPHA\_ADAPTATION\_INTERVAL}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{ALPHA\_ADAPTATION\_INTERVAL}{ALPHA\_ADAPTATION\_INTERVAL}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_a8615a549e8ec9d4bcf3c1db406527f52} 
+int p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+ALPHA\+\_\+\+ADAPTATION\+\_\+\+INTERVAL = 100}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00042}{42}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_a12dcb26e96fde51efacc97e4a887fe9f}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!CACHE\_TTL@{CACHE\_TTL}}
+\index{CACHE\_TTL@{CACHE\_TTL}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{CACHE\_TTL}{CACHE\_TTL}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_a12dcb26e96fde51efacc97e4a887fe9f} 
+int p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+CACHE\+\_\+\+TTL = 300}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00035}{35}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_ab19e1198621ea9f85c15cb082083fe4c}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!DEFAULT\_CACHE\_SIZE@{DEFAULT\_CACHE\_SIZE}}
+\index{DEFAULT\_CACHE\_SIZE@{DEFAULT\_CACHE\_SIZE}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{DEFAULT\_CACHE\_SIZE}{DEFAULT\_CACHE\_SIZE}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_ab19e1198621ea9f85c15cb082083fe4c} 
+int p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+DEFAULT\+\_\+\+CACHE\+\_\+\+SIZE = 1000}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00034}{34}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_aa52c7da2764423afe95441173b81d705}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_aa52c7da2764423afe95441173b81d705} 
+p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+logger = logging.\+get\+Logger(\+\_\+\+\_\+name\+\_\+\+\_\+)}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00029}{29}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_aa30d6902e0aefcee3bb5de853781d200}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!MAX\_ALPHA@{MAX\_ALPHA}}
+\index{MAX\_ALPHA@{MAX\_ALPHA}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{MAX\_ALPHA}{MAX\_ALPHA}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_aa30d6902e0aefcee3bb5de853781d200} 
+int p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+MAX\+\_\+\+ALPHA = 10}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00041}{41}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_aff6fd50db0f5bd6145941fa734f7fc92}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!MAX\_PARALLEL\_QUERIES@{MAX\_PARALLEL\_QUERIES}}
+\index{MAX\_PARALLEL\_QUERIES@{MAX\_PARALLEL\_QUERIES}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{MAX\_PARALLEL\_QUERIES}{MAX\_PARALLEL\_QUERIES}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_aff6fd50db0f5bd6145941fa734f7fc92} 
+int p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+MAX\+\_\+\+PARALLEL\+\_\+\+QUERIES = 10}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00036}{36}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_a2934941386d44eb51cc9407ce3df602f}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!MIN\_ALPHA@{MIN\_ALPHA}}
+\index{MIN\_ALPHA@{MIN\_ALPHA}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{MIN\_ALPHA}{MIN\_ALPHA}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_a2934941386d44eb51cc9407ce3df602f} 
+int p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+MIN\+\_\+\+ALPHA = 2}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00040}{40}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1dht_1_1query__optimizer_ad45eeb1fcbb41fc9451ce64120c6beba}\index{p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}!QUERY\_TIMEOUT@{QUERY\_TIMEOUT}}
+\index{QUERY\_TIMEOUT@{QUERY\_TIMEOUT}!p2p\_engine.dht.query\_optimizer@{p2p\_engine.dht.query\_optimizer}}
+\doxysubsubsection{\texorpdfstring{QUERY\_TIMEOUT}{QUERY\_TIMEOUT}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1dht_1_1query__optimizer_ad45eeb1fcbb41fc9451ce64120c6beba} 
+float p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+QUERY\+\_\+\+TIMEOUT = 30.\+0}
+
+
+
+在文件 \doxymbox{\hyperlink{query__optimizer_8py_source}{query\+\_\+optimizer.\+py}} 第 \doxymbox{\hyperlink{query__optimizer_8py_source_l00037}{37}} 行定义.
+

@@ -1,0 +1,162 @@
+\doxysection{p2p\+\_\+client 命名空间参考}
+\hypertarget{namespacep2p__client}{}\label{namespacep2p__client}\index{p2p\_client@{p2p\_client}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_message_type}{Message\+Type}}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_attribute_type}{Attribute\+Type}}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_n_a_t_type}{NATType}}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_connection_mode}{Connection\+Mode}}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_stun_attribute}{Stun\+Attribute}}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_stun_message}{Stun\+Message}}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_session_info}{Session\+Info}}
+\item 
+class \doxymbox{\hyperlink{classp2p__client_1_1_p2_p_client}{P2\+PClient}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[Tuple\+[str, int]\+]\+ \doxymbox{\hyperlink{namespacep2p__client_a6b11aa47de5aaecec68915172a8be093}{parse\+\_\+xor\+\_\+mapped\+\_\+address}} (bytes data, bytes transaction\+\_\+id)
+\item 
+Optional\+[Tuple\+[str, int]\+]\+ \doxymbox{\hyperlink{namespacep2p__client_a27ce3a60f2d4dea12f2744f1b2693f31}{parse\+\_\+mapped\+\_\+address}} (bytes data)
+\item 
+bool \doxymbox{\hyperlink{namespacep2p__client_a24a7b9ac8bc914f0313296da4a986cd8}{verify\+\_\+fingerprint}} (bytes message, bytes fingerprint\+\_\+value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{namespacep2p__client_a75cd46d93c798d583ea81dd822964853}{MAGIC\+\_\+\+COOKIE}} = 0x2112\+A442
+\item 
+int \doxymbox{\hyperlink{namespacep2p__client_a6a1075ed633bd4dfec8b472022222ae2}{STUN\+\_\+\+HEADER\+\_\+\+SIZE}} = 20
+\item 
+int \doxymbox{\hyperlink{namespacep2p__client_a9eb2c74b6d2d542c1e88363b10e123d8}{STUN\+\_\+\+MAX\+\_\+\+MESSAGE\+\_\+\+SIZE}} = 65535
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}P2P Client SDK - 完整实现
+
+Security Enhanced Version:
+- Complete STUN XOR-MAPPED-ADDRESS parsing
+- Message validation (Magic Cookie, Fingerprint)
+- IPv4/IPv6 support
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacep2p__client_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacep2p__client_a27ce3a60f2d4dea12f2744f1b2693f31}\index{p2p\_client@{p2p\_client}!parse\_mapped\_address@{parse\_mapped\_address}}
+\index{parse\_mapped\_address@{parse\_mapped\_address}!p2p\_client@{p2p\_client}}
+\doxysubsubsection{\texorpdfstring{parse\_mapped\_address()}{parse\_mapped\_address()}}
+{\footnotesize\ttfamily \label{namespacep2p__client_a27ce3a60f2d4dea12f2744f1b2693f31} 
+ Optional\+[Tuple\+[str, int]\+]\+ p2p\+\_\+client.\+parse\+\_\+mapped\+\_\+address (\begin{DoxyParamCaption}\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse MAPPED-ADDRESS attribute (non-XOR, RFC 5389 Section 15.1).
+
+Args:
+    data: Attribute value bytes
+
+Returns:
+    Tuple of (ip_address, port) or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00227}{227}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00415}{p2p\+\_\+client.\+P2\+PClient.\+\_\+parse\+\_\+stun\+\_\+response()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{namespacep2p__client_a6b11aa47de5aaecec68915172a8be093}\index{p2p\_client@{p2p\_client}!parse\_xor\_mapped\_address@{parse\_xor\_mapped\_address}}
+\index{parse\_xor\_mapped\_address@{parse\_xor\_mapped\_address}!p2p\_client@{p2p\_client}}
+\doxysubsubsection{\texorpdfstring{parse\_xor\_mapped\_address()}{parse\_xor\_mapped\_address()}}
+{\footnotesize\ttfamily \label{namespacep2p__client_a6b11aa47de5aaecec68915172a8be093} 
+ Optional\+[Tuple\+[str, int]\+]\+ p2p\+\_\+client.\+parse\+\_\+xor\+\_\+mapped\+\_\+address (\begin{DoxyParamCaption}\item[{bytes}]{data}{, }\item[{bytes}]{transaction\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse XOR-MAPPED-ADDRESS attribute (RFC 5389 Section 15.2).
+
+The address is XORed with the magic cookie (for IPv4) or
+magic cookie + transaction ID (for IPv6).
+
+Args:
+    data: Attribute value bytes (after type+length header)
+    transaction_id: 12-byte transaction ID from STUN header
+
+Returns:
+    Tuple of (ip_address, port) or None if parsing fails
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00164}{164}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{p2p__client_8py_source_l00415}{p2p\+\_\+client.\+P2\+PClient.\+\_\+parse\+\_\+stun\+\_\+response()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{namespacep2p__client_a24a7b9ac8bc914f0313296da4a986cd8}\index{p2p\_client@{p2p\_client}!verify\_fingerprint@{verify\_fingerprint}}
+\index{verify\_fingerprint@{verify\_fingerprint}!p2p\_client@{p2p\_client}}
+\doxysubsubsection{\texorpdfstring{verify\_fingerprint()}{verify\_fingerprint()}}
+{\footnotesize\ttfamily \label{namespacep2p__client_a24a7b9ac8bc914f0313296da4a986cd8} 
+ bool p2p\+\_\+client.\+verify\+\_\+fingerprint (\begin{DoxyParamCaption}\item[{bytes}]{message}{, }\item[{bytes}]{fingerprint\+\_\+value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Verify STUN Fingerprint attribute (RFC 5389 Section 15.5).
+
+The fingerprint is CRC-32 of the message XORed with 0x5354554e.
+
+Args:
+    message: Complete STUN message bytes (including fingerprint attribute)
+    fingerprint_value: The fingerprint value from the attribute
+
+Returns:
+    True if fingerprint is valid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00264}{264}} 行定义.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__client_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__client_a75cd46d93c798d583ea81dd822964853}\index{p2p\_client@{p2p\_client}!MAGIC\_COOKIE@{MAGIC\_COOKIE}}
+\index{MAGIC\_COOKIE@{MAGIC\_COOKIE}!p2p\_client@{p2p\_client}}
+\doxysubsubsection{\texorpdfstring{MAGIC\_COOKIE}{MAGIC\_COOKIE}}
+{\footnotesize\ttfamily \label{namespacep2p__client_a75cd46d93c798d583ea81dd822964853} 
+int p2p\+\_\+client.\+MAGIC\+\_\+\+COOKIE = 0x2112\+A442}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00024}{24}} 行定义.
+
+\Hypertarget{namespacep2p__client_a6a1075ed633bd4dfec8b472022222ae2}\index{p2p\_client@{p2p\_client}!STUN\_HEADER\_SIZE@{STUN\_HEADER\_SIZE}}
+\index{STUN\_HEADER\_SIZE@{STUN\_HEADER\_SIZE}!p2p\_client@{p2p\_client}}
+\doxysubsubsection{\texorpdfstring{STUN\_HEADER\_SIZE}{STUN\_HEADER\_SIZE}}
+{\footnotesize\ttfamily \label{namespacep2p__client_a6a1075ed633bd4dfec8b472022222ae2} 
+int p2p\+\_\+client.\+STUN\+\_\+\+HEADER\+\_\+\+SIZE = 20}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00025}{25}} 行定义.
+
+\Hypertarget{namespacep2p__client_a9eb2c74b6d2d542c1e88363b10e123d8}\index{p2p\_client@{p2p\_client}!STUN\_MAX\_MESSAGE\_SIZE@{STUN\_MAX\_MESSAGE\_SIZE}}
+\index{STUN\_MAX\_MESSAGE\_SIZE@{STUN\_MAX\_MESSAGE\_SIZE}!p2p\_client@{p2p\_client}}
+\doxysubsubsection{\texorpdfstring{STUN\_MAX\_MESSAGE\_SIZE}{STUN\_MAX\_MESSAGE\_SIZE}}
+{\footnotesize\ttfamily \label{namespacep2p__client_a9eb2c74b6d2d542c1e88363b10e123d8} 
+int p2p\+\_\+client.\+STUN\+\_\+\+MAX\+\_\+\+MESSAGE\+\_\+\+SIZE = 65535}
+
+
+
+在文件 \doxymbox{\hyperlink{p2p__client_8py_source}{p2p\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{p2p__client_8py_source_l00026}{26}} 行定义.
+

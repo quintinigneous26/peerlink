@@ -1,0 +1,219 @@
+\doxysection{p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient类 参考}
+\hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client}{}\label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a940b3b6d42f2bfdb318bfcf888b5d5ec}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a2907d0a7222221cff5525fb0a74b7a45}{servers}}, int \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_adf5eac01adc0c429a4ee2b1200a70902}{timeout\+\_\+ms}}=3000, int \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_ad8aa51c3327c8064c57d98461f0886ff}{retry\+\_\+count}}=3)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_response}{STUNResponse}} \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a40a28cb882f997323195f14e38952d6b}{binding\+\_\+request}} (self, str server, int port=3478)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a2907d0a7222221cff5525fb0a74b7a45}{servers}} = servers
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_adf5eac01adc0c429a4ee2b1200a70902}{timeout\+\_\+ms}} = timeout\+\_\+ms
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_ad8aa51c3327c8064c57d98461f0886ff}{retry\+\_\+count}} = retry\+\_\+count
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_af0f9f5163663e7aae00b7d26c2c4b065}{\+\_\+resolve\+\_\+host}} (self, str host)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a6122ee0cfaeafc9f64bc1ef29452f948}{\+\_\+build\+\_\+binding\+\_\+request}} (self, bytes transaction\+\_\+id)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_response}{STUNResponse}} \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a2322fd7b7f0ce1ff643fc00328f86b67}{\+\_\+parse\+\_\+response}} (self, bytes data, bytes transaction\+\_\+id)
+\item 
+Optional\+[Tuple\+[str, int]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a44520ba0dfc5f03286930154cd992ad8}{\+\_\+parse\+\_\+xor\+\_\+mapped\+\_\+address}} (self, bytes data)
+\item 
+Optional\+[Tuple\+[str, int]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a5ad657124d9f3a5d24dd0df24e18059d}{\+\_\+parse\+\_\+mapped\+\_\+address}} (self, bytes data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}STUN 客户端\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00042}{42}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a940b3b6d42f2bfdb318bfcf888b5d5ec}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a940b3b6d42f2bfdb318bfcf888b5d5ec} 
+p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\+[str]\+}]{servers}{, }\item[{int }]{timeout\+\_\+ms}{ = {\ttfamily 3000}, }\item[{int }]{retry\+\_\+count}{ = {\ttfamily 3}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00045}{45}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a6122ee0cfaeafc9f64bc1ef29452f948}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!\_build\_binding\_request@{\_build\_binding\_request}}
+\index{\_build\_binding\_request@{\_build\_binding\_request}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_build\_binding\_request()}{\_build\_binding\_request()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a6122ee0cfaeafc9f64bc1ef29452f948} 
+ bytes p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+\_\+build\+\_\+binding\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{transaction\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}构建 Binding Request\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00107}{107}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{stun__client_8py_source_l00059}{binding\+\_\+request()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a5ad657124d9f3a5d24dd0df24e18059d}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!\_parse\_mapped\_address@{\_parse\_mapped\_address}}
+\index{\_parse\_mapped\_address@{\_parse\_mapped\_address}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_parse\_mapped\_address()}{\_parse\_mapped\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a5ad657124d9f3a5d24dd0df24e18059d} 
+ Optional\+[Tuple\+[str, int]\+]\+ p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+\_\+parse\+\_\+mapped\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}解析 MAPPED-ADDRESS\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00197}{197}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{stun__client_8py_source_l00119}{\+\_\+parse\+\_\+response()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a2322fd7b7f0ce1ff643fc00328f86b67}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!\_parse\_response@{\_parse\_response}}
+\index{\_parse\_response@{\_parse\_response}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_parse\_response()}{\_parse\_response()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a2322fd7b7f0ce1ff643fc00328f86b67} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_response}{STUNResponse}} p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+\_\+parse\+\_\+response (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{bytes}]{transaction\+\_\+id}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}解析 STUN 响应\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00119}{119}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{stun__client_8py_source_l00197}{\+\_\+parse\+\_\+mapped\+\_\+address()}} , 以及 \doxymbox{\hyperlink{stun__client_8py_source_l00175}{\+\_\+parse\+\_\+xor\+\_\+mapped\+\_\+address()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{stun__client_8py_source_l00059}{binding\+\_\+request()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a44520ba0dfc5f03286930154cd992ad8}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!\_parse\_xor\_mapped\_address@{\_parse\_xor\_mapped\_address}}
+\index{\_parse\_xor\_mapped\_address@{\_parse\_xor\_mapped\_address}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_parse\_xor\_mapped\_address()}{\_parse\_xor\_mapped\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a44520ba0dfc5f03286930154cd992ad8} 
+ Optional\+[Tuple\+[str, int]\+]\+ p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+\_\+parse\+\_\+xor\+\_\+mapped\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}解析 XOR-MAPPED-ADDRESS\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00175}{175}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{stun__client_8py_source_l00119}{\+\_\+parse\+\_\+response()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_af0f9f5163663e7aae00b7d26c2c4b065}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!\_resolve\_host@{\_resolve\_host}}
+\index{\_resolve\_host@{\_resolve\_host}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_resolve\_host()}{\_resolve\_host()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_af0f9f5163663e7aae00b7d26c2c4b065} 
+ str p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+\_\+resolve\+\_\+host (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{host}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}解析主机名\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00101}{101}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{stun__client_8py_source_l00059}{binding\+\_\+request()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a40a28cb882f997323195f14e38952d6b}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!binding\_request@{binding\_request}}
+\index{binding\_request@{binding\_request}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{binding\_request()}{binding\_request()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a40a28cb882f997323195f14e38952d6b} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_response}{STUNResponse}} p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+binding\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{server}{, }\item[{int }]{port}{ = {\ttfamily 3478}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}发送 STUN Binding Request
+
+Args:
+    server: STUN 服务器地址
+    port: STUN 服务器端口
+
+Returns:
+    STUNResponse
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00055}{55}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{stun__client_8py_source_l00107}{\+\_\+build\+\_\+binding\+\_\+request()}}, \doxymbox{\hyperlink{stun__client_8py_source_l00119}{\+\_\+parse\+\_\+response()}}, \doxymbox{\hyperlink{stun__client_8py_source_l00101}{\+\_\+resolve\+\_\+host()}}, \doxymbox{\hyperlink{defaults_8py_source_l00051}{p2p\+\_\+engine.\+config.\+defaults.\+Heartbeat\+Config.\+timeout\+\_\+ms}}, \doxymbox{\hyperlink{defaults_8py_source_l00037}{p2p\+\_\+engine.\+config.\+defaults.\+Punch\+Config.\+timeout\+\_\+ms}}, \doxymbox{\hyperlink{defaults_8py_source_l00020}{p2p\+\_\+engine.\+config.\+defaults.\+STUNConfig.\+timeout\+\_\+ms}} , 以及 \doxymbox{\hyperlink{stun__client_8py_source_l00052}{timeout\+\_\+ms}}.
+
+函数调用图:\+
+% FIG 6
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_ad8aa51c3327c8064c57d98461f0886ff}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!retry\_count@{retry\_count}}
+\index{retry\_count@{retry\_count}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{retry\_count}{retry\_count}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_ad8aa51c3327c8064c57d98461f0886ff} 
+p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+retry\+\_\+count = retry\+\_\+count}
+
+
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00053}{53}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a2907d0a7222221cff5525fb0a74b7a45}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!servers@{servers}}
+\index{servers@{servers}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{servers}{servers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_a2907d0a7222221cff5525fb0a74b7a45} 
+p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+servers = servers}
+
+
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00051}{51}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_adf5eac01adc0c429a4ee2b1200a70902}\index{p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}!timeout\_ms@{timeout\_ms}}
+\index{timeout\_ms@{timeout\_ms}!p2p\_engine.detection.stun\_client.STUNClient@{p2p\_engine.detection.stun\_client.STUNClient}}
+\doxysubsubsection{\texorpdfstring{timeout\_ms}{timeout\_ms}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client_adf5eac01adc0c429a4ee2b1200a70902} 
+p2p\+\_\+engine.\+detection.\+stun\+\_\+client.\+STUNClient.\+timeout\+\_\+ms = timeout\+\_\+ms}
+
+
+
+在文件 \doxymbox{\hyperlink{stun__client_8py_source}{stun\+\_\+client.\+py}} 第 \doxymbox{\hyperlink{stun__client_8py_source_l00052}{52}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{query_8py_source_l00326}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+execute\+\_\+iterative\+\_\+query()}}, \doxymbox{\hyperlink{stun__client_8py_source_l00059}{binding\+\_\+request()}} , 以及 \doxymbox{\hyperlink{query_8py_source_l00475}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+cleanup\+\_\+expired\+\_\+queries()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+detection/\+\doxymbox{\hyperlink{stun__client_8py}{stun\+\_\+client.\+py}}\end{DoxyCompactItemize}

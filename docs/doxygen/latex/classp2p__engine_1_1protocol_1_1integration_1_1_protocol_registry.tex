@@ -1,0 +1,164 @@
+\doxysection{p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry类 参考}
+\hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry}{}\label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a96fcac062a9b2e17a73f413cea054a99}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8b43d5c3cb2fe75d52cffab8c563c09b}{register}} (self, str protocol\+\_\+id, Callable\+[\+[$\,$]\+, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_handler}{Protocol\+Handler}}]\+ handler\+\_\+factory)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_ad55b0699a35a75fbf64ab38eba388cfa}{unregister}} (self, str protocol\+\_\+id)
+\item 
+list\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8f15272771a7cd2f05ea01cb583ef9a0}{get\+\_\+supported\+\_\+protocols}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_handler}{Protocol\+Handler}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a0ac5285dba2e3ed05ca487ae2a9523d2}{create\+\_\+handler}} (self, str protocol\+\_\+id)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8faa3b6fd3e50937ee262c197c5b8dcc}{is\+\_\+supported}} (self, str protocol\+\_\+id)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_adb55d0172aa02c4c4f01014ddb950d0a}{\+\_\+handlers}} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Registry for supported protocols and their handlers.
+
+Maps protocol IDs to their handler implementations.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00083}{83}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a96fcac062a9b2e17a73f413cea054a99}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a96fcac062a9b2e17a73f413cea054a99} 
+p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00090}{90}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a0ac5285dba2e3ed05ca487ae2a9523d2}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}!create\_handler@{create\_handler}}
+\index{create\_handler@{create\_handler}!p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection{\texorpdfstring{create\_handler()}{create\_handler()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a0ac5285dba2e3ed05ca487ae2a9523d2} 
+ Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_handler}{Protocol\+Handler}}]\+ p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry.\+create\+\_\+handler (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{protocol\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a handler instance for the given protocol.
+
+Args:
+    protocol_id: Protocol ID
+
+Returns:
+    Handler instance or None if not supported
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00114}{114}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{integration_8py_source_l00091}{\+\_\+handlers}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8f15272771a7cd2f05ea01cb583ef9a0}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}!get\_supported\_protocols@{get\_supported\_protocols}}
+\index{get\_supported\_protocols@{get\_supported\_protocols}!p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection{\texorpdfstring{get\_supported\_protocols()}{get\_supported\_protocols()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8f15272771a7cd2f05ea01cb583ef9a0} 
+ list\+[str]\+ p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry.\+get\+\_\+supported\+\_\+protocols (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get list of supported protocol IDs.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00110}{110}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{integration_8py_source_l00091}{\+\_\+handlers}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8faa3b6fd3e50937ee262c197c5b8dcc}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}!is\_supported@{is\_supported}}
+\index{is\_supported@{is\_supported}!p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection{\texorpdfstring{is\_supported()}{is\_supported()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8faa3b6fd3e50937ee262c197c5b8dcc} 
+ bool p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry.\+is\+\_\+supported (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{protocol\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if a protocol is supported.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00129}{129}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{integration_8py_source_l00091}{\+\_\+handlers}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8b43d5c3cb2fe75d52cffab8c563c09b}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}!register@{register}}
+\index{register@{register}!p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection{\texorpdfstring{register()}{register()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_a8b43d5c3cb2fe75d52cffab8c563c09b} 
+ None p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry.\+register (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{protocol\+\_\+id}{, }\item[{Callable\+[\+[$\,$]\+, \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_handler}{Protocol\+Handler}}]\+}]{handler\+\_\+factory}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register a protocol handler.
+
+Args:
+    protocol_id: Protocol ID (e.g., "/ipfs/id/1.0.0")
+    handler_factory: Factory function to create handler instances
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00093}{93}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{integration_8py_source_l00091}{\+\_\+handlers}}.
+
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_ad55b0699a35a75fbf64ab38eba388cfa}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}!unregister@{unregister}}
+\index{unregister@{unregister}!p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection{\texorpdfstring{unregister()}{unregister()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_ad55b0699a35a75fbf64ab38eba388cfa} 
+ None p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry.\+unregister (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{protocol\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Unregister a protocol.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00104}{104}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{integration_8py_source_l00091}{\+\_\+handlers}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_adb55d0172aa02c4c4f01014ddb950d0a}\index{p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}!\_handlers@{\_handlers}}
+\index{\_handlers@{\_handlers}!p2p\_engine.protocol.integration.ProtocolRegistry@{p2p\_engine.protocol.integration.ProtocolRegistry}}
+\doxysubsubsection{\texorpdfstring{\_handlers}{\_handlers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_adb55d0172aa02c4c4f01014ddb950d0a} 
+dict p2p\+\_\+engine.\+protocol.\+integration.\+Protocol\+Registry.\+\_\+handlers = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{integration_8py_source}{integration.\+py}} 第 \doxymbox{\hyperlink{integration_8py_source_l00091}{91}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{integration_8py_source_l00114}{create\+\_\+handler()}}, \doxymbox{\hyperlink{integration_8py_source_l00110}{get\+\_\+supported\+\_\+protocols()}}, \doxymbox{\hyperlink{integration_8py_source_l00129}{is\+\_\+supported()}}, \doxymbox{\hyperlink{integration_8py_source_l00093}{register()}} , 以及 \doxymbox{\hyperlink{integration_8py_source_l00104}{unregister()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+protocol/\+\doxymbox{\hyperlink{integration_8py}{integration.\+py}}\end{DoxyCompactItemize}

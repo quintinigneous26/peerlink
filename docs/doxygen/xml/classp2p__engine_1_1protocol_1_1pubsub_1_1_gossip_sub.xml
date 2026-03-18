@@ -1,0 +1,872 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::protocol::pubsub::GossipSub</compoundname>
+    <basecompoundref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub" prot="public" virt="non-virtual">p2p_engine.protocol.pubsub.PubSub</basecompoundref>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a598d42df51e9bd2b3ce95dbca3fccaa0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.pubsub.GossipSub::peer_id</definition>
+        <argsstring></argsstring>
+        <name>peer_id</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.peer_id</qualifiedname>
+        <initializer>=  peer_id</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="804" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="804" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_1aa2733cafafba711b0aa95fd4d147d6d2" compoundref="tls_8py" startline="175" endline="193">p2p_engine.protocol.tls.TLSHandshakePayload.encode</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a7adf18db5979268d0849696d1311b236" compoundref="pubsub_8py" startline="1172" endline="1190">p2p_engine.protocol.pubsub.FloodSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa83c94eabbde80808bf957a6e27ef5e6" compoundref="pubsub_8py" startline="868" endline="911">p2p_engine.protocol.pubsub.GossipSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_signaling_message_1ab5cb77decef787e2ac30e95c059b3f71" compoundref="webrtc_8py" startline="78" endline="85">p2p_engine.transport.webrtc.SignalingMessage.to_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.pubsub.GossipSub::router</definition>
+        <argsstring></argsstring>
+        <name>router</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.router</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_router" kindref="compound">GossipSubRouter</ref>(<ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a598d42df51e9bd2b3ce95dbca3fccaa0" kindref="member">peer_id</ref>, <ref refid="namespacep2p__engine_1_1config" kindref="compound">config</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="805" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="805" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1587f085c1bf6f78326769b55ffdae0c" compoundref="pubsub_8py" startline="1018" endline="1023">p2p_engine.protocol.pubsub.GossipSub._announce_subscription</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aedd3521b91c1e83ce6beb820826ec0a5" compoundref="pubsub_8py" startline="983" endline="1017">p2p_engine.protocol.pubsub.GossipSub._handle_control</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abdd1bd9b01e33f990d55890b29bcfb69" compoundref="pubsub_8py" startline="1051" endline="1067">p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ab415e783c386b5112b599b770ceaa327" compoundref="pubsub_8py" startline="1197" endline="1200">p2p_engine.protocol.pubsub.FloodSub.add_peer</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac116d5cfe0ab3e746543bad0678ec2a2" compoundref="pubsub_8py" startline="920" endline="924">p2p_engine.protocol.pubsub.GossipSub.add_peer</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1afdac67e106a5d430e24783d21084cb52" compoundref="pubsub_8py" startline="1194" endline="1196">p2p_engine.protocol.pubsub.FloodSub.get_topics</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a53f01733a4adfa1aa14aad97b5a9bb4d" compoundref="pubsub_8py" startline="916" endline="919">p2p_engine.protocol.pubsub.GossipSub.get_topics</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a677c284286ba18d7330dc39e12b7b309" compoundref="pubsub_8py" startline="1205" endline="1218">p2p_engine.protocol.pubsub.FloodSub.handle_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac43b05398a7e77d3582322c77e020166" compoundref="pubsub_8py" startline="930" endline="982">p2p_engine.protocol.pubsub.GossipSub.handle_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a01d2f9d2c25c673977b4506c2e26a30e" compoundref="pubsub_8py" startline="1191" endline="1193">p2p_engine.protocol.pubsub.FloodSub.list_peers</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a4376cd6fa77d0ffa79de2a65558e7ff3" compoundref="pubsub_8py" startline="912" endline="915">p2p_engine.protocol.pubsub.GossipSub.list_peers</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a7adf18db5979268d0849696d1311b236" compoundref="pubsub_8py" startline="1172" endline="1190">p2p_engine.protocol.pubsub.FloodSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa83c94eabbde80808bf957a6e27ef5e6" compoundref="pubsub_8py" startline="868" endline="911">p2p_engine.protocol.pubsub.GossipSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a83dd79671c695abd87f15e74592612e0" compoundref="pubsub_8py" startline="1201" endline="1204">p2p_engine.protocol.pubsub.FloodSub.remove_peer</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abbba43e60a59bddf68199e5eab713db4" compoundref="pubsub_8py" startline="925" endline="929">p2p_engine.protocol.pubsub.GossipSub.remove_peer</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a404a6361a8d0ac0fd4770e0297dea298" compoundref="pubsub_8py" startline="848" endline="856">p2p_engine.protocol.pubsub.GossipSub.subscribe</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ae8e539bab016fd245b1302392575788a" compoundref="pubsub_8py" startline="1162" endline="1171">p2p_engine.protocol.pubsub.FloodSub.unsubscribe</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa8ebafab696cf97f4ff6524267c91d15" compoundref="pubsub_8py" startline="857" endline="867">p2p_engine.protocol.pubsub.GossipSub.unsubscribe</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a4eecfcc106f408a304ef977f4be227a4" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.pubsub.GossipSub::signature_policy</definition>
+        <argsstring></argsstring>
+        <name>signature_policy</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.signature_policy</qualifiedname>
+        <initializer>=  signature_policy</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="806" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="806" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5be95c97717f7079b3de125f1782b771" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict p2p_engine.protocol.pubsub.GossipSub::_topic_handlers</definition>
+        <argsstring></argsstring>
+        <name>_topic_handlers</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._topic_handlers</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="809" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="809" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a6a323342de63384e48c79463ce3caccb" compoundref="pubsub_8py" startline="1078" endline="1083">p2p_engine.protocol.pubsub.GossipSub.add_topic_handler</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac43b05398a7e77d3582322c77e020166" compoundref="pubsub_8py" startline="930" endline="982">p2p_engine.protocol.pubsub.GossipSub.handle_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1af564e488d45294cc4fb14fc23cbfd874" compoundref="pubsub_8py" startline="1084" endline="1091">p2p_engine.protocol.pubsub.GossipSub.remove_topic_handler</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa8ebafab696cf97f4ff6524267c91d15" compoundref="pubsub_8py" startline="857" endline="867">p2p_engine.protocol.pubsub.GossipSub.unsubscribe</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a9e077723af8b71af1cbca1e1f17e5704" prot="protected" static="no" mutable="no">
+        <type>Dict[str, asyncio.Queue]</type>
+        <definition>Dict[str, asyncio.Queue] p2p_engine.protocol.pubsub.GossipSub::_message_queues</definition>
+        <argsstring></argsstring>
+        <name>_message_queues</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._message_queues</qualifiedname>
+        <initializer>=  defaultdict(asyncio.Queue)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="810" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="810" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a9703c12f5d60d51cdfec39138614e354" compoundref="pubsub_8py" startline="1238" endline="1249">p2p_engine.protocol.pubsub.FloodSub._get_next_message</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abe28a6a62e9ac23ed8d14c9b6e6aa6ec" compoundref="pubsub_8py" startline="1068" endline="1077">p2p_engine.protocol.pubsub.GossipSub._get_next_message</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a677c284286ba18d7330dc39e12b7b309" compoundref="pubsub_8py" startline="1205" endline="1218">p2p_engine.protocol.pubsub.FloodSub.handle_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac43b05398a7e77d3582322c77e020166" compoundref="pubsub_8py" startline="930" endline="982">p2p_engine.protocol.pubsub.GossipSub.handle_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ae8e539bab016fd245b1302392575788a" compoundref="pubsub_8py" startline="1162" endline="1171">p2p_engine.protocol.pubsub.FloodSub.unsubscribe</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa8ebafab696cf97f4ff6524267c91d15" compoundref="pubsub_8py" startline="857" endline="867">p2p_engine.protocol.pubsub.GossipSub.unsubscribe</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ae09098dd9d374f52161346904fc95a9c" prot="protected" static="no" mutable="no">
+        <type>Optional[asyncio.Task]</type>
+        <definition>Optional[asyncio.Task] p2p_engine.protocol.pubsub.GossipSub::_heartbeat_task</definition>
+        <argsstring></argsstring>
+        <name>_heartbeat_task</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._heartbeat_task</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="813" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="813" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aec705507331376b7f1db21b848be2aed" compoundref="pubsub_8py" startline="823" endline="831">p2p_engine.protocol.pubsub.GossipSub.start</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1d77fcf6db5eb5404fceadaef1953a22" compoundref="pubsub_8py" startline="832" endline="847">p2p_engine.protocol.pubsub.GossipSub.stop</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a513712cdfb0094e4d9d3f1bf8d1493fa" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.protocol.pubsub.GossipSub::_running</definition>
+        <argsstring></argsstring>
+        <name>_running</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._running</qualifiedname>
+        <initializer>=  False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="814" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="814" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abdd1bd9b01e33f990d55890b29bcfb69" compoundref="pubsub_8py" startline="1051" endline="1067">p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1ac5d54f40c68f486bbde4abc963672929" compoundref="client_8py" startline="570" endline="583">p2p_sdk.client.P2PClient._keepalive_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1aeb2a0413787cca99c57640cd5c43d307" compoundref="signaling_8py" startline="292" endline="310">p2p_sdk.signaling.SignalingClient._message_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a50c180497b8a59ec3e0a06e52962c31d" compoundref="transport_8py" startline="154" endline="173">p2p_sdk.transport.UDPTransport._recv_loop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_web_socket_signaling_client_1a795988da2a9272a6757210196868da73" compoundref="signaling_8py" startline="446" endline="458">p2p_sdk.signaling.WebSocketSignalingClient._ws_message_loop</referencedby>
+        <referencedby refid="classp2p__client_1_1_p2_p_client_1af1b0dad78e5e642b039785eb160ae5b2" compoundref="p2p__client_8py" startline="558" endline="565">p2p_client.P2PClient.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1ab50d95f03e1b4cf5b9517bd4a2d235c9" compoundref="client_8py" startline="744" endline="788">p2p_sdk.client.P2PClient.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a1338b1e24c261dd54f667fa8de1a49d2" compoundref="signaling_8py" startline="80" endline="101">p2p_sdk.signaling.SignalingClient.connect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_signaling_client_1a471f4f7015a63b6dddd6494df6513c5a" compoundref="signaling_8py" startline="102" endline="119">p2p_sdk.signaling.SignalingClient.disconnect</referencedby>
+        <referencedby refid="classp2p__sdk_1_1signaling_1_1_web_socket_signaling_client_1aa8e7dfe42d5a2457c1cdd29b542f2d94" compoundref="signaling_8py" startline="403" endline="416">p2p_sdk.signaling.WebSocketSignalingClient.disconnect</referencedby>
+        <referencedby refid="classp2p__client_1_1_p2_p_client_1adbd41cfe90a99ec4f90d994aa7b027f5" compoundref="p2p__client_8py" startline="322" endline="336">p2p_client.P2PClient.initialize</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a6fe9834464b8dd8c86371bea92317aaf" compoundref="client_8py" startline="218" endline="262">p2p_sdk.client.P2PClient.initialize</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aec705507331376b7f1db21b848be2aed" compoundref="pubsub_8py" startline="823" endline="831">p2p_engine.protocol.pubsub.GossipSub.start</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_protocol_handler_1a4bc676c547e8e4f1b6172782f6f2bdc7" compoundref="pubsub_8py" startline="1289" endline="1293">p2p_engine.protocol.pubsub.PubSubProtocolHandler.start</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a1b23e9670a7b04db9e1362a6c985bd25" compoundref="transport_8py" startline="59" endline="78">p2p_sdk.transport.UDPTransport.start</referencedby>
+        <referencedby refid="classp2p__client_1_1_p2_p_client_1ae9d2f6e8e34b96288560be7a76bdc76e" compoundref="p2p__client_8py" startline="543" endline="557">p2p_client.P2PClient.start_recv_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1d77fcf6db5eb5404fceadaef1953a22" compoundref="pubsub_8py" startline="832" endline="847">p2p_engine.protocol.pubsub.GossipSub.stop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_protocol_handler_1a120e606717ca6c068c387529cc940119" compoundref="pubsub_8py" startline="1294" endline="1298">p2p_engine.protocol.pubsub.PubSubProtocolHandler.stop</referencedby>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a139c98bad09a822d105ce9ec9835d632" compoundref="transport_8py" startline="79" endline="95">p2p_sdk.transport.UDPTransport.stop</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a35e734e0a748b686a7a16126ac9fc664" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict p2p_engine.protocol.pubsub.GossipSub::_peer_connections</definition>
+        <argsstring></argsstring>
+        <name>_peer_connections</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._peer_connections</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="817" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="817" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ac16fe55d0e120961792796b003f4cc2d" compoundref="pubsub_8py" startline="1227" endline="1237">p2p_engine.protocol.pubsub.FloodSub._send_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a3c305ecf556936817cb55a5588d44393" compoundref="pubsub_8py" startline="1033" endline="1050">p2p_engine.protocol.pubsub.GossipSub._send_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ae9f40d979d9ac121e876735d51bc4a2f" compoundref="pubsub_8py" startline="1219" endline="1226">p2p_engine.protocol.pubsub.FloodSub._send_rpc_to_peers</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" compoundref="pubsub_8py" startline="1024" endline="1032">p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ab415e783c386b5112b599b770ceaa327" compoundref="pubsub_8py" startline="1197" endline="1200">p2p_engine.protocol.pubsub.FloodSub.add_peer</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac116d5cfe0ab3e746543bad0678ec2a2" compoundref="pubsub_8py" startline="920" endline="924">p2p_engine.protocol.pubsub.GossipSub.add_peer</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a83dd79671c695abd87f15e74592612e0" compoundref="pubsub_8py" startline="1201" endline="1204">p2p_engine.protocol.pubsub.FloodSub.remove_peer</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abbba43e60a59bddf68199e5eab713db4" compoundref="pubsub_8py" startline="925" endline="929">p2p_engine.protocol.pubsub.GossipSub.remove_peer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1acbe63df4e729fbcfa3f8b50cb9b089ed" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.pubsub.GossipSub::_seqno_lock</definition>
+        <argsstring></argsstring>
+        <name>_seqno_lock</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._seqno_lock</qualifiedname>
+        <initializer>=  asyncio.Lock()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="820" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="820" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a7adf18db5979268d0849696d1311b236" compoundref="pubsub_8py" startline="1172" endline="1190">p2p_engine.protocol.pubsub.FloodSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa83c94eabbde80808bf957a6e27ef5e6" compoundref="pubsub_8py" startline="868" endline="911">p2p_engine.protocol.pubsub.GossipSub.publish</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ad142a49cca4724607f8d45421c3fc089" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine.protocol.pubsub.GossipSub::_seqno</definition>
+        <argsstring></argsstring>
+        <name>_seqno</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._seqno</qualifiedname>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="821" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="821" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a7adf18db5979268d0849696d1311b236" compoundref="pubsub_8py" startline="1172" endline="1190">p2p_engine.protocol.pubsub.FloodSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa83c94eabbde80808bf957a6e27ef5e6" compoundref="pubsub_8py" startline="868" endline="911">p2p_engine.protocol.pubsub.GossipSub.publish</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a2ef6e23aefd43b30f61d73c579d35c8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.protocol.pubsub.GossipSub.__init__</definition>
+        <argsstring>(self, str peer_id, Optional[GossipSubConfig] config=None, SignaturePolicy signature_policy=SignaturePolicy.STRICT_NO_SIGN)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>config</declname>
+          <array>[GossipSubConfig]</array>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_signature_policy" kindref="compound">SignaturePolicy</ref></type>
+          <declname>signature_policy</declname>
+          <defval><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_signature_policy_1ac9f3bb466eaeb7e63286968f323609c5" kindref="member">SignaturePolicy.STRICT_NO_SIGN</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="798" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="803" bodyend="822"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aec705507331376b7f1db21b848be2aed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.start</definition>
+        <argsstring>(self)</argsstring>
+        <name>start</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.start</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Start the GossipSub router.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="823" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="823" bodyend="831"/>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1ae61aced74b54162c1810727534d9debc" compoundref="heartbeat_8py" startline="101" endline="121">p2p_engine.keeper.heartbeat.HeartbeatKeeper._heartbeat_loop</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abdd1bd9b01e33f990d55890b29bcfb69" compoundref="pubsub_8py" startline="1051" endline="1067">p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ae09098dd9d374f52161346904fc95a9c" compoundref="pubsub_8py" startline="813">p2p_engine.protocol.pubsub.GossipSub._heartbeat_task</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_1a4b48fbaa83eb1d7ef599f703a72bdf58" compoundref="autonat_8py" startline="651">p2p_engine.detection.autonat.AutoNATProtocol._running</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_1a31ffa381c27f7716a9795a4b91129cba" compoundref="autonat_8py" startline="496">p2p_engine.detection.autonat.AutoNATServer._running</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_1ae8299d4ddca2f15c67fafdc44568571f" compoundref="dht_2kademlia_8py" startline="265">p2p_engine.dht.kademlia.KademliaDHT._running</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae5ce415ef1a3e07cf7cf3cd50e7e4bd0" compoundref="engine_8py" startline="152">p2p_engine.engine.P2PEngine._running</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1af36d23d216579918560d6edbd1905aab" compoundref="event_8py" startline="236">p2p_engine.event.EventBus._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1abde5c530069af637a9fcf4284bd9b79e" compoundref="heartbeat_8py" startline="54">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" compoundref="ping_8py" startline="85">p2p_engine.protocol.ping.PingProtocol._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a513712cdfb0094e4d9d3f1bf8d1493fa" compoundref="pubsub_8py" startline="814">p2p_engine.protocol.pubsub.GossipSub._running</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1d77fcf6db5eb5404fceadaef1953a22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.stop</definition>
+        <argsstring>(self)</argsstring>
+        <name>stop</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.stop</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stop the GossipSub router.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="832" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="832" bodyend="847"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ae09098dd9d374f52161346904fc95a9c" compoundref="pubsub_8py" startline="813">p2p_engine.protocol.pubsub.GossipSub._heartbeat_task</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_1a4b48fbaa83eb1d7ef599f703a72bdf58" compoundref="autonat_8py" startline="651">p2p_engine.detection.autonat.AutoNATProtocol._running</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_1a31ffa381c27f7716a9795a4b91129cba" compoundref="autonat_8py" startline="496">p2p_engine.detection.autonat.AutoNATServer._running</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_1ae8299d4ddca2f15c67fafdc44568571f" compoundref="dht_2kademlia_8py" startline="265">p2p_engine.dht.kademlia.KademliaDHT._running</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae5ce415ef1a3e07cf7cf3cd50e7e4bd0" compoundref="engine_8py" startline="152">p2p_engine.engine.P2PEngine._running</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1af36d23d216579918560d6edbd1905aab" compoundref="event_8py" startline="236">p2p_engine.event.EventBus._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1abde5c530069af637a9fcf4284bd9b79e" compoundref="heartbeat_8py" startline="54">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" compoundref="ping_8py" startline="85">p2p_engine.protocol.ping.PingProtocol._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a513712cdfb0094e4d9d3f1bf8d1493fa" compoundref="pubsub_8py" startline="814">p2p_engine.protocol.pubsub.GossipSub._running</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a404a6361a8d0ac0fd4770e0297dea298" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_subscription" kindref="compound">Subscription</ref></type>
+        <definition> Subscription p2p_engine.protocol.pubsub.GossipSub.subscribe</definition>
+        <argsstring>(self, str topic)</argsstring>
+        <name>subscribe</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.subscribe</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_1a35be28b30937b792453f0d4c7745bd8e">subscribe</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Subscribe to a topic.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="848" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="848" bodyend="856"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1587f085c1bf6f78326769b55ffdae0c" compoundref="pubsub_8py" startline="1018" endline="1023">p2p_engine.protocol.pubsub.GossipSub._announce_subscription</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa8ebafab696cf97f4ff6524267c91d15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.unsubscribe</definition>
+        <argsstring>(self, str topic)</argsstring>
+        <name>unsubscribe</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.unsubscribe</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_1ae83e2fa466cee39405d97b22a9907757">unsubscribe</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Unsubscribe from a topic.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="857" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="857" bodyend="867"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1587f085c1bf6f78326769b55ffdae0c" compoundref="pubsub_8py" startline="1018" endline="1023">p2p_engine.protocol.pubsub.GossipSub._announce_subscription</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a9e077723af8b71af1cbca1e1f17e5704" compoundref="pubsub_8py" startline="810">p2p_engine.protocol.pubsub.GossipSub._message_queues</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5be95c97717f7079b3de125f1782b771" compoundref="pubsub_8py" startline="809">p2p_engine.protocol.pubsub.GossipSub._topic_handlers</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa83c94eabbde80808bf957a6e27ef5e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.publish</definition>
+        <argsstring>(self, str topic, bytes data)</argsstring>
+        <name>publish</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.publish</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_1a57c44dd5f1c07d84b3eeacebcb9eadff">publish</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Publish a message to a topic.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="868" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="868" bodyend="911"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" compoundref="pubsub_8py" startline="1024" endline="1032">p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ad142a49cca4724607f8d45421c3fc089" compoundref="pubsub_8py" startline="821">p2p_engine.protocol.pubsub.GossipSub._seqno</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1acbe63df4e729fbcfa3f8b50cb9b089ed" compoundref="pubsub_8py" startline="820">p2p_engine.protocol.pubsub.GossipSub._seqno_lock</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_router_1a7d92707445c61d25e5376b7da03c2a07" compoundref="pubsub_8py" startline="536">p2p_engine.protocol.pubsub.GossipSubRouter._seqno_lock</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_1a4fe69645a365a4ef96aa2d8199bab443" compoundref="autonat_8py" startline="402">p2p_engine.detection.autonat.AutoNATClient.peer_id</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info_1ad526fb13baad9b040217d003aa146c01" compoundref="autonat_8py" startline="60">p2p_engine.detection.autonat.DialPeerInfo.peer_id</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_1ab5be24426887ea7872e5d9bd8aa5129e" compoundref="dht_2kademlia_8py" startline="75">p2p_engine.dht.kademlia.KademliaMessage.peer_id</references>
+        <references refid="classp2p__engine_1_1event_1_1_p2_p_event_1ab66905caa7643faa9d4d86bdd88b0696" compoundref="event_8py" startline="152">p2p_engine.event.P2PEvent.peer_id</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a598d42df51e9bd2b3ce95dbca3fccaa0" compoundref="pubsub_8py" startline="804">p2p_engine.protocol.pubsub.GossipSub.peer_id</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_router_1a12489d8926210852e2fb316f4643eb18" compoundref="pubsub_8py" startline="509">p2p_engine.protocol.pubsub.GossipSubRouter.peer_id</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_peer_info_p_b_1a394d71d2e405f5ac1425785de25fb823" compoundref="pubsub_8py" startline="322">p2p_engine.protocol.pubsub.PeerInfoPB.peer_id</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a4376cd6fa77d0ffa79de2a65558e7ff3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] p2p_engine.protocol.pubsub.GossipSub.list_peers</definition>
+        <argsstring>(self, str topic)</argsstring>
+        <name>list_peers</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.list_peers</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_1ae34d1099a982481fb4e0009c752400aa">list_peers</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>List peers subscribed to a topic.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="912" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="912" bodyend="915"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a53f01733a4adfa1aa14aad97b5a9bb4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] p2p_engine.protocol.pubsub.GossipSub.get_topics</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_topics</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.get_topics</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_1a8f0b65cf55f68491f8b1d4ed2c195c90">get_topics</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get list of known topics.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="916" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="916" bodyend="919"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac116d5cfe0ab3e746543bad0678ec2a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.add_peer</definition>
+        <argsstring>(self, str peer_id, Any connection)</argsstring>
+        <name>add_peer</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.add_peer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <param>
+          <type>Any</type>
+          <declname>connection</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Add a peer connection.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="920" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="920" bodyend="924"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a35e734e0a748b686a7a16126ac9fc664" compoundref="pubsub_8py" startline="817">p2p_engine.protocol.pubsub.GossipSub._peer_connections</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac116d5cfe0ab3e746543bad0678ec2a2" compoundref="pubsub_8py" startline="920" endline="924">p2p_engine.protocol.pubsub.GossipSub.add_peer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac116d5cfe0ab3e746543bad0678ec2a2" compoundref="pubsub_8py" startline="920" endline="924">p2p_engine.protocol.pubsub.GossipSub.add_peer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abbba43e60a59bddf68199e5eab713db4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.remove_peer</definition>
+        <argsstring>(self, str peer_id)</argsstring>
+        <name>remove_peer</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.remove_peer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Remove a peer.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="925" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="925" bodyend="929"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a35e734e0a748b686a7a16126ac9fc664" compoundref="pubsub_8py" startline="817">p2p_engine.protocol.pubsub.GossipSub._peer_connections</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abbba43e60a59bddf68199e5eab713db4" compoundref="pubsub_8py" startline="925" endline="929">p2p_engine.protocol.pubsub.GossipSub.remove_peer</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abbba43e60a59bddf68199e5eab713db4" compoundref="pubsub_8py" startline="925" endline="929">p2p_engine.protocol.pubsub.GossipSub.remove_peer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac43b05398a7e77d3582322c77e020166" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c" kindref="compound">RPC</ref>]</type>
+        <definition> Optional[RPC] p2p_engine.protocol.pubsub.GossipSub.handle_rpc</definition>
+        <argsstring>(self, RPC rpc, str from_peer)</argsstring>
+        <name>handle_rpc</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.handle_rpc</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c" kindref="compound">RPC</ref></type>
+          <declname>rpc</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>from_peer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle incoming RPC from peer. Returns optional response RPC.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="930" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="930" bodyend="982"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aedd3521b91c1e83ce6beb820826ec0a5" compoundref="pubsub_8py" startline="983" endline="1017">p2p_engine.protocol.pubsub.GossipSub._handle_control</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a9e077723af8b71af1cbca1e1f17e5704" compoundref="pubsub_8py" startline="810">p2p_engine.protocol.pubsub.GossipSub._message_queues</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" compoundref="pubsub_8py" startline="1024" endline="1032">p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5be95c97717f7079b3de125f1782b771" compoundref="pubsub_8py" startline="809">p2p_engine.protocol.pubsub.GossipSub._topic_handlers</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a6a323342de63384e48c79463ce3caccb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.add_topic_handler</definition>
+        <argsstring>(self, str topic, Callable[[PubSubMessage], Awaitable[None]] handler)</argsstring>
+        <name>add_topic_handler</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.add_topic_handler</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <defname>handler</defname>
+          <array>[[PubSubMessage]</array>
+        </param>
+        <param>
+          <type>Awaitable]</type>
+          <declname>handler</declname>
+          <array>[None]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Add a message handler for a topic.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1078" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1078" bodyend="1083"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5be95c97717f7079b3de125f1782b771" compoundref="pubsub_8py" startline="809">p2p_engine.protocol.pubsub.GossipSub._topic_handlers</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1af564e488d45294cc4fb14fc23cbfd874" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub.remove_topic_handler</definition>
+        <argsstring>(self, str topic, Callable[[PubSubMessage], Awaitable[None]] handler)</argsstring>
+        <name>remove_topic_handler</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub.remove_topic_handler</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <defname>handler</defname>
+          <array>[[PubSubMessage]</array>
+        </param>
+        <param>
+          <type>Awaitable]</type>
+          <declname>handler</declname>
+          <array>[None]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Remove a message handler for a topic.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1084" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1084" bodyend="1091"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5be95c97717f7079b3de125f1782b771" compoundref="pubsub_8py" startline="809">p2p_engine.protocol.pubsub.GossipSub._topic_handlers</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aedd3521b91c1e83ce6beb820826ec0a5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c" kindref="compound">RPC</ref>]</type>
+        <definition> Optional[RPC] p2p_engine.protocol.pubsub.GossipSub._handle_control</definition>
+        <argsstring>(self, ControlMessage control, str from_peer)</argsstring>
+        <name>_handle_control</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._handle_control</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_control_message" kindref="compound">ControlMessage</ref></type>
+          <declname>control</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>from_peer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle control messages.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="983" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="983" bodyend="1017"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac43b05398a7e77d3582322c77e020166" compoundref="pubsub_8py" startline="930" endline="982">p2p_engine.protocol.pubsub.GossipSub.handle_rpc</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1587f085c1bf6f78326769b55ffdae0c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub._announce_subscription</definition>
+        <argsstring>(self, str topic, bool subscribe)</argsstring>
+        <name>_announce_subscription</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._announce_subscription</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>subscribe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Announce subscription to all peers.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1018" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1018" bodyend="1023"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" compoundref="pubsub_8py" startline="1024" endline="1032">p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a404a6361a8d0ac0fd4770e0297dea298" compoundref="pubsub_8py" startline="848" endline="856">p2p_engine.protocol.pubsub.GossipSub.subscribe</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa8ebafab696cf97f4ff6524267c91d15" compoundref="pubsub_8py" startline="857" endline="867">p2p_engine.protocol.pubsub.GossipSub.unsubscribe</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</definition>
+        <argsstring>(self, List[str] peers, RPC rpc)</argsstring>
+        <name>_send_rpc_to_peers</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>List</type>
+          <declname>peers</declname>
+          <array>[str]</array>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c" kindref="compound">RPC</ref></type>
+          <declname>rpc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Send RPC to multiple peers.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1024" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1024" bodyend="1032"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a35e734e0a748b686a7a16126ac9fc664" compoundref="pubsub_8py" startline="817">p2p_engine.protocol.pubsub.GossipSub._peer_connections</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a3c305ecf556936817cb55a5588d44393" compoundref="pubsub_8py" startline="1033" endline="1050">p2p_engine.protocol.pubsub.GossipSub._send_rpc</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1587f085c1bf6f78326769b55ffdae0c" compoundref="pubsub_8py" startline="1018" endline="1023">p2p_engine.protocol.pubsub.GossipSub._announce_subscription</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abdd1bd9b01e33f990d55890b29bcfb69" compoundref="pubsub_8py" startline="1051" endline="1067">p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a677c284286ba18d7330dc39e12b7b309" compoundref="pubsub_8py" startline="1205" endline="1218">p2p_engine.protocol.pubsub.FloodSub.handle_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac43b05398a7e77d3582322c77e020166" compoundref="pubsub_8py" startline="930" endline="982">p2p_engine.protocol.pubsub.GossipSub.handle_rpc</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1a7adf18db5979268d0849696d1311b236" compoundref="pubsub_8py" startline="1172" endline="1190">p2p_engine.protocol.pubsub.FloodSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa83c94eabbde80808bf957a6e27ef5e6" compoundref="pubsub_8py" startline="868" endline="911">p2p_engine.protocol.pubsub.GossipSub.publish</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ae8e539bab016fd245b1302392575788a" compoundref="pubsub_8py" startline="1162" endline="1171">p2p_engine.protocol.pubsub.FloodSub.unsubscribe</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a3c305ecf556936817cb55a5588d44393" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub._send_rpc</definition>
+        <argsstring>(self, str peer_id, RPC rpc)</argsstring>
+        <name>_send_rpc</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._send_rpc</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c" kindref="compound">RPC</ref></type>
+          <declname>rpc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Send RPC to a specific peer.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1033" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1033" bodyend="1050"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a35e734e0a748b686a7a16126ac9fc664" compoundref="pubsub_8py" startline="817">p2p_engine.protocol.pubsub.GossipSub._peer_connections</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_1ae9f40d979d9ac121e876735d51bc4a2f" compoundref="pubsub_8py" startline="1219" endline="1226">p2p_engine.protocol.pubsub.FloodSub._send_rpc_to_peers</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" compoundref="pubsub_8py" startline="1024" endline="1032">p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abdd1bd9b01e33f990d55890b29bcfb69" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop</definition>
+        <argsstring>(self)</argsstring>
+        <name>_heartbeat_loop</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Heartbeat loop.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1051" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1051" bodyend="1067"/>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_1a4b48fbaa83eb1d7ef599f703a72bdf58" compoundref="autonat_8py" startline="651">p2p_engine.detection.autonat.AutoNATProtocol._running</references>
+        <references refid="classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_1a31ffa381c27f7716a9795a4b91129cba" compoundref="autonat_8py" startline="496">p2p_engine.detection.autonat.AutoNATServer._running</references>
+        <references refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t_1ae8299d4ddca2f15c67fafdc44568571f" compoundref="dht_2kademlia_8py" startline="265">p2p_engine.dht.kademlia.KademliaDHT._running</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1ae5ce415ef1a3e07cf7cf3cd50e7e4bd0" compoundref="engine_8py" startline="152">p2p_engine.engine.P2PEngine._running</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1af36d23d216579918560d6edbd1905aab" compoundref="event_8py" startline="236">p2p_engine.event.EventBus._running</references>
+        <references refid="classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_1abde5c530069af637a9fcf4284bd9b79e" compoundref="heartbeat_8py" startline="54">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_1a892dd8f30a2294427f8b395bed0b3119" compoundref="ping_8py" startline="85">p2p_engine.protocol.ping.PingProtocol._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a513712cdfb0094e4d9d3f1bf8d1493fa" compoundref="pubsub_8py" startline="814">p2p_engine.protocol.pubsub.GossipSub._running</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" compoundref="pubsub_8py" startline="1024" endline="1032">p2p_engine.protocol.pubsub.GossipSub._send_rpc_to_peers</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" compoundref="pubsub_8py" startline="805">p2p_engine.protocol.pubsub.GossipSub.router</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aec705507331376b7f1db21b848be2aed" compoundref="pubsub_8py" startline="823" endline="831">p2p_engine.protocol.pubsub.GossipSub.start</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abe28a6a62e9ac23ed8d14c9b6e6aa6ec" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message" kindref="compound">PubSubMessage</ref>]</type>
+        <definition> Optional[PubSubMessage] p2p_engine.protocol.pubsub.GossipSub._get_next_message</definition>
+        <argsstring>(self, str topic)</argsstring>
+        <name>_get_next_message</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GossipSub._get_next_message</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>topic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get next message from topic queue (for subscription iteration).</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1068" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1068" bodyend="1077"/>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a9e077723af8b71af1cbca1e1f17e5704" compoundref="pubsub_8py" startline="810">p2p_engine.protocol.pubsub.GossipSub._message_queues</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>GossipSub v1.1 implementation.</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.protocol.pubsub.GossipSub</label>
+        <link refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.protocol.pubsub.PubSub</label>
+        <link refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.protocol.pubsub.GossipSub</label>
+        <link refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.protocol.pubsub.PubSub</label>
+        <link refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/protocol/pubsub.py" line="795" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="795" bodyend="1091"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a2ef6e23aefd43b30f61d73c579d35c8c" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1587f085c1bf6f78326769b55ffdae0c" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_announce_subscription</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abe28a6a62e9ac23ed8d14c9b6e6aa6ec" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_get_next_message</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aedd3521b91c1e83ce6beb820826ec0a5" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_handle_control</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abdd1bd9b01e33f990d55890b29bcfb69" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_heartbeat_loop</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ae09098dd9d374f52161346904fc95a9c" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_heartbeat_task</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a9e077723af8b71af1cbca1e1f17e5704" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_message_queues</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a35e734e0a748b686a7a16126ac9fc664" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_peer_connections</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a513712cdfb0094e4d9d3f1bf8d1493fa" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_running</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a3c305ecf556936817cb55a5588d44393" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_send_rpc</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ab69dd6459bf055ee88945be45ba1a3fc" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_send_rpc_to_peers</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ad142a49cca4724607f8d45421c3fc089" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_seqno</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1acbe63df4e729fbcfa3f8b50cb9b089ed" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_seqno_lock</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5be95c97717f7079b3de125f1782b771" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>_topic_handlers</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac116d5cfe0ab3e746543bad0678ec2a2" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>add_peer</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a6a323342de63384e48c79463ce3caccb" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>add_topic_handler</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a53f01733a4adfa1aa14aad97b5a9bb4d" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>get_topics</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1ac43b05398a7e77d3582322c77e020166" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>handle_rpc</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a4376cd6fa77d0ffa79de2a65558e7ff3" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>list_peers</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a598d42df51e9bd2b3ce95dbca3fccaa0" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>peer_id</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa83c94eabbde80808bf957a6e27ef5e6" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>publish</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1abbba43e60a59bddf68199e5eab713db4" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>remove_peer</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1af564e488d45294cc4fb14fc23cbfd874" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>remove_topic_handler</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a5ffbb776b55c70588b137f964089bce7" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>router</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a4eecfcc106f408a304ef977f4be227a4" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>signature_policy</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aec705507331376b7f1db21b848be2aed" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>start</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a1d77fcf6db5eb5404fceadaef1953a22" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>stop</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1a404a6361a8d0ac0fd4770e0297dea298" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>subscribe</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_1aa8ebafab696cf97f4ff6524267c91d15" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::pubsub::GossipSub</scope><name>unsubscribe</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

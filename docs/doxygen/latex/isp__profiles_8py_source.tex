@@ -1,0 +1,581 @@
+\doxysection{isp\+\_\+profiles.\+py}
+\hypertarget{isp__profiles_8py_source}{}\label{isp__profiles_8py_source}\index{p2p\_engine/config/isp\_profiles.py@{p2p\_engine/config/isp\_profiles.py}}
+\doxymbox{\hyperlink{isp__profiles_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1isp__profiles}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00002}00002\ \textcolor{stringliteral}{运营商配置档案}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00004}00004\ \textcolor{stringliteral}{涵盖全球主流运营商的差异化参数}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00006}00006\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00007}00007\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00009}00009\ \textcolor{keyword}{from}\ ..types\ \textcolor{keyword}{import}\ ISP,\ Region,\ NATType}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00012}00012\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00013}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{00013}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}:}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00014}00014\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}运营商配置档案"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00015}00015\ \ \ \ \ isp:\ ISP}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00016}00016\ \ \ \ \ region:\ Region}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00017}00017\ \ \ \ \ name:\ str}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00018}00018\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00019}00019\ \ \ \ \ \textcolor{comment}{\#\ NAT\ 特征}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00020}00020\ \ \ \ \ symmetric\_ratio:\ float\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 对称\ NAT\ 占比\ (0.0-\/1.0)}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00021}00021\ \ \ \ \ cgnat\_levels:\ int\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ CGNAT\ 层级\ (0-\/3)}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00023}00023\ \ \ \ \ \textcolor{comment}{\#\ 打孔参数}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00024}00024\ \ \ \ \ punch\_timeout\_ms:\ int\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 打孔超时}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00025}00025\ \ \ \ \ punch\_parallel\_ports:\ int\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 并行端口数}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00026}00026\ \ \ \ \ punch\_port\_strategy:\ str\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 端口策略}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00028}00028\ \ \ \ \ \textcolor{comment}{\#\ 心跳参数}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00029}00029\ \ \ \ \ heartbeat\_min\_ms:\ int}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00030}00030\ \ \ \ \ heartbeat\_max\_ms:\ int}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00031}00031\ \ \ \ \ heartbeat\_initial\_ms:\ int}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00032}00032\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00033}00033\ \ \ \ \ \textcolor{comment}{\#\ UDP\ 限流}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00034}00034\ \ \ \ \ udp\_rate\_limit\_mbps:\ int\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 0=不限}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00035}00035\ \ \ \ \ prefer\_tcp:\ bool}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00036}00036\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00037}00037\ \ \ \ \ \textcolor{comment}{\#\ 穿透成功率预期}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00038}00038\ \ \ \ \ punch\_success\_rate:\ float}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00039}00039\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00040}00040\ \ \ \ \ \textcolor{comment}{\#\ 备注}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00041}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile_a5ccbfa4be2ef516efe57a2e776c21e44}{00041}}\ \ \ \ \ notes:\ str\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00044}00044\ \textcolor{comment}{\#\ ====================\ 全球运营商配置\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00046}\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile_a3e58bb9e0a535306458a2bcfc64ada64}{00046}}\ ISP\_PROFILES:\ Dict[ISP,\ ISPProfile]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00047}00047\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 中国大陆\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00048}00048\ \ \ \ \ ISP.CHINA\_TELECOM:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ isp=ISP.CHINA\_TELECOM,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ region=Region.MAINLAND,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}中国电信"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=5000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=4,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=20000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=40000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.80,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}CGNAT较少，公网IP申请容易，穿透成功率最高"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00064}00064\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00065}00065\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00066}00066\ \ \ \ \ ISP.CHINA\_MOBILE:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ isp=ISP.CHINA\_MOBILE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ region=Region.MAINLAND,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}中国移动"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.7,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ cgnat\_levels=3,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=3000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=8,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}hybrid"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=15000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=25000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=20000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=10,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.40,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}大量对称NAT+多层CGNAT，UDP限流严格，必须依赖中继"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00082}00082\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00083}00083\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00084}00084\ \ \ \ \ ISP.CHINA\_UNICOM:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ isp=ISP.CHINA\_UNICOM,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ region=Region.MAINLAND,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}中国联通"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=5000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=4,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=20000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=35000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=25000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.70,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}CGNAT中等，网络较干净，中等偏上"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00100}00100\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00101}00101\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00102}00102\ \ \ \ \ ISP.CHINA\_RAILCOM:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ isp=ISP.CHINA\_RAILCOM,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ region=Region.MAINLAND,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}中国铁通"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.6,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ cgnat\_levels=3,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=3000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=8,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}hybrid"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=15000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=25000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=20000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=10,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.45,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}归属移动骨干，策略同移动，优先走中继"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00118}00118\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00119}00119\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00120}00120\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 香港地区\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00121}00121\ \ \ \ \ ISP.HKBN:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ isp=ISP.HKBN,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ region=Region.HONGKONG,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}香港宽带"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.90,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}公网IP充足，CGNAT少，UDP限制宽松"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00137}00137\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00138}00138\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00139}00139\ \ \ \ \ ISP.CMHK:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ isp=ISP.CMHK,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ region=Region.HONGKONG,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}中国移动香港"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.15,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.88,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}香港移动，策略比大陆移动宽松"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00155}00155\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00156}00156\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00157}00157\ \ \ \ \ ISP.THREE\_HK:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ isp=ISP.THREE\_HK,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ region=Region.HONGKONG,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}3香港"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.90,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}公网IP充足"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00173}00173\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00174}00174\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00175}00175\ \ \ \ \ ISP.SMARTONE:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ isp=ISP.SMARTONE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ region=Region.HONGKONG,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}数码通"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.90,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络质量好"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00191}00191\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00192}00192\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00193}00193\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 新加坡\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00194}00194\ \ \ \ \ ISP.SINGTEL:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ isp=ISP.SINGTEL,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ region=Region.SINGAPORE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Singtel"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.05,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.95,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络质量高、丢包低、UDP几乎不限速"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00210}00210\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00211}00211\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00212}00212\ \ \ \ \ ISP.STARHUB:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ isp=ISP.STARHUB,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ region=Region.SINGAPORE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}StarHub"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.05,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.95,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络质量优秀"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00228}00228\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00229}00229\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00230}00230\ \ \ \ \ ISP.M1:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ isp=ISP.M1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ region=Region.SINGAPORE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}M1"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.05,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00242}00242\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.95,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络质量优秀"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00246}00246\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00247}00247\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00248}00248\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 美国运营商\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00249}00249\ \ \ \ \ ISP.ATT:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ isp=ISP.ATT,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}AT\&T"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}random"{}},\ \ \textcolor{comment}{\#\ 美国运营商随机端口}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.80,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}公网IP充足，UDP限制宽松，支持IPv6优先"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00265}00265\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00266}00266\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00267}00267\ \ \ \ \ ISP.VERIZON:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ isp=ISP.VERIZON,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Verizon"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}random"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.80,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}5G场景少量对称NAT，IPv6支持完善"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00283}00283\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00284}00284\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00285}00285\ \ \ \ \ ISP.TMOBILE:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ isp=ISP.TMOBILE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}T-\/Mobile"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.15,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=8000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=3,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}random"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00296}00296\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.75,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}5G网络NAT策略略严格，IPv6优先"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00301}00301\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00302}00302\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00303}00303\ \ \ \ \ ISP.COMCAST:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ isp=ISP.COMCAST,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Comcast"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.08,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}random"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.85,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}美国最大有线ISP，网络稳定"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00319}00319\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00320}00320\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00321}00321\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 欧洲运营商\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00322}00322\ \ \ \ \ ISP.VODAFONE:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ isp=ISP.VODAFONE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Vodafone"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00326}00326\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=40000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=70000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=50000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.75,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}UDP超时较长(40-\/60s)，CGNAT在人口密集区部署"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00338}00338\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00339}00339\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00340}00340\ \ \ \ \ ISP.ORANGE:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ isp=ISP.ORANGE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Orange"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.12,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=40000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=70000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=50000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.72,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}部分地区IPv6强制部署，特定端口UDP有限制"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00356}00356\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00357}00357\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00358}00358\ \ \ \ \ ISP.DEUTSCHE\_TELEKOM:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ isp=ISP.DEUTSCHE\_TELEKOM,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Deutsche\ Telekom"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.08,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=40000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=70000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=50000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.82,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}德国最大运营商，网络质量高"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00374}00374\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00375}00375\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00376}00376\ \ \ \ \ ISP.BT:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ isp=ISP.BT,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00378}00378\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00379}00379\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}BT"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00382}00382\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=35000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=65000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00387}00387\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=50000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00389}00389\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.78,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00391}00391\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}英国最大运营商，IPv6部署率高"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00392}00392\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00393}00393\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00394}00394\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 东南亚运营商\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00395}00395\ \ \ \ \ ISP.AIS:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00396}00396\ \ \ \ \ \ \ \ \ isp=ISP.AIS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00397}00397\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00398}00398\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}AIS\ (泰国)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00399}00399\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.15,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00400}00400\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00401}00401\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=8000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00402}00402\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=3,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}hybrid"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00404}00404\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=25000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=35000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00407}00407\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.65,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}UDP限流较宽松，跨境链路不稳定"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00411}00411\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00412}00412\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00413}00413\ \ \ \ \ ISP.TRUEMOVE:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ isp=ISP.TRUEMOVE,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00415}00415\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}True\ Move\ (泰国)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00417}00417\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.18,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=8000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=3,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00421}00421\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}hybrid"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00422}00422\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=25000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=35000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.60,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络丢包率中等(5-\/15\%)，跨境链路不稳定"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00429}00429\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00430}00430\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00431}00431\ \ \ \ \ ISP.MAXIS:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00432}00432\ \ \ \ \ \ \ \ \ isp=ISP.MAXIS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Maxis\ (马来西亚)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.12,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=50000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=40000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.70,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}支持IPv6混合部署"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00447}00447\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00448}00448\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00449}00449\ \ \ \ \ ISP.DIGI:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ isp=ISP.DIGI,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}Digi\ (马来西亚)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00459}00459\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=50000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=40000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.72,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}CGNAT占比中等"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00465}00465\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00466}00466\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00467}00467\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 日韩运营商\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00468}00468\ \ \ \ \ ISP.NTT:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ isp=ISP.NTT,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}NTT\ (日本)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00472}00472\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.08,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00473}00473\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00475}00475\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00482}00482\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.85,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络质量极高，IPv6部署完善"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00484}00484\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00485}00485\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00486}00486\ \ \ \ \ ISP.KDDI:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00487}00487\ \ \ \ \ \ \ \ \ isp=ISP.KDDI,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00488}00488\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}KDDI\ (日本)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00490}00490\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00491}00491\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00492}00492\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00493}00493\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00494}00494\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00495}00495\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00496}00496\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00497}00497\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00498}00498\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00499}00499\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00500}00500\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.82,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00501}00501\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络稳定"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00502}00502\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00503}00503\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00504}00504\ \ \ \ \ ISP.SK\_TELECOM:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00505}00505\ \ \ \ \ \ \ \ \ isp=ISP.SK\_TELECOM,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00507}00507\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}SK\ Telecom\ (韩国)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00508}00508\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00509}00509\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00510}00510\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00511}00511\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00512}00512\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00515}00515\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00516}00516\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00517}00517\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00518}00518\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.85,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00519}00519\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}5G网络全球领先，穿透表现优秀"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00520}00520\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00521}00521\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00522}00522\ \ \ \ \ ISP.KT:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00523}00523\ \ \ \ \ \ \ \ \ isp=ISP.KT,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00525}00525\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}KT\ (韩国)"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00526}00526\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00527}00527\ \ \ \ \ \ \ \ \ cgnat\_levels=1,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00528}00528\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00529}00529\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00530}00530\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}sequential"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00531}00531\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00532}00532\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=60000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00533}00533\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00534}00534\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00535}00535\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00536}00536\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.83,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00537}00537\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}网络质量高"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00538}00538\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00539}00539\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00540}00540\ \ \ \ \ \textcolor{comment}{\#\ ====================\ 未知运营商\ ====================}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00541}00541\ \ \ \ \ ISP.UNKNOWN:\ \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}(}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ isp=ISP.UNKNOWN,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00543}00543\ \ \ \ \ \ \ \ \ region=Region.OVERSEAS,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00544}00544\ \ \ \ \ \ \ \ \ name=\textcolor{stringliteral}{"{}未知"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00545}00545\ \ \ \ \ \ \ \ \ symmetric\_ratio=0.3,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ cgnat\_levels=2,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00547}00547\ \ \ \ \ \ \ \ \ punch\_timeout\_ms=8000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00548}00548\ \ \ \ \ \ \ \ \ punch\_parallel\_ports=4,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00549}00549\ \ \ \ \ \ \ \ \ punch\_port\_strategy=\textcolor{stringliteral}{"{}hybrid"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00550}00550\ \ \ \ \ \ \ \ \ heartbeat\_min\_ms=25000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00551}00551\ \ \ \ \ \ \ \ \ heartbeat\_max\_ms=45000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00552}00552\ \ \ \ \ \ \ \ \ heartbeat\_initial\_ms=30000,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00553}00553\ \ \ \ \ \ \ \ \ udp\_rate\_limit\_mbps=0,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00554}00554\ \ \ \ \ \ \ \ \ prefer\_tcp=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00555}00555\ \ \ \ \ \ \ \ \ punch\_success\_rate=0.55,}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00556}00556\ \ \ \ \ \ \ \ \ notes=\textcolor{stringliteral}{"{}未知运营商，使用保守配置"{}},}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00557}00557\ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00558}00558\ \}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00559}00559\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00560}00560\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00561}\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1isp__profiles_aa0c9652a3071c537397257eeced7605a}{00561}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1isp__profiles_aa0c9652a3071c537397257eeced7605a}{get\_isp\_profile}}(isp:\ ISP)\ -\/>\ ISPProfile:}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00562}00562\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取运营商配置档案"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00563}00563\ \ \ \ \ \textcolor{keywordflow}{return}\ ISP\_PROFILES.get(isp,\ ISP\_PROFILES[ISP.UNKNOWN])}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00564}00564\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00565}00565\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00566}\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1isp__profiles_af588cfbd7716f76211f48810c3091d46}{00566}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1isp__profiles_af588cfbd7716f76211f48810c3091d46}{is\_cross\_border}}(local\_isp:\ ISP,\ peer\_isp:\ ISP)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00567}00567\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}判断是否跨境"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00568}00568\ \ \ \ \ local\_profile\ =\ ISP\_PROFILES.get(local\_isp,\ ISP\_PROFILES[ISP.UNKNOWN])}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00569}00569\ \ \ \ \ peer\_profile\ =\ ISP\_PROFILES.get(peer\_isp,\ ISP\_PROFILES[ISP.UNKNOWN])}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00570}00570\ \ \ \ \ \textcolor{keywordflow}{return}\ local\_profile.region\ !=\ peer\_profile.region}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00571}00571\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00572}00572\ }
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00573}\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1isp__profiles_a3dafeeb5267e42507368a4eeb187e837}{00573}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1isp__profiles_a3dafeeb5267e42507368a4eeb187e837}{is\_cross\_isp}}(local\_isp:\ ISP,\ peer\_isp:\ ISP)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00574}00574\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}判断是否跨运营商"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{isp__profiles_8py_source_l00575}00575\ \ \ \ \ \textcolor{keywordflow}{return}\ local\_isp\ !=\ peer\_isp}
+
+\end{DoxyCode}

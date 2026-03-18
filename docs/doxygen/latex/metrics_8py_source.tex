@@ -1,0 +1,184 @@
+\doxysection{metrics.\+py}
+\hypertarget{metrics_8py_source}{}\label{metrics_8py_source}\index{p2p\_engine/observability/metrics.py@{p2p\_engine/observability/metrics.py}}
+\doxymbox{\hyperlink{metrics_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1observability_1_1metrics}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00002}00002\ \textcolor{stringliteral}{指标收集器}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00004}00004\ \textcolor{stringliteral}{按运营商维度统计连接成功率等指标}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00006}00006\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00007}00007\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00008}00008\ \textcolor{keyword}{from}\ collections\ \textcolor{keyword}{import}\ defaultdict}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00009}00009\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00010}00010\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Dict,\ List}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00011}00011\ \textcolor{keyword}{from}\ threading\ \textcolor{keyword}{import}\ Lock}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00013}00013\ \textcolor{keyword}{from}\ ..types\ \textcolor{keyword}{import}\ ISP,\ ConnectionType,\ NATType}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00015}\doxymbox{\hyperlink{namespacep2p__engine_1_1observability_1_1metrics_ade8a7dd1b74a285e287723a0653ff909}{00015}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.metrics"{}})}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00018}00018\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00019}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics}{00019}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics}{ConnectionMetrics}}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00020}00020\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}连接指标"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00021}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad8422cbb7c28c248cad3d6c85838d08d}{00021}}\ \ \ \ \ total\_attempts:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00022}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a68c41b25595f1f2af49498aadd5d02df}{00022}}\ \ \ \ \ p2p\_success:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00023}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ab26c2bdd22d980ee3d8d74bf7906b80d}{00023}}\ \ \ \ \ relay\_success:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00024}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad10ce98f0f822d3be1e8c1da39c9e069}{00024}}\ \ \ \ \ failed:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00025}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a916025928a1388d869297c16c827ea25}{00025}}\ \ \ \ \ total\_latency\_ms:\ float\ =\ 0.0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00026}00026\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00027}00027\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00028}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad236070e35716c0869dcbcfa6a8ca4a9}{00028}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad236070e35716c0869dcbcfa6a8ca4a9}{success\_rate}}(self)\ -\/>\ float:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}成功率"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad8422cbb7c28c248cad3d6c85838d08d}{total\_attempts}}\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a68c41b25595f1f2af49498aadd5d02df}{p2p\_success}}\ +\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ab26c2bdd22d980ee3d8d74bf7906b80d}{relay\_success}})\ /\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad8422cbb7c28c248cad3d6c85838d08d}{total\_attempts}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00033}00033\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00034}00034\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00035}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a59cb36299c8c176fd184520e8b04eb16}{00035}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a59cb36299c8c176fd184520e8b04eb16}{p2p\_rate}}(self)\ -\/>\ float:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}P2P\ 成功率"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad8422cbb7c28c248cad3d6c85838d08d}{total\_attempts}}\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a68c41b25595f1f2af49498aadd5d02df}{p2p\_success}}\ /\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ad8422cbb7c28c248cad3d6c85838d08d}{total\_attempts}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00040}00040\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00041}00041\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00042}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a308d410220272e8c27e7d1b995898857}{00042}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a308d410220272e8c27e7d1b995898857}{avg\_latency\_ms}}(self)\ -\/>\ float:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}平均延迟"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ success\_count\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a68c41b25595f1f2af49498aadd5d02df}{p2p\_success}}\ +\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_ab26c2bdd22d980ee3d8d74bf7906b80d}{relay\_success}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ success\_count\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0.0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics_a916025928a1388d869297c16c827ea25}{total\_latency\_ms}}\ /\ success\_count}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00050}00050\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00051}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics}{00051}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics}{NATMetrics}}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00052}00052\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}NAT\ 指标"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00053}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics_a92f3d795ba30cee80131b7ee96034024}{00053}}\ \ \ \ \ nat\_type\_counts:\ Dict[NATType,\ int]\ =\ field(default\_factory=\textcolor{keyword}{lambda}:\ defaultdict(int))}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00054}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics_a565e041e50cc38a6d46c769de9e6243c}{00054}}\ \ \ \ \ cgnat\_count:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00055}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics_a3a176b2a235d404c6b772d3af52aa770}{00055}}\ \ \ \ \ symmetric\_count:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00058}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector}{00058}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector}{MetricsCollector}}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00059}00059\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}指标收集器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00060}00060\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00061}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4a6b8dd8f4a688007a030b5a3a747f24}{00061}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4a6b8dd8f4a688007a030b5a3a747f24}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00062}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_aec3f14aff5459f4e06f68732653c75b1}{00062}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_aec3f14aff5459f4e06f68732653c75b1}{\_lock}}\ =\ Lock()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 按运营商统计}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00065}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4263bc9c18e8dcaaf7f689d3b13190a4}{00065}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4263bc9c18e8dcaaf7f689d3b13190a4}{\_isp\_metrics}}:\ Dict[ISP,\ ConnectionMetrics]\ =\ defaultdict(ConnectionMetrics)}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ NAT\ 统计}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00068}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{00068}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics}{NATMetrics}}()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 总体统计}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00071}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{00071}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics}{ConnectionMetrics}}()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 开始时间}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00074}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a26f8ce84a11579441b0b8fe9b9d68fc7}{00074}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a26f8ce84a11579441b0b8fe9b9d68fc7}{\_start\_time}}\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00075}00075\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00076}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a3b799acf61eb1f08d4632041c2cef285}{00076}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a3b799acf61eb1f08d4632041c2cef285}{record\_connection}}(}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ local\_isp:\ ISP,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ peer\_isp:\ ISP,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ connection\_type:\ ConnectionType,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ latency\_ms:\ float,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00082}00082\ \ \ \ \ )\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}记录连接结果"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_aec3f14aff5459f4e06f68732653c75b1}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 更新本地运营商统计}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ local\_metrics\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4263bc9c18e8dcaaf7f689d3b13190a4}{\_isp\_metrics}}[local\_isp]}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ local\_metrics.total\_attempts\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ local\_metrics.total\_latency\_ms\ +=\ latency\_ms}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ connection\_type\ ==\ ConnectionType.P2P\_UDP\ \textcolor{keywordflow}{or}\ connection\_type\ ==\ ConnectionType.P2P\_TCP:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_metrics.p2p\_success\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ connection\_type\ ==\ ConnectionType.RELAY\_UDP\ \textcolor{keywordflow}{or}\ connection\_type\ ==\ ConnectionType.RELAY\_TCP:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_metrics.relay\_success\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_metrics.failed\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 更新总体统计}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.total\_attempts\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.total\_latency\_ms\ +=\ latency\_ms}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ connection\_type\ ==\ ConnectionType.P2P\_UDP\ \textcolor{keywordflow}{or}\ connection\_type\ ==\ ConnectionType.P2P\_TCP:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.p2p\_success\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ connection\_type\ ==\ ConnectionType.RELAY\_UDP\ \textcolor{keywordflow}{or}\ connection\_type\ ==\ ConnectionType.RELAY\_TCP:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.relay\_success\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.failed\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00106}00106\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00107}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_aca9423a0277abddfbafecbc9f68fa9a6}{00107}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_aca9423a0277abddfbafecbc9f68fa9a6}{record\_nat\_detection}}(}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ nat\_type:\ NATType,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ is\_cgnat:\ bool,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00111}00111\ \ \ \ \ )\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}记录\ NAT\ 检测结果"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_aec3f14aff5459f4e06f68732653c75b1}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}.nat\_type\_counts[nat\_type]\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ is\_cgnat:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}.cgnat\_count\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ nat\_type\ ==\ NATType.SYMMETRIC:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}.symmetric\_count\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00121}00121\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00122}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a32ec50bc9d4ebde38a0c3d49b5dd72e5}{00122}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a32ec50bc9d4ebde38a0c3d49b5dd72e5}{get\_isp\_metrics}}(self,\ isp:\ ISP)\ -\/>\ ConnectionMetrics:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取运营商指标"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4263bc9c18e8dcaaf7f689d3b13190a4}{\_isp\_metrics}}.get(isp,\ \doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics}{ConnectionMetrics}}())}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00125}00125\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00126}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_abd7ce692a6f3f40ca602f8894c33f5ed}{00126}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_abd7ce692a6f3f40ca602f8894c33f5ed}{get\_all\_isp\_metrics}}(self)\ -\/>\ Dict[ISP,\ ConnectionMetrics]:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取所有运营商指标"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dict(self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4263bc9c18e8dcaaf7f689d3b13190a4}{\_isp\_metrics}})}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00129}00129\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00130}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a6e113cd165eb5d86e6c2abb2e2318882}{00130}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a6e113cd165eb5d86e6c2abb2e2318882}{get\_total\_metrics}}(self)\ -\/>\ ConnectionMetrics:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取总体指标"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00133}00133\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00134}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a6096076415f05894009884878ea12932}{00134}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a6096076415f05894009884878ea12932}{get\_nat\_metrics}}(self)\ -\/>\ NATMetrics:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取\ NAT\ 指标"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00137}00137\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00138}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a468c34f3bb5d0996f043983f3cad366e}{00138}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a468c34f3bb5d0996f043983f3cad366e}{get\_summary}}(self)\ -\/>\ dict:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取摘要报告"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ uptime\ =\ time.time()\ -\/\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a26f8ce84a11579441b0b8fe9b9d68fc7}{\_start\_time}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}uptime\_seconds"{}}:\ int(uptime),}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total"{}}:\ \{}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}attempts"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.total\_attempts,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}p2p\_success"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.p2p\_success,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}relay\_success"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.relay\_success,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}failed"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}.failed,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success\_rate"{}}:\ f\textcolor{stringliteral}{"{}\{self.\_total\_metrics.success\_rate:.1\%\}"{}},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}p2p\_rate"{}}:\ f\textcolor{stringliteral}{"{}\{self.\_total\_metrics.p2p\_rate:.1\%\}"{}},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}avg\_latency\_ms"{}}:\ f\textcolor{stringliteral}{"{}\{self.\_total\_metrics.avg\_latency\_ms:.1f\}"{}},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}by\_isp"{}}:\ \{}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isp.value:\ \{}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}attempts"{}}:\ m.total\_attempts,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}success\_rate"{}}:\ f\textcolor{stringliteral}{"{}\{m.success\_rate:.1\%\}"{}},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}p2p\_rate"{}}:\ f\textcolor{stringliteral}{"{}\{m.p2p\_rate:.1\%\}"{}},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ isp,\ m\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4263bc9c18e8dcaaf7f689d3b13190a4}{\_isp\_metrics}}.items()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ m.total\_attempts\ >\ 0}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}nat"{}}:\ \{}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cgnat\_count"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}.cgnat\_count,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}symmetric\_count"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}.symmetric\_count,}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}by\_type"{}}:\ \{}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ t.value:\ c}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ t,\ c\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}.nat\_type\_counts.items()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00171}00171\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00172}\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a655123c5795c3e038a2bb9889e5b1a90}{00172}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a655123c5795c3e038a2bb9889e5b1a90}{reset}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}重置指标"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_aec3f14aff5459f4e06f68732653c75b1}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a4263bc9c18e8dcaaf7f689d3b13190a4}{\_isp\_metrics}}.clear()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a7e865187fc8b5a6a6d871ca1fe01a82b}{\_nat\_metrics}}\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics}{NATMetrics}}()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_ab81546b061db43e74a2c82f3e82c1190}{\_total\_metrics}}\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics}{ConnectionMetrics}}()}
+\DoxyCodeLine{\Hypertarget{metrics_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_a26f8ce84a11579441b0b8fe9b9d68fc7}{\_start\_time}}\ =\ time.time()}
+
+\end{DoxyCode}

@@ -1,0 +1,381 @@
+\chapter{P2P Platform }
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{P2P Platform@{P2P Platform}}
+\label{md__r_e_a_d_m_e_autotoc_md265}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md265}%
+
+
+
+
+{\bfseries{基于 Web\+RTC 和 libp2p 技术的去中心化 P2P 通信平台}}
+
+\href{https://opensource.org/licenses/MIT}{\texttt{}} \href{https://www.python.org/downloads/}{\texttt{}}  \href{./docker-compose.yml}{\texttt{}}
+
+特性 • 快速开始 • 安装 • 文档 • 贡献
+
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md267}{}\doxysection{\texorpdfstring{📖 项目简介}{📖 项目简介}}\label{md__r_e_a_d_m_e_autotoc_md267}
+P2P Platform 是一套完整的去中心化 P2P 通信解决方案，实现了 libp2p 协议栈和 Web\+RTC 技术的深度集成。平台提供了从 NAT 穿透、设备发现、安全传输到流复用的全栈能力，支持构建高性能、可扩展的 P2P 应用。\hypertarget{md__r_e_a_d_m_e_autotoc_md268}{}\doxysubsection{\texorpdfstring{核心优势}{核心优势}}\label{md__r_e_a_d_m_e_autotoc_md268}
+
+\begin{DoxyItemize}
+\item 🚀 {\bfseries{高性能}}:\+ P2P 直连吞吐量 \texorpdfstring{$\sim$}{\string~}150 Mbps，本地连接延迟 \texorpdfstring{$\sim$}{\string~}50ms
+\item 🔒 {\bfseries{安全可靠}}:\+ TLS 1.\+3 加密，\+Ed25519 签名，完整的证书链验证
+\item 🌐 {\bfseries{libp2p 兼容}}:\+ 完整实现 libp2p 协议栈，与 go-\/libp2p 互操作
+\item 📦 {\bfseries{开箱即用}}:\+ Docker Compose 一键部署，支持 RPM/\+\+DEB/\+pip 安装
+\item 🧪 {\bfseries{测试完善}}:\+ 575 个测试用例，95.1\% 通过率，≥80\% 代码覆盖率
+\item 🛠️ {\bfseries{易于集成}}:\+ 简洁的客户端 SDK，支持 Python/\+\+Go/\+\+Rust/\+\+Java\+Script
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md270}{}\doxysection{\texorpdfstring{✨ 主要特性}{✨ 主要特性}}\label{md__r_e_a_d_m_e_autotoc_md270}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md271}{}\doxysubsection{\texorpdfstring{核心服务}{核心服务}}\label{md__r_e_a_d_m_e_autotoc_md271}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}服务  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}功能  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}端口  \\
+{\bfseries{STUN 服务器}}  &NAT 穿透、公网 IP 获取、\+NAT 类型检测  &3478 (UDP), 3479 (TCP)  \\
+{\bfseries{Relay 服务器}}  &TURN 中继、\+UDP/\+\+TCP 转发、带宽管理  &50000-\/50010  \\
+{\bfseries{信令服务器}}  &设备注册、\+SDP 交换、连接协调  &8080 (WS), 8443 (WSS)  \\
+{\bfseries{DID 服务}}  &设备身份认证、访问令牌管理  &9000 (HTTP)  \\
+{\bfseries{客户端 SDK}}  &简化 P2P 连接开发  &-\/  \\
+\end{DoxyTable}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md272}{}\doxysubsection{\texorpdfstring{libp2p 协议栈}{libp2p 协议栈}}\label{md__r_e_a_d_m_e_autotoc_md272}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md273}{}\doxysubsubsection{\texorpdfstring{安全传输}{安全传输}}\label{md__r_e_a_d_m_e_autotoc_md273}
+
+\begin{DoxyItemize}
+\item ✅ TLS 1.\+3 ({\ttfamily /\+tls/\+1.0.\+0})
+\item ✅ Noise ({\ttfamily /\+noise})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md274}{}\doxysubsubsection{\texorpdfstring{流复用}{流复用}}\label{md__r_e_a_d_m_e_autotoc_md274}
+
+\begin{DoxyItemize}
+\item ✅ mplex ({\ttfamily /\+mplex/\+6.7.\+0})
+\item ✅ yamux ({\ttfamily /\+yamux/\+1.0.\+0})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md275}{}\doxysubsubsection{\texorpdfstring{核心协议}{核心协议}}\label{md__r_e_a_d_m_e_autotoc_md275}
+
+\begin{DoxyItemize}
+\item ✅ multistream-\/select ({\ttfamily /\+multistream/\+1.0.\+0})
+\item ✅ Identify ({\ttfamily /\+ipfs/\+id/\+1.0.\+0})
+\item ✅ Auto\+NAT ({\ttfamily /\+libp2p/\+autonat/\+1.0.\+0})
+\item ✅ Circuit Relay v2 ({\ttfamily /\+libp2p/\+circuit/\+relay/\+0.2.\+0/\+hop})
+\item ✅ DCUtR ({\ttfamily /\+libp2p/\+dcutr/\+1.0.\+0})
+\item ✅ Ping ({\ttfamily /\+ipfs/\+ping/\+1.0.\+0})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md276}{}\doxysubsubsection{\texorpdfstring{高级功能}{高级功能}}\label{md__r_e_a_d_m_e_autotoc_md276}
+
+\begin{DoxyItemize}
+\item ✅ Kademlia DHT ({\ttfamily /\+ipfs/\+kad/\+1.0.\+0}) -\/ 分布式哈希表
+\item ✅ Gossip\+Sub v1.\+1 ({\ttfamily /\+meshsub/\+1.1.\+0}) -\/ 发布订阅
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md277}{}\doxysubsubsection{\texorpdfstring{传输层}{传输层}}\label{md__r_e_a_d_m_e_autotoc_md277}
+
+\begin{DoxyItemize}
+\item ✅ TCP
+\item ✅ QUIC ({\ttfamily /\+quic-\/v1})
+\item ✅ Web\+RTC ({\ttfamily /\+webrtc-\/direct})
+\item ✅ Web\+Transport ({\ttfamily /\+webtransport/\+1.0.\+0})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md278}{}\doxysubsection{\texorpdfstring{网络优化}{网络优化}}\label{md__r_e_a_d_m_e_autotoc_md278}
+
+\begin{DoxyItemize}
+\item 🌍 28 个全球运营商配置
+\item 📱 22 个设备厂商检测
+\item 💓 智能心跳和降级策略
+\item 🔍 NAT 类型检测 (Full Cone, Restricted, Port Restricted, Symmetric)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md280}{}\doxysection{\texorpdfstring{🚀 快速开始}{🚀 快速开始}}\label{md__r_e_a_d_m_e_autotoc_md280}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md281}{}\doxysubsection{\texorpdfstring{前置要求}{前置要求}}\label{md__r_e_a_d_m_e_autotoc_md281}
+
+\begin{DoxyItemize}
+\item Docker 20.\+10+
+\item Docker Compose 2.\+0+
+\item Python 3.\+11+ (如果不使用 Docker)
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md282}{}\doxysubsection{\texorpdfstring{使用 Docker Compose (推荐)}{使用 Docker Compose (推荐)}}\label{md__r_e_a_d_m_e_autotoc_md282}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 克隆项目}
+\DoxyCodeLine{git\ clone\ https://github.com/your-\/org/p2p-\/platform.git}
+\DoxyCodeLine{cd\ p2p-\/platform}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 启动所有服务}
+\DoxyCodeLine{docker-\/compose\ up\ -\/d}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 查看服务状态}
+\DoxyCodeLine{docker-\/compose\ ps}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 查看日志}
+\DoxyCodeLine{docker-\/compose\ logs\ -\/f}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 停止服务}
+\DoxyCodeLine{docker-\/compose\ down}
+
+\end{DoxyCode}
+
+
+服务启动后，可以通过以下地址访问：
+
+
+\begin{DoxyItemize}
+\item STUN 服务器:\+ {\ttfamily udp:\+/\+/\+localhost:\+3478}
+\item Relay 服务器:\+ {\ttfamily udp:\+/\+/\+localhost:\+50000-\/50010}
+\item 信令服务器:\+ {\ttfamily ws:\+/\+/\+localhost:\+8080}
+\item DID 服务:\+ {\ttfamily \href{http://localhost:9000}{\texttt{http:\+/\+/\+localhost:\+9000}}}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md283}{}\doxysubsection{\texorpdfstring{使用客户端 SDK}{使用客户端 SDK}}\label{md__r_e_a_d_m_e_autotoc_md283}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ client\_sdk\ \textcolor{keyword}{import}\ P2PClient}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 创建客户端}}
+\DoxyCodeLine{client\ =\ P2PClient(}
+\DoxyCodeLine{\ \ \ \ signaling\_url=\textcolor{stringliteral}{"{}ws://localhost:8080"{}},}
+\DoxyCodeLine{\ \ \ \ stun\_server=\textcolor{stringliteral}{"{}localhost:3478"{}}}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 注册设备}}
+\DoxyCodeLine{await\ client.register(device\_id=\textcolor{stringliteral}{"{}device-\/001"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 连接到另一个设备}}
+\DoxyCodeLine{connection\ =\ await\ client.connect(target\_device=\textcolor{stringliteral}{"{}device-\/002"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 发送数据}}
+\DoxyCodeLine{await\ connection.send(b\textcolor{stringliteral}{"{}Hello,\ P2P!"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 接收数据}}
+\DoxyCodeLine{data\ =\ await\ connection.receive()}
+\DoxyCodeLine{print(f\textcolor{stringliteral}{"{}Received:\ \{data\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 关闭连接}}
+\DoxyCodeLine{await\ connection.close()}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md285}{}\doxysection{\texorpdfstring{📦 安装方式}{📦 安装方式}}\label{md__r_e_a_d_m_e_autotoc_md285}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md286}{}\doxysubsection{\texorpdfstring{方式 1:\+ Docker (推荐)}{方式 1:\+ Docker (推荐)}}\label{md__r_e_a_d_m_e_autotoc_md286}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{docker-\/compose\ up\ -\/d}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md287}{}\doxysubsection{\texorpdfstring{方式 2:\+ RPM 包 (Cent\+OS/\+\+RHEL/\+\+Fedora)}{方式 2:\+ RPM 包 (Cent\+OS/\+\+RHEL/\+\+Fedora)}}\label{md__r_e_a_d_m_e_autotoc_md287}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 下载\ RPM\ 包}
+\DoxyCodeLine{wget\ https://github.com/your-\/org/p2p-\/platform/releases/download/v1.0.0/p2p-\/platform-\/1.0.0.rpm}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 安装}
+\DoxyCodeLine{sudo\ rpm\ -\/ivh\ p2p-\/platform-\/1.0.0.rpm}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 启动服务}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/stun}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/relay}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/signaling}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/did}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 设置开机自启}
+\DoxyCodeLine{sudo\ systemctl\ enable\ p2p-\/stun\ p2p-\/relay\ p2p-\/signaling\ p2p-\/did}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md288}{}\doxysubsection{\texorpdfstring{方式 3:\+ DEB 包 (Ubuntu/\+\+Debian)}{方式 3:\+ DEB 包 (Ubuntu/\+\+Debian)}}\label{md__r_e_a_d_m_e_autotoc_md288}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 下载\ DEB\ 包}
+\DoxyCodeLine{wget\ https://github.com/your-\/org/p2p-\/platform/releases/download/v1.0.0/p2p-\/platform\_1.0.0\_amd64.deb}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 安装}
+\DoxyCodeLine{sudo\ dpkg\ -\/i\ p2p-\/platform\_1.0.0\_amd64.deb}
+\DoxyCodeLine{sudo\ apt-\/get\ install\ -\/f\ \ \#\ 安装依赖}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 启动服务}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/stun}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/relay}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/signaling}
+\DoxyCodeLine{sudo\ systemctl\ start\ p2p-\/did}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md289}{}\doxysubsection{\texorpdfstring{方式 4:\+ pip 安装 (仅客户端 SDK)}{方式 4:\+ pip 安装 (仅客户端 SDK)}}\label{md__r_e_a_d_m_e_autotoc_md289}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ p2p-\/platform-\/sdk}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md290}{}\doxysubsection{\texorpdfstring{方式 5:\+ 源码安装}{方式 5:\+ 源码安装}}\label{md__r_e_a_d_m_e_autotoc_md290}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 克隆项目}
+\DoxyCodeLine{git\ clone\ https://github.com/your-\/org/p2p-\/platform.git}
+\DoxyCodeLine{cd\ p2p-\/platform}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 安装依赖}
+\DoxyCodeLine{pip\ install\ -\/r\ requirements.txt}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行测试}
+\DoxyCodeLine{pytest\ tests/\ -\/v}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 启动服务\ (需要分别启动各个服务)}
+\DoxyCodeLine{python\ stun-\/server/main.py\ \&}
+\DoxyCodeLine{python\ relay-\/server/main.py\ \&}
+\DoxyCodeLine{python\ signaling-\/server/main.py\ \&}
+\DoxyCodeLine{python\ did-\/service/main.py\ \&}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md292}{}\doxysection{\texorpdfstring{📚 文档}{📚 文档}}\label{md__r_e_a_d_m_e_autotoc_md292}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md293}{}\doxysubsection{\texorpdfstring{核心文档}{核心文档}}\label{md__r_e_a_d_m_e_autotoc_md293}
+
+\begin{DoxyItemize}
+\item 架构设计 -\/ 系统架构和组件说明
+\item API 规范 -\/ REST API 和 Web\+Socket 接口
+\item 开发指南 -\/ 开发环境搭建和贡献流程
+\item 测试指南 -\/ 测试框架和测试用例
+\item 部署指南 -\/ 生产环境部署步骤
+\item 运维手册 -\/ 服务管理和故障排查
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md294}{}\doxysubsection{\texorpdfstring{技术文档}{技术文档}}\label{md__r_e_a_d_m_e_autotoc_md294}
+
+\begin{DoxyItemize}
+\item libp2p 对比分析
+\item 客户端 SDK 设计
+\item 性能优化报告
+\item 项目完成报告
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md295}{}\doxysubsection{\texorpdfstring{发布说明}{发布说明}}\label{md__r_e_a_d_m_e_autotoc_md295}
+
+\begin{DoxyItemize}
+\item CHANGELOG -\/ 版本变更历史
+\item RELEASE NOTES -\/ v1.\+0.\+0 发布说明
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md297}{}\doxysection{\texorpdfstring{🧪 测试}{🧪 测试}}\label{md__r_e_a_d_m_e_autotoc_md297}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ 运行所有测试}
+\DoxyCodeLine{pytest\ tests/\ -\/v\ -\/-\/cov=p2p\_engine\ -\/-\/cov-\/report=html}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行单元测试}
+\DoxyCodeLine{pytest\ tests/unit/\ -\/v}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行集成测试}
+\DoxyCodeLine{pytest\ tests/integration/\ -\/v}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行互操作性测试}
+\DoxyCodeLine{pytest\ tests/interop/\ -\/v}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 运行性能测试}
+\DoxyCodeLine{pytest\ tests/benchmark/\ -\/v\ -\/m\ benchmark}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 查看覆盖率报告}
+\DoxyCodeLine{open\ htmlcov/index.html}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md299}{}\doxysection{\texorpdfstring{🛠️ 配置}{🛠️ 配置}}\label{md__r_e_a_d_m_e_autotoc_md299}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md300}{}\doxysubsection{\texorpdfstring{环境变量}{环境变量}}\label{md__r_e_a_d_m_e_autotoc_md300}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\ STUN\ 服务器}
+\DoxyCodeLine{STUN\_PORT=3478}
+\DoxyCodeLine{STUN\_TCP\_PORT=3479}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ Relay\ 服务器}
+\DoxyCodeLine{RELAY\_MIN\_PORT=50000}
+\DoxyCodeLine{RELAY\_MAX\_PORT=50010}
+\DoxyCodeLine{RELAY\_MAX\_ALLOCATIONS=1000}
+\DoxyCodeLine{RELAY\_ALLOCATION\_LIFETIME=600}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ 信令服务器}
+\DoxyCodeLine{SIGNALING\_WS\_PORT=8080}
+\DoxyCodeLine{SIGNALING\_WSS\_PORT=8443}
+\DoxyCodeLine{REDIS\_URL=redis://localhost:6379}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\ DID\ 服务}
+\DoxyCodeLine{DID\_SERVICE\_PORT=9000}
+\DoxyCodeLine{JWT\_SECRET=your-\/secret-\/key-\/change-\/in-\/production}
+\DoxyCodeLine{JWT\_EXPIRATION=3600}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md301}{}\doxysubsection{\texorpdfstring{配置文件}{配置文件}}\label{md__r_e_a_d_m_e_autotoc_md301}
+详细配置请参考 \href{./docker-compose.yml}{\texttt{docker-\/compose.\+yml}} 和各服务目录下的配置文件。
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md303}{}\doxysection{\texorpdfstring{📊 性能指标}{📊 性能指标}}\label{md__r_e_a_d_m_e_autotoc_md303}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}指标  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}目标  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}实际  \\
+本地连接延迟  &\texorpdfstring{$<$}{<} 100ms  &\texorpdfstring{$\sim$}{\string~}50ms ✅  \\
+远程连接延迟  &\texorpdfstring{$<$}{<} 500ms  &\texorpdfstring{$\sim$}{\string~}200ms ✅  \\
+中继连接延迟  &\texorpdfstring{$<$}{<} 1000ms  &\texorpdfstring{$\sim$}{\string~}500ms ✅  \\
+P2P 直连吞吐量  &\texorpdfstring{$>$}{>} 100 Mbps  &\texorpdfstring{$\sim$}{\string~}150 Mbps ✅  \\
+中继吞吐量  &\texorpdfstring{$>$}{>} 10 Mbps  &\texorpdfstring{$\sim$}{\string~}15 Mbps ✅  \\
+并发连接数  &100+  &500+ ✅  \\
+\end{DoxyTable}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md305}{}\doxysection{\texorpdfstring{🤝 贡献指南}{🤝 贡献指南}}\label{md__r_e_a_d_m_e_autotoc_md305}
+我们欢迎所有形式的贡献！\hypertarget{md__r_e_a_d_m_e_autotoc_md306}{}\doxysubsection{\texorpdfstring{如何贡献}{如何贡献}}\label{md__r_e_a_d_m_e_autotoc_md306}
+
+\begin{DoxyEnumerate}
+\item Fork 本项目
+\item 创建特性分支 ({\ttfamily git checkout -\/b feature/\+\+Amazing\+Feature})
+\item 提交更改 ({\ttfamily git commit -\/m \textquotesingle{}feat:\+ Add some Amazing\+Feature\textquotesingle{}})
+\item 推送到分支 ({\ttfamily git push origin feature/\+\+Amazing\+Feature})
+\item 开启 Pull Request
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md307}{}\doxysubsection{\texorpdfstring{提交规范}{提交规范}}\label{md__r_e_a_d_m_e_autotoc_md307}
+我们使用 \href{https://www.conventionalcommits.org/}{\texttt{Conventional Commits}} 规范：
+
+
+\begin{DoxyItemize}
+\item {\ttfamily feat}:\+ 新功能
+\item {\ttfamily fix}:\+ 修复 bug
+\item {\ttfamily docs}:\+ 文档更新
+\item {\ttfamily test}:\+ 测试相关
+\item {\ttfamily refactor}:\+ 代码重构
+\item {\ttfamily perf}:\+ 性能优化
+\item {\ttfamily chore}:\+ 构建/\+工具链更新
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md308}{}\doxysubsection{\texorpdfstring{代码规范}{代码规范}}\label{md__r_e_a_d_m_e_autotoc_md308}
+
+\begin{DoxyItemize}
+\item Python 代码遵循 PEP 8
+\item 使用 {\ttfamily black} 格式化代码
+\item 使用 {\ttfamily mypy} 进行类型检查
+\item 测试覆盖率 ≥ 80\%
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md310}{}\doxysection{\texorpdfstring{📄 许可证}{📄 许可证}}\label{md__r_e_a_d_m_e_autotoc_md310}
+本项目采用 MIT 许可证 -\/ 详见 \+[LICENSE]\+(LICENSE) 文件
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md312}{}\doxysection{\texorpdfstring{🙏 致谢}{🙏 致谢}}\label{md__r_e_a_d_m_e_autotoc_md312}
+感谢以下项目和社区：
+
+
+\begin{DoxyItemize}
+\item \href{https://libp2p.io/}{\texttt{libp2p}} -\/ 模块化网络栈
+\item \href{https://webrtc.org/}{\texttt{Web\+RTC}} -\/ 实时通信技术
+\item \href{https://github.com/aiortc/aioquic}{\texttt{aioquic}} -\/ Python QUIC 实现
+\item \href{https://github.com/aiortc/aiortc}{\texttt{aiortc}} -\/ Python Web\+RTC 实现
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md314}{}\doxysection{\texorpdfstring{📞 联系我们}{📞 联系我们}}\label{md__r_e_a_d_m_e_autotoc_md314}
+
+\begin{DoxyItemize}
+\item 问题反馈:\+ \href{https://github.com/your-org/p2p-platform/issues}{\texttt{Git\+Hub Issues}}
+\item 功能建议:\+ \href{https://github.com/your-org/p2p-platform/discussions}{\texttt{Git\+Hub Discussions}}
+\item 邮件:\+ \href{mailto:support@your-org.com}{\texttt{support@your-\/org.\+com}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+
+
+{\bfseries{⬆ 回到顶部}}
+
+Made with ❤️ by P2P Platform Team
+
+ 

@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::webtransport::WebTransportConnection</compoundname>
+    <basecompoundref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" prot="public" virt="non-virtual">p2p_engine.transport.base.Connection</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a122cb7bddeb5efaf622d1889453559cc" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.webtransport.WebTransportConnection::_quic</definition>
+        <argsstring></argsstring>
+        <name>_quic</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._quic</qualifiedname>
+        <initializer>=  quic_connection</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="236" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="236" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a3587fc10fb7c98dc708790297b0f60fe" compoundref="webtransport_8py" startline="249" endline="252">p2p_engine.transport.webtransport.WebTransportConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" compoundref="webtransport_8py" startline="253" endline="265">p2p_engine.transport.webtransport.WebTransportConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a64518eadb1d50405a40899b41fb79efd" compoundref="webtransport_8py" startline="266" endline="275">p2p_engine.transport.webtransport.WebTransportConnection.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a87202fd8e7123eeebe03923c2ca55976" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.webtransport.WebTransportConnection::_h3</definition>
+        <argsstring></argsstring>
+        <name>_h3</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._h3</qualifiedname>
+        <initializer>=  h3_connection</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="237" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="237" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a4616e499029c9f0daf9510b70682d464" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.webtransport.WebTransportConnection::_is_client</definition>
+        <argsstring></argsstring>
+        <name>_is_client</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._is_client</qualifiedname>
+        <initializer>=  is_client</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="238" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="238" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1aaa85ead16c18834a4bb884e78957a203" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.transport.webtransport.WebTransportConnection::_closed</definition>
+        <argsstring></argsstring>
+        <name>_closed</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._closed</qualifiedname>
+        <initializer>=  False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="239" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="239" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1a0e1f5d427e6250f5af7fbec961e29fd8" compoundref="webtransport_8py" startline="342" endline="347">p2p_engine.transport.webtransport.WebTransportListener.addresses</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a3587fc10fb7c98dc708790297b0f60fe" compoundref="webtransport_8py" startline="249" endline="252">p2p_engine.transport.webtransport.WebTransportConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1af53137f2c2cd0db7ffa4e1a39638326e" compoundref="webtransport_8py" startline="337" endline="340">p2p_engine.transport.webtransport.WebTransportListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" compoundref="webtransport_8py" startline="253" endline="265">p2p_engine.transport.webtransport.WebTransportConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a64518eadb1d50405a40899b41fb79efd" compoundref="webtransport_8py" startline="266" endline="275">p2p_engine.transport.webtransport.WebTransportConnection.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ac3a9e350f3f62ea08ad203b7a0e15130" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict p2p_engine.transport.webtransport.WebTransportConnection::_streams</definition>
+        <argsstring></argsstring>
+        <name>_streams</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._streams</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="242" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ac5aa04c91bcb3a85fae101174e657f3b" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine.transport.webtransport.WebTransportConnection::_next_stream_id</definition>
+        <argsstring></argsstring>
+        <name>_next_stream_id</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._next_stream_id</qualifiedname>
+        <initializer>=  0 if is_client else 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="243" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="243" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a39d289f295224a22b9dbddae77865353" prot="protected" static="no" mutable="no">
+        <type>Optional[asyncio.Task]</type>
+        <definition>Optional[asyncio.Task] p2p_engine.transport.webtransport.WebTransportConnection::_receive_task</definition>
+        <argsstring></argsstring>
+        <name>_receive_task</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._receive_task</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="246" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="246" bodyend="-1"/>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1ad29e8909e3ae1326c0d6cdf594507b93" compoundref="client_8py" startline="509" endline="515">p2p_sdk.client.P2PClient._start_receive_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</referencedby>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1ab50d95f03e1b4cf5b9517bd4a2d235c9" compoundref="client_8py" startline="744" endline="788">p2p_sdk.client.P2PClient.close</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ae79c7188ea7e7ccebd530086e8836f1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.webtransport.WebTransportConnection.__init__</definition>
+        <argsstring>(self, QuicConnection quic_connection, H3Connection h3_connection, bool is_client, str local_addr, str remote_addr)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="namespacep2p__engine_1_1transport_1_1webtransport_1a047c673a9da9d509b9116478d5bc7c42" kindref="member">QuicConnection</ref></type>
+          <declname>quic_connection</declname>
+        </param>
+        <param>
+          <type><ref refid="namespacep2p__engine_1_1transport_1_1webtransport_1acbeca1b9e0cb9e9753dd959086af7392" kindref="member">H3Connection</ref></type>
+          <declname>h3_connection</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_client</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>local_addr</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>remote_addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="226" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="233" bodyend="247"/>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ae79c7188ea7e7ccebd530086e8836f1d" compoundref="webtransport_8py" startline="233" endline="247">p2p_engine.transport.webtransport.WebTransportConnection.__init__</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ae79c7188ea7e7ccebd530086e8836f1d" compoundref="webtransport_8py" startline="233" endline="247">p2p_engine.transport.webtransport.WebTransportConnection.__init__</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a3587fc10fb7c98dc708790297b0f60fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.transport.webtransport.WebTransportConnection.is_closed</definition>
+        <argsstring>(self)</argsstring>
+        <name>is_closed</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection.is_closed</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1afd80c879b0a4036fce4ca9e8b8e34115">is_closed</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Check if connection is closed</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="249" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="249" bodyend="252"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a7b18c803b25e2eced193573d53f7052a" compoundref="tcp__optimized_8py" startline="462">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a510b95b7e8b5df698b87a65d100c9537" compoundref="upgrader_8py" startline="203">p2p_engine.transport.upgrader.MuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ae3dd15cd3eb5894d595702a813f1c70b" compoundref="webrtc_8py" startline="141">p2p_engine.transport.webrtc.WebRTCConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a8a2f2b96d07ba79f4a81c86840d2a79a" compoundref="webrtc_8py" startline="435">p2p_engine.transport.webrtc.WebRTCListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" compoundref="webrtc_8py" startline="581">p2p_engine.transport.webrtc.WebRTCTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1aaa85ead16c18834a4bb884e78957a203" compoundref="webtransport_8py" startline="239">p2p_engine.transport.webtransport.WebTransportConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a122cb7bddeb5efaf622d1889453559cc" compoundref="webtransport_8py" startline="236">p2p_engine.transport.webtransport.WebTransportConnection._quic</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.transport.webtransport.WebTransportConnection.read</definition>
+        <argsstring>(self, int n=-1)</argsstring>
+        <name>read</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection.read</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a4f82ab1576b25050f93e2a8679b5a055">read</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Read data from connection</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="253" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="253" bodyend="265"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a7b18c803b25e2eced193573d53f7052a" compoundref="tcp__optimized_8py" startline="462">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a510b95b7e8b5df698b87a65d100c9537" compoundref="upgrader_8py" startline="203">p2p_engine.transport.upgrader.MuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ae3dd15cd3eb5894d595702a813f1c70b" compoundref="webrtc_8py" startline="141">p2p_engine.transport.webrtc.WebRTCConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a8a2f2b96d07ba79f4a81c86840d2a79a" compoundref="webrtc_8py" startline="435">p2p_engine.transport.webrtc.WebRTCListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" compoundref="webrtc_8py" startline="581">p2p_engine.transport.webrtc.WebRTCTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1aaa85ead16c18834a4bb884e78957a203" compoundref="webtransport_8py" startline="239">p2p_engine.transport.webtransport.WebTransportConnection._closed</references>
+        <references refid="classp2p__engine_1_1engine_1_1_p2_p_engine_1a2b8c2d75cd36874eaa478323e94a284a" compoundref="engine_8py" startline="239" endline="252">p2p_engine.engine.P2PEngine._handle_event</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a7fc56c65031c0b75881ddd465caa70a4" compoundref="webtransport_8py" startline="302" endline="312">p2p_engine.transport.webtransport.WebTransportConnection._handle_event</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a122cb7bddeb5efaf622d1889453559cc" compoundref="webtransport_8py" startline="236">p2p_engine.transport.webtransport.WebTransportConnection._quic</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a64518eadb1d50405a40899b41fb79efd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.transport.webtransport.WebTransportConnection.write</definition>
+        <argsstring>(self, bytes data)</argsstring>
+        <name>write</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection.write</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a1f8391923639cf4fd18b559d01bc345b">write</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Write data to connection</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="266" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="266" bodyend="275"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a7b18c803b25e2eced193573d53f7052a" compoundref="tcp__optimized_8py" startline="462">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a510b95b7e8b5df698b87a65d100c9537" compoundref="upgrader_8py" startline="203">p2p_engine.transport.upgrader.MuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ae3dd15cd3eb5894d595702a813f1c70b" compoundref="webrtc_8py" startline="141">p2p_engine.transport.webrtc.WebRTCConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a8a2f2b96d07ba79f4a81c86840d2a79a" compoundref="webrtc_8py" startline="435">p2p_engine.transport.webrtc.WebRTCListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" compoundref="webrtc_8py" startline="581">p2p_engine.transport.webrtc.WebRTCTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1aaa85ead16c18834a4bb884e78957a203" compoundref="webtransport_8py" startline="239">p2p_engine.transport.webtransport.WebTransportConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a122cb7bddeb5efaf622d1889453559cc" compoundref="webtransport_8py" startline="236">p2p_engine.transport.webtransport.WebTransportConnection._quic</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webtransport.WebTransportConnection.close</definition>
+        <argsstring>(self)</argsstring>
+        <name>close</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection.close</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a03bc6dc0ef2a59f073caa915a59e81da">close</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Close the connection</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="276" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="276" bodyend="290"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a7b18c803b25e2eced193573d53f7052a" compoundref="tcp__optimized_8py" startline="462">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a510b95b7e8b5df698b87a65d100c9537" compoundref="upgrader_8py" startline="203">p2p_engine.transport.upgrader.MuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ae3dd15cd3eb5894d595702a813f1c70b" compoundref="webrtc_8py" startline="141">p2p_engine.transport.webrtc.WebRTCConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a8a2f2b96d07ba79f4a81c86840d2a79a" compoundref="webrtc_8py" startline="435">p2p_engine.transport.webrtc.WebRTCListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a7b0c63eb2fb2dedd38d507dd9a5e740b" compoundref="webrtc_8py" startline="581">p2p_engine.transport.webrtc.WebRTCTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1aaa85ead16c18834a4bb884e78957a203" compoundref="webtransport_8py" startline="239">p2p_engine.transport.webtransport.WebTransportConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a122cb7bddeb5efaf622d1889453559cc" compoundref="webtransport_8py" startline="236">p2p_engine.transport.webtransport.WebTransportConnection._quic</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a39d289f295224a22b9dbddae77865353" compoundref="webtransport_8py" startline="246">p2p_engine.transport.webtransport.WebTransportConnection._receive_task</references>
+        <references refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</references>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a4c264574b75a1e50a00ed479a58c249e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[tuple]</type>
+        <definition> Optional[tuple] p2p_engine.transport.webtransport.WebTransportConnection.remote_address</definition>
+        <argsstring>(self)</argsstring>
+        <name>remote_address</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection.remote_address</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1acf8091530c3865d3c01d74895388af65">remote_address</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get remote address</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="292" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="292" bodyend="296"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a9fe50295c382fd62056dd82ade33919f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[tuple]</type>
+        <definition> Optional[tuple] p2p_engine.transport.webtransport.WebTransportConnection.local_address</definition>
+        <argsstring>(self)</argsstring>
+        <name>local_address</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection.local_address</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a2c2fdec8d0b32b8b7804c2c437a86c1d">local_address</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get local address</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="298" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="298" bodyend="301"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a7fc56c65031c0b75881ddd465caa70a4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.webtransport.WebTransportConnection._handle_event</definition>
+        <argsstring>(self, &quot;QuicEvent&quot; event)</argsstring>
+        <name>_handle_event</name>
+        <qualifiedname>p2p_engine.transport.webtransport.WebTransportConnection._handle_event</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>&quot;QuicEvent&quot;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle QUIC event</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/webtransport.py" line="302" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="302" bodyend="312"/>
+        <references refid="classp2p__engine_1_1config_1_1loader_1_1_config_loader_1a47f700eb6c1828f7d898072be94c086d" compoundref="loader_8py" startline="162" endline="170">p2p_engine.config.loader.ConfigLoader.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1adcc78e328278304139f5c0fdd97f0cdd" compoundref="mplex_8py" startline="627" endline="658">p2p_engine.muxer.mplex.MplexSession.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_1a9d1d2049bfc72f66ffa88cd8ab28dbc5" compoundref="mplex_8py" startline="400" endline="422">p2p_engine.muxer.mplex.MplexStream.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1ace401f564024f6545c81cf310db602ca" compoundref="mplex__adapter_8py" startline="124" endline="127">p2p_engine.muxer.mplex_adapter.ConnectionWriter.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1aabc82b97fc5151e3d93c216fc8a6b6e5" compoundref="mplex__adapter_8py" startline="168" endline="173">p2p_engine.muxer.mplex_adapter.MplexMuxedSession.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_stream_1a44c3714d8880d5a868988a2100702858" compoundref="mplex__adapter_8py" startline="194" endline="197">p2p_engine.muxer.mplex_adapter.MplexMuxedStream.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a6a96c840b63277c9af1d3732c8389ecb" compoundref="mplex__v2_8py" startline="826" endline="857">p2p_engine.muxer.mplex_v2.MplexSession.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_stream_1a64009e7c52f898e669b3d283a43b4878" compoundref="mplex__v2_8py" startline="444" endline="466">p2p_engine.muxer.mplex_v2.MplexStream.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a737be79b12f402bd70ab515a596a214b" compoundref="yamux_8py" startline="661" endline="701">p2p_engine.muxer.yamux.YamuxSession.close</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_1af35933280b337831bc0c31bddb4968bb" compoundref="yamux_8py" startline="409" endline="432">p2p_engine.muxer.yamux.YamuxStream.close</references>
+        <references refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_protocol_1aaee2e9bc73fdcec59b69a40ab15fd717" compoundref="dcutr_8py" startline="688" endline="704">p2p_engine.protocol.dcutr.dcutr.DCUtRProtocol.close</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a3d3ef87c9d13be926feca1456156183d" compoundref="identify_8py" startline="255" endline="266">p2p_engine.protocol.identify.ConnectionWrapper.close</references>
+        <references refid="classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_1ab9aa2e68451c87896e9ede5a2e4a68a5" compoundref="negotiator_8py" startline="83" endline="86">p2p_engine.protocol.negotiator.StreamReaderWriter.close</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a778370a54cf188688f9af91a33040c3c" compoundref="noise_8py" startline="766" endline="777">p2p_engine.protocol.noise.NoiseSecurityTransport.close</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1afcb9809aa6da525907fc7bc7699f3247" compoundref="tls_8py" startline="332" endline="343">p2p_engine.protocol.tls.TLSSecurityTransport.close</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1a9e41933a900769d1ef04984f74a38945" compoundref="tls_8py" startline="659" endline="662">p2p_engine.protocol.tls.TLSSession.close</references>
+        <references refid="classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_1a7e632a63ed0f811f3b06a75c5a4d94a2" compoundref="tcp__puncher_8py" startline="303" endline="311">p2p_engine.puncher.tcp_puncher.TCPPuncher.close</references>
+        <references refid="classp2p__engine_1_1puncher_1_1udp__puncher_1_1_u_d_p_puncher_1ad25bdfa615fd4a3ff01e4672d00ff1fe" compoundref="udp__puncher_8py" startline="195" endline="200">p2p_engine.puncher.udp_puncher.UDPPuncher.close</references>
+        <references refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a03bc6dc0ef2a59f073caa915a59e81da" compoundref="base_8py" startline="61" endline="64">p2p_engine.transport.base.Connection.close</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" compoundref="webtransport_8py" startline="253" endline="265">p2p_engine.transport.webtransport.WebTransportConnection.read</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>WebTransport connection
+
+Wraps a QUIC connection with HTTP/3 and WebTransport semantics.
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.webtransport.WebTransportConnection</label>
+        <link refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Connection</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_connection"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.webtransport.WebTransportConnection</label>
+        <link refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Connection</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_connection"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/transport/webtransport.py" line="219" column="1" bodyfile="p2p_engine/transport/webtransport.py" bodystart="219" bodyend="312"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ae79c7188ea7e7ccebd530086e8836f1d" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1aaa85ead16c18834a4bb884e78957a203" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_closed</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a87202fd8e7123eeebe03923c2ca55976" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_h3</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a7fc56c65031c0b75881ddd465caa70a4" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_handle_event</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a4616e499029c9f0daf9510b70682d464" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_is_client</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ac5aa04c91bcb3a85fae101174e657f3b" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_next_stream_id</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a122cb7bddeb5efaf622d1889453559cc" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_quic</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a39d289f295224a22b9dbddae77865353" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_receive_task</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1ac3a9e350f3f62ea08ad203b7a0e15130" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>_streams</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>close</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a3587fc10fb7c98dc708790297b0f60fe" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>is_closed</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a9fe50295c382fd62056dd82ade33919f" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>local_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>read</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a4c264574b75a1e50a00ed479a58c249e" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>remote_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a64518eadb1d50405a40899b41fb79efd" prot="public" virt="non-virtual"><scope>p2p_engine::transport::webtransport::WebTransportConnection</scope><name>write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

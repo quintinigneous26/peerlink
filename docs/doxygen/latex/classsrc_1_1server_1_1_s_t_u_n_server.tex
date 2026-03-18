@@ -1,0 +1,319 @@
+\doxysection{src.\+server.\+STUNServer类 参考}
+\hypertarget{classsrc_1_1server_1_1_s_t_u_n_server}{}\label{classsrc_1_1server_1_1_s_t_u_n_server}\index{src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_ae7ca883d50ec6b194f5984437750954f}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a75e5489168c585fd8c637f146a13e859}{host}}=\doxymbox{\hyperlink{namespacesrc_1_1server_a3ebee8520fbd17bcf3a9bf8dbc4c84a2}{DEFAULT\+\_\+\+HOST}}, int \doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a471326b31daf7543142acd41833d3a5a}{udp\+\_\+port}}=\doxymbox{\hyperlink{namespacesrc_1_1server_a55a83844751d585b58d8a13a0df64b7b}{DEFAULT\+\_\+\+UDP\+\_\+\+PORT}}, int \doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a8ececd4731a1ad6c1b03f52d28be8b15}{tcp\+\_\+port}}=\doxymbox{\hyperlink{namespacesrc_1_1server_af0aa210380ed4288d1646795233260d6}{DEFAULT\+\_\+\+TCP\+\_\+\+PORT}})
+\item 
+Optional\+[bytes]\+ \doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a25f104bd89a28233de06b9bc69f0825b}{handle\+\_\+udp\+\_\+packet}} (self, bytes data, Tuple\+[str, int]\+ addr)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a295f6b3afb1ebdaa904c9a66aa4a4f8b}{udp\+\_\+server}} (self)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a114745e39d0c1ee1d23b3546381d04f2}{tcp\+\_\+server}} (self)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a1ba5238eedb18cee36351b5787bdadd1}{start}} (self, bool udp\+\_\+only=False)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a83733a161f3efcab11c315c8f76f37c4}{stop}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a75e5489168c585fd8c637f146a13e859}{host}} = host
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a471326b31daf7543142acd41833d3a5a}{udp\+\_\+port}} = udp\+\_\+port
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a8ececd4731a1ad6c1b03f52d28be8b15}{tcp\+\_\+port}} = tcp\+\_\+port
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a290adc3a80ecf175e732e8d24081e157}{running}} = False
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a8c92fd03eb6886b1aee9c8d37d75802d}{\+\_\+create\+\_\+binding\+\_\+response}} (self, \doxymbox{\hyperlink{classsrc_1_1messages_1_1_stun_message}{Stun\+Message}} request, Tuple\+[str, int]\+ client\+\_\+addr)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_a27cbe31967a6b0d2322bc512da2ed000}{\+\_\+handle\+\_\+tcp\+\_\+client}} (self, asyncio.\+Stream\+Reader reader, asyncio.\+Stream\+Writer writer)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1server_1_1_s_t_u_n_server_aaf5d0ddf7b22edf64093430365cb4df8}{\+\_\+started}} = asyncio.\+Event()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}STUN Server implementation.
+
+Handles both UDP and TCP STUN requests according to RFC 5389.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00038}{38}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_ae7ca883d50ec6b194f5984437750954f}\index{src.server.STUNServer@{src.server.STUNServer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_ae7ca883d50ec6b194f5984437750954f} 
+src.\+server.\+STUNServer.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str }]{host}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1server_a3ebee8520fbd17bcf3a9bf8dbc4c84a2}{DEFAULT\+\_\+\+HOST}}}, }\item[{int }]{udp\+\_\+port}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1server_a55a83844751d585b58d8a13a0df64b7b}{DEFAULT\+\_\+\+UDP\+\_\+\+PORT}}}, }\item[{int }]{tcp\+\_\+port}{ = {\ttfamily \doxymbox{\hyperlink{namespacesrc_1_1server_af0aa210380ed4288d1646795233260d6}{DEFAULT\+\_\+\+TCP\+\_\+\+PORT}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize STUN server.
+
+Args:
+    host: Host address to bind to
+    udp_port: UDP port for STUN requests
+    tcp_port: TCP port for STUN requests
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00045}{45}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a8c92fd03eb6886b1aee9c8d37d75802d}\index{src.server.STUNServer@{src.server.STUNServer}!\_create\_binding\_response@{\_create\_binding\_response}}
+\index{\_create\_binding\_response@{\_create\_binding\_response}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{\_create\_binding\_response()}{\_create\_binding\_response()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a8c92fd03eb6886b1aee9c8d37d75802d} 
+ bytes src.\+server.\+STUNServer.\+\_\+create\+\_\+binding\+\_\+response (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classsrc_1_1messages_1_1_stun_message}{Stun\+Message}}}]{request}{, }\item[{Tuple\+[str, int]\+     }]{client\+\_\+addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Create binding success response.
+
+Args:
+    request: Original STUN request
+    client_addr: Client's (ip, port)
+
+Returns:
+    Serialized STUN response
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00103}{103}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay_8py_source_l00231}{src.\+relay.\+Relay\+Server.\+\_\+handle\+\_\+control\+\_\+message()}} , 以及 \doxymbox{\hyperlink{server_8py_source_l00065}{handle\+\_\+udp\+\_\+packet()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a27cbe31967a6b0d2322bc512da2ed000}\index{src.server.STUNServer@{src.server.STUNServer}!\_handle\_tcp\_client@{\_handle\_tcp\_client}}
+\index{\_handle\_tcp\_client@{\_handle\_tcp\_client}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{\_handle\_tcp\_client()}{\_handle\_tcp\_client()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a27cbe31967a6b0d2322bc512da2ed000} 
+src.\+server.\+STUNServer.\+\_\+handle\+\_\+tcp\+\_\+client (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{asyncio.\+Stream\+Reader}]{reader}{, }\item[{asyncio.\+Stream\+Writer     }]{writer}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Handle TCP STUN client connection.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00187}{187}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{server_8py_source_l00065}{handle\+\_\+udp\+\_\+packet()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{server_8py_source_l00175}{tcp\+\_\+server()}}.
+
+函数调用图:\+
+% FIG 1
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a25f104bd89a28233de06b9bc69f0825b}\index{src.server.STUNServer@{src.server.STUNServer}!handle\_udp\_packet@{handle\_udp\_packet}}
+\index{handle\_udp\_packet@{handle\_udp\_packet}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{handle\_udp\_packet()}{handle\_udp\_packet()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a25f104bd89a28233de06b9bc69f0825b} 
+ Optional\+[bytes]\+ src.\+server.\+STUNServer.\+handle\+\_\+udp\+\_\+packet (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{, }\item[{Tuple\+[str, int]\+}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Handle incoming UDP STUN packet.
+
+Args:
+    data: Raw packet data
+    addr: (ip, port) of sender
+
+Returns:
+    Response bytes or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00065}{65}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{server_8py_source_l00105}{\+\_\+create\+\_\+binding\+\_\+response()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{server_8py_source_l00189}{\+\_\+handle\+\_\+tcp\+\_\+client()}} , 以及 \doxymbox{\hyperlink{server_8py_source_l00139}{udp\+\_\+server()}}.
+
+函数调用图:\+
+% FIG 3
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a1ba5238eedb18cee36351b5787bdadd1}\index{src.server.STUNServer@{src.server.STUNServer}!start@{start}}
+\index{start@{start}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a1ba5238eedb18cee36351b5787bdadd1} 
+src.\+server.\+STUNServer.\+start (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{udp\+\_\+only}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start STUN server.
+
+Args:
+    udp_only: If True, only start UDP server (useful for testing)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00223}{223}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{server_8py_source_l00062}{running}}, \doxymbox{\hyperlink{server_8py_source_l00175}{tcp\+\_\+server()}} , 以及 \doxymbox{\hyperlink{server_8py_source_l00139}{udp\+\_\+server()}}.
+
+函数调用图:\+
+% FIG 5
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a83733a161f3efcab11c315c8f76f37c4}\index{src.server.STUNServer@{src.server.STUNServer}!stop@{stop}}
+\index{stop@{stop}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a83733a161f3efcab11c315c8f76f37c4} 
+src.\+server.\+STUNServer.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop STUN server.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00246}{246}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{server_8py_source_l00062}{running}}.
+
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a114745e39d0c1ee1d23b3546381d04f2}\index{src.server.STUNServer@{src.server.STUNServer}!tcp\_server@{tcp\_server}}
+\index{tcp\_server@{tcp\_server}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{tcp\_server()}{tcp\_server()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a114745e39d0c1ee1d23b3546381d04f2} 
+src.\+server.\+STUNServer.\+tcp\+\_\+server (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run TCP STUN server.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00175}{175}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{server_8py_source_l00189}{\+\_\+handle\+\_\+tcp\+\_\+client()}}, \doxymbox{\hyperlink{server_8py_source_l00059}{host}}, \doxymbox{\hyperlink{server_8py_source_l00062}{running}} , 以及 \doxymbox{\hyperlink{server_8py_source_l00061}{tcp\+\_\+port}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{server_8py_source_l00223}{start()}}.
+
+函数调用图:\+
+% FIG 6
+这是这个函数的调用关系图:\+
+% FIG 7
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a295f6b3afb1ebdaa904c9a66aa4a4f8b}\index{src.server.STUNServer@{src.server.STUNServer}!udp\_server@{udp\_server}}
+\index{udp\_server@{udp\_server}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{udp\_server()}{udp\_server()}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a295f6b3afb1ebdaa904c9a66aa4a4f8b} 
+src.\+server.\+STUNServer.\+udp\+\_\+server (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Run UDP STUN server.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00139}{139}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00067}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+\_\+started}}, \doxymbox{\hyperlink{server_8py_source_l00063}{\+\_\+started}}, \doxymbox{\hyperlink{server_8py_source_l00065}{handle\+\_\+udp\+\_\+packet()}}, \doxymbox{\hyperlink{server_8py_source_l00059}{host}}, \doxymbox{\hyperlink{server_8py_source_l00062}{running}} , 以及 \doxymbox{\hyperlink{server_8py_source_l00060}{udp\+\_\+port}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{server_8py_source_l00223}{start()}}.
+
+函数调用图:\+
+% FIG 8
+这是这个函数的调用关系图:\+
+% FIG 9
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_aaf5d0ddf7b22edf64093430365cb4df8}\index{src.server.STUNServer@{src.server.STUNServer}!\_started@{\_started}}
+\index{\_started@{\_started}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{\_started}{\_started}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_aaf5d0ddf7b22edf64093430365cb4df8} 
+src.\+server.\+STUNServer.\+\_\+started = asyncio.\+Event()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00063}{63}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{server_8py_source_l00139}{udp\+\_\+server()}}.
+
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a75e5489168c585fd8c637f146a13e859}\index{src.server.STUNServer@{src.server.STUNServer}!host@{host}}
+\index{host@{host}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a75e5489168c585fd8c637f146a13e859} 
+src.\+server.\+STUNServer.\+host = host}
+
+
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00059}{59}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay_8py_source_l00198}{src.\+relay.\+Relay\+Server.\+\_\+start\+\_\+control\+\_\+channel()}}, \doxymbox{\hyperlink{server_8py_source_l00175}{tcp\+\_\+server()}} , 以及 \doxymbox{\hyperlink{server_8py_source_l00139}{udp\+\_\+server()}}.
+
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a290adc3a80ecf175e732e8d24081e157}\index{src.server.STUNServer@{src.server.STUNServer}!running@{running}}
+\index{running@{running}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{running}{running}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a290adc3a80ecf175e732e8d24081e157} 
+bool src.\+server.\+STUNServer.\+running = False}
+
+
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00062}{62}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay_8py_source_l00210}{src.\+relay.\+Relay\+Server.\+\_\+control\+\_\+loop()}}, \doxymbox{\hyperlink{relay_8py_source_l00188}{src.\+relay.\+Relay\+Server.\+start()}}, \doxymbox{\hyperlink{server_8py_source_l00223}{start()}}, \doxymbox{\hyperlink{relay_8py_source_l00554}{src.\+relay.\+Relay\+Server.\+stop()}}, \doxymbox{\hyperlink{server_8py_source_l00246}{stop()}}, \doxymbox{\hyperlink{server_8py_source_l00175}{tcp\+\_\+server()}} , 以及 \doxymbox{\hyperlink{server_8py_source_l00139}{udp\+\_\+server()}}.
+
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a8ececd4731a1ad6c1b03f52d28be8b15}\index{src.server.STUNServer@{src.server.STUNServer}!tcp\_port@{tcp\_port}}
+\index{tcp\_port@{tcp\_port}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{tcp\_port}{tcp\_port}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a8ececd4731a1ad6c1b03f52d28be8b15} 
+src.\+server.\+STUNServer.\+tcp\+\_\+port = tcp\+\_\+port}
+
+
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00061}{61}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{server_8py_source_l00175}{tcp\+\_\+server()}}.
+
+\Hypertarget{classsrc_1_1server_1_1_s_t_u_n_server_a471326b31daf7543142acd41833d3a5a}\index{src.server.STUNServer@{src.server.STUNServer}!udp\_port@{udp\_port}}
+\index{udp\_port@{udp\_port}!src.server.STUNServer@{src.server.STUNServer}}
+\doxysubsubsection{\texorpdfstring{udp\_port}{udp\_port}}
+{\footnotesize\ttfamily \label{classsrc_1_1server_1_1_s_t_u_n_server_a471326b31daf7543142acd41833d3a5a} 
+src.\+server.\+STUNServer.\+udp\+\_\+port = udp\+\_\+port}
+
+
+
+在文件 \doxymbox{\hyperlink{server_8py_source}{server.\+py}} 第 \doxymbox{\hyperlink{server_8py_source_l00060}{60}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{server_8py_source_l00139}{udp\+\_\+server()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+stun-\/server/\+src/\+\doxymbox{\hyperlink{server_8py}{server.\+py}}\end{DoxyCompactItemize}

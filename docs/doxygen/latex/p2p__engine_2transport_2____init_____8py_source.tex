@@ -1,0 +1,166 @@
+\doxysection{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}
+\hypertarget{p2p__engine_2transport_2____init_____8py_source}{}\label{p2p__engine_2transport_2____init_____8py_source}\index{p2p\_engine/transport/\_\_init\_\_.py@{p2p\_engine/transport/\_\_init\_\_.py}}
+\doxymbox{\hyperlink{p2p__engine_2transport_2____init_____8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00002}00002\ \textcolor{stringliteral}{Transport\ Layer\ -\/\ 传输层抽象}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00004}00004\ \textcolor{stringliteral}{提供统一的传输层接口，支持多种传输协议：}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00005}00005\ \textcolor{stringliteral}{-\/\ TCP\ (内置)}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00006}00006\ \textcolor{stringliteral}{-\/\ UDP\ (内置)}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00007}00007\ \textcolor{stringliteral}{-\/\ QUIC}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00008}00008\ \textcolor{stringliteral}{-\/\ WebRTC}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00009}00009\ \textcolor{stringliteral}{-\/\ WebTransport}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00010}00010\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00012}00012\ \textcolor{keyword}{from}\ .base\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00013}00013\ \ \ \ \ \textcolor{comment}{\#\ 抽象基类}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00014}00014\ \ \ \ \ Transport,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00015}00015\ \ \ \ \ Listener,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00016}00016\ \ \ \ \ Connection,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00018}00018\ \ \ \ \ \textcolor{comment}{\#\ 异常}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00019}00019\ \ \ \ \ TransportError,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00020}00020\ \ \ \ \ ConnectionError,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00021}00021\ \ \ \ \ ListenerError,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00022}00022\ )}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00024}00024\ \textcolor{keyword}{from}\ .upgrader\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00025}00025\ \ \ \ \ \textcolor{comment}{\#\ 安全传输接口}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00026}00026\ \ \ \ \ SecurityTransport,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00027}00027\ \ \ \ \ SecureConnection,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00029}00029\ \ \ \ \ \textcolor{comment}{\#\ 流复用接口}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00030}00030\ \ \ \ \ StreamMuxer,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00031}00031\ \ \ \ \ MuxedStream,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00032}00032\ \ \ \ \ MuxedSession,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00034}00034\ \ \ \ \ \textcolor{comment}{\#\ 传输升级器}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00035}00035\ \ \ \ \ TransportUpgrader,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00037}00037\ \ \ \ \ \textcolor{comment}{\#\ 升级后的连接}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00038}00038\ \ \ \ \ UpgradedConnection,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00039}00039\ )}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00041}00041\ \textcolor{keyword}{from}\ .manager\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00042}00042\ \ \ \ \ \textcolor{comment}{\#\ 传输管理器}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00043}00043\ \ \ \ \ TransportManager,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00044}00044\ \ \ \ \ TransportBuilder,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00045}00045\ \ \ \ \ create\_transport\_manager,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00047}00047\ \ \ \ \ \textcolor{comment}{\#\ 异常}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00048}00048\ \ \ \ \ DialError,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00049}00049\ \ \ \ \ ListenError,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00050}00050\ )}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00052}00052\ \textcolor{comment}{\#\ 尝试导入\ WebRTC\ 传输}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00053}00053\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00054}00054\ \ \ \ \ \textcolor{keyword}{from}\ .webrtc\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00055}00055\ \ \ \ \ \ \ \ \ WebRTCTransport,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00056}00056\ \ \ \ \ \ \ \ \ WebRTCConnection,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00057}00057\ \ \ \ \ \ \ \ \ WebRTCListener,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00058}00058\ \ \ \ \ \ \ \ \ SignalingMessage,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00059}00059\ \ \ \ \ \ \ \ \ SignalingMessageType,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00060}00060\ \ \ \ \ \ \ \ \ ICEServer,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00061}00061\ \ \ \ \ \ \ \ \ PROTOCOL\_ID\ \textcolor{keyword}{as}\ WEBRTC\_PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00062}00062\ \ \ \ \ \ \ \ \ HAS\_AIORTC,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00063}00063\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00064}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_afed69d14fe79e1b9eccb6dad983913dd}{00064}}\ \ \ \ \ \_has\_webrtc\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00065}00065\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00066}00066\ \ \ \ \ \_has\_webrtc\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00067}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_adab475a8eb2f5ecb797f6fbb9e537e9f}{00067}}\ \ \ \ \ HAS\_AIORTC\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00069}00069\ \textcolor{comment}{\#\ 尝试导入\ WebTransport\ 传输}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00070}00070\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00071}00071\ \ \ \ \ \textcolor{keyword}{from}\ .webtransport\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00072}00072\ \ \ \ \ \ \ \ \ WebTransportTransport,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00073}00073\ \ \ \ \ \ \ \ \ WebTransportConnection,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00074}00074\ \ \ \ \ \ \ \ \ WebTransportListener,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00075}00075\ \ \ \ \ \ \ \ \ PROTOCOL\_ID\ \textcolor{keyword}{as}\ WEBTRANSPORT\_PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00076}00076\ \ \ \ \ \ \ \ \ HAS\_AIOQUIC,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00077}00077\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00078}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_ab7042c512fb5044220ae8bc55fa99cdd}{00078}}\ \ \ \ \ \_has\_webtransport\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00079}00079\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00080}00080\ \ \ \ \ \_has\_webtransport\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00081}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_a5b5f8f02654761aac57d30a1202fff6b}{00081}}\ \ \ \ \ HAS\_AIOQUIC\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00083}00083\ \textcolor{comment}{\#\ 尝试导入\ QUIC\ 传输}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00084}00084\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00085}00085\ \ \ \ \ \textcolor{keyword}{from}\ .quic\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00086}00086\ \ \ \ \ \ \ \ \ QUICTransport,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00087}00087\ \ \ \ \ \ \ \ \ QUICConnection,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00088}00088\ \ \ \ \ \ \ \ \ QUICListener,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00089}00089\ \ \ \ \ \ \ \ \ QUICStream,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00090}00090\ \ \ \ \ \ \ \ \ QuicStreamType,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00091}00091\ \ \ \ \ \ \ \ \ QuicProtocolFactory,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00092}00092\ \ \ \ \ \ \ \ \ PROTOCOL\_ID\ \textcolor{keyword}{as}\ QUIC\_PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00093}00093\ \ \ \ \ \ \ \ \ HAS\_AIOQUIC,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00094}00094\ \ \ \ \ \ \ \ \ create\_quic\_transport,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00095}00095\ \ \ \ \ \ \ \ \ is\_quic\_available,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00096}00096\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00097}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_ad4c548e59eae893322df4f90299e7c64}{00097}}\ \ \ \ \ \_has\_quic\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00098}00098\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00099}00099\ \ \ \ \ \_has\_quic\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00100}00100\ \ \ \ \ HAS\_AIOQUIC\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00102}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_a86a747ee507bb920ec524b53ee6e42a4}{00102}}\ \_\_all\_\_\ =\ [}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00103}00103\ \ \ \ \ \textcolor{comment}{\#\ 抽象基类}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00104}00104\ \ \ \ \ \textcolor{stringliteral}{"{}Transport"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00105}00105\ \ \ \ \ \textcolor{stringliteral}{"{}Listener"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00106}00106\ \ \ \ \ \textcolor{stringliteral}{"{}Connection"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00108}00108\ \ \ \ \ \textcolor{comment}{\#\ 异常}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00109}00109\ \ \ \ \ \textcolor{stringliteral}{"{}TransportError"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00110}00110\ \ \ \ \ \textcolor{stringliteral}{"{}ConnectionError"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00111}00111\ \ \ \ \ \textcolor{stringliteral}{"{}ListenerError"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00112}00112\ \ \ \ \ \textcolor{stringliteral}{"{}DialError"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00113}00113\ \ \ \ \ \textcolor{stringliteral}{"{}ListenError"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00115}00115\ \ \ \ \ \textcolor{comment}{\#\ 安全传输接口}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00116}00116\ \ \ \ \ \textcolor{stringliteral}{"{}SecurityTransport"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00117}00117\ \ \ \ \ \textcolor{stringliteral}{"{}SecureConnection"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00119}00119\ \ \ \ \ \textcolor{comment}{\#\ 流复用接口}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00120}00120\ \ \ \ \ \textcolor{stringliteral}{"{}StreamMuxer"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00121}00121\ \ \ \ \ \textcolor{stringliteral}{"{}MuxedStream"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00122}00122\ \ \ \ \ \textcolor{stringliteral}{"{}MuxedSession"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00124}00124\ \ \ \ \ \textcolor{comment}{\#\ 传输升级器}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00125}00125\ \ \ \ \ \textcolor{stringliteral}{"{}TransportUpgrader"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00126}00126\ \ \ \ \ \textcolor{stringliteral}{"{}UpgradedConnection"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00128}00128\ \ \ \ \ \textcolor{comment}{\#\ 传输管理器}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00129}00129\ \ \ \ \ \textcolor{stringliteral}{"{}TransportManager"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00130}00130\ \ \ \ \ \textcolor{stringliteral}{"{}TransportBuilder"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00131}00131\ \ \ \ \ \textcolor{stringliteral}{"{}create\_transport\_manager"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00133}00133\ \ \ \ \ \textcolor{comment}{\#\ WebRTC}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00134}00134\ \ \ \ \ \textcolor{stringliteral}{"{}WebRTCTransport"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00135}00135\ \ \ \ \ \textcolor{stringliteral}{"{}WebRTCConnection"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00136}00136\ \ \ \ \ \textcolor{stringliteral}{"{}WebRTCListener"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00137}00137\ \ \ \ \ \textcolor{stringliteral}{"{}SignalingMessage"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00138}00138\ \ \ \ \ \textcolor{stringliteral}{"{}SignalingMessageType"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00139}00139\ \ \ \ \ \textcolor{stringliteral}{"{}ICEServer"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00140}00140\ \ \ \ \ \textcolor{stringliteral}{"{}WEBRTC\_PROTOCOL\_ID"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00141}00141\ \ \ \ \ \textcolor{stringliteral}{"{}HAS\_AIORTC"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00143}00143\ \ \ \ \ \textcolor{comment}{\#\ WebTransport}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00144}00144\ \ \ \ \ \textcolor{stringliteral}{"{}WebTransportTransport"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00145}00145\ \ \ \ \ \textcolor{stringliteral}{"{}WebTransportConnection"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00146}00146\ \ \ \ \ \textcolor{stringliteral}{"{}WebTransportListener"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00147}00147\ \ \ \ \ \textcolor{stringliteral}{"{}WEBTRANSPORT\_PROTOCOL\_ID"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00148}00148\ \ \ \ \ \textcolor{stringliteral}{"{}HAS\_AIOQUIC"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00150}00150\ \ \ \ \ \textcolor{comment}{\#\ QUIC}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00151}00151\ \ \ \ \ \textcolor{stringliteral}{"{}QUICTransport"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00152}00152\ \ \ \ \ \textcolor{stringliteral}{"{}QUICConnection"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00153}00153\ \ \ \ \ \textcolor{stringliteral}{"{}QUICListener"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00154}00154\ \ \ \ \ \textcolor{stringliteral}{"{}QUICStream"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00155}00155\ \ \ \ \ \textcolor{stringliteral}{"{}QuicStreamType"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00156}00156\ \ \ \ \ \textcolor{stringliteral}{"{}QuicProtocolFactory"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00157}00157\ \ \ \ \ \textcolor{stringliteral}{"{}QUIC\_PROTOCOL\_ID"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00158}00158\ \ \ \ \ \textcolor{stringliteral}{"{}create\_quic\_transport"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00159}00159\ \ \ \ \ \textcolor{stringliteral}{"{}is\_quic\_available"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2transport_2____init_____8py_source_l00160}00160\ ]}
+
+\end{DoxyCode}

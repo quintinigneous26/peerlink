@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator" kind="class" language="Python" prot="public">
+    <compoundname>src::did_service::crypto::DIDGenerator</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1aabdf2f3c4b4b9e29f146482b79cf6157" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int src.did_service.crypto.DIDGenerator::PREFIX_LENGTH</definition>
+        <argsstring></argsstring>
+        <name>PREFIX_LENGTH</name>
+        <qualifiedname>src.did_service.crypto.DIDGenerator.PREFIX_LENGTH</qualifiedname>
+        <initializer>=  6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/crypto.py" line="104" column="1" bodyfile="did-service/src/did_service/crypto.py" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1ae7a49d22ac8ba9e128d90860ca843b6a" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int src.did_service.crypto.DIDGenerator::SUFFIX_LENGTH</definition>
+        <argsstring></argsstring>
+        <name>SUFFIX_LENGTH</name>
+        <qualifiedname>src.did_service.crypto.DIDGenerator.SUFFIX_LENGTH</qualifiedname>
+        <initializer>=  5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/crypto.py" line="105" column="1" bodyfile="did-service/src/did_service/crypto.py" bodystart="105" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1a4eeae91146c0bcde9cc1694aeb65178f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str src.did_service.crypto.DIDGenerator.generate</definition>
+        <argsstring>(str device_type)</argsstring>
+        <name>generate</name>
+        <qualifiedname>src.did_service.crypto.DIDGenerator.generate</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>device_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate a DID for a device.
+
+Args:
+    device_type: Type of device (ios, android, web, desktop)
+
+Returns:
+    DID string in format: PREFIX-XXXXXX-YYYYY
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/crypto.py" line="108" column="1" bodyfile="did-service/src/did_service/crypto.py" bodystart="108" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1a06226a0b2afbf98c73886cc9f0605dc0" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.did_service.crypto.DIDGenerator.validate</definition>
+        <argsstring>(str device_id)</argsstring>
+        <name>validate</name>
+        <qualifiedname>src.did_service.crypto.DIDGenerator.validate</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>device_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Validate a DID format.
+
+Args:
+    device_id: DID string to validate
+
+Returns:
+    True if format is valid
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/crypto.py" line="128" column="1" bodyfile="did-service/src/did_service/crypto.py" bodystart="128" bodyend="159"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Generate DIDs according to the specified format.</verbatim> </para>
+    </detaileddescription>
+    <location file="did-service/src/did_service/crypto.py" line="96" column="1" bodyfile="did-service/src/did_service/crypto.py" bodystart="96" bodyend="159"/>
+    <listofallmembers>
+      <member refid="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1a4eeae91146c0bcde9cc1694aeb65178f" prot="public" virt="non-virtual"><scope>src::did_service::crypto::DIDGenerator</scope><name>generate</name></member>
+      <member refid="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1aabdf2f3c4b4b9e29f146482b79cf6157" prot="public" virt="non-virtual"><scope>src::did_service::crypto::DIDGenerator</scope><name>PREFIX_LENGTH</name></member>
+      <member refid="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1ae7a49d22ac8ba9e128d90860ca843b6a" prot="public" virt="non-virtual"><scope>src::did_service::crypto::DIDGenerator</scope><name>SUFFIX_LENGTH</name></member>
+      <member refid="classsrc_1_1did__service_1_1crypto_1_1_d_i_d_generator_1a06226a0b2afbf98c73886cc9f0605dc0" prot="public" virt="non-virtual"><scope>src::did_service::crypto::DIDGenerator</scope><name>validate</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

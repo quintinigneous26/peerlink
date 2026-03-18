@@ -1,0 +1,249 @@
+\doxysection{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool类 参考}
+\hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool}{}\label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a24d2f5f7e35be05c792926b075b4c8db}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int max\+\_\+sessions=\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex__v2_a86c7fc2bbf2ca17ee75abf19222fc8cb}{DEFAULT\+\_\+\+MAX\+\_\+\+SESSIONS}}, float idle\+\_\+timeout=\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex__v2_aed7a652e1340d789612730e0fc9a6859}{SESSION\+\_\+\+IDLE\+\_\+\+TIMEOUT}})
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a44c6dfd9029324e4cd9cf0384ba1570e}{start}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_ac07e737891a59910019fe4c961c645be}{stop}} (self)
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session}{Mplex\+Session}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a1c8bcb361cf60c2219e4ec5a58d0fea1}{get\+\_\+session}} (self, str host, int port)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_aba29cd0db24e559a983fe8beff429969}{return\+\_\+session}} (self, \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session}{Mplex\+Session}}\textquotesingle{} session)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a229b7f8cdf50a9bff52a53d618c3532c}{\+\_\+cleanup\+\_\+loop}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a1e0bef72a57c48954c65a737ad422de9}{\+\_\+max\+\_\+sessions}} = max\+\_\+sessions
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a98e0cba96084073af52ffe103875f2fb}{\+\_\+idle\+\_\+timeout}} = idle\+\_\+timeout
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_ab0016d51dbdca59369fa31debfe1a8a9}{\+\_\+sessions}} = \{\}
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a9b7db7863390a6d18250efc9e3a077ac}{\+\_\+session\+\_\+last\+\_\+used}} = \{\}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a8373f03103885b11a5b1979ff2b49e0b}{\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a2b83256f3838722d6e21a452768a3790}{\+\_\+cleanup\+\_\+task}} = None
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Pool of Mplex sessions for connection reuse.
+
+Manages multiple sessions and provides connection pooling.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00533}{533}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a24d2f5f7e35be05c792926b075b4c8db}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a24d2f5f7e35be05c792926b075b4c8db} 
+p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+sessions}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex__v2_a86c7fc2bbf2ca17ee75abf19222fc8cb}{DEFAULT\+\_\+\+MAX\+\_\+\+SESSIONS}}}, }\item[{float }]{idle\+\_\+timeout}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex__v2_aed7a652e1340d789612730e0fc9a6859}{SESSION\+\_\+\+IDLE\+\_\+\+TIMEOUT}}}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00540}{540}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a229b7f8cdf50a9bff52a53d618c3532c}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_cleanup\_loop@{\_cleanup\_loop}}
+\index{\_cleanup\_loop@{\_cleanup\_loop}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_loop()}{\_cleanup\_loop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a229b7f8cdf50a9bff52a53d618c3532c} 
+ None p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Periodically cleanup idle sessions.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{617}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__v2_8py_source_l00546}{\+\_\+idle\+\_\+timeout}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00548}{\+\_\+session\+\_\+last\+\_\+used}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{\+\_\+sessions}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00552}{start()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00119}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+start()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00194}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+start()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00123}{src.\+allocation.\+Allocation\+Manager.\+start()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a1c8bcb361cf60c2219e4ec5a58d0fea1}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!get\_session@{get\_session}}
+\index{get\_session@{get\_session}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{get\_session()}{get\_session()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a1c8bcb361cf60c2219e4ec5a58d0fea1} 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session}{Mplex\+Session}}\textquotesingle{} p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+get\+\_\+session (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{host}{, }\item[{int}]{port}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get or create a session for the given address.
+
+Args:
+    host: Target host
+    port: Target port
+
+Returns:
+    MplexSession instance
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00575}{575}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00548}{\+\_\+session\+\_\+last\+\_\+used}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{\+\_\+sessions}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_aba29cd0db24e559a983fe8beff429969}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!return\_session@{return\_session}}
+\index{return\_session@{return\_session}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{return\_session()}{return\_session()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_aba29cd0db24e559a983fe8beff429969} 
+ None p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+return\+\_\+session (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session}{Mplex\+Session}}\textquotesingle{}}]{session}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Return a session to the pool.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00611}{611}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a44c6dfd9029324e4cd9cf0384ba1570e}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!start@{start}}
+\index{start@{start}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a44c6dfd9029324e4cd9cf0384ba1570e} 
+ None p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+start (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start the session pool cleanup task.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00552}{552}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{\+\_\+cleanup\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00550}{\+\_\+cleanup\+\_\+task}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00154}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+find\+\_\+peer()}}, \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00185}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+find\+\_\+providers()}}, \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00217}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+get\+\_\+value()}}, \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00169}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+provide()}} , 以及 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00201}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+put\+\_\+value()}}.
+
+函数调用图:\+
+% FIG 1
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_ac07e737891a59910019fe4c961c645be}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!stop@{stop}}
+\index{stop@{stop}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_ac07e737891a59910019fe4c961c645be} 
+ None p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop the session pool and close all sessions.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00557}{557}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__v2_8py_source_l00550}{\+\_\+cleanup\+\_\+task}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00548}{\+\_\+session\+\_\+last\+\_\+used}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{\+\_\+sessions}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a2b83256f3838722d6e21a452768a3790}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_cleanup\_task@{\_cleanup\_task}}
+\index{\_cleanup\_task@{\_cleanup\_task}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_task}{\_cleanup\_task}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a2b83256f3838722d6e21a452768a3790} 
+Optional\+[asyncio.\+Task]\+ p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+task = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00550}{550}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00552}{start()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00119}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+start()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00194}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+start()}}, \doxymbox{\hyperlink{allocation_8py_source_l00123}{src.\+allocation.\+Allocation\+Manager.\+start()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00557}{stop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00124}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+stop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00199}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+stop()}} , 以及 \doxymbox{\hyperlink{allocation_8py_source_l00128}{src.\+allocation.\+Allocation\+Manager.\+stop()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a98e0cba96084073af52ffe103875f2fb}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_idle\_timeout@{\_idle\_timeout}}
+\index{\_idle\_timeout@{\_idle\_timeout}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_idle\_timeout}{\_idle\_timeout}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a98e0cba96084073af52ffe103875f2fb} 
+p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+idle\+\_\+timeout = idle\+\_\+timeout\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00546}{546}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00263}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic_8py_source_l00800}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+create\+\_\+client\+\_\+configuration()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00820}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+create\+\_\+server\+\_\+configuration()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a8373f03103885b11a5b1979ff2b49e0b}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a8373f03103885b11a5b1979ff2b49e0b} 
+p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{549}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00263}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00269}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00155}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+refill\+\_\+async()}}, \doxymbox{\hyperlink{allocation_8py_source_l00047}{src.\+allocation.\+Port\+Pool.\+acquire()}}, \doxymbox{\hyperlink{allocation_8py_source_l00320}{src.\+allocation.\+Allocation\+Manager.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+clear\+\_\+tickets()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00309}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+connect()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{src.\+bandwidth.\+Token\+Bucket.\+consume()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{src.\+allocation.\+Allocation\+Manager.\+create\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{src.\+allocation.\+Allocation\+Manager.\+delete\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00216}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+get()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00579}{get\+\_\+session()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00136}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+get\+\_\+ticket()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+open\+\_\+stream()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00239}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+put()}}, \doxymbox{\hyperlink{metrics_8py_source_l00082}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+record\+\_\+connection()}}, \doxymbox{\hyperlink{metrics_8py_source_l00111}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+record\+\_\+nat\+\_\+detection()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}}, \doxymbox{\hyperlink{allocation_8py_source_l00252}{src.\+allocation.\+Allocation\+Manager.\+refresh\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00063}{src.\+allocation.\+Port\+Pool.\+release()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00251}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+remove()}}, \doxymbox{\hyperlink{metrics_8py_source_l00172}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+reset()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00196}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+revoke\+\_\+ticket()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00557}{stop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00199}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+stop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00164}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+store\+\_\+ticket()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a1e0bef72a57c48954c65a737ad422de9}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_max\_sessions@{\_max\_sessions}}
+\index{\_max\_sessions@{\_max\_sessions}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_max\_sessions}{\_max\_sessions}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a1e0bef72a57c48954c65a737ad422de9} 
+p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+max\+\_\+sessions = max\+\_\+sessions\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00545}{545}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a9b7db7863390a6d18250efc9e3a077ac}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_session\_last\_used@{\_session\_last\_used}}
+\index{\_session\_last\_used@{\_session\_last\_used}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_session\_last\_used}{\_session\_last\_used}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_a9b7db7863390a6d18250efc9e3a077ac} 
+dict p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+session\+\_\+last\+\_\+used = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00548}{548}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00579}{get\+\_\+session()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00557}{stop()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_ab0016d51dbdca59369fa31debfe1a8a9}\index{p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}!\_sessions@{\_sessions}}
+\index{\_sessions@{\_sessions}!p2p\_engine.muxer.mplex\_v2.MplexSessionPool@{p2p\_engine.muxer.mplex\_v2.MplexSessionPool}}
+\doxysubsubsection{\texorpdfstring{\_sessions}{\_sessions}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_ab0016d51dbdca59369fa31debfe1a8a9} 
+dict p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__v2_8py_source}{mplex\+\_\+v2.\+py}} 第 \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{547}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{connection_8py_source_l00257}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+add\+\_\+ice\+\_\+candidate()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00139}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+add\+\_\+permission()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00207}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+create\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00579}{get\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00098}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00230}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+get\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00102}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+session\+\_\+by\+\_\+client()}}, \doxymbox{\hyperlink{connection_8py_source_l00234}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+get\+\_\+session\+\_\+by\+\_\+devices()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00109}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+session\+\_\+by\+\_\+relay()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00242}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+stats()}}, \doxymbox{\hyperlink{connection_8py_source_l00266}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+set\+\_\+relay\+\_\+mode()}}, \doxymbox{\hyperlink{connection_8py_source_l00252}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+set\+\_\+session\+\_\+answer()}}, \doxymbox{\hyperlink{connection_8py_source_l00247}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+set\+\_\+session\+\_\+offer()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00557}{stop()}} , 以及 \doxymbox{\hyperlink{connection_8py_source_l00242}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+update\+\_\+session\+\_\+status()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+muxer/\+\doxymbox{\hyperlink{mplex__v2_8py}{mplex\+\_\+v2.\+py}}\end{DoxyCompactItemize}

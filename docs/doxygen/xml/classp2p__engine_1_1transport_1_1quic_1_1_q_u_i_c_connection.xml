@@ -1,0 +1,933 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::quic::QUICConnection</compoundname>
+    <basecompoundref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" prot="public" virt="non-virtual">p2p_engine.transport.base.Connection</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a92bd4ac301886aca775e6d5ae759b170" prot="protected" static="no" mutable="no">
+        <type>&apos;<ref refid="namespacep2p__engine_1_1transport_1_1quic_1aa6ead5f09ae1dbe73dfc93c7b876071e" kindref="member">QuicConnectionProtocol</ref>&apos;</type>
+        <definition>&apos;QuicConnectionProtocol&apos; p2p_engine.transport.quic.QUICConnection::_protocol</definition>
+        <argsstring></argsstring>
+        <name>_protocol</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._protocol</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aebcc9c5bca6d5898bdc6b41e6074e8ff" kindref="member">protocol</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="97" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="97" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a99966979c1ca3dd015f71492814583ad" compoundref="quic_8py" startline="293" endline="300">p2p_engine.transport.quic.QUICConnection._setup_protocol_callbacks</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" compoundref="quic_8py" startline="195" endline="226">p2p_engine.transport.quic.QUICConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1af974508d041449ec634c31d26d67ed7f" compoundref="quic_8py" startline="256" endline="277">p2p_engine.transport.quic.QUICConnection.open_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aebcc9c5bca6d5898bdc6b41e6074e8ff" compoundref="quic_8py" startline="123" endline="126">p2p_engine.transport.quic.QUICConnection.protocol</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a1e401bcb887a8f52247f7faee2f6c599" compoundref="quic_8py" startline="173" endline="194">p2p_engine.transport.quic.QUICConnection.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ae9d335e7e4784141afcd7e28acb44bf8" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.transport.quic.QUICConnection::_is_initiator</definition>
+        <argsstring></argsstring>
+        <name>_is_initiator</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._is_initiator</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a9c49cf567e9b6266c1ea7af7b25985ff" kindref="member">is_initiator</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="98" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="98" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ab3d1f87c0356d6cfb43d36f35904b497" compoundref="webrtc_8py" startline="340" endline="381">p2p_engine.transport.webrtc.WebRTCConnection._setup_callbacks</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a66dfa21c3f3ae02f98233b808c7dfcfa" compoundref="webrtc_8py" startline="294" endline="311">p2p_engine.transport.webrtc.WebRTCConnection.create_answer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1add4d5236612dfe924d3a66ecc895efc6" compoundref="webrtc_8py" startline="276" endline="293">p2p_engine.transport.webrtc.WebRTCConnection.create_offer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a9c49cf567e9b6266c1ea7af7b25985ff" compoundref="quic_8py" startline="128" endline="131">p2p_engine.transport.quic.QUICConnection.is_initiator</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a5348d7dfba213e2ff34c42f709b3408e" compoundref="upgrader_8py" startline="213" endline="215">p2p_engine.transport.upgrader.MuxedSession.is_initiator</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a662f5d18dab7b8823fc4a9b8cf32048b" compoundref="webrtc_8py" startline="171" endline="174">p2p_engine.transport.webrtc.WebRTCConnection.is_initiator</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a6f7ba367ec7f824833f1839f2a620b01" prot="protected" static="no" mutable="no">
+        <type>Optional[int]</type>
+        <definition>Optional[int] p2p_engine.transport.quic.QUICConnection::_stream_id</definition>
+        <argsstring></argsstring>
+        <name>_stream_id</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._stream_id</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a609a3c6eeacee9e74cf2564b5d5b3c60" kindref="member">stream_id</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="99" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="99" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aed5dc0723cbeaaf8f6c23b858b9260b1" compoundref="quic_8py" startline="329" endline="341">p2p_engine.transport.quic.QUICConnection._get_or_create_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" compoundref="quic_8py" startline="301" endline="328">p2p_engine.transport.quic.QUICConnection._handle_quic_event</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a13a2c462d809a31ba4d1e0aaa3e29707" compoundref="quic_8py" startline="425" endline="443">p2p_engine.transport.quic.QUICStream.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a609a3c6eeacee9e74cf2564b5d5b3c60" compoundref="quic_8py" startline="133" endline="136">p2p_engine.transport.quic.QUICConnection.stream_id</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a13d12a2dec7d7d70379c8f685cebb64d" compoundref="quic_8py" startline="370" endline="373">p2p_engine.transport.quic.QUICStream.stream_id</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_1acc68f53c82e48ee35ea28e9af8eb308a" compoundref="upgrader_8py" startline="153" endline="156">p2p_engine.transport.upgrader.MuxedStream.stream_id</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a1e401bcb887a8f52247f7faee2f6c599" compoundref="quic_8py" startline="173" endline="194">p2p_engine.transport.quic.QUICConnection.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a2992f68cf83abd14a08721e6272ff08e" compoundref="quic_8py" startline="405" endline="424">p2p_engine.transport.quic.QUICStream.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.transport.quic.QUICConnection::_closed</definition>
+        <argsstring></argsstring>
+        <name>_closed</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._closed</qualifiedname>
+        <initializer>=  False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="102" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="102" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1add0ed563ac02061bd73e3e4ae584dfcf" compoundref="quic_8py" startline="567" endline="585">p2p_engine.transport.quic.QUICListener._handle_connection</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a2616a236aec824e8a3857c85c46db041" compoundref="quic_8py" startline="448" endline="465">p2p_engine.transport.quic.QUICStream._handle_data</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a5901e4d980d850095697e5b80cf875da" compoundref="upgrader_8py" startline="269" endline="293">p2p_engine.transport.upgrader.MuxedSession._handle_incoming_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ab3d1f87c0356d6cfb43d36f35904b497" compoundref="webrtc_8py" startline="340" endline="381">p2p_engine.transport.webrtc.WebRTCConnection._setup_callbacks</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a0e0c1c70fb0e57db7379372f91c60858" compoundref="webrtc_8py" startline="382" endline="406">p2p_engine.transport.webrtc.WebRTCConnection._setup_data_channel_callbacks</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1a4556a2352a826fb26a928bd0ba9c62ca" compoundref="quic_8py" startline="505" endline="516">p2p_engine.transport.quic.QUICListener.accept</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a6e420370dfdc068698fc7e1791dc7074" compoundref="tcp__optimized_8py" startline="464" endline="483">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.accept</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1ac4e3ff693a7ccb2cb9f4f5a74911f6e4" compoundref="webrtc_8py" startline="448" endline="459">p2p_engine.transport.webrtc.WebRTCListener.accept</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1a1a47087c678ef4d90443eb4e86f95a5f" compoundref="quic_8py" startline="517" endline="533">p2p_engine.transport.quic.QUICListener.accept_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1ac635ca57b93cd43522b39f73f53953cf" compoundref="upgrader_8py" startline="238" endline="268">p2p_engine.transport.upgrader.MuxedSession.accept_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1a0e1f5d427e6250f5af7fbec961e29fd8" compoundref="webtransport_8py" startline="342" endline="347">p2p_engine.transport.webtransport.WebTransportListener.addresses</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" compoundref="quic_8py" startline="195" endline="226">p2p_engine.transport.quic.QUICConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1a6b885906ca29fa4e301768cb78606b62" compoundref="quic_8py" startline="534" endline="557">p2p_engine.transport.quic.QUICListener.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a13a2c462d809a31ba4d1e0aaa3e29707" compoundref="quic_8py" startline="425" endline="443">p2p_engine.transport.quic.QUICStream.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a32d96af9a030bd1bb59eb5f110a91960" compoundref="quic_8py" startline="750" endline="777">p2p_engine.transport.quic.QUICTransport.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a5a5a2e75fe6d338067aa5178e94c8a30" compoundref="tcp__optimized_8py" startline="414" endline="425">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1aab0f00d4c837fb340f962d9af9a3cc4a" compoundref="tcp__optimized_8py" startline="136" endline="151">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1ac5b0e361db1da8858323e33f627685d8" compoundref="tcp__optimized_8py" startline="484" endline="494">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a3d43d2a558a18d7d4bbaf9d20963e372" compoundref="upgrader_8py" startline="294" endline="322">p2p_engine.transport.upgrader.MuxedSession.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a4847408d80964e250d3cea3d37998cf2" compoundref="webrtc_8py" startline="224" endline="253">p2p_engine.transport.webrtc.WebRTCConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1aa20a81a3733e9f666d055d0a756488f5" compoundref="webrtc_8py" startline="460" endline="485">p2p_engine.transport.webrtc.WebRTCListener.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29" compoundref="webrtc_8py" startline="652" endline="676">p2p_engine.transport.webrtc.WebRTCTransport.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a59147e223c17ab793643a7fac6d6ee61" compoundref="quic_8py" startline="656" endline="705">p2p_engine.transport.quic.QUICTransport.dial</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" compoundref="tcp__optimized_8py" startline="336" endline="366">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de" compoundref="webrtc_8py" startline="597" endline="629">p2p_engine.transport.webrtc.WebRTCTransport.dial</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a7d5dc8f447a4e5df0366bf0d8440905e" compoundref="webrtc_8py" startline="497" endline="526">p2p_engine.transport.webrtc.WebRTCListener.handle_offer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac4c634ed28273b4d18a0978f7849808b" compoundref="quic_8py" startline="227" endline="230">p2p_engine.transport.quic.QUICConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1a5af43a20cb18e32b4f9ba5f5fe13bc28" compoundref="quic_8py" startline="558" endline="561">p2p_engine.transport.quic.QUICListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a492127577362b6b5718b5278bc9b90c2" compoundref="quic_8py" startline="444" endline="447">p2p_engine.transport.quic.QUICStream.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1a3a7d141d2b0f5a8df664def84e61550b" compoundref="tcp__optimized_8py" startline="152" endline="155">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a0a7afc0854f496891c07b347af25a375" compoundref="tcp__optimized_8py" startline="495" endline="498">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a58863a19f3250663088cf287b9e89dc5" compoundref="upgrader_8py" startline="220" endline="222">p2p_engine.transport.upgrader.MuxedSession.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ac11fe8b7bc2356b9cdc19fd0aeb489fc" compoundref="webrtc_8py" startline="254" endline="257">p2p_engine.transport.webrtc.WebRTCConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a80a27b30b497da7bd5292ac6467c73f4" compoundref="webrtc_8py" startline="486" endline="489">p2p_engine.transport.webrtc.WebRTCListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a3587fc10fb7c98dc708790297b0f60fe" compoundref="webtransport_8py" startline="249" endline="252">p2p_engine.transport.webtransport.WebTransportConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1af53137f2c2cd0db7ffa4e1a39638326e" compoundref="webtransport_8py" startline="337" endline="340">p2p_engine.transport.webtransport.WebTransportListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a7adf433b81f9f8ac38a8c30346ef77a2" compoundref="quic_8py" startline="706" endline="749">p2p_engine.transport.quic.QUICTransport.listen</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8d2efed25932f102c3b71b3c5fbee0bf" compoundref="tcp__optimized_8py" startline="390" endline="413">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.listen</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a47c09e2d3c3d1ba10b0c9aee8b54f737" compoundref="webrtc_8py" startline="630" endline="651">p2p_engine.transport.webrtc.WebRTCTransport.listen</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1af974508d041449ec634c31d26d67ed7f" compoundref="quic_8py" startline="256" endline="277">p2p_engine.transport.quic.QUICConnection.open_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a4864ede2e7c21844c683199cc9c7b838" compoundref="upgrader_8py" startline="223" endline="237">p2p_engine.transport.upgrader.MuxedSession.open_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a814e69add95d4d56bdb6f91aea91b26e" compoundref="quic_8py" startline="147" endline="172">p2p_engine.transport.quic.QUICConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a9d3f0d22df0abad9f3d825da6a1b7b81" compoundref="quic_8py" startline="379" endline="404">p2p_engine.transport.quic.QUICStream.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1abfd278bf124e329262c5f4cde9f825ec" compoundref="tcp__optimized_8py" startline="97" endline="118">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a1b8f25022453d63672bcca8c65dd07c7" compoundref="webrtc_8py" startline="175" endline="200">p2p_engine.transport.webrtc.WebRTCConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" compoundref="webtransport_8py" startline="253" endline="265">p2p_engine.transport.webtransport.WebTransportConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a1e401bcb887a8f52247f7faee2f6c599" compoundref="quic_8py" startline="173" endline="194">p2p_engine.transport.quic.QUICConnection.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a2992f68cf83abd14a08721e6272ff08e" compoundref="quic_8py" startline="405" endline="424">p2p_engine.transport.quic.QUICStream.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1a385b9902f0737efdf736ba02f31b3eb1" compoundref="tcp__optimized_8py" startline="119" endline="135">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a5b5eac0ea06bb69b30e54a3676e62221" compoundref="webrtc_8py" startline="201" endline="223">p2p_engine.transport.webrtc.WebRTCConnection.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a64518eadb1d50405a40899b41fb79efd" compoundref="webtransport_8py" startline="266" endline="275">p2p_engine.transport.webtransport.WebTransportConnection.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a7a992f2c452ff4402fe84757ef7ca24e" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.quic.QUICConnection::_handshake_complete</definition>
+        <argsstring></argsstring>
+        <name>_handshake_complete</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._handshake_complete</qualifiedname>
+        <initializer>=  asyncio.Event()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="103" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="103" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" compoundref="quic_8py" startline="301" endline="328">p2p_engine.transport.quic.QUICConnection._handle_quic_event</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a9ef19ac30fb408de98738707f4393530" compoundref="quic_8py" startline="241" endline="255">p2p_engine.transport.quic.QUICConnection.wait_handshake</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a51cc19097e4cdea2af149fb20d44df0f" prot="protected" static="no" mutable="no">
+        <type>asyncio.Queue[bytes]</type>
+        <definition>asyncio.Queue[bytes] p2p_engine.transport.quic.QUICConnection::_read_queue</definition>
+        <argsstring></argsstring>
+        <name>_read_queue</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._read_queue</qualifiedname>
+        <initializer>=  asyncio.Queue()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="104" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="104" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a2616a236aec824e8a3857c85c46db041" compoundref="quic_8py" startline="448" endline="465">p2p_engine.transport.quic.QUICStream._handle_data</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" compoundref="quic_8py" startline="301" endline="328">p2p_engine.transport.quic.QUICConnection._handle_quic_event</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a0e0c1c70fb0e57db7379372f91c60858" compoundref="webrtc_8py" startline="382" endline="406">p2p_engine.transport.webrtc.WebRTCConnection._setup_data_channel_callbacks</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" compoundref="quic_8py" startline="195" endline="226">p2p_engine.transport.quic.QUICConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a4847408d80964e250d3cea3d37998cf2" compoundref="webrtc_8py" startline="224" endline="253">p2p_engine.transport.webrtc.WebRTCConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a814e69add95d4d56bdb6f91aea91b26e" compoundref="quic_8py" startline="147" endline="172">p2p_engine.transport.quic.QUICConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a9d3f0d22df0abad9f3d825da6a1b7b81" compoundref="quic_8py" startline="379" endline="404">p2p_engine.transport.quic.QUICStream.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a1b8f25022453d63672bcca8c65dd07c7" compoundref="webrtc_8py" startline="175" endline="200">p2p_engine.transport.webrtc.WebRTCConnection.read</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4ab8892e2d83f0d4a5450aa5103ce733" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.quic.QUICConnection::_write_lock</definition>
+        <argsstring></argsstring>
+        <name>_write_lock</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._write_lock</qualifiedname>
+        <initializer>=  asyncio.Lock()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="105" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="105" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a1e401bcb887a8f52247f7faee2f6c599" compoundref="quic_8py" startline="173" endline="194">p2p_engine.transport.quic.QUICConnection.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a2992f68cf83abd14a08721e6272ff08e" compoundref="quic_8py" startline="405" endline="424">p2p_engine.transport.quic.QUICStream.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a5b5eac0ea06bb69b30e54a3676e62221" compoundref="webrtc_8py" startline="201" endline="223">p2p_engine.transport.webrtc.WebRTCConnection.write</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1afae02292483c3a3d7cfc76712f16ecac" prot="protected" static="no" mutable="no">
+        <type>Optional[tuple]</type>
+        <definition>Optional[tuple] p2p_engine.transport.quic.QUICConnection::_remote_address</definition>
+        <argsstring></argsstring>
+        <name>_remote_address</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._remote_address</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="108" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="108" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aa49784de6a4bc6e99210b4b13fecab03" compoundref="quic_8py" startline="232" endline="235">p2p_engine.transport.quic.QUICConnection.remote_address</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a35e0b6aa7273d3631726f8908a226b5c" compoundref="webrtc_8py" startline="259" endline="262">p2p_engine.transport.webrtc.WebRTCConnection.remote_address</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aeb6069c5e46e1bb2349a7be662eb14ba" prot="protected" static="no" mutable="no">
+        <type>Optional[tuple]</type>
+        <definition>Optional[tuple] p2p_engine.transport.quic.QUICConnection::_local_address</definition>
+        <argsstring></argsstring>
+        <name>_local_address</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._local_address</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="109" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="109" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1ab50699c545b129bc44cbff35d67fdc74" compoundref="webrtc_8py" startline="491" endline="496">p2p_engine.transport.webrtc.WebRTCListener.addresses</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a3335dded643d69af2ce070023d948d60" compoundref="quic_8py" startline="237" endline="240">p2p_engine.transport.quic.QUICConnection.local_address</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1aa428451cebca0556b7ddbebeda1916f8" compoundref="webrtc_8py" startline="264" endline="267">p2p_engine.transport.webrtc.WebRTCConnection.local_address</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a773ccefa18208e479a2303a0ab7899fd" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict p2p_engine.transport.quic.QUICConnection::_active_streams</definition>
+        <argsstring></argsstring>
+        <name>_active_streams</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._active_streams</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="112" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="112" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" compoundref="quic_8py" startline="301" endline="328">p2p_engine.transport.quic.QUICConnection._handle_quic_event</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" compoundref="quic_8py" startline="195" endline="226">p2p_engine.transport.quic.QUICConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a01ac2c817d450e7d93b119d5d3cd5994" compoundref="quic_8py" startline="289" endline="292">p2p_engine.transport.quic.QUICConnection.get_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1af974508d041449ec634c31d26d67ed7f" compoundref="quic_8py" startline="256" endline="277">p2p_engine.transport.quic.QUICConnection.open_stream</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac9a89c062a5a377112d36fd4f90a5b7c" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine.transport.quic.QUICConnection::_next_stream_id</definition>
+        <argsstring></argsstring>
+        <name>_next_stream_id</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._next_stream_id</qualifiedname>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="113" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="113" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a4864ede2e7c21844c683199cc9c7b838" compoundref="upgrader_8py" startline="223" endline="237">p2p_engine.transport.upgrader.MuxedSession.open_stream</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4437419ab49ddba917ebe589f40ea415" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.transport.quic.QUICConnection::_supports_0rtt</definition>
+        <argsstring></argsstring>
+        <name>_supports_0rtt</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._supports_0rtt</qualifiedname>
+        <initializer>=  False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="116" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="116" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" compoundref="quic_8py" startline="301" endline="328">p2p_engine.transport.quic.QUICConnection._handle_quic_event</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a20007ce603cb1cdaf6dbeecf6329ce89" compoundref="quic_8py" startline="138" endline="141">p2p_engine.transport.quic.QUICConnection.supports_0rtt</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a440430f12e2366f1e048f0452738fc1b" prot="protected" static="no" mutable="no">
+        <type>Optional[<ref refid="namespacep2p__engine_1_1transport_1_1quic_1a642b7d316cc90859e5a07fcf9a944bc2" kindref="member">SessionTicket</ref>]</type>
+        <definition>Optional[SessionTicket] p2p_engine.transport.quic.QUICConnection::_session_ticket</definition>
+        <argsstring></argsstring>
+        <name>_session_ticket</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._session_ticket</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="117" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="117" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" compoundref="quic_8py" startline="301" endline="328">p2p_engine.transport.quic.QUICConnection._handle_quic_event</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac484d10c498ae5bec75fc5534bdf543a" compoundref="quic_8py" startline="143" endline="146">p2p_engine.transport.quic.QUICConnection.session_ticket</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4ba16845dbbdb47c6cdb344dc80d91bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.quic.QUICConnection.__init__</definition>
+        <argsstring>(self, &apos;QuicConnectionProtocol&apos; protocol, bool is_initiator=False, Optional[int] stream_id=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>&apos;<ref refid="namespacep2p__engine_1_1transport_1_1quic_1aa6ead5f09ae1dbe73dfc93c7b876071e" kindref="member">QuicConnectionProtocol</ref>&apos;</type>
+          <declname>protocol</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_initiator</declname>
+          <defval>False</defval>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>stream_id</declname>
+          <array>[int]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="85" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="90" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aebcc9c5bca6d5898bdc6b41e6074e8ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type> &apos;<ref refid="namespacep2p__engine_1_1transport_1_1quic_1aa6ead5f09ae1dbe73dfc93c7b876071e" kindref="member">QuicConnectionProtocol</ref>&apos;</type>
+        <definition> &apos;QuicConnectionProtocol&apos; p2p_engine.transport.quic.QUICConnection.protocol</definition>
+        <argsstring>(self)</argsstring>
+        <name>protocol</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.protocol</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取底层 QUIC 协议</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="123" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="123" bodyend="126"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a92bd4ac301886aca775e6d5ae759b170" compoundref="quic_8py" startline="97">p2p_engine.transport.quic.QUICConnection._protocol</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a9c49cf567e9b6266c1ea7af7b25985ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.transport.quic.QUICConnection.is_initiator</definition>
+        <argsstring>(self)</argsstring>
+        <name>is_initiator</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.is_initiator</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>是否为发起方</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="128" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="128" bodyend="131"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_1a965b60d760c92d7132c81a1000412fcc" compoundref="mplex_8py" startline="249">p2p_engine.muxer.mplex.MplexStream._is_initiator</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_stream_1af5447c49c4a9da887e7537a04b612fb4" compoundref="mplex__v2_8py" startline="269">p2p_engine.muxer.mplex_v2.MplexStream._is_initiator</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_1a2d7f885f03491b9ae46cef92a4d80cf3" compoundref="yamux_8py" startline="229">p2p_engine.muxer.yamux.YamuxStream._is_initiator</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ae9d335e7e4784141afcd7e28acb44bf8" compoundref="quic_8py" startline="98">p2p_engine.transport.quic.QUICConnection._is_initiator</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a609a3c6eeacee9e74cf2564b5d5b3c60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[int]</type>
+        <definition> Optional[int] p2p_engine.transport.quic.QUICConnection.stream_id</definition>
+        <argsstring>(self)</argsstring>
+        <name>stream_id</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.stream_id</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取主流 ID</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="133" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="133" bodyend="136"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a6f7ba367ec7f824833f1839f2a620b01" compoundref="quic_8py" startline="99">p2p_engine.transport.quic.QUICConnection._stream_id</references>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_frame_1a5e376cf1f360f6d6719fbdd9a3e65aeb" compoundref="mplex_8py" startline="169" endline="188">p2p_engine.muxer.mplex.MplexFrame.pack</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_frame_1ac76b577496bfd9e603f9895f0685bf08" compoundref="mplex__v2_8py" startline="175" endline="195">p2p_engine.muxer.mplex_v2.MplexFrame.pack</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a20007ce603cb1cdaf6dbeecf6329ce89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.transport.quic.QUICConnection.supports_0rtt</definition>
+        <argsstring>(self)</argsstring>
+        <name>supports_0rtt</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.supports_0rtt</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>是否支持 0-RTT</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="138" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="138" bodyend="141"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4437419ab49ddba917ebe589f40ea415" compoundref="quic_8py" startline="116">p2p_engine.transport.quic.QUICConnection._supports_0rtt</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac484d10c498ae5bec75fc5534bdf543a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="namespacep2p__engine_1_1transport_1_1quic_1a642b7d316cc90859e5a07fcf9a944bc2" kindref="member">SessionTicket</ref>]</type>
+        <definition> Optional[SessionTicket] p2p_engine.transport.quic.QUICConnection.session_ticket</definition>
+        <argsstring>(self)</argsstring>
+        <name>session_ticket</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.session_ticket</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取会话票据（用于 0-RTT）</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="143" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="143" bodyend="146"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a440430f12e2366f1e048f0452738fc1b" compoundref="quic_8py" startline="117">p2p_engine.transport.quic.QUICConnection._session_ticket</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a814e69add95d4d56bdb6f91aea91b26e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.transport.quic.QUICConnection.read</definition>
+        <argsstring>(self, int n=-1)</argsstring>
+        <name>read</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.read</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a4f82ab1576b25050f93e2a8679b5a055">read</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>读取数据
+
+Args:
+    n: 读取字节数，-1 表示读取所有
+
+Returns:
+    读取的数据
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="147" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="147" bodyend="172"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a51cc19097e4cdea2af149fb20d44df0f" compoundref="quic_8py" startline="104">p2p_engine.transport.quic.QUICConnection._read_queue</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a1e401bcb887a8f52247f7faee2f6c599" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.transport.quic.QUICConnection.write</definition>
+        <argsstring>(self, bytes data)</argsstring>
+        <name>write</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.write</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a1f8391923639cf4fd18b559d01bc345b">write</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>写入数据
+
+Args:
+    data: 要写入的数据
+
+Returns:
+    写入的字节数
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="173" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="173" bodyend="194"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aed5dc0723cbeaaf8f6c23b858b9260b1" compoundref="quic_8py" startline="329" endline="341">p2p_engine.transport.quic.QUICConnection._get_or_create_stream</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a92bd4ac301886aca775e6d5ae759b170" compoundref="quic_8py" startline="97">p2p_engine.transport.quic.QUICConnection._protocol</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a6f7ba367ec7f824833f1839f2a620b01" compoundref="quic_8py" startline="99">p2p_engine.transport.quic.QUICConnection._stream_id</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_1ad62788b81cd6c99088c5ada032273787" compoundref="mplex_8py" startline="254">p2p_engine.muxer.mplex.MplexStream._write_lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_stream_1a39c30141f183f92f2e1bceb88941d2c7" compoundref="mplex__v2_8py" startline="275">p2p_engine.muxer.mplex_v2.MplexStream._write_lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_1a2ef3c919bf7e90a398b2272c5c64ac64" compoundref="yamux_8py" startline="235">p2p_engine.muxer.yamux.YamuxStream._write_lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4ab8892e2d83f0d4a5450aa5103ce733" compoundref="quic_8py" startline="105">p2p_engine.transport.quic.QUICConnection._write_lock</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.quic.QUICConnection.close</definition>
+        <argsstring>(self)</argsstring>
+        <name>close</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.close</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a03bc6dc0ef2a59f073caa915a59e81da">close</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>关闭连接</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="195" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="195" bodyend="226"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a773ccefa18208e479a2303a0ab7899fd" compoundref="quic_8py" startline="112">p2p_engine.transport.quic.QUICConnection._active_streams</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a92bd4ac301886aca775e6d5ae759b170" compoundref="quic_8py" startline="97">p2p_engine.transport.quic.QUICConnection._protocol</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a51cc19097e4cdea2af149fb20d44df0f" compoundref="quic_8py" startline="104">p2p_engine.transport.quic.QUICConnection._read_queue</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" compoundref="quic_8py" startline="195" endline="226">p2p_engine.transport.quic.QUICConnection.close</references>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" compoundref="quic_8py" startline="195" endline="226">p2p_engine.transport.quic.QUICConnection.close</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac4c634ed28273b4d18a0978f7849808b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.transport.quic.QUICConnection.is_closed</definition>
+        <argsstring>(self)</argsstring>
+        <name>is_closed</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.is_closed</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1afd80c879b0a4036fce4ca9e8b8e34115">is_closed</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检查连接是否已关闭</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="227" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="227" bodyend="230"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aa49784de6a4bc6e99210b4b13fecab03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[tuple]</type>
+        <definition> Optional[tuple] p2p_engine.transport.quic.QUICConnection.remote_address</definition>
+        <argsstring>(self)</argsstring>
+        <name>remote_address</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.remote_address</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1acf8091530c3865d3c01d74895388af65">remote_address</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取远程地址</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="232" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="232" bodyend="235"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1afae02292483c3a3d7cfc76712f16ecac" compoundref="quic_8py" startline="108">p2p_engine.transport.quic.QUICConnection._remote_address</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a3335dded643d69af2ce070023d948d60" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[tuple]</type>
+        <definition> Optional[tuple] p2p_engine.transport.quic.QUICConnection.local_address</definition>
+        <argsstring>(self)</argsstring>
+        <name>local_address</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.local_address</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_connection_1a2c2fdec8d0b32b8b7804c2c437a86c1d">local_address</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取本地地址</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="237" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="237" bodyend="240"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aeb6069c5e46e1bb2349a7be662eb14ba" compoundref="quic_8py" startline="109">p2p_engine.transport.quic.QUICConnection._local_address</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a9ef19ac30fb408de98738707f4393530" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.quic.QUICConnection.wait_handshake</definition>
+        <argsstring>(self, float timeout=10.0)</argsstring>
+        <name>wait_handshake</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.wait_handshake</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>timeout</declname>
+          <defval>10.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>等待握手完成
+
+Args:
+    timeout: 超时时间（秒）
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="241" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="241" bodyend="255"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a7a992f2c452ff4402fe84757ef7ca24e" compoundref="quic_8py" startline="103">p2p_engine.transport.quic.QUICConnection._handshake_complete</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1af974508d041449ec634c31d26d67ed7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type> &apos;<ref refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream" kindref="compound">QUICStream</ref>&apos;</type>
+        <definition> &apos;QUICStream&apos; p2p_engine.transport.quic.QUICConnection.open_stream</definition>
+        <argsstring>(self, QuicStreamType stream_type=QuicStreamType.BIDI)</argsstring>
+        <name>open_stream</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.open_stream</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1quic_1_1_quic_stream_type" kindref="compound">QuicStreamType</ref></type>
+          <declname>stream_type</declname>
+          <defval><ref refid="classp2p__engine_1_1transport_1_1quic_1_1_quic_stream_type_1aaec5f532fa1368ec0b3098f3bcfae9ad" kindref="member">QuicStreamType.BIDI</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>打开新流
+
+Args:
+    stream_type: 流类型
+
+Returns:
+    新流对象
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="256" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="256" bodyend="277"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a773ccefa18208e479a2303a0ab7899fd" compoundref="quic_8py" startline="112">p2p_engine.transport.quic.QUICConnection._active_streams</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a92bd4ac301886aca775e6d5ae759b170" compoundref="quic_8py" startline="97">p2p_engine.transport.quic.QUICConnection._protocol</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aed5dc0723cbeaaf8f6c23b858b9260b1" compoundref="quic_8py" startline="329" endline="341">p2p_engine.transport.quic.QUICConnection._get_or_create_stream</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ae2b62ff3f455a8dc7c2d7d46857d1e3e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type> &apos;<ref refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream" kindref="compound">QUICStream</ref>&apos;</type>
+        <definition> &apos;QUICStream&apos; p2p_engine.transport.quic.QUICConnection.accept_stream</definition>
+        <argsstring>(self)</argsstring>
+        <name>accept_stream</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.accept_stream</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>接受入站流
+
+Returns:
+    接受的流对象
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="278" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="278" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a01ac2c817d450e7d93b119d5d3cd5994" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[ &apos;<ref refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream" kindref="compound">QUICStream</ref>&apos;]</type>
+        <definition> Optional[&apos;QUICStream&apos;] p2p_engine.transport.quic.QUICConnection.get_stream</definition>
+        <argsstring>(self, int stream_id)</argsstring>
+        <name>get_stream</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection.get_stream</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>stream_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取指定流</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="289" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="289" bodyend="292"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a773ccefa18208e479a2303a0ab7899fd" compoundref="quic_8py" startline="112">p2p_engine.transport.quic.QUICConnection._active_streams</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a99966979c1ca3dd015f71492814583ad" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.quic.QUICConnection._setup_protocol_callbacks</definition>
+        <argsstring>(self)</argsstring>
+        <name>_setup_protocol_callbacks</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._setup_protocol_callbacks</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>设置协议回调</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="293" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="293" bodyend="300"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" compoundref="quic_8py" startline="301" endline="328">p2p_engine.transport.quic.QUICConnection._handle_quic_event</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a92bd4ac301886aca775e6d5ae759b170" compoundref="quic_8py" startline="97">p2p_engine.transport.quic.QUICConnection._protocol</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.quic.QUICConnection._handle_quic_event</definition>
+        <argsstring>(self, &apos;QuicEvent&apos; event)</argsstring>
+        <name>_handle_quic_event</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._handle_quic_event</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>&apos;QuicEvent&apos;</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>处理 QUIC 事件
+
+Args:
+    event: QUIC 事件
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="301" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="301" bodyend="328"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a773ccefa18208e479a2303a0ab7899fd" compoundref="quic_8py" startline="112">p2p_engine.transport.quic.QUICConnection._active_streams</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a7a992f2c452ff4402fe84757ef7ca24e" compoundref="quic_8py" startline="103">p2p_engine.transport.quic.QUICConnection._handshake_complete</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a51cc19097e4cdea2af149fb20d44df0f" compoundref="quic_8py" startline="104">p2p_engine.transport.quic.QUICConnection._read_queue</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a440430f12e2366f1e048f0452738fc1b" compoundref="quic_8py" startline="117">p2p_engine.transport.quic.QUICConnection._session_ticket</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a6f7ba367ec7f824833f1839f2a620b01" compoundref="quic_8py" startline="99">p2p_engine.transport.quic.QUICConnection._stream_id</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4437419ab49ddba917ebe589f40ea415" compoundref="quic_8py" startline="116">p2p_engine.transport.quic.QUICConnection._supports_0rtt</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a99966979c1ca3dd015f71492814583ad" compoundref="quic_8py" startline="293" endline="300">p2p_engine.transport.quic.QUICConnection._setup_protocol_callbacks</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aed5dc0723cbeaaf8f6c23b858b9260b1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.transport.quic.QUICConnection._get_or_create_stream</definition>
+        <argsstring>(self)</argsstring>
+        <name>_get_or_create_stream</name>
+        <qualifiedname>p2p_engine.transport.quic.QUICConnection._get_or_create_stream</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取或创建流</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/quic.py" line="329" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="329" bodyend="341"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a6f7ba367ec7f824833f1839f2a620b01" compoundref="quic_8py" startline="99">p2p_engine.transport.quic.QUICConnection._stream_id</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1adbd66efc76035be8bd91bd8fb25caa8f" compoundref="mplex_8py" startline="561" endline="604">p2p_engine.muxer.mplex.MplexSession.open_stream</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1a719196094625932783e6afed39cfaa28" compoundref="mplex__adapter_8py" startline="158" endline="162">p2p_engine.muxer.mplex_adapter.MplexMuxedSession.open_stream</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1ab93697a06b3e53318e363ab843c93295" compoundref="mplex__v2_8py" startline="754" endline="803">p2p_engine.muxer.mplex_v2.MplexSession.open_stream</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1a0b9e6b778124e0386f65e87e3b520496" compoundref="yamux_8py" startline="600" endline="645">p2p_engine.muxer.yamux.YamuxSession.open_stream</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1acbf12c7d93305c993290edb64570697b" compoundref="yamux__optimized_8py" startline="198" endline="236">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_stream</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1af974508d041449ec634c31d26d67ed7f" compoundref="quic_8py" startline="256" endline="277">p2p_engine.transport.quic.QUICConnection.open_stream</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a1e401bcb887a8f52247f7faee2f6c599" compoundref="quic_8py" startline="173" endline="194">p2p_engine.transport.quic.QUICConnection.write</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>QUIC 连接
+
+封装 aioquic 连接和流操作，
+提供 libp2p 传输层接口。
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.quic.QUICConnection</label>
+        <link refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Connection</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_connection"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.quic.QUICConnection</label>
+        <link refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Connection</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_connection"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/transport/quic.py" line="77" column="1" bodyfile="p2p_engine/transport/quic.py" bodystart="77" bodyend="341"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4ba16845dbbdb47c6cdb344dc80d91bb" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a773ccefa18208e479a2303a0ab7899fd" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_active_streams</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_closed</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aed5dc0723cbeaaf8f6c23b858b9260b1" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_get_or_create_stream</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a47b750c88e7af6066f70451d1c1a3451" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_handle_quic_event</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a7a992f2c452ff4402fe84757ef7ca24e" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_handshake_complete</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ae9d335e7e4784141afcd7e28acb44bf8" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_is_initiator</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aeb6069c5e46e1bb2349a7be662eb14ba" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_local_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac9a89c062a5a377112d36fd4f90a5b7c" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_next_stream_id</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a92bd4ac301886aca775e6d5ae759b170" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_protocol</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a51cc19097e4cdea2af149fb20d44df0f" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_read_queue</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1afae02292483c3a3d7cfc76712f16ecac" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_remote_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a440430f12e2366f1e048f0452738fc1b" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_session_ticket</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a99966979c1ca3dd015f71492814583ad" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_setup_protocol_callbacks</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a6f7ba367ec7f824833f1839f2a620b01" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_stream_id</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4437419ab49ddba917ebe589f40ea415" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_supports_0rtt</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a4ab8892e2d83f0d4a5450aa5103ce733" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>_write_lock</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ae2b62ff3f455a8dc7c2d7d46857d1e3e" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>accept_stream</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1abd695bedd8094f6328f09b9f3174ebda" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>close</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a01ac2c817d450e7d93b119d5d3cd5994" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>get_stream</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac4c634ed28273b4d18a0978f7849808b" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>is_closed</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a9c49cf567e9b6266c1ea7af7b25985ff" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>is_initiator</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a3335dded643d69af2ce070023d948d60" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>local_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1af974508d041449ec634c31d26d67ed7f" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>open_stream</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aebcc9c5bca6d5898bdc6b41e6074e8ff" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>protocol</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a814e69add95d4d56bdb6f91aea91b26e" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>read</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1aa49784de6a4bc6e99210b4b13fecab03" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>remote_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1ac484d10c498ae5bec75fc5534bdf543a" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>session_ticket</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a609a3c6eeacee9e74cf2564b5d5b3c60" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>stream_id</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a20007ce603cb1cdaf6dbeecf6329ce89" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>supports_0rtt</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a9ef19ac30fb408de98738707f4393530" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>wait_handshake</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a1e401bcb887a8f52247f7faee2f6c599" prot="public" virt="non-virtual"><scope>p2p_engine::transport::quic::QUICConnection</scope><name>write</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

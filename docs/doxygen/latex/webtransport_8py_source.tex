@@ -1,0 +1,631 @@
+\doxysection{webtransport.\+py}
+\hypertarget{webtransport_8py_source}{}\label{webtransport_8py_source}\index{p2p\_engine/transport/webtransport.py@{p2p\_engine/transport/webtransport.py}}
+\doxymbox{\hyperlink{webtransport_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00002}00002\ \textcolor{stringliteral}{WebTransport\ Transport\ Implementation}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00004}00004\ \textcolor{stringliteral}{This\ module\ implements\ the\ libp2p\ WebTransport\ transport\ specification:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00005}00005\ \textcolor{stringliteral}{https://github.com/libp2p/specs/blob/master/webtransport/README.md}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00006}00006\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00007}00007\ \textcolor{stringliteral}{WebTransport\ provides\ a\ stream-\/multiplexed\ and\ bidirectional\ connection}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00008}00008\ \textcolor{stringliteral}{over\ HTTP/3\ (QUIC).\ It\ enables\ browser-\/based\ P2P\ connections\ with}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00009}00009\ \textcolor{stringliteral}{self-\/signed\ certificates\ using\ certificate\ hash\ verification.}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00010}00010\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00011}00011\ \textcolor{stringliteral}{Protocol\ ID:\ /webtransport/1.0.0}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00012}00012\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00013}00013\ \textcolor{stringliteral}{This\ implementation\ uses\ aioquic\ for\ HTTP/3\ support.}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00014}00014\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00016}00016\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00017}00017\ \textcolor{keyword}{import}\ hashlib}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00018}00018\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00019}00019\ \textcolor{keyword}{import}\ ssl}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00020}00020\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00021}00021\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00022}00022\ \textcolor{keyword}{from}\ datetime\ \textcolor{keyword}{import}\ datetime,\ timedelta}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00023}00023\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ List,\ Dict,\ Callable,\ Awaitable,\ Any}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00025}00025\ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00026}00026\ \ \ \ \ \textcolor{keyword}{from}\ aioquic.h3.connection\ \textcolor{keyword}{import}\ H3Connection}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{from}\ aioquic.h3.events\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ H3Event,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ HeadersReceived,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ DataReceived,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ StreamEnded,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00032}00032\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{from}\ aioquic.quic.configuration\ \textcolor{keyword}{import}\ QuicConfiguration}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{from}\ aioquic.quic.connection\ \textcolor{keyword}{import}\ QuicConnection}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{from}\ aioquic.quic.events\ \textcolor{keyword}{import}\ QuicEvent,\ ProtocolNegotiated,\ ConnectionTerminated}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00036}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_aa9628a3d141215c357b1daee83ff768e}{00036}}\ \ \ \ \ AIOQUIC\_AVAILABLE\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00037}00037\ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00038}00038\ \ \ \ \ AIOQUIC\_AVAILABLE\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00039}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a047c673a9da9d509b9116478d5bc7c42}{00039}}\ \ \ \ \ QuicConnection\ =\ \textcolor{keywordtype}{None}\ \ \textcolor{comment}{\#\ type:\ ignore}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00040}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a16ebe2007a7c70e83517b14a2f9ccb5b}{00040}}\ \ \ \ \ QuicConfiguration\ =\ \textcolor{keywordtype}{None}\ \ \textcolor{comment}{\#\ type:\ ignore}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00041}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_acbeca1b9e0cb9e9753dd959086af7392}{00041}}\ \ \ \ \ H3Connection\ =\ \textcolor{keywordtype}{None}\ \ \textcolor{comment}{\#\ type:\ ignore}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00043}00043\ \textcolor{keyword}{from}\ .base\ \textcolor{keyword}{import}\ Transport,\ Listener,\ Connection,\ TransportError,\ ConnectionError\ \textcolor{keyword}{as}\ BaseConnectionError}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00046}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_ae27abb8a3204ddeca75a90f010b30b6e}{00046}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.transport.webtransport"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00049}00049\ \textcolor{comment}{\#\ ====================\ Constants\ ====================}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00051}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a041529b70b7f1692f932b82954692aba}{00051}}\ PROTOCOL\_ID\ =\ \textcolor{stringliteral}{"{}/webtransport/1.0.0"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00052}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a3558b14b0cfd83712df008f853154faa}{00052}}\ WEBTRANSPORT\_ENDPOINT\ =\ \textcolor{stringliteral}{"{}/.well-\/known/libp2p-\/webtransport"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00053}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a106966bd570cc1e8d24be220e47318b0}{00053}}\ WEBTRANSPORT\_TYPE\_PARAM\ =\ \textcolor{stringliteral}{"{}noise"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00055}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a288786771da4b79df542c6d6722300e2}{00055}}\ ALPN\_PROTOCOLS\ =\ [\textcolor{stringliteral}{"{}h3"{}},\ \textcolor{stringliteral}{"{}webtransport"{}}]}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00056}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a561e546ba3e25839b63821d5f2cab8dd}{00056}}\ MAX\_CERT\_VALIDITY\_DAYS\ =\ 14}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00058}00058\ \textcolor{comment}{\#\ HTTP/3\ and\ WebTransport\ settings}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00059}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a8c7b38fe644964e9ac05c516b9248056}{00059}}\ DEFAULT\_MAX\_DATA\ =\ 1048576\ \ \textcolor{comment}{\#\ 1\ MiB}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00060}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a3fb6127eb59af1bf14930ad56479e824}{00060}}\ DEFAULT\_MAX\_STREAM\_DATA\ =\ 262144\ \ \textcolor{comment}{\#\ 256\ KiB}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00061}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a2dad0618b299d26219b74127f0c44285}{00061}}\ DEFAULT\_IDLE\_TIMEOUT\ =\ 60.0\ \ \textcolor{comment}{\#\ seconds}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00064}00064\ \textcolor{comment}{\#\ ====================\ Certificate\ Management\ ====================}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00066}00066\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00067}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info}{00067}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info}{CertificateInfo}}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00068}00068\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Certificate\ information"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00069}00069\ \ \ \ \ certificate:\ bytes\ \ \textcolor{comment}{\#\ PEM\ encoded\ certificate}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00070}00070\ \ \ \ \ certificate\_hash:\ str}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00071}00071\ \ \ \ \ not\_valid\_after:\ datetime}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00072}00072\ \ \ \ \ not\_valid\_before:\ datetime}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00074}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info_ad63adec133f894bed81b9f8f20324c65}{00074}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info_ad63adec133f894bed81b9f8f20324c65}{is\_valid}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ certificate\ is\ currently\ valid"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ now\ =\ datetime.utcnow()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.not\_valid\_before\ <=\ now\ <=\ self.not\_valid\_after}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00079}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info_a15a0154d70a7331250b2ebdd32583dcf}{00079}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info_a15a0154d70a7331250b2ebdd32583dcf}{is\_expiring\_soon}}(self,\ hours:\ int\ =\ 24)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ certificate\ is\ expiring\ soon"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ datetime.utcnow()\ >=\ (self.not\_valid\_after\ -\/\ timedelta(hours=hours))}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00084}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{00084}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager}{CertificateManager}}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00085}00085\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00086}00086\ \textcolor{stringliteral}{\ \ \ \ Manages\ self-\/signed\ certificates\ for\ WebTransport}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00087}00087\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00088}00088\ \textcolor{stringliteral}{\ \ \ \ Per\ libp2p\ spec:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00089}00089\ \textcolor{stringliteral}{\ \ \ \ -\/\ Certificates\ are\ self-\/signed}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ -\/\ Validity\ period\ ≤\ 14\ days}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00091}00091\ \textcolor{stringliteral}{\ \ \ \ -\/\ Cannot\ use\ RSA\ keys}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00092}00092\ \textcolor{stringliteral}{\ \ \ \ -\/\ Certificate\ hashes\ are\ advertised\ in\ multiaddr}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00093}00093\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00095}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a4cc5f5cef845275ca569ea62d0f8655d}{00095}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a4cc5f5cef845275ca569ea62d0f8655d}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00096}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea}{00096}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea}{\_certificates}}:\ Dict[str,\ CertificateInfo]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00097}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{00097}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{\_primary\_cert\_hash}}:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00099}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a94eb9d62359591aff901d6d9797b1682}{00099}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a94eb9d62359591aff901d6d9797b1682}{generate\_certificate}}(self,\ validity\_days:\ int\ =\ MAX\_CERT\_VALIDITY\_DAYS)\ -\/>\ CertificateInfo:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00101}00101\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Generate\ a\ new\ self-\/signed\ certificate}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00102}00102\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00103}00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00104}00104\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ validity\_days:\ Validity\ period\ in\ days\ (max\ 14)}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00105}00105\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00107}00107\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ CertificateInfo\ with\ certificate\ details}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ validity\_days\ >\ MAX\_CERT\_VALIDITY\_DAYS:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ validity\_days\ =\ MAX\_CERT\_VALIDITY\_DAYS}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ cryptography\ \textcolor{keyword}{import}\ x509}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ cryptography.x509.oid\ \textcolor{keyword}{import}\ NameOID}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ cryptography.hazmat.primitives\ \textcolor{keyword}{import}\ hashes,\ serialization}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{from}\ cryptography.hazmat.primitives.asymmetric\ \textcolor{keyword}{import}\ ec}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ cryptography.hazmat.backends\ \textcolor{keyword}{as}\ backends}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Generate\ EC\ private\ key\ (not\ RSA\ as\ per\ spec)}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ private\_key\ =\ ec.generate\_private\_key(ec.SECP256R1(),\ backends.default\_backend())}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Build\ certificate\ subject}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ subject\ =\ issuer\ =\ x509.Name([}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.COUNTRY\_NAME,\ \textcolor{stringliteral}{u"{}US"{}}),}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.STATE\_OR\_PROVINCE\_NAME,\ \textcolor{stringliteral}{u"{}CA"{}}),}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.LOCALITY\_NAME,\ \textcolor{stringliteral}{u"{}San\ Francisco"{}}),}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.ORGANIZATION\_NAME,\ \textcolor{stringliteral}{u"{}libp2p"{}}),}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.NameAttribute(NameOID.COMMON\_NAME,\ \textcolor{stringliteral}{u"{}libp2p-\/node"{}}),}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ ])}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Calculate\ validity\ dates}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ now\ =\ datetime.utcnow()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ not\_valid\_before\ =\ now}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ not\_valid\_after\ =\ now\ +\ timedelta(days=validity\_days)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Build\ certificate}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ cert\ =\ x509.CertificateBuilder().subject\_name(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subject}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ ).issuer\_name(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ issuer}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ ).public\_key(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ private\_key.public\_key()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ ).serial\_number(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x509.random\_serial\_number()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ ).not\_valid\_before(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ not\_valid\_before}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ ).not\_valid\_after(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ not\_valid\_after}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ ).sign(private\_key,\ hashes.SHA256(),\ backends.default\_backend())}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Serialize\ for\ use\ with\ SSL}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ cert\_pem\ =\ cert.public\_bytes(serialization.Encoding.PEM)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ key\_pem\ =\ private\_key.private\_bytes(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ encoding=serialization.Encoding.PEM,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ format=serialization.PrivateFormat.TraditionalOpenSSL,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ encryption\_algorithm=serialization.NoEncryption()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Calculate\ certificate\ hash\ (SHA-\/256)}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ cert\_der\ =\ cert.public\_bytes(serialization.Encoding.DER)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ cert\_hash\ =\ hashlib.sha256(cert\_der).digest()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ cert\_hash\_b64\ =\ cert\_hash.hex()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ SSL\ context}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ context\ =\ ssl.SSLContext(ssl.PROTOCOL\_TLS\_SERVER)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ context.load\_cert\_chain(certfile=cert\_pem,\ keyfile=key\_pem)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ cert\_info\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_info}{CertificateInfo}}(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ certificate=cert\_pem,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ certificate\_hash=cert\_hash\_b64,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ not\_valid\_after=not\_valid\_after,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ not\_valid\_before=not\_valid\_before,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Store\ certificate}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea}{\_certificates}}[cert\_hash\_b64]\ =\ cert\_info}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Set\ as\ primary\ if\ first\ cert}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{\_primary\_cert\_hash}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{\_primary\_cert\_hash}}\ =\ cert\_hash\_b64}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Generated\ new\ certificate,\ hash:\ \{cert\_hash\_b64[:16]\}..."{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cert\_info}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ImportError:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(\textcolor{stringliteral}{"{}cryptography\ library\ not\ available,\ cannot\ generate\ certificates"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_error}{TransportError}}(\textcolor{stringliteral}{"{}Certificate\ generation\ requires\ 'cryptography'\ library"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00189}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a685d1adff34fae63d72156c049afe211}{00189}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a685d1adff34fae63d72156c049afe211}{get\_primary\_certificate\_hash}}(self)\ -\/>\ Optional[str]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ the\ primary\ certificate\ hash"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{\_primary\_cert\_hash}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00193}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a479f12af89592c1727b9d796f6388891}{00193}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a479f12af89592c1727b9d796f6388891}{get\_all\_certificate\_hashes}}(self)\ -\/>\ List[str]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ all\ certificate\ hashes\ for\ advertisement"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list(self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea}{\_certificates}}.keys())}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00197}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a8e3e6dab8f3a24110476a6163a9a944a}{00197}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a8e3e6dab8f3a24110476a6163a9a944a}{get\_certificate}}(self,\ cert\_hash:\ str)\ -\/>\ Optional[CertificateInfo]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ certificate\ by\ hash"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a44335270dea1dd8682782e645babc4ea}{\_certificates}}.get(cert\_hash)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00201}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a1efdeb116b78a7f60e8d7b84aa844521}{00201}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a1efdeb116b78a7f60e8d7b84aa844521}{validate\_certificate\_hashes}}(self,\ expected\_hashes:\ List[str])\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00203}00203\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Validate\ that\ primary\ certificate\ hash\ is\ in\ expected\ list}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00204}00204\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00205}00205\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00206}00206\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ expected\_hashes:\ List\ of\ expected\ certificate\ hashes}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00207}00207\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00208}00208\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00209}00209\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ primary\ hash\ is\ in\ expected\ list}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00210}00210\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{\_primary\_cert\_hash}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_certificate_manager_a3555becb090e399796725b34b0395f7d}{\_primary\_cert\_hash}}\ \textcolor{keywordflow}{in}\ expected\_hashes}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00217}00217\ \textcolor{comment}{\#\ ====================\ WebTransport\ Connection\ ====================}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00219}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection}{00219}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection}{WebTransportConnection}}(\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection}{Connection}}):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00220}00220\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00221}00221\ \textcolor{stringliteral}{\ \ \ \ WebTransport\ connection}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00222}00222\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00223}00223\ \textcolor{stringliteral}{\ \ \ \ Wraps\ a\ QUIC\ connection\ with\ HTTP/3\ and\ WebTransport\ semantics.}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00224}00224\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00226}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_ae79c7188ea7e7ccebd530086e8836f1d}{00226}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_ae79c7188ea7e7ccebd530086e8836f1d}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ quic\_connection:\ QuicConnection,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ h3\_connection:\ H3Connection,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ is\_client:\ bool,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ local\_addr:\ str,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ remote\_addr:\ str,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00233}00233\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ super().\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_ae79c7188ea7e7ccebd530086e8836f1d}{\_\_init\_\_}}(local\_addr,\ remote\_addr,\ \textcolor{stringliteral}{"{}webtransport"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00236}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a122cb7bddeb5efaf622d1889453559cc}{00236}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a122cb7bddeb5efaf622d1889453559cc}{\_quic}}\ =\ quic\_connection}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00237}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a87202fd8e7123eeebe03923c2ca55976}{00237}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a87202fd8e7123eeebe03923c2ca55976}{\_h3}}\ =\ h3\_connection}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00238}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a4616e499029c9f0daf9510b70682d464}{00238}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a4616e499029c9f0daf9510b70682d464}{\_is\_client}}\ =\ is\_client}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00239}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_aaa85ead16c18834a4bb884e78957a203}{00239}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_aaa85ead16c18834a4bb884e78957a203}{\_closed}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stream\ management}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00242}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_ac3a9e350f3f62ea08ad203b7a0e15130}{00242}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_ac3a9e350f3f62ea08ad203b7a0e15130}{\_streams}}:\ Dict[int,\ Any]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00243}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_ac5aa04c91bcb3a85fae101174e657f3b}{00243}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_ac5aa04c91bcb3a85fae101174e657f3b}{\_next\_stream\_id}}\ =\ 0\ \textcolor{keywordflow}{if}\ is\_client\ \textcolor{keywordflow}{else}\ 1}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Receive\ task}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00246}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a39d289f295224a22b9dbddae77865353}{00246}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a39d289f295224a22b9dbddae77865353}{\_receive\_task}}:\ Optional[asyncio.Task]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00247}00247\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00248}00248\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00249}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a3587fc10fb7c98dc708790297b0f60fe}{00249}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a3587fc10fb7c98dc708790297b0f60fe}{is\_closed}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ connection\ is\ closed"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_aaa85ead16c18834a4bb884e78957a203}{\_closed}}\ \textcolor{keywordflow}{or}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a122cb7bddeb5efaf622d1889453559cc}{\_quic}}\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00253}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a26c2731c6da14a4933fe5a5a293884b3}{00253}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a26c2731c6da14a4933fe5a5a293884b3}{read}}(self,\ n:\ int\ =\ -\/1)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Read\ data\ from\ connection"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_aaa85ead16c18834a4bb884e78957a203}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ BaseConnectionError(\textcolor{stringliteral}{"{}Connection\ is\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wait\ for\ events}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00259}00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ event\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a122cb7bddeb5efaf622d1889453559cc}{\_quic}}.next\_event():}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a7fc56c65031c0b75881ddd465caa70a4}{\_handle\_event}}(event)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ This\ is\ a\ simplified\ implementation}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ In\ production,\ you'd\ manage\ streams\ properly}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00266}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a64518eadb1d50405a40899b41fb79efd}{00266}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a64518eadb1d50405a40899b41fb79efd}{write}}(self,\ data:\ bytes)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Write\ data\ to\ connection"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_aaa85ead16c18834a4bb884e78957a203}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ BaseConnectionError(\textcolor{stringliteral}{"{}Connection\ is\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Send\ on\ stream\ 0\ (control\ stream)}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ stream\_id\ =\ 0}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a122cb7bddeb5efaf622d1889453559cc}{\_quic}}.send\_stream\_data(stream\_id,\ data)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ len(data)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00276}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_add2afadac6e7e6bd167a478fccdc3226}{00276}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_add2afadac6e7e6bd167a478fccdc3226}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Close\ the\ connection"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_aaa85ead16c18834a4bb884e78957a203}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_aaa85ead16c18834a4bb884e78957a203}{\_closed}}\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a39d289f295224a22b9dbddae77865353}{\_receive\_task}}\ \textcolor{keywordflow}{and}\ \textcolor{keywordflow}{not}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a39d289f295224a22b9dbddae77865353}{\_receive\_task}}.done():}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a39d289f295224a22b9dbddae77865353}{\_receive\_task}}.cancel()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a122cb7bddeb5efaf622d1889453559cc}{\_quic}}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a122cb7bddeb5efaf622d1889453559cc}{\_quic}}.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_add2afadac6e7e6bd167a478fccdc3226}{close}}()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ await\ super().\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_add2afadac6e7e6bd167a478fccdc3226}{close}}()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00291}00291\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00292}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a4c264574b75a1e50a00ed479a58c249e}{00292}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a4c264574b75a1e50a00ed479a58c249e}{remote\_address}}(self)\ -\/>\ Optional[tuple]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ remote\ address"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ from\ multiaddr}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00297}00297\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00298}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a9fe50295c382fd62056dd82ade33919f}{00298}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a9fe50295c382fd62056dd82ade33919f}{local\_address}}(self)\ -\/>\ Optional[tuple]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ local\ address"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00302}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a7fc56c65031c0b75881ddd465caa70a4}{00302}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a7fc56c65031c0b75881ddd465caa70a4}{\_handle\_event}}(self,\ event:\ \textcolor{stringliteral}{"{}QuicEvent"{}})\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Handle\ QUIC\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(event,\ \textcolor{stringliteral}{"{}ProtocolNegotiated"{}}):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Protocol\ negotiated:\ \{event.alpn\_protocol\}"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ isinstance(event,\ \textcolor{stringliteral}{"{}ConnectionTerminated"{}}):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Connection\ terminated:\ \{event.error\_code\}"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a03bc6dc0ef2a59f073caa915a59e81da}{close}}()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00309}00309\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00311}00311\ \textcolor{comment}{\#\ ====================\ WebTransport\ Listener\ ====================}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00313}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener}{00313}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener}{WebTransportListener}}(\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener}{Listener}}):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00314}00314\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00315}00315\ \textcolor{stringliteral}{\ \ \ \ WebTransport\ listener}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00316}00316\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00317}00317\ \textcolor{stringliteral}{\ \ \ \ Accepts\ incoming\ WebTransport\ connections.}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00318}00318\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00320}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a9c209de7797b1e2c13177b41ed700a3a}{00320}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a9c209de7797b1e2c13177b41ed700a3a}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ host:\ str,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ port:\ int,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ certificate\_manager:\ CertificateManager,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ config:\ Optional[QuicConfiguration]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00326}00326\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00327}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_aee6fc689311b9019d862a85c256d9828}{00327}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_aee6fc689311b9019d862a85c256d9828}{\_host}}\ =\ host}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00328}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_afa3a7ab4846c11d563d1ea8c59e60c44}{00328}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_afa3a7ab4846c11d563d1ea8c59e60c44}{\_port}}\ =\ port}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00329}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a42b3352806a6906ce54698b267fb8bd6}{00329}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a42b3352806a6906ce54698b267fb8bd6}{\_cert\_manager}}\ =\ certificate\_manager}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00330}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a5b0d8fae69d70a7201704d233279365a}{00330}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a5b0d8fae69d70a7201704d233279365a}{\_config}}\ =\ config\ \textcolor{keywordflow}{or}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a233ae0c34b2b6c68201325ed4172758c}{\_create\_server\_config}}()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00332}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ab44cf607bd4d4023cbef1352d5ffbae0}{00332}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ab44cf607bd4d4023cbef1352d5ffbae0}{\_closed}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00333}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a2017069a9aaaf6d5b1b7e58391f389fc}{00333}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a2017069a9aaaf6d5b1b7e58391f389fc}{\_server}}:\ Optional[asyncio.Server]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00334}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6430c16f1c22a0c73fbc8b895d64f1d2}{00334}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6430c16f1c22a0c73fbc8b895d64f1d2}{\_connections}}:\ List[WebTransportConnection]\ =\ []}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00335}00335\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00336}00336\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00337}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_af53137f2c2cd0db7ffa4e1a39638326e}{00337}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_af53137f2c2cd0db7ffa4e1a39638326e}{is\_closed}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ listener\ is\ closed"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ab44cf607bd4d4023cbef1352d5ffbae0}{\_closed}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00341}00341\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00342}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a0e1f5d427e6250f5af7fbec961e29fd8}{00342}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a0e1f5d427e6250f5af7fbec961e29fd8}{addresses}}(self)\ -\/>\ List[tuple]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ listen\ addresses"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ab44cf607bd4d4023cbef1352d5ffbae0}{\_closed}}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ []}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [(self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_aee6fc689311b9019d862a85c256d9828}{\_host}},\ self.\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_afa3a7ab4846c11d563d1ea8c59e60c44}{\_port}})]}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00347}00347\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00348}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6e8144342439d75e703e0067c9376527}{00348}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a6e8144342439d75e703e0067c9376527}{accept}}(self)\ -\/>\ Connection:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Accept\ incoming\ connection"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ This\ is\ a\ simplified\ implementation}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Full\ implementation\ would\ handle\ QUIC\ handshake}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ await\ asyncio.sleep(0)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ NotImplementedError(\textcolor{stringliteral}{"{}Use\ listen()\ instead"{}})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00354}00354\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00355}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ae2c2b795b137a64f5ed3f173f6e50bf7}{00355}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_ae2c2b795b137a64f5ed3f173f6e50bf7}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Close\ the\ listener"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00357}00357\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.\_closed\ =\ True}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00358}00358\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00359}00359\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ for\ conn\ in\ self.\_connections:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00360}00360\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ try:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00361}00361\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ conn.close()}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00362}00362\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ except\ Exception:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00363}00363\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pass}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00364}00364\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00365}00365\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.\_connections.clear()}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00366}00366\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00367}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_a233ae0c34b2b6c68201325ed4172758c}{00367}}\ \textcolor{stringliteral}{\ \ \ \ def\ \_create\_server\_config(self)\ -\/>\ QuicConfiguration:}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00368}00368\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}Create\ QUIC\ server\ configuration"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ if\ not\ AIOQUIC\_AVAILABLE:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ TransportError("{}aioquic\ is\ required\ for\ WebTransport"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00371}00371\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ config\ =\ QuicConfiguration(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ alpn\_protocols=ALPN\_PROTOCOLS,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ max\_data=DEFAULT\_MAX\_DATA,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ max\_stream\_data=DEFAULT\_MAX\_STREAM\_DATA,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ idle\_timeout=DEFAULT\_IDLE\_TIMEOUT,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00379}00379\ \ \ \ \ \ \ \ \ \#\ Load\ certificate}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ cert\_info\ =\ self.\_cert\_manager.get\_primary\_certificate\_hash()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ if\ cert\_info:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ In\ production,\ load\ actual\ certificate}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ config.load\_cert\_chain(certfile="{}"{},\ keyfile="{}"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ return\ config}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00388}00388\ \#\ ====================\ WebTransport\ Transport\ ====================}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00390}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport}{00390}}\ class\ WebTransportTransport(Transport):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00391}00391\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00392}00392\ \ \ \ \ WebTransport\ transport\ implementation}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00393}00393\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00394}00394\ \ \ \ \ Provides\ HTTP/3-\/based\ transport\ with\ support\ for:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00395}00395\ \ \ \ \ -\/\ Self-\/signed\ certificates\ with\ hash\ verification}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00396}00396\ \ \ \ \ -\/\ Stream\ multiplexing}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00397}00397\ \ \ \ \ -\/\ Bidirectional\ communication}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00398}00398\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00399}00399\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00400}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a33a8317a474e03fd39fbd87c80b24731}{00400}}\ \ \ \ \ def\ \_\_init\_\_(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00401}00401\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00402}00402\ \ \ \ \ \ \ \ \ certificate\_manager:\ Optional[CertificateManager]\ =\ None,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ max\_idle\_timeout:\ float\ =\ DEFAULT\_IDLE\_TIMEOUT,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00404}00404\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ Initialize\ WebTransport\ transport}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00407}00407\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ certificate\_manager:\ Certificate\ manager\ for\ TLS}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ max\_idle\_timeout:\ Maximum\ idle\ timeout\ in\ seconds}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00411}00411\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ if\ not\ AIOQUIC\_AVAILABLE:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ TransportError("{}aioquic\ is\ required\ for\ WebTransport"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00414}00414\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00415}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a188450e55a3f2c9da8e497e8ef5f4f4e}{00415}}\ \ \ \ \ \ \ \ \ self.\_cert\_manager\ =\ certificate\_manager\ or\ CertificateManager()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00416}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ad82f7b65b8d0040f9bee6f720beacc5f}{00416}}\ \ \ \ \ \ \ \ \ self.\_max\_idle\_timeout\ =\ max\_idle\_timeout}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00417}00417\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \#\ Generate\ initial\ certificate\ if\ needed}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ if\ not\ self.\_cert\_manager.get\_primary\_certificate\_hash():}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ self.\_cert\_manager.generate\_certificate()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00421}00421\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00422}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_abe8cefea6ab2bcb26fb89fd19defea7a}{00422}}\ \ \ \ \ \ \ \ \ self.\_closed\ =\ False}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00423}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a713d57ab03cafc995b5e7866946cb8eb}{00423}}\ \ \ \ \ \ \ \ \ self.\_listeners:\ List[WebTransportListener]\ =\ []}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00425}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a10af0579345e0860223d12c21ad6a314}{00425}}\ \ \ \ \ def\ protocols(self)\ -\/>\ List[str]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ "{}"{}"{}Return\ supported\ protocol\ IDs"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ return\ [PROTOCOL\_ID]}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00429}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaf73bf57e04631e2d54db74a7ad660c5}{00429}}\ \ \ \ \ async\ def\ dial(self,\ addr:\ str)\ -\/>\ Connection:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ Establish\ WebTransport\ connection\ to\ remote\ peer}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00432}00432\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ addr:\ Multiaddr\ (e.g.,\ /ip4/192.0.2.0/udp/443/quic/webtransport/...)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00435}00435\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ Established\ connection}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00438}00438\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ Raises:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ ConnectionError:\ If\ connection\ fails}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ if\ self.\_closed:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ TransportError("{}Transport\ is\ closed"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \#\ Parse\ multiaddr}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ parsed\ =\ self.\_parse\_multiaddr(addr)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ if\ parsed\ is\ None:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ ConnectionError(f"{}Invalid\ multiaddr:\ \{addr\}"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00449}00449\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ host,\ port,\ cert\_hashes\ =\ parsed}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ \#\ Create\ client\ configuration}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ config\ =\ QuicConfiguration(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ alpn\_protocols=ALPN\_PROTOCOLS,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ max\_data=DEFAULT\_MAX\_DATA,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ max\_stream\_data=DEFAULT\_MAX\_STREAM\_DATA,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ idle\_timeout=self.\_max\_idle\_timeout,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ verify\_mode=ssl.CERT\_NONE,\ \ \#\ Will\ verify\ via\ cert\ hash}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00459}00459\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00460}00460\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ \#\ Create\ QUIC\ connection}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ quic\ =\ QuicConnection(configuration=config)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ await\ quic.connect((host,\ port))}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00465}00465\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Create\ H3\ connection}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ h3\ =\ H3Connection(quic)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00468}00468\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Build\ WebTransport\ URL}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ url\ =\ f"{}https://\{host\}:\{port\}\{WEBTRANSPORT\_ENDPOINT\}?type=\{WEBTRANSPORT\_TYPE\_PARAM\}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00471}00471\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Initiate\ WebTransport\ session}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ (Full\ implementation\ would\ send\ WebTransport\ CONNECT\ request)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00474}00474\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ conn\ =\ WebTransportConnection(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ quic\_connection=quic,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h3\_connection=h3,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ is\_client=True,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ local\_addr=f"{}/ip4/0.0.0.0/udp/0/quic/webtransport"{},}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remote\_addr=addr,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00482}00482\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f"{}WebTransport\ connected\ to\ \{host\}:\{port\}"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ return\ conn}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00485}00485\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ except\ Exception\ as\ e:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f"{}WebTransport\ dial\ failed:\ \{e\}"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ ConnectionError(f"{}Dial\ failed:\ \{e\}"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00489}00489\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00490}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a8ab5e5d9d7aa2b135ea39aabb2140950}{00490}}\ \ \ \ \ async\ def\ listen(self,\ addr:\ str)\ -\/>\ Listener:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00491}00491\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00492}00492\ \ \ \ \ \ \ \ \ Start\ listening\ for\ WebTransport\ connections}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00493}00493\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00494}00494\ \ \ \ \ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ addr:\ Multiaddr\ to\ listen\ on\ (e.g.,\ /ip4/0.0.0.0/udp/443/quic/webtransport)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00496}00496\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00497}00497\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ Listener\ instance}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00499}00499\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00500}00500\ \ \ \ \ \ \ \ \ Raises:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ ListenerError:\ If\ listen\ fails}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00502}00502\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00503}00503\ \ \ \ \ \ \ \ \ if\ self.\_closed:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ TransportError("{}Transport\ is\ closed"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00505}00505\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ parsed\ =\ self.\_parse\_multiaddr(addr)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00507}00507\ \ \ \ \ \ \ \ \ if\ parsed\ is\ None:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ ConnectionError(f"{}Invalid\ multiaddr:\ \{addr\}"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00509}00509\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00510}00510\ \ \ \ \ \ \ \ \ host,\ port,\ \_\ =\ parsed}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00512}00512\ \ \ \ \ \ \ \ \ listener\ =\ WebTransportListener(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ host=host\ or\ "{}0.0.0.0"{},}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ port=port\ or\ 443,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ certificate\_manager=self.\_cert\_manager,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00516}00516\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00517}00517\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00518}00518\ \ \ \ \ \ \ \ \ self.\_listeners.append(listener)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00519}00519\ \ \ \ \ \ \ \ \ logger.info(f"{}WebTransport\ listening\ on\ \{host\}:\{port\}"{})}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00521}00521\ \ \ \ \ \ \ \ \ return\ listener}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00522}00522\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00523}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_ae633f072792f769c300ce804513cd103}{00523}}\ \ \ \ \ async\ def\ close(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ "{}"{}"{}Close\ transport\ and\ all\ listeners"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00525}00525\ \ \ \ \ \ \ \ \ self.\_closed\ =\ True}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00526}00526\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00527}00527\ \ \ \ \ \ \ \ \ for\ listener\ in\ self.\_listeners:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ listener.close()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ except\ Exception:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pass}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00532}00532\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00533}00533\ \ \ \ \ \ \ \ \ self.\_listeners.clear()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00534}00534\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00535}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_a4a5a0057a35f22ab61dcc91ce2762dea}{00535}}\ \ \ \ \ def\ get\_certificate\_hashes(self)\ -\/>\ List[str]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00536}00536\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00537}00537\ \ \ \ \ \ \ \ \ Get\ certificate\ hashes\ for\ multiaddr\ advertisement}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00538}00538\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ List\ of\ certificate\ hashes}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00541}00541\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ return\ self.\_cert\_manager.get\_all\_certificate\_hashes()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00543}00543\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00544}00544\ \ \ \ \ @staticmethod}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00545}\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_transport_aaa0b7af9d9e2905c5b5d4baf620a0350}{00545}}\ \ \ \ \ def\ \_parse\_multiaddr(addr:\ str)\ -\/>\ Optional[tuple]:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00547}00547\ \ \ \ \ \ \ \ \ Parse\ WebTransport\ multiaddr}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00548}00548\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00549}00549\ \ \ \ \ \ \ \ \ Supports\ formats:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00550}00550\ \ \ \ \ \ \ \ \ -\/\ /ip4/<ip>/udp/<port>/quic/webtransport}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00551}00551\ \ \ \ \ \ \ \ \ -\/\ /ip4/<ip>/udp/<port>/quic/webtransport/certhash/<hash1>/certhash/<hash2>}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00553}00553\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ Tuple\ of\ (host,\ port,\ cert\_hashes)\ or\ None}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00555}00555\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00556}00556\ \ \ \ \ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ if\ not\ addr.startswith('/'):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ None}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00559}00559\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ parts\ =\ addr[1:].split('/')}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ if\ len(parts)\ <\ 6:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ None}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00563}00563\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ proto\ =\ parts[0]\ \ \#\ ip4\ or\ ip6}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ host\ =\ parts[1]}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ transport\ =\ parts[2]\ \ \#\ udp}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ port\ =\ int(parts[3])\ if\ len(parts)\ >\ 3\ else\ 443}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00568}00568\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ if\ parts[4]\ !=\ "{}quic"{}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ None}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00571}00571\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ if\ len(parts)\ >\ 5\ and\ parts[5]\ ==\ "{}webtransport"{}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Extract\ certificate\ hashes}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cert\_hashes\ =\ []}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ =\ 6}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ while\ i\ +\ 1\ <\ len(parts):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ parts[i]\ ==\ "{}certhash"{}:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cert\_hashes.append(parts[i\ +\ 1])}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ +=\ 2}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00582}00582\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00583}00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ (host,\ port,\ cert\_hashes)}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00584}00584\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ return\ (host,\ port,\ [])}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00586}00586\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00587}00587\ \ \ \ \ \ \ \ \ except\ (ValueError,\ IndexError):}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ return\ None}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00589}00589\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00590}00590\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00591}00591\ \#\ ====================\ Convenience\ Functions\ ====================}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00592}00592\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00593}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a944b65199ad0a7addb7504597d3a6c87}{00593}}\ def\ create\_webtransport\_transport()\ -\/>\ WebTransportTransport:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00594}00594\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00595}00595\ \ \ \ \ Create\ a\ WebTransport\ transport\ with\ default\ settings}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00596}00596\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00597}00597\ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00598}00598\ \ \ \ \ \ \ \ \ WebTransportTransport\ instance}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00599}00599\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00600}00600\ \ \ \ \ return\ WebTransportTransport()}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00601}00601\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00602}00602\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00603}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1webtransport_a493e6f4c74febb6f72163ada0a2db546}{00603}}\ def\ get\_webtransport\_multiaddr(}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00604}00604\ \ \ \ \ host:\ str,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00605}00605\ \ \ \ \ port:\ int,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00606}00606\ \ \ \ \ cert\_hashes:\ Optional[List[str]]\ =\ None,}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00607}00607\ )\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00608}00608\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00609}00609\ \ \ \ \ Build\ WebTransport\ multiaddr}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00610}00610\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00611}00611\ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00612}00612\ \ \ \ \ \ \ \ \ host:\ IP\ address}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00613}00613\ \ \ \ \ \ \ \ \ port:\ UDP\ port}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00614}00614\ \ \ \ \ \ \ \ \ cert\_hashes:\ Optional\ certificate\ hashes\ for\ self-\/signed\ certs}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00615}00615\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00616}00616\ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00617}00617\ \ \ \ \ \ \ \ \ Multiaddr\ string}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00618}00618\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00619}00619\ \ \ \ \ addr\ =\ f"{}/ip4/\{host\}/udp/\{port\}/quic/webtransport"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00620}00620\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00621}00621\ \ \ \ \ if\ cert\_hashes:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00622}00622\ \ \ \ \ \ \ \ \ for\ cert\_hash\ in\ cert\_hashes:}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ addr\ +=\ f"{}/certhash/\{cert\_hash\}"{}}
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00624}00624\ }
+\DoxyCodeLine{\Hypertarget{webtransport_8py_source_l00625}00625\ \ \ \ \ return\ addr}
+
+\end{DoxyCode}

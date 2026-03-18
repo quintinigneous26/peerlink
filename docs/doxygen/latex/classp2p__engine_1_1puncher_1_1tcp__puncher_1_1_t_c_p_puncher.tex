@@ -1,0 +1,241 @@
+\doxysection{p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher类 参考}
+\hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher}{}\label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a78dc3e14d784ccaf4f511c03a75d8141}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}} \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a28bc00baed707e9d1fadb315ec3e4349}{local\+\_\+nat}}, \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}} \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_aeaead503dde3c78855b5bce2f1eb86fe}{peer\+\_\+nat}}, \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a2372cf008be6d62acb6296399794a289}{local\+\_\+isp}}, \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_abd0348b03dcbee9d943b2ca72b1b2715}{peer\+\_\+isp}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_punch_result}{TCPPunch\+Result}} \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_ad41d1a4cc5b3b4b640c50005aa90a4ca}{punch}} (self, str peer\+\_\+ip, int peer\+\_\+port, int timeout\+\_\+ms=10000)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_punch_result}{TCPPunch\+Result}} \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a722f71d7b9057d7b71b82775ec5e9db7}{punch\+\_\+simultaneous}} (self, str peer\+\_\+ip, int peer\+\_\+port\+\_\+start, int peer\+\_\+port\+\_\+end, int timeout\+\_\+ms=10000)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_punch_result}{TCPPunch\+Result}} \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a74bbfd78d99296451c9f90b312214505}{listen}} (self, int local\+\_\+port=0, int timeout\+\_\+ms=10000)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a7e632a63ed0f811f3b06a75c5a4d94a2}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a28bc00baed707e9d1fadb315ec3e4349}{local\+\_\+nat}} = local\+\_\+nat
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_aeaead503dde3c78855b5bce2f1eb86fe}{peer\+\_\+nat}} = peer\+\_\+nat
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a2372cf008be6d62acb6296399794a289}{local\+\_\+isp}} = local\+\_\+isp
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_abd0348b03dcbee9d943b2ca72b1b2715}{peer\+\_\+isp}} = peer\+\_\+isp
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[socket.\+socket]\+ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a14089fca1f6ad4c6d95701aeba7ac9a6}{\+\_\+conn\+\_\+socket}} = None
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a8bf9d662def6ad1b1a46282a88493726}{\+\_\+local\+\_\+port}} = 0
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a04f56430b9741b0d708f78a8be8dc770}{\+\_\+socket}} = socket.\+socket(socket.\+AF\+\_\+\+INET, socket.\+SOCK\+\_\+\+STREAM)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}TCP 穿透器
+
+使用 TCP Simultaneous Open 技术
+适用于企业防火墙拦截 UDP 的场景
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00030}{30}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a78dc3e14d784ccaf4f511c03a75d8141}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a78dc3e14d784ccaf4f511c03a75d8141} 
+p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}}}]{local\+\_\+nat}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}}}]{peer\+\_\+nat}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}}}]{local\+\_\+isp}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}}}]{peer\+\_\+isp}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00038}{38}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a7e632a63ed0f811f3b06a75c5a4d94a2}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!close@{close}}
+\index{close@{close}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a7e632a63ed0f811f3b06a75c5a4d94a2} 
+ None p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭 socket\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00303}{303}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00076}{\+\_\+socket}} , 以及 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00303}{close()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webtransport_8py_source_l00302}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+\_\+handle\+\_\+event()}}, \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00382}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+data\+\_\+channel\+\_\+callbacks()}} , 以及 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00303}{close()}}.
+
+函数调用图:\+
+% FIG 0
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a74bbfd78d99296451c9f90b312214505}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!listen@{listen}}
+\index{listen@{listen}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a74bbfd78d99296451c9f90b312214505} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_punch_result}{TCPPunch\+Result}} p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+listen (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{local\+\_\+port}{ = {\ttfamily 0}, }\item[{int }]{timeout\+\_\+ms}{ = {\ttfamily 10000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}TCP 监听模式
+
+等待对端连接进来
+用于 TCP 穿透的被动方
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00236}{236}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_ad41d1a4cc5b3b4b640c50005aa90a4ca}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!punch@{punch}}
+\index{punch@{punch}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{punch()}{punch()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_ad41d1a4cc5b3b4b640c50005aa90a4ca} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_punch_result}{TCPPunch\+Result}} p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+punch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+ip}{, }\item[{int}]{peer\+\_\+port}{, }\item[{int }]{timeout\+\_\+ms}{ = {\ttfamily 10000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}执行 TCP 打孔
+
+原理：
+TCP Simultaneous Open（RFC 793）
+双方同时发起 TCP 连接，利用 SYN-SYN/ACK-ACK 三次握手
+
+适用场景：
+- 企业防火墙拦截 UDP
+- UDP 限流严重
+- 需要可靠传输
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00053}{53}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a722f71d7b9057d7b71b82775ec5e9db7}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!punch\_simultaneous@{punch\_simultaneous}}
+\index{punch\_simultaneous@{punch\_simultaneous}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{punch\_simultaneous()}{punch\_simultaneous()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a722f71d7b9057d7b71b82775ec5e9db7} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_punch_result}{TCPPunch\+Result}} p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+punch\+\_\+simultaneous (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{peer\+\_\+ip}{, }\item[{int}]{peer\+\_\+port\+\_\+start}{, }\item[{int}]{peer\+\_\+port\+\_\+end}{, }\item[{int }]{timeout\+\_\+ms}{ = {\ttfamily 10000}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}TCP Simultaneous Open（双向同时打开）
+
+双方同时尝试连接对方的多个端口
+增加穿透成功率
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00146}{146}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a14089fca1f6ad4c6d95701aeba7ac9a6}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!\_conn\_socket@{\_conn\_socket}}
+\index{\_conn\_socket@{\_conn\_socket}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{\_conn\_socket}{\_conn\_socket}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a14089fca1f6ad4c6d95701aeba7ac9a6} 
+Optional\+[socket.\+socket]\+ p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+conn\+\_\+socket = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00050}{50}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a8bf9d662def6ad1b1a46282a88493726}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!\_local\_port@{\_local\_port}}
+\index{\_local\_port@{\_local\_port}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{\_local\_port}{\_local\_port}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a8bf9d662def6ad1b1a46282a88493726} 
+int p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+local\+\_\+port = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00051}{51}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{udp__puncher_8py_source_l00098}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+punch\+\_\+standard()}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00139}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+punch\+\_\+symmetric()}} , 以及 \doxymbox{\hyperlink{udp__puncher_8py_source_l00049}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+punch()}}.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a04f56430b9741b0d708f78a8be8dc770}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!\_socket@{\_socket}}
+\index{\_socket@{\_socket}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{\_socket}{\_socket}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a04f56430b9741b0d708f78a8be8dc770} 
+p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+\_\+socket = socket.\+socket(socket.\+AF\+\_\+\+INET, socket.\+SOCK\+\_\+\+STREAM)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00076}{76}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{udp__puncher_8py_source_l00098}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+punch\+\_\+standard()}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00139}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+punch\+\_\+symmetric()}}, \doxymbox{\hyperlink{tcp__puncher_8py_source_l00303}{close()}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00195}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+close()}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00191}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+get\+\_\+socket()}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00049}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+punch()}}, \doxymbox{\hyperlink{transport_8py_source_l00131}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+recvfrom()}}, \doxymbox{\hyperlink{transport_8py_source_l00101}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+sendto()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+stop()}}.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a2372cf008be6d62acb6296399794a289}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!local\_isp@{local\_isp}}
+\index{local\_isp@{local\_isp}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{local\_isp}{local\_isp}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a2372cf008be6d62acb6296399794a289} 
+p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+local\+\_\+isp = local\+\_\+isp}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00047}{47}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{udp__puncher_8py_source_l00049}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+punch()}}.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a28bc00baed707e9d1fadb315ec3e4349}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!local\_nat@{local\_nat}}
+\index{local\_nat@{local\_nat}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{local\_nat}{local\_nat}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_a28bc00baed707e9d1fadb315ec3e4349} 
+p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+local\+\_\+nat = local\+\_\+nat}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00045}{45}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{udp__puncher_8py_source_l00049}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+punch()}}.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_abd0348b03dcbee9d943b2ca72b1b2715}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!peer\_isp@{peer\_isp}}
+\index{peer\_isp@{peer\_isp}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{peer\_isp}{peer\_isp}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_abd0348b03dcbee9d943b2ca72b1b2715} 
+p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+peer\+\_\+isp = peer\+\_\+isp}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00048}{48}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_aeaead503dde3c78855b5bce2f1eb86fe}\index{p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}!peer\_nat@{peer\_nat}}
+\index{peer\_nat@{peer\_nat}!p2p\_engine.puncher.tcp\_puncher.TCPPuncher@{p2p\_engine.puncher.tcp\_puncher.TCPPuncher}}
+\doxysubsubsection{\texorpdfstring{peer\_nat}{peer\_nat}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1puncher_1_1tcp__puncher_1_1_t_c_p_puncher_aeaead503dde3c78855b5bce2f1eb86fe} 
+p2p\+\_\+engine.\+puncher.\+tcp\+\_\+puncher.\+TCPPuncher.\+peer\+\_\+nat = peer\+\_\+nat}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__puncher_8py_source}{tcp\+\_\+puncher.\+py}} 第 \doxymbox{\hyperlink{tcp__puncher_8py_source_l00046}{46}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{udp__puncher_8py_source_l00098}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+punch\+\_\+standard()}}, \doxymbox{\hyperlink{udp__puncher_8py_source_l00139}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+\_\+punch\+\_\+symmetric()}} , 以及 \doxymbox{\hyperlink{udp__puncher_8py_source_l00049}{p2p\+\_\+engine.\+puncher.\+udp\+\_\+puncher.\+UDPPuncher.\+punch()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+puncher/\+\doxymbox{\hyperlink{tcp__puncher_8py}{tcp\+\_\+puncher.\+py}}\end{DoxyCompactItemize}

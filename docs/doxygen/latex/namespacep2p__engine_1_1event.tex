@@ -1,0 +1,220 @@
+\doxysection{p2p\+\_\+engine.\+event 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1event}{}\label{namespacep2p__engine_1_1event}\index{p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic}{Event\+Topic}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber}{Event\+Subscriber}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{Event\+Bus}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder}{Event\+Builder}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a2d6b4ac168ff49dc91461c205770c02e}{subscribe\+\_\+to}} (\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic}{Event\+Topic}} topic, Optional\+[Set\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}]\+]\+ event\+\_\+types=None, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{Event\+Bus}}]\+ event\+\_\+bus=None)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{Event\+Bus}} \doxymbox{\hyperlink{namespacep2p__engine_1_1event_a1b16e64df7eea45a166ebe528b4795f2}{get\+\_\+global\+\_\+event\+\_\+bus}} ()
+\item 
+None \doxymbox{\hyperlink{namespacep2p__engine_1_1event_a8a8c437a5c644de610a610446dccd6e2}{start\+\_\+global\+\_\+event\+\_\+bus}} ()
+\item 
+None \doxymbox{\hyperlink{namespacep2p__engine_1_1event_ab94044c152245f2cf6c65c6273156cfa}{stop\+\_\+global\+\_\+event\+\_\+bus}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a0c5b08f16610692281fd2b2abb313449}{logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+event"{})
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a8abfb96482590cbc7969e1daf9d1794b}{Event\+Handler}} = Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}}]\+, Awaitable\+[None]\+]\+
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1event_af4b71177b2d56de87953207967a01345}{Sync\+Event\+Handler}} = Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}}]\+, None]\+
+\item 
+Optional \doxymbox{\hyperlink{namespacep2p__engine_1_1event_a5b56516e942e95579ac476594e8c76ab}{\+\_\+global\+\_\+event\+\_\+bus}} = None
+\item 
+list \doxymbox{\hyperlink{namespacep2p__engine_1_1event_a22e5953de5590a19fdcfa9d2e5e5e8ec}{\+\_\+\+\_\+all\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}P2P事件总线系统
+
+提供增强的事件驱动架构，支持基于主题的事件订阅和异步事件处理。
+实现了发布-订阅模式，允许应用程序对P2P引擎的各类事件进行监听和响应。
+
+主要特性:
+    - 主题分类：将事件按功能分类（连接、流、协议、网络等）
+    - 异步处理：支持异步事件处理器
+    - 灵活订阅：支持按主题或事件类型订阅
+    - 线程安全：使用锁保证并发安全
+    - 性能优化：支持事件过滤和优先级处理
+
+使用示例:
+    ```python
+    bus = EventBus()
+
+    async def on_peer_connected(event):
+        print(f"对端已连接: {event.data['peer_id']}")
+
+    bus.subscribe(EventTopic.CONNECTION, on_peer_connected)
+    await bus.publish(EventTopic.CONNECTION, P2PEventType.PEER_CONNECTED, {...})
+    ```
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacep2p__engine_1_1event_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacep2p__engine_1_1event_a1b16e64df7eea45a166ebe528b4795f2}\index{p2p\_engine.event@{p2p\_engine.event}!get\_global\_event\_bus@{get\_global\_event\_bus}}
+\index{get\_global\_event\_bus@{get\_global\_event\_bus}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{get\_global\_event\_bus()}{get\_global\_event\_bus()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_a1b16e64df7eea45a166ebe528b4795f2} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{Event\+Bus}} p2p\+\_\+engine.\+event.\+get\+\_\+global\+\_\+event\+\_\+bus (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get or create the global event bus\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00695}{695}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{event_8py_source_l00703}{start\+\_\+global\+\_\+event\+\_\+bus()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{namespacep2p__engine_1_1event_a8a8c437a5c644de610a610446dccd6e2}\index{p2p\_engine.event@{p2p\_engine.event}!start\_global\_event\_bus@{start\_global\_event\_bus}}
+\index{start\_global\_event\_bus@{start\_global\_event\_bus}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{start\_global\_event\_bus()}{start\_global\_event\_bus()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_a8a8c437a5c644de610a610446dccd6e2} 
+ None p2p\+\_\+engine.\+event.\+start\+\_\+global\+\_\+event\+\_\+bus (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start the global event bus\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00703}{703}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00695}{get\+\_\+global\+\_\+event\+\_\+bus()}}.
+
+函数调用图:\+
+% FIG 1
+\Hypertarget{namespacep2p__engine_1_1event_ab94044c152245f2cf6c65c6273156cfa}\index{p2p\_engine.event@{p2p\_engine.event}!stop\_global\_event\_bus@{stop\_global\_event\_bus}}
+\index{stop\_global\_event\_bus@{stop\_global\_event\_bus}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{stop\_global\_event\_bus()}{stop\_global\_event\_bus()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_ab94044c152245f2cf6c65c6273156cfa} 
+ None p2p\+\_\+engine.\+event.\+stop\+\_\+global\+\_\+event\+\_\+bus (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop the global event bus\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00709}{709}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1event_a2d6b4ac168ff49dc91461c205770c02e}\index{p2p\_engine.event@{p2p\_engine.event}!subscribe\_to@{subscribe\_to}}
+\index{subscribe\_to@{subscribe\_to}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{subscribe\_to()}{subscribe\_to()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_a2d6b4ac168ff49dc91461c205770c02e} 
+p2p\+\_\+engine.\+event.\+subscribe\+\_\+to (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic}{Event\+Topic}}}]{topic}{, }\item[{Optional\+[Set\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2\+PEvent\+Type}}]\+]\+ }]{event\+\_\+types}{ = {\ttfamily None}, }\item[{Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{Event\+Bus}}]\+ }]{event\+\_\+bus}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decorator to subscribe a function to events.
+
+Usage:
+    @subscribe_to(EventTopic.CONNECTION)
+    async def on_connection(event: P2PEvent):
+        logger.info(f"Connection event: {event.event_type}")
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00664}{664}} 行定义.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1event_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1event_a22e5953de5590a19fdcfa9d2e5e5e8ec}\index{p2p\_engine.event@{p2p\_engine.event}!\_\_all\_\_@{\_\_all\_\_}}
+\index{\_\_all\_\_@{\_\_all\_\_}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{\_\_all\_\_}{\_\_all\_\_}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_a22e5953de5590a19fdcfa9d2e5e5e8ec} 
+list p2p\+\_\+engine.\+event.\+\_\+\+\_\+all\+\_\+\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{comment}{\#\ Topics\ and\ types}}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}EventTopic"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}P2PEventType"{}},}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{comment}{\#\ Event\ data}}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{stringliteral}{"{}P2PEvent"{}},}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{comment}{\#\ Event\ handlers}}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{stringliteral}{"{}EventHandler"{}},}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{stringliteral}{"{}SyncEventHandler"{}},}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{stringliteral}{"{}EventSubscriber"{}},}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{comment}{\#\ Event\ bus}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{stringliteral}{"{}EventBus"{}},}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{\#\ Event\ builder}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{stringliteral}{"{}EventBuilder"{}},}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{\#\ Decorators}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{stringliteral}{"{}subscribe\_to"{}},}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{\#\ Global\ event\ bus}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{"{}get\_global\_event\_bus"{}},}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{stringliteral}{"{}start\_global\_event\_bus"{}},}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{stringliteral}{"{}stop\_global\_event\_bus"{}},}
+\DoxyCodeLine{00027\ ]}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00717}{717}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1event_a5b56516e942e95579ac476594e8c76ab}\index{p2p\_engine.event@{p2p\_engine.event}!\_global\_event\_bus@{\_global\_event\_bus}}
+\index{\_global\_event\_bus@{\_global\_event\_bus}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{\_global\_event\_bus}{\_global\_event\_bus}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_a5b56516e942e95579ac476594e8c76ab} 
+Optional p2p\+\_\+engine.\+event.\+\_\+global\+\_\+event\+\_\+bus = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00692}{692}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1event_a8abfb96482590cbc7969e1daf9d1794b}\index{p2p\_engine.event@{p2p\_engine.event}!EventHandler@{EventHandler}}
+\index{EventHandler@{EventHandler}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{EventHandler}{EventHandler}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_a8abfb96482590cbc7969e1daf9d1794b} 
+p2p\+\_\+engine.\+event.\+Event\+Handler = Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}}]\+, Awaitable\+[None]\+]\+}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00158}{158}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1event_a0c5b08f16610692281fd2b2abb313449}\index{p2p\_engine.event@{p2p\_engine.event}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_a0c5b08f16610692281fd2b2abb313449} 
+p2p\+\_\+engine.\+event.\+logger = logging.\+get\+Logger("{}p2p\+\_\+engine.\+event"{})}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00044}{44}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1event_af4b71177b2d56de87953207967a01345}\index{p2p\_engine.event@{p2p\_engine.event}!SyncEventHandler@{SyncEventHandler}}
+\index{SyncEventHandler@{SyncEventHandler}!p2p\_engine.event@{p2p\_engine.event}}
+\doxysubsubsection{\texorpdfstring{SyncEventHandler}{SyncEventHandler}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1event_af4b71177b2d56de87953207967a01345} 
+p2p\+\_\+engine.\+event.\+Sync\+Event\+Handler = Callable\+[\+[\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2\+PEvent}}]\+, None]\+}
+
+
+
+在文件 \doxymbox{\hyperlink{event_8py_source}{event.\+py}} 第 \doxymbox{\hyperlink{event_8py_source_l00159}{159}} 行定义.
+

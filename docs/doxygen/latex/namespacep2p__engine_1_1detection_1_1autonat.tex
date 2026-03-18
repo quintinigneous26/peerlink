@@ -1,0 +1,431 @@
+\doxysection{p2p\+\_\+engine.\+detection.\+autonat 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1detection_1_1autonat}{}\label{namespacep2p__engine_1_1detection_1_1autonat}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_message_type}{Message\+Type}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status}{Response\+Status}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_reachability_status}{Reachability\+Status}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{Dial\+Peer\+Info}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message}{Dial\+Message}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response}{Dial\+Response}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{Auto\+NATMessage}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client}{Auto\+NATClient}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server}{Auto\+NATServer}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol}{Auto\+NATProtocol}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[tuple]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_add35a98518ac3f2e74659ec71f6eca47}{parse\+\_\+multiaddr}} (bytes data)
+\item 
+bool \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7f9dae77673f435e8b5fde4e5b85765b}{validate\+\_\+ip\+\_\+match}} (str observed\+\_\+ip, str dial\+\_\+ip)
+\item 
+bytes \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\+\_\+uvarint}} (int value)
+\item 
+tuple\+[int, int]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\+\_\+uvarint}} (bytes data, int offset=0)
+\item 
+bytes \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a594d43fe28a29f7dca631fed5f6a02d0}{encode\+\_\+string}} (str s)
+\item 
+tuple\+[str, int]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a28e627bdd5cf03ea84c5602b1e0d1aae}{decode\+\_\+string}} (bytes data, int offset=0)
+\item 
+bytes \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a9c9b5b350dd3a97ca24cadfcf393bebd}{encode\+\_\+dial\+\_\+peer\+\_\+info}} (\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{Dial\+Peer\+Info}} peer\+\_\+info)
+\item 
+tuple\+[\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{Dial\+Peer\+Info}}, int]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7b661327c0c791eca2444ed9abf5177d}{decode\+\_\+dial\+\_\+peer\+\_\+info}} (bytes data, int offset=0)
+\item 
+bytes \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a4206c2189bedbd3e57ec234a471588db}{encode\+\_\+dial\+\_\+message}} (\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message}{Dial\+Message}} dial)
+\item 
+bytes \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a3beeb459d613b9f5b73375411d7db691}{encode\+\_\+dial\+\_\+response}} (\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response}{Dial\+Response}} response)
+\item 
+bytes \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a42be6fcb68dff71ec3e3b2d62cfe70dc}{encode\+\_\+message}} (\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{Auto\+NATMessage}} msg)
+\item 
+tuple\+[Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{Auto\+NATMessage}}]\+, int]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a9c9fe3773ff6d4266967f06eb433b6d7}{decode\+\_\+message}} (bytes data, int offset=0)
+\item 
+bool \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a87029d2c3323bf34e1dd8a462d119315}{create\+\_\+dial\+\_\+socket}} (str ip, int port, str \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol}{protocol}})
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a927352007013492932a7026294a18f06}{get\+\_\+observed\+\_\+ip\+\_\+from\+\_\+socket}} (socket.\+socket sock)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_aa54c22346ef2ab2c17ac819b9cbfb636}{logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+autonat"{})
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a4213d61435d9c350542dc6448a69316d}{PROTOCOL\+\_\+\+ID}} = "{}/\+libp2p/\+\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat}{autonat}}/\+1.\+0.\+0"{}
+\item 
+float \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_acfcde7436269f02c623ad5d53df51c06}{DIAL\+\_\+\+TIMEOUT}} = 10.\+0
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a0866e961a22492c37ab16df5c33d34ea}{MAX\+\_\+\+DIAL\+\_\+\+ATTEMPTS}} = 5
+\item 
+list \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a28350f27240a25a6bb39e2cc47b7c2c6}{\+\_\+\+\_\+all\+\_\+\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}AutoNAT Protocol Implementation
+
+Implements libp2p AutoNAT protocol v1.0.0 for NAT reachability detection.
+Spec: https://github.com/libp2p/specs/blob/master/autonat/autonat-v1.md
+
+Security: Implements RFC 3489 Section 12.1.1 DDoS protection by validating
+that dial-back addresses are based on the observed IP of the requesting node.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a87029d2c3323bf34e1dd8a462d119315}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!create\_dial\_socket@{create\_dial\_socket}}
+\index{create\_dial\_socket@{create\_dial\_socket}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{create\_dial\_socket()}{create\_dial\_socket()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a87029d2c3323bf34e1dd8a462d119315} 
+ bool p2p\+\_\+engine.\+detection.\+autonat.\+create\+\_\+dial\+\_\+socket (\begin{DoxyParamCaption}\item[{str}]{ip}{, }\item[{int}]{port}{, }\item[{str}]{protocol}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Default dial function for AutoNAT server.
+
+Attempts to create a socket connection to the given address.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00738}{738}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a7b661327c0c791eca2444ed9abf5177d}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!decode\_dial\_peer\_info@{decode\_dial\_peer\_info}}
+\index{decode\_dial\_peer\_info@{decode\_dial\_peer\_info}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{decode\_dial\_peer\_info()}{decode\_dial\_peer\_info()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a7b661327c0c791eca2444ed9abf5177d} 
+ tuple\+[\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{Dial\+Peer\+Info}}, int]\+ p2p\+\_\+engine.\+detection.\+autonat.\+decode\+\_\+dial\+\_\+peer\+\_\+info (\begin{DoxyParamCaption}\item[{bytes}]{data}{, }\item[{int }]{offset}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode DialPeerInfo, returns (peer_info, new_offset)\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00209}{209}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00155}{decode\+\_\+uvarint()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00300}{decode\+\_\+message()}}.
+
+函数调用图:\+
+% FIG 0
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a9c9fe3773ff6d4266967f06eb433b6d7}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!decode\_message@{decode\_message}}
+\index{decode\_message@{decode\_message}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{decode\_message()}{decode\_message()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a9c9fe3773ff6d4266967f06eb433b6d7} 
+ tuple\+[Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{Auto\+NATMessage}}]\+, int]\+ p2p\+\_\+engine.\+detection.\+autonat.\+decode\+\_\+message (\begin{DoxyParamCaption}\item[{bytes}]{data}{, }\item[{int }]{offset}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode AutoNAT message, returns (message, new_offset) or (None, offset) on error
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00300}{300}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00209}{decode\+\_\+dial\+\_\+peer\+\_\+info()}} , 以及 \doxymbox{\hyperlink{autonat_8py_source_l00155}{decode\+\_\+uvarint()}}.
+
+函数调用图:\+
+% FIG 2
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a28e627bdd5cf03ea84c5602b1e0d1aae}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!decode\_string@{decode\_string}}
+\index{decode\_string@{decode\_string}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{decode\_string()}{decode\_string()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a28e627bdd5cf03ea84c5602b1e0d1aae} 
+ tuple\+[str, int]\+ p2p\+\_\+engine.\+detection.\+autonat.\+decode\+\_\+string (\begin{DoxyParamCaption}\item[{bytes}]{data}{, }\item[{int }]{offset}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode string with length prefix, returns (string, new_offset)\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00182}{182}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00155}{decode\+\_\+uvarint()}}.
+
+函数调用图:\+
+% FIG 3
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!decode\_uvarint@{decode\_uvarint}}
+\index{decode\_uvarint@{decode\_uvarint}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{decode\_uvarint()}{decode\_uvarint()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b} 
+ tuple\+[int, int]\+ p2p\+\_\+engine.\+detection.\+autonat.\+decode\+\_\+uvarint (\begin{DoxyParamCaption}\item[{bytes}]{data}{, }\item[{int }]{offset}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode unsigned varint, returns (value, new_offset)\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00155}{155}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00209}{decode\+\_\+dial\+\_\+peer\+\_\+info()}}, \doxymbox{\hyperlink{autonat_8py_source_l00300}{decode\+\_\+message()}} , 以及 \doxymbox{\hyperlink{autonat_8py_source_l00182}{decode\+\_\+string()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a4206c2189bedbd3e57ec234a471588db}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!encode\_dial\_message@{encode\_dial\_message}}
+\index{encode\_dial\_message@{encode\_dial\_message}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{encode\_dial\_message()}{encode\_dial\_message()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a4206c2189bedbd3e57ec234a471588db} 
+ bytes p2p\+\_\+engine.\+detection.\+autonat.\+encode\+\_\+dial\+\_\+message (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message}{Dial\+Message}}}]{dial}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode Dial message\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00242}{242}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00190}{encode\+\_\+dial\+\_\+peer\+\_\+info()}} , 以及 \doxymbox{\hyperlink{autonat_8py_source_l00142}{encode\+\_\+uvarint()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00276}{encode\+\_\+message()}}.
+
+函数调用图:\+
+% FIG 5
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a9c9b5b350dd3a97ca24cadfcf393bebd}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!encode\_dial\_peer\_info@{encode\_dial\_peer\_info}}
+\index{encode\_dial\_peer\_info@{encode\_dial\_peer\_info}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{encode\_dial\_peer\_info()}{encode\_dial\_peer\_info()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a9c9b5b350dd3a97ca24cadfcf393bebd} 
+ bytes p2p\+\_\+engine.\+detection.\+autonat.\+encode\+\_\+dial\+\_\+peer\+\_\+info (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{Dial\+Peer\+Info}}}]{peer\+\_\+info}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode DialPeerInfo\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00190}{190}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00142}{encode\+\_\+uvarint()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00242}{encode\+\_\+dial\+\_\+message()}}.
+
+函数调用图:\+
+% FIG 7
+这是这个函数的调用关系图:\+
+% FIG 8
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a3beeb459d613b9f5b73375411d7db691}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!encode\_dial\_response@{encode\_dial\_response}}
+\index{encode\_dial\_response@{encode\_dial\_response}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{encode\_dial\_response()}{encode\_dial\_response()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a3beeb459d613b9f5b73375411d7db691} 
+ bytes p2p\+\_\+engine.\+detection.\+autonat.\+encode\+\_\+dial\+\_\+response (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response}{Dial\+Response}}}]{response}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode DialResponse message\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00251}{251}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00176}{encode\+\_\+string()}} , 以及 \doxymbox{\hyperlink{autonat_8py_source_l00142}{encode\+\_\+uvarint()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00276}{encode\+\_\+message()}}.
+
+函数调用图:\+
+% FIG 9
+这是这个函数的调用关系图:\+
+% FIG 10
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a42be6fcb68dff71ec3e3b2d62cfe70dc}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!encode\_message@{encode\_message}}
+\index{encode\_message@{encode\_message}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{encode\_message()}{encode\_message()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a42be6fcb68dff71ec3e3b2d62cfe70dc} 
+ bytes p2p\+\_\+engine.\+detection.\+autonat.\+encode\+\_\+message (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{Auto\+NATMessage}}}]{msg}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode complete AutoNAT message\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00276}{276}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00242}{encode\+\_\+dial\+\_\+message()}}, \doxymbox{\hyperlink{autonat_8py_source_l00251}{encode\+\_\+dial\+\_\+response()}} , 以及 \doxymbox{\hyperlink{autonat_8py_source_l00142}{encode\+\_\+uvarint()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00411}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATClient.\+check\+\_\+reachability()}}.
+
+函数调用图:\+
+% FIG 11
+这是这个函数的调用关系图:\+
+% FIG 12
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a594d43fe28a29f7dca631fed5f6a02d0}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!encode\_string@{encode\_string}}
+\index{encode\_string@{encode\_string}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{encode\_string()}{encode\_string()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a594d43fe28a29f7dca631fed5f6a02d0} 
+ bytes p2p\+\_\+engine.\+detection.\+autonat.\+encode\+\_\+string (\begin{DoxyParamCaption}\item[{str}]{s}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode string with length prefix\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00176}{176}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00142}{encode\+\_\+uvarint()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00251}{encode\+\_\+dial\+\_\+response()}}.
+
+函数调用图:\+
+% FIG 13
+这是这个函数的调用关系图:\+
+% FIG 14
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!encode\_uvarint@{encode\_uvarint}}
+\index{encode\_uvarint@{encode\_uvarint}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{encode\_uvarint()}{encode\_uvarint()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb} 
+ bytes p2p\+\_\+engine.\+detection.\+autonat.\+encode\+\_\+uvarint (\begin{DoxyParamCaption}\item[{int}]{value}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode unsigned varint\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00142}{142}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{autonat_8py_source_l00242}{encode\+\_\+dial\+\_\+message()}}, \doxymbox{\hyperlink{autonat_8py_source_l00190}{encode\+\_\+dial\+\_\+peer\+\_\+info()}}, \doxymbox{\hyperlink{autonat_8py_source_l00251}{encode\+\_\+dial\+\_\+response()}}, \doxymbox{\hyperlink{autonat_8py_source_l00276}{encode\+\_\+message()}} , 以及 \doxymbox{\hyperlink{autonat_8py_source_l00176}{encode\+\_\+string()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 15
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a927352007013492932a7026294a18f06}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!get\_observed\_ip\_from\_socket@{get\_observed\_ip\_from\_socket}}
+\index{get\_observed\_ip\_from\_socket@{get\_observed\_ip\_from\_socket}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{get\_observed\_ip\_from\_socket()}{get\_observed\_ip\_from\_socket()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a927352007013492932a7026294a18f06} 
+ str p2p\+\_\+engine.\+detection.\+autonat.\+get\+\_\+observed\+\_\+ip\+\_\+from\+\_\+socket (\begin{DoxyParamCaption}\item[{socket.\+socket}]{sock}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Extract observed IP from a connected socket.
+Useful for getting the observed IP when handling AutoNAT requests.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00763}{763}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_add35a98518ac3f2e74659ec71f6eca47}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!parse\_multiaddr@{parse\_multiaddr}}
+\index{parse\_multiaddr@{parse\_multiaddr}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{parse\_multiaddr()}{parse\_multiaddr()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_add35a98518ac3f2e74659ec71f6eca47} 
+ Optional\+[tuple]\+ p2p\+\_\+engine.\+detection.\+autonat.\+parse\+\_\+multiaddr (\begin{DoxyParamCaption}\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Parse multiaddr and extract (ip, port) if applicable.
+Supports /ip4/<ip>/tcp/<port> and /ip4/<ip>/udp/<port> formats.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00088}{88}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a7f9dae77673f435e8b5fde4e5b85765b}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!validate\_ip\_match@{validate\_ip\_match}}
+\index{validate\_ip\_match@{validate\_ip\_match}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{validate\_ip\_match()}{validate\_ip\_match()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a7f9dae77673f435e8b5fde4e5b85765b} 
+ bool p2p\+\_\+engine.\+detection.\+autonat.\+validate\+\_\+ip\+\_\+match (\begin{DoxyParamCaption}\item[{str}]{observed\+\_\+ip}{, }\item[{str}]{dial\+\_\+ip}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate that dial-back IP matches observed IP (DDoS protection).
+
+Per RFC 3489 Section 12.1.1: Implementations MUST NOT dial any multiaddress
+unless it is based on the IP address the requesting node is observed as.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00130}{130}} 行定义.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a28350f27240a25a6bb39e2cc47b7c2c6}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!\_\_all\_\_@{\_\_all\_\_}}
+\index{\_\_all\_\_@{\_\_all\_\_}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{\_\_all\_\_}{\_\_all\_\_}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a28350f27240a25a6bb39e2cc47b7c2c6} 
+list p2p\+\_\+engine.\+detection.\+autonat.\+\_\+\+\_\+all\+\_\+\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ [}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{comment}{\#\ Protocol\ constants}}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}PROTOCOL\_ID"{}},}
+\DoxyCodeLine{00004\ \ \ \ \ \textcolor{stringliteral}{"{}ReachabilityStatus"{}},}
+\DoxyCodeLine{00005\ \ \ \ \ \textcolor{stringliteral}{"{}ResponseStatus"{}},}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{comment}{\#\ Data\ structures}}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{stringliteral}{"{}DialPeerInfo"{}},}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{stringliteral}{"{}DialMessage"{}},}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{stringliteral}{"{}DialResponse"{}},}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{stringliteral}{"{}AutoNATMessage"{}},}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{comment}{\#\ Main\ classes}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{stringliteral}{"{}AutoNATClient"{}},}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{stringliteral}{"{}AutoNATServer"{}},}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{stringliteral}{"{}AutoNATProtocol"{}},}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{\#\ Utilities}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{stringliteral}{"{}parse\_multiaddr"{}},}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{stringliteral}{"{}validate\_ip\_match"{}},}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{stringliteral}{"{}encode\_message"{}},}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{stringliteral}{"{}decode\_message"{}},}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{stringliteral}{"{}create\_dial\_socket"{}},}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{"{}get\_observed\_ip\_from\_socket"{}},}
+\DoxyCodeLine{00025\ ]}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00775}{775}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_acfcde7436269f02c623ad5d53df51c06}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!DIAL\_TIMEOUT@{DIAL\_TIMEOUT}}
+\index{DIAL\_TIMEOUT@{DIAL\_TIMEOUT}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{DIAL\_TIMEOUT}{DIAL\_TIMEOUT}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_acfcde7436269f02c623ad5d53df51c06} 
+float p2p\+\_\+engine.\+detection.\+autonat.\+DIAL\+\_\+\+TIMEOUT = 10.\+0}
+
+
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00027}{27}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_aa54c22346ef2ab2c17ac819b9cbfb636}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_aa54c22346ef2ab2c17ac819b9cbfb636} 
+p2p\+\_\+engine.\+detection.\+autonat.\+logger = logging.\+get\+Logger("{}p2p\+\_\+engine.\+autonat"{})}
+
+
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00021}{21}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a0866e961a22492c37ab16df5c33d34ea}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!MAX\_DIAL\_ATTEMPTS@{MAX\_DIAL\_ATTEMPTS}}
+\index{MAX\_DIAL\_ATTEMPTS@{MAX\_DIAL\_ATTEMPTS}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{MAX\_DIAL\_ATTEMPTS}{MAX\_DIAL\_ATTEMPTS}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a0866e961a22492c37ab16df5c33d34ea} 
+int p2p\+\_\+engine.\+detection.\+autonat.\+MAX\+\_\+\+DIAL\+\_\+\+ATTEMPTS = 5}
+
+
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00028}{28}} 行定义.
+
+\Hypertarget{namespacep2p__engine_1_1detection_1_1autonat_a4213d61435d9c350542dc6448a69316d}\index{p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}!PROTOCOL\_ID@{PROTOCOL\_ID}}
+\index{PROTOCOL\_ID@{PROTOCOL\_ID}!p2p\_engine.detection.autonat@{p2p\_engine.detection.autonat}}
+\doxysubsubsection{\texorpdfstring{PROTOCOL\_ID}{PROTOCOL\_ID}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1detection_1_1autonat_a4213d61435d9c350542dc6448a69316d} 
+str p2p\+\_\+engine.\+detection.\+autonat.\+PROTOCOL\+\_\+\+ID = "{}/\+libp2p/\+\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat}{autonat}}/\+1.\+0.\+0"{}}
+
+
+
+在文件 \doxymbox{\hyperlink{autonat_8py_source}{autonat.\+py}} 第 \doxymbox{\hyperlink{autonat_8py_source_l00026}{26}} 行定义.
+

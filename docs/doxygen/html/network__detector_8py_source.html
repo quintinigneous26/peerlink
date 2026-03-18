@@ -1,0 +1,575 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine/detection/network_detector.py 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('network__detector_8py_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">network_detector.py</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="network__detector_8py.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacep2p__engine_1_1detection_1_1network__detector.html">    1</a></span><span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="stringliteral">网络环境检测器</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="stringliteral">检测 VPN、CDN、多层 NAT、企业网络等复杂环境</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">import</span> asyncio</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">import</span> logging</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> socket</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">import</span> time</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">from</span> typing <span class="keyword">import</span> Optional, List</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">from</span> ..types <span class="keyword">import</span> NetworkEnvironment, DeviceVendor</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">from</span> .stun_client <span class="keyword">import</span> STUNClient</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespacep2p__engine_1_1detection_1_1network__detector.html#a9f33dff92e84ac7941170488b7e56317">   16</a></span>logger = logging.getLogger(<span class="stringliteral">&quot;p2p_engine.network_detector&quot;</span>)</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">@dataclass</span></div>
+<div class="foldopen" id="foldopen00020" data-start="" data-end="">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_observation.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_observation.html">NetworkObservation</a>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="stringliteral">&quot;&quot;&quot;网络观测数据&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    timestamp: float</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    public_ip: str</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    public_port: int</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    local_ip: str</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    local_port: int</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    latency_ms: float</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+</div>
+<div class="foldopen" id="foldopen00030" data-start="" data-end="">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html">NetworkDetector</a>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="stringliteral">&quot;&quot;&quot;网络环境检测器&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    </div>
+<div class="foldopen" id="foldopen00033" data-start="" data-end="">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac55306c2f69c5b1aeac162a39c80570c">   33</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac55306c2f69c5b1aeac162a39c80570c">__init__</a>(self, stun_client: STUNClient):</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">   34</a></span>        self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a> = stun_client</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acb541bf0883d70f05723db9a4744cec8">   35</a></span>        self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acb541bf0883d70f05723db9a4744cec8">_observations</a>: List[NetworkObservation] = []</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00037" data-start="" data-end="">
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a2beb53d0d581c5fa272bafceecea8181">   37</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a2beb53d0d581c5fa272bafceecea8181">detect</a>(self) -&gt; NetworkEnvironment:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="stringliteral">        检测网络环境</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="stringliteral">        检测项目：</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="stringliteral">        1. NAT 层级</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="stringliteral">        2. VPN 环境</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="stringliteral">        3. CDN 环境</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="stringliteral">        4. 企业网络</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="stringliteral">        5. 移动网络</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="stringliteral">        6. IPv6 可用性</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="stringliteral">        7. 链路质量</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        logger.info(<span class="stringliteral">&quot;开始网络环境检测...&quot;</span>)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        env = <a class="code hl_class" href="classp2p__engine_1_1types_1_1_network_environment.html">NetworkEnvironment</a>()</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="comment"># 1. 检测 NAT 层级</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        env.nat_level = await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#aa1c21d1a9958f1f91e774e0010a689ac">_detect_nat_level</a>()</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="comment"># 2. 检测 VPN</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        env.is_behind_vpn = await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ab572cd5211ee6580c3da2fb4c7114c2d">_detect_vpn</a>()</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="comment"># 3. 检测 CDN</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        env.is_behind_cdn = await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac6066d496e156ff8e6954a3b56aee0a4">_detect_cdn</a>()</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="comment"># 4. 检测企业网络</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        env.is_enterprise_network = await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a16ad93b9ef51cb1f3e14f7d35e799061">_detect_enterprise_network</a>()</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment"># 5. 检测移动网络</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        env.is_mobile_network = await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ace679ab1942e0d3db9e29b7e8bf87f2b">_detect_mobile_network</a>()</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="comment"># 6. 检测 IPv6</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        env.ipv6_available, env.ipv6_preferred = await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a8d44404ab4250a0ec2ef6aff2db94244">_detect_ipv6</a>()</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="comment"># 7. 检测链路质量</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        env.packet_loss_rate, env.avg_latency_ms = await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a13272fedb6900aebd2e6e42be0485d4f">_detect_link_quality</a>()</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="comment"># 8. 判断防火墙类型</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        env.firewall_type = self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a324c2ca1ae88d027e7c93d69ba7c11a8">_infer_firewall_type</a>(env)</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        logger.info(</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            f<span class="stringliteral">&quot;网络环境检测完成: NAT层级={env.nat_level}, &quot;</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            f<span class="stringliteral">&quot;VPN={env.is_behind_vpn}, 企业={env.is_enterprise_network}, &quot;</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            f<span class="stringliteral">&quot;移动={env.is_mobile_network}&quot;</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        )</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> env</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00086" data-start="" data-end="">
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#aa1c21d1a9958f1f91e774e0010a689ac">   86</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#aa1c21d1a9958f1f91e774e0010a689ac">_detect_nat_level</a>(self) -&gt; int:</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="stringliteral">        检测 NAT 层级</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="stringliteral">        方法：</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="stringliteral">        1. 比较本地 IP 和 STUN 返回的公网 IP</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="stringliteral">        2. 如果差异大（不同网段），说明有多层 NAT</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="stringliteral">        3. CGNAT IP 段检测</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        observations = []</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="comment"># 收集多次观测</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(3):</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            response = await self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.binding_request(</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.servers[0].split(<span class="stringliteral">&quot;:&quot;</span>)[0],</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                3478</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            )</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>            </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            <span class="keywordflow">if</span> response.success:</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                <span class="comment"># 获取本地 IP</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                local_ip = self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acdc7ae90982f57dab341af4cae3b5439">_get_local_ip</a>()</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                observations.append(<a class="code hl_class" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_observation.html">NetworkObservation</a>(</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                    timestamp=time.time(),</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                    public_ip=response.mapped_ip,</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                    public_port=response.mapped_port,</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                    local_ip=local_ip,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                    local_port=0,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                    latency_ms=0,</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>                ))</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>            </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>            await asyncio.sleep(0.3)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> observations:</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>            <span class="keywordflow">return</span> 1</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        first_obs = observations[0]</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        <span class="comment"># 检查是否在 CGNAT 后（100.64.0.0/10）</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordflow">if</span> first_obs.public_ip.startswith(<span class="stringliteral">&quot;100.&quot;</span>):</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            logger.debug(<span class="stringliteral">&quot;检测到 CGNAT&quot;</span>)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keywordflow">return</span> 2</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="comment"># 比较本地 IP 和公网 IP 的网段</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        local_parts = first_obs.local_ip.split(<span class="stringliteral">&quot;.&quot;</span>)</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        public_parts = first_obs.public_ip.split(<span class="stringliteral">&quot;.&quot;</span>)</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keywordflow">if</span> len(local_parts) == 4 <span class="keywordflow">and</span> len(public_parts) == 4:</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            <span class="comment"># 检查前两个网段是否相同</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            <span class="keywordflow">if</span> local_parts[0] == public_parts[0] <span class="keywordflow">and</span> local_parts[1] == public_parts[1]:</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                <span class="comment"># 同网段，可能是 1 层 NAT</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                <span class="keywordflow">return</span> 1</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                <span class="comment"># 不同网段，可能有多层 NAT</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                <span class="keywordflow">return</span> 2</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <span class="comment"># 默认返回 1 层</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="keywordflow">return</span> 1</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00145" data-start="" data-end="">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acdc7ae90982f57dab341af4cae3b5439">  145</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acdc7ae90982f57dab341af4cae3b5439">_get_local_ip</a>(self) -&gt; str:</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="stringliteral">&quot;&quot;&quot;获取本地 IP&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            sock.connect((<span class="stringliteral">&quot;8.8.8.8&quot;</span>, 80))</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            ip = sock.getsockname()[0]</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>            sock.close()</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">return</span> ip</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordflow">except</span> OSError:</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;127.0.0.1&quot;</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00156" data-start="" data-end="">
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ab572cd5211ee6580c3da2fb4c7114c2d">  156</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ab572cd5211ee6580c3da2fb4c7114c2d">_detect_vpn</a>(self) -&gt; bool:</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="stringliteral">        检测 VPN 环境</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="stringliteral">        方法：</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="stringliteral">        1. 检查常见 VPN 接口（tun0, ppp0 等）</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="stringliteral">        2. 检查 MTU 大小（VPN 通常较小）</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="stringliteral">        3. 检查公网 IP 是否为 VPN 出口</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="comment"># 检查 VPN 接口</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        vpn_interfaces = [<span class="stringliteral">&quot;tun&quot;</span>, <span class="stringliteral">&quot;ppp&quot;</span>, <span class="stringliteral">&quot;utun&quot;</span>, <span class="stringliteral">&quot;ipsec&quot;</span>]</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>            <span class="keyword">import</span> netifaces</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>            interfaces = netifaces.interfaces()</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>            <span class="keywordflow">for</span> iface <span class="keywordflow">in</span> interfaces:</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                <span class="keywordflow">for</span> vpn_prefix <span class="keywordflow">in</span> vpn_interfaces:</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>                    <span class="keywordflow">if</span> iface.startswith(vpn_prefix):</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>                        logger.debug(f<span class="stringliteral">&quot;检测到 VPN 接口: {iface}&quot;</span>)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>                        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keywordflow">except</span> ImportError:</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            <span class="keywordflow">pass</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <span class="comment"># 检查公网 IP 是否属于 VPN 服务商</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="comment"># 常见 VPN IP 段</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        vpn_ip_ranges = [</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="stringliteral">&quot;10.&quot;</span>,        <span class="comment"># 私有网络 VPN</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            <span class="stringliteral">&quot;172.16.&quot;</span>,    <span class="comment"># 私有网络 VPN</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        ]</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        response = await self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.binding_request(</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.servers[0].split(<span class="stringliteral">&quot;:&quot;</span>)[0],</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>            3478</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        )</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keywordflow">if</span> response.success:</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>            <span class="keywordflow">for</span> vpn_range <span class="keywordflow">in</span> vpn_ip_ranges:</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>                <span class="keywordflow">if</span> response.mapped_ip.startswith(vpn_range):</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                    <span class="comment"># 可能是 VPN，但也可能是 CGNAT</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                    <span class="comment"># 需要进一步确认</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                    <span class="keywordflow">pass</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00200" data-start="" data-end="">
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac6066d496e156ff8e6954a3b56aee0a4">  200</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac6066d496e156ff8e6954a3b56aee0a4">_detect_cdn</a>(self) -&gt; bool:</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="stringliteral">        检测 CDN 环境</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="stringliteral">        方法：</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="stringliteral">        1. 多次请求 STUN，如果返回的 IP 频繁变化，可能是 CDN</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="stringliteral">        2. 检查 IP 是否属于 CDN 厂商</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        ips = []</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(3):</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            response = await self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.binding_request(</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.servers[0].split(<span class="stringliteral">&quot;:&quot;</span>)[0],</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                3478</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            )</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            <span class="keywordflow">if</span> response.success:</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                ips.append(response.mapped_ip)</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            await asyncio.sleep(0.5)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">if</span> len(set(ips)) &gt; 1:</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>            <span class="comment"># IP 频繁变化，可能是 CDN</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>            logger.debug(f<span class="stringliteral">&quot;检测到 IP 变化: {ips}&quot;</span>)</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>            <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00226" data-start="" data-end="">
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a16ad93b9ef51cb1f3e14f7d35e799061">  226</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a16ad93b9ef51cb1f3e14f7d35e799061">_detect_enterprise_network</a>(self) -&gt; bool:</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="stringliteral">        检测企业网络</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="stringliteral">        方法：</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="stringliteral">        1. 检查内网 IP 段（10.x, 172.16-31.x）</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="stringliteral">        2. 检查是否有企业防火墙特征</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="stringliteral">        3. 检查 DNS 是否为企业 DNS</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        local_ip = self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acdc7ae90982f57dab341af4cae3b5439">_get_local_ip</a>()</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        <span class="comment"># 企业网络通常使用 10.x.x.x 或 172.16-31.x.x</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        <span class="keywordflow">if</span> local_ip.startswith(<span class="stringliteral">&quot;10.&quot;</span>):</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>            <span class="comment"># 10.x 可能是企业网，也可能是 CGNAT</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>            <span class="comment"># 检查是否有企业防火墙特征</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>            <span class="keywordflow">pass</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        </div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <span class="comment"># 172.16-31.x.x 私有网段</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">if</span> local_ip.startswith(<span class="stringliteral">&quot;172.&quot;</span>):</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            parts = local_ip.split(<span class="stringliteral">&quot;.&quot;</span>)</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            <span class="keywordflow">if</span> len(parts) &gt;= 2:</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                second_octet = int(parts[1])</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                <span class="keywordflow">if</span> 16 &lt;= second_octet &lt;= 31:</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>                    <span class="comment"># 企业私有网段</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                    logger.debug(<span class="stringliteral">&quot;检测到企业私有网段&quot;</span>)</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>                    <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00255" data-start="" data-end="">
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ace679ab1942e0d3db9e29b7e8bf87f2b">  255</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ace679ab1942e0d3db9e29b7e8bf87f2b">_detect_mobile_network</a>(self) -&gt; bool:</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="stringliteral">        检测移动网络（4G/5G）</span></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="stringliteral">        方法：</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="stringliteral">        1. 检查 MTU 大小（移动网络通常较小）</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="stringliteral">        2. 检查网络延迟和抖动</span></div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="stringliteral">        3. 检查 IP 变化频率</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        <span class="comment"># 测量延迟和抖动</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        latencies = []</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        </div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(5):</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            start = time.time()</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>            response = await self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.binding_request(</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.servers[0].split(<span class="stringliteral">&quot;:&quot;</span>)[0],</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                3478</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            )</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>            latency = (time.time() - start) * 1000</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>            <span class="keywordflow">if</span> response.success:</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                latencies.append(latency)</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            await asyncio.sleep(0.2)</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <span class="keywordflow">if</span> len(latencies) &gt;= 3:</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>            <span class="comment"># 计算抖动</span></div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            avg = sum(latencies) / len(latencies)</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>            jitter = sum(abs(latencies[i] - latencies[i-1]) </div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(1, len(latencies))) / (len(latencies) - 1)</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>            </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            <span class="comment"># 移动网络特征：高延迟 + 高抖动</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>            <span class="keywordflow">if</span> avg &gt; 80 <span class="keywordflow">and</span> jitter &gt; 30:</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                logger.debug(f<span class="stringliteral">&quot;检测到移动网络特征: 延迟={avg:.0f}ms, 抖动={jitter:.0f}ms&quot;</span>)</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00293" data-start="" data-end="">
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a8d44404ab4250a0ec2ef6aff2db94244">  293</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a8d44404ab4250a0ec2ef6aff2db94244">_detect_ipv6</a>(self) -&gt; tuple:</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="stringliteral">        检测 IPv6 可用性</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="stringliteral">            (是否可用, 是否优先)</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>            <span class="comment"># 检查是否有 IPv6 地址</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>            sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>            sock.settimeout(2)</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>            </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>            <span class="comment"># 尝试连接 IPv6 DNS</span></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>            <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>                sock.connect((<span class="stringliteral">&quot;2001:4860::8888&quot;</span>, 53))</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                sock.close()</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>                logger.debug(<span class="stringliteral">&quot;IPv6 可用&quot;</span>)</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>                <span class="keywordflow">return</span> <span class="keyword">True</span>, <span class="keyword">True</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>            <span class="keywordflow">except</span> (OSError, socket.error):</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                sock.close()</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                <span class="keywordflow">return</span> <span class="keyword">True</span>, <span class="keyword">False</span></div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>                </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        <span class="keywordflow">except</span> Exception:</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>            <span class="keywordflow">pass</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        <span class="keywordflow">return</span> <span class="keyword">False</span>, <span class="keyword">False</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00320" data-start="" data-end="">
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a13272fedb6900aebd2e6e42be0485d4f">  320</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a13272fedb6900aebd2e6e42be0485d4f">_detect_link_quality</a>(self) -&gt; tuple:</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="stringliteral">        检测链路质量</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="stringliteral">            (丢包率, 平均延迟)</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        success_count = 0</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        total_count = 10</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        latencies = []</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(total_count):</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>            start = time.time()</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>            response = await self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.binding_request(</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>                self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.servers[0].split(<span class="stringliteral">&quot;:&quot;</span>)[0],</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>                3478</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>            )</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>            </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>            <span class="keywordflow">if</span> response.success:</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>                success_count += 1</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>                latencies.append((time.time() - start) * 1000)</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>            </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>            await asyncio.sleep(0.2)</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>        </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>        loss_rate = 1 - (success_count / total_count)</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        avg_latency = sum(latencies) / len(latencies) <span class="keywordflow">if</span> latencies <span class="keywordflow">else</span> 0</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>        </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        logger.debug(f<span class="stringliteral">&quot;链路质量: 丢包率={loss_rate:.1%}, 延迟={avg_latency:.0f}ms&quot;</span>)</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        <span class="keywordflow">return</span> loss_rate, avg_latency</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00351" data-start="" data-end="">
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a324c2ca1ae88d027e7c93d69ba7c11a8">  351</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a324c2ca1ae88d027e7c93d69ba7c11a8">_infer_firewall_type</a>(self, env: NetworkEnvironment) -&gt; str:</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>        <span class="stringliteral">&quot;&quot;&quot;根据环境特征推断防火墙类型&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        <span class="keywordflow">if</span> env.is_enterprise_network:</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;enterprise&quot;</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>        </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        <span class="keywordflow">if</span> env.is_mobile_network:</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;isp&quot;</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>        </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>        <span class="keywordflow">if</span> env.is_behind_vpn:</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;isp&quot;</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>        </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        <span class="comment"># 跨境高丢包</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        <span class="keywordflow">if</span> env.packet_loss_rate &gt; 0.1:</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;cross_border&quot;</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>        </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>        <span class="keywordflow">return</span> <span class="stringliteral">&quot;home&quot;</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00368" data-start="" data-end="">
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a9eb58ef5a1b5b264a6aa6c09dc9a8eb8">  368</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a9eb58ef5a1b5b264a6aa6c09dc9a8eb8">is_complex_environment</a>(self, env: NetworkEnvironment) -&gt; bool:</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <span class="stringliteral">&quot;&quot;&quot;判断是否为复杂网络环境&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="keywordflow">return</span> (</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>            env.nat_level &gt;= 3 <span class="keywordflow">or</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>            env.is_behind_vpn <span class="keywordflow">or</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>            env.is_enterprise_network <span class="keywordflow">or</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>            env.packet_loss_rate &gt; 0.15 <span class="keywordflow">or</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>            env.is_mobile_network</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        )</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    </div>
+</div>
+<div class="foldopen" id="foldopen00378" data-start="" data-end="">
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno"><a class="line" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a7b0abb064a6cd9fe6dfb497af9c9f0ea">  378</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a7b0abb064a6cd9fe6dfb497af9c9f0ea">monitor_changes</a>(</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        self,</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        check_interval_sec: int = 60,</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    ) -&gt; <span class="keywordtype">None</span>:</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="stringliteral">        持续监控网络变化</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="stringliteral">        </span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="stringliteral">        检测：</span></div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="stringliteral">        1. IP 变化（网络切换）</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="stringliteral">        2. 延迟变化</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="stringliteral">        3. NAT 行为变化</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>        last_ip = <span class="keywordtype">None</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>        last_latency = 0</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>        <span class="keywordflow">while</span> <span class="keyword">True</span>:</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>            await asyncio.sleep(check_interval_sec)</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>            </div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>            <span class="comment"># 检测 IP 变化</span></div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>            response = await self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.binding_request(</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>                self.<a class="code hl_variable" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">stun_client</a>.servers[0].split(<span class="stringliteral">&quot;:&quot;</span>)[0],</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>                3478</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>            )</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>            </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>            <span class="keywordflow">if</span> response.success:</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>                current_ip = response.mapped_ip</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>                </div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>                <span class="keywordflow">if</span> last_ip <span class="keywordflow">and</span> current_ip != last_ip:</div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>                    logger.warning(f<span class="stringliteral">&quot;检测到 IP 变化: {last_ip} -&gt; {current_ip}&quot;</span>)</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>                    <span class="comment"># TODO: 触发网络变化事件</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>                    <span class="keywordflow">return</span> <a class="code hl_class" href="classp2p__engine_1_1types_1_1_network_environment.html">NetworkEnvironment</a>(</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>                        nat_level=await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#aa1c21d1a9958f1f91e774e0010a689ac">_detect_nat_level</a>(),</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>                    is_behind_vpn=await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ab572cd5211ee6580c3da2fb4c7114c2d">_detect_vpn</a>(),</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>                    is_behind_cdn=await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac6066d496e156ff8e6954a3b56aee0a4">_detect_cdn</a>(),</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>                        is_enterprise_network=await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a16ad93b9ef51cb1f3e14f7d35e799061">_detect_enterprise_network</a>(),</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>                        is_mobile_network=await self.<a class="code hl_function" href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ace679ab1942e0d3db9e29b7e8bf87f2b">_detect_mobile_network</a>(),</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>                        firewall_type=<span class="stringliteral">&quot;&quot;</span>,</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>                        ipv6_available=<span class="keyword">False</span>,</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>                        ipv6_preferred=<span class="keyword">False</span>,</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>                        packet_loss_rate=0,</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>                        avg_latency_ms=0,</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>                    )</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>                </div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>                last_ip = current_ip</div>
+</div>
+</div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html">p2p_engine.detection.network_detector.NetworkDetector</a></div><div class="ttdef"><b>定义</b> <a href="#l00030">network_detector.py:30</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a0fef01a6eabccfdc5f072b62f7e709a0"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a0fef01a6eabccfdc5f072b62f7e709a0">p2p_engine.detection.network_detector.NetworkDetector.stun_client</a></div><div class="ttdeci">stun_client</div><div class="ttdef"><b>定义</b> <a href="#l00034">network_detector.py:34</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a13272fedb6900aebd2e6e42be0485d4f"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a13272fedb6900aebd2e6e42be0485d4f">p2p_engine.detection.network_detector.NetworkDetector._detect_link_quality</a></div><div class="ttdeci">tuple _detect_link_quality(self)</div><div class="ttdef"><b>定义</b> <a href="#l00320">network_detector.py:320</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a16ad93b9ef51cb1f3e14f7d35e799061"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a16ad93b9ef51cb1f3e14f7d35e799061">p2p_engine.detection.network_detector.NetworkDetector._detect_enterprise_network</a></div><div class="ttdeci">bool _detect_enterprise_network(self)</div><div class="ttdef"><b>定义</b> <a href="#l00226">network_detector.py:226</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a2beb53d0d581c5fa272bafceecea8181"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a2beb53d0d581c5fa272bafceecea8181">p2p_engine.detection.network_detector.NetworkDetector.detect</a></div><div class="ttdeci">NetworkEnvironment detect(self)</div><div class="ttdef"><b>定义</b> <a href="#l00037">network_detector.py:37</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a324c2ca1ae88d027e7c93d69ba7c11a8"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a324c2ca1ae88d027e7c93d69ba7c11a8">p2p_engine.detection.network_detector.NetworkDetector._infer_firewall_type</a></div><div class="ttdeci">str _infer_firewall_type(self, NetworkEnvironment env)</div><div class="ttdef"><b>定义</b> <a href="#l00351">network_detector.py:351</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a7b0abb064a6cd9fe6dfb497af9c9f0ea"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a7b0abb064a6cd9fe6dfb497af9c9f0ea">p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</a></div><div class="ttdeci">None monitor_changes(self, int check_interval_sec=60)</div><div class="ttdef"><b>定义</b> <a href="#l00378">network_detector.py:381</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a8d44404ab4250a0ec2ef6aff2db94244"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a8d44404ab4250a0ec2ef6aff2db94244">p2p_engine.detection.network_detector.NetworkDetector._detect_ipv6</a></div><div class="ttdeci">tuple _detect_ipv6(self)</div><div class="ttdef"><b>定义</b> <a href="#l00293">network_detector.py:293</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_a9eb58ef5a1b5b264a6aa6c09dc9a8eb8"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#a9eb58ef5a1b5b264a6aa6c09dc9a8eb8">p2p_engine.detection.network_detector.NetworkDetector.is_complex_environment</a></div><div class="ttdeci">bool is_complex_environment(self, NetworkEnvironment env)</div><div class="ttdef"><b>定义</b> <a href="#l00368">network_detector.py:368</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_aa1c21d1a9958f1f91e774e0010a689ac"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#aa1c21d1a9958f1f91e774e0010a689ac">p2p_engine.detection.network_detector.NetworkDetector._detect_nat_level</a></div><div class="ttdeci">int _detect_nat_level(self)</div><div class="ttdef"><b>定义</b> <a href="#l00086">network_detector.py:86</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_ab572cd5211ee6580c3da2fb4c7114c2d"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ab572cd5211ee6580c3da2fb4c7114c2d">p2p_engine.detection.network_detector.NetworkDetector._detect_vpn</a></div><div class="ttdeci">bool _detect_vpn(self)</div><div class="ttdef"><b>定义</b> <a href="#l00156">network_detector.py:156</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_ac55306c2f69c5b1aeac162a39c80570c"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac55306c2f69c5b1aeac162a39c80570c">p2p_engine.detection.network_detector.NetworkDetector.__init__</a></div><div class="ttdeci">__init__(self, STUNClient stun_client)</div><div class="ttdef"><b>定义</b> <a href="#l00033">network_detector.py:33</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_ac6066d496e156ff8e6954a3b56aee0a4"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ac6066d496e156ff8e6954a3b56aee0a4">p2p_engine.detection.network_detector.NetworkDetector._detect_cdn</a></div><div class="ttdeci">bool _detect_cdn(self)</div><div class="ttdef"><b>定义</b> <a href="#l00200">network_detector.py:200</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_acb541bf0883d70f05723db9a4744cec8"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acb541bf0883d70f05723db9a4744cec8">p2p_engine.detection.network_detector.NetworkDetector._observations</a></div><div class="ttdeci">list _observations</div><div class="ttdef"><b>定义</b> <a href="#l00035">network_detector.py:35</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_acdc7ae90982f57dab341af4cae3b5439"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#acdc7ae90982f57dab341af4cae3b5439">p2p_engine.detection.network_detector.NetworkDetector._get_local_ip</a></div><div class="ttdeci">str _get_local_ip(self)</div><div class="ttdef"><b>定义</b> <a href="#l00145">network_detector.py:145</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_html_ace679ab1942e0d3db9e29b7e8bf87f2b"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector.html#ace679ab1942e0d3db9e29b7e8bf87f2b">p2p_engine.detection.network_detector.NetworkDetector._detect_mobile_network</a></div><div class="ttdeci">bool _detect_mobile_network(self)</div><div class="ttdef"><b>定义</b> <a href="#l00255">network_detector.py:255</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1detection_1_1network__detector_1_1_network_observation_html"><div class="ttname"><a href="classp2p__engine_1_1detection_1_1network__detector_1_1_network_observation.html">p2p_engine.detection.network_detector.NetworkObservation</a></div><div class="ttdef"><b>定义</b> <a href="#l00020">network_detector.py:20</a></div></div>
+<div class="ttc" id="aclassp2p__engine_1_1types_1_1_network_environment_html"><div class="ttname"><a href="classp2p__engine_1_1types_1_1_network_environment.html">p2p_engine.types.NetworkEnvironment</a></div><div class="ttdef"><b>定义</b> <a href="types_8py_source.html#l00255">types.py:255</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_9500b0d4bce3c935847d93e587fc55f4.html">p2p_engine</a></li><li class="navelem"><a href="dir_31b92ccc9b77e80a6f11c7fb482bfb52.html">detection</a></li><li class="navelem"><a href="network__detector_8py.html">network_detector.py</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

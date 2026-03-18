@@ -1,0 +1,388 @@
+\chapter{P2P SDK 快速开始指南 }
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t}{}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t}\index{P2P SDK 快速开始指南@{P2P SDK 快速开始指南}}
+\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md168}%
+\Hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md168}%
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md170}{}\doxysection{\texorpdfstring{安装}{安装}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md170}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md171}{}\doxysubsection{\texorpdfstring{从 Py\+PI 安装}{从 Py\+PI 安装}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md171}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ p2p-\/sdk}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md172}{}\doxysubsection{\texorpdfstring{从 Conda 安装}{从 Conda 安装}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md172}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{conda\ install\ -\/c\ conda-\/forge\ p2p-\/sdk}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md173}{}\doxysubsection{\texorpdfstring{从源码安装}{从源码安装}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md173}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git\ clone\ https://github.com/p2p-\/platform/python-\/sdk.git}
+\DoxyCodeLine{cd\ python-\/sdk}
+\DoxyCodeLine{pip\ install\ -\/e\ .}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md174}{}\doxysection{\texorpdfstring{基础使用}{基础使用}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md174}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md175}{}\doxysubsection{\texorpdfstring{1. 创建客户端}{1. 创建客户端}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md175}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\textcolor{keyword}{from}\ p2p\_sdk\ \textcolor{keyword}{import}\ P2PClient}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }main():}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ 创建客户端实例}}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ did=\textcolor{stringliteral}{"{}device-\/001"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ signaling\_server=\textcolor{stringliteral}{"{}localhost"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ signaling\_port=8443}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ 初始化（NAT\ 检测、连接信令服务器）}}
+\DoxyCodeLine{\ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ print(f\textcolor{stringliteral}{"{}NAT\ Type:\ \{client.nat\_type\}"{}})}
+\DoxyCodeLine{\ \ \ \ print(f\textcolor{stringliteral}{"{}Local\ Address:\ \{client.local\_address\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{asyncio.run(main())}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md176}{}\doxysubsection{\texorpdfstring{2. 连接到对等设备}{2. 连接到对等设备}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md176}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }connect\_to\_peer():}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(did=\textcolor{stringliteral}{"{}device-\/001"{}})}
+\DoxyCodeLine{\ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ 连接到对等设备}}
+\DoxyCodeLine{\ \ \ \ success\ =\ await\ client.connect(\textcolor{stringliteral}{"{}device-\/002"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ success:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Connected\ successfully!"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Connection\ failed"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ await\ client.close()}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md177}{}\doxysubsection{\texorpdfstring{3. 发送和接收数据}{3. 发送和接收数据}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md177}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ p2p\_sdk\ \textcolor{keyword}{import}\ P2PClient,\ ChannelType}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }send\_receive\_data():}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(did=\textcolor{stringliteral}{"{}device-\/001"{}})}
+\DoxyCodeLine{\ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ await\ client.connect(\textcolor{stringliteral}{"{}device-\/002"{}}):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 创建数据通道}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ channel\ =\ client.create\_channel(ChannelType.DATA)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 发送数据}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.send\_data(channel,\ b\textcolor{stringliteral}{"{}Hello,\ peer!"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 接收数据}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ data\ =\ await\ client.recv\_data(channel,\ timeout=10.0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Received:\ \{data.decode()\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ await\ client.close()}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md178}{}\doxysection{\texorpdfstring{高级功能}{高级功能}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md178}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md179}{}\doxysubsection{\texorpdfstring{多通道通信}{多通道通信}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md179}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ p2p\_sdk\ \textcolor{keyword}{import}\ P2PClient,\ ChannelType}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }multi\_channel\_example():}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(did=\textcolor{stringliteral}{"{}device-\/001"{}})}
+\DoxyCodeLine{\ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ await\ client.connect(\textcolor{stringliteral}{"{}device-\/002"{}}):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 创建多个通道}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ control\_ch\ =\ client.create\_channel(ChannelType.CONTROL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ data\_ch\ =\ client.create\_channel(ChannelType.DATA)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ video\_ch\ =\ client.create\_channel(ChannelType.VIDEO,\ priority=10)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 在不同通道上发送数据}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.send\_data(control\_ch,\ b\textcolor{stringliteral}{"{}control\ message"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.send\_data(data\_ch,\ b\textcolor{stringliteral}{"{}data\ payload"{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.send\_data(video\_ch,\ b\textcolor{stringliteral}{"{}video\ frame"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ await\ client.close()}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md180}{}\doxysubsection{\texorpdfstring{事件处理}{事件处理}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md180}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }event\_handling\_example():}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(did=\textcolor{stringliteral}{"{}device-\/001"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ 注册事件处理器}}
+\DoxyCodeLine{\ \ \ \ \textcolor{preprocessor}{@client.on\_connected}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }on\_connected():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Connection\ established!"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{preprocessor}{@client.on\_disconnected}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }on\_disconnected():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Connection\ lost"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{preprocessor}{@client.on\_data}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }on\_data(channel\_id:\ int,\ data:\ bytes):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Received\ \{len(data)\}\ bytes\ on\ channel\ \{channel\_id\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{preprocessor}{@client.on\_error}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }on\_error(error:\ Exception):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ occurred:\ \{error\}"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{\ \ \ \ await\ client.connect(\textcolor{stringliteral}{"{}device-\/002"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ 保持连接}}
+\DoxyCodeLine{\ \ \ \ await\ asyncio.sleep(60)}
+\DoxyCodeLine{\ \ \ \ await\ client.close()}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md181}{}\doxysubsection{\texorpdfstring{自定义配置}{自定义配置}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md181}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ p2p\_sdk\ \textcolor{keyword}{import}\ P2PClient}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }custom\_config\_example():}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ did=\textcolor{stringliteral}{"{}device-\/001"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ signaling\_server=\textcolor{stringliteral}{"{}signal.example.com"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ signaling\_port=8443,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ stun\_server=\textcolor{stringliteral}{"{}stun.example.com"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ stun\_port=3478,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ relay\_server=\textcolor{stringliteral}{"{}relay.example.com"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ relay\_port=5000,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ connection\_timeout=30.0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ punch\_timeout=10.0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ keepalive\_interval=5.0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ max\_retries=3,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ auto\_relay=\textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ ...\ 使用客户端}}
+\DoxyCodeLine{\ \ \ \ await\ client.close()}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md185}{}\doxysection{\texorpdfstring{NAT 类型检测}{NAT 类型检测}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md185}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ p2p\_sdk\ \textcolor{keyword}{import}\ detect\_nat\_type,\ NATType}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }detect\_nat():}
+\DoxyCodeLine{\ \ \ \ nat\_type\ =\ await\ detect\_nat\_type(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ stun\_server=\textcolor{stringliteral}{"{}stun.l.google.com"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ stun\_port=19302}
+\DoxyCodeLine{\ \ \ \ )}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ nat\_type\ ==\ NATType.SYMMETRIC:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Symmetric\ NAT\ detected\ -\/\ relay\ required"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{elif}\ nat\_type\ \textcolor{keywordflow}{in}\ [NATType.FULL\_CONE,\ NATType.RESTRICTED\_CONE]:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}NAT\ type\ supports\ direct\ P2P"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}NAT\ Type:\ \{nat\_type\}"{}})}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md187}{}\doxysection{\texorpdfstring{错误处理}{错误处理}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md187}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{from}\ p2p\_sdk\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\ \ \ \ P2PClient,}
+\DoxyCodeLine{\ \ \ \ P2PError,}
+\DoxyCodeLine{\ \ \ \ ConnectionError,}
+\DoxyCodeLine{\ \ \ \ NATDetectionError,}
+\DoxyCodeLine{\ \ \ \ RelayError,}
+\DoxyCodeLine{\ \ \ \ TimeoutError}
+\DoxyCodeLine{)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }error\_handling\_example():}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(did=\textcolor{stringliteral}{"{}device-\/001"{}})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.connect(\textcolor{stringliteral}{"{}device-\/002"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ NATDetectionError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}NAT\ detection\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ ConnectionError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Connection\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ TimeoutError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Operation\ timed\ out:\ \{e\}"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{except}\ P2PError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}P2P\ error:\ \{e\}"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.close()}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md190}{}\doxysection{\texorpdfstring{最佳实践}{最佳实践}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md190}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md192}{}\doxysubsection{\texorpdfstring{1. 资源管理}{1. 资源管理}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md192}
+始终使用 try-\/finally 或 async with 确保资源清理：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }resource\_management():}
+\DoxyCodeLine{\ \ \ \ client\ =\ P2PClient(did=\textcolor{stringliteral}{"{}device-\/001"{}})}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.initialize()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ ...\ 使用客户端}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.close()}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md193}{}\doxysubsection{\texorpdfstring{2. 超时设置}{2. 超时设置}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md193}
+为所有阻塞操作设置合理的超时：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 连接超时}}
+\DoxyCodeLine{client\ =\ P2PClient(did=\textcolor{stringliteral}{"{}device-\/001"{}},\ connection\_timeout=30.0)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 接收超时}}
+\DoxyCodeLine{data\ =\ await\ client.recv\_data(channel,\ timeout=10.0)}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md195}{}\doxysubsection{\texorpdfstring{3. 错误重试}{3. 错误重试}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md195}
+实现指数退避重试策略：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }connect\_with\_retry(client,\ peer\_did,\ max\_retries=3):}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ attempt\ \textcolor{keywordflow}{in}\ range(max\_retries):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ await\ client.connect(peer\_did):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ ConnectionError:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ attempt\ <\ max\_retries\ -\/\ 1:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncio.sleep(2\ **\ attempt)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md196}{}\doxysubsection{\texorpdfstring{4. 日志记录}{4. 日志记录}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md196}
+启用日志以便调试：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{}
+\DoxyCodeLine{logging.basicConfig(level=logging.INFO)}
+\DoxyCodeLine{logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_sdk"{}})}
+\DoxyCodeLine{logger.setLevel(logging.DEBUG)}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md206}{}\doxysubsection{\texorpdfstring{5. 网络状态监控}{5. 网络状态监控}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md206}
+监控连接状态并实现自动重连：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }monitor\_connection(client):}
+\DoxyCodeLine{\ \ \ \ \textcolor{preprocessor}{@client.on\_disconnected}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }on\_disconnected():}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Connection\ lost,\ attempting\ reconnect..."{}})}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ asyncio.sleep(5)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ await\ client.connect(peer\_did)}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md209}{}\doxysection{\texorpdfstring{性能优化}{性能优化}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md209}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md211}{}\doxysubsection{\texorpdfstring{1. 通道优先级}{1. 通道优先级}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md211}
+为不同类型的数据设置优先级：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 高优先级通道（控制消息）}}
+\DoxyCodeLine{control\_ch\ =\ client.create\_channel(ChannelType.CONTROL,\ priority=10)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 中优先级通道（视频）}}
+\DoxyCodeLine{video\_ch\ =\ client.create\_channel(ChannelType.VIDEO,\ priority=5)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 低优先级通道（数据）}}
+\DoxyCodeLine{data\_ch\ =\ client.create\_channel(ChannelType.DATA,\ priority=1)}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md214}{}\doxysubsection{\texorpdfstring{2. 批量发送}{2. 批量发送}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md214}
+批量发送小消息以减少开销：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 不推荐：多次小消息}}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(100):}
+\DoxyCodeLine{\ \ \ \ await\ client.send\_data(channel,\ f\textcolor{stringliteral}{"{}msg\{i\}"{}}.encode())}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{\#\ 推荐：批量发送}}
+\DoxyCodeLine{batch\ =\ b\textcolor{stringliteral}{"{}"{}}.join(f\textcolor{stringliteral}{"{}msg\{i\}"{}}.encode()\ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(100))}
+\DoxyCodeLine{await\ client.send\_data(channel,\ batch)}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md217}{}\doxysubsection{\texorpdfstring{3. 缓冲区大小}{3. 缓冲区大小}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md217}
+根据数据量调整缓冲区：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 大数据传输时增加缓冲区}}
+\DoxyCodeLine{client\ =\ P2PClient(}
+\DoxyCodeLine{\ \ \ \ did=\textcolor{stringliteral}{"{}device-\/001"{}},}
+\DoxyCodeLine{\ \ \ \ recv\_buffer\_size=65536\ \ \textcolor{comment}{\#\ 64KB}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md219}{}\doxysection{\texorpdfstring{故障排查}{故障排查}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md219}
+\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md220}{}\doxysubsection{\texorpdfstring{连接失败}{连接失败}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md220}
+
+\begin{DoxyEnumerate}
+\item 检查 NAT 类型： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{print(f\textcolor{stringliteral}{"{}NAT\ Type:\ \{client.nat\_type\}"{}})}
+
+\end{DoxyCode}
+
+\item 验证信令服务器连接： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ client.is\_signaling\_connected:}
+\DoxyCodeLine{\ \ \ \ print(\textcolor{stringliteral}{"{}Signaling\ server\ not\ connected"{}})}
+
+\end{DoxyCode}
+
+\item 启用详细日志： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{logging.basicConfig(level=logging.DEBUG)}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md222}{}\doxysubsection{\texorpdfstring{性能问题}{性能问题}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md222}
+
+\begin{DoxyEnumerate}
+\item 检查网络延迟： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{latency\ =\ await\ client.measure\_latency()}
+\DoxyCodeLine{print(f\textcolor{stringliteral}{"{}Latency:\ \{latency\}ms"{}})}
+
+\end{DoxyCode}
+
+\item 监控数据速率： 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{stats\ =\ client.get\_statistics()}
+\DoxyCodeLine{print(f\textcolor{stringliteral}{"{}Send\ rate:\ \{stats['send\_rate']\}\ bytes/s"{}})}
+\DoxyCodeLine{print(f\textcolor{stringliteral}{"{}Recv\ rate:\ \{stats['recv\_rate']\}\ bytes/s"{}})}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md225}{}\doxysection{\texorpdfstring{更多示例}{更多示例}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md225}
+完整示例代码请参见 {\ttfamily examples/\+} 目录：
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{basic__usage_8py}{basic\+\_\+usage.\+py}} -\/ 基础 P2P 连接
+\item {\ttfamily \doxylink{multi__channel_8py}{multi\+\_\+channel.\+py}} -\/ 多通道通信
+\item {\ttfamily file\+\_\+transfer.\+py} -\/ 文件传输
+\item {\ttfamily video\+\_\+streaming.\+py} -\/ 视频流传输
+\end{DoxyItemize}\hypertarget{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md227}{}\doxysection{\texorpdfstring{支持}{支持}}\label{md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t_autotoc_md227}
+
+\begin{DoxyItemize}
+\item 文档：https:\+/\+/\+github.com/\+p2p-\/platform/\+python-\/sdk\+\#readme
+\item 问题反馈：https:\+/\+/\+github.com/\+p2p-\/platform/\+python-\/sdk/\+issues
+\item 讨论：https:\+/\+/\+github.com/\+p2p-\/platform/\+python-\/sdk/\+discussions 
+\end{DoxyItemize}

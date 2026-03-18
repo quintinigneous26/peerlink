@@ -1,0 +1,139 @@
+\doxysection{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader类 参考}
+\hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader}{}\label{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader}\index{p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ae67e3a86d4acd0c95390a7823e5e65fe}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \textquotesingle{}p2p\+\_\+engine.\+transport.\+Connection\textquotesingle{} conn)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a44403cbb4ce58588778045a8f6b6b514}{read}} (self, int n=-\/1)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a7b549ea5cb3eca4c775141580e0e6c59}{readexactly}} (self, int n)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a5f7347f31a37ae6fd49d1d3d9d680e52}{feed}} (self, bytes data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a1ee8ec3eb8da7ef887259783d86cd019}{\+\_\+conn}} = conn
+\item 
+asyncio.\+Queue\+[bytes]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78}{\+\_\+queue}} = asyncio.\+Queue()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}连接 -> StreamReader 适配器\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__adapter_8py_source}{mplex\+\_\+adapter.\+py}} 第 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00069}{69}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ae67e3a86d4acd0c95390a7823e5e65fe}\index{p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ae67e3a86d4acd0c95390a7823e5e65fe} 
+p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\textquotesingle{}p2p\+\_\+engine.\+transport.\+Connection\textquotesingle{}}]{conn}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__adapter_8py_source}{mplex\+\_\+adapter.\+py}} 第 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00072}{72}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a5f7347f31a37ae6fd49d1d3d9d680e52}\index{p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}!feed@{feed}}
+\index{feed@{feed}!p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}}
+\doxysubsubsection{\texorpdfstring{feed()}{feed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a5f7347f31a37ae6fd49d1d3d9d680e52} 
+ None p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+feed (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}喂入数据（用于写入后读取）\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__adapter_8py_source}{mplex\+\_\+adapter.\+py}} 第 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00095}{95}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00231}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+queue}} , 以及 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00074}{\+\_\+queue}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a44403cbb4ce58588778045a8f6b6b514}\index{p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}!read@{read}}
+\index{read@{read}!p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a44403cbb4ce58588778045a8f6b6b514} 
+ bytes p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{n}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}读取数据\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__adapter_8py_source}{mplex\+\_\+adapter.\+py}} 第 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00076}{76}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{event_8py_source_l00231}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+queue}} , 以及 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00074}{\+\_\+queue}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00333}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Stream.\+read()}} , 以及 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00085}{readexactly()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a7b549ea5cb3eca4c775141580e0e6c59}\index{p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}!readexactly@{readexactly}}
+\index{readexactly@{readexactly}!p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}}
+\doxysubsubsection{\texorpdfstring{readexactly()}{readexactly()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a7b549ea5cb3eca4c775141580e0e6c59} 
+ bytes p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+readexactly (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{n}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}读取精确字节数\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{mplex__adapter_8py_source}{mplex\+\_\+adapter.\+py}} 第 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00085}{85}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00290}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream.\+read()}} , 以及 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00076}{read()}}.
+
+函数调用图:\+
+% FIG 1
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a1ee8ec3eb8da7ef887259783d86cd019}\index{p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}!\_conn@{\_conn}}
+\index{\_conn@{\_conn}!p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}}
+\doxysubsubsection{\texorpdfstring{\_conn}{\_conn}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_a1ee8ec3eb8da7ef887259783d86cd019} 
+p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+\_\+conn = conn\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__adapter_8py_source}{mplex\+\_\+adapter.\+py}} 第 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00073}{73}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close()}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00152}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+connection()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00217}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+connection()}}.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78}\index{p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}!\_queue@{\_queue}}
+\index{\_queue@{\_queue}!p2p\_engine.muxer.mplex\_adapter.ConnectionReader@{p2p\_engine.muxer.mplex\_adapter.ConnectionReader}}
+\doxysubsubsection{\texorpdfstring{\_queue}{\_queue}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_reader_ad5ac435f30870707184a75f69865fa78} 
+asyncio.\+Queue\+[bytes]\+ p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Reader.\+\_\+queue = asyncio.\+Queue()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{mplex__adapter_8py_source}{mplex\+\_\+adapter.\+py}} 第 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00074}{74}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00095}{feed()}} , 以及 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00076}{read()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+muxer/\+\doxymbox{\hyperlink{mplex__adapter_8py}{mplex\+\_\+adapter.\+py}}\end{DoxyCompactItemize}

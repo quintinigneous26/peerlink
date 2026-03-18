@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: did-service/src/did_service/config.py 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('did-service_2src_2did__service_2config_8py_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">config.py</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="did-service_2src_2did__service_2config_8py.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacesrc_1_1did__service_1_1config.html">    1</a></span><span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="stringliteral">DID Service Configuration</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="stringliteral">Security Notice:</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="stringliteral">- JWT_SECRET must be set via environment variable in production</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="stringliteral">- Minimum key length: 32 characters</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="stringliteral">- Use: python -c &quot;import secrets; print(secrets.token_urlsafe(32))&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">import</span> os</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">import</span> sys</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">from</span> typing <span class="keyword">import</span> Literal, Optional</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="foldopen" id="foldopen00016" data-start="" data-end="">
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="namespacesrc_1_1did__service_1_1config.html#a21742f3b9471eca39c9653417f509645">   16</a></span><span class="keyword">def </span><a class="code hl_function" href="namespacesrc_1_1did__service_1_1config.html#a21742f3b9471eca39c9653417f509645">_get_jwt_secret</a>() -&gt; str:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="stringliteral">    Get JWT secret with security validation.</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="stringliteral">    In production: JWT_SECRET is required (min 32 chars)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="stringliteral">    In development: Allow default for convenience</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="stringliteral">    Returns:</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="stringliteral">        JWT secret string</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    environment = os.getenv(<span class="stringliteral">&quot;ENVIRONMENT&quot;</span>, <span class="stringliteral">&quot;development&quot;</span>)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    secret = os.getenv(<span class="stringliteral">&quot;JWT_SECRET&quot;</span>)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">if</span> environment == <span class="stringliteral">&quot;production&quot;</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> secret:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            print(<span class="stringliteral">&quot;[ERROR] JWT_SECRET environment variable is required in production&quot;</span>)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            print(<span class="stringliteral">&quot;[INFO] Generate a secure key with: python -c \&quot;import secrets; print(secrets.token_urlsafe(32))\&quot;&quot;</span>)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            sys.exit(1)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keywordflow">if</span> len(secret) &lt; 32:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            print(<span class="stringliteral">&quot;[ERROR] JWT_SECRET must be at least 32 characters in production&quot;</span>)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            sys.exit(1)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">return</span> secret</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">else</span>:</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="comment"># Development mode: allow default but warn</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> secret:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            print(<span class="stringliteral">&quot;[WARNING] Using default JWT secret. Set JWT_SECRET environment variable for security.&quot;</span>)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordflow">return</span> <span class="stringliteral">&quot;dev-secret-key-change-in-production-min-32-chars&quot;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> secret</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">@dataclass(frozen=True)</span></div>
+</div>
+<div class="foldopen" id="foldopen00047" data-start="" data-end="">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html">   47</a></span><span class="keyword">class </span><a class="code hl_class" href="classsrc_1_1did__service_1_1config_1_1_config.html">Config</a>:</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="stringliteral">&quot;&quot;&quot;Service configuration.&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment"># Environment</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a69d960844e3d30514fc0787d3870e4a4">   51</a></span>    environment: Literal[<span class="stringliteral">&quot;development&quot;</span>, <span class="stringliteral">&quot;staging&quot;</span>, <span class="stringliteral">&quot;production&quot;</span>] = os.getenv(<span class="stringliteral">&quot;ENVIRONMENT&quot;</span>, <span class="stringliteral">&quot;development&quot;</span>)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment"># Server settings</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a0d30e57c2f2bdda441cfb2dd26b039b2">   54</a></span>    host: str = os.getenv(<span class="stringliteral">&quot;DID_SERVICE_HOST&quot;</span>, <span class="stringliteral">&quot;0.0.0.0&quot;</span>)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#af5d3d864e3a9c2d1bc383e391e1764cf">   55</a></span>    port: int = int(os.getenv(<span class="stringliteral">&quot;DID_SERVICE_PORT&quot;</span>, <span class="stringliteral">&quot;9000&quot;</span>))</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment"># Redis settings</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a4cbd50b87df8da14e2e0e431cc0030f6">   58</a></span>    redis_url: str = os.getenv(<span class="stringliteral">&quot;REDIS_URL&quot;</span>, <span class="stringliteral">&quot;redis://localhost:6379&quot;</span>)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#ad99ab2364d1b79c0be38da8fca2bef44">   59</a></span>    redis_db: int = int(os.getenv(<span class="stringliteral">&quot;REDIS_DB&quot;</span>, <span class="stringliteral">&quot;0&quot;</span>))</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a07be901d19f08e860814b62703ec659a">   60</a></span>    redis_password: str | <span class="keywordtype">None</span> = os.getenv(<span class="stringliteral">&quot;REDIS_PASSWORD&quot;</span>)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment"># Device ID settings</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a43bb4a487eb8087f1e85d7b8f9d63444">   63</a></span>    did_prefix: str = os.getenv(<span class="stringliteral">&quot;DID_PREFIX&quot;</span>, <span class="stringliteral">&quot;did:p2p&quot;</span>)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a35473e93efeb47921aafe94a7bdae637">   64</a></span>    device_id_random_bytes: int = int(os.getenv(<span class="stringliteral">&quot;DEVICE_ID_RANDOM_BYTES&quot;</span>, <span class="stringliteral">&quot;16&quot;</span>))</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment"># JWT settings - Secure by default</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a166e367f4bcc8ef4d19261d617e89995">   67</a></span>    jwt_secret: str = <a class="code hl_function" href="namespacesrc_1_1did__service_1_1config.html#a21742f3b9471eca39c9653417f509645">_get_jwt_secret</a>()</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a0bd70e8cb3db64b47d01e6797e9c4070">   68</a></span>    jwt_expiration: int = int(os.getenv(<span class="stringliteral">&quot;JWT_EXPIRATION&quot;</span>, <span class="stringliteral">&quot;3600&quot;</span>))  <span class="comment"># seconds</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#aa1a4a63c35835a0977b144dd28643184">   69</a></span>    jwt_algorithm: str = os.getenv(<span class="stringliteral">&quot;JWT_ALGORITHM&quot;</span>, <span class="stringliteral">&quot;HS256&quot;</span>)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment"># Key rotation settings</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a459d8f2aff0dd524e187476403aa1f4a">   72</a></span>    jwt_previous_secret: str | <span class="keywordtype">None</span> = os.getenv(<span class="stringliteral">&quot;JWT_PREVIOUS_SECRET&quot;</span>)  <span class="comment"># For key rotation</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a8b180ca08e075defe21ea10ac14c5bc9">   73</a></span>    jwt_rotation_enabled: bool = os.getenv(<span class="stringliteral">&quot;JWT_ROTATION_ENABLED&quot;</span>, <span class="stringliteral">&quot;false&quot;</span>).lower() == <span class="stringliteral">&quot;true&quot;</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment"># Heartbeat settings</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a636e7d20cfc06884b026d07b4c57a58a">   76</a></span>    heartbeat_timeout: int = int(os.getenv(<span class="stringliteral">&quot;HEARTBEAT_TIMEOUT&quot;</span>, <span class="stringliteral">&quot;120&quot;</span>))  <span class="comment"># seconds</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment"># Device types</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#a8465149ced5604d461f06ee7deebd045">   79</a></span>    valid_device_types: set[str] = frozenset({<span class="stringliteral">&quot;ios&quot;</span>, <span class="stringliteral">&quot;android&quot;</span>, <span class="stringliteral">&quot;web&quot;</span>, <span class="stringliteral">&quot;desktop&quot;</span>})</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="" data-end="">
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#acb334615731c423fc0e9a086b99d25b1">   81</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1did__service_1_1config_1_1_config.html#acb334615731c423fc0e9a086b99d25b1">is_production</a>(self) -&gt; bool:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="stringliteral">&quot;&quot;&quot;Check if running in production environment.&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span> self.<a class="code hl_variable" href="classsrc_1_1did__service_1_1config_1_1_config.html#a69d960844e3d30514fc0787d3870e4a4">environment</a> == <span class="stringliteral">&quot;production&quot;</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+</div>
+<div class="foldopen" id="foldopen00085" data-start="" data-end="">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classsrc_1_1did__service_1_1config_1_1_config.html#af52a6d0cea9af26a3389de542e5dc1cd">   85</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1did__service_1_1config_1_1_config.html#af52a6d0cea9af26a3389de542e5dc1cd">validate</a>(self) -&gt; bool:</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="stringliteral">        Validate configuration.</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="stringliteral">            True if valid</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="stringliteral">        Raises:</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="stringliteral">            ValueError: If configuration is invalid</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        errors = []</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="comment"># Validate JWT settings</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">if</span> len(self.<a class="code hl_variable" href="classsrc_1_1did__service_1_1config_1_1_config.html#a166e367f4bcc8ef4d19261d617e89995">jwt_secret</a>) &lt; 32:</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            errors.append(<span class="stringliteral">&quot;jwt_secret must be at least 32 characters&quot;</span>)</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">if</span> self.<a class="code hl_variable" href="classsrc_1_1did__service_1_1config_1_1_config.html#a0bd70e8cb3db64b47d01e6797e9c4070">jwt_expiration</a> &lt; 60:</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>            errors.append(<span class="stringliteral">&quot;jwt_expiration must be at least 60 seconds&quot;</span>)</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordflow">if</span> self.<a class="code hl_variable" href="classsrc_1_1did__service_1_1config_1_1_config.html#a0bd70e8cb3db64b47d01e6797e9c4070">jwt_expiration</a> &gt; 86400 * 7:  <span class="comment"># 7 days</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            errors.append(<span class="stringliteral">&quot;jwt_expiration should not exceed 7 days for security&quot;</span>)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="comment"># Validate Redis URL</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.<a class="code hl_variable" href="classsrc_1_1did__service_1_1config_1_1_config.html#a4cbd50b87df8da14e2e0e431cc0030f6">redis_url</a>.startswith((<span class="stringliteral">&quot;redis://&quot;</span>, <span class="stringliteral">&quot;rediss://&quot;</span>)):</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>            errors.append(<span class="stringliteral">&quot;redis_url must start with redis:// or rediss://&quot;</span>)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> errors:</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&quot;Configuration validation failed: &quot;</span> + <span class="stringliteral">&quot;; &quot;</span>.join(errors))</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"># Global config instance (initialized on import)</span></div>
+</div>
+</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="namespacesrc_1_1did__service_1_1config.html#a934a5763b147ca8c51c70b02ede1b391">  118</a></span>config = <a class="code hl_class" href="classsrc_1_1did__service_1_1config_1_1_config.html">Config</a>()</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"># Validate on startup in production</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordflow">if</span> config.is_production():</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">try</span>:</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        config.validate()</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        print(f<span class="stringliteral">&quot;[INFO] Configuration validated successfully for {config.environment} environment&quot;</span>)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">except</span> ValueError <span class="keyword">as</span> e:</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        print(f<span class="stringliteral">&quot;[ERROR] {e}&quot;</span>)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        sys.exit(1)</div>
+<div class="ttc" id="aclasssrc_1_1did__service_1_1config_1_1_config_html"><div class="ttname"><a href="classsrc_1_1did__service_1_1config_1_1_config.html">src.did_service.config.Config</a></div><div class="ttdef"><b>定义</b> <a href="#l00047">config.py:47</a></div></div>
+<div class="ttc" id="aclasssrc_1_1did__service_1_1config_1_1_config_html_a0bd70e8cb3db64b47d01e6797e9c4070"><div class="ttname"><a href="classsrc_1_1did__service_1_1config_1_1_config.html#a0bd70e8cb3db64b47d01e6797e9c4070">src.did_service.config.Config.jwt_expiration</a></div><div class="ttdeci">int jwt_expiration</div><div class="ttdef"><b>定义</b> <a href="#l00068">config.py:68</a></div></div>
+<div class="ttc" id="aclasssrc_1_1did__service_1_1config_1_1_config_html_a166e367f4bcc8ef4d19261d617e89995"><div class="ttname"><a href="classsrc_1_1did__service_1_1config_1_1_config.html#a166e367f4bcc8ef4d19261d617e89995">src.did_service.config.Config.jwt_secret</a></div><div class="ttdeci">str jwt_secret</div><div class="ttdef"><b>定义</b> <a href="#l00067">config.py:67</a></div></div>
+<div class="ttc" id="aclasssrc_1_1did__service_1_1config_1_1_config_html_a4cbd50b87df8da14e2e0e431cc0030f6"><div class="ttname"><a href="classsrc_1_1did__service_1_1config_1_1_config.html#a4cbd50b87df8da14e2e0e431cc0030f6">src.did_service.config.Config.redis_url</a></div><div class="ttdeci">str redis_url</div><div class="ttdef"><b>定义</b> <a href="#l00058">config.py:58</a></div></div>
+<div class="ttc" id="aclasssrc_1_1did__service_1_1config_1_1_config_html_a69d960844e3d30514fc0787d3870e4a4"><div class="ttname"><a href="classsrc_1_1did__service_1_1config_1_1_config.html#a69d960844e3d30514fc0787d3870e4a4">src.did_service.config.Config.environment</a></div><div class="ttdeci">Literal environment</div><div class="ttdef"><b>定义</b> <a href="#l00051">config.py:51</a></div></div>
+<div class="ttc" id="aclasssrc_1_1did__service_1_1config_1_1_config_html_acb334615731c423fc0e9a086b99d25b1"><div class="ttname"><a href="classsrc_1_1did__service_1_1config_1_1_config.html#acb334615731c423fc0e9a086b99d25b1">src.did_service.config.Config.is_production</a></div><div class="ttdeci">bool is_production(self)</div><div class="ttdef"><b>定义</b> <a href="#l00081">config.py:81</a></div></div>
+<div class="ttc" id="aclasssrc_1_1did__service_1_1config_1_1_config_html_af52a6d0cea9af26a3389de542e5dc1cd"><div class="ttname"><a href="classsrc_1_1did__service_1_1config_1_1_config.html#af52a6d0cea9af26a3389de542e5dc1cd">src.did_service.config.Config.validate</a></div><div class="ttdeci">bool validate(self)</div><div class="ttdef"><b>定义</b> <a href="#l00085">config.py:85</a></div></div>
+<div class="ttc" id="anamespacesrc_1_1did__service_1_1config_html_a21742f3b9471eca39c9653417f509645"><div class="ttname"><a href="namespacesrc_1_1did__service_1_1config.html#a21742f3b9471eca39c9653417f509645">src.did_service.config._get_jwt_secret</a></div><div class="ttdeci">str _get_jwt_secret()</div><div class="ttdef"><b>定义</b> <a href="#l00016">config.py:16</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_4051f3e86b15732442eda070a62e499d.html">did-service</a></li><li class="navelem"><a href="dir_016d826c328551c6f7ab055c7feb9ccc.html">src</a></li><li class="navelem"><a href="dir_c808687f4310dcfb198115df8a664e81.html">did_service</a></li><li class="navelem"><a href="did-service_2src_2did__service_2config_8py.html">config.py</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

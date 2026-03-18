@@ -1,0 +1,14 @@
+# Aliases to add to pubsub.py __all__ and at end of file:
+
+# In __all__ add:
+    "PubSubConfig",
+    "Message",
+    "Topic",
+    "GOSSIPSUB_PROTOCOL_ID",
+    "FLOODSUB_PROTOCOL_ID",
+
+# At end of file add:
+Message = PubSubMessage
+Topic = str  # Topic is just a string in this implementation
+GOSSIPSUB_PROTOCOL_ID = PROTOCOL_ID_GOSSIPSUB
+FLOODSUB_PROTOCOL_ID = PROTOCOL_ID_FLOODSUB

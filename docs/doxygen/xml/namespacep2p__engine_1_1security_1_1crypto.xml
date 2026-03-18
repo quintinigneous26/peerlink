@@ -1,0 +1,694 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1security_1_1crypto" kind="namespace" language="Python">
+    <compoundname>p2p_engine::security::crypto</compoundname>
+    <innerclass refid="classp2p__engine_1_1security_1_1crypto_1_1_crypto_error" prot="public">p2p_engine::security::crypto::CryptoError</innerclass>
+    <innerclass refid="classp2p__engine_1_1security_1_1crypto_1_1_signature_error" prot="public">p2p_engine::security::crypto::SignatureError</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1a831fc00909acba1c13a817bfac91dbb8" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::security::crypto.NOISE_PROTOCOL_NAME</definition>
+        <argsstring></argsstring>
+        <name>NOISE_PROTOCOL_NAME</name>
+        <qualifiedname>p2p_engine.security.crypto.NOISE_PROTOCOL_NAME</qualifiedname>
+        <initializer>=  b&quot;Noise_XX_25519_ChaChaPoly_SHA256&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="35" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1a7c159349f918c03764cf40b4bc548178" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.DH_LEN</definition>
+        <argsstring></argsstring>
+        <name>DH_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.DH_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="38" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1a00e3f665a9ae4790afee59654ddf75cc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.HASH_LEN</definition>
+        <argsstring></argsstring>
+        <name>HASH_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.HASH_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="39" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1a191313b68bf603f13285ad83b3f59f2b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.KEY_LEN</definition>
+        <argsstring></argsstring>
+        <name>KEY_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.KEY_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="40" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1a8f7a82a3288895990d4a113cb2129e52" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.NONCE_LEN</definition>
+        <argsstring></argsstring>
+        <name>NONCE_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.NONCE_LEN</qualifiedname>
+        <initializer>=  12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="41" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1aaaf2f19b3e6ce175bd47a9d32a4339d1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.TAG_LEN</definition>
+        <argsstring></argsstring>
+        <name>TAG_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.TAG_LEN</qualifiedname>
+        <initializer>=  16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="42" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1a3fa0417bcda414931a5dde0fa3769da8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.MAX_NONCE</definition>
+        <argsstring></argsstring>
+        <name>MAX_NONCE</name>
+        <qualifiedname>p2p_engine.security.crypto.MAX_NONCE</qualifiedname>
+        <initializer>=  2**64 - 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="45" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1afbac8739d22203ea5a0ef4c67699b670" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.ED25519_PRIVATE_KEY_LEN</definition>
+        <argsstring></argsstring>
+        <name>ED25519_PRIVATE_KEY_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.ED25519_PRIVATE_KEY_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="342" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="342" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1ae21effee37a5b27702242bf70ca451e7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.ED25519_PUBLIC_KEY_LEN</definition>
+        <argsstring></argsstring>
+        <name>ED25519_PUBLIC_KEY_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.ED25519_PUBLIC_KEY_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="343" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1abfffc19e9a41110e546cd1c07acfcc90" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.ED25519_SIGNATURE_LEN</definition>
+        <argsstring></argsstring>
+        <name>ED25519_SIGNATURE_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.ED25519_SIGNATURE_LEN</qualifiedname>
+        <initializer>=  64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="344" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="344" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1security_1_1crypto_1acb039d4252cb2a94b933d4d631489ced" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::security::crypto.ED25519_SEED_LEN</definition>
+        <argsstring></argsstring>
+        <name>ED25519_SEED_LEN</name>
+        <qualifiedname>p2p_engine.security.crypto.ED25519_SEED_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="345" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="345" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1af91ddf8185ed39326016317f236dc18b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[bytes, bytes]</type>
+        <definition> Tuple[bytes, bytes] p2p_engine.security.crypto.generate_x25519_keypair</definition>
+        <argsstring>()</argsstring>
+        <name>generate_x25519_keypair</name>
+        <qualifiedname>p2p_engine.security.crypto.generate_x25519_keypair</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate X25519 keypair for Diffie-Hellman.
+
+Returns:
+    Tuple of (private_key, public_key) as bytes (32 bytes each)
+
+Example:
+    &gt;&gt;&gt; priv, pub = generate_x25519_keypair()
+    &gt;&gt;&gt; len(priv), len(pub)
+    (32, 32)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="50" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="50" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a5e59b6427351ae8045c51f23bb3323e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.security.crypto.dh</definition>
+        <argsstring>(bytes private_key, bytes public_key)</argsstring>
+        <name>dh</name>
+        <qualifiedname>p2p_engine.security.crypto.dh</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>private_key</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>public_key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Perform X25519 Diffie-Hellman key exchange.
+
+Args:
+    private_key: Local private key (32 bytes)
+    public_key: Remote public key (32 bytes)
+
+Returns:
+    Shared secret (32 bytes)
+
+Raises:
+    ValueError: If key lengths are invalid
+    CryptoError: If DH computation fails
+
+Example:
+    &gt;&gt;&gt; priv1, pub1 = generate_x25519_keypair()
+    &gt;&gt;&gt; priv2, pub2 = generate_x25519_keypair()
+    &gt;&gt;&gt; shared1 = dh(priv1, pub2)
+    &gt;&gt;&gt; shared2 = dh(priv2, pub1)
+    &gt;&gt;&gt; shared1 == shared2
+    True
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="81" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="81" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a4a41ec67d3daf2017f128a4379080894" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.security.crypto._build_nonce</definition>
+        <argsstring>(int n)</argsstring>
+        <name>_build_nonce</name>
+        <qualifiedname>p2p_engine.security.crypto._build_nonce</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Build 96-bit nonce from 64-bit counter.
+
+Per Noise spec: nonce = n (64-bit, big-endian) || 0x00000000 (32-bit)
+
+Args:
+    n: 64-bit nonce counter
+
+Returns:
+    12-byte nonce
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="121" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="121" bodyend="135"/>
+        <referencedby refid="namespacep2p__engine_1_1security_1_1crypto_1a11481b5b8803b6e2ffc06e5bc93c77e8" compoundref="p2p__engine_2security_2crypto_8py" startline="175" endline="216">p2p_engine.security.crypto.decrypt</referencedby>
+        <referencedby refid="namespacep2p__engine_1_1security_1_1crypto_1ae53e5dd28a95fd29451b0e7b2311b0e0" compoundref="p2p__engine_2security_2crypto_8py" startline="136" endline="174">p2p_engine.security.crypto.encrypt</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1ae53e5dd28a95fd29451b0e7b2311b0e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.security.crypto.encrypt</definition>
+        <argsstring>(bytes key, int nonce, bytes plaintext, bytes aad=b&quot;&quot;)</argsstring>
+        <name>encrypt</name>
+        <qualifiedname>p2p_engine.security.crypto.encrypt</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nonce</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>plaintext</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>aad</declname>
+          <defval>b&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encrypt using ChaCha20-Poly1305 AEAD.
+
+Args:
+    key: 32-byte encryption key
+    nonce: 64-bit nonce counter
+    plaintext: Data to encrypt
+    aad: Additional authenticated data (default: empty)
+
+Returns:
+    Ciphertext with Poly1305 tag appended (plaintext len + 16 bytes)
+
+Raises:
+    ValueError: If key length is invalid
+    CryptoError: If encryption fails
+
+Example:
+    &gt;&gt;&gt; key = b&apos;x&apos; * 32
+    &gt;&gt;&gt; plaintext = b&apos;Hello, world!&apos;
+    &gt;&gt;&gt; ct = encrypt(key, 0, plaintext)
+    &gt;&gt;&gt; len(ct) == len(plaintext) + 16
+    True
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="136" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="136" bodyend="174"/>
+        <references refid="namespacep2p__engine_1_1security_1_1crypto_1a4a41ec67d3daf2017f128a4379080894" compoundref="p2p__engine_2security_2crypto_8py" startline="121" endline="135">p2p_engine.security.crypto._build_nonce</references>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a11481b5b8803b6e2ffc06e5bc93c77e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.security.crypto.decrypt</definition>
+        <argsstring>(bytes key, int nonce, bytes ciphertext, bytes aad=b&quot;&quot;)</argsstring>
+        <name>decrypt</name>
+        <qualifiedname>p2p_engine.security.crypto.decrypt</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nonce</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>ciphertext</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>aad</declname>
+          <defval>b&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Decrypt using ChaCha20-Poly1305 AEAD.
+
+Args:
+    key: 32-byte decryption key
+    nonce: 64-bit nonce counter
+    ciphertext: Data to decrypt (with Poly1305 tag)
+    aad: Additional authenticated data (default: empty)
+
+Returns:
+    Decrypted plaintext
+
+Raises:
+    ValueError: If key length is invalid
+    CryptoError: If decryption fails (authentication error)
+
+Example:
+    &gt;&gt;&gt; key = b&apos;x&apos; * 32
+    &gt;&gt;&gt; plaintext = b&apos;Hello, world!&apos;
+    &gt;&gt;&gt; ct = encrypt(key, 0, plaintext)
+    &gt;&gt;&gt; pt = decrypt(key, 0, ct)
+    &gt;&gt;&gt; pt == plaintext
+    True
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="175" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="175" bodyend="216"/>
+        <references refid="namespacep2p__engine_1_1security_1_1crypto_1a4a41ec67d3daf2017f128a4379080894" compoundref="p2p__engine_2security_2crypto_8py" startline="121" endline="135">p2p_engine.security.crypto._build_nonce</references>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a5e8b6a4e0ec54464852163ddf929ddd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[bytes, bytes]</type>
+        <definition> Tuple[bytes, bytes] p2p_engine.security.crypto.hkdf</definition>
+        <argsstring>(bytes chaining_key, bytes input_key_material)</argsstring>
+        <name>hkdf</name>
+        <qualifiedname>p2p_engine.security.crypto.hkdf</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>chaining_key</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>input_key_material</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>HKDF as specified in the Noise Protocol Framework.
+
+Derives two keys (chain key and output key) using HMAC-SHA256.
+
+Algorithm:
+    temp = HMAC(chaining_key, input_key_material)
+    output1 = HMAC(temp, 0x01)
+    output2 = HMAC(temp, output1 || 0x02)
+
+Args:
+    chaining_key: Current chain key (32 bytes)
+    input_key_material: Input key material (e.g., DH shared secret)
+
+Returns:
+    Tuple of (new_chaining_key, output_key) - each 32 bytes
+
+Example:
+    &gt;&gt;&gt; ck = b&apos;x&apos; * 32
+    &gt;&gt;&gt; ikm = b&apos;y&apos; * 32
+    &gt;&gt;&gt; new_ck, k = hkdf(ck, ikm)
+    &gt;&gt;&gt; len(new_ck), len(k)
+    (32, 32)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="217" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="217" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1aef1271c04a5f2790825ec764ec57bf7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list[bytes]</type>
+        <definition> list[bytes] p2p_engine.security.crypto.hkdf_expand</definition>
+        <argsstring>(bytes chaining_key, int num_outputs=2)</argsstring>
+        <name>hkdf_expand</name>
+        <qualifiedname>p2p_engine.security.crypto.hkdf_expand</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>chaining_key</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>num_outputs</declname>
+          <defval>2</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>HKDF expand-only variant (for splitting).
+
+Derives multiple keys from a chaining key without additional input.
+
+Args:
+    chaining_key: Current chain key (32 bytes)
+    num_outputs: Number of keys to derive (default: 2)
+
+Returns:
+    List of derived keys (32 bytes each)
+
+Example:
+    &gt;&gt;&gt; ck = b&apos;x&apos; * 32
+    &gt;&gt;&gt; keys = hkdf_expand(ck, 3)
+    &gt;&gt;&gt; len(keys)
+    3
+    &gt;&gt;&gt; all(len(k) == 32 for k in keys)
+    True
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="257" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="257" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a5fc5bceedb72e7a74554d46f66f96bc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.security.crypto.hash</definition>
+        <argsstring>(bytes data)</argsstring>
+        <name>hash</name>
+        <qualifiedname>p2p_engine.security.crypto.hash</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Compute SHA256 hash.
+
+Args:
+    data: Data to hash
+
+Returns:
+    32-byte SHA256 digest
+
+Example:
+    &gt;&gt;&gt; h = hash(b&apos;Hello, world!&apos;)
+    &gt;&gt;&gt; len(h)
+    32
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="309" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="309" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1af752bb7246610308d46974001605a437" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[bytes, bytes]</type>
+        <definition> Tuple[bytes, bytes] p2p_engine.security.crypto.generate_ed25519_keypair</definition>
+        <argsstring>()</argsstring>
+        <name>generate_ed25519_keypair</name>
+        <qualifiedname>p2p_engine.security.crypto.generate_ed25519_keypair</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate Ed25519 keypair for digital signatures.
+
+Ed25519 is the recommended signature algorithm for libp2p identity keys.
+
+Returns:
+    Tuple of (private_key, public_key) as bytes (32 bytes each for private,
+    32 bytes for public)
+
+Example:
+    &gt;&gt;&gt; priv, pub = generate_ed25519_keypair()
+    &gt;&gt;&gt; len(priv), len(pub)
+    (32, 32)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="348" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="348" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a0c9bff1473de7da81c481747c6e86bf5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[bytes, bytes]</type>
+        <definition> Tuple[bytes, bytes] p2p_engine.security.crypto.generate_ed25519_keypair_from_seed</definition>
+        <argsstring>(bytes seed)</argsstring>
+        <name>generate_ed25519_keypair_from_seed</name>
+        <qualifiedname>p2p_engine.security.crypto.generate_ed25519_keypair_from_seed</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Generate Ed25519 keypair from a 32-byte seed.
+
+Args:
+    seed: 32-byte seed for deterministic key generation
+
+Returns:
+    Tuple of (private_key, public_key) as bytes
+
+Raises:
+    ValueError: If seed length is not 32 bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="380" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="380" bodyend="407"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a549c877ce9214d55da8c7cafefae8174" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.security.crypto.sign_ed25519</definition>
+        <argsstring>(bytes private_key, bytes message)</argsstring>
+        <name>sign_ed25519</name>
+        <qualifiedname>p2p_engine.security.crypto.sign_ed25519</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>private_key</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Sign a message using Ed25519.
+
+Args:
+    private_key: Ed25519 private key (32 bytes)
+    message: Message to sign
+
+Returns:
+    64-byte signature
+
+Raises:
+    ValueError: If key length is invalid
+    CryptoError: If signing fails
+
+Example:
+    &gt;&gt;&gt; priv, pub = generate_ed25519_keypair()
+    &gt;&gt;&gt; msg = b&apos;Hello, world!&apos;
+    &gt;&gt;&gt; sig = sign_ed25519(priv, msg)
+    &gt;&gt;&gt; len(sig)
+    64
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="408" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="408" bodyend="440"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1a0970e5a6390858e7a367a252270a73e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.security.crypto.verify_ed25519</definition>
+        <argsstring>(bytes public_key, bytes message, bytes signature)</argsstring>
+        <name>verify_ed25519</name>
+        <qualifiedname>p2p_engine.security.crypto.verify_ed25519</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>public_key</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>signature</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Verify an Ed25519 signature.
+
+Args:
+    public_key: Ed25519 public key (32 bytes)
+    message: Message that was signed
+    signature: Signature to verify (64 bytes)
+
+Returns:
+    True if signature is valid
+
+Raises:
+    ValueError: If key or signature length is invalid
+    SignatureError: If signature is invalid
+
+Example:
+    &gt;&gt;&gt; priv, pub = generate_ed25519_keypair()
+    &gt;&gt;&gt; msg = b&apos;Hello, world!&apos;
+    &gt;&gt;&gt; sig = sign_ed25519(priv, msg)
+    &gt;&gt;&gt; verify_ed25519(pub, msg, sig)
+    True
+    &gt;&gt;&gt; verify_ed25519(pub, msg + b&apos;!&apos;, sig)
+    False
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="441" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="441" bodyend="479"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1security_1_1crypto_1ac1558a7fbffef57e8230f2d744a145ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.security.crypto.ed25519_public_key_from_private</definition>
+        <argsstring>(bytes private_key)</argsstring>
+        <name>ed25519_public_key_from_private</name>
+        <qualifiedname>p2p_engine.security.crypto.ed25519_public_key_from_private</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>private_key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Derive Ed25519 public key from private key.
+
+Args:
+    private_key: Ed25519 private key (32 bytes)
+
+Returns:
+    Ed25519 public key (32 bytes)
+
+Raises:
+    ValueError: If key length is invalid
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/security/crypto.py" line="480" column="1" bodyfile="p2p_engine/security/crypto.py" bodystart="480" bodyend="503"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Cryptographic primitives for Noise Protocol Framework.
+
+This module provides low-level cryptographic operations for the Noise protocol:
+- X25519 key generation and Diffie-Hellman
+- Ed25519 key generation and signature verification
+- ChaCha20-Poly1305 AEAD encryption/decryption
+- HKDF key derivation
+- SHA256 hashing
+
+Protocol: Noise_XX_25519_ChaChaPoly_SHA256
+Reference: https://noiseprotocol.org/noise.html
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/security/crypto.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

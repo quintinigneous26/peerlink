@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::protocol::integration::ProtocolRegistry</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1adb55d0172aa02c4c4f01014ddb950d0a" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict p2p_engine.protocol.integration.ProtocolRegistry::_handlers</definition>
+        <argsstring></argsstring>
+        <name>_handlers</name>
+        <qualifiedname>p2p_engine.protocol.integration.ProtocolRegistry._handlers</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/integration.py" line="91" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="91" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a0ac5285dba2e3ed05ca487ae2a9523d2" compoundref="integration_8py" startline="114" endline="128">p2p_engine.protocol.integration.ProtocolRegistry.create_handler</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8f15272771a7cd2f05ea01cb583ef9a0" compoundref="integration_8py" startline="110" endline="113">p2p_engine.protocol.integration.ProtocolRegistry.get_supported_protocols</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8faa3b6fd3e50937ee262c197c5b8dcc" compoundref="integration_8py" startline="129" endline="133">p2p_engine.protocol.integration.ProtocolRegistry.is_supported</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8b43d5c3cb2fe75d52cffab8c563c09b" compoundref="integration_8py" startline="93" endline="103">p2p_engine.protocol.integration.ProtocolRegistry.register</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1ad55b0699a35a75fbf64ab38eba388cfa" compoundref="integration_8py" startline="104" endline="109">p2p_engine.protocol.integration.ProtocolRegistry.unregister</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a96fcac062a9b2e17a73f413cea054a99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.protocol.integration.ProtocolRegistry.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.protocol.integration.ProtocolRegistry.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/integration.py" line="90" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="90" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8b43d5c3cb2fe75d52cffab8c563c09b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.integration.ProtocolRegistry.register</definition>
+        <argsstring>(self, str protocol_id, Callable[[], ProtocolHandler] handler_factory)</argsstring>
+        <name>register</name>
+        <qualifiedname>p2p_engine.protocol.integration.ProtocolRegistry.register</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>protocol_id</declname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <defname>handler_factory</defname>
+          <array>[[]</array>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_handler" kindref="compound">ProtocolHandler</ref>]</type>
+          <declname>handler_factory</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Register a protocol handler.
+
+Args:
+    protocol_id: Protocol ID (e.g., &quot;/ipfs/id/1.0.0&quot;)
+    handler_factory: Factory function to create handler instances
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/integration.py" line="93" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="93" bodyend="103"/>
+        <references refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1adb55d0172aa02c4c4f01014ddb950d0a" compoundref="integration_8py" startline="91">p2p_engine.protocol.integration.ProtocolRegistry._handlers</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1ad55b0699a35a75fbf64ab38eba388cfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.protocol.integration.ProtocolRegistry.unregister</definition>
+        <argsstring>(self, str protocol_id)</argsstring>
+        <name>unregister</name>
+        <qualifiedname>p2p_engine.protocol.integration.ProtocolRegistry.unregister</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>protocol_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Unregister a protocol.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/integration.py" line="104" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="104" bodyend="109"/>
+        <references refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1adb55d0172aa02c4c4f01014ddb950d0a" compoundref="integration_8py" startline="91">p2p_engine.protocol.integration.ProtocolRegistry._handlers</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8f15272771a7cd2f05ea01cb583ef9a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list[str]</type>
+        <definition> list[str] p2p_engine.protocol.integration.ProtocolRegistry.get_supported_protocols</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_supported_protocols</name>
+        <qualifiedname>p2p_engine.protocol.integration.ProtocolRegistry.get_supported_protocols</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get list of supported protocol IDs.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/integration.py" line="110" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="110" bodyend="113"/>
+        <references refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1adb55d0172aa02c4c4f01014ddb950d0a" compoundref="integration_8py" startline="91">p2p_engine.protocol.integration.ProtocolRegistry._handlers</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a0ac5285dba2e3ed05ca487ae2a9523d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_handler" kindref="compound">ProtocolHandler</ref>]</type>
+        <definition> Optional[ProtocolHandler] p2p_engine.protocol.integration.ProtocolRegistry.create_handler</definition>
+        <argsstring>(self, str protocol_id)</argsstring>
+        <name>create_handler</name>
+        <qualifiedname>p2p_engine.protocol.integration.ProtocolRegistry.create_handler</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>protocol_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a handler instance for the given protocol.
+
+Args:
+    protocol_id: Protocol ID
+
+Returns:
+    Handler instance or None if not supported
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/integration.py" line="114" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="114" bodyend="128"/>
+        <references refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1adb55d0172aa02c4c4f01014ddb950d0a" compoundref="integration_8py" startline="91">p2p_engine.protocol.integration.ProtocolRegistry._handlers</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8faa3b6fd3e50937ee262c197c5b8dcc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.protocol.integration.ProtocolRegistry.is_supported</definition>
+        <argsstring>(self, str protocol_id)</argsstring>
+        <name>is_supported</name>
+        <qualifiedname>p2p_engine.protocol.integration.ProtocolRegistry.is_supported</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>protocol_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Check if a protocol is supported.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/integration.py" line="129" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="129" bodyend="133"/>
+        <references refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1adb55d0172aa02c4c4f01014ddb950d0a" compoundref="integration_8py" startline="91">p2p_engine.protocol.integration.ProtocolRegistry._handlers</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Registry for supported protocols and their handlers.
+
+Maps protocol IDs to their handler implementations.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/integration.py" line="83" column="1" bodyfile="p2p_engine/protocol/integration.py" bodystart="83" bodyend="133"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a96fcac062a9b2e17a73f413cea054a99" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::integration::ProtocolRegistry</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1adb55d0172aa02c4c4f01014ddb950d0a" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::integration::ProtocolRegistry</scope><name>_handlers</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a0ac5285dba2e3ed05ca487ae2a9523d2" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::integration::ProtocolRegistry</scope><name>create_handler</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8f15272771a7cd2f05ea01cb583ef9a0" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::integration::ProtocolRegistry</scope><name>get_supported_protocols</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8faa3b6fd3e50937ee262c197c5b8dcc" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::integration::ProtocolRegistry</scope><name>is_supported</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1a8b43d5c3cb2fe75d52cffab8c563c09b" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::integration::ProtocolRegistry</scope><name>register</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1integration_1_1_protocol_registry_1ad55b0699a35a75fbf64ab38eba388cfa" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::integration::ProtocolRegistry</scope><name>unregister</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

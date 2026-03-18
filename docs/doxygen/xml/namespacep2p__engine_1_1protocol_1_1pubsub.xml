@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1protocol_1_1pubsub" kind="namespace" language="Python">
+    <compoundname>p2p_engine::protocol::pubsub</compoundname>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_signature_policy" prot="public">p2p_engine::protocol::pubsub::SignaturePolicy</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message" prot="public">p2p_engine::protocol::pubsub::PubSubMessage</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_sub_opts" prot="public">p2p_engine::protocol::pubsub::SubOpts</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_r_p_c" prot="public">p2p_engine::protocol::pubsub::RPC</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_control_message" prot="public">p2p_engine::protocol::pubsub::ControlMessage</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_control_i_have" prot="public">p2p_engine::protocol::pubsub::ControlIHave</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_control_i_want" prot="public">p2p_engine::protocol::pubsub::ControlIWant</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_control_graft" prot="public">p2p_engine::protocol::pubsub::ControlGraft</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_control_prune" prot="public">p2p_engine::protocol::pubsub::ControlPrune</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_peer_info_p_b" prot="public">p2p_engine::protocol::pubsub::PeerInfoPB</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_subscription" prot="public">p2p_engine::protocol::pubsub::Subscription</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub" prot="public">p2p_engine::protocol::pubsub::PubSub</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_config" prot="public">p2p_engine::protocol::pubsub::GossipSubConfig</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_message_cache" prot="public">p2p_engine::protocol::pubsub::MessageCache</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_seen_cache" prot="public">p2p_engine::protocol::pubsub::SeenCache</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_router" prot="public">p2p_engine::protocol::pubsub::GossipSubRouter</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub" prot="public">p2p_engine::protocol::pubsub::GossipSub</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub_router" prot="public">p2p_engine::protocol::pubsub::FloodSubRouter</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_flood_sub" prot="public">p2p_engine::protocol::pubsub::FloodSub</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_protocol_handler" prot="public">p2p_engine::protocol::pubsub::PubSubProtocolHandler</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1a7e6d04f6c0f2023bbd1a21b7d8e13acc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::pubsub.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="39" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1a9e5a9bdfd64840c2586f969bd5784d62" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::pubsub.PROTOCOL_ID_GOSSIPSUB</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_ID_GOSSIPSUB</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.PROTOCOL_ID_GOSSIPSUB</qualifiedname>
+        <initializer>=  &quot;/meshsub/1.1.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="44" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1a0f4910eab01899c4fa6b76eecc532ca3" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::pubsub.PROTOCOL_ID_FLOODSUB</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_ID_FLOODSUB</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.PROTOCOL_ID_FLOODSUB</qualifiedname>
+        <initializer>=  &quot;/floodsub/1.0.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="45" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1a92a80303e94c7329d8365a19dc576484" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::protocol::pubsub.PROTOCOL_IDS</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_IDS</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.PROTOCOL_IDS</qualifiedname>
+        <initializer>=  [<ref refid="namespacep2p__engine_1_1protocol_1_1pubsub_1a9e5a9bdfd64840c2586f969bd5784d62" kindref="member">PROTOCOL_ID_GOSSIPSUB</ref>, <ref refid="namespacep2p__engine_1_1protocol_1_1pubsub_1a0f4910eab01899c4fa6b76eecc532ca3" kindref="member">PROTOCOL_ID_FLOODSUB</ref>]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="46" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1a41a433349d1df5d5b83db63425fde1d3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::pubsub.PubSubConfig</definition>
+        <argsstring></argsstring>
+        <name>PubSubConfig</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.PubSubConfig</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_config" kindref="compound">GossipSubConfig</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1345" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1a42e694c55f54d07ada972b830a751d51" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::pubsub.Message</definition>
+        <argsstring></argsstring>
+        <name>Message</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.Message</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub_message" kindref="compound">PubSubMessage</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1346" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1346" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1afff5c6d67a0fc027c4c2c6dc3eed6e2e" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::pubsub.Topic</definition>
+        <argsstring></argsstring>
+        <name>Topic</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.Topic</qualifiedname>
+        <initializer>=  str</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1347" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1347" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1a5e5f16677dc04b602644fb3226b19314" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::pubsub::GOSSIPSUB_PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>GOSSIPSUB_PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.GOSSIPSUB_PROTOCOL_ID</qualifiedname>
+        <initializer>=  <ref refid="namespacep2p__engine_1_1protocol_1_1pubsub_1a9e5a9bdfd64840c2586f969bd5784d62" kindref="member">PROTOCOL_ID_GOSSIPSUB</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1348" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1348" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1ad5d255fef280b33b7e3b3deefc8402e2" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::pubsub::FLOODSUB_PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>FLOODSUB_PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.FLOODSUB_PROTOCOL_ID</qualifiedname>
+        <initializer>=  <ref refid="namespacep2p__engine_1_1protocol_1_1pubsub_1a0f4910eab01899c4fa6b76eecc532ca3" kindref="member">PROTOCOL_ID_FLOODSUB</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1349" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1349" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1pubsub_1ae8b1313924c4dd7907183ce6401b4c58" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::protocol::pubsub.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.__all__</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1367" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1367" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1pubsub_1ae8283957d2b80f1320b7fcf5def0f2a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_pub_sub" kindref="compound">PubSub</ref></type>
+        <definition> PubSub p2p_engine.protocol.pubsub.create_pubsub</definition>
+        <argsstring>(str peer_id, str protocol=PROTOCOL_ID_GOSSIPSUB, Optional[GossipSubConfig] config=None)</argsstring>
+        <name>create_pubsub</name>
+        <qualifiedname>p2p_engine.protocol.pubsub.create_pubsub</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>protocol</declname>
+          <defval><ref refid="namespacep2p__engine_1_1protocol_1_1pubsub_1a9e5a9bdfd64840c2586f969bd5784d62" kindref="member">PROTOCOL_ID_GOSSIPSUB</ref></defval>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>config</declname>
+          <array>[GossipSubConfig]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a PubSub instance.
+
+Args:
+    peer_id: Local peer ID
+    protocol: Protocol ID (default: GossipSub v1.1)
+    config: Optional GossipSub configuration
+
+Returns:
+    PubSub instance (GossipSub or FloodSub)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/pubsub.py" line="1250" column="1" bodyfile="p2p_engine/protocol/pubsub.py" bodystart="1254" bodyend="1275"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>PubSub Protocol Implementation
+
+This module implements the libp2p PubSub protocol with GossipSub v1.1 router.
+It provides a publish/subscribe interface for peer-to-peer messaging.
+
+Protocol IDs:
+- /meshsub/1.1.0 (GossipSub v1.1)
+- /floodsub/1.0.0 (FloodSub - fallback)
+
+References:
+- https://github.com/libp2p/specs/blob/master/pubsub/README.md
+- https://github.com/libp2p/specs/blob/master/pubsub/gossipsub/gossipsub-v1.1.md
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/pubsub.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

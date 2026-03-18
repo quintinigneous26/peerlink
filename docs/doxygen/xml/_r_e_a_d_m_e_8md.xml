@@ -1,0 +1,390 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>P2P<sp/>Platform</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;div<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**基于<sp/>WebRTC<sp/>和<sp/>libp2p<sp/>技术的去中心化<sp/>P2P<sp/>通信平台**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[![License:<sp/>MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)</highlight></codeline>
+<codeline><highlight class="normal">[![Python<sp/>3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)</highlight></codeline>
+<codeline><highlight class="normal">[![Test<sp/>Coverage](https://img.shields.io/badge/coverage-80%25+-green.svg)](./docs/TESTING.md)</highlight></codeline>
+<codeline><highlight class="normal">[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](./docker-compose.yml)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">[特性](#-主要特性)<sp/>•<sp/>[快速开始](#-快速开始)<sp/>•<sp/>[安装](#-安装方式)<sp/>•<sp/>[文档](#-文档)<sp/>•<sp/>[贡献](#-贡献指南)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;/div&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📖<sp/>项目简介</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">P2P<sp/>Platform<sp/>是一套完整的去中心化<sp/>P2P<sp/>通信解决方案，实现了<sp/>libp2p<sp/>协议栈和<sp/>WebRTC<sp/>技术的深度集成。平台提供了从<sp/>NAT<sp/>穿透、设备发现、安全传输到流复用的全栈能力，支持构建高性能、可扩展的<sp/>P2P<sp/>应用。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>核心优势</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>🚀<sp/>**高性能**:<sp/>P2P<sp/>直连吞吐量<sp/>~150<sp/>Mbps，本地连接延迟<sp/>~50ms</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🔒<sp/>**安全可靠**:<sp/>TLS<sp/>1.3<sp/>加密，Ed25519<sp/>签名，完整的证书链验证</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🌐<sp/>**libp2p<sp/>兼容**:<sp/>完整实现<sp/>libp2p<sp/>协议栈，与<sp/>go-libp2p<sp/>互操作</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>📦<sp/>**开箱即用**:<sp/>Docker<sp/>Compose<sp/>一键部署，支持<sp/>RPM/DEB/pip<sp/>安装</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🧪<sp/>**测试完善**:<sp/>575<sp/>个测试用例，95.1%<sp/>通过率，≥80%<sp/>代码覆盖率</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🛠️<sp/>**易于集成**:<sp/>简洁的客户端<sp/>SDK，支持<sp/>Python/Go/Rust/JavaScript</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>✨<sp/>主要特性</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>核心服务</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>服务<sp/>|<sp/>功能<sp/>|<sp/>端口<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|------|------|------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**STUN<sp/>服务器**<sp/>|<sp/>NAT<sp/>穿透、公网<sp/>IP<sp/>获取、NAT<sp/>类型检测<sp/>|<sp/>3478<sp/>(UDP),<sp/>3479<sp/>(TCP)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Relay<sp/>服务器**<sp/>|<sp/>TURN<sp/>中继、UDP/TCP<sp/>转发、带宽管理<sp/>|<sp/>50000-50010<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**信令服务器**<sp/>|<sp/>设备注册、SDP<sp/>交换、连接协调<sp/>|<sp/>8080<sp/>(WS),<sp/>8443<sp/>(WSS)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**DID<sp/>服务**<sp/>|<sp/>设备身份认证、访问令牌管理<sp/>|<sp/>9000<sp/>(HTTP)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**客户端<sp/>SDK**<sp/>|<sp/>简化<sp/>P2P<sp/>连接开发<sp/>|<sp/>-<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>libp2p<sp/>协议栈</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>安全传输</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>TLS<sp/>1.3<sp/>(`/tls/1.0.0`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>Noise<sp/>(`/noise`)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>流复用</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>mplex<sp/>(`/mplex/6.7.0`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>yamux<sp/>(`/yamux/1.0.0`)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>核心协议</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>multistream-select<sp/>(`/multistream/1.0.0`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>Identify<sp/>(`/ipfs/id/1.0.0`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>AutoNAT<sp/>(`/libp2p/autonat/1.0.0`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>Circuit<sp/>Relay<sp/>v2<sp/>(`/libp2p/circuit/relay/0.2.0/hop`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>DCUtR<sp/>(`/libp2p/dcutr/1.0.0`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>Ping<sp/>(`/ipfs/ping/1.0.0`)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>高级功能</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>Kademlia<sp/>DHT<sp/>(`/ipfs/kad/1.0.0`)<sp/>-<sp/>分布式哈希表</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>GossipSub<sp/>v1.1<sp/>(`/meshsub/1.1.0`)<sp/>-<sp/>发布订阅</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>传输层</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>TCP</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>QUIC<sp/>(`/quic-v1`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>WebRTC<sp/>(`/webrtc-direct`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>✅<sp/>WebTransport<sp/>(`/webtransport/1.0.0`)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>网络优化</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>🌍<sp/>28<sp/>个全球运营商配置</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>📱<sp/>22<sp/>个设备厂商检测</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>💓<sp/>智能心跳和降级策略</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🔍<sp/>NAT<sp/>类型检测<sp/>(Full<sp/>Cone,<sp/>Restricted,<sp/>Port<sp/>Restricted,<sp/>Symmetric)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🚀<sp/>快速开始</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>前置要求</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Docker<sp/>20.10+</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Docker<sp/>Compose<sp/>2.0+</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Python<sp/>3.11+<sp/>(如果不使用<sp/>Docker)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>使用<sp/>Docker<sp/>Compose<sp/>(推荐)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>克隆项目</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/your-org/p2p-platform.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>p2p-platform</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动所有服务</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>up<sp/>-d</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>查看服务状态</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>ps</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>查看日志</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>logs<sp/>-f</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>停止服务</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>down</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">服务启动后，可以通过以下地址访问：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>STUN<sp/>服务器:<sp/>`udp://localhost:3478`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Relay<sp/>服务器:<sp/>`udp://localhost:50000-50010`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>信令服务器:<sp/>`ws://localhost:8080`</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>DID<sp/>服务:<sp/>`http://localhost:9000`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>使用客户端<sp/>SDK</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>client_sdk<sp/>import<sp/>P2PClient</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>创建客户端</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>signaling_url=&quot;ws://localhost:8080&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_server=&quot;localhost:3478&quot;</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>注册设备</highlight></codeline>
+<codeline><highlight class="normal">await<sp/>client.register(device_id=&quot;device-001&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>连接到另一个设备</highlight></codeline>
+<codeline><highlight class="normal">connection<sp/>=<sp/>await<sp/>client.connect(target_device=&quot;device-002&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>发送数据</highlight></codeline>
+<codeline><highlight class="normal">await<sp/>connection.send(b&quot;Hello,<sp/>P2P!&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>接收数据</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>=<sp/>await<sp/>connection.receive()</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;Received:<sp/>{data}&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>关闭连接</highlight></codeline>
+<codeline><highlight class="normal">await<sp/>connection.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📦<sp/>安装方式</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>方式<sp/>1:<sp/>Docker<sp/>(推荐)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">docker-compose<sp/>up<sp/>-d</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>方式<sp/>2:<sp/>RPM<sp/>包<sp/>(CentOS/RHEL/Fedora)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>下载<sp/>RPM<sp/>包</highlight></codeline>
+<codeline><highlight class="normal">wget<sp/>https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform-1.0.0.rpm</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>rpm<sp/>-ivh<sp/>p2p-platform-1.0.0.rpm</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动服务</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-stun</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-relay</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-signaling</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-did</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>设置开机自启</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>enable<sp/>p2p-stun<sp/>p2p-relay<sp/>p2p-signaling<sp/>p2p-did</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>方式<sp/>3:<sp/>DEB<sp/>包<sp/>(Ubuntu/Debian)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>下载<sp/>DEB<sp/>包</highlight></codeline>
+<codeline><highlight class="normal">wget<sp/>https://github.com/your-org/p2p-platform/releases/download/v1.0.0/p2p-platform_1.0.0_amd64.deb</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>dpkg<sp/>-i<sp/>p2p-platform_1.0.0_amd64.deb</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-f<sp/><sp/>#<sp/>安装依赖</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动服务</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-stun</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-relay</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-signaling</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>systemctl<sp/>start<sp/>p2p-did</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>方式<sp/>4:<sp/>pip<sp/>安装<sp/>(仅客户端<sp/>SDK)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>p2p-platform-sdk</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>方式<sp/>5:<sp/>源码安装</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>克隆项目</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/your-org/p2p-platform.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>p2p-platform</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>安装依赖</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>-r<sp/>requirements.txt</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>启动服务<sp/>(需要分别启动各个服务)</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>stun-server/main.py<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>relay-server/main.py<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>signaling-server/main.py<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">python<sp/>did-service/main.py<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📚<sp/>文档</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>核心文档</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[架构设计](./docs/architecture.md)<sp/>-<sp/>系统架构和组件说明</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[API<sp/>规范](./docs/api-spec.md)<sp/>-<sp/>REST<sp/>API<sp/>和<sp/>WebSocket<sp/>接口</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[开发指南](./docs/development-guide.md)<sp/>-<sp/>开发环境搭建和贡献流程</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[测试指南](./docs/TESTING.md)<sp/>-<sp/>测试框架和测试用例</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[部署指南](./DEPLOYMENT.md)<sp/>-<sp/>生产环境部署步骤</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[运维手册](./OPERATIONS.md)<sp/>-<sp/>服务管理和故障排查</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>技术文档</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[libp2p<sp/>对比分析](./docs/libp2p-comparison-analysis.md)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[客户端<sp/>SDK<sp/>设计](./docs/CLIENT-SDK-DESIGN-PROPOSAL.md)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[性能优化报告](./docs/P2P-PLATFORM-OPTIMIZATION-FINAL-REPORT.md)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[项目完成报告](./docs/PROJECT-COMPLETION-REPORT.md)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>发布说明</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[CHANGELOG](./CHANGELOG.md)<sp/>-<sp/>版本变更历史</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[RELEASE<sp/>NOTES](./RELEASE_NOTES.md)<sp/>-<sp/>v1.0.0<sp/>发布说明</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🧪<sp/>测试</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>运行所有测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/<sp/>-v<sp/>--cov=p2p_engine<sp/>--cov-report=html</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行单元测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/unit/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行集成测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/integration/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行互操作性测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/interop/<sp/>-v</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>运行性能测试</highlight></codeline>
+<codeline><highlight class="normal">pytest<sp/>tests/benchmark/<sp/>-v<sp/>-m<sp/>benchmark</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>查看覆盖率报告</highlight></codeline>
+<codeline><highlight class="normal">open<sp/>htmlcov/index.html</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🛠️<sp/>配置</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>环境变量</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>STUN<sp/>服务器</highlight></codeline>
+<codeline><highlight class="normal">STUN_PORT=3478</highlight></codeline>
+<codeline><highlight class="normal">STUN_TCP_PORT=3479</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Relay<sp/>服务器</highlight></codeline>
+<codeline><highlight class="normal">RELAY_MIN_PORT=50000</highlight></codeline>
+<codeline><highlight class="normal">RELAY_MAX_PORT=50010</highlight></codeline>
+<codeline><highlight class="normal">RELAY_MAX_ALLOCATIONS=1000</highlight></codeline>
+<codeline><highlight class="normal">RELAY_ALLOCATION_LIFETIME=600</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>信令服务器</highlight></codeline>
+<codeline><highlight class="normal">SIGNALING_WS_PORT=8080</highlight></codeline>
+<codeline><highlight class="normal">SIGNALING_WSS_PORT=8443</highlight></codeline>
+<codeline><highlight class="normal">REDIS_URL=redis://localhost:6379</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>DID<sp/>服务</highlight></codeline>
+<codeline><highlight class="normal">DID_SERVICE_PORT=9000</highlight></codeline>
+<codeline><highlight class="normal">JWT_SECRET=your-secret-key-change-in-production</highlight></codeline>
+<codeline><highlight class="normal">JWT_EXPIRATION=3600</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>配置文件</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">详细配置请参考<sp/>[docker-compose.yml](./docker-compose.yml)<sp/>和各服务目录下的配置文件。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📊<sp/>性能指标</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>指标<sp/>|<sp/>目标<sp/>|<sp/>实际<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|------|------|------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>本地连接延迟<sp/>|<sp/>&lt;<sp/>100ms<sp/>|<sp/>~50ms<sp/>✅<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>远程连接延迟<sp/>|<sp/>&lt;<sp/>500ms<sp/>|<sp/>~200ms<sp/>✅<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>中继连接延迟<sp/>|<sp/>&lt;<sp/>1000ms<sp/>|<sp/>~500ms<sp/>✅<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>P2P<sp/>直连吞吐量<sp/>|<sp/>&gt;<sp/>100<sp/>Mbps<sp/>|<sp/>~150<sp/>Mbps<sp/>✅<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>中继吞吐量<sp/>|<sp/>&gt;<sp/>10<sp/>Mbps<sp/>|<sp/>~15<sp/>Mbps<sp/>✅<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>并发连接数<sp/>|<sp/>100+<sp/>|<sp/>500+<sp/>✅<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🤝<sp/>贡献指南</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">我们欢迎所有形式的贡献！</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>如何贡献</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1.<sp/>Fork<sp/>本项目</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>创建特性分支<sp/>(`git<sp/>checkout<sp/>-b<sp/>feature/AmazingFeature`)</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>提交更改<sp/>(`git<sp/>commit<sp/>-m<sp/>&apos;feat:<sp/>Add<sp/>some<sp/>AmazingFeature&apos;`)</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>推送到分支<sp/>(`git<sp/>push<sp/>origin<sp/>feature/AmazingFeature`)</highlight></codeline>
+<codeline><highlight class="normal">5.<sp/>开启<sp/>Pull<sp/>Request</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>提交规范</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">我们使用<sp/>[Conventional<sp/>Commits](https://www.conventionalcommits.org/)<sp/>规范：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`feat`:<sp/>新功能</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`fix`:<sp/>修复<sp/>bug</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`docs`:<sp/>文档更新</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`test`:<sp/>测试相关</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`refactor`:<sp/>代码重构</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`perf`:<sp/>性能优化</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`chore`:<sp/>构建/工具链更新</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>代码规范</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>Python<sp/>代码遵循<sp/>PEP<sp/>8</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>使用<sp/>`black`<sp/>格式化代码</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>使用<sp/>`mypy`<sp/>进行类型检查</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>测试覆盖率<sp/>≥<sp/>80%</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📄<sp/>许可证</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">本项目采用<sp/>MIT<sp/>许可证<sp/>-<sp/>详见<sp/>[LICENSE](LICENSE)<sp/>文件</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🙏<sp/>致谢</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">感谢以下项目和社区：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[libp2p](https://libp2p.io/)<sp/>-<sp/>模块化网络栈</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[WebRTC](https://webrtc.org/)<sp/>-<sp/>实时通信技术</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[aioquic](https://github.com/aiortc/aioquic)<sp/>-<sp/>Python<sp/>QUIC<sp/>实现</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[aiortc](https://github.com/aiortc/aiortc)<sp/>-<sp/>Python<sp/>WebRTC<sp/>实现</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📞<sp/>联系我们</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>问题反馈:<sp/>[GitHub<sp/>Issues](https://github.com/your-org/p2p-platform/issues)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>功能建议:<sp/>[GitHub<sp/>Discussions](https://github.com/your-org/p2p-platform/discussions)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>邮件:<sp/>support@your-org.com</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;div<sp/>align=&quot;center&quot;&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**[⬆<sp/>回到顶部](#p2p-platform)**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Made<sp/>with<sp/>❤️<sp/>by<sp/>P2P<sp/>Platform<sp/>Team</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;/div&gt;</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

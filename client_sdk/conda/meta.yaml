@@ -1,0 +1,61 @@
+{% set name = "p2p-sdk" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  entry_points:
+    - p2p-sdk = p2p_sdk.cli:main
+
+requirements:
+  host:
+    - python >=3.11
+    - pip
+    - hatchling
+  run:
+    - python >=3.11
+
+test:
+  imports:
+    - p2p_sdk
+    - p2p_sdk.client
+    - p2p_sdk.nat_detection
+    - p2p_sdk.protocol
+    - p2p_sdk.signaling
+    - p2p_sdk.transport
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/p2p-platform/python-sdk
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: P2P Platform Client SDK for Python
+  description: |
+    A Python SDK for P2P device communication with NAT traversal,
+    UDP hole punching, and automatic relay fallback.
+
+    Features:
+    - NAT Detection using STUN
+    - UDP Hole Punching for direct P2P connections
+    - Multi-Channel Support (control, data, video, audio)
+    - Automatic Relay Fallback
+    - Auto-Reconnection on network failures
+    - Event-Driven async/await API
+  doc_url: https://github.com/p2p-platform/python-sdk#readme
+  dev_url: https://github.com/p2p-platform/python-sdk
+
+extra:
+  recipe-maintainers:
+    - p2p-platform-team

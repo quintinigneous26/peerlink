@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter" kind="class" language="Python" prot="public">
+    <compoundname>src::did_service::rate_limiter::RateLimiter</compoundname>
+    <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1af78ef825e37cdc71a7837794144ca2f2" prot="protected" static="yes" mutable="no">
+        <type>Optional</type>
+        <definition>Optional src.did_service.rate_limiter.RateLimiter::_rate_limiter</definition>
+        <argsstring></argsstring>
+        <name>_rate_limiter</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter._rate_limiter</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="266" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="266" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a375a21e98f157a85902dc25c63f421fd" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>src.did_service.rate_limiter.RateLimiter::config</definition>
+        <argsstring></argsstring>
+        <name>config</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.config</qualifiedname>
+        <initializer>=  config or <ref refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limit_config" kindref="compound">RateLimitConfig</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="48" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a4019f6f69defbcc814284288beda0d58" compoundref="rate__limiter_8py" startline="93" endline="161">src.did_service.rate_limiter.RateLimiter.check_rate_limit</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a46aa7a38ee5c71f6d7a0f108dddd5147" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>src.did_service.rate_limiter.RateLimiter::default_limit</definition>
+        <argsstring></argsstring>
+        <name>default_limit</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.default_limit</qualifiedname>
+        <initializer>=  default_limit or <ref refid="classsrc_1_1bandwidth_1_1_bandwidth_limit" kindref="compound">BandwidthLimit</ref>(
+            read_bps=3_000_000,
+            burst_bps=6_000_000
+        )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="55" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a150e4d7ad5c0779d70e854e622a999ea" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>src.did_service.rate_limiter.RateLimiter::set_limit</definition>
+        <argsstring></argsstring>
+        <name>set_limit</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.set_limit</qualifiedname>
+        <initializer>=  allocation_id, limit)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="69" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="69" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a9c49df335c918ba3d7c6a9d2f64421c1" prot="protected" static="no" mutable="no">
+        <type>Dict[str, <ref refid="classsrc_1_1did__service_1_1rate__limiter_1_1_client_state" kindref="compound">ClientState</ref>]</type>
+        <definition>Dict[str, ClientState] src.did_service.rate_limiter.RateLimiter::_clients</definition>
+        <argsstring></argsstring>
+        <name>_clients</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter._clients</qualifiedname>
+        <initializer>=  defaultdict(<ref refid="classsrc_1_1did__service_1_1rate__limiter_1_1_client_state" kindref="compound">ClientState</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="49" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a4019f6f69defbcc814284288beda0d58" compoundref="rate__limiter_8py" startline="93" endline="161">src.did_service.rate_limiter.RateLimiter.check_rate_limit</referencedby>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a93e681a3a2ff99ea37bafdeb8e9edb02" compoundref="rate__limiter_8py" startline="237" endline="265">src.did_service.rate_limiter.RateLimiter.cleanup_stale_clients</referencedby>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1af34bfd91156c8d69c704658fbeb9da68" compoundref="rate__limiter_8py" startline="200" endline="221">src.did_service.rate_limiter.RateLimiter.get_client_stats</referencedby>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1aed94edf8ddf8fb25846b9d0da9c10160" compoundref="rate__limiter_8py" startline="222" endline="236">src.did_service.rate_limiter.RateLimiter.reset_client</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a7cae26943aed2847db8673432b1e4931" prot="protected" static="no" mutable="no">
+        <type><ref refid="classsrc_1_1bandwidth_1_1_token_bucket" kindref="compound">TokenBucket</ref>(</type>
+        <definition>TokenBucket( src.did_service.rate_limiter.RateLimiter::_global_read_bucket</definition>
+        <argsstring></argsstring>
+        <name>_global_read_bucket</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter._global_read_bucket</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="50" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a6fe2176c2d4575420617011c808eb39f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>src.did_service.rate_limiter.RateLimiter.__init__</definition>
+        <argsstring>(self, Optional[RateLimitConfig] config=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>config</declname>
+          <array>[RateLimitConfig]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Initialize rate limiter.
+
+Args:
+    config: Rate limit configuration
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="41" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="41" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a4019f6f69defbcc814284288beda0d58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple[bool, dict]</type>
+        <definition> tuple[bool, dict] src.did_service.rate_limiter.RateLimiter.check_rate_limit</definition>
+        <argsstring>(self, Request request)</argsstring>
+        <name>check_rate_limit</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.check_rate_limit</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Request</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Check if request is allowed under rate limits.
+
+Args:
+    request: FastAPI request object
+
+Returns:
+    Tuple of (allowed: bool, info: dict with limit details)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="93" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="93" bodyend="161"/>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a8731009ec5769a1e6f707335352f9a78" compoundref="rate__limiter_8py" startline="73" endline="77">src.did_service.rate_limiter.RateLimiter._cleanup_old_requests</references>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a9c49df335c918ba3d7c6a9d2f64421c1" compoundref="rate__limiter_8py" startline="49">src.did_service.rate_limiter.RateLimiter._clients</references>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a7212d2c7da40c8169d7fbc690ef59c44" compoundref="rate__limiter_8py" startline="78" endline="92">src.did_service.rate_limiter.RateLimiter._get_client_id</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake_1a9890452d8c28ed36f14438e3066d0855" compoundref="noise_8py" startline="367">p2p_engine.protocol.noise.NoiseHandshake.config</references>
+        <references refid="classp2p__engine_1_1protocol_1_1pubsub_1_1_gossip_sub_router_1a61f08cc352ae8d0d219398b04d586acc" compoundref="pubsub_8py" startline="510">p2p_engine.protocol.pubsub.GossipSubRouter.config</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_1a90c0ea0bd291cf423cb9d615611699bf" compoundref="tls_8py" startline="372">p2p_engine.protocol.tls.TLSSecurity.config</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1a7d8be3d7ac07644c9e8915bef67a8731" compoundref="tls_8py" startline="647">p2p_engine.protocol.tls.TLSSession.config</references>
+        <references refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a5108f3e37fbe88402be2b4c02090ec90" compoundref="client_8py" startline="180">p2p_sdk.client.P2PClient.config</references>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a375a21e98f157a85902dc25c63f421fd" compoundref="rate__limiter_8py" startline="48">src.did_service.rate_limiter.RateLimiter.config</references>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1ab43c8b3a73c3e7c31a83103bd6432a99" compoundref="rate__limiter_8py" startline="162" endline="199">src.did_service.rate_limiter.RateLimiter.middleware</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1ab43c8b3a73c3e7c31a83103bd6432a99" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>src.did_service.rate_limiter.RateLimiter.middleware</definition>
+        <argsstring>(self, Request request, call_next)</argsstring>
+        <name>middleware</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.middleware</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Request</type>
+          <declname>request</declname>
+        </param>
+        <param>
+          <type>call_next</type>
+          <defname>call_next</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>ASGI middleware for rate limiting.
+
+Args:
+    request: FastAPI request
+    call_next: Next middleware/handler
+
+Returns:
+    Response or raises HTTPException
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="162" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="162" bodyend="199"/>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a4019f6f69defbcc814284288beda0d58" compoundref="rate__limiter_8py" startline="93" endline="161">src.did_service.rate_limiter.RateLimiter.check_rate_limit</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1af34bfd91156c8d69c704658fbeb9da68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.did_service.rate_limiter.RateLimiter.get_client_stats</definition>
+        <argsstring>(self, Request request)</argsstring>
+        <name>get_client_stats</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.get_client_stats</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Request</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get rate limit stats for a client.
+
+Args:
+    request: FastAPI request
+
+Returns:
+    Dictionary with client stats
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="200" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="200" bodyend="221"/>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a9c49df335c918ba3d7c6a9d2f64421c1" compoundref="rate__limiter_8py" startline="49">src.did_service.rate_limiter.RateLimiter._clients</references>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a7212d2c7da40c8169d7fbc690ef59c44" compoundref="rate__limiter_8py" startline="78" endline="92">src.did_service.rate_limiter.RateLimiter._get_client_id</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1aed94edf8ddf8fb25846b9d0da9c10160" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.did_service.rate_limiter.RateLimiter.reset_client</definition>
+        <argsstring>(self, str client_id)</argsstring>
+        <name>reset_client</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.reset_client</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>client_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Reset rate limit state for a client.
+
+Args:
+    client_id: Client identifier
+
+Returns:
+    True if client was found and reset
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="222" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="222" bodyend="236"/>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a9c49df335c918ba3d7c6a9d2f64421c1" compoundref="rate__limiter_8py" startline="49">src.did_service.rate_limiter.RateLimiter._clients</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a93e681a3a2ff99ea37bafdeb8e9edb02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int src.did_service.rate_limiter.RateLimiter.cleanup_stale_clients</definition>
+        <argsstring>(self, int max_age_seconds=3600)</argsstring>
+        <name>cleanup_stale_clients</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter.cleanup_stale_clients</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_age_seconds</declname>
+          <defval>3600</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Remove clients with no recent activity.
+
+Args:
+    max_age_seconds: Maximum age of inactive clients
+
+Returns:
+    Number of clients removed
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="237" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="237" bodyend="265"/>
+        <references refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a9c49df335c918ba3d7c6a9d2f64421c1" compoundref="rate__limiter_8py" startline="49">src.did_service.rate_limiter.RateLimiter._clients</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a8731009ec5769a1e6f707335352f9a78" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>list</type>
+        <definition> list src.did_service.rate_limiter.RateLimiter._cleanup_old_requests</definition>
+        <argsstring>(self, list requests, float window_seconds)</argsstring>
+        <name>_cleanup_old_requests</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter._cleanup_old_requests</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>list</type>
+          <declname>requests</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>window_seconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Remove requests older than the window.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="73" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="73" bodyend="77"/>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a4019f6f69defbcc814284288beda0d58" compoundref="rate__limiter_8py" startline="93" endline="161">src.did_service.rate_limiter.RateLimiter.check_rate_limit</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a7212d2c7da40c8169d7fbc690ef59c44" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str src.did_service.rate_limiter.RateLimiter._get_client_id</definition>
+        <argsstring>(self, Request request)</argsstring>
+        <name>_get_client_id</name>
+        <qualifiedname>src.did_service.rate_limiter.RateLimiter._get_client_id</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Request</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get client identifier from request.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="did-service/src/did_service/rate_limiter.py" line="78" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="78" bodyend="92"/>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a4019f6f69defbcc814284288beda0d58" compoundref="rate__limiter_8py" startline="93" endline="161">src.did_service.rate_limiter.RateLimiter.check_rate_limit</referencedby>
+        <referencedby refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1af34bfd91156c8d69c704658fbeb9da68" compoundref="rate__limiter_8py" startline="200" endline="221">src.did_service.rate_limiter.RateLimiter.get_client_stats</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Sliding window rate limiter.
+
+Tracks requests per client (by IP or device_id) and enforces limits.
+</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>src.did_service.rate_limiter.RateLimiter</label>
+        <link refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>_clients</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>_global_read_bucket</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>src.bandwidth.TokenBucket</label>
+        <link refid="classsrc_1_1bandwidth_1_1_token_bucket"/>
+      </node>
+      <node id="2">
+        <label>src.did_service.rate_limiter.ClientState</label>
+        <link refid="classsrc_1_1did__service_1_1rate__limiter_1_1_client_state"/>
+      </node>
+    </collaborationgraph>
+    <location file="did-service/src/did_service/rate_limiter.py" line="34" column="1" bodyfile="did-service/src/did_service/rate_limiter.py" bodystart="34" bodyend="268"/>
+    <listofallmembers>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a6fe2176c2d4575420617011c808eb39f" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>__init__</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a8731009ec5769a1e6f707335352f9a78" prot="protected" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>_cleanup_old_requests</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a9c49df335c918ba3d7c6a9d2f64421c1" prot="protected" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>_clients</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a7212d2c7da40c8169d7fbc690ef59c44" prot="protected" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>_get_client_id</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a7cae26943aed2847db8673432b1e4931" prot="protected" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>_global_read_bucket</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1af78ef825e37cdc71a7837794144ca2f2" prot="protected" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>_rate_limiter</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a4019f6f69defbcc814284288beda0d58" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>check_rate_limit</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a93e681a3a2ff99ea37bafdeb8e9edb02" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>cleanup_stale_clients</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a375a21e98f157a85902dc25c63f421fd" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>config</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a46aa7a38ee5c71f6d7a0f108dddd5147" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>default_limit</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1af34bfd91156c8d69c704658fbeb9da68" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>get_client_stats</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1ab43c8b3a73c3e7c31a83103bd6432a99" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>middleware</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1aed94edf8ddf8fb25846b9d0da9c10160" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>reset_client</name></member>
+      <member refid="classsrc_1_1did__service_1_1rate__limiter_1_1_rate_limiter_1a150e4d7ad5c0779d70e854e622a999ea" prot="public" virt="non-virtual"><scope>src::did_service::rate_limiter::RateLimiter</scope><name>set_limit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,749 @@
+\doxysection{event.\+py}
+\hypertarget{event_8py_source}{}\label{event_8py_source}\index{p2p\_engine/event.py@{p2p\_engine/event.py}}
+\doxymbox{\hyperlink{event_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1event}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00002}00002\ \textcolor{stringliteral}{P2P事件总线系统}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00004}00004\ \textcolor{stringliteral}{提供增强的事件驱动架构，支持基于主题的事件订阅和异步事件处理。}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00005}00005\ \textcolor{stringliteral}{实现了发布-\/订阅模式，允许应用程序对P2P引擎的各类事件进行监听和响应。}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00006}00006\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00007}00007\ \textcolor{stringliteral}{主要特性:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00008}00008\ \textcolor{stringliteral}{\ \ \ \ -\/\ 主题分类：将事件按功能分类（连接、流、协议、网络等）}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00009}00009\ \textcolor{stringliteral}{\ \ \ \ -\/\ 异步处理：支持异步事件处理器}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00010}00010\ \textcolor{stringliteral}{\ \ \ \ -\/\ 灵活订阅：支持按主题或事件类型订阅}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00011}00011\ \textcolor{stringliteral}{\ \ \ \ -\/\ 线程安全：使用锁保证并发安全}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00012}00012\ \textcolor{stringliteral}{\ \ \ \ -\/\ 性能优化：支持事件过滤和优先级处理}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00013}00013\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00014}00014\ \textcolor{stringliteral}{使用示例:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00015}00015\ \textcolor{stringliteral}{\ \ \ \ \`{}\`{}\`{}python}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00016}00016\ \textcolor{stringliteral}{\ \ \ \ bus\ =\ EventBus()}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00017}00017\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00018}00018\ \textcolor{stringliteral}{\ \ \ \ async\ def\ on\_peer\_connected(event):}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00019}00019\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ print(f"{}对端已连接:\ \{event.data['peer\_id']\}"{})}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00020}00020\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00021}00021\ \textcolor{stringliteral}{\ \ \ \ bus.subscribe(EventTopic.CONNECTION,\ on\_peer\_connected)}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00022}00022\ \textcolor{stringliteral}{\ \ \ \ await\ bus.publish(EventTopic.CONNECTION,\ P2PEventType.PEER\_CONNECTED,\ \{...\})}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00023}00023\ \textcolor{stringliteral}{\ \ \ \ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00024}00024\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00025}00025\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00026}00026\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00027}00027\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00028}00028\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00029}00029\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ Enum}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00030}00030\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00031}00031\ \ \ \ \ Any,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00032}00032\ \ \ \ \ Callable,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00033}00033\ \ \ \ \ Optional,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00034}00034\ \ \ \ \ Awaitable,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00035}00035\ \ \ \ \ Dict,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00036}00036\ \ \ \ \ List,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00037}00037\ \ \ \ \ Set,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00038}00038\ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00039}00039\ \textcolor{keyword}{from}\ collections\ \textcolor{keyword}{import}\ defaultdict}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00040}00040\ \textcolor{keyword}{from}\ threading\ \textcolor{keyword}{import}\ Lock}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00041}00041\ \textcolor{keyword}{from}\ concurrent.futures\ \textcolor{keyword}{import}\ ThreadPoolExecutor}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00044}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a0c5b08f16610692281fd2b2abb313449}{00044}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.event"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00047}00047\ \textcolor{comment}{\#\ ====================\ Event\ Topics\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00049}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic}{00049}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic}{EventTopic}}(Enum):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00050}00050\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00051}00051\ \textcolor{stringliteral}{\ \ \ \ 事件主题枚举}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00052}00052\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00053}00053\ \textcolor{stringliteral}{\ \ \ \ 将P2P引擎中的事件按功能分类，便于应用程序进行选择性订阅。}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00054}00054\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00055}00055\ \textcolor{stringliteral}{\ \ \ \ 属性:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00056}00056\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ CONNECTION:\ 连接相关事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00057}00057\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 对端连接、断开、重连等}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00058}00058\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ STREAM:\ 流生命周期事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00059}00059\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 流创建、关闭、错误等}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00060}00060\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ PROTOCOL:\ 协议协商事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00061}00061\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 协议选择、升级、降级等}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ NETWORK:\ 网络检测事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00063}00063\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 网络变化、质量变化等}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00064}00064\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ RELAY:\ 中继相关事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 中继连接、断开、切换等}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ NAT:\ NAT检测事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00067}00067\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ NAT类型检测、穿透结果等}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ ERROR:\ 错误事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00069}00069\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 各类错误信息}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ METRIC:\ 指标和遥测事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 性能指标、统计数据等}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00072}00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ CUSTOM:\ 自定义事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00073}00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ -\/\ 应用程序定义的事件}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00074}00074\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00075}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_a1f1dd23562cec4b2783729e0d9c10039}{00075}}\ \ \ \ \ CONNECTION\ =\ \textcolor{stringliteral}{"{}connection"{}}\ \ \ \ \ \ \textcolor{comment}{\#\ Connection\ state\ changes}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00076}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_ad70eaf5a47537f2d7d3458e0e2ba0541}{00076}}\ \ \ \ \ STREAM\ =\ \textcolor{stringliteral}{"{}stream"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Stream\ lifecycle\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00077}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_a20a3cdfdbb29a62d537fa994c3614c4c}{00077}}\ \ \ \ \ PROTOCOL\ =\ \textcolor{stringliteral}{"{}protocol"{}}\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Protocol\ negotiation\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00078}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_acbb57e6c64464810c8321a8a102f836f}{00078}}\ \ \ \ \ NETWORK\ =\ \textcolor{stringliteral}{"{}network"{}}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Network\ detection\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00079}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_aacd774bfdb26085283eb43a27116c7c0}{00079}}\ \ \ \ \ RELAY\ =\ \textcolor{stringliteral}{"{}relay"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Relay-\/related\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00080}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_a6f85f93871b5bd1f7f308681599ef7da}{00080}}\ \ \ \ \ NAT\ =\ \textcolor{stringliteral}{"{}nat"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ NAT\ detection\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00081}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_a3c12fbe51ad82d013b6ae93bdc60537d}{00081}}\ \ \ \ \ ERROR\ =\ \textcolor{stringliteral}{"{}error"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Error\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00082}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_ae9d7d368d2751a4a666d0585d66ba0be}{00082}}\ \ \ \ \ METRIC\ =\ \textcolor{stringliteral}{"{}metric"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Metrics\ and\ telemetry}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00083}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_topic_a90bf36a4cf941bb07aaee262f734f91a}{00083}}\ \ \ \ \ CUSTOM\ =\ \textcolor{stringliteral}{"{}custom"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Custom\ user-\/defined\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00086}00086\ \textcolor{comment}{\#\ ====================\ Event\ Types\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00088}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{00088}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type}{P2PEventType}}(Enum):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00089}00089\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ P2P事件类型枚举}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00091}00091\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00092}00092\ \textcolor{stringliteral}{\ \ \ \ 定义各个主题下的具体事件类型，提供更细粒度的事件分类。}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00093}00093\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00094}00094\ \textcolor{stringliteral}{\ \ \ \ 连接事件:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00095}00095\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ PEER\_CONNECTED:\ 对端已连接}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00096}00096\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ PEER\_DISCONNECTED:\ 对端已断开连接}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00097}00097\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00098}00098\ \ \ \ \ \textcolor{comment}{\#\ Connection\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00099}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ac7a86b9bf50a6749fb3b7436c2961aee}{00099}}\ \ \ \ \ PEER\_CONNECTED\ =\ \textcolor{stringliteral}{"{}peer\_connected"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00100}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a3ac2299ce432ea80ad3fa449aff891b9}{00100}}\ \ \ \ \ PEER\_DISCONNECTED\ =\ \textcolor{stringliteral}{"{}peer\_disconnected"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00101}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_afdc5db4b05be89a12539996bb51bd689}{00101}}\ \ \ \ \ CONNECTION\_STATE\_CHANGED\ =\ \textcolor{stringliteral}{"{}connection\_state\_changed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00102}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ab11f730a7507013278adb52846266bd2}{00102}}\ \ \ \ \ CONNECTION\_FAILED\ =\ \textcolor{stringliteral}{"{}connection\_failed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00104}00104\ \ \ \ \ \textcolor{comment}{\#\ Stream\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00105}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ae24f3308c0fd2f3c2324ee799a9cac6a}{00105}}\ \ \ \ \ STREAM\_OPENED\ =\ \textcolor{stringliteral}{"{}stream\_opened"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00106}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a800068b78e14592133662aa9b02df1cb}{00106}}\ \ \ \ \ STREAM\_CLOSED\ =\ \textcolor{stringliteral}{"{}stream\_closed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00107}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ab677cb8a26b008436b12ec9d026f2b62}{00107}}\ \ \ \ \ STREAM\_DATA\ =\ \textcolor{stringliteral}{"{}stream\_data"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00108}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a3e0c209020540ac912d65e2a869f1890}{00108}}\ \ \ \ \ STREAM\_RESET\ =\ \textcolor{stringliteral}{"{}stream\_reset"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00110}00110\ \ \ \ \ \textcolor{comment}{\#\ Protocol\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00111}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a4aead329fd364dbcc23c821f4535bfa6}{00111}}\ \ \ \ \ PROTOCOL\_NEGOTIATED\ =\ \textcolor{stringliteral}{"{}protocol\_negotiated"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00112}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a2a493e21e243a75bd3b62032f19d4e5e}{00112}}\ \ \ \ \ PROTOCOL\_UNSUPPORTED\ =\ \textcolor{stringliteral}{"{}protocol\_unsupported"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00113}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a98f3cddb1cdbfe49ccd3495b7b57f0d7}{00113}}\ \ \ \ \ PROTOCOL\_ERROR\ =\ \textcolor{stringliteral}{"{}protocol\_error"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00115}00115\ \ \ \ \ \textcolor{comment}{\#\ Network\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00116}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ac7d9e6443fd6d9ecc7ba56a10d67dbac}{00116}}\ \ \ \ \ NETWORK\_CHANGED\ =\ \textcolor{stringliteral}{"{}network\_changed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00117}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a77f38297ac43d84ce1f8190b02063097}{00117}}\ \ \ \ \ INTERFACE\_UP\ =\ \textcolor{stringliteral}{"{}interface\_up"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00118}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_af1ecf23022106d81b6db73c6a208b717}{00118}}\ \ \ \ \ INTERFACE\_DOWN\ =\ \textcolor{stringliteral}{"{}interface\_down"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00119}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a5129c2dcb36271349746e953768e655e}{00119}}\ \ \ \ \ IP\_CHANGED\ =\ \textcolor{stringliteral}{"{}ip\_changed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00121}00121\ \ \ \ \ \textcolor{comment}{\#\ NAT\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00122}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a5b066246098d5b686e2484bbb66b5059}{00122}}\ \ \ \ \ NAT\_DETECTED\ =\ \textcolor{stringliteral}{"{}nat\_detected"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00123}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a1240b0b1d8182e02d3d85cf809940e23}{00123}}\ \ \ \ \ NAT\_TYPE\_CHANGED\ =\ \textcolor{stringliteral}{"{}nat\_type\_changed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00124}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a0d9b672e1a90e46053fa9349356f6221}{00124}}\ \ \ \ \ REACHABILITY\_CHANGED\ =\ \textcolor{stringliteral}{"{}reachability\_changed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00126}00126\ \ \ \ \ \textcolor{comment}{\#\ Relay\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00127}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ae6cd812a86c3b07ae0660b125f76bfea}{00127}}\ \ \ \ \ RELAY\_CONNECTED\ =\ \textcolor{stringliteral}{"{}relay\_connected"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00128}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a8f694440de6bfa5c17e59c7313b68a88}{00128}}\ \ \ \ \ RELAY\_DISCONNECTED\ =\ \textcolor{stringliteral}{"{}relay\_disconnected"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00129}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ad041794b9b1f96e1225f7fafe931327f}{00129}}\ \ \ \ \ RELAY\_CIRCUIT\_ESTABLISHED\ =\ \textcolor{stringliteral}{"{}relay\_circuit\_established"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00130}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_aa14a99264d919e092104b96665292463}{00130}}\ \ \ \ \ RELAY\_CIRCUIT\_FAILED\ =\ \textcolor{stringliteral}{"{}relay\_circuit\_failed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00132}00132\ \ \ \ \ \textcolor{comment}{\#\ Error\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00133}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a4e60551499020038571947904b62a0d9}{00133}}\ \ \ \ \ ERROR\_OCCURRED\ =\ \textcolor{stringliteral}{"{}error"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00134}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a2ec3a7029421cd6549553e886e185a21}{00134}}\ \ \ \ \ TIMEOUT\ =\ \textcolor{stringliteral}{"{}timeout"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00135}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a9128ed307ecdf3173fd2d6ba9bc5e013}{00135}}\ \ \ \ \ DIAL\_FAILED\ =\ \textcolor{stringliteral}{"{}dial\_failed"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00137}00137\ \ \ \ \ \textcolor{comment}{\#\ Metric\ events}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00138}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_ae51819f867e3b30718915e62faf24fd0}{00138}}\ \ \ \ \ METRIC\_RECORDED\ =\ \textcolor{stringliteral}{"{}metric\_recorded"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00139}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_type_a14bc7e15aeff30c52ac8c8851a626adb}{00139}}\ \ \ \ \ PERFORMANCE\_UPDATE\ =\ \textcolor{stringliteral}{"{}performance\_update"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00142}00142\ \textcolor{comment}{\#\ ====================\ Event\ Data\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00144}00144\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00145}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{00145}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00146}00146\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}P2P\ Event\ data\ structure"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00147}00147\ \ \ \ \ topic:\ EventTopic}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00148}00148\ \ \ \ \ event\_type:\ P2PEventType}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00149}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_a11a9d6efe433d237df275f18860af68e}{00149}}\ \ \ \ \ data:\ Dict[str,\ Any]\ =\ field(default\_factory=dict)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00150}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_a6acee643bf5247cb0676c24c99200535}{00150}}\ \ \ \ \ timestamp:\ float\ =\ field(default\_factory=time.time)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00151}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_ab85a1c04c0dc394a00da2111b4d5dc9e}{00151}}\ \ \ \ \ source:\ str\ =\ \textcolor{stringliteral}{"{}"{}}\ \ \textcolor{comment}{\#\ Source\ component\ identifier}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00152}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_ab66905caa7643faa9d4d86bdd88b0696}{00152}}\ \ \ \ \ peer\_id:\ Optional[str]\ =\ \textcolor{keywordtype}{None}\ \ \textcolor{comment}{\#\ Associated\ peer\ ID}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00153}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event_ab4e80a350fa130bd82e8bf592504ed94}{00153}}\ \ \ \ \ correlation\_id:\ Optional[str]\ =\ \textcolor{keywordtype}{None}\ \ \textcolor{comment}{\#\ For\ event\ correlation}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00156}00156\ \textcolor{comment}{\#\ ====================\ Event\ Handler\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00158}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a8abfb96482590cbc7969e1daf9d1794b}{00158}}\ EventHandler\ =\ Callable[[P2PEvent],\ Awaitable[\textcolor{keywordtype}{None}]]}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00159}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_af4b71177b2d56de87953207967a01345}{00159}}\ SyncEventHandler\ =\ Callable[[P2PEvent],\ \textcolor{keywordtype}{None}]}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00162}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber}{00162}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber}{EventSubscriber}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00163}00163\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Event\ subscriber\ with\ filtering\ options"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00165}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_ae121957385852ac4ccb6b35280ffb5ce}{00165}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_ae121957385852ac4ccb6b35280ffb5ce}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ handler:\ EventHandler,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ filter\_topics:\ Optional[Set[EventTopic]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ filter\_types:\ Optional[Set[P2PEventType]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ filter\_peer:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00171}00171\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00173}00173\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ event\ subscriber.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00174}00174\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00175}00175\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00176}00176\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ handler:\ Async\ event\ handler\ function}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00177}00177\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_topics:\ Optional\ topic\ filter\ (only\ these\ topics)}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00178}00178\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_types:\ Optional\ event\ type\ filter}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00179}00179\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_peer:\ Optional\ peer\ ID\ filter\ (only\ events\ for\ this\ peer)}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00180}00180\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00181}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a32d3cf9f1e384929f11094cc4a3f6b50}{00181}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a32d3cf9f1e384929f11094cc4a3f6b50}{handler}}\ =\ handler}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00182}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d}{00182}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d}{filter\_topics}}\ =\ filter\_topics}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00183}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a}{00183}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a}{filter\_types}}\ =\ filter\_types}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00184}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e}{00184}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e}{filter\_peer}}\ =\ filter\_peer}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00185}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a9ee76e64e072c5add2a1ac7acb1b235f}{00185}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a9ee76e64e072c5add2a1ac7acb1b235f}{\_id}}\ =\ id(self)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00187}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_ab0fd66293381171c0e9a09993e29241f}{00187}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_ab0fd66293381171c0e9a09993e29241f}{\_\_hash\_\_}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a9ee76e64e072c5add2a1ac7acb1b235f}{\_id}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00190}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a9f1105cc844b40f8296d08bf618003e3}{00190}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a9f1105cc844b40f8296d08bf618003e3}{matches}}(self,\ event:\ P2PEvent)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ this\ subscriber\ should\ receive\ the\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d}{filter\_topics}}\ \textcolor{keywordflow}{and}\ event.topic\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a373da08120022629e3712e24e70c7e0d}{filter\_topics}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a}{filter\_types}}\ \textcolor{keywordflow}{and}\ event.event\_type\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a61948169b02c15a1c38128fdbc18972a}{filter\_types}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00197}00197\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e}{filter\_peer}}\ \textcolor{keywordflow}{and}\ event.peer\_id\ !=\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber_a7dd3688ec7863068b794b8347356383e}{filter\_peer}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00204}00204\ \textcolor{comment}{\#\ ====================\ Event\ Bus\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00206}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{00206}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{EventBus}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00207}00207\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00208}00208\ \textcolor{stringliteral}{\ \ \ \ Async\ event\ bus\ for\ P2P\ engine.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00209}00209\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00210}00210\ \textcolor{stringliteral}{\ \ \ \ Provides\ topic-\/based\ event\ publishing\ and\ subscription\ with}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00211}00211\ \textcolor{stringliteral}{\ \ \ \ async\ handling\ and\ filtering\ capabilities.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00212}00212\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00214}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_adb1c3281eb9ffc9fbbf93a4fd4cb3726}{00214}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_adb1c3281eb9ffc9fbbf93a4fd4cb3726}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ max\_queue\_size:\ int\ =\ 1000,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00217}00217\ \ \ \ \ \ \ \ \ worker\_count:\ int\ =\ 2,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ enable\_metrics:\ bool\ =\ \textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00219}00219\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00221}00221\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ event\ bus.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00222}00222\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00223}00223\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00224}00224\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ max\_queue\_size:\ Maximum\ event\ queue\ size}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00225}00225\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ worker\_count:\ Number\ of\ event\ worker\ tasks}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00226}00226\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ enable\_metrics:\ Track\ event\ metrics}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00227}00227\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00228}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1810df77a2acf1495acaca56114523ab}{00228}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1810df77a2acf1495acaca56114523ab}{\_subscribers}}:\ Dict[EventTopic,\ List[EventSubscriber]]\ =\ defaultdict(list)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00229}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad877039387ad5fdada444654a175c320}{00229}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad877039387ad5fdada444654a175c320}{\_global\_subscribers}}:\ List[EventSubscriber]\ =\ []}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00231}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{00231}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}:\ Optional[asyncio.Queue]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00232}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_acfb5e47596134f56c2b43a12f2b39af7}{00232}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_acfb5e47596134f56c2b43a12f2b39af7}{\_max\_queue\_size}}\ =\ max\_queue\_size}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00233}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_adc0ff1cf390f40471ea404bdddb8d9be}{00233}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_adc0ff1cf390f40471ea404bdddb8d9be}{\_worker\_count}}\ =\ worker\_count}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00234}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a4d5105376ecd29a099d203ee0d55d506}{00234}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a4d5105376ecd29a099d203ee0d55d506}{\_enable\_metrics}}\ =\ enable\_metrics}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00236}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{00236}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00237}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a0014c2a840ccb0a478fd9b5d44287b1e}{00237}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a0014c2a840ccb0a478fd9b5d44287b1e}{\_workers}}:\ List[asyncio.Task]\ =\ []}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00238}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a04d2074044d4dcc46652b67d6a398e52}{00238}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a04d2074044d4dcc46652b67d6a398e52}{\_lock}}\ =\ Lock()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Metrics}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00241}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac9118ea8d10afc586d4054e5fed944f5}{00241}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac9118ea8d10afc586d4054e5fed944f5}{\_events\_published}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00242}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ae7eb13564ce6c1527e05c7cac71fd660}{00242}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ae7eb13564ce6c1527e05c7cac71fd660}{\_events\_processed}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00243}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a74b536c7831d84a537d0d7a33101d7c7}{00243}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a74b536c7831d84a537d0d7a33101d7c7}{\_events\_dropped}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00244}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad4d3e738bfec133ef57c42bf2ef56e3d}{00244}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad4d3e738bfec133ef57c42bf2ef56e3d}{\_handler\_errors}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00245}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1b012a8e5836dbaf68b621fcf34cb8c0}{00245}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1b012a8e5836dbaf68b621fcf34cb8c0}{\_start\_time}}:\ Optional[float]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Thread-\/safe\ sync\ wrapper\ support}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00248}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac736afb1e7b013444e736357be875dc9}{00248}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac736afb1e7b013444e736357be875dc9}{\_executor}}\ =\ Optional[ThreadPoolExecutor]}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00250}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a9fef818c584b9f0892430ac4d24fa566}{00250}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a9fef818c584b9f0892430ac4d24fa566}{start}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Start\ the\ event\ bus"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00255}00255\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}\ =\ asyncio.Queue(maxsize=self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_acfb5e47596134f56c2b43a12f2b39af7}{\_max\_queue\_size}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1b012a8e5836dbaf68b621fcf34cb8c0}{\_start\_time}}\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac736afb1e7b013444e736357be875dc9}{\_executor}}\ =\ ThreadPoolExecutor(max\_workers=2)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Start\ worker\ tasks}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_adc0ff1cf390f40471ea404bdddb8d9be}{\_worker\_count}}):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ worker\ =\ asyncio.create\_task(self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1737b2e9b51df710a22a4710717d9fa4}{\_worker}}(f\textcolor{stringliteral}{"{}worker-\/\{i\}"{}}))}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a0014c2a840ccb0a478fd9b5d44287b1e}{\_workers}}.append(worker)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00264}00264\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Event\ bus\ started\ with\ \{self.\_worker\_count\}\ workers"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00267}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a281ff504a0ac8f4ddcd980b37e616d9b}{00267}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a281ff504a0ac8f4ddcd980b37e616d9b}{stop}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stop\ the\ event\ bus"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Cancel\ workers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ worker\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a0014c2a840ccb0a478fd9b5d44287b1e}{\_workers}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ worker.cancel()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wait\ for\ workers\ to\ finish}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00279}00279\ \ \ \ \ \ \ \ \ await\ asyncio.gather(*self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a0014c2a840ccb0a478fd9b5d44287b1e}{\_workers}},\ return\_exceptions=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a0014c2a840ccb0a478fd9b5d44287b1e}{\_workers}}.clear()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Shutdown\ executor}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac736afb1e7b013444e736357be875dc9}{\_executor}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac736afb1e7b013444e736357be875dc9}{\_executor}}.shutdown(wait=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Event\ bus\ stopped"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00288}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a7e504885c383b7ef6e8128506aed710d}{00288}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a7e504885c383b7ef6e8128506aed710d}{subscribe}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ topic:\ EventTopic,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ handler:\ EventHandler,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ filter\_types:\ Optional[Set[P2PEventType]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ filter\_peer:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00294}00294\ \ \ \ \ )\ -\/>\ EventSubscriber:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00296}00296\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Subscribe\ to\ events\ on\ a\ topic.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00297}00297\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00298}00298\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00299}00299\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ topic:\ Event\ topic\ to\ subscribe\ to}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00300}00300\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ handler:\ Async\ event\ handler\ function}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00301}00301\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_types:\ Optional\ event\ type\ filter}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00302}00302\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_peer:\ Optional\ peer\ ID\ filter}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00303}00303\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00304}00304\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00305}00305\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ EventSubscriber\ that\ can\ be\ used\ to\ unsubscribe}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00306}00306\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ subscriber\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber}{EventSubscriber}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ handler=handler,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ filter\_topics=\{topic\},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ filter\_types=filter\_types,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ filter\_peer=filter\_peer,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00313}00313\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a04d2074044d4dcc46652b67d6a398e52}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1810df77a2acf1495acaca56114523ab}{\_subscribers}}[topic].append(subscriber)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00316}00316\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Subscribed\ to\ topic:\ \{topic.value\}"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ subscriber}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00320}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a4aec13cdbd91301cf0b2cdc205f00061}{00320}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a4aec13cdbd91301cf0b2cdc205f00061}{subscribe\_all}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ handler:\ EventHandler,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ filter\_topics:\ Optional[Set[EventTopic]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ filter\_types:\ Optional[Set[P2PEventType]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ filter\_peer:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00326}00326\ \ \ \ \ )\ -\/>\ EventSubscriber:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00328}00328\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Subscribe\ to\ all\ events\ (or\ filtered\ topics).}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00329}00329\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00330}00330\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00331}00331\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ handler:\ Async\ event\ handler\ function}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00332}00332\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_topics:\ Optional\ topic\ filter\ (default:\ all\ topics)}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00333}00333\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_types:\ Optional\ event\ type\ filter}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00334}00334\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ filter\_peer:\ Optional\ peer\ ID\ filter}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00335}00335\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00336}00336\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00337}00337\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ EventSubscriber\ that\ can\ be\ used\ to\ unsubscribe}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00338}00338\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ subscriber\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_subscriber}{EventSubscriber}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ handler=handler,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ filter\_topics=filter\_topics,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ filter\_types=filter\_types,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ filter\_peer=filter\_peer,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00345}00345\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a04d2074044d4dcc46652b67d6a398e52}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad877039387ad5fdada444654a175c320}{\_global\_subscribers}}.append(subscriber)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ logger.debug(\textcolor{stringliteral}{"{}Subscribed\ to\ all\ topics"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ subscriber}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00352}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a4a979464d0408aca15a16192f96b8253}{00352}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a4a979464d0408aca15a16192f96b8253}{unsubscribe}}(self,\ subscriber:\ EventSubscriber)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00354}00354\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Unsubscribe\ a\ subscriber.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00355}00355\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00356}00356\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00357}00357\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ subscriber:\ The\ subscriber\ to\ remove}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00358}00358\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00359}00359\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00360}00360\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ subscriber\ was\ found\ and\ removed}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00361}00361\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a04d2074044d4dcc46652b67d6a398e52}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Remove\ from\ topic-\/specific\ subscribers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ topic,\ subs\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1810df77a2acf1495acaca56114523ab}{\_subscribers}}.items():}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ subscriber\ \textcolor{keywordflow}{in}\ subs:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subs.remove(subscriber)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Unsubscribed\ from\ topic:\ \{topic.value\}"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Remove\ from\ global\ subscribers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ subscriber\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad877039387ad5fdada444654a175c320}{\_global\_subscribers}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad877039387ad5fdada444654a175c320}{\_global\_subscribers}}.remove(subscriber)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(\textcolor{stringliteral}{"{}Unsubscribed\ from\ all\ topics"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00375}00375\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00377}00377\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00378}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a40612239b2a62244b4da8738c22848fd}{00378}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a40612239b2a62244b4da8738c22848fd}{publish}}(self,\ event:\ P2PEvent)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00379}00379\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00380}00380\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Publish\ an\ event.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00381}00381\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00382}00382\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00383}00383\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ event:\ The\ event\ to\ publish}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00384}00384\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00385}00385\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00386}00386\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ event\ was\ queued,\ False\ if\ queue\ is\ full}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00387}00387\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(\textcolor{stringliteral}{"{}Event\ bus\ not\ running,\ event\ dropped"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}.put\_nowait(event)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac9118ea8d10afc586d4054e5fed944f5}{\_events\_published}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.QueueFull:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a74b536c7831d84a537d0d7a33101d7c7}{\_events\_dropped}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}Event\ queue\ full,\ dropping\ event:\ \{event.event\_type.value\}"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00400}00400\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00401}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a995992b03444529fcf3c6a99dbdbff91}{00401}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a995992b03444529fcf3c6a99dbdbff91}{publish\_sync}}(self,\ event:\ P2PEvent)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00402}00402\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00403}00403\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Publish\ an\ event\ and\ wait\ for\ it\ to\ be\ queued.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00404}00404\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00405}00405\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00406}00406\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ event:\ The\ event\ to\ publish}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00407}00407\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(\textcolor{stringliteral}{"{}Event\ bus\ not\ running,\ event\ dropped"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}.put(event)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac9118ea8d10afc586d4054e5fed944f5}{\_events\_published}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00414}00414\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00415}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a77d48873919d56987312a46aef084d0a}{00415}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a77d48873919d56987312a46aef084d0a}{publish\_nowait}}(self,\ event:\ P2PEvent)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00416}00416\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00417}00417\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Publish\ an\ event\ without\ waiting\ (non-\/async).}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00418}00418\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00419}00419\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Useful\ for\ publishing\ from\ sync\ contexts.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00420}00420\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00421}00421\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00422}00422\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ event:\ The\ event\ to\ publish}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00423}00423\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00424}00424\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00425}00425\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ True\ if\ event\ was\ queued,\ False\ otherwise}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00426}00426\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}\ \textcolor{keywordflow}{or}\ \textcolor{keywordflow}{not}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}.put\_nowait(event)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac9118ea8d10afc586d4054e5fed944f5}{\_events\_published}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.QueueFull:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a74b536c7831d84a537d0d7a33101d7c7}{\_events\_dropped}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00437}00437\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00438}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1737b2e9b51df710a22a4710717d9fa4}{00438}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1737b2e9b51df710a22a4710717d9fa4}{\_worker}}(self,\ name:\ str)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Event\ worker\ task"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Event\ worker\ \{name\}\ started"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ event\ =\ await\ asyncio.wait\_for(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}.get(),}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeout=1.0,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00448}00448\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_abcfa09ab27ddc8e03e7bb564ccc2d8d4}{\_process\_event}}(event)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ae7eb13564ce6c1527e05c7cac71fd660}{\_events\_processed}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.CancelledError:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Worker\ \{name\}\ error:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad4d3e738bfec133ef57c42bf2ef56e3d}{\_handler\_errors}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Event\ worker\ \{name\}\ stopped"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00461}00461\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00462}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_abcfa09ab27ddc8e03e7bb564ccc2d8d4}{00462}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_abcfa09ab27ddc8e03e7bb564ccc2d8d4}{\_process\_event}}(self,\ event:\ P2PEvent)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Process\ a\ single\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Get\ matching\ subscribers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00465}00465\ \ \ \ \ \ \ \ \ matching\_subscribers\ =\ []}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00466}00466\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00467}00467\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a04d2074044d4dcc46652b67d6a398e52}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Topic-\/specific\ subscribers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ subscriber\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1810df77a2acf1495acaca56114523ab}{\_subscribers}}.get(event.topic,\ []):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ subscriber.matches(event):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matching\_subscribers.append(subscriber)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Global\ subscribers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ subscriber\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad877039387ad5fdada444654a175c320}{\_global\_subscribers}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ subscriber.matches(event):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ matching\_subscribers.append(subscriber)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00477}00477\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Notify\ all\ matching\ subscribers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ matching\_subscribers:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ tasks\ =\ []}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ subscriber\ \textcolor{keywordflow}{in}\ matching\_subscribers:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task\ =\ asyncio.create\_task(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_aea4ec218ec804b3fec76638bc13ff260}{\_call\_handler}}(subscriber.handler,\ event),}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name=f\textcolor{stringliteral}{"{}handler-\/\{subscriber.\_id\}"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tasks.append(task)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00487}00487\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Wait\ for\ all\ handlers\ with\ timeout}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ tasks:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncio.gather(*tasks,\ return\_exceptions=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00491}00491\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00492}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_aea4ec218ec804b3fec76638bc13ff260}{00492}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_aea4ec218ec804b3fec76638bc13ff260}{\_call\_handler}}(self,\ handler:\ EventHandler,\ event:\ P2PEvent)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00493}00493\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Call\ an\ event\ handler\ with\ error\ handling"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00494}00494\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ await\ handler(event)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00496}00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}Event\ handler\ error\ for\ \{event.event\_type.value\}:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad4d3e738bfec133ef57c42bf2ef56e3d}{\_handler\_errors}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00499}00499\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00500}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a97d8ddc36b9314dfc5dc1ca86fa11cb3}{00500}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a97d8ddc36b9314dfc5dc1ca86fa11cb3}{get\_metrics}}(self)\ -\/>\ Dict[str,\ Any]:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00501}00501\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ event\ bus\ metrics"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00502}00502\ \ \ \ \ \ \ \ \ uptime\ =\ time.time()\ -\/\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1b012a8e5836dbaf68b621fcf34cb8c0}{\_start\_time}}\ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1b012a8e5836dbaf68b621fcf34cb8c0}{\_start\_time}}\ \textcolor{keywordflow}{else}\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00503}00503\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00504}00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}uptime\_seconds"{}}:\ uptime,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}events\_published"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac9118ea8d10afc586d4054e5fed944f5}{\_events\_published}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}events\_processed"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ae7eb13564ce6c1527e05c7cac71fd660}{\_events\_processed}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}events\_dropped"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a74b536c7831d84a537d0d7a33101d7c7}{\_events\_dropped}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}handler\_errors"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad4d3e738bfec133ef57c42bf2ef56e3d}{\_handler\_errors}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}queue\_size"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}.qsize()\ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5df0309ab63f9fd6f6e7e6f6bf5726ee}{\_queue}}\ \textcolor{keywordflow}{else}\ 0,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}max\_queue\_size"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_acfb5e47596134f56c2b43a12f2b39af7}{\_max\_queue\_size}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}subscribers"{}}:\ sum(len(subs)\ \textcolor{keywordflow}{for}\ subs\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a1810df77a2acf1495acaca56114523ab}{\_subscribers}}.values())\ +\ len(self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad877039387ad5fdada444654a175c320}{\_global\_subscribers}}),}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}running"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_af36d23d216579918560d6edbd1905aab}{\_running}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00515}00515\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00516}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5e6c5dd6717436c96a04586addacfc93}{00516}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a5e6c5dd6717436c96a04586addacfc93}{reset\_metrics}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00517}00517\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Reset\ event\ metrics"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00518}00518\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a04d2074044d4dcc46652b67d6a398e52}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ac9118ea8d10afc586d4054e5fed944f5}{\_events\_published}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ae7eb13564ce6c1527e05c7cac71fd660}{\_events\_processed}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_a74b536c7831d84a537d0d7a33101d7c7}{\_events\_dropped}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus_ad4d3e738bfec133ef57c42bf2ef56e3d}{\_handler\_errors}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00523}00523\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00524}00524\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00525}00525\ \textcolor{comment}{\#\ ====================\ Event\ Builders\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00526}00526\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00527}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder}{00527}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder}{EventBuilder}}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00528}00528\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Helper\ class\ to\ build\ common\ P2P\ events"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00529}00529\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00530}00530\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00531}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_a2e12033e67466004ba29aa4c15505584}{00531}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_a2e12033e67466004ba29aa4c15505584}{connection\_event}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00532}00532\ \ \ \ \ \ \ \ \ event\_type:\ P2PEventType,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00533}00533\ \ \ \ \ \ \ \ \ peer\_id:\ str,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00534}00534\ \ \ \ \ \ \ \ \ connection\_type:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00535}00535\ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00536}00536\ \ \ \ \ )\ -\/>\ P2PEvent:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00537}00537\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Build\ a\ connection-\/related\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00538}00538\ \ \ \ \ \ \ \ \ data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}peer\_id"{}}:\ peer\_id,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}connection\_type"{}}:\ connection\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00543}00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ topic=EventTopic.CONNECTION,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ event\_type=event\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ data=data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=peer\_id,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00548}00548\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00549}00549\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00550}00550\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00551}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_ac6ffb1c568bb247d27eda6d643e2afe2}{00551}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_ac6ffb1c568bb247d27eda6d643e2afe2}{stream\_event}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00552}00552\ \ \ \ \ \ \ \ \ event\_type:\ P2PEventType,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00553}00553\ \ \ \ \ \ \ \ \ peer\_id:\ str,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00554}00554\ \ \ \ \ \ \ \ \ stream\_id:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00555}00555\ \ \ \ \ \ \ \ \ protocol:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00556}00556\ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00557}00557\ \ \ \ \ )\ -\/>\ P2PEvent:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00558}00558\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Build\ a\ stream-\/related\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00559}00559\ \ \ \ \ \ \ \ \ data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}stream\_id"{}}:\ stream\_id,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}protocol"{}}:\ protocol,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00563}00563\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00564}00564\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ topic=EventTopic.STREAM,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ event\_type=event\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ data=data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=peer\_id,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00569}00569\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00570}00570\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00571}00571\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00572}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_a9838a39b6d56c433c9b379c9e6c19ef9}{00572}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_a9838a39b6d56c433c9b379c9e6c19ef9}{protocol\_event}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00573}00573\ \ \ \ \ \ \ \ \ event\_type:\ P2PEventType,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00574}00574\ \ \ \ \ \ \ \ \ peer\_id:\ str,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00575}00575\ \ \ \ \ \ \ \ \ protocol:\ str,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00576}00576\ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00577}00577\ \ \ \ \ )\ -\/>\ P2PEvent:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00578}00578\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Build\ a\ protocol-\/related\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00579}00579\ \ \ \ \ \ \ \ \ data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}protocol"{}}:\ protocol,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00582}00582\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00583}00583\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ topic=EventTopic.PROTOCOL,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ event\_type=event\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ data=data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=peer\_id,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00588}00588\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00589}00589\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00590}00590\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00591}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_abd3a21781b9a46fd9b2df61279d1d76a}{00591}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_abd3a21781b9a46fd9b2df61279d1d76a}{nat\_event}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00592}00592\ \ \ \ \ \ \ \ \ event\_type:\ P2PEventType,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00593}00593\ \ \ \ \ \ \ \ \ nat\_type:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00594}00594\ \ \ \ \ \ \ \ \ public\_ip:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00595}00595\ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00596}00596\ \ \ \ \ )\ -\/>\ P2PEvent:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00597}00597\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Build\ a\ NAT-\/related\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00598}00598\ \ \ \ \ \ \ \ \ data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}nat\_type"{}}:\ nat\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}public\_ip"{}}:\ public\_ip,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00602}00602\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00603}00603\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ topic=EventTopic.NAT,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00605}00605\ \ \ \ \ \ \ \ \ \ \ \ \ event\_type=event\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ data=data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00607}00607\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00608}00608\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00609}00609\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00610}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_aa39753419b4f6d6483570e807ff217b0}{00610}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_aa39753419b4f6d6483570e807ff217b0}{relay\_event}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00611}00611\ \ \ \ \ \ \ \ \ event\_type:\ P2PEventType,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00612}00612\ \ \ \ \ \ \ \ \ peer\_id:\ str,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00613}00613\ \ \ \ \ \ \ \ \ relay\_peer:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00614}00614\ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00615}00615\ \ \ \ \ )\ -\/>\ P2PEvent:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00616}00616\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Build\ a\ relay-\/related\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00617}00617\ \ \ \ \ \ \ \ \ data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}relay\_peer"{}}:\ relay\_peer,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00620}00620\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00621}00621\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ topic=EventTopic.RELAY,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ event\_type=event\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00624}00624\ \ \ \ \ \ \ \ \ \ \ \ \ data=data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=peer\_id,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00626}00626\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00627}00627\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00628}00628\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00629}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_abeb25f516dd3b32600ee3bd0d27776bd}{00629}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_abeb25f516dd3b32600ee3bd0d27776bd}{error\_event}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00630}00630\ \ \ \ \ \ \ \ \ error:\ Exception,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00631}00631\ \ \ \ \ \ \ \ \ source:\ str\ =\ \textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00632}00632\ \ \ \ \ \ \ \ \ peer\_id:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00633}00633\ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00634}00634\ \ \ \ \ )\ -\/>\ P2PEvent:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00635}00635\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Build\ an\ error\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00636}00636\ \ \ \ \ \ \ \ \ data\ =\ \{}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00637}00637\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}error\_type"{}}:\ type(error).\_\_name\_\_,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00638}00638\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}error\_message"{}}:\ str(error),}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00639}00639\ \ \ \ \ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00640}00640\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00641}00641\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ topic=EventTopic.ERROR,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00643}00643\ \ \ \ \ \ \ \ \ \ \ \ \ event\_type=P2PEventType.ERROR\_OCCURRED,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \ \ data=data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00645}00645\ \ \ \ \ \ \ \ \ \ \ \ \ source=source,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00646}00646\ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=peer\_id,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00647}00647\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00648}00648\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00649}00649\ \ \ \ \ \textcolor{preprocessor}{@staticmethod}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00650}\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_ab42bee016a1df414a65c6e0d796ca75c}{00650}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_builder_ab42bee016a1df414a65c6e0d796ca75c}{network\_event}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00651}00651\ \ \ \ \ \ \ \ \ event\_type:\ P2PEventType,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00652}00652\ \ \ \ \ \ \ \ \ **extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00653}00653\ \ \ \ \ )\ -\/>\ P2PEvent:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00654}00654\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Build\ a\ network-\/related\ event"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00655}00655\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_p2_p_event}{P2PEvent}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00656}00656\ \ \ \ \ \ \ \ \ \ \ \ \ topic=EventTopic.NETWORK,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00657}00657\ \ \ \ \ \ \ \ \ \ \ \ \ event\_type=event\_type,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00658}00658\ \ \ \ \ \ \ \ \ \ \ \ \ data=extra\_data,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00659}00659\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00660}00660\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00661}00661\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00662}00662\ \textcolor{comment}{\#\ ====================\ Convenience\ Decorators\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00663}00663\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00664}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a2d6b4ac168ff49dc91461c205770c02e}{00664}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a2d6b4ac168ff49dc91461c205770c02e}{subscribe\_to}}(}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00665}00665\ \ \ \ \ topic:\ EventTopic,}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00666}00666\ \ \ \ \ event\_types:\ Optional[Set[P2PEventType]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00667}00667\ \ \ \ \ event\_bus:\ Optional[EventBus]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00668}00668\ ):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00669}00669\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00670}00670\ \textcolor{stringliteral}{\ \ \ \ Decorator\ to\ subscribe\ a\ function\ to\ events.}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00671}00671\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00672}00672\ \textcolor{stringliteral}{\ \ \ \ Usage:}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00673}00673\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ @subscribe\_to(EventTopic.CONNECTION)}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00674}00674\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ async\ def\ on\_connection(event:\ P2PEvent):}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00675}00675\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ logger.info(f"{}Connection\ event:\ \{event.event\_type\}"{})}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00676}00676\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00677}00677\ \ \ \ \ \textcolor{keyword}{def\ }decorator(func:\ EventHandler):}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00678}00678\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ If\ event\_bus\ provided,\ subscribe\ immediately}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00679}00679\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ event\_bus\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00680}00680\ \ \ \ \ \ \ \ \ \ \ \ \ event\_bus.subscribe(topic,\ func,\ event\_types)}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00681}00681\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00682}00682\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Store\ for\ later\ subscription}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00683}00683\ \ \ \ \ \ \ \ \ func.\_event\_topic\ =\ topic}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00684}00684\ \ \ \ \ \ \ \ \ func.\_event\_types\ =\ event\_types}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00685}00685\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ func}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00686}00686\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00687}00687\ \ \ \ \ \textcolor{keywordflow}{return}\ decorator}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00688}00688\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00689}00689\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00690}00690\ \textcolor{comment}{\#\ ====================\ Global\ Event\ Bus\ ====================}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00691}00691\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00692}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a5b56516e942e95579ac476594e8c76ab}{00692}}\ \_global\_event\_bus:\ Optional[EventBus]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00693}00693\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00694}00694\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00695}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a1b16e64df7eea45a166ebe528b4795f2}{00695}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a1b16e64df7eea45a166ebe528b4795f2}{get\_global\_event\_bus}}()\ -\/>\ EventBus:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00696}00696\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ or\ create\ the\ global\ event\ bus"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00697}00697\ \ \ \ \ \textcolor{keyword}{global}\ \_global\_event\_bus}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00698}00698\ \ \ \ \ \textcolor{keywordflow}{if}\ \_global\_event\_bus\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00699}00699\ \ \ \ \ \ \ \ \ \_global\_event\_bus\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1event_1_1_event_bus}{EventBus}}()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00700}00700\ \ \ \ \ \textcolor{keywordflow}{return}\ \_global\_event\_bus}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00701}00701\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00702}00702\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00703}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a8a8c437a5c644de610a610446dccd6e2}{00703}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a8a8c437a5c644de610a610446dccd6e2}{start\_global\_event\_bus}}()\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00704}00704\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Start\ the\ global\ event\ bus"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00705}00705\ \ \ \ \ bus\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1event_a1b16e64df7eea45a166ebe528b4795f2}{get\_global\_event\_bus}}()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00706}00706\ \ \ \ \ await\ bus.start()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00707}00707\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00708}00708\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00709}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_ab94044c152245f2cf6c65c6273156cfa}{00709}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1event_ab94044c152245f2cf6c65c6273156cfa}{stop\_global\_event\_bus}}()\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00710}00710\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Stop\ the\ global\ event\ bus"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00711}00711\ \ \ \ \ \textcolor{keyword}{global}\ \_global\_event\_bus}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00712}00712\ \ \ \ \ \textcolor{keywordflow}{if}\ \_global\_event\_bus\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00713}00713\ \ \ \ \ \ \ \ \ await\ \_global\_event\_bus.stop()}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00714}00714\ \ \ \ \ \ \ \ \ \_global\_event\_bus\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00715}00715\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00716}00716\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00717}\doxymbox{\hyperlink{namespacep2p__engine_1_1event_a22e5953de5590a19fdcfa9d2e5e5e8ec}{00717}}\ \_\_all\_\_\ =\ [}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00718}00718\ \ \ \ \ \textcolor{comment}{\#\ Topics\ and\ types}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00719}00719\ \ \ \ \ \textcolor{stringliteral}{"{}EventTopic"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00720}00720\ \ \ \ \ \textcolor{stringliteral}{"{}P2PEventType"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00721}00721\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00722}00722\ \ \ \ \ \textcolor{comment}{\#\ Event\ data}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00723}00723\ \ \ \ \ \textcolor{stringliteral}{"{}P2PEvent"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00724}00724\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00725}00725\ \ \ \ \ \textcolor{comment}{\#\ Event\ handlers}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00726}00726\ \ \ \ \ \textcolor{stringliteral}{"{}EventHandler"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00727}00727\ \ \ \ \ \textcolor{stringliteral}{"{}SyncEventHandler"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00728}00728\ \ \ \ \ \textcolor{stringliteral}{"{}EventSubscriber"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00729}00729\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00730}00730\ \ \ \ \ \textcolor{comment}{\#\ Event\ bus}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00731}00731\ \ \ \ \ \textcolor{stringliteral}{"{}EventBus"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00732}00732\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00733}00733\ \ \ \ \ \textcolor{comment}{\#\ Event\ builder}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00734}00734\ \ \ \ \ \textcolor{stringliteral}{"{}EventBuilder"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00735}00735\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00736}00736\ \ \ \ \ \textcolor{comment}{\#\ Decorators}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00737}00737\ \ \ \ \ \textcolor{stringliteral}{"{}subscribe\_to"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00738}00738\ }
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00739}00739\ \ \ \ \ \textcolor{comment}{\#\ Global\ event\ bus}}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00740}00740\ \ \ \ \ \textcolor{stringliteral}{"{}get\_global\_event\_bus"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00741}00741\ \ \ \ \ \textcolor{stringliteral}{"{}start\_global\_event\_bus"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00742}00742\ \ \ \ \ \textcolor{stringliteral}{"{}stop\_global\_event\_bus"{}},}
+\DoxyCodeLine{\Hypertarget{event_8py_source_l00743}00743\ ]}
+
+\end{DoxyCode}

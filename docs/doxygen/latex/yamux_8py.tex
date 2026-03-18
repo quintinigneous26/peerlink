@@ -1,0 +1,71 @@
+\doxysection{p2p\+\_\+engine/\+muxer/\+yamux.py 文件参考}
+\hypertarget{yamux_8py}{}\label{yamux_8py}\index{p2p\_engine/muxer/yamux.py@{p2p\_engine/muxer/yamux.py}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_frame_type}{p2p\+\_\+engine.\+muxer.\+yamux.\+Frame\+Type}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_frame_flag}{p2p\+\_\+engine.\+muxer.\+yamux.\+Frame\+Flag}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_go_away_code}{p2p\+\_\+engine.\+muxer.\+yamux.\+Go\+Away\+Code}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_stream_state}{p2p\+\_\+engine.\+muxer.\+yamux.\+Stream\+State}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Frame}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Config}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_error}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_protocol_error}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Protocol\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_closed_error}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Closed\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_reset}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream\+Reset}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_closed}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream\+Closed}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_window_exceeded}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Window\+Exceeded}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{命名空间}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespacep2p__engine}{p2p\+\_\+engine}}
+\item 
+namespace \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer}{p2p\+\_\+engine.\+muxer}}
+\item 
+namespace \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux}{p2p\+\_\+engine.\+muxer.\+yamux}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a55f051d8971b4485dbcb301bb55270ee}{p2p\+\_\+engine.\+muxer.\+yamux.\+logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+muxer.\+yamux"{})
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_acfffa5ab4d0e2451d9b003d4c635bda8}{p2p\+\_\+engine.\+muxer.\+yamux.\+PROTOCOL\+\_\+\+STRING}} = "{}/\+yamux/\+1.\+0.\+0"{}
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a1c6f1382fb299afda0b59585a0c9b3a8}{p2p\+\_\+engine.\+muxer.\+yamux.\+VERSION}} = 0
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a76cad4f8f1a9e5c322dac88582ad5390}{p2p\+\_\+engine.\+muxer.\+yamux.\+HEADER\+\_\+\+SIZE}} = 12
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a35ab25877ab19a0b90aa06ac5892e73d}{p2p\+\_\+engine.\+muxer.\+yamux.\+DEFAULT\+\_\+\+WINDOW\+\_\+\+SIZE}} = 256 \texorpdfstring{$\ast$}{*} 1024
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_aebf2e1382d21777d405af9ea324921e0}{p2p\+\_\+engine.\+muxer.\+yamux.\+MAX\+\_\+\+WINDOW\+\_\+\+SIZE}} = 16 \texorpdfstring{$\ast$}{*} 1024 \texorpdfstring{$\ast$}{*} 1024
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a4184bfc8ad9eb80d04b1e7b5668e455b}{p2p\+\_\+engine.\+muxer.\+yamux.\+INITIAL\+\_\+\+CLIENT\+\_\+\+STREAM\+\_\+\+ID}} = 1
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a31b1ec1f75eaa4de6de3542f774161ab}{p2p\+\_\+engine.\+muxer.\+yamux.\+INITIAL\+\_\+\+SERVER\+\_\+\+STREAM\+\_\+\+ID}} = 2
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_acd36dae6c95173b0a0dc90969875b614}{p2p\+\_\+engine.\+muxer.\+yamux.\+STREAM\+\_\+\+ID\+\_\+\+INCREMENT}} = 2
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a86bef40a684fd8f67ed2c3e79023817b}{p2p\+\_\+engine.\+muxer.\+yamux.\+STREAM\+\_\+\+BUFFER\+\_\+\+SIZE}} = 64 \texorpdfstring{$\ast$}{*} 1024
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a96659527a0b3c34a3c9935962b6d8bba}{p2p\+\_\+engine.\+muxer.\+yamux.\+MAX\+\_\+\+UNACKED\+\_\+\+STREAMS}} = 256
+\item 
+float \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_ab288a9db48dc02f7d2a6e1342fc6cdb4}{p2p\+\_\+engine.\+muxer.\+yamux.\+DEFAULT\+\_\+\+CONNECTION\+\_\+\+TIMEOUT}} = 30.\+0
+\item 
+float \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1yamux_a51e54d12c0bcbbea07222d05bf04fca6}{p2p\+\_\+engine.\+muxer.\+yamux.\+DEFAULT\+\_\+\+KEEPALIVE\+\_\+\+INTERVAL}} = 30.\+0
+\end{DoxyCompactItemize}

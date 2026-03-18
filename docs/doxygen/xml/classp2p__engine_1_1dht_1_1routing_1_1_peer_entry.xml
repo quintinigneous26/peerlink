@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::dht::routing::PeerEntry</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a59e949da8a068ef48ccd2adf14f590c9" prot="public" static="yes" mutable="no">
+        <type>List</type>
+        <definition>List p2p_engine.dht.routing.PeerEntry::addresses</definition>
+        <argsstring></argsstring>
+        <name>addresses</name>
+        <qualifiedname>p2p_engine.dht.routing.PeerEntry.addresses</qualifiedname>
+        <initializer>=  field(default_factory=list)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="49" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1ae93551d90e7c12dd2eb1db9fa31813be" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine.dht.routing.PeerEntry::last_seen</definition>
+        <argsstring></argsstring>
+        <name>last_seen</name>
+        <qualifiedname>p2p_engine.dht.routing.PeerEntry.last_seen</qualifiedname>
+        <initializer>=  field(default_factory=time.time)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="50" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="50" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a883f97e9a0cca6026d531ed73a37aa49" compoundref="routing_8py" startline="54" endline="57">p2p_engine.dht.routing.PeerEntry.is_stale</referencedby>
+        <referencedby refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a2aa1f8b6a7068e26ccfc6f5e58e706ac" compoundref="routing_8py" startline="58" endline="62">p2p_engine.dht.routing.PeerEntry.update_seen</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1ab3ad82944f348e62af87141bd02051e5" prot="public" static="yes" mutable="no">
+        <type><ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_state" kindref="compound">PeerState</ref></type>
+        <definition>PeerState p2p_engine.dht.routing.PeerEntry::state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <qualifiedname>p2p_engine.dht.routing.PeerEntry.state</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_state_1a333e70820341aad536e7236d4fa5e5c3" kindref="member">PeerState.CONNECTED</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="51" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a58e3745d2a1abe555ae6d0794f67c689" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine.dht.routing.PeerEntry::latency_ms</definition>
+        <argsstring></argsstring>
+        <name>latency_ms</name>
+        <qualifiedname>p2p_engine.dht.routing.PeerEntry.latency_ms</qualifiedname>
+        <initializer>=  0.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="52" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="52" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a883f97e9a0cca6026d531ed73a37aa49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.dht.routing.PeerEntry.is_stale</definition>
+        <argsstring>(self, float stale_threshold=3600.0)</argsstring>
+        <name>is_stale</name>
+        <qualifiedname>p2p_engine.dht.routing.PeerEntry.is_stale</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>stale_threshold</declname>
+          <defval>3600.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Check if peer entry is stale (not seen recently).</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="54" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="54" bodyend="57"/>
+        <references refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1ae93551d90e7c12dd2eb1db9fa31813be" compoundref="routing_8py" startline="50">p2p_engine.dht.routing.PeerEntry.last_seen</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a2aa1f8b6a7068e26ccfc6f5e58e706ac" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.dht.routing.PeerEntry.update_seen</definition>
+        <argsstring>(self)</argsstring>
+        <name>update_seen</name>
+        <qualifiedname>p2p_engine.dht.routing.PeerEntry.update_seen</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Update last_seen timestamp to current time.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/routing.py" line="58" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="58" bodyend="62"/>
+        <references refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1ae93551d90e7c12dd2eb1db9fa31813be" compoundref="routing_8py" startline="50">p2p_engine.dht.routing.PeerEntry.last_seen</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Represents a peer entry in the routing table.
+
+Attributes:
+    peer_id: Peer identifier (32 bytes)
+    addresses: List of multiaddresses where peer can be reached
+    last_seen: Timestamp of last successful interaction
+    state: Connection state
+    latency_ms: Last measured latency in milliseconds
+</verbatim> </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>Enum</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.dht.routing.PeerEntry</label>
+        <link refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>state</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.dht.routing.PeerState</label>
+        <link refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_state"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/dht/routing.py" line="37" column="1" bodyfile="p2p_engine/dht/routing.py" bodystart="37" bodyend="62"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a59e949da8a068ef48ccd2adf14f590c9" prot="public" virt="non-virtual"><scope>p2p_engine::dht::routing::PeerEntry</scope><name>addresses</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a883f97e9a0cca6026d531ed73a37aa49" prot="public" virt="non-virtual"><scope>p2p_engine::dht::routing::PeerEntry</scope><name>is_stale</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1ae93551d90e7c12dd2eb1db9fa31813be" prot="public" virt="non-virtual"><scope>p2p_engine::dht::routing::PeerEntry</scope><name>last_seen</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a58e3745d2a1abe555ae6d0794f67c689" prot="public" virt="non-virtual"><scope>p2p_engine::dht::routing::PeerEntry</scope><name>latency_ms</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1ab3ad82944f348e62af87141bd02051e5" prot="public" virt="non-virtual"><scope>p2p_engine::dht::routing::PeerEntry</scope><name>state</name></member>
+      <member refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry_1a2aa1f8b6a7068e26ccfc6f5e58e706ac" prot="public" virt="non-virtual"><scope>p2p_engine::dht::routing::PeerEntry</scope><name>update_seen</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

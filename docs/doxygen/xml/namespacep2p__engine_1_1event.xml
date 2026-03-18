@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1event" kind="namespace" language="Python">
+    <compoundname>p2p_engine::event</compoundname>
+    <innerclass refid="classp2p__engine_1_1event_1_1_event_topic" prot="public">p2p_engine::event::EventTopic</innerclass>
+    <innerclass refid="classp2p__engine_1_1event_1_1_p2_p_event_type" prot="public">p2p_engine::event::P2PEventType</innerclass>
+    <innerclass refid="classp2p__engine_1_1event_1_1_p2_p_event" prot="public">p2p_engine::event::P2PEvent</innerclass>
+    <innerclass refid="classp2p__engine_1_1event_1_1_event_subscriber" prot="public">p2p_engine::event::EventSubscriber</innerclass>
+    <innerclass refid="classp2p__engine_1_1event_1_1_event_bus" prot="public">p2p_engine::event::EventBus</innerclass>
+    <innerclass refid="classp2p__engine_1_1event_1_1_event_builder" prot="public">p2p_engine::event::EventBuilder</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1event_1a0c5b08f16610692281fd2b2abb313449" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::event.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.event.logger</qualifiedname>
+        <initializer>=  logging.getLogger(&quot;p2p_engine.event&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="44" column="1" bodyfile="p2p_engine/event.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1event_1a8abfb96482590cbc7969e1daf9d1794b" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::event.EventHandler</definition>
+        <argsstring></argsstring>
+        <name>EventHandler</name>
+        <qualifiedname>p2p_engine.event.EventHandler</qualifiedname>
+        <initializer>=  Callable[[<ref refid="classp2p__engine_1_1event_1_1_p2_p_event" kindref="compound">P2PEvent</ref>], Awaitable[None]]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="158" column="1" bodyfile="p2p_engine/event.py" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1event_1af4b71177b2d56de87953207967a01345" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::event.SyncEventHandler</definition>
+        <argsstring></argsstring>
+        <name>SyncEventHandler</name>
+        <qualifiedname>p2p_engine.event.SyncEventHandler</qualifiedname>
+        <initializer>=  Callable[[<ref refid="classp2p__engine_1_1event_1_1_p2_p_event" kindref="compound">P2PEvent</ref>], None]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="159" column="1" bodyfile="p2p_engine/event.py" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1event_1a5b56516e942e95579ac476594e8c76ab" prot="protected" static="no" mutable="no">
+        <type>Optional</type>
+        <definition>Optional p2p_engine::event._global_event_bus</definition>
+        <argsstring></argsstring>
+        <name>_global_event_bus</name>
+        <qualifiedname>p2p_engine.event._global_event_bus</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="692" column="1" bodyfile="p2p_engine/event.py" bodystart="692" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1event_1a22e5953de5590a19fdcfa9d2e5e5e8ec" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::event.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.event.__all__</qualifiedname>
+        <initializer>=  [
+    # Topics and <ref refid="namespacep2p__engine_1_1types" kindref="compound">types</ref>
+    &quot;EventTopic&quot;,
+    &quot;P2PEventType&quot;,
+
+    # Event data
+    &quot;P2PEvent&quot;,
+
+    # Event handlers
+    &quot;EventHandler&quot;,
+    &quot;SyncEventHandler&quot;,
+    &quot;EventSubscriber&quot;,
+
+    # Event bus
+    &quot;EventBus&quot;,
+
+    # Event builder
+    &quot;EventBuilder&quot;,
+
+    # Decorators
+    &quot;subscribe_to&quot;,
+
+    # Global <ref refid="namespacep2p__engine_1_1event" kindref="compound">event</ref> bus
+    &quot;get_global_event_bus&quot;,
+    &quot;start_global_event_bus&quot;,
+    &quot;stop_global_event_bus&quot;,
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="717" column="1" bodyfile="p2p_engine/event.py" bodystart="717" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1event_1a2d6b4ac168ff49dc91461c205770c02e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.event.subscribe_to</definition>
+        <argsstring>(EventTopic topic, Optional[Set[P2PEventType]] event_types=None, Optional[EventBus] event_bus=None)</argsstring>
+        <name>subscribe_to</name>
+        <qualifiedname>p2p_engine.event.subscribe_to</qualifiedname>
+        <param>
+          <type><ref refid="classp2p__engine_1_1event_1_1_event_topic" kindref="compound">EventTopic</ref></type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>Optional]</type>
+          <declname>event_types</declname>
+          <array>[Set[P2PEventType]</array>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>event_bus</declname>
+          <array>[EventBus]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Decorator to subscribe a function to events.
+
+Usage:
+    @subscribe_to(EventTopic.CONNECTION)
+    async def on_connection(event: P2PEvent):
+        logger.info(f&quot;Connection event: {event.event_type}&quot;)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="664" column="1" bodyfile="p2p_engine/event.py" bodystart="668" bodyend="691"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1event_1a1b16e64df7eea45a166ebe528b4795f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1event_1_1_event_bus" kindref="compound">EventBus</ref></type>
+        <definition> EventBus p2p_engine.event.get_global_event_bus</definition>
+        <argsstring>()</argsstring>
+        <name>get_global_event_bus</name>
+        <qualifiedname>p2p_engine.event.get_global_event_bus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get or create the global event bus</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="695" column="1" bodyfile="p2p_engine/event.py" bodystart="695" bodyend="702"/>
+        <referencedby refid="namespacep2p__engine_1_1event_1a8a8c437a5c644de610a610446dccd6e2" compoundref="event_8py" startline="703" endline="708">p2p_engine.event.start_global_event_bus</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1event_1a8a8c437a5c644de610a610446dccd6e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.event.start_global_event_bus</definition>
+        <argsstring>()</argsstring>
+        <name>start_global_event_bus</name>
+        <qualifiedname>p2p_engine.event.start_global_event_bus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Start the global event bus</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="703" column="1" bodyfile="p2p_engine/event.py" bodystart="703" bodyend="708"/>
+        <references refid="namespacep2p__engine_1_1event_1a1b16e64df7eea45a166ebe528b4795f2" compoundref="event_8py" startline="695" endline="702">p2p_engine.event.get_global_event_bus</references>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1event_1ab94044c152245f2cf6c65c6273156cfa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.event.stop_global_event_bus</definition>
+        <argsstring>()</argsstring>
+        <name>stop_global_event_bus</name>
+        <qualifiedname>p2p_engine.event.stop_global_event_bus</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stop the global event bus</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/event.py" line="709" column="1" bodyfile="p2p_engine/event.py" bodystart="709" bodyend="716"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>P2P事件总线系统
+
+提供增强的事件驱动架构，支持基于主题的事件订阅和异步事件处理。
+实现了发布-订阅模式，允许应用程序对P2P引擎的各类事件进行监听和响应。
+
+主要特性:
+    - 主题分类：将事件按功能分类（连接、流、协议、网络等）
+    - 异步处理：支持异步事件处理器
+    - 灵活订阅：支持按主题或事件类型订阅
+    - 线程安全：使用锁保证并发安全
+    - 性能优化：支持事件过滤和优先级处理
+
+使用示例:
+    ```python
+    bus = EventBus()
+
+    async def on_peer_connected(event):
+        print(f&quot;对端已连接: {event.data[&apos;peer_id&apos;]}&quot;)
+
+    bus.subscribe(EventTopic.CONNECTION, on_peer_connected)
+    await bus.publish(EventTopic.CONNECTION, P2PEventType.PEER_CONNECTED, {...})
+    ```
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/event.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

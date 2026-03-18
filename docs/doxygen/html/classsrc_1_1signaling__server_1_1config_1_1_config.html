@@ -1,0 +1,501 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: src.signaling_server.config.Config类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classsrc_1_1signaling__server_1_1config_1_1_config.html','','classsrc_1_1signaling__server_1_1config_1_1_config-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">src.signaling_server.config.Config类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:afcd60ad436ac78f2b14bd7da7a4a8008" id="r_afcd60ad436ac78f2b14bd7da7a4a8008"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#afcd60ad436ac78f2b14bd7da7a4a8008">host</a> = os.getenv(&quot;SIGNALING_HOST&quot;, &quot;0.0.0.0&quot;)</td></tr>
+<tr class="memitem:acb16c23a1c52ce827fba0820ac02c7fc" id="r_acb16c23a1c52ce827fba0820ac02c7fc"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#acb16c23a1c52ce827fba0820ac02c7fc">ws_port</a> = int(os.getenv(&quot;SIGNALING_WS_PORT&quot;, &quot;8080&quot;))</td></tr>
+<tr class="memitem:ae4125976c86552b8f23c794cee3c38a5" id="r_ae4125976c86552b8f23c794cee3c38a5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ae4125976c86552b8f23c794cee3c38a5">wss_port</a> = int(os.getenv(&quot;SIGNALING_WSS_PORT&quot;, &quot;8443&quot;))</td></tr>
+<tr class="memitem:ac8651136f8a1db63cf5d2f9fe2393bd9" id="r_ac8651136f8a1db63cf5d2f9fe2393bd9"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#ac8651136f8a1db63cf5d2f9fe2393bd9">redis_url</a> = os.getenv(&quot;REDIS_URL&quot;, &quot;redis://localhost:6379&quot;)</td></tr>
+<tr class="memitem:a1f31c3f6fd4a054e55655f7182e24d55" id="r_a1f31c3f6fd4a054e55655f7182e24d55"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1f31c3f6fd4a054e55655f7182e24d55">redis_db</a> = int(os.getenv(&quot;REDIS_DB&quot;, &quot;0&quot;))</td></tr>
+<tr class="memitem:ad1f5851d2fa1a25be17255419482b464" id="r_ad1f5851d2fa1a25be17255419482b464"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#ad1f5851d2fa1a25be17255419482b464">redis_password</a> = os.getenv(&quot;REDIS_PASSWORD&quot;)</td></tr>
+<tr class="memitem:a0a6bb4d4fe2211e77a8fbe02042f05f0" id="r_a0a6bb4d4fe2211e77a8fbe02042f05f0"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#a0a6bb4d4fe2211e77a8fbe02042f05f0">did_service_url</a> = os.getenv(&quot;DID_SERVICE_URL&quot;, &quot;http://localhost:9000&quot;)</td></tr>
+<tr class="memitem:a12d3df9aa841f6fb3502f04f987db706" id="r_a12d3df9aa841f6fb3502f04f987db706"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a12d3df9aa841f6fb3502f04f987db706">heartbeat_interval</a> = int(os.getenv(&quot;HEARTBEAT_INTERVAL&quot;, &quot;30&quot;))</td></tr>
+<tr class="memitem:af2e817215c8271ab4f6fe3e5dc987bd5" id="r_af2e817215c8271ab4f6fe3e5dc987bd5"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af2e817215c8271ab4f6fe3e5dc987bd5">connection_timeout</a> = int(os.getenv(&quot;CONNECTION_TIMEOUT&quot;, &quot;300&quot;))</td></tr>
+<tr class="memitem:ab2b59fd10a223eac28b20dbf660d158b" id="r_ab2b59fd10a223eac28b20dbf660d158b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ab2b59fd10a223eac28b20dbf660d158b">ping_timeout</a> = int(os.getenv(&quot;PING_TIMEOUT&quot;, &quot;20&quot;))</td></tr>
+<tr class="memitem:a6fd548d7a16cf6f7dad74529712dd465" id="r_a6fd548d7a16cf6f7dad74529712dd465"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a6fd548d7a16cf6f7dad74529712dd465">message_queue_size</a> = int(os.getenv(&quot;MESSAGE_QUEUE_SIZE&quot;, &quot;100&quot;))</td></tr>
+<tr class="memitem:ace6b406822cb456ede222abbfa5aa726" id="r_ace6b406822cb456ede222abbfa5aa726"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ace6b406822cb456ede222abbfa5aa726">ice_timeout</a> = int(os.getenv(&quot;ICE_TIMEOUT&quot;, &quot;30&quot;))</td></tr>
+<tr class="memitem:adbd2cbe07e1f8d5ac095f09e68cb6e4e" id="r_adbd2cbe07e1f8d5ac095f09e68cb6e4e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#adbd2cbe07e1f8d5ac095f09e68cb6e4e">cluster_mode</a> = &quot;true&quot;</td></tr>
+<tr class="memitem:ae395c265d5215b5778bbbb5b39b325d4" id="r_ae395c265d5215b5778bbbb5b39b325d4"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#ae395c265d5215b5778bbbb5b39b325d4">cluster_node_id</a> = os.getenv(&quot;CLUSTER_NODE_ID&quot;, &quot;node-1&quot;)</td></tr>
+<tr class="memitem:a2619ea1c95b12b27819381fc7ae514d2" id="r_a2619ea1c95b12b27819381fc7ae514d2"><td class="memItemLeft">str&#160;</td><td class="memItemRight"><a class="el" href="#a2619ea1c95b12b27819381fc7ae514d2">log_level</a> = os.getenv(&quot;LOG_LEVEL&quot;, &quot;INFO&quot;)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Signaling server configuration.</pre> 
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00010">10</a> 行定义.</p>
+</div><a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="adbd2cbe07e1f8d5ac095f09e68cb6e4e" name="adbd2cbe07e1f8d5ac095f09e68cb6e4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbd2cbe07e1f8d5ac095f09e68cb6e4e">&#9670;&#160;</a></span>cluster_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool src.signaling_server.config.Config.cluster_mode = &quot;true&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae395c265d5215b5778bbbb5b39b325d4" name="ae395c265d5215b5778bbbb5b39b325d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae395c265d5215b5778bbbb5b39b325d4">&#9670;&#160;</a></span>cluster_node_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str src.signaling_server.config.Config.cluster_node_id = os.getenv(&quot;CLUSTER_NODE_ID&quot;, &quot;node-1&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af2e817215c8271ab4f6fe3e5dc987bd5" name="af2e817215c8271ab4f6fe3e5dc987bd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e817215c8271ab4f6fe3e5dc987bd5">&#9670;&#160;</a></span>connection_timeout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.connection_timeout = int(os.getenv(&quot;CONNECTION_TIMEOUT&quot;, &quot;300&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00028">28</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0a6bb4d4fe2211e77a8fbe02042f05f0" name="a0a6bb4d4fe2211e77a8fbe02042f05f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a6bb4d4fe2211e77a8fbe02042f05f0">&#9670;&#160;</a></span>did_service_url</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str src.signaling_server.config.Config.did_service_url = os.getenv(&quot;DID_SERVICE_URL&quot;, &quot;http://localhost:9000&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a12d3df9aa841f6fb3502f04f987db706" name="a12d3df9aa841f6fb3502f04f987db706"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12d3df9aa841f6fb3502f04f987db706">&#9670;&#160;</a></span>heartbeat_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.heartbeat_interval = int(os.getenv(&quot;HEARTBEAT_INTERVAL&quot;, &quot;30&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00027">27</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afcd60ad436ac78f2b14bd7da7a4a8008" name="afcd60ad436ac78f2b14bd7da7a4a8008"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcd60ad436ac78f2b14bd7da7a4a8008">&#9670;&#160;</a></span>host</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str src.signaling_server.config.Config.host = os.getenv(&quot;SIGNALING_HOST&quot;, &quot;0.0.0.0&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00014">14</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ace6b406822cb456ede222abbfa5aa726" name="ace6b406822cb456ede222abbfa5aa726"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6b406822cb456ede222abbfa5aa726">&#9670;&#160;</a></span>ice_timeout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.ice_timeout = int(os.getenv(&quot;ICE_TIMEOUT&quot;, &quot;30&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2619ea1c95b12b27819381fc7ae514d2" name="a2619ea1c95b12b27819381fc7ae514d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2619ea1c95b12b27819381fc7ae514d2">&#9670;&#160;</a></span>log_level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str src.signaling_server.config.Config.log_level = os.getenv(&quot;LOG_LEVEL&quot;, &quot;INFO&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6fd548d7a16cf6f7dad74529712dd465" name="a6fd548d7a16cf6f7dad74529712dd465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd548d7a16cf6f7dad74529712dd465">&#9670;&#160;</a></span>message_queue_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.message_queue_size = int(os.getenv(&quot;MESSAGE_QUEUE_SIZE&quot;, &quot;100&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab2b59fd10a223eac28b20dbf660d158b" name="ab2b59fd10a223eac28b20dbf660d158b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b59fd10a223eac28b20dbf660d158b">&#9670;&#160;</a></span>ping_timeout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.ping_timeout = int(os.getenv(&quot;PING_TIMEOUT&quot;, &quot;20&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1f31c3f6fd4a054e55655f7182e24d55" name="a1f31c3f6fd4a054e55655f7182e24d55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f31c3f6fd4a054e55655f7182e24d55">&#9670;&#160;</a></span>redis_db</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.redis_db = int(os.getenv(&quot;REDIS_DB&quot;, &quot;0&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00020">20</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad1f5851d2fa1a25be17255419482b464" name="ad1f5851d2fa1a25be17255419482b464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1f5851d2fa1a25be17255419482b464">&#9670;&#160;</a></span>redis_password</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str src.signaling_server.config.Config.redis_password = os.getenv(&quot;REDIS_PASSWORD&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00021">21</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac8651136f8a1db63cf5d2f9fe2393bd9" name="ac8651136f8a1db63cf5d2f9fe2393bd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8651136f8a1db63cf5d2f9fe2393bd9">&#9670;&#160;</a></span>redis_url</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">str src.signaling_server.config.Config.redis_url = os.getenv(&quot;REDIS_URL&quot;, &quot;redis://localhost:6379&quot;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00019">19</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="storage_8py_source.html#l00042">src.did_service.storage.DeviceStorage._get_pool()</a> , 以及 <a class="el" href="did-service_2src_2did__service_2config_8py_source.html#l00085">src.did_service.config.Config.validate()</a>.</p>
+
+</div>
+</div>
+<a id="acb16c23a1c52ce827fba0820ac02c7fc" name="acb16c23a1c52ce827fba0820ac02c7fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb16c23a1c52ce827fba0820ac02c7fc">&#9670;&#160;</a></span>ws_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.ws_port = int(os.getenv(&quot;SIGNALING_WS_PORT&quot;, &quot;8080&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00015">15</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae4125976c86552b8f23c794cee3c38a5" name="ae4125976c86552b8f23c794cee3c38a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4125976c86552b8f23c794cee3c38a5">&#9670;&#160;</a></span>wss_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int src.signaling_server.config.Config.wss_port = int(os.getenv(&quot;SIGNALING_WSS_PORT&quot;, &quot;8443&quot;))</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a> 第 <a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html#l00016">16</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>signaling-server/src/signaling_server/<a class="el" href="signaling-server_2src_2signaling__server_2config_8py_source.html">config.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacesrc.html">src</a></li><li class="navelem"><a href="namespacesrc_1_1signaling__server.html">signaling_server</a></li><li class="navelem"><a href="namespacesrc_1_1signaling__server_1_1config.html">config</a></li><li class="navelem"><a href="classsrc_1_1signaling__server_1_1config_1_1_config.html">Config</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

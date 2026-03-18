@@ -1,0 +1,237 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::muxer::benchmark::MuxerBenchmark</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a9505f0258121465810d08d10b60770f7" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine.muxer.benchmark.MuxerBenchmark::results</definition>
+        <argsstring></argsstring>
+        <name>results</name>
+        <qualifiedname>p2p_engine.muxer.benchmark.MuxerBenchmark.results</qualifiedname>
+        <initializer>=  []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/benchmark.py" line="53" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a81559640e3827c5ae7c914fe53b2a39d" compoundref="benchmark_8py" startline="168" endline="217">p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_concurrent_streams</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a7df739df0bf6a581582eefcc3d52b780" compoundref="benchmark_8py" startline="222" endline="277">p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_memory_usage</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a2ad2133d6c8501dec7e41883c0902d3b" compoundref="benchmark_8py" startline="113" endline="162">p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_message_throughput</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1aaa63820d561c8238b9475d784a891429" compoundref="benchmark_8py" startline="60" endline="106">p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_stream_creation</referencedby>
+        <referencedby refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a53c9c462823a98bc927c327a52d8a26f" compoundref="benchmark_8py" startline="278" endline="304">p2p_engine.muxer.benchmark.MuxerBenchmark.print_results</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a3162f039172a2c88e8cf29179a28dca5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.muxer.benchmark.MuxerBenchmark.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.muxer.benchmark.MuxerBenchmark.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/benchmark.py" line="52" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="52" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1aaa63820d561c8238b9475d784a891429" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result" kindref="compound">BenchmarkResult</ref></type>
+        <definition> BenchmarkResult p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_stream_creation</definition>
+        <argsstring>(self, Callable session_factory, float target_latency_ms=2.0, int iterations=1000)</argsstring>
+        <name>benchmark_stream_creation</name>
+        <qualifiedname>p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_stream_creation</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <declname>session_factory</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>target_latency_ms</declname>
+          <defval>2.0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iterations</declname>
+          <defval>1000</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Benchmark stream creation latency.
+
+Target: &lt; 2ms per stream
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/benchmark.py" line="55" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="60" bodyend="106"/>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_context_1a563d8dafbcbaee94f956e4613f1c7a50" compoundref="query_8py" startline="91">p2p_engine.dht.query.QueryContext.results</references>
+        <references refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a9505f0258121465810d08d10b60770f7" compoundref="benchmark_8py" startline="53">p2p_engine.muxer.benchmark.MuxerBenchmark.results</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a2ad2133d6c8501dec7e41883c0902d3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result" kindref="compound">BenchmarkResult</ref></type>
+        <definition> BenchmarkResult p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_message_throughput</definition>
+        <argsstring>(self, Callable stream_factory, int message_size=1024, float target_mbps=200.0, float duration_sec=5.0)</argsstring>
+        <name>benchmark_message_throughput</name>
+        <qualifiedname>p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_message_throughput</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <declname>stream_factory</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>message_size</declname>
+          <defval>1024</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>target_mbps</declname>
+          <defval>200.0</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration_sec</declname>
+          <defval>5.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Benchmark message throughput.
+
+Target: &gt; 200 Mbps
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/benchmark.py" line="107" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="113" bodyend="162"/>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_context_1a563d8dafbcbaee94f956e4613f1c7a50" compoundref="query_8py" startline="91">p2p_engine.dht.query.QueryContext.results</references>
+        <references refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a9505f0258121465810d08d10b60770f7" compoundref="benchmark_8py" startline="53">p2p_engine.muxer.benchmark.MuxerBenchmark.results</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a81559640e3827c5ae7c914fe53b2a39d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result" kindref="compound">BenchmarkResult</ref></type>
+        <definition> BenchmarkResult p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_concurrent_streams</definition>
+        <argsstring>(self, Callable session_factory, int target_streams=1000, int messages_per_stream=10)</argsstring>
+        <name>benchmark_concurrent_streams</name>
+        <qualifiedname>p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_concurrent_streams</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <declname>session_factory</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>target_streams</declname>
+          <defval>1000</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>messages_per_stream</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Benchmark concurrent stream handling.
+
+Target: &gt; 1000 concurrent streams
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/benchmark.py" line="163" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="168" bodyend="217"/>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_context_1a563d8dafbcbaee94f956e4613f1c7a50" compoundref="query_8py" startline="91">p2p_engine.dht.query.QueryContext.results</references>
+        <references refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a9505f0258121465810d08d10b60770f7" compoundref="benchmark_8py" startline="53">p2p_engine.muxer.benchmark.MuxerBenchmark.results</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a7df739df0bf6a581582eefcc3d52b780" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_benchmark_result" kindref="compound">BenchmarkResult</ref></type>
+        <definition> BenchmarkResult p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_memory_usage</definition>
+        <argsstring>(self, Callable session_factory, int streams=100)</argsstring>
+        <name>benchmark_memory_usage</name>
+        <qualifiedname>p2p_engine.muxer.benchmark.MuxerBenchmark.benchmark_memory_usage</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <declname>session_factory</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>streams</declname>
+          <defval>100</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Benchmark memory usage for multiple streams.
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/benchmark.py" line="218" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="222" bodyend="277"/>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_context_1a563d8dafbcbaee94f956e4613f1c7a50" compoundref="query_8py" startline="91">p2p_engine.dht.query.QueryContext.results</references>
+        <references refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a9505f0258121465810d08d10b60770f7" compoundref="benchmark_8py" startline="53">p2p_engine.muxer.benchmark.MuxerBenchmark.results</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a53c9c462823a98bc927c327a52d8a26f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.muxer.benchmark.MuxerBenchmark.print_results</definition>
+        <argsstring>(self)</argsstring>
+        <name>print_results</name>
+        <qualifiedname>p2p_engine.muxer.benchmark.MuxerBenchmark.print_results</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Print all benchmark results.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/benchmark.py" line="278" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="278" bodyend="304"/>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_context_1a563d8dafbcbaee94f956e4613f1c7a50" compoundref="query_8py" startline="91">p2p_engine.dht.query.QueryContext.results</references>
+        <references refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a9505f0258121465810d08d10b60770f7" compoundref="benchmark_8py" startline="53">p2p_engine.muxer.benchmark.MuxerBenchmark.results</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Benchmark suite for muxer implementations.
+
+Tests yamux and mplex against go-libp2p performance targets.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/muxer/benchmark.py" line="45" column="1" bodyfile="p2p_engine/muxer/benchmark.py" bodystart="45" bodyend="304"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a3162f039172a2c88e8cf29179a28dca5" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::benchmark::MuxerBenchmark</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a81559640e3827c5ae7c914fe53b2a39d" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::benchmark::MuxerBenchmark</scope><name>benchmark_concurrent_streams</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a7df739df0bf6a581582eefcc3d52b780" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::benchmark::MuxerBenchmark</scope><name>benchmark_memory_usage</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a2ad2133d6c8501dec7e41883c0902d3b" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::benchmark::MuxerBenchmark</scope><name>benchmark_message_throughput</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1aaa63820d561c8238b9475d784a891429" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::benchmark::MuxerBenchmark</scope><name>benchmark_stream_creation</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a53c9c462823a98bc927c327a52d8a26f" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::benchmark::MuxerBenchmark</scope><name>print_results</name></member>
+      <member refid="classp2p__engine_1_1muxer_1_1benchmark_1_1_muxer_benchmark_1a9505f0258121465810d08d10b60770f7" prot="public" virt="non-virtual"><scope>p2p_engine::muxer::benchmark::MuxerBenchmark</scope><name>results</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

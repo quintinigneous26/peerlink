@@ -1,0 +1,1030 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: src.signaling_server.connection.ConnectionManager类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classsrc_1_1signaling__server_1_1connection_1_1_connection_manager.html','','classsrc_1_1signaling__server_1_1connection_1_1_connection_manager-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">src.signaling_server.connection.ConnectionManager类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a930f8f310a580b5ec57d8458d07e2f82" id="r_a930f8f310a580b5ec57d8458d07e2f82"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a930f8f310a580b5ec57d8458d07e2f82">__init__</a> (self)</td></tr>
+<tr class="memitem:a0b3d1243e6a19b08606989bf7693e41f" id="r_a0b3d1243e6a19b08606989bf7693e41f"><td class="memItemLeft"><a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_device_info.html">DeviceInfo</a>&#160;</td><td class="memItemRight"><a class="el" href="#a0b3d1243e6a19b08606989bf7693e41f">connect</a> (self, str device_id, WebSocket ws, str public_key, list[str] capabilities, dict|None metadata=None)</td></tr>
+<tr class="memitem:aed75c1f20fd9de889afaa35bcf3bee38" id="r_aed75c1f20fd9de889afaa35bcf3bee38"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#aed75c1f20fd9de889afaa35bcf3bee38">disconnect</a> (self, str device_id)</td></tr>
+<tr class="memitem:a2bd63fa7c0d5fb8db1a4436d952abaa3" id="r_a2bd63fa7c0d5fb8db1a4436d952abaa3"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_device_info.html">DeviceInfo</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a2bd63fa7c0d5fb8db1a4436d952abaa3">get_device</a> (self, str device_id)</td></tr>
+<tr class="memitem:a21d48449276b7b8d1e58b710c085be13" id="r_a21d48449276b7b8d1e58b710c085be13"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a21d48449276b7b8d1e58b710c085be13">is_connected</a> (self, str device_id)</td></tr>
+<tr class="memitem:a33bab509a9dee9a11b47bced3ae2cf6a" id="r_a33bab509a9dee9a11b47bced3ae2cf6a"><td class="memItemLeft">Set[str]&#160;</td><td class="memItemRight"><a class="el" href="#a33bab509a9dee9a11b47bced3ae2cf6a">get_all_devices</a> (self)</td></tr>
+<tr class="memitem:a1c6dc9d45cc429e37a8cb8363165e68b" id="r_a1c6dc9d45cc429e37a8cb8363165e68b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1c6dc9d45cc429e37a8cb8363165e68b">send_message</a> (self, str device_id, dict message)</td></tr>
+<tr class="memitem:af94a89d1559080fb048c86a7697b4e6f" id="r_af94a89d1559080fb048c86a7697b4e6f"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#af94a89d1559080fb048c86a7697b4e6f">broadcast</a> (self, dict message, set[str]|None exclude=None)</td></tr>
+<tr class="memitem:a1bcedce393d1ef71fd67f399dd8a1c11" id="r_a1bcedce393d1ef71fd67f399dd8a1c11"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1bcedce393d1ef71fd67f399dd8a1c11">send_error</a> (self, str device_id, <a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_error_code.html">ErrorCode</a> code, str message, str|None request_id=None)</td></tr>
+<tr class="memitem:a45acb861dcc49abb9fc3695e0869b404" id="r_a45acb861dcc49abb9fc3695e0869b404"><td class="memItemLeft"><a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_session.html">ConnectionSession</a>&#160;</td><td class="memItemRight"><a class="el" href="#a45acb861dcc49abb9fc3695e0869b404">create_session</a> (self, str device_a, str device_b)</td></tr>
+<tr class="memitem:a92cb80cc39097d0f545aec49bc1ea92a" id="r_a92cb80cc39097d0f545aec49bc1ea92a"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_session.html">ConnectionSession</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a92cb80cc39097d0f545aec49bc1ea92a">get_session</a> (self, str session_id)</td></tr>
+<tr class="memitem:abfbf8c554032a06b44ac08d6ae6f4277" id="r_abfbf8c554032a06b44ac08d6ae6f4277"><td class="memItemLeft">Optional[<a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_session.html">ConnectionSession</a>]&#160;</td><td class="memItemRight"><a class="el" href="#abfbf8c554032a06b44ac08d6ae6f4277">get_session_by_devices</a> (self, str device_a, str device_b)</td></tr>
+<tr class="memitem:a43e221486772098d266b7f2a9202a0c2" id="r_a43e221486772098d266b7f2a9202a0c2"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a43e221486772098d266b7f2a9202a0c2">update_session_status</a> (self, str session_id, <a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_status.html">ConnectionStatus</a> status)</td></tr>
+<tr class="memitem:aa39f398be997240f90401b4d01995d07" id="r_aa39f398be997240f90401b4d01995d07"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#aa39f398be997240f90401b4d01995d07">set_session_offer</a> (self, str session_id, str offer)</td></tr>
+<tr class="memitem:a509e32f4f35618823680f7e0b8f66b6a" id="r_a509e32f4f35618823680f7e0b8f66b6a"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a509e32f4f35618823680f7e0b8f66b6a">set_session_answer</a> (self, str session_id, str answer)</td></tr>
+<tr class="memitem:a33f671a0a66935b7780618a18df4dd1a" id="r_a33f671a0a66935b7780618a18df4dd1a"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a33f671a0a66935b7780618a18df4dd1a">add_ice_candidate</a> (self, str session_id, str device_id, dict candidate)</td></tr>
+<tr class="memitem:a6e67bc43f797be48dcb0b81c2487bc00" id="r_a6e67bc43f797be48dcb0b81c2487bc00"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a6e67bc43f797be48dcb0b81c2487bc00">set_relay_mode</a> (self, str session_id)</td></tr>
+<tr class="memitem:af63a5977fe15a28d1d7a8a711759f632" id="r_af63a5977fe15a28d1d7a8a711759f632"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#af63a5977fe15a28d1d7a8a711759f632">add_pending_request</a> (self, str session_id, str requester)</td></tr>
+<tr class="memitem:a8d6093ba5e83a714d0f457b64c60234a" id="r_a8d6093ba5e83a714d0f457b64c60234a"><td class="memItemLeft">Optional[str]&#160;</td><td class="memItemRight"><a class="el" href="#a8d6093ba5e83a714d0f457b64c60234a">get_pending_requester</a> (self, str session_id)</td></tr>
+<tr class="memitem:a5a20c266d1e966dd747638d3ba1eff2e" id="r_a5a20c266d1e966dd747638d3ba1eff2e"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a5a20c266d1e966dd747638d3ba1eff2e">remove_pending_request</a> (self, str session_id)</td></tr>
+<tr class="memitem:ab98a41544314376b5906d548b6ac95b9" id="r_ab98a41544314376b5906d548b6ac95b9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab98a41544314376b5906d548b6ac95b9">update_heartbeat</a> (self, str device_id)</td></tr>
+<tr class="memitem:a9b47ae485385c1ab2bedd3058bf1ca7d" id="r_a9b47ae485385c1ab2bedd3058bf1ca7d"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a9b47ae485385c1ab2bedd3058bf1ca7d">cleanup_stale</a> (self, int timeout)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a232dde98f442f84e8b649e318c34130b" id="r_a232dde98f442f84e8b649e318c34130b"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a232dde98f442f84e8b649e318c34130b">_devices</a> = {}</td></tr>
+<tr class="memitem:ad5896c18eb7adce0fe7299b7033d4315" id="r_ad5896c18eb7adce0fe7299b7033d4315"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#ad5896c18eb7adce0fe7299b7033d4315">_sessions</a> = {}</td></tr>
+<tr class="memitem:aa88ffbb08abf9116635dfa7222c16e34" id="r_aa88ffbb08abf9116635dfa7222c16e34"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#aa88ffbb08abf9116635dfa7222c16e34">_pending_requests</a> = {}</td></tr>
+<tr class="memitem:ac937ab0052f059584eb509d78935e3fe" id="r_ac937ab0052f059584eb509d78935e3fe"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ac937ab0052f059584eb509d78935e3fe">_lock</a> = asyncio.Lock()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-static-attribs" class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
+静态 Protected 属性</h2></td></tr>
+<tr class="memitem:a9d17201c166fc15dc97c8fdec63ed427" id="r_a9d17201c166fc15dc97c8fdec63ed427"><td class="memItemLeft">Optional&#160;</td><td class="memItemRight"><a class="el" href="#a9d17201c166fc15dc97c8fdec63ed427">_manager</a> = None</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Manage WebSocket connections and device sessions.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00018">18</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a930f8f310a580b5ec57d8458d07e2f82" name="a930f8f310a580b5ec57d8458d07e2f82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a930f8f310a580b5ec57d8458d07e2f82">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.signaling_server.connection.ConnectionManager.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize connection manager.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00021">21</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a33f671a0a66935b7780618a18df4dd1a" name="a33f671a0a66935b7780618a18df4dd1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33f671a0a66935b7780618a18df4dd1a">&#9670;&#160;</a></span>add_ice_candidate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.add_ice_candidate </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dict</td>          <td class="paramname"><span class="paramname"><em>candidate</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Add ICE candidate for a device.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00257">257</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="af63a5977fe15a28d1d7a8a711759f632" name="af63a5977fe15a28d1d7a8a711759f632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af63a5977fe15a28d1d7a8a711759f632">&#9670;&#160;</a></span>add_pending_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.add_pending_request </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>requester</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Add a pending connection request.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00273">273</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00030">_pending_requests</a>.</p>
+
+</div>
+</div>
+<a id="af94a89d1559080fb048c86a7697b4e6f" name="af94a89d1559080fb048c86a7697b4e6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af94a89d1559080fb048c86a7697b4e6f">&#9670;&#160;</a></span>broadcast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int src.signaling_server.connection.ConnectionManager.broadcast </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dict</td>          <td class="paramname"><span class="paramname"><em>message</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set[str] | None </td>          <td class="paramname"><span class="paramname"><em>exclude</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Broadcast a message to all connected devices.
+
+Args:
+    message: Message dictionary
+    exclude: Device IDs to exclude
+
+Returns:
+    Number of devices message was sent to
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00158">158</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a> , 以及 <a class="el" href="connection_8py_source.html#l00135">send_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_af94a89d1559080fb048c86a7697b4e6f_cgraph.png" border="0" usemap="#aclasssrc_1_1signaling__server_1_1connection_1_1_connection_manager_af94a89d1559080fb048c86a7697b4e6f_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a9b47ae485385c1ab2bedd3058bf1ca7d" name="a9b47ae485385c1ab2bedd3058bf1ca7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b47ae485385c1ab2bedd3058bf1ca7d">&#9670;&#160;</a></span>cleanup_stale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int src.signaling_server.connection.ConnectionManager.cleanup_stale </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Clean up stale connections.
+
+Args:
+    timeout: Seconds since last heartbeat
+
+Returns:
+    Number of devices disconnected
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00304">304</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">src.allocation.AllocationManager._lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00271">src.bandwidth.ThroughputMonitor._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00054">src.bandwidth.TokenBucket._lock</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00026">src.relay_server.relay.RelayHandler._lock</a>, <a class="el" href="connection_8py_source.html#l00033">_lock</a>, <a class="el" href="engine_8py_source.html#l00202">p2p_engine.engine.P2PEngine.disconnect()</a>, <a class="el" href="signaling_8py_source.html#l00102">p2p_sdk.signaling.SignalingClient.disconnect()</a>, <a class="el" href="signaling_8py_source.html#l00403">p2p_sdk.signaling.WebSocketSignalingClient.disconnect()</a> , 以及 <a class="el" href="connection_8py_source.html#l00079">disconnect()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_a9b47ae485385c1ab2bedd3058bf1ca7d_cgraph.png" border="0" usemap="#aclasssrc_1_1signaling__server_1_1connection_1_1_connection_manager_a9b47ae485385c1ab2bedd3058bf1ca7d_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a0b3d1243e6a19b08606989bf7693e41f" name="a0b3d1243e6a19b08606989bf7693e41f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b3d1243e6a19b08606989bf7693e41f">&#9670;&#160;</a></span>connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_device_info.html">DeviceInfo</a> src.signaling_server.connection.ConnectionManager.connect </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">WebSocket</td>          <td class="paramname"><span class="paramname"><em>ws</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>public_key</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">list[str]</td>          <td class="paramname"><span class="paramname"><em>capabilities</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dict | None </td>          <td class="paramname"><span class="paramname"><em>metadata</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Register a new device connection.
+
+Args:
+    device_id: Device identifier
+    ws: WebSocket connection
+    public_key: Device public key
+    capabilities: List of device capabilities
+    metadata: Optional metadata
+
+Returns:
+    DeviceInfo
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00035">35</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">src.allocation.AllocationManager._lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00271">src.bandwidth.ThroughputMonitor._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00054">src.bandwidth.TokenBucket._lock</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00026">src.relay_server.relay.RelayHandler._lock</a> , 以及 <a class="el" href="connection_8py_source.html#l00033">_lock</a>.</p>
+
+</div>
+</div>
+<a id="a45acb861dcc49abb9fc3695e0869b404" name="a45acb861dcc49abb9fc3695e0869b404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45acb861dcc49abb9fc3695e0869b404">&#9670;&#160;</a></span>create_session()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_session.html">ConnectionSession</a> src.signaling_server.connection.ConnectionManager.create_session </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Create a new connection session.
+
+Args:
+    device_a: First device ID
+    device_b: Second device ID
+
+Returns:
+    ConnectionSession
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00203">203</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="aed75c1f20fd9de889afaa35bcf3bee38" name="aed75c1f20fd9de889afaa35bcf3bee38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed75c1f20fd9de889afaa35bcf3bee38">&#9670;&#160;</a></span>disconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.disconnect </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Disconnect a device.
+
+Args:
+    device_id: Device identifier
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00079">79</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">src.allocation.AllocationManager._lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00271">src.bandwidth.ThroughputMonitor._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00054">src.bandwidth.TokenBucket._lock</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00026">src.relay_server.relay.RelayHandler._lock</a>, <a class="el" href="connection_8py_source.html#l00033">_lock</a>, <a class="el" href="connection_8py_source.html#l00030">_pending_requests</a>, <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="connection_8py_source.html#l00304">cleanup_stale()</a> , 以及 <a class="el" href="connection_8py_source.html#l00135">send_message()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_aed75c1f20fd9de889afaa35bcf3bee38_icgraph.png" border="0" usemap="#aclasssrc_1_1signaling__server_1_1connection_1_1_connection_manager_aed75c1f20fd9de889afaa35bcf3bee38_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a33bab509a9dee9a11b47bced3ae2cf6a" name="a33bab509a9dee9a11b47bced3ae2cf6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33bab509a9dee9a11b47bced3ae2cf6a">&#9670;&#160;</a></span>get_all_devices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Set[str] src.signaling_server.connection.ConnectionManager.get_all_devices </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get set of all connected device IDs.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00131">131</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a>.</p>
+
+</div>
+</div>
+<a id="a2bd63fa7c0d5fb8db1a4436d952abaa3" name="a2bd63fa7c0d5fb8db1a4436d952abaa3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bd63fa7c0d5fb8db1a4436d952abaa3">&#9670;&#160;</a></span>get_device()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_device_info.html">DeviceInfo</a>] src.signaling_server.connection.ConnectionManager.get_device </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get device info.
+
+Args:
+    device_id: Device identifier
+
+Returns:
+    DeviceInfo or None
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00107">107</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="storage_8py_source.html#l00263">src.did_service.storage.DeviceStorage.cleanup_stale_devices()</a>, <a class="el" href="storage_8py_source.html#l00234">src.did_service.storage.DeviceStorage.delete_device()</a> , 以及 <a class="el" href="connection_8py_source.html#l00135">send_message()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_a2bd63fa7c0d5fb8db1a4436d952abaa3_icgraph.png" border="0" usemap="#aclasssrc_1_1signaling__server_1_1connection_1_1_connection_manager_a2bd63fa7c0d5fb8db1a4436d952abaa3_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a8d6093ba5e83a714d0f457b64c60234a" name="a8d6093ba5e83a714d0f457b64c60234a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d6093ba5e83a714d0f457b64c60234a">&#9670;&#160;</a></span>get_pending_requester()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[str] src.signaling_server.connection.ConnectionManager.get_pending_requester </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get requester for pending connection.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00277">277</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00030">_pending_requests</a>.</p>
+
+</div>
+</div>
+<a id="a92cb80cc39097d0f545aec49bc1ea92a" name="a92cb80cc39097d0f545aec49bc1ea92a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92cb80cc39097d0f545aec49bc1ea92a">&#9670;&#160;</a></span>get_session()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_session.html">ConnectionSession</a>] src.signaling_server.connection.ConnectionManager.get_session </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get session by ID.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00230">230</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="abfbf8c554032a06b44ac08d6ae6f4277" name="abfbf8c554032a06b44ac08d6ae6f4277"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbf8c554032a06b44ac08d6ae6f4277">&#9670;&#160;</a></span>get_session_by_devices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_session.html">ConnectionSession</a>] src.signaling_server.connection.ConnectionManager.get_session_by_devices </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_a</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_b</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get session between two devices.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00234">234</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="a21d48449276b7b8d1e58b710c085be13" name="a21d48449276b7b8d1e58b710c085be13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d48449276b7b8d1e58b710c085be13">&#9670;&#160;</a></span>is_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.signaling_server.connection.ConnectionManager.is_connected </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Check if device is connected.
+
+Args:
+    device_id: Device identifier
+
+Returns:
+    True if connected
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00119">119</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a>.</p>
+
+</div>
+</div>
+<a id="a5a20c266d1e966dd747638d3ba1eff2e" name="a5a20c266d1e966dd747638d3ba1eff2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a20c266d1e966dd747638d3ba1eff2e">&#9670;&#160;</a></span>remove_pending_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.remove_pending_request </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Remove pending connection request.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00281">281</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00030">_pending_requests</a>.</p>
+
+</div>
+</div>
+<a id="a1bcedce393d1ef71fd67f399dd8a1c11" name="a1bcedce393d1ef71fd67f399dd8a1c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bcedce393d1ef71fd67f399dd8a1c11">&#9670;&#160;</a></span>send_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.signaling_server.connection.ConnectionManager.send_error </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_error_code.html">ErrorCode</a></td>          <td class="paramname"><span class="paramname"><em>code</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>message</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str | None </td>          <td class="paramname"><span class="paramname"><em>request_id</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Send an error message to a device.
+
+Args:
+    device_id: Target device ID
+    code: Error code
+    message: Error message
+    request_id: Optional request ID
+
+Returns:
+    True if sent successfully
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00179">179</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00135">send_message()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_a1bcedce393d1ef71fd67f399dd8a1c11_cgraph.png" border="0" usemap="#aclasssrc_1_1signaling__server_1_1connection_1_1_connection_manager_a1bcedce393d1ef71fd67f399dd8a1c11_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a1c6dc9d45cc429e37a8cb8363165e68b" name="a1c6dc9d45cc429e37a8cb8363165e68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c6dc9d45cc429e37a8cb8363165e68b">&#9670;&#160;</a></span>send_message()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.signaling_server.connection.ConnectionManager.send_message </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dict</td>          <td class="paramname"><span class="paramname"><em>message</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Send a message to a device.
+
+Args:
+    device_id: Target device ID
+    message: Message dictionary
+
+Returns:
+    True if sent successfully
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00135">135</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="engine_8py_source.html#l00202">p2p_engine.engine.P2PEngine.disconnect()</a>, <a class="el" href="signaling_8py_source.html#l00102">p2p_sdk.signaling.SignalingClient.disconnect()</a>, <a class="el" href="signaling_8py_source.html#l00403">p2p_sdk.signaling.WebSocketSignalingClient.disconnect()</a>, <a class="el" href="connection_8py_source.html#l00079">disconnect()</a> , 以及 <a class="el" href="connection_8py_source.html#l00107">get_device()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="connection_8py_source.html#l00158">broadcast()</a> , 以及 <a class="el" href="connection_8py_source.html#l00185">send_error()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_a1c6dc9d45cc429e37a8cb8363165e68b_cgraph.png" border="0" usemap="#aclasssrc_1_1signaling__server_1_1connection_1_1_connection_manager_a1c6dc9d45cc429e37a8cb8363165e68b_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_a1c6dc9d45cc429e37a8cb8363165e68b_icgraph.png" border="0" usemap="#aclasssrc_1_1signaling__server_1_1connection_1_1_connection_manager_a1c6dc9d45cc429e37a8cb8363165e68b_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a6e67bc43f797be48dcb0b81c2487bc00" name="a6e67bc43f797be48dcb0b81c2487bc00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e67bc43f797be48dcb0b81c2487bc00">&#9670;&#160;</a></span>set_relay_mode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.set_relay_mode </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Mark session to use relay.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00266">266</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="a509e32f4f35618823680f7e0b8f66b6a" name="a509e32f4f35618823680f7e0b8f66b6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a509e32f4f35618823680f7e0b8f66b6a">&#9670;&#160;</a></span>set_session_answer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.set_session_answer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>answer</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Set session answer (SDP).</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00252">252</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="aa39f398be997240f90401b4d01995d07" name="aa39f398be997240f90401b4d01995d07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa39f398be997240f90401b4d01995d07">&#9670;&#160;</a></span>set_session_offer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.set_session_offer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>offer</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Set session offer (SDP).</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00247">247</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a id="ab98a41544314376b5906d548b6ac95b9" name="ab98a41544314376b5906d548b6ac95b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98a41544314376b5906d548b6ac95b9">&#9670;&#160;</a></span>update_heartbeat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.signaling_server.connection.ConnectionManager.update_heartbeat </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>device_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Update device heartbeat timestamp.
+
+Args:
+    device_id: Device identifier
+
+Returns:
+    True if device exists
+</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00288">288</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="connection_8py_source.html#l00024">_devices</a>.</p>
+
+</div>
+</div>
+<a id="a43e221486772098d266b7f2a9202a0c2" name="a43e221486772098d266b7f2a9202a0c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43e221486772098d266b7f2a9202a0c2">&#9670;&#160;</a></span>update_session_status()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None src.signaling_server.connection.ConnectionManager.update_session_status </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>session_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1signaling__server_1_1models_1_1_connection_status.html">ConnectionStatus</a></td>          <td class="paramname"><span class="paramname"><em>status</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Update session status.</pre> 
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00242">242</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex__adapter_8py_source.html#l00030">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</a>, <a class="el" href="mplex__v2_8py_source.html#l00547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00023">src.relay_server.relay.RelayHandler._sessions</a> , 以及 <a class="el" href="connection_8py_source.html#l00027">_sessions</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a232dde98f442f84e8b649e318c34130b" name="a232dde98f442f84e8b649e318c34130b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a232dde98f442f84e8b649e318c34130b">&#9670;&#160;</a></span>_devices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict src.signaling_server.connection.ConnectionManager._devices = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00024">24</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="connection_8py_source.html#l00158">broadcast()</a>, <a class="el" href="connection_8py_source.html#l00304">cleanup_stale()</a>, <a class="el" href="connection_8py_source.html#l00042">connect()</a>, <a class="el" href="connection_8py_source.html#l00079">disconnect()</a>, <a class="el" href="connection_8py_source.html#l00131">get_all_devices()</a>, <a class="el" href="connection_8py_source.html#l00107">get_device()</a>, <a class="el" href="connection_8py_source.html#l00119">is_connected()</a> , 以及 <a class="el" href="connection_8py_source.html#l00288">update_heartbeat()</a>.</p>
+
+</div>
+</div>
+<a id="ac937ab0052f059584eb509d78935e3fe" name="ac937ab0052f059584eb509d78935e3fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac937ab0052f059584eb509d78935e3fe">&#9670;&#160;</a></span>_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.signaling_server.connection.ConnectionManager._lock = asyncio.Lock()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00033">33</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="connection_8py_source.html#l00304">cleanup_stale()</a>, <a class="el" href="connection_8py_source.html#l00042">connect()</a> , 以及 <a class="el" href="connection_8py_source.html#l00079">disconnect()</a>.</p>
+
+</div>
+</div>
+<a id="a9d17201c166fc15dc97c8fdec63ed427" name="a9d17201c166fc15dc97c8fdec63ed427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d17201c166fc15dc97c8fdec63ed427">&#9670;&#160;</a></span>_manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional src.signaling_server.connection.ConnectionManager._manager = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00332">332</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa88ffbb08abf9116635dfa7222c16e34" name="aa88ffbb08abf9116635dfa7222c16e34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa88ffbb08abf9116635dfa7222c16e34">&#9670;&#160;</a></span>_pending_requests</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict src.signaling_server.connection.ConnectionManager._pending_requests = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00030">30</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="connection_8py_source.html#l00273">add_pending_request()</a>, <a class="el" href="connection_8py_source.html#l00079">disconnect()</a>, <a class="el" href="connection_8py_source.html#l00277">get_pending_requester()</a> , 以及 <a class="el" href="connection_8py_source.html#l00281">remove_pending_request()</a>.</p>
+
+</div>
+</div>
+<a id="ad5896c18eb7adce0fe7299b7033d4315" name="ad5896c18eb7adce0fe7299b7033d4315"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5896c18eb7adce0fe7299b7033d4315">&#9670;&#160;</a></span>_sessions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict src.signaling_server.connection.ConnectionManager._sessions = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="connection_8py_source.html">connection.py</a> 第 <a class="el" href="connection_8py_source.html#l00027">27</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="connection_8py_source.html#l00257">add_ice_candidate()</a>, <a class="el" href="connection_8py_source.html#l00207">create_session()</a>, <a class="el" href="connection_8py_source.html#l00079">disconnect()</a>, <a class="el" href="connection_8py_source.html#l00230">get_session()</a>, <a class="el" href="connection_8py_source.html#l00234">get_session_by_devices()</a>, <a class="el" href="connection_8py_source.html#l00266">set_relay_mode()</a>, <a class="el" href="connection_8py_source.html#l00252">set_session_answer()</a>, <a class="el" href="connection_8py_source.html#l00247">set_session_offer()</a> , 以及 <a class="el" href="connection_8py_source.html#l00242">update_session_status()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>signaling-server/src/signaling_server/<a class="el" href="connection_8py_source.html">connection.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacesrc.html">src</a></li><li class="navelem"><a href="namespacesrc_1_1signaling__server.html">signaling_server</a></li><li class="navelem"><a href="namespacesrc_1_1signaling__server_1_1connection.html">connection</a></li><li class="navelem"><a href="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager.html">ConnectionManager</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

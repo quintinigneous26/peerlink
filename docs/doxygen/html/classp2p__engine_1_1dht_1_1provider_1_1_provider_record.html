@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.dht.provider.ProviderRecord类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1dht_1_1provider_1_1_provider_record.html','','classp2p__engine_1_1dht_1_1provider_1_1_provider_record-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.dht.provider.ProviderRecord类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:acf77a3bae4811b66ca15e67df5839d91" id="r_acf77a3bae4811b66ca15e67df5839d91"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#acf77a3bae4811b66ca15e67df5839d91">is_expired</a> (self)</td></tr>
+<tr class="memitem:ab0104a54b56bc435f2c29ea8f65833f3" id="r_ab0104a54b56bc435f2c29ea8f65833f3"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#ab0104a54b56bc435f2c29ea8f65833f3">refresh</a> (self, float ttl=<a class="el" href="namespacep2p__engine_1_1dht_1_1provider.html#a182cff9554c8c7ab7face4bb4abf57c6">PROVIDER_EXPIRATION</a>)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:a68cb3d838353c642166eda6676533b39" id="r_a68cb3d838353c642166eda6676533b39"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a68cb3d838353c642166eda6676533b39">timestamp</a> = field(default_factory=time.time)</td></tr>
+<tr class="memitem:a73413ad926477501fd3078bbec0f1775" id="r_a73413ad926477501fd3078bbec0f1775"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a73413ad926477501fd3078bbec0f1775">expires</a> = field(default_factory=lambda: time.time() + <a class="el" href="namespacep2p__engine_1_1dht_1_1provider.html#a182cff9554c8c7ab7face4bb4abf57c6">PROVIDER_EXPIRATION</a>)</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Record of a peer providing a specific content key.
+
+Attributes:
+    peer_id: ID of the provider peer
+    key: Content key (CID hash)
+    timestamp: When this record was created
+    expires: When this record expires
+</pre> 
+<p class="definition">在文件 <a class="el" href="provider_8py_source.html">provider.py</a> 第 <a class="el" href="provider_8py_source.html#l00027">27</a> 行定义.</p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="acf77a3bae4811b66ca15e67df5839d91" name="acf77a3bae4811b66ca15e67df5839d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf77a3bae4811b66ca15e67df5839d91">&#9670;&#160;</a></span>is_expired()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.provider.ProviderRecord.is_expired </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Check if provider record has expired.</pre> 
+<p class="definition">在文件 <a class="el" href="provider_8py_source.html">provider.py</a> 第 <a class="el" href="provider_8py_source.html#l00042">42</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="provider_8py_source.html#l00040">expires</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic__0rtt_8py_source.html#l00084">p2p_engine.transport.quic_0rtt.CachedSessionTicket.is_valid()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1provider_1_1_provider_record_acf77a3bae4811b66ca15e67df5839d91_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1provider_1_1_provider_record_acf77a3bae4811b66ca15e67df5839d91_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ab0104a54b56bc435f2c29ea8f65833f3" name="ab0104a54b56bc435f2c29ea8f65833f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0104a54b56bc435f2c29ea8f65833f3">&#9670;&#160;</a></span>refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.dht.provider.ProviderRecord.refresh </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>ttl</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacep2p__engine_1_1dht_1_1provider.html#a182cff9554c8c7ab7face4bb4abf57c6">PROVIDER_EXPIRATION</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Refresh the provider record.</pre> 
+<p class="definition">在文件 <a class="el" href="provider_8py_source.html">provider.py</a> 第 <a class="el" href="provider_8py_source.html#l00046">46</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="provider_8py_source.html#l00040">expires</a> , 以及 <a class="el" href="provider_8py_source.html#l00039">timestamp</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a73413ad926477501fd3078bbec0f1775" name="a73413ad926477501fd3078bbec0f1775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73413ad926477501fd3078bbec0f1775">&#9670;&#160;</a></span>expires</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float p2p_engine.dht.provider.ProviderRecord.expires = field(default_factory=lambda: time.time() + <a class="el" href="namespacep2p__engine_1_1dht_1_1provider.html#a182cff9554c8c7ab7face4bb4abf57c6">PROVIDER_EXPIRATION</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="provider_8py_source.html">provider.py</a> 第 <a class="el" href="provider_8py_source.html#l00040">40</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="provider_8py_source.html#l00042">is_expired()</a> , 以及 <a class="el" href="provider_8py_source.html#l00046">refresh()</a>.</p>
+
+</div>
+</div>
+<a id="a68cb3d838353c642166eda6676533b39" name="a68cb3d838353c642166eda6676533b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68cb3d838353c642166eda6676533b39">&#9670;&#160;</a></span>timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float p2p_engine.dht.provider.ProviderRecord.timestamp = field(default_factory=time.time)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="provider_8py_source.html">provider.py</a> 第 <a class="el" href="provider_8py_source.html#l00039">39</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="query__optimizer_8py_source.html#l00061">p2p_engine.dht.query_optimizer.CachedResult.age()</a>, <a class="el" href="protocol_8py_source.html#l00056">p2p_sdk.protocol.P2PMessage.encode()</a>, <a class="el" href="query__optimizer_8py_source.html#l00056">p2p_engine.dht.query_optimizer.CachedResult.is_expired()</a>, <a class="el" href="provider_8py_source.html#l00046">refresh()</a>, <a class="el" href="did-service_2src_2did__service_2models_8py_source.html#l00099">src.did_service.models.APIResponse.to_dict()</a> , 以及 <a class="el" href="relay-server_2src_2relay__server_2models_8py_source.html#l00140">src.relay_server.models.APIResponse.to_dict()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/dht/<a class="el" href="provider_8py_source.html">provider.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1dht.html">dht</a></li><li class="navelem"><a href="namespacep2p__engine_1_1dht_1_1provider.html">provider</a></li><li class="navelem"><a href="classp2p__engine_1_1dht_1_1provider_1_1_provider_record.html">ProviderRecord</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

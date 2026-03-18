@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: P2P SDK 快速开始指南</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('md_client__sdk_2docs_2_q_u_i_c_k_s_t_a_r_t.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">P2P SDK 快速开始指南 </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md168"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md170"></a>
+安装</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md171"></a>
+从 PyPI 安装</h2>
+<div class="fragment"><div class="line">pip install p2p-sdk</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md172"></a>
+从 Conda 安装</h2>
+<div class="fragment"><div class="line">conda install -c conda-forge p2p-sdk</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md173"></a>
+从源码安装</h2>
+<div class="fragment"><div class="line">git clone https://github.com/p2p-platform/python-sdk.git</div>
+<div class="line">cd python-sdk</div>
+<div class="line">pip install -e .</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md174"></a>
+基础使用</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md175"></a>
+1. 创建客户端</h2>
+<div class="fragment"><div class="line"><span class="keyword">import</span> asyncio</div>
+<div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> P2PClient</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">async def </span>main():</div>
+<div class="line">    <span class="comment"># 创建客户端实例</span></div>
+<div class="line">    client = P2PClient(</div>
+<div class="line">        did=<span class="stringliteral">&quot;device-001&quot;</span>,</div>
+<div class="line">        signaling_server=<span class="stringliteral">&quot;localhost&quot;</span>,</div>
+<div class="line">        signaling_port=8443</div>
+<div class="line">    )</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment"># 初始化（NAT 检测、连接信令服务器）</span></div>
+<div class="line">    await client.initialize()</div>
+<div class="line"> </div>
+<div class="line">    print(f<span class="stringliteral">&quot;NAT Type: {client.nat_type}&quot;</span>)</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Local Address: {client.local_address}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">asyncio.run(main())</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md176"></a>
+2. 连接到对等设备</h2>
+<div class="fragment"><div class="line"><span class="keyword">async def </span>connect_to_peer():</div>
+<div class="line">    client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+<div class="line">    await client.initialize()</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment"># 连接到对等设备</span></div>
+<div class="line">    success = await client.connect(<span class="stringliteral">&quot;device-002&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> success:</div>
+<div class="line">        print(<span class="stringliteral">&quot;Connected successfully!&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">else</span>:</div>
+<div class="line">        print(<span class="stringliteral">&quot;Connection failed&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    await client.close()</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md177"></a>
+3. 发送和接收数据</h2>
+<div class="fragment"><div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> P2PClient, ChannelType</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">async def </span>send_receive_data():</div>
+<div class="line">    client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+<div class="line">    await client.initialize()</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> await client.connect(<span class="stringliteral">&quot;device-002&quot;</span>):</div>
+<div class="line">        <span class="comment"># 创建数据通道</span></div>
+<div class="line">        channel = client.create_channel(ChannelType.DATA)</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment"># 发送数据</span></div>
+<div class="line">        await client.send_data(channel, b<span class="stringliteral">&quot;Hello, peer!&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment"># 接收数据</span></div>
+<div class="line">        data = await client.recv_data(channel, timeout=10.0)</div>
+<div class="line">        print(f<span class="stringliteral">&quot;Received: {data.decode()}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    await client.close()</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md178"></a>
+高级功能</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md179"></a>
+多通道通信</h2>
+<div class="fragment"><div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> P2PClient, ChannelType</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">async def </span>multi_channel_example():</div>
+<div class="line">    client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+<div class="line">    await client.initialize()</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> await client.connect(<span class="stringliteral">&quot;device-002&quot;</span>):</div>
+<div class="line">        <span class="comment"># 创建多个通道</span></div>
+<div class="line">        control_ch = client.create_channel(ChannelType.CONTROL)</div>
+<div class="line">        data_ch = client.create_channel(ChannelType.DATA)</div>
+<div class="line">        video_ch = client.create_channel(ChannelType.VIDEO, priority=10)</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment"># 在不同通道上发送数据</span></div>
+<div class="line">        await client.send_data(control_ch, b<span class="stringliteral">&quot;control message&quot;</span>)</div>
+<div class="line">        await client.send_data(data_ch, b<span class="stringliteral">&quot;data payload&quot;</span>)</div>
+<div class="line">        await client.send_data(video_ch, b<span class="stringliteral">&quot;video frame&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    await client.close()</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md180"></a>
+事件处理</h2>
+<div class="fragment"><div class="line"><span class="keyword">async def </span>event_handling_example():</div>
+<div class="line">    client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment"># 注册事件处理器</span></div>
+<div class="line">    <span class="preprocessor">@client.on_connected</span></div>
+<div class="line">    <span class="keyword">async def </span>on_connected():</div>
+<div class="line">        print(<span class="stringliteral">&quot;Connection established!&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    <span class="preprocessor">@client.on_disconnected</span></div>
+<div class="line">    <span class="keyword">async def </span>on_disconnected():</div>
+<div class="line">        print(<span class="stringliteral">&quot;Connection lost&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    <span class="preprocessor">@client.on_data</span></div>
+<div class="line">    <span class="keyword">async def </span>on_data(channel_id: int, data: bytes):</div>
+<div class="line">        print(f<span class="stringliteral">&quot;Received {len(data)} bytes on channel {channel_id}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    <span class="preprocessor">@client.on_error</span></div>
+<div class="line">    <span class="keyword">async def </span>on_error(error: Exception):</div>
+<div class="line">        print(f<span class="stringliteral">&quot;Error occurred: {error}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    await client.initialize()</div>
+<div class="line">    await client.connect(<span class="stringliteral">&quot;device-002&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment"># 保持连接</span></div>
+<div class="line">    await asyncio.sleep(60)</div>
+<div class="line">    await client.close()</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md181"></a>
+自定义配置</h2>
+<div class="fragment"><div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> P2PClient</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">async def </span>custom_config_example():</div>
+<div class="line">    client = P2PClient(</div>
+<div class="line">        did=<span class="stringliteral">&quot;device-001&quot;</span>,</div>
+<div class="line">        signaling_server=<span class="stringliteral">&quot;signal.example.com&quot;</span>,</div>
+<div class="line">        signaling_port=8443,</div>
+<div class="line">        stun_server=<span class="stringliteral">&quot;stun.example.com&quot;</span>,</div>
+<div class="line">        stun_port=3478,</div>
+<div class="line">        relay_server=<span class="stringliteral">&quot;relay.example.com&quot;</span>,</div>
+<div class="line">        relay_port=5000,</div>
+<div class="line">        connection_timeout=30.0,</div>
+<div class="line">        punch_timeout=10.0,</div>
+<div class="line">        keepalive_interval=5.0,</div>
+<div class="line">        max_retries=3,</div>
+<div class="line">        auto_relay=<span class="keyword">True</span></div>
+<div class="line">    )</div>
+<div class="line"> </div>
+<div class="line">    await client.initialize()</div>
+<div class="line">    <span class="comment"># ... 使用客户端</span></div>
+<div class="line">    await client.close()</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md185"></a>
+NAT 类型检测</h1>
+<div class="fragment"><div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> detect_nat_type, NATType</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">async def </span>detect_nat():</div>
+<div class="line">    nat_type = await detect_nat_type(</div>
+<div class="line">        stun_server=<span class="stringliteral">&quot;stun.l.google.com&quot;</span>,</div>
+<div class="line">        stun_port=19302</div>
+<div class="line">    )</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> nat_type == NATType.SYMMETRIC:</div>
+<div class="line">        print(<span class="stringliteral">&quot;Symmetric NAT detected - relay required&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">elif</span> nat_type <span class="keywordflow">in</span> [NATType.FULL_CONE, NATType.RESTRICTED_CONE]:</div>
+<div class="line">        print(<span class="stringliteral">&quot;NAT type supports direct P2P&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">else</span>:</div>
+<div class="line">        print(f<span class="stringliteral">&quot;NAT Type: {nat_type}&quot;</span>)</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md187"></a>
+错误处理</h1>
+<div class="fragment"><div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> (</div>
+<div class="line">    P2PClient,</div>
+<div class="line">    P2PError,</div>
+<div class="line">    ConnectionError,</div>
+<div class="line">    NATDetectionError,</div>
+<div class="line">    RelayError,</div>
+<div class="line">    TimeoutError</div>
+<div class="line">)</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">async def </span>error_handling_example():</div>
+<div class="line">    client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">try</span>:</div>
+<div class="line">        await client.initialize()</div>
+<div class="line">        await client.connect(<span class="stringliteral">&quot;device-002&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">except</span> NATDetectionError <span class="keyword">as</span> e:</div>
+<div class="line">        print(f<span class="stringliteral">&quot;NAT detection failed: {e}&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">except</span> ConnectionError <span class="keyword">as</span> e:</div>
+<div class="line">        print(f<span class="stringliteral">&quot;Connection failed: {e}&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">except</span> TimeoutError <span class="keyword">as</span> e:</div>
+<div class="line">        print(f<span class="stringliteral">&quot;Operation timed out: {e}&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">except</span> P2PError <span class="keyword">as</span> e:</div>
+<div class="line">        print(f<span class="stringliteral">&quot;P2P error: {e}&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">finally</span>:</div>
+<div class="line">        await client.close()</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md190"></a>
+最佳实践</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md192"></a>
+1. 资源管理</h2>
+<p>始终使用 try-finally 或 async with 确保资源清理：</p>
+<div class="fragment"><div class="line"><span class="keyword">async def </span>resource_management():</div>
+<div class="line">    client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+<div class="line">    <span class="keywordflow">try</span>:</div>
+<div class="line">        await client.initialize()</div>
+<div class="line">        <span class="comment"># ... 使用客户端</span></div>
+<div class="line">    <span class="keywordflow">finally</span>:</div>
+<div class="line">        await client.close()</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md193"></a>
+2. 超时设置</h2>
+<p>为所有阻塞操作设置合理的超时：</p>
+<div class="fragment"><div class="line"><span class="comment"># 连接超时</span></div>
+<div class="line">client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>, connection_timeout=30.0)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 接收超时</span></div>
+<div class="line">data = await client.recv_data(channel, timeout=10.0)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md195"></a>
+3. 错误重试</h2>
+<p>实现指数退避重试策略：</p>
+<div class="fragment"><div class="line"><span class="keyword">async def </span>connect_with_retry(client, peer_did, max_retries=3):</div>
+<div class="line">    <span class="keywordflow">for</span> attempt <span class="keywordflow">in</span> range(max_retries):</div>
+<div class="line">        <span class="keywordflow">try</span>:</div>
+<div class="line">            <span class="keywordflow">if</span> await client.connect(peer_did):</div>
+<div class="line">                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line">        <span class="keywordflow">except</span> ConnectionError:</div>
+<div class="line">            <span class="keywordflow">if</span> attempt &lt; max_retries - 1:</div>
+<div class="line">                await asyncio.sleep(2 ** attempt)</div>
+<div class="line">    <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md196"></a>
+4. 日志记录</h2>
+<p>启用日志以便调试：</p>
+<div class="fragment"><div class="line"><span class="keyword">import</span> logging</div>
+<div class="line"> </div>
+<div class="line">logging.basicConfig(level=logging.INFO)</div>
+<div class="line">logger = logging.getLogger(<span class="stringliteral">&quot;p2p_sdk&quot;</span>)</div>
+<div class="line">logger.setLevel(logging.DEBUG)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md206"></a>
+5. 网络状态监控</h2>
+<p>监控连接状态并实现自动重连：</p>
+<div class="fragment"><div class="line"><span class="keyword">async def </span>monitor_connection(client):</div>
+<div class="line">    <span class="preprocessor">@client.on_disconnected</span></div>
+<div class="line">    <span class="keyword">async def </span>on_disconnected():</div>
+<div class="line">        print(<span class="stringliteral">&quot;Connection lost, attempting reconnect...&quot;</span>)</div>
+<div class="line">        await asyncio.sleep(5)</div>
+<div class="line">        await client.connect(peer_did)</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md209"></a>
+性能优化</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md211"></a>
+1. 通道优先级</h2>
+<p>为不同类型的数据设置优先级：</p>
+<div class="fragment"><div class="line"><span class="comment"># 高优先级通道（控制消息）</span></div>
+<div class="line">control_ch = client.create_channel(ChannelType.CONTROL, priority=10)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 中优先级通道（视频）</span></div>
+<div class="line">video_ch = client.create_channel(ChannelType.VIDEO, priority=5)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 低优先级通道（数据）</span></div>
+<div class="line">data_ch = client.create_channel(ChannelType.DATA, priority=1)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md214"></a>
+2. 批量发送</h2>
+<p>批量发送小消息以减少开销：</p>
+<div class="fragment"><div class="line"><span class="comment"># 不推荐：多次小消息</span></div>
+<div class="line"><span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(100):</div>
+<div class="line">    await client.send_data(channel, f<span class="stringliteral">&quot;msg{i}&quot;</span>.encode())</div>
+<div class="line"> </div>
+<div class="line"><span class="comment"># 推荐：批量发送</span></div>
+<div class="line">batch = b<span class="stringliteral">&quot;&quot;</span>.join(f<span class="stringliteral">&quot;msg{i}&quot;</span>.encode() <span class="keywordflow">for</span> i <span class="keywordflow">in</span> range(100))</div>
+<div class="line">await client.send_data(channel, batch)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md217"></a>
+3. 缓冲区大小</h2>
+<p>根据数据量调整缓冲区：</p>
+<div class="fragment"><div class="line"><span class="comment"># 大数据传输时增加缓冲区</span></div>
+<div class="line">client = P2PClient(</div>
+<div class="line">    did=<span class="stringliteral">&quot;device-001&quot;</span>,</div>
+<div class="line">    recv_buffer_size=65536  <span class="comment"># 64KB</span></div>
+<div class="line">)</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md219"></a>
+故障排查</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md220"></a>
+连接失败</h2>
+<ol type="1">
+<li>检查 NAT 类型： <div class="fragment"><div class="line">print(f<span class="stringliteral">&quot;NAT Type: {client.nat_type}&quot;</span>)</div>
+</div><!-- fragment --></li>
+<li>验证信令服务器连接： <div class="fragment"><div class="line"><span class="keywordflow">if</span> <span class="keywordflow">not</span> client.is_signaling_connected:</div>
+<div class="line">    print(<span class="stringliteral">&quot;Signaling server not connected&quot;</span>)</div>
+</div><!-- fragment --></li>
+<li>启用详细日志： <div class="fragment"><div class="line"><span class="keyword">import</span> logging</div>
+<div class="line">logging.basicConfig(level=logging.DEBUG)</div>
+</div><!-- fragment --></li>
+</ol>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md222"></a>
+性能问题</h2>
+<ol type="1">
+<li>检查网络延迟： <div class="fragment"><div class="line">latency = await client.measure_latency()</div>
+<div class="line">print(f<span class="stringliteral">&quot;Latency: {latency}ms&quot;</span>)</div>
+</div><!-- fragment --></li>
+<li>监控数据速率： <div class="fragment"><div class="line">stats = client.get_statistics()</div>
+<div class="line">print(f<span class="stringliteral">&quot;Send rate: {stats[&#39;send_rate&#39;]} bytes/s&quot;</span>)</div>
+<div class="line">print(f<span class="stringliteral">&quot;Recv rate: {stats[&#39;recv_rate&#39;]} bytes/s&quot;</span>)</div>
+</div><!-- fragment --></li>
+</ol>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md225"></a>
+更多示例</h1>
+<p>完整示例代码请参见 <span class="tt">examples/</span> 目录：</p>
+<ul>
+<li><span class="tt"><a class="el" href="basic__usage_8py.html">basic_usage.py</a></span> - 基础 P2P 连接</li>
+<li><span class="tt"><a class="el" href="multi__channel_8py.html">multi_channel.py</a></span> - 多通道通信</li>
+<li><span class="tt">file_transfer.py</span> - 文件传输</li>
+<li><span class="tt">video_streaming.py</span> - 视频流传输</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md227"></a>
+支持</h1>
+<ul>
+<li>文档：https://github.com/p2p-platform/python-sdk#readme</li>
+<li>问题反馈：https://github.com/p2p-platform/python-sdk/issues</li>
+<li>讨论：https://github.com/p2p-platform/python-sdk/discussions </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

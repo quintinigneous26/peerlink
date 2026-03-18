@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1protocol_1_1noise" kind="namespace" language="Python">
+    <compoundname>p2p_engine::protocol::noise</compoundname>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_error" prot="public">p2p_engine::protocol::noise::NoiseError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_handshake_error" prot="public">p2p_engine::protocol::noise::HandshakeError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_crypto_error" prot="public">p2p_engine::protocol::noise::CryptoError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_invalid_signature_error" prot="public">p2p_engine::protocol::noise::InvalidSignatureError</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state" prot="public">p2p_engine::protocol::noise::DHState</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_cipher_state" prot="public">p2p_engine::protocol::noise::CipherState</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_symmetric_state" prot="public">p2p_engine::protocol::noise::SymmetricState</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_handshake_result" prot="public">p2p_engine::protocol::noise::HandshakeResult</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_handshake_config" prot="public">p2p_engine::protocol::noise::HandshakeConfig</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_handshake" prot="public">p2p_engine::protocol::noise::NoiseHandshake</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport" prot="public">p2p_engine::protocol::noise::NoiseSecurityTransport</innerclass>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security" prot="public">p2p_engine::protocol::noise::NoiseSecurity</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a1b30accf4670c30b3f585eedeb59cfc8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::noise.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.protocol.noise.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="36" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a0792774e15dff1b38820721cfbdbb509" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::noise.PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.protocol.noise.PROTOCOL_ID</qualifiedname>
+        <initializer>=  &quot;/noise&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="39" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a4eaf8a4b07585bdb456a3cac558eabe0" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::noise.PROTOCOL_NAME</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_NAME</name>
+        <qualifiedname>p2p_engine.protocol.noise.PROTOCOL_NAME</qualifiedname>
+        <initializer>=  &quot;Noise_XX_25519_ChaChaPoly_SHA256&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="40" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a9df91580a01874d13f57051269f49ba7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::protocol::noise.MAX_MESSAGE_SIZE</definition>
+        <argsstring></argsstring>
+        <name>MAX_MESSAGE_SIZE</name>
+        <qualifiedname>p2p_engine.protocol.noise.MAX_MESSAGE_SIZE</qualifiedname>
+        <initializer>=  65535</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="43" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a647e32d16321572fe5be6a8db16d77d2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::protocol::noise.DH_LEN</definition>
+        <argsstring></argsstring>
+        <name>DH_LEN</name>
+        <qualifiedname>p2p_engine.protocol.noise.DH_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="44" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a173c4c8eef2b65e3150d09b8c9781c30" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::protocol::noise.MAC_LEN</definition>
+        <argsstring></argsstring>
+        <name>MAC_LEN</name>
+        <qualifiedname>p2p_engine.protocol.noise.MAC_LEN</qualifiedname>
+        <initializer>=  16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="45" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a5dd4f91e9d0c72f220a65ccd65d2ada1" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::protocol::noise.HASH_LEN</definition>
+        <argsstring></argsstring>
+        <name>HASH_LEN</name>
+        <qualifiedname>p2p_engine.protocol.noise.HASH_LEN</qualifiedname>
+        <initializer>=  32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="46" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1a5bb454eeb593ca769f8179ff36c1df62" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::noise.SIGNATURE_PREFIX</definition>
+        <argsstring></argsstring>
+        <name>SIGNATURE_PREFIX</name>
+        <qualifiedname>p2p_engine.protocol.noise.SIGNATURE_PREFIX</qualifiedname>
+        <initializer>=  b&quot;noise-libp2p-static-key:&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="49" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1noise_1ae6df228a6945462a98de4c5192b959ce" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::protocol::noise.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.protocol.noise.__all__</qualifiedname>
+        <initializer>=  [
+    # Protocol identifiers
+    &quot;PROTOCOL_ID&quot;,
+    &quot;PROTOCOL_NAME&quot;,
+
+    # Exceptions
+    &quot;NoiseError&quot;,
+    &quot;HandshakeError&quot;,
+    &quot;CryptoError&quot;,
+    &quot;InvalidSignatureError&quot;,
+
+    # Configuration
+    &quot;HandshakeConfig&quot;,
+    &quot;HandshakeResult&quot;,
+
+    # Main API
+    &quot;NoiseSecurity&quot;,
+    &quot;NoiseSecurityTransport&quot;,
+
+    # Handshake (for advanced usage)
+    &quot;NoiseHandshake&quot;,
+
+    # Crypto primitives
+    &quot;DHState&quot;,
+    &quot;CipherState&quot;,
+    &quot;SymmetricState&quot;,
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="995" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="995" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Noise Secure Channel Implementation for libp2p
+
+This module implements the libp2p Noise secure channel protocol using
+the Noise Protocol Framework. It provides:
+- XX handshake pattern for mutual authentication
+- Noise_XX_25519_ChaChaPoly_SHA256 cipher suite
+- Static key authentication using libp2p identity keys (Ed25519)
+- Early data exchange for protocol negotiation
+
+Reference: https://github.com/libp2p/specs/blob/master/noise/README.md
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/noise.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

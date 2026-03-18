@@ -1,0 +1,297 @@
+\doxysection{src.\+did\+\_\+service.\+validators 命名空间参考}
+\hypertarget{namespacesrc_1_1did__service_1_1validators}{}\label{namespacesrc_1_1did__service_1_1validators}\index{src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsrc_1_1did__service_1_1validators_1_1_validation_error}{Validation\+Error}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a4a982b3ed2ae98ec7351631097b113ba}{validate\+\_\+did}} (str device\+\_\+id)
+\item 
+str \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_af784b857ed2ccff67019eee63e545a3d}{validate\+\_\+signature}} (str signature)
+\item 
+str \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a76421174108972cc4e43e0350d6415ce}{validate\+\_\+challenge}} (str challenge)
+\item 
+dict \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a27bde1fcf2e89c52b9ebba88ca1410ea}{validate\+\_\+metadata}} (dict metadata)
+\item 
+list\+[str]\+ \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a5fc2b76546723cc878892c556a85a3b2}{validate\+\_\+capabilities}} (list\+[str]\+ capabilities)
+\item 
+str \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_abe7dc48aaf6fa743a6dfd59a43bedcaf}{sanitize\+\_\+string}} (str value, int max\+\_\+length=1024)
+\item 
+\doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_aa0c8ac1d9ef868b34ac946f761c2a2d6}{validate\+\_\+params}} (\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators}{validators}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_ac4be5b9181601933782d74af0228845f}{DID\+\_\+\+PATTERN}}
+\item 
+\doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a2fc17b119deaf7b2a5fc7ef258e4db52}{SIGNATURE\+\_\+\+PATTERN}} = re.\+compile(r"{}\texorpdfstring{$^\wedge$}{\string^}\+[0-\/9a-\/fA-\/F]\+\{128\}\$"{})
+\item 
+int \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a4f8640d7c9ed8288ab911f2c48d27b6c}{CHALLENGE\+\_\+\+MIN\+\_\+\+LENGTH}} = 16
+\item 
+int \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a1db3159a1951f06815c64ad967324885}{CHALLENGE\+\_\+\+MAX\+\_\+\+LENGTH}} = 256
+\item 
+int \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a3a0d9dafa47817ced35e68ce4bc70e1c}{METADATA\+\_\+\+MAX\+\_\+\+SIZE}} = 4096
+\item 
+int \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a0310b861dfbd592ac8cd3ce49aa8c25d}{METADATA\+\_\+\+MAX\+\_\+\+KEYS}} = 50
+\item 
+int \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_a0c2ac2ada76d481573a09bba7dfb43ca}{MAX\+\_\+\+CAPABILITIES}} = 20
+\item 
+\doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1validators_aaa052675a23c3b20ba96cb5097e76f41}{VALID\+\_\+\+CAPABILITIES}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Input Validation Utilities
+
+Provides comprehensive input validation for all API endpoints.
+Security-focused validation to prevent injection attacks.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_abe7dc48aaf6fa743a6dfd59a43bedcaf}\index{src.did\_service.validators@{src.did\_service.validators}!sanitize\_string@{sanitize\_string}}
+\index{sanitize\_string@{sanitize\_string}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{sanitize\_string()}{sanitize\_string()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_abe7dc48aaf6fa743a6dfd59a43bedcaf} 
+ str src.\+did\+\_\+service.\+validators.\+sanitize\+\_\+string (\begin{DoxyParamCaption}\item[{str}]{value}{, }\item[{int }]{max\+\_\+length}{ = {\ttfamily 1024}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Sanitize a string value.
+
+Args:
+    value: String to sanitize
+    max_length: Maximum allowed length
+
+Returns:
+    Sanitized string
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00259}{259}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a5fc2b76546723cc878892c556a85a3b2}\index{src.did\_service.validators@{src.did\_service.validators}!validate\_capabilities@{validate\_capabilities}}
+\index{validate\_capabilities@{validate\_capabilities}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{validate\_capabilities()}{validate\_capabilities()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a5fc2b76546723cc878892c556a85a3b2} 
+ list\+[str]\+ src.\+did\+\_\+service.\+validators.\+validate\+\_\+capabilities (\begin{DoxyParamCaption}\item[{list\+[str]\+}]{capabilities}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate capabilities list.
+
+Args:
+    capabilities: List of capability strings
+
+Returns:
+    Validated capabilities
+
+Raises:
+    ValidationError: If format is invalid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00219}{219}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a76421174108972cc4e43e0350d6415ce}\index{src.did\_service.validators@{src.did\_service.validators}!validate\_challenge@{validate\_challenge}}
+\index{validate\_challenge@{validate\_challenge}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{validate\_challenge()}{validate\_challenge()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a76421174108972cc4e43e0350d6415ce} 
+ str src.\+did\+\_\+service.\+validators.\+validate\+\_\+challenge (\begin{DoxyParamCaption}\item[{str}]{challenge}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate challenge string.
+
+Args:
+    challenge: Challenge string
+
+Returns:
+    Validated challenge
+
+Raises:
+    ValidationError: If format is invalid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00120}{120}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a4a982b3ed2ae98ec7351631097b113ba}\index{src.did\_service.validators@{src.did\_service.validators}!validate\_did@{validate\_did}}
+\index{validate\_did@{validate\_did}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{validate\_did()}{validate\_did()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a4a982b3ed2ae98ec7351631097b113ba} 
+ str src.\+did\+\_\+service.\+validators.\+validate\+\_\+did (\begin{DoxyParamCaption}\item[{str}]{device\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate Device ID (DID) format.
+
+Args:
+    device_id: Device identifier string
+
+Returns:
+    Validated device_id
+
+Raises:
+    ValidationError: If format is invalid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00050}{50}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a27bde1fcf2e89c52b9ebba88ca1410ea}\index{src.did\_service.validators@{src.did\_service.validators}!validate\_metadata@{validate\_metadata}}
+\index{validate\_metadata@{validate\_metadata}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{validate\_metadata()}{validate\_metadata()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a27bde1fcf2e89c52b9ebba88ca1410ea} 
+ dict src.\+did\+\_\+service.\+validators.\+validate\+\_\+metadata (\begin{DoxyParamCaption}\item[{dict}]{metadata}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate metadata dictionary.
+
+Args:
+    metadata: Metadata dictionary
+
+Returns:
+    Validated metadata
+
+Raises:
+    ValidationError: If format is invalid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00164}{164}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_aa0c8ac1d9ef868b34ac946f761c2a2d6}\index{src.did\_service.validators@{src.did\_service.validators}!validate\_params@{validate\_params}}
+\index{validate\_params@{validate\_params}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{validate\_params()}{validate\_params()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_aa0c8ac1d9ef868b34ac946f761c2a2d6} 
+src.\+did\+\_\+service.\+validators.\+validate\+\_\+params (\begin{DoxyParamCaption}\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{validators}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decorator to validate function parameters.
+
+Usage:
+    @validate_params(device_id=validate_did, signature=validate_signature)
+    def my_function(device_id: str, signature: str):
+        ...
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00287}{287}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_af784b857ed2ccff67019eee63e545a3d}\index{src.did\_service.validators@{src.did\_service.validators}!validate\_signature@{validate\_signature}}
+\index{validate\_signature@{validate\_signature}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{validate\_signature()}{validate\_signature()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_af784b857ed2ccff67019eee63e545a3d} 
+ str src.\+did\+\_\+service.\+validators.\+validate\+\_\+signature (\begin{DoxyParamCaption}\item[{str}]{signature}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Validate signature format.
+
+Args:
+    signature: Hex-encoded signature string
+
+Returns:
+    Validated signature (lowercase)
+
+Raises:
+    ValidationError: If format is invalid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00087}{87}} 行定义.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a1db3159a1951f06815c64ad967324885}\index{src.did\_service.validators@{src.did\_service.validators}!CHALLENGE\_MAX\_LENGTH@{CHALLENGE\_MAX\_LENGTH}}
+\index{CHALLENGE\_MAX\_LENGTH@{CHALLENGE\_MAX\_LENGTH}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{CHALLENGE\_MAX\_LENGTH}{CHALLENGE\_MAX\_LENGTH}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a1db3159a1951f06815c64ad967324885} 
+int src.\+did\+\_\+service.\+validators.\+CHALLENGE\+\_\+\+MAX\+\_\+\+LENGTH = 256}
+
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00027}{27}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a4f8640d7c9ed8288ab911f2c48d27b6c}\index{src.did\_service.validators@{src.did\_service.validators}!CHALLENGE\_MIN\_LENGTH@{CHALLENGE\_MIN\_LENGTH}}
+\index{CHALLENGE\_MIN\_LENGTH@{CHALLENGE\_MIN\_LENGTH}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{CHALLENGE\_MIN\_LENGTH}{CHALLENGE\_MIN\_LENGTH}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a4f8640d7c9ed8288ab911f2c48d27b6c} 
+int src.\+did\+\_\+service.\+validators.\+CHALLENGE\+\_\+\+MIN\+\_\+\+LENGTH = 16}
+
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00026}{26}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_ac4be5b9181601933782d74af0228845f}\index{src.did\_service.validators@{src.did\_service.validators}!DID\_PATTERN@{DID\_PATTERN}}
+\index{DID\_PATTERN@{DID\_PATTERN}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{DID\_PATTERN}{DID\_PATTERN}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_ac4be5b9181601933782d74af0228845f} 
+src.\+did\+\_\+service.\+validators.\+DID\+\_\+\+PATTERN}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ re.compile(}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{r"{}\string^(ios|android|web|desktop)-\/[0-\/9A-\/Fa-\/f]\{6\}-\/[0-\/9A-\/HJ-\/NP-\/Z]\{5\}\$"{}}}
+\DoxyCodeLine{00003\ )}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00018}{18}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a0c2ac2ada76d481573a09bba7dfb43ca}\index{src.did\_service.validators@{src.did\_service.validators}!MAX\_CAPABILITIES@{MAX\_CAPABILITIES}}
+\index{MAX\_CAPABILITIES@{MAX\_CAPABILITIES}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{MAX\_CAPABILITIES}{MAX\_CAPABILITIES}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a0c2ac2ada76d481573a09bba7dfb43ca} 
+int src.\+did\+\_\+service.\+validators.\+MAX\+\_\+\+CAPABILITIES = 20}
+
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00034}{34}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a0310b861dfbd592ac8cd3ce49aa8c25d}\index{src.did\_service.validators@{src.did\_service.validators}!METADATA\_MAX\_KEYS@{METADATA\_MAX\_KEYS}}
+\index{METADATA\_MAX\_KEYS@{METADATA\_MAX\_KEYS}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{METADATA\_MAX\_KEYS}{METADATA\_MAX\_KEYS}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a0310b861dfbd592ac8cd3ce49aa8c25d} 
+int src.\+did\+\_\+service.\+validators.\+METADATA\+\_\+\+MAX\+\_\+\+KEYS = 50}
+
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00031}{31}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a3a0d9dafa47817ced35e68ce4bc70e1c}\index{src.did\_service.validators@{src.did\_service.validators}!METADATA\_MAX\_SIZE@{METADATA\_MAX\_SIZE}}
+\index{METADATA\_MAX\_SIZE@{METADATA\_MAX\_SIZE}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{METADATA\_MAX\_SIZE}{METADATA\_MAX\_SIZE}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a3a0d9dafa47817ced35e68ce4bc70e1c} 
+int src.\+did\+\_\+service.\+validators.\+METADATA\+\_\+\+MAX\+\_\+\+SIZE = 4096}
+
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00030}{30}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_a2fc17b119deaf7b2a5fc7ef258e4db52}\index{src.did\_service.validators@{src.did\_service.validators}!SIGNATURE\_PATTERN@{SIGNATURE\_PATTERN}}
+\index{SIGNATURE\_PATTERN@{SIGNATURE\_PATTERN}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{SIGNATURE\_PATTERN}{SIGNATURE\_PATTERN}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_a2fc17b119deaf7b2a5fc7ef258e4db52} 
+src.\+did\+\_\+service.\+validators.\+SIGNATURE\+\_\+\+PATTERN = re.\+compile(r"{}\texorpdfstring{$^\wedge$}{\string^}\+[0-\/9a-\/fA-\/F]\+\{128\}\$"{})}
+
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00023}{23}} 行定义.
+
+\Hypertarget{namespacesrc_1_1did__service_1_1validators_aaa052675a23c3b20ba96cb5097e76f41}\index{src.did\_service.validators@{src.did\_service.validators}!VALID\_CAPABILITIES@{VALID\_CAPABILITIES}}
+\index{VALID\_CAPABILITIES@{VALID\_CAPABILITIES}!src.did\_service.validators@{src.did\_service.validators}}
+\doxysubsubsection{\texorpdfstring{VALID\_CAPABILITIES}{VALID\_CAPABILITIES}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1validators_aaa052675a23c3b20ba96cb5097e76f41} 
+src.\+did\+\_\+service.\+validators.\+VALID\+\_\+\+CAPABILITIES}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ frozenset(\{}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{"{}p2p"{}},\ \textcolor{stringliteral}{"{}relay"{}},\ \textcolor{stringliteral}{"{}video"{}},\ \textcolor{stringliteral}{"{}audio"{}},\ \textcolor{stringliteral}{"{}screen\_share"{}},}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{"{}file\_transfer"{}},\ \textcolor{stringliteral}{"{}chat"{}},\ \textcolor{stringliteral}{"{}whiteboard"{}},\ \textcolor{stringliteral}{"{}recording"{}}}
+\DoxyCodeLine{00004\ \})}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{validators_8py_source}{validators.\+py}} 第 \doxymbox{\hyperlink{validators_8py_source_l00035}{35}} 行定义.
+

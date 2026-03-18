@@ -1,0 +1,410 @@
+\doxysection{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper类 参考}
+\hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper}{}\label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+
+
+p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_adf64336ecfcb6348a593d3e4486a0fae}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Callable\+[\+[bytes]\+, Awaitable\+[bool]\+]\+ send\+\_\+func, Callable\+[\+[$\,$]\+, Awaitable\+[None]\+]\+ on\+\_\+timeout, \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} isp=\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p_ad8d880a57697e67f1ab00405eb48476a}{ISP.\+UNKNOWN}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{Heartbeat\+Stats}} \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a6b603e11130a37ba7b7fd10a098344b8}{stats}} (self)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa15348b75944175c98b03ed08f9f0bc2}{current\+\_\+interval\+\_\+ms}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a935bf43c166068b9bd6e5091b1481e3f}{set\+\_\+isp}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} isp)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a371014e6eeec65082e0c38f166926fc7}{start}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a3a0830db28d1a68ccc64059a44d2d14f}{stop}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aece21b19d1aa89c57d4b3a2576656cd7}{reset\+\_\+stats}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ae61aced74b54162c1810727534d9debc}{\+\_\+heartbeat\+\_\+loop}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af8044a6104e86f53080d65a9f5132b4e}{\+\_\+send\+\_\+heartbeat}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa776ffb006a1e8bef705cecfd2c13125}{\+\_\+on\+\_\+heartbeat\+\_\+success}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a9b6adebe33bff6e2dcd5e58b7e82cc8a}{\+\_\+on\+\_\+heartbeat\+\_\+failure}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a7624e138fca3b564d4db834039576e59}{\+\_\+send\+\_\+func}} = send\+\_\+func
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a522634ea10be66bba50dc72449836430}{\+\_\+on\+\_\+timeout}} = on\+\_\+timeout
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abec1dd8584f22a8234910512a2f48360}{\+\_\+isp}} = isp
+\item 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}{\+\_\+profile}} = None
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}{\+\_\+interval\+\_\+ms}} = 30000
+\item 
+Optional\+[asyncio.\+Task]\+ \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}{\+\_\+task}} = None
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}{\+\_\+running}} = False
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}{\+\_\+stats}} = \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{Heartbeat\+Stats}}()
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a2d7bffd5754261a67de67287106b07c4}{\+\_\+heartbeat\+\_\+data}} = b"{}\textbackslash{}x00\textbackslash{}x00"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}心跳保活器\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00030}{30}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_adf64336ecfcb6348a593d3e4486a0fae}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_adf64336ecfcb6348a593d3e4486a0fae} 
+p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Callable\+[\+[bytes]\+, Awaitable\+[bool]\+]\+}]{send\+\_\+func}{, }\item[{Callable\+[\+[$\,$]\+, Awaitable\+[None]\+]\+}]{on\+\_\+timeout}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} }]{isp}{ = {\ttfamily \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p_ad8d880a57697e67f1ab00405eb48476a}{ISP.\+UNKNOWN}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}初始化
+
+Args:
+    send_func: 发送心跳包的函数
+    on_timeout: 心跳超时回调
+    isp: 当前运营商
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00033}{33}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ae61aced74b54162c1810727534d9debc}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_heartbeat\_loop@{\_heartbeat\_loop}}
+\index{\_heartbeat\_loop@{\_heartbeat\_loop}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_heartbeat\_loop()}{\_heartbeat\_loop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ae61aced74b54162c1810727534d9debc} 
+ None p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+heartbeat\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}心跳循环\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{101}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00052}{\+\_\+interval\+\_\+ms}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00167}{\+\_\+on\+\_\+heartbeat\+\_\+failure()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00138}{\+\_\+on\+\_\+heartbeat\+\_\+success()}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{\+\_\+running}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00122}{\+\_\+send\+\_\+heartbeat()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00077}{start()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00823}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+start()}}.
+
+函数调用图:\+
+% FIG 1
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a9b6adebe33bff6e2dcd5e58b7e82cc8a}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_on\_heartbeat\_failure@{\_on\_heartbeat\_failure}}
+\index{\_on\_heartbeat\_failure@{\_on\_heartbeat\_failure}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_on\_heartbeat\_failure()}{\_on\_heartbeat\_failure()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a9b6adebe33bff6e2dcd5e58b7e82cc8a} 
+ None p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+on\+\_\+heartbeat\+\_\+failure (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}心跳失败处理\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00167}{167}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00052}{\+\_\+interval\+\_\+ms}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00048}{\+\_\+on\+\_\+timeout}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00051}{\+\_\+profile}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{\+\_\+stats}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{\+\_\+heartbeat\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa776ffb006a1e8bef705cecfd2c13125}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_on\_heartbeat\_success@{\_on\_heartbeat\_success}}
+\index{\_on\_heartbeat\_success@{\_on\_heartbeat\_success}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_on\_heartbeat\_success()}{\_on\_heartbeat\_success()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa776ffb006a1e8bef705cecfd2c13125} 
+ None p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+on\+\_\+heartbeat\+\_\+success (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}心跳成功处理\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00138}{138}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00052}{\+\_\+interval\+\_\+ms}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00051}{\+\_\+profile}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{\+\_\+stats}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{\+\_\+heartbeat\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af8044a6104e86f53080d65a9f5132b4e}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_send\_heartbeat@{\_send\_heartbeat}}
+\index{\_send\_heartbeat@{\_send\_heartbeat}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_send\_heartbeat()}{\_send\_heartbeat()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af8044a6104e86f53080d65a9f5132b4e} 
+ bool p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+send\+\_\+heartbeat (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}发送心跳包\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00122}{122}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00058}{\+\_\+heartbeat\+\_\+data}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00250}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+send\+\_\+func}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00047}{\+\_\+send\+\_\+func}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{\+\_\+stats}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{\+\_\+heartbeat\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa15348b75944175c98b03ed08f9f0bc2}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!current\_interval\_ms@{current\_interval\_ms}}
+\index{current\_interval\_ms@{current\_interval\_ms}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{current\_interval\_ms()}{current\_interval\_ms()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aa15348b75944175c98b03ed08f9f0bc2} 
+ int p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+current\+\_\+interval\+\_\+ms (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}当前心跳间隔\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00066}{66}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00052}{\+\_\+interval\+\_\+ms}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aece21b19d1aa89c57d4b3a2576656cd7}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!reset\_stats@{reset\_stats}}
+\index{reset\_stats@{reset\_stats}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{reset\_stats()}{reset\_stats()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_aece21b19d1aa89c57d4b3a2576656cd7} 
+ None p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+reset\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}重置统计\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00187}{187}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{\+\_\+stats}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a935bf43c166068b9bd6e5091b1481e3f}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!set\_isp@{set\_isp}}
+\index{set\_isp@{set\_isp}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{set\_isp()}{set\_isp()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a935bf43c166068b9bd6e5091b1481e3f} 
+ None p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+set\+\_\+isp (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}}}]{isp}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}设置运营商（更新心跳参数）\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00070}{70}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00052}{\+\_\+interval\+\_\+ms}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00049}{\+\_\+isp}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00051}{\+\_\+profile}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a371014e6eeec65082e0c38f166926fc7}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!start@{start}}
+\index{start@{start}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a371014e6eeec65082e0c38f166926fc7} 
+ None p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+start (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}启动心跳\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00077}{77}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{\+\_\+running}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00053}{\+\_\+task}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00154}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+find\+\_\+peer()}}, \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00185}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+find\+\_\+providers()}}, \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00217}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+get\+\_\+value()}}, \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00169}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+provide()}} , 以及 \doxymbox{\hyperlink{protocol_2kademlia_8py_source_l00201}{p2p\+\_\+engine.\+protocol.\+kademlia.\+Kademlia\+Protocol\+Handler.\+put\+\_\+value()}}.
+
+函数调用图:\+
+% FIG 6
+这是这个函数的调用关系图:\+
+% FIG 7
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a6b603e11130a37ba7b7fd10a098344b8}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!stats@{stats}}
+\index{stats@{stats}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{stats()}{stats()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a6b603e11130a37ba7b7fd10a098344b8} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{Heartbeat\+Stats}} p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+stats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取统计信息\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00061}{61}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{\+\_\+stats}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a3a0830db28d1a68ccc64059a44d2d14f}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!stop@{stop}}
+\index{stop@{stop}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a3a0830db28d1a68ccc64059a44d2d14f} 
+ None p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}停止心跳\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00087}{87}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{\+\_\+running}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00053}{\+\_\+task}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a2d7bffd5754261a67de67287106b07c4}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_heartbeat\_data@{\_heartbeat\_data}}
+\index{\_heartbeat\_data@{\_heartbeat\_data}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_heartbeat\_data}{\_heartbeat\_data}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a2d7bffd5754261a67de67287106b07c4} 
+str p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+heartbeat\+\_\+data = b"{}\textbackslash{}x00\textbackslash{}x00"{}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00058}{58}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00122}{\+\_\+send\+\_\+heartbeat()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_interval\_ms@{\_interval\_ms}}
+\index{\_interval\_ms@{\_interval\_ms}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_interval\_ms}{\_interval\_ms}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abd69ddf48c022412169cb55bed972289} 
+int p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+interval\+\_\+ms = 30000\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00052}{52}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00167}{\+\_\+on\+\_\+heartbeat\+\_\+failure()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00138}{\+\_\+on\+\_\+heartbeat\+\_\+success()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00066}{current\+\_\+interval\+\_\+ms()}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00070}{set\+\_\+isp()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abec1dd8584f22a8234910512a2f48360}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_isp@{\_isp}}
+\index{\_isp@{\_isp}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_isp}{\_isp}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abec1dd8584f22a8234910512a2f48360} 
+p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+isp = isp\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00049}{49}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00070}{set\+\_\+isp()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a522634ea10be66bba50dc72449836430}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_on\_timeout@{\_on\_timeout}}
+\index{\_on\_timeout@{\_on\_timeout}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_on\_timeout}{\_on\_timeout}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a522634ea10be66bba50dc72449836430} 
+p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+on\+\_\+timeout = on\+\_\+timeout\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00048}{48}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00167}{\+\_\+on\+\_\+heartbeat\+\_\+failure()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_profile@{\_profile}}
+\index{\_profile@{\_profile}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_profile}{\_profile}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_af41afbacd4e18ea70ccc62888f34d8a6} 
+Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1config_1_1isp__profiles_1_1_i_s_p_profile}{ISPProfile}}]\+ p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+profile = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00051}{51}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00167}{\+\_\+on\+\_\+heartbeat\+\_\+failure()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00138}{\+\_\+on\+\_\+heartbeat\+\_\+success()}} , 以及 \doxymbox{\hyperlink{heartbeat_8py_source_l00070}{set\+\_\+isp()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_running@{\_running}}
+\index{\_running@{\_running}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_abde5c530069af637a9fcf4284bd9b79e} 
+bool p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{54}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00101}{\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01051}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+heartbeat\+\_\+loop()}}, \doxymbox{\hyperlink{client_8py_source_l00570}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+keepalive\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00292}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00154}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00446}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+ws\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00558}{p2p\+\_\+client.\+P2\+PClient.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00744}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00403}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00322}{p2p\+\_\+client.\+P2\+PClient.\+initialize()}}, \doxymbox{\hyperlink{client_8py_source_l00218}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+initialize()}}, \doxymbox{\hyperlink{ping_8py_source_l00097}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+is\+\_\+running()}}, \doxymbox{\hyperlink{ping_8py_source_l00101}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+ping()}}, \doxymbox{\hyperlink{ping_8py_source_l00231}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+serve()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00077}{start()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00823}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+start()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01289}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+start()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00543}{p2p\+\_\+client.\+P2\+PClient.\+start\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00087}{stop()}}, \doxymbox{\hyperlink{ping_8py_source_l00287}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+stop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00832}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+stop()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01294}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+stop()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+stop()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a7624e138fca3b564d4db834039576e59}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_send\_func@{\_send\_func}}
+\index{\_send\_func@{\_send\_func}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_send\_func}{\_send\_func}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_a7624e138fca3b564d4db834039576e59} 
+p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+send\+\_\+func = send\+\_\+func\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00047}{47}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{heartbeat_8py_source_l00122}{\+\_\+send\+\_\+heartbeat()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_stats@{\_stats}}
+\index{\_stats@{\_stats}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_stats}{\_stats}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ade0dc3206a622881ca5464d2b4dde250} 
+p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats = \doxymbox{\hyperlink{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_stats}{Heartbeat\+Stats}}()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{55}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{ping_8py_source_l00270}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+handle\+\_\+ping\+\_\+request()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00167}{\+\_\+on\+\_\+heartbeat\+\_\+failure()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00138}{\+\_\+on\+\_\+heartbeat\+\_\+success()}}, \doxymbox{\hyperlink{ping_8py_source_l00225}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+on\+\_\+ping\+\_\+failure()}}, \doxymbox{\hyperlink{ping_8py_source_l00201}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+on\+\_\+ping\+\_\+success()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00312}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+send\+\_\+frame()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00294}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+send\+\_\+frames\+\_\+batch()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00122}{\+\_\+send\+\_\+heartbeat()}}, \doxymbox{\hyperlink{ping_8py_source_l00151}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+send\+\_\+ping()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00329}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+get\+\_\+performance\+\_\+metrics()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00228}{src.\+bandwidth.\+Bandwidth\+Limiter.\+get\+\_\+stats()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00240}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+open\+\_\+streams\+\_\+batch()}}, \doxymbox{\hyperlink{ping_8py_source_l00101}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+ping()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00218}{src.\+bandwidth.\+Bandwidth\+Limiter.\+remove\+\_\+allocation()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00187}{reset\+\_\+stats()}}, \doxymbox{\hyperlink{ping_8py_source_l00304}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+reset\+\_\+stats()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00325}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+statistics()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00061}{stats()}}, \doxymbox{\hyperlink{ping_8py_source_l00092}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+stats()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00139}{src.\+bandwidth.\+Bandwidth\+Limiter.\+throttle\+\_\+read()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00169}{src.\+bandwidth.\+Bandwidth\+Limiter.\+throttle\+\_\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505}\index{p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}!\_task@{\_task}}
+\index{\_task@{\_task}!p2p\_engine.keeper.heartbeat.HeartbeatKeeper@{p2p\_engine.keeper.heartbeat.HeartbeatKeeper}}
+\doxysubsubsection{\texorpdfstring{\_task}{\_task}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1keeper_1_1heartbeat_1_1_heartbeat_keeper_ad9f14e34e027d4971c776a9b8a0d1505} 
+Optional\+[asyncio.\+Task]\+ p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+task = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{heartbeat_8py_source}{heartbeat.\+py}} 第 \doxymbox{\hyperlink{heartbeat_8py_source_l00053}{53}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{ping_8py_source_l00231}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+serve()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00077}{start()}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00087}{stop()}} , 以及 \doxymbox{\hyperlink{ping_8py_source_l00287}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+stop()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+keeper/\+\doxymbox{\hyperlink{heartbeat_8py}{heartbeat.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,194 @@
+\doxysection{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream类 参考}
+\hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream}{}\label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}}
+
+
+类 p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_a13c7b33bd92bd0b31b8ec521d59b9a6c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_aba83f5491e1883fd554e885e6a0dfe66}{write\+\_\+batch}} (self, List\+[bytes]\+ chunks)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public 成员函数 继承自 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a393855fa6c6e4214eae0af1222b083b4}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int stream\+\_\+id, \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session}{Yamux\+Session}}\textquotesingle{} session, bool is\+\_\+initiator=False, Optional\+[\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config}{Yamux\+Config}}]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}}=None)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a23a41751d547843343329fff9c293307}{id}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_stream_state}{Stream\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a046e3c3e1b269b604bf50c150d86909d}{state}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a60b84078bd32cf3b77707c932cfab50d}{is\+\_\+closed}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a6f947ea492683c6f0079ef181263db2d}{is\+\_\+established}} (self)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a6491a3d1cfe3784b32deed7c4626f155}{read}} (self, int n=-\/1)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a0362e456500b137e5e318011184d9b85}{write}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_af35933280b337831bc0c31bddb4968bb}{close}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a69e33c5e04aa9b0f8e7e7b8448decedb}{reset}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_afbd7e7b970b65763651d07a271621cff}{\+\_\+write\+\_\+batch}} = \+[$\,$]\+
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_acaa24deabccfdfd5c3aaf10c4d850b38}{\+\_\+batch\+\_\+size}} = 0
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_ae320cc71507d9f93a4fc18235675f29b}{\+\_\+max\+\_\+batch\+\_\+size}} = 64 \texorpdfstring{$\ast$}{*} 1024
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected 属性 继承自 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a49df854c09fde1e7a2e7e2c9aa9a366a}{\+\_\+id}} = stream\+\_\+id
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a90ecfded12d3947faf73de38179ca124}{\+\_\+session}} = session
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a2d7f885f03491b9ae46cef92a4d80cf3}{\+\_\+is\+\_\+initiator}} = is\+\_\+initiator
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_adac0c82a4f18981c03a091140252aa37}{\+\_\+config}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1config}{config}} or \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config}{Yamux\+Config}}()
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a4f77acc053f0b26829e0d918fc171bb5}{\+\_\+state}} = \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_stream_state_ab05e1a02cce9338b55f7f5cd6069c0bf}{Stream\+State.\+INIT}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a48a0d7166e36fbf16bc790ea62943e64}{\+\_\+read\+\_\+lock}} = asyncio.\+Lock()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a2ef3c919bf7e90a398b2272c5c64ac64}{\+\_\+write\+\_\+lock}} = asyncio.\+Lock()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a38a9554dff716caa4e8b039afdb8e67f}{\+\_\+recv\+\_\+window}} = self.\+\_\+config.\+window\+\_\+size
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_ac75ffeac65486773c3a2a0f55e8e059c}{\+\_\+recv\+\_\+buffer}} = bytearray()
+\item 
+asyncio.\+Queue\+[Optional\+[bytes]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a64cc085e2e2c104f6caff46973cb1e9c}{\+\_\+recv\+\_\+queue}} = asyncio.\+Queue()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a0bdd2c92adc1b24afcd56526220515c1}{\+\_\+send\+\_\+window}} = self.\+\_\+config.\+window\+\_\+size
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_adc2e085b0c40e1924631dc6c10522c94}{\+\_\+send\+\_\+window\+\_\+update}} = asyncio.\+Event()
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_ab4aed37b14bdb01193f7b4ba2363c78d}{\+\_\+local\+\_\+closed}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_ab4c655f400b5c5217915037c14f6bf50}{\+\_\+remote\+\_\+closed}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a0f57c3ee61842bb617fafcc79db62b27}{\+\_\+reset}} = False
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_ad6922382e82bc8e62b5314f78e013699}{\+\_\+established}} = asyncio.\+Event()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{额外继承的成员函数}
+\doxysubsection*{Protected 成员函数 继承自 \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Stream}}}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_aa9488b1abc2edfcdee2bb3929a5b693f}{\+\_\+handle\+\_\+data}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}} frame)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_afb6014a8dfc129950870651002c3b753}{\+\_\+handle\+\_\+window\+\_\+update}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame}{Yamux\+Frame}} frame)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a5d9ee0b117e1e2bd0c65c84582b7d54b}{\+\_\+send\+\_\+window\+\_\+update\+\_\+internal}} (self, int delta)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a12f228d9d300f420a7852be0f32a58ef}{\+\_\+set\+\_\+state}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_stream_state}{Stream\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_a046e3c3e1b269b604bf50c150d86909d}{state}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}优化的 Yamux 流
+
+改进：
+- 读写锁分离
+- 零拷贝数据路径
+- 批量写入
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00055}{55}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_a13c7b33bd92bd0b31b8ec521d59b9a6c}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_a13c7b33bd92bd0b31b8ec521d59b9a6c} 
+p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00065}{65}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00065}{\+\_\+\+\_\+init\+\_\+\+\_\+()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00065}{\+\_\+\+\_\+init\+\_\+\+\_\+()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_aba83f5491e1883fd554e885e6a0dfe66}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}!write\_batch@{write\_batch}}
+\index{write\_batch@{write\_batch}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}}
+\doxysubsubsection{\texorpdfstring{write\_batch()}{write\_batch()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_aba83f5491e1883fd554e885e6a0dfe66} 
+ int p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream.\+write\+\_\+batch (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\+[bytes]\+}]{chunks}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}批量写入数据
+
+比多次 write() 更高效，减少锁竞争。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00077}{77}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_acaa24deabccfdfd5c3aaf10c4d850b38}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}!\_batch\_size@{\_batch\_size}}
+\index{\_batch\_size@{\_batch\_size}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}}
+\doxysubsubsection{\texorpdfstring{\_batch\_size}{\_batch\_size}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_acaa24deabccfdfd5c3aaf10c4d850b38} 
+int p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream.\+\_\+batch\+\_\+size = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00074}{74}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_ae320cc71507d9f93a4fc18235675f29b}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}!\_max\_batch\_size@{\_max\_batch\_size}}
+\index{\_max\_batch\_size@{\_max\_batch\_size}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}}
+\doxysubsubsection{\texorpdfstring{\_max\_batch\_size}{\_max\_batch\_size}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_ae320cc71507d9f93a4fc18235675f29b} 
+int p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream.\+\_\+max\+\_\+batch\+\_\+size = 64 \texorpdfstring{$\ast$}{*} 1024\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00075}{75}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_afbd7e7b970b65763651d07a271621cff}\index{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}!\_write\_batch@{\_write\_batch}}
+\index{\_write\_batch@{\_write\_batch}!p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream@{p2p\_engine.muxer.yamux\_optimized.OptimizedYamuxStream}}
+\doxysubsubsection{\texorpdfstring{\_write\_batch}{\_write\_batch}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_stream_afbd7e7b970b65763651d07a271621cff} 
+list p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Stream.\+\_\+write\+\_\+batch = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{yamux__optimized_8py_source}{yamux\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{yamux__optimized_8py_source_l00073}{73}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+muxer/\+\doxymbox{\hyperlink{yamux__optimized_8py}{yamux\+\_\+optimized.\+py}}\end{DoxyCompactItemize}

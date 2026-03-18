@@ -1,0 +1,233 @@
+\doxysection{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message类 参考}
+\hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message}{}\label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a7852d8ae3525cb2bc53d83c3c2d87340}{to\+\_\+dict}} (self)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a782070fcb67613af8c3706eb256998bf}{to\+\_\+json}} (self)
+\item 
+"{}Kademlia\+Message"{} \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ade55edd5bc10bdbcbf64f9e06fd58f92}{from\+\_\+dict}} (cls, dict data)
+\item 
+"{}Kademlia\+Message"{} \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a9ef286e2acd2a3a1f7c74fc07def8c55}{from\+\_\+json}} (cls, bytes data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a41364e627430804885d65edd82fbe360}{key}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ac9d3bb4d73e17a270f802c47eabe315b}{value}} = None
+\item 
+List \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a42cd91d26f09bf6df1f741f11a8e3b86}{providers}} = field(default\+\_\+factory=list)
+\item 
+List \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ae15eec8d4429977c4569c6adc6416e71}{peers}} = field(default\+\_\+factory=list)
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ab5be24426887ea7872e5d9bd8aa5129e}{peer\+\_\+id}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a5a0049e0f54164f73d49bfff5538831c}{record}} = None
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a30d646aae87c8882cb1971564825fb9d}{cluster\+\_\+level}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Kademlia DHT message.
+
+Attributes:
+    message_type: Type of message
+    key: Target key (peer ID, content key, or CID)
+    value: Value (for PUT_VALUE responses)
+    providers: List of providers (for GET_PROVIDERS)
+    peers: List of closer peers (for all responses)
+    peer_id: Sender's peer ID
+    record: Record-level data (optional)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00057}{57}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ade55edd5bc10bdbcbf64f9e06fd58f92}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!from\_dict@{from\_dict}}
+\index{from\_dict@{from\_dict}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{from\_dict()}{from\_dict()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ade55edd5bc10bdbcbf64f9e06fd58f92} 
+ "{}Kademlia\+Message"{} p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+from\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{dict}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create message from dictionary.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00121}{121}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{identify_8py_source_l00078}{p2p\+\_\+engine.\+protocol.\+identify.\+Identify\+Extension.\+from\+\_\+bytes()}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00139}{from\+\_\+json()}} , 以及 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00138}{src.\+signaling\+\_\+server.\+models.\+Message.\+from\+\_\+json()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a9ef286e2acd2a3a1f7c74fc07def8c55}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!from\_json@{from\_json}}
+\index{from\_json@{from\_json}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{from\_json()}{from\_json()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a9ef286e2acd2a3a1f7c74fc07def8c55} 
+ "{}Kademlia\+Message"{} p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+from\+\_\+json (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create message from JSON bytes.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00139}{139}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00121}{from\+\_\+dict()}}.
+
+函数调用图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a7852d8ae3525cb2bc53d83c3c2d87340}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a7852d8ae3525cb2bc53d83c3c2d87340} 
+ dict p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert message to dictionary for JSON encoding.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{79}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00077}{cluster\+\_\+level}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00071}{key}}, \doxymbox{\hyperlink{autonat_8py_source_l00402}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATClient.\+peer\+\_\+id}}, \doxymbox{\hyperlink{autonat_8py_source_l00060}{p2p\+\_\+engine.\+detection.\+autonat.\+Dial\+Peer\+Info.\+peer\+\_\+id}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00075}{peer\+\_\+id}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00074}{peers}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00073}{providers}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00076}{record}} , 以及 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00072}{value}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{identify_8py_source_l00073}{p2p\+\_\+engine.\+protocol.\+identify.\+Identify\+Extension.\+to\+\_\+bytes()}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00116}{to\+\_\+json()}} , 以及 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00121}{src.\+signaling\+\_\+server.\+models.\+Message.\+to\+\_\+json()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a782070fcb67613af8c3706eb256998bf}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!to\_json@{to\_json}}
+\index{to\_json@{to\_json}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{to\_json()}{to\_json()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a782070fcb67613af8c3706eb256998bf} 
+ bytes p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+to\+\_\+json (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert message to JSON bytes.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00116}{116}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{defaults_8py_source_l00137}{p2p\+\_\+engine.\+config.\+defaults.\+Config.\+to\+\_\+dict()}} , 以及 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}}.
+
+函数调用图:\+
+% FIG 3
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a30d646aae87c8882cb1971564825fb9d}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!cluster\_level@{cluster\_level}}
+\index{cluster\_level@{cluster\_level}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{cluster\_level}{cluster\_level}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a30d646aae87c8882cb1971564825fb9d} 
+int p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+cluster\+\_\+level = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00077}{77}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a41364e627430804885d65edd82fbe360}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!key@{key}}
+\index{key@{key}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{key}{key}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a41364e627430804885d65edd82fbe360} 
+Optional p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+key = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00071}{71}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00090}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Message.\+to\+\_\+json\+\_\+dict()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00071}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Message.\+to\+\_\+protobuf\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ab5be24426887ea7872e5d9bd8aa5129e}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!peer\_id@{peer\_id}}
+\index{peer\_id@{peer\_id}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{peer\_id}{peer\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ab5be24426887ea7872e5d9bd8aa5129e} 
+Optional p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+peer\+\_\+id = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00075}{75}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tls_8py_source_l00175}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSHandshake\+Payload.\+encode()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00640}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub\+Router.\+handle\+\_\+message()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01172}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub.\+publish()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00868}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+publish()}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00325}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Peer\+Info\+PB.\+to\+\_\+dict()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00078}{p2p\+\_\+engine.\+transport.\+webrtc.\+Signaling\+Message.\+to\+\_\+json()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ae15eec8d4429977c4569c6adc6416e71}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!peers@{peers}}
+\index{peers@{peers}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{peers}{peers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ae15eec8d4429977c4569c6adc6416e71} 
+List p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+peers = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00074}{74}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{pubsub_8py_source_l01102}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub\+Router.\+add\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00538}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub\+Router.\+add\+\_\+peer()}}, \doxymbox{\hyperlink{routing_8py_source_l00290}{p2p\+\_\+engine.\+dht.\+routing.\+KBucket.\+get\+\_\+closest\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01127}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub\+Router.\+get\+\_\+forward\+\_\+targets()}}, \doxymbox{\hyperlink{routing_8py_source_l00266}{p2p\+\_\+engine.\+dht.\+routing.\+KBucket.\+get\+\_\+furthest\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00560}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub\+Router.\+get\+\_\+peers()}}, \doxymbox{\hyperlink{pubsub_8py_source_l01105}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Flood\+Sub\+Router.\+remove\+\_\+peer()}}, \doxymbox{\hyperlink{pubsub_8py_source_l00542}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub\+Router.\+remove\+\_\+peer()}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}} , 以及 \doxymbox{\hyperlink{pubsub_8py_source_l00301}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Control\+Prune.\+to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a42cd91d26f09bf6df1f741f11a8e3b86}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!providers@{providers}}
+\index{providers@{providers}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{providers}{providers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a42cd91d26f09bf6df1f741f11a8e3b86} 
+List p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+providers = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00073}{73}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a5a0049e0f54164f73d49bfff5538831c}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!record@{record}}
+\index{record@{record}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{record}{record}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_a5a0049e0f54164f73d49bfff5538831c} 
+Optional p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+record = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00076}{76}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ac9d3bb4d73e17a270f802c47eabe315b}\index{p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}!value@{value}}
+\index{value@{value}!p2p\_engine.dht.kademlia.KademliaMessage@{p2p\_engine.dht.kademlia.KademliaMessage}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_message_ac9d3bb4d73e17a270f802c47eabe315b} 
+Optional p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+Message.\+value = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dht_2kademlia_8py_source}{kademlia.\+py}} 第 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00072}{72}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00079}{to\+\_\+dict()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+dht/\+\doxymbox{\hyperlink{dht_2kademlia_8py}{kademlia.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,141 @@
+\doxysection{nat\+\_\+detector.\+py}
+\hypertarget{nat__detector_8py_source}{}\label{nat__detector_8py_source}\index{p2p\_engine/detection/nat\_detector.py@{p2p\_engine/detection/nat\_detector.py}}
+\doxymbox{\hyperlink{nat__detector_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1nat__detector}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00002}00002\ \textcolor{stringliteral}{NAT\ 类型探测器}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00004}00004\ \textcolor{stringliteral}{基于\ RFC\ 3489\ 实现}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00006}00006\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00007}00007\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00008}00008\ \textcolor{keyword}{import}\ socket}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00009}00009\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ List}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00011}00011\ \textcolor{keyword}{from}\ ..types\ \textcolor{keyword}{import}\ NATType,\ NATInfo}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00012}00012\ \textcolor{keyword}{from}\ .stun\_client\ \textcolor{keyword}{import}\ STUNClient,\ STUNResponse}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00014}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1nat__detector_a09b4e1e48bc329d8f8c632f2c05c4b5a}{00014}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.nat\_detector"{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00017}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector}{00017}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector}{NATDetector}}:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00018}00018\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}NAT\ 类型探测器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00019}00019\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00020}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a33fbf806cc646e1be1c6ffa2696a21f1}{00020}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a33fbf806cc646e1be1c6ffa2696a21f1}{\_\_init\_\_}}(self,\ stun\_client:\ STUNClient):}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00021}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a7508b2905f5b4d8e0e727c6d4da2faab}{00021}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a7508b2905f5b4d8e0e727c6d4da2faab}{stun\_client}}\ =\ stun\_client}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00023}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a8527a114418b255830a395c116809dd2}{00023}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a8527a114418b255830a395c116809dd2}{detect}}(self)\ -\/>\ NATInfo:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00024}00024\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00025}00025\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 检测\ NAT\ 类型}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00026}00026\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00027}00027\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 检测流程（RFC\ 3489\ 简化版）：}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 1.\ 向\ Server\ A\ 发送请求\ →\ 获取映射地址\ M1}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00029}00029\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 2.\ 向\ Server\ B\ 发送请求\ →\ 获取映射地址\ M2}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 3.\ 比较\ M1\ 和\ M2：}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ -\/\ 相同\ →\ 非对称\ NAT}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00032}00032\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ -\/\ 不同\ →\ 对称\ NAT}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00033}00033\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}开始\ NAT\ 类型检测..."{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ servers\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a7508b2905f5b4d8e0e727c6d4da2faab}{stun\_client}}.servers}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(servers)\ <\ 1:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(\textcolor{stringliteral}{"{}没有可用的\ STUN\ 服务器"{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}}(type=NATType.UNKNOWN)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Test\ 1:\ 基础连接测试}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ server\_a\ =\ servers[0].split(\textcolor{stringliteral}{"{}:"{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ host\_a\ =\ server\_a[0]}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ port\_a\ =\ int(server\_a[1])\ \textcolor{keywordflow}{if}\ len(server\_a)\ >\ 1\ \textcolor{keywordflow}{else}\ 3478}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ response1\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a7508b2905f5b4d8e0e727c6d4da2faab}{stun\_client}}.binding\_request(host\_a,\ port\_a)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ response1.success:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}STUN\ Test\ 1\ 失败:\ \{response1.error\}"{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}}(type=NATType.UNKNOWN)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Test\ 1:\ \{response1.mapped\_ip\}:\{response1.mapped\_port\}"{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 获取本地地址}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ local\_ip,\ local\_port\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_afb7c5c7eba21c2b434f1b40e80faa123}{\_get\_local\_address}}()}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 检测\ NAT\ 类型}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a13650f6353606d1be19f5f780bebfdeb}{\_is\_public\_ip}}(response1.mapped\_ip):}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 公网\ IP，可能是\ Full\ Cone}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ nat\_type\ =\ NATType.FULL\_CONE}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ nat\_type\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a600aecb7b6397566b9586df69c24c198}{\_detect\_nat\_type}}(response1,\ servers)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 构建\ NAT\ 信息}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ nat\_info\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}}(}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ type=nat\_type,}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ public\_ip=response1.mapped\_ip,}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ public\_port=response1.mapped\_port,}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ local\_ip=local\_ip,}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ local\_port=local\_port,}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 检测\ CGNAT}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ nat\_info.is\_cgnat\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a972b25da7510b660c9ff8b3f73cd17fb}{\_detect\_cgnat}}(response1)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}NAT\ 检测完成:\ \{nat\_info.type.value\},\ CGNAT:\ \{nat\_info.is\_cgnat\}"{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nat\_info}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00079}00079\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00080}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a600aecb7b6397566b9586df69c24c198}{00080}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a600aecb7b6397566b9586df69c24c198}{\_detect\_nat\_type}}(}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ first\_response:\ STUNResponse,}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ servers:\ List[str],}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00084}00084\ \ \ \ \ )\ -\/>\ NATType:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}检测\ NAT\ 类型"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(servers)\ <\ 2:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NATType.PORT\_RESTRICTED}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 向第二个服务器发送请求}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ server\_b\ =\ servers[1].split(\textcolor{stringliteral}{"{}:"{}})}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ host\_b\ =\ server\_b[0]}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ port\_b\ =\ int(server\_b[1])\ \textcolor{keywordflow}{if}\ len(server\_b)\ >\ 1\ \textcolor{keywordflow}{else}\ 3478}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ response2\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a7508b2905f5b4d8e0e727c6d4da2faab}{stun\_client}}.binding\_request(host\_b,\ port\_b)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ response2.success:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NATType.UNKNOWN}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 比较映射地址}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ addr1\ =\ (first\_response.mapped\_ip,\ first\_response.mapped\_port)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ addr2\ =\ (response2.mapped\_ip,\ response2.mapped\_port)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ addr1\ !=\ addr2:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 映射地址不同\ →\ 对称\ NAT}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NATType.SYMMETRIC}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 映射地址相同\ →\ 端口限制锥（最常见）}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NATType.PORT\_RESTRICTED}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00109}00109\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00110}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_afb7c5c7eba21c2b434f1b40e80faa123}{00110}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_afb7c5c7eba21c2b434f1b40e80faa123}{\_get\_local\_address}}(self)\ -\/>\ tuple:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}获取本地地址"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ sock\ =\ socket.socket(socket.AF\_INET,\ socket.SOCK\_DGRAM)}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ sock.connect((\textcolor{stringliteral}{"{}8.8.8.8"{}},\ 80))}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sock.getsockname()}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ sock.close()}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00118}00118\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00119}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a13650f6353606d1be19f5f780bebfdeb}{00119}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a13650f6353606d1be19f5f780bebfdeb}{\_is\_public\_ip}}(self,\ ip:\ str)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}检查是否为公网\ IP"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ private\_prefixes\ =\ [\textcolor{stringliteral}{"{}10."{}},\ \textcolor{stringliteral}{"{}172.16."{}},\ \textcolor{stringliteral}{"{}172.17."{}},\ \textcolor{stringliteral}{"{}172.18."{}},\ \textcolor{stringliteral}{"{}172.19."{}},}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}172.20."{}},\ \textcolor{stringliteral}{"{}172.21."{}},\ \textcolor{stringliteral}{"{}172.22."{}},\ \textcolor{stringliteral}{"{}172.23."{}},\ \textcolor{stringliteral}{"{}172.24."{}},}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}172.25."{}},\ \textcolor{stringliteral}{"{}172.26."{}},\ \textcolor{stringliteral}{"{}172.27."{}},\ \textcolor{stringliteral}{"{}172.28."{}},\ \textcolor{stringliteral}{"{}172.29."{}},}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}172.30."{}},\ \textcolor{stringliteral}{"{}172.31."{}},\ \textcolor{stringliteral}{"{}192.168."{}},\ \textcolor{stringliteral}{"{}127."{}},\ \textcolor{stringliteral}{"{}169.254."{}}]}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ prefix\ \textcolor{keywordflow}{in}\ private\_prefixes:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ip.startswith(prefix):}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00129}00129\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00130}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a972b25da7510b660c9ff8b3f73cd17fb}{00130}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_a972b25da7510b660c9ff8b3f73cd17fb}{\_detect\_cgnat}}(self,\ response:\ STUNResponse)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}检测\ CGNAT"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ CGNAT\ 使用\ 100.64.0.0/10}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ response.mapped\_ip.startswith(\textcolor{stringliteral}{"{}100."{}}):}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{nat__detector_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+
+\end{DoxyCode}

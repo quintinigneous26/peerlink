@@ -1,0 +1,167 @@
+\doxysection{decision.\+py}
+\hypertarget{decision_8py_source}{}\label{decision_8py_source}\index{p2p\_engine/fallback/decision.py@{p2p\_engine/fallback/decision.py}}
+\doxymbox{\hyperlink{decision_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1fallback_1_1decision}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00002}00002\ \textcolor{stringliteral}{降级决策器}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00004}00004\ \textcolor{stringliteral}{基于运营商差异化的降级决策逻辑}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00006}00006\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00007}00007\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00008}00008\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00009}00009\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ Tuple}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00010}00010\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ Enum}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00012}00012\ \textcolor{keyword}{from}\ ..types\ \textcolor{keyword}{import}\ NATInfo,\ NATType,\ ISP}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00013}00013\ \textcolor{keyword}{from}\ ..config.isp\_profiles\ \textcolor{keyword}{import}\ get\_isp\_profile,\ is\_cross\_border,\ is\_cross\_isp}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00015}\doxymbox{\hyperlink{namespacep2p__engine_1_1fallback_1_1decision_a92976f9ae9eac995af112c9257059790}{00015}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.fallback"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00018}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason}{00018}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason}{FallbackReason}}(Enum):}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00019}00019\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}降级原因"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00020}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_a169840cc1aae1b30fa06a51176591117}{00020}}\ \ \ \ \ SYMMETRIC\_SYMMETRIC\ =\ \textcolor{stringliteral}{"{}symmetric\_symmetric"{}}\ \ \ \ \ \ \ \textcolor{comment}{\#\ 双对称\ NAT}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00021}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_abaa6b98e88d005008065e5a7c5623022}{00021}}\ \ \ \ \ SYMMETRIC\_TIMEOUT\ =\ \textcolor{stringliteral}{"{}symmetric\_timeout"{}}\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 对称\ NAT\ 超时}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00022}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_a89bb1a2b0850ee273c5bd40d29666b57}{00022}}\ \ \ \ \ MOBILE\_CGNAT\ =\ \textcolor{stringliteral}{"{}mobile\_cgnat"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 移动\ CGNAT}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00023}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_a233ceaee1900e96bd4cb4d26700a5e01}{00023}}\ \ \ \ \ CROSS\_ISP\_FAILED\ =\ \textcolor{stringliteral}{"{}cross\_isp\_failed"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 跨运营商失败}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00024}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_a25d3f2a729697c00a5b327839914ffdb}{00024}}\ \ \ \ \ CROSS\_BORDER\_TIMEOUT\ =\ \textcolor{stringliteral}{"{}cross\_border\_timeout"{}}\ \ \ \ \ \textcolor{comment}{\#\ 跨境超时}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00025}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_abe793006a4962f344719a344d9fcd2ca}{00025}}\ \ \ \ \ PUNCH\_TIMEOUT\ =\ \textcolor{stringliteral}{"{}punch\_timeout"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 打孔超时}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00026}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_afced903868e5d697d2e2ce9c629cf51d}{00026}}\ \ \ \ \ UDP\_RATE\_LIMITED\ =\ \textcolor{stringliteral}{"{}udp\_rate\_limited"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ UDP\ 限流}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00027}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_a527ee95d4c7c5bad301cffce744c7b7f}{00027}}\ \ \ \ \ PUNCH\_FAIL\_COUNT\ =\ \textcolor{stringliteral}{"{}punch\_fail\_count"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 打孔失败次数}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00028}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_reason_a037dbbdd7bf1890d1884873fc662ad4e}{00028}}\ \ \ \ \ MANUAL\ =\ \textcolor{stringliteral}{"{}manual"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 手动降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00031}00031\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00032}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{00032}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00033}00033\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}降级决策结果"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00034}00034\ \ \ \ \ should\_fallback:\ bool}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00035}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision_ad596814a00d6d4f256533d81c9d94781}{00035}}\ \ \ \ \ reason:\ Optional[FallbackReason]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00036}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision_a806eb6d6790e5ad60d847e3cd1a53a8a}{00036}}\ \ \ \ \ delay\_ms:\ int\ =\ 0\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 延迟多久降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00037}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision_a299e2283a7501e27324b8b7d1b1c2dc8}{00037}}\ \ \ \ \ target:\ str\ =\ \textcolor{stringliteral}{"{}relay"{}}\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 降级目标}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00038}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision_af0344f8acf709f8acc1971ff306294a9}{00038}}\ \ \ \ \ description:\ str\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00041}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider}{00041}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider}{FallbackDecider}}:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00042}00042\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}降级决策器"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00043}00043\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00044}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a4f220f5c578919904e6f7fb09aa40a4d}{00044}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a4f220f5c578919904e6f7fb09aa40a4d}{\_\_init\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00045}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a801fad21a10396ce5aa91631296f5d58}{00045}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a801fad21a10396ce5aa91631296f5d58}{\_punch\_fail\_count}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00046}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a0b7234e343bf71435c6576533ee2a1f4}{00046}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a0b7234e343bf71435c6576533ee2a1f4}{\_last\_punch\_time}}:\ Optional[float]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00047}00047\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00048}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_ad07c58cdf93ef60eacbbd01a896325a0}{00048}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_ad07c58cdf93ef60eacbbd01a896325a0}{record\_punch\_attempt}}(self,\ success:\ bool)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}记录打孔尝试"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a0b7234e343bf71435c6576533ee2a1f4}{\_last\_punch\_time}}\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ success:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a801fad21a10396ce5aa91631296f5d58}{\_punch\_fail\_count}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a801fad21a10396ce5aa91631296f5d58}{\_punch\_fail\_count}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00055}00055\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00056}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a25021fef221b71e2882b72d04ef45be1}{00056}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a25021fef221b71e2882b72d04ef45be1}{decide}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ local\_nat:\ NATInfo,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ peer\_nat:\ NATInfo,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ local\_isp:\ ISP,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ peer\_isp:\ ISP,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ punch\_duration\_ms:\ int\ =\ 0,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00063}00063\ \ \ \ \ )\ -\/>\ FallbackDecision:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 决定是否需要降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00067}00067\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 决策优先级：}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 1.\ 双对称\ NAT\ →\ 立即降级（0ms）}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00069}00069\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 2.\ 移动\ CGNAT\ +\ 对称\ →\ 快速降级（<1s）}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 3.\ 跨运营商失败多次\ →\ 降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 4.\ 跨境超时多次\ →\ 降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00072}00072\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 5.\ 单次打孔超时\ →\ 重试，3次后降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00073}00073\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 规则\ 1:\ 双对称\ NAT}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ local\_nat.is\_symmetric()\ \textcolor{keywordflow}{and}\ peer\_nat.is\_symmetric():}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}降级决策:\ 双对称\ NAT"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reason=FallbackReason.SYMMETRIC\_SYMMETRIC,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delay\_ms=0,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description=\textcolor{stringliteral}{"{}双方都是对称\ NAT，无法直接穿透"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 规则\ 2:\ 移动\ CGNAT\ +\ 对称\ NAT}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ local\_profile\ =\ get\_isp\_profile(local\_isp)}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ peer\_profile\ =\ get\_isp\_profile(peer\_isp)}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ local\_nat.is\_cgnat\ \textcolor{keywordflow}{and}\ local\_nat.is\_symmetric():}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ local\_isp\ ==\ ISP.CHINA\_MOBILE\ \textcolor{keywordflow}{or}\ local\_isp\ ==\ ISP.CHINA\_RAILCOM:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}降级决策:\ 移动\ CGNAT\ +\ 对称\ NAT"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reason=FallbackReason.MOBILE\_CGNAT,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delay\_ms=1000,\ \ \textcolor{comment}{\#\ 1秒后降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description=\textcolor{stringliteral}{"{}移动\ CGNAT\ +\ 对称\ NAT，快速降级"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ peer\_nat.is\_cgnat\ \textcolor{keywordflow}{and}\ peer\_nat.is\_symmetric():}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ peer\_isp\ ==\ ISP.CHINA\_MOBILE\ \textcolor{keywordflow}{or}\ peer\_isp\ ==\ ISP.CHINA\_RAILCOM:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}降级决策:\ 对端移动\ CGNAT\ +\ 对称\ NAT"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reason=FallbackReason.MOBILE\_CGNAT,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delay\_ms=1000,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description=\textcolor{stringliteral}{"{}对端移动\ CGNAT\ +\ 对称\ NAT"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 规则\ 3:\ 跨运营商失败}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ is\_cross\_isp(local\_isp,\ peer\_isp):}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a801fad21a10396ce5aa91631296f5d58}{\_punch\_fail\_count}}\ >=\ 3:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}降级决策:\ 跨运营商失败\ \{self.\_punch\_fail\_count\}\ 次"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reason=FallbackReason.CROSS\_ISP\_FAILED,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delay\_ms=0,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description=f\textcolor{stringliteral}{"{}跨运营商打孔失败\ \{self.\_punch\_fail\_count\}\ 次"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 规则\ 4:\ 跨境超时}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ is\_cross\_border(local\_isp,\ peer\_isp):}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ punch\_duration\_ms\ >\ 10000:\ \ \textcolor{comment}{\#\ 超过\ 10\ 秒}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}降级决策:\ 跨境超时\ \{punch\_duration\_ms\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reason=FallbackReason.CROSS\_BORDER\_TIMEOUT,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delay\_ms=0,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description=f\textcolor{stringliteral}{"{}跨境打孔超时\ \{punch\_duration\_ms\}ms"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 规则\ 5:\ 打孔超时（累计）}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a801fad21a10396ce5aa91631296f5d58}{\_punch\_fail\_count}}\ >=\ 3:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}降级决策:\ 打孔失败\ \{self.\_punch\_fail\_count\}\ 次"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reason=FallbackReason.PUNCH\_FAIL\_COUNT,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delay\_ms=0,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description=f\textcolor{stringliteral}{"{}打孔累计失败\ \{self.\_punch\_fail\_count\}\ 次"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 规则\ 6:\ 对称\ NAT\ 超时（缩短等待）}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ local\_nat.is\_symmetric()\ \textcolor{keywordflow}{or}\ peer\_nat.is\_symmetric():}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ punch\_duration\_ms\ >\ 2000:\ \ \textcolor{comment}{\#\ 对称\ NAT\ 只等\ 2\ 秒}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}降级决策:\ 对称\ NAT\ 超时\ \{punch\_duration\_ms\}ms"{}})}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reason=FallbackReason.SYMMETRIC\_TIMEOUT,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ delay\_ms=0,}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description=f\textcolor{stringliteral}{"{}对称\ NAT\ 打孔超时\ \{punch\_duration\_ms\}ms"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00151}00151\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 不需要降级}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decision}{FallbackDecision}}(}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ should\_fallback=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ description=\textcolor{stringliteral}{"{}继续尝试打孔"{}},}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00157}00157\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00158}\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a91fda32ca41a13f09766d2a30ff3664b}{00158}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a91fda32ca41a13f09766d2a30ff3664b}{reset}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}重置状态"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a801fad21a10396ce5aa91631296f5d58}{\_punch\_fail\_count}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{decision_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1fallback_1_1decision_1_1_fallback_decider_a0b7234e343bf71435c6576533ee2a1f4}{\_last\_punch\_time}}\ =\ \textcolor{keywordtype}{None}}
+
+\end{DoxyCode}

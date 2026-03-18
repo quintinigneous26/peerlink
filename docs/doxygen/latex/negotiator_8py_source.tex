@@ -1,0 +1,402 @@
+\doxysection{negotiator.\+py}
+\hypertarget{negotiator_8py_source}{}\label{negotiator_8py_source}\index{p2p\_engine/protocol/negotiator.py@{p2p\_engine/protocol/negotiator.py}}
+\doxymbox{\hyperlink{negotiator_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1negotiator}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00002}00002\ \textcolor{stringliteral}{multistream-\/select\ 协议协商器}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00004}00004\ \textcolor{stringliteral}{实现\ libp2p\ 兼容的协议协商流程:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00005}00005\ \textcolor{stringliteral}{1.\ 双方交换\ multistream\ 协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00006}00006\ \textcolor{stringliteral}{2.\ 发起方提议协议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00007}00007\ \textcolor{stringliteral}{3.\ 接收方响应支持\ (echo)\ 或不支持\ (na)}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00008}00008\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00009}00009\ \textcolor{stringliteral}{参考:\ https://github.com/libp2p/specs/blob/master/connections/README.md}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00010}00010\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00012}00012\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00013}00013\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00014}00014\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ Callable,\ Awaitable}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00015}00015\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00017}00017\ \textcolor{keyword}{from}\ .messages\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00018}00018\ \ \ \ \ encode\_message,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00019}00019\ \ \ \ \ decode\_message,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00020}00020\ \ \ \ \ MULTISTREAM\_PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00021}00021\ \ \ \ \ NA\_RESPONSE,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00022}00022\ \ \ \ \ is\_valid\_protocol\_id,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00023}00023\ \ \ \ \ is\_multistream\_protocol,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00024}00024\ \ \ \ \ is\_na\_response,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00025}00025\ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00028}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1negotiator_a224bfdfed69c19166a6fb6bbd9be45ae}{00028}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00031}00031\ \textcolor{comment}{\#\ ====================\ 异常定义\ ====================}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00033}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{00033}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}(Exception):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00034}00034\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}协议协商失败异常"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00036}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error_af2ed535f8778c2f73bfa0bc4f9dbb0eb}{00036}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error_af2ed535f8778c2f73bfa0bc4f9dbb0eb}{\_\_init\_\_}}(self,\ message:\ str,\ tried\_protocols:\ Optional[list[str]]\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ super().\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error_af2ed535f8778c2f73bfa0bc4f9dbb0eb}{\_\_init\_\_}}(message)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00038}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error_a3a3df8ae37a7aa8a5e873949f727f16d}{00038}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error_a3a3df8ae37a7aa8a5e873949f727f16d}{tried\_protocols}}\ =\ tried\_protocols\ \textcolor{keywordflow}{or}\ []}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00041}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_not_supported_error}{00041}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_not_supported_error}{ProtocolNotSupportedError}}(\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00042}00042\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}协议不支持异常"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00044}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_not_supported_error_a1dfe58eca593c2b348fe0ce343452733}{00044}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_not_supported_error_a1dfe58eca593c2b348fe0ce343452733}{\_\_init\_\_}}(self,\ protocol:\ str):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ super().\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_not_supported_error_a1dfe58eca593c2b348fe0ce343452733}{\_\_init\_\_}}(f\textcolor{stringliteral}{"{}Protocol\ not\ supported:\ \{protocol\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00046}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_not_supported_error_ac6ebb521849d04b9cc2865349e733bb4}{00046}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_not_supported_error_ac6ebb521849d04b9cc2865349e733bb4}{protocol}}\ =\ protocol}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00049}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error}{00049}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error}{HandshakeError}}(\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00050}00050\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}握手失败异常"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00052}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error_a501832dc5c8714eee7256fb1ea5e9e7d}{00052}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error_a501832dc5c8714eee7256fb1ea5e9e7d}{\_\_init\_\_}}(self,\ message:\ str,\ expected:\ str,\ actual:\ str):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ super().\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error_a501832dc5c8714eee7256fb1ea5e9e7d}{\_\_init\_\_}}(message)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00054}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error_a4ad691bbab36f62236a2ca884978ae5c}{00054}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error_a4ad691bbab36f62236a2ca884978ae5c}{expected}}\ =\ expected}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00055}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error_aa76f7a18daf2461da1f0ccda3a2e4c23}{00055}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error_aa76f7a18daf2461da1f0ccda3a2e4c23}{actual}}\ =\ actual}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00058}00058\ \textcolor{comment}{\#\ ====================\ 连接接口\ ====================}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00060}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer}{00060}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer}{StreamReaderWriter}}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00061}00061\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00062}00062\ \textcolor{stringliteral}{\ \ \ \ 流读写接口抽象}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00063}00063\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00064}00064\ \textcolor{stringliteral}{\ \ \ \ 包装任何支持异步读写操作的对象，提供统一的接口。}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00065}00065\ \textcolor{stringliteral}{\ \ \ \ 兼容\ asyncio.StreamReader/Writer\ 和其他类似接口。}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00066}00066\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00068}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a3d0af64b3302782dfefeaf9d6afc9cf8}{00068}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a3d0af64b3302782dfefeaf9d6afc9cf8}{\_\_init\_\_}}(self,\ reader:\ asyncio.StreamReader,\ writer:\ asyncio.StreamWriter):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00069}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a70f3d4c6f7768fcf9f73601d855d21f5}{00069}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a70f3d4c6f7768fcf9f73601d855d21f5}{reader}}\ =\ reader}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00070}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a26a778b4d9c5a6a9ec482ae989bbcd27}{00070}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a26a778b4d9c5a6a9ec482ae989bbcd27}{writer}}\ =\ writer}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00072}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a720de728a9ca21a04a4e97d0f16aa419}{00072}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a720de728a9ca21a04a4e97d0f16aa419}{read}}(self,\ n:\ int\ =\ -\/1)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}读取数据"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ n\ ==\ -\/1:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a70f3d4c6f7768fcf9f73601d855d21f5}{reader}}.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a720de728a9ca21a04a4e97d0f16aa419}{read}}()}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a70f3d4c6f7768fcf9f73601d855d21f5}{reader}}.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a720de728a9ca21a04a4e97d0f16aa419}{read}}(n)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00078}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_ab524fa19dca9a2dd35ae64e91ce0d640}{00078}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_ab524fa19dca9a2dd35ae64e91ce0d640}{write}}(self,\ data:\ bytes)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}写入数据"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a26a778b4d9c5a6a9ec482ae989bbcd27}{writer}}.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_ab524fa19dca9a2dd35ae64e91ce0d640}{write}}(data)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a26a778b4d9c5a6a9ec482ae989bbcd27}{writer}}.drain()}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00083}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_ab9aa2e68451c87896e9ede5a2e4a68a5}{00083}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_ab9aa2e68451c87896e9ede5a2e4a68a5}{close}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}关闭连接"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a26a778b4d9c5a6a9ec482ae989bbcd27}{writer}}.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_ab9aa2e68451c87896e9ede5a2e4a68a5}{close}}()}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00087}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a6f83256194995d0e96eb976c7ad7c6b4}{00087}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a6f83256194995d0e96eb976c7ad7c6b4}{closed}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}检查连接是否已关闭"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ hasattr(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a26a778b4d9c5a6a9ec482ae989bbcd27}{writer}},\ \textcolor{stringliteral}{'is\_closing'}):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a26a778b4d9c5a6a9ec482ae989bbcd27}{writer}}.is\_closing()}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00093}00093\ \ \ \ \ \textcolor{preprocessor}{@classmethod}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00094}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a36b0269a2470ed0b5071ca828d11c623}{00094}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_stream_reader_writer_a36b0269a2470ed0b5071ca828d11c623}{from\_stream}}(cls,\ reader:\ asyncio.StreamReader,\ writer:\ asyncio.StreamWriter):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}从\ asyncio\ StreamReader/Writer\ 创建"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cls(reader,\ writer)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00099}00099\ \textcolor{comment}{\#\ ====================\ 协议协商器\ ====================}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00101}00101\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00102}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_result}{00102}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_result}{NegotiationResult}}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00103}00103\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}协商结果"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00104}00104\ \ \ \ \ protocol:\ str\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 协商成功的协议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00105}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_result_a0370c4c1370c84e7379c25491f111c9a}{00105}}\ \ \ \ \ tried\_protocols:\ list[str]\ \ \textcolor{comment}{\#\ 尝试过的协议列表}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00106}00106\ \ \ \ \ is\_initiator:\ bool\ \ \ \ \ \ \textcolor{comment}{\#\ 是否为发起方}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00107}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_result_aef2bcbf287b3e47094175bf90b77c74a}{00107}}\ \ \ \ \ rounds:\ int\ =\ 1\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 协商轮数}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00110}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator}{00110}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator}{ProtocolNegotiator}}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00111}00111\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00112}00112\ \textcolor{stringliteral}{\ \ \ \ multistream-\/select\ 协议协商器}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00113}00113\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ 支持两种角色:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ -\/\ Initiator:\ 发起协商，提议协议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ -\/\ Responder:\ 响应协商，接受或拒绝协议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00117}00117\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00118}00118\ \textcolor{stringliteral}{\ \ \ \ 同时打开场景:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00119}00119\ \textcolor{stringliteral}{\ \ \ \ -\/\ 双方同时发送\ multistream\ 协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ -\/\ 后续通过\ tie-\/breaker\ 决定主导权}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00123}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_a5a738b1409cfaca53319c696aa6df7b3}{00123}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_a5a738b1409cfaca53319c696aa6df7b3}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ timeout:\ float\ =\ 30.0,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ simultaneous\_open\_delay:\ float\ =\ 0.1,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00127}00127\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00129}00129\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 初始化协商器}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00130}00130\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00131}00131\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00132}00132\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ timeout:\ 协商超时时间（秒）}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00133}00133\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ simultaneous\_open\_delay:\ 同时打开场景下的延迟（秒）}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00134}00134\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00135}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ac02c73a0d68ae5c69323e6eb7f02a83d}{00135}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ac02c73a0d68ae5c69323e6eb7f02a83d}{timeout}}\ =\ timeout}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00136}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_a8160a4f67233832123ae1038857d1749}{00136}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_a8160a4f67233832123ae1038857d1749}{simultaneous\_open\_delay}}\ =\ simultaneous\_open\_delay}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00138}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_acb712255a376938bc5fa68b18381eeea}{00138}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_acb712255a376938bc5fa68b18381eeea}{negotiate}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ conn:\ StreamReaderWriter,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00141}00141\ \ \ \ \ \ \ \ \ protocols:\ list[str],}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00142}00142\ \ \ \ \ )\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00144}00144\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 作为发起方进行协议协商}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00145}00145\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00146}00146\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00147}00147\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ conn:\ 连接对象}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00148}00148\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ protocols:\ 希望协商的协议列表（按优先级排序）}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00149}00149\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00150}00150\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00151}00151\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 协商成功的协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00152}00152\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00153}00153\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00154}00154\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ NegotiationError:\ 协商失败}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00155}00155\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ ValueError:\ 参数无效}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00156}00156\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ protocols:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}协议列表不能为空"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 验证所有协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ proto\ \textcolor{keywordflow}{in}\ protocols:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ is\_valid\_protocol\_id(proto):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(f\textcolor{stringliteral}{"{}无效的协议\ ID:\ \{proto\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ tried\_protocols\ =\ []}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 步骤1:\ 发送\ multistream\ 协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}[Initiator]\ 发送\ multistream\ 协议\ ID"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(MULTISTREAM\_PROTOCOL\_ID))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 步骤2:\ 接收对方的\ multistream\ 协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(\textcolor{stringliteral}{"{}[Initiator]\ 等待对方\ multistream\ 协议\ ID"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ handshake\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ is\_multistream\_protocol(handshake\_msg):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error}{HandshakeError}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}期望收到\ multistream\ 协议\ ID"{}},}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected=MULTISTREAM\_PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actual=handshake\_msg}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}[Initiator]\ 握手成功:\ \{handshake\_msg\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 步骤3:\ 尝试每个协议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ proto\ \textcolor{keywordflow}{in}\ protocols:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tried\_protocols.append(proto)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}[Initiator]\ 提议协议:\ \{proto\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(proto))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ is\_multistream\_protocol(response\_msg):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 对方也发送了\ multistream\ 协议\ ID，说明是同时打开场景}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 需要重新发送协议提议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(\textcolor{stringliteral}{"{}[Initiator]\ 检测到同时打开，重新提议协议"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(proto))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ response\_msg\ ==\ proto:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 对方接受该协议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}[Initiator]\ 协议协商成功:\ \{proto\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ proto}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ is\_na\_response(response\_msg):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 对方拒绝该协议，尝试下一个}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}[Initiator]\ 协议\ \{proto\}\ 不被支持，尝试下一个"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 未知响应}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}[Initiator]\ 未知响应:\ \{response\_msg\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}(f\textcolor{stringliteral}{"{}未知的协商响应:\ \{response\_msg\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 所有协议都被拒绝}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}没有找到共同支持的协议"{}},}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tried\_protocols=tried\_protocols}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00223}00223\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}协议协商超时\ (\{self.timeout\}s)"{}},}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tried\_protocols=tried\_protocols}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00230}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ac94a37bc87a2e7c6f9c743121b5673f3}{00230}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ac94a37bc87a2e7c6f9c743121b5673f3}{handle\_negotiate}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ conn:\ StreamReaderWriter,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ supported:\ list[str],}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ protocol\_handler:\ Optional[Callable[[str,\ StreamReaderWriter],\ Awaitable[\textcolor{keywordtype}{None}]]]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00235}00235\ \ \ \ \ )\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00237}00237\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 作为响应方处理协议协商}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00238}00238\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00239}00239\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00240}00240\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ conn:\ 连接对象}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00241}00241\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ supported:\ 支持的协议列表}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00242}00242\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ protocol\_handler:\ 协议处理函数\ (协议协商成功后调用)}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00243}00243\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00244}00244\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00245}00245\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 协商成功的协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00246}00246\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00247}00247\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00248}00248\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ NegotiationError:\ 协商失败}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00249}00249\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ supported:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}支持的协议列表不能为空"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 创建支持协议的集合用于快速查找}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ supported\_set\ =\ set(supported)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 步骤1:\ 接收对方的\ multistream\ 协议\ ID（可选同时发送）}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(\textcolor{stringliteral}{"{}[Responder]\ 等待对方\ multistream\ 协议\ ID"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 同时发送\ multistream\ 协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ send\_task\ =\ asyncio.create\_task(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(MULTISTREAM\_PROTOCOL\_ID))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ recv\_task\ =\ asyncio.create\_task(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 等待接收和发送都完成}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ await\ send\_task}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ recv\_task}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ handshake\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ is\_multistream\_protocol(handshake\_msg):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error}{HandshakeError}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}期望收到\ multistream\ 协议\ ID"{}},}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected=MULTISTREAM\_PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actual=handshake\_msg}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}[Responder]\ 握手成功:\ \{handshake\_msg\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 步骤2:\ 持续接收协议提议并响应}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ \textcolor{keyword}{True}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 接收协议提议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ proposed\_proto\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}[Responder]\ 收到协议提议:\ \{proposed\_proto\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 检查是否是\ multistream\ 协议\ ID\ (同时打开场景)}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ is\_multistream\_protocol(proposed\_proto):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(\textcolor{stringliteral}{"{}[Responder]\ 检测到同时打开，等待实际协议提议"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 检查协议是否支持}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ proposed\_proto\ \textcolor{keywordflow}{in}\ supported\_set:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 支持该协议，echo\ 响应}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}[Responder]\ 接受协议:\ \{proposed\_proto\}"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(proposed\_proto))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 调用协议处理器（如果提供）}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ protocol\_handler:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ protocol\_handler(proposed\_proto,\ conn)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ proposed\_proto}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 不支持该协议，响应\ "{}na"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}[Responder]\ 协议\ \{proposed\_proto\}\ 不支持"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(NA\_RESPONSE))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}(f\textcolor{stringliteral}{"{}协议协商超时\ (\{self.timeout\}s)"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00312}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aa946e7e2c7f4c8338d82ff9b65388dba}{00312}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aa946e7e2c7f4c8338d82ff9b65388dba}{full\_negotiate}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ conn:\ StreamReaderWriter,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ protocols:\ list[str],}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00316}00316\ \ \ \ \ )\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00318}00318\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 完整协商流程，同时处理发起和响应}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00319}00319\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00320}00320\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 用于同时打开场景，双方同时发送协议提议。}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00321}00321\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00322}00322\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00323}00323\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ conn:\ 连接对象}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00324}00324\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ protocols:\ 我方支持的协议列表}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00325}00325\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00326}00326\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00327}00327\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ 协商成功的协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00328}00328\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00329}00329\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Raises:}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00330}00330\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ NegotiationError:\ 协商失败}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00331}00331\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 同时发送\ multistream\ 协议\ ID}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ send\_task\ =\ asyncio.create\_task(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(MULTISTREAM\_PROTOCOL\_ID))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ recv\_task\ =\ asyncio.create\_task(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ await\ send\_task}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ response\ =\ await\ recv\_task}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ handshake\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00341}00341\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ is\_multistream\_protocol(handshake\_msg):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_handshake_error}{HandshakeError}}(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ f\textcolor{stringliteral}{"{}期望收到\ multistream\ 协议\ ID"{}},}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expected=MULTISTREAM\_PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ actual=handshake\_msg}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00348}00348\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 同时发送第一个协议提议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ first\_proto\ =\ protocols[0]}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ send\_task\ =\ asyncio.create\_task(}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(first\_proto))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ recv\_task\ =\ asyncio.create\_task(self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00355}00355\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00356}00356\ \ \ \ \ \ \ \ \ await\ send\_task}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00357}00357\ \ \ \ \ \ \ \ \ response\ =\ await\ recv\_task}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ response\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ is\_multistream\_protocol(response\_msg):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 同时打开，重新发送协议提议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(first\_proto))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ response\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00365}00365\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ response\_msg\ ==\ first\_proto:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ first\_proto}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ is\_na\_response(response\_msg):}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 尝试下一个协议}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ proto\ \textcolor{keywordflow}{in}\ protocols[1:]:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(conn,\ encode\_message(proto))}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(conn)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response\_msg\ =\ decode\_message(response)}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ response\_msg\ ==\ proto:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ proto}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00376}00376\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_negotiation_error}{NegotiationError}}(\textcolor{stringliteral}{"{}没有找到共同支持的协议"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00379}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{00379}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_aeab4c5743826702c0b03d33213abc9a7}{\_send\_with\_timeout}}(self,\ conn:\ StreamReaderWriter,\ data:\ bytes)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}带超时的发送"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00381}00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ await\ asyncio.wait\_for(conn.write(data),\ timeout=self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ac02c73a0d68ae5c69323e6eb7f02a83d}{timeout}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}发送数据超时\ (\{self.timeout\}s)"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00386}00386\ }
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00387}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{00387}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ae62f89495b18f04725e6e6dea9e90118}{\_recv\_with\_timeout}}(self,\ conn:\ StreamReaderWriter)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}带超时的接收"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00389}00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ await\ asyncio.wait\_for(conn.read(),\ timeout=self.\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1negotiator_1_1_protocol_negotiator_ac02c73a0d68ae5c69323e6eb7f02a83d}{timeout}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ data:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ConnectionError(\textcolor{stringliteral}{"{}连接已关闭"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ data}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00394}00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f\textcolor{stringliteral}{"{}接收数据超时\ (\{self.timeout\}s)"{}})}
+\DoxyCodeLine{\Hypertarget{negotiator_8py_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}}
+
+\end{DoxyCode}

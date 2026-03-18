@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__sdk_1_1transport_1_1_transport_base" kind="class" language="Python" prot="public">
+    <compoundname>p2p_sdk::transport::TransportBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ABC</basecompoundref>
+    <derivedcompoundref refid="classp2p__sdk_1_1transport_1_1_relay_transport" prot="public" virt="non-virtual">p2p_sdk.transport.RelayTransport</derivedcompoundref>
+    <derivedcompoundref refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport" prot="public" virt="non-virtual">p2p_sdk.transport.UDPTransport</derivedcompoundref>
+    <derivedcompoundref refid="classp2p__sdk_1_1transport_1_1_web_socket_transport" prot="public" virt="non-virtual">p2p_sdk.transport.WebSocketTransport</derivedcompoundref>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__sdk_1_1transport_1_1_transport_base_1a01bf7b150f45d31cd091a0c0d895e575" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_sdk.transport.TransportBase.send</definition>
+        <argsstring>(self, bytes data)</argsstring>
+        <name>send</name>
+        <qualifiedname>p2p_sdk.transport.TransportBase.send</qualifiedname>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1aef8d63fc2da6175be63783e6d804989d">send</reimplementedby>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a21670999ced5da21d543f0c742a1a9e7">send</reimplementedby>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_web_socket_transport_1a697509d7c24047cb6dbdfd118a6f1dde">send</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Send data.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="client_sdk/src/p2p_sdk/transport.py" line="20" column="1" bodyfile="client_sdk/src/p2p_sdk/transport.py" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__sdk_1_1transport_1_1_transport_base_1a985e2fbf1f14e4698f07fa06cd1ad939" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_sdk.transport.TransportBase.recv</definition>
+        <argsstring>(self)</argsstring>
+        <name>recv</name>
+        <qualifiedname>p2p_sdk.transport.TransportBase.recv</qualifiedname>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a1f6af886a2c2f9f17b95b447db0df9ea">recv</reimplementedby>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1ab87067abb0b841b230c50f8718a3b03c">recv</reimplementedby>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_web_socket_transport_1a67bc13be961521bbfaa524b4fca4ca04">recv</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Receive data.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="client_sdk/src/p2p_sdk/transport.py" line="25" column="1" bodyfile="client_sdk/src/p2p_sdk/transport.py" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__sdk_1_1transport_1_1_transport_base_1abae803adfe16e4f22dda64e92e616563" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_sdk.transport.TransportBase.close</definition>
+        <argsstring>(self)</argsstring>
+        <name>close</name>
+        <qualifiedname>p2p_sdk.transport.TransportBase.close</qualifiedname>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_relay_transport_1a7627998cdb6af0f39632ab83119a811c">close</reimplementedby>
+        <reimplementedby refid="classp2p__sdk_1_1transport_1_1_web_socket_transport_1a7280f6e0f9d92219baedf01e484558c9">close</reimplementedby>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Close the transport.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="client_sdk/src/p2p_sdk/transport.py" line="30" column="1" bodyfile="client_sdk/src/p2p_sdk/transport.py" bodystart="30" bodyend="34"/>
+        <referencedby refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport_1a139c98bad09a822d105ce9ec9835d632" compoundref="transport_8py" startline="79" endline="95">p2p_sdk.transport.UDPTransport.stop</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Base class for transport implementations.</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_sdk.transport.TransportBase</label>
+        <link refid="classp2p__sdk_1_1transport_1_1_transport_base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>p2p_sdk.transport.RelayTransport</label>
+        <link refid="classp2p__sdk_1_1transport_1_1_relay_transport"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>p2p_sdk.transport.UDPTransport</label>
+        <link refid="classp2p__sdk_1_1transport_1_1_u_d_p_transport"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>p2p_sdk.transport.WebSocketTransport</label>
+        <link refid="classp2p__sdk_1_1transport_1_1_web_socket_transport"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_sdk.transport.TransportBase</label>
+        <link refid="classp2p__sdk_1_1transport_1_1_transport_base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="client_sdk/src/p2p_sdk/transport.py" line="16" column="1" bodyfile="client_sdk/src/p2p_sdk/transport.py" bodystart="16" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classp2p__sdk_1_1transport_1_1_transport_base_1abae803adfe16e4f22dda64e92e616563" prot="public" virt="non-virtual"><scope>p2p_sdk::transport::TransportBase</scope><name>close</name></member>
+      <member refid="classp2p__sdk_1_1transport_1_1_transport_base_1a985e2fbf1f14e4698f07fa06cd1ad939" prot="public" virt="non-virtual"><scope>p2p_sdk::transport::TransportBase</scope><name>recv</name></member>
+      <member refid="classp2p__sdk_1_1transport_1_1_transport_base_1a01bf7b150f45d31cd091a0c0d895e575" prot="public" virt="non-virtual"><scope>p2p_sdk::transport::TransportBase</scope><name>send</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

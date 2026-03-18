@@ -1,0 +1,501 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport}{}\label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+
+
+类 p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_ab1df867fdcd554f9160658ab0b030562}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\+[Any]\+ certificate=None, Optional\+[Any]\+ private\+\_\+key=None, Optional\+[List\+[str]\+]\+ alpn\+\_\+protocols=None, int max\+\_\+streams=\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a192fad8791cbbb2bc2a80b8d11f97aad}{DEFAULT\+\_\+\+MAX\+\_\+\+STREAMS}}, float idle\+\_\+timeout=\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_ae47427fc0261487707ab245c096a4d35}{DEFAULT\+\_\+\+IDLE\+\_\+\+TIMEOUT}}, bool enable\+\_\+0rtt=True, bool connection\+\_\+migration=True)
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a2426491c1c197cf5405d40deea3d063b}{protocols}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection}{QUICConnection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a59147e223c17ab793643a7fac6d6ee61}{dial}} (self, str addr)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener}{QUICListener}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a7adf433b81f9f8ac38a8c30346ef77a2}{listen}} (self, str addr)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a32d96af9a030bd1bb59eb5f110a91960}{close}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection}{QUICConnection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a881fe63626bf4f16abdb931199a7d93f}{create\+\_\+0rtt\+\_\+connection}} (self, str addr, \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a642b7d316cc90859e5a07fcf9a944bc2}{Session\+Ticket}} session\+\_\+ticket)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a1a48d4e699c94941adc481f09f3ef6ee}{Quic\+Configuration}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a5cdb0e2bdee5b2d76c92554657716fcf}{\+\_\+create\+\_\+client\+\_\+configuration}} (self, str server\+\_\+name)
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a1a48d4e699c94941adc481f09f3ef6ee}{Quic\+Configuration}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a4cd85c8416ca3e845659d21ebc429575}{\+\_\+create\+\_\+server\+\_\+configuration}} (self)
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_aa6ead5f09ae1dbe73dfc93c7b876071e}{Quic\+Connection\+Protocol}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_afc03101e4244b9c3159e8c6b0b746767}{\+\_\+create\+\_\+protocol}} (self, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+Tuple\+[str, int]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a3944a58c3c35c50c9810d2055d911df3}{\+\_\+parse\+\_\+address}} (self, str addr)
+\item 
+Tuple\+[Any, Any]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_abf55d98577d76683ef65ec95316daf85}{\+\_\+generate\+\_\+selfsigned\+\_\+cert}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_ac23c38931efaa1c443f1e39ceaa5ef74}{\+\_\+alpn\+\_\+protocols}} = alpn\+\_\+protocols or list(\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a70b20f9293ce3842e140f7b8957a83f3}{DEFAULT\+\_\+\+ALPN\+\_\+\+PROTOCOLS}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a5ca47c5613d517515c8930575ba7bfd8}{\+\_\+max\+\_\+streams}} = max\+\_\+streams
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_acbf7ebe0001920a0172f65c47a222a2b}{\+\_\+idle\+\_\+timeout}} = idle\+\_\+timeout
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a0f80b9d544614ee4b4770d3ac563fc8d}{\+\_\+enable\+\_\+0rtt}} = enable\+\_\+0rtt
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_aa8d7dc6ea30428514bd5120eaac09b67}{\+\_\+connection\+\_\+migration}} = connection\+\_\+migration
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a0bd8a62a9172eb44673c9be828377b06}{\+\_\+certificate}} = certificate
+\item 
+Tuple\+[Any, Any]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_aa87adcdefbcbd348df300b98c2564659}{\+\_\+private\+\_\+key}} = private\+\_\+key
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_add75eff327104c620a32913b630e5166}{\+\_\+closed}} = False
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a59947c1cae2dc0e73db377cf54ea97e2}{\+\_\+connections}} = \+[$\,$]\+
+\item 
+list \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a50b1c4df754cf9b8786b37ae0a71bd9b}{\+\_\+listeners}} = \+[$\,$]\+
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a006d615b2d51880cc066e28fb05e452d}{\+\_\+session\+\_\+tickets}} = \{\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}QUIC 传输
+
+实现 libp2p QUIC 传输协议，提供 UDP-based 传输。
+
+协议ID: /quic-v1
+
+特性:
+- QUIC 连接建立
+- 内置 TLS 1.3 加密
+- 内置流复用
+- 0-RTT 连接支持
+- 连接迁移支持
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00586}{586}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_ab1df867fdcd554f9160658ab0b030562}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_ab1df867fdcd554f9160658ab0b030562} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[Any]\+ }]{certificate}{ = {\ttfamily None}, }\item[{Optional\+[Any]\+ }]{private\+\_\+key}{ = {\ttfamily None}, }\item[{Optional\+[List\+[str]\+]\+ }]{alpn\+\_\+protocols}{ = {\ttfamily None}, }\item[{int }]{max\+\_\+streams}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a192fad8791cbbb2bc2a80b8d11f97aad}{DEFAULT\+\_\+\+MAX\+\_\+\+STREAMS}}}, }\item[{float }]{idle\+\_\+timeout}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_ae47427fc0261487707ab245c096a4d35}{DEFAULT\+\_\+\+IDLE\+\_\+\+TIMEOUT}}}, }\item[{bool }]{enable\+\_\+0rtt}{ = {\ttfamily True}, }\item[{bool }]{connection\+\_\+migration}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}初始化 QUIC 传输
+
+Args:
+    certificate: TLS 证书（None 则自动生成）
+    private_key: TLS 私钥（None 则自动生成）
+    alpn_protocols: ALPN 协议列表
+    max_streams: 最大并发流数
+    idle_timeout: 空闲超时时间（秒）
+    enable_0rtt: 是否启用 0-RTT
+    connection_migration: 是否启用连接迁移
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00602}{602}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a5cdb0e2bdee5b2d76c92554657716fcf}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_create\_client\_configuration@{\_create\_client\_configuration}}
+\index{\_create\_client\_configuration@{\_create\_client\_configuration}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_create\_client\_configuration()}{\_create\_client\_configuration()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a5cdb0e2bdee5b2d76c92554657716fcf} 
+ \textquotesingle{}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a1a48d4e699c94941adc481f09f3ef6ee}{Quic\+Configuration}}\textquotesingle{} p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+create\+\_\+client\+\_\+configuration (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{server\+\_\+name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}创建客户端配置\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00800}{800}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00630}{\+\_\+alpn\+\_\+protocols}}, \doxymbox{\hyperlink{quic_8py_source_l00633}{\+\_\+enable\+\_\+0rtt}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00546}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+idle\+\_\+timeout}}, \doxymbox{\hyperlink{quic_8py_source_l00632}{\+\_\+idle\+\_\+timeout}}, \doxymbox{\hyperlink{quic_8py_source_l00631}{\+\_\+max\+\_\+streams}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00038}{p2p\+\_\+engine.\+transport.\+quic.\+Quic\+Configuration}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00656}{dial()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_afc03101e4244b9c3159e8c6b0b746767}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_create\_protocol@{\_create\_protocol}}
+\index{\_create\_protocol@{\_create\_protocol}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_create\_protocol()}{\_create\_protocol()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_afc03101e4244b9c3159e8c6b0b746767} 
+ \textquotesingle{}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_aa6ead5f09ae1dbe73dfc93c7b876071e}{Quic\+Connection\+Protocol}}\textquotesingle{} p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+create\+\_\+protocol (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}创建 QUIC 协议实例\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00840}{840}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00035}{p2p\+\_\+engine.\+transport.\+quic.\+Quic\+Connection\+Protocol}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00656}{dial()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00706}{listen()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a4cd85c8416ca3e845659d21ebc429575}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_create\_server\_configuration@{\_create\_server\_configuration}}
+\index{\_create\_server\_configuration@{\_create\_server\_configuration}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_create\_server\_configuration()}{\_create\_server\_configuration()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a4cd85c8416ca3e845659d21ebc429575} 
+ \textquotesingle{}\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a1a48d4e699c94941adc481f09f3ef6ee}{Quic\+Configuration}}\textquotesingle{} p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+create\+\_\+server\+\_\+configuration (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}创建服务器配置\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00820}{820}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00630}{\+\_\+alpn\+\_\+protocols}}, \doxymbox{\hyperlink{quic_8py_source_l00637}{\+\_\+certificate}}, \doxymbox{\hyperlink{quic_8py_source_l00634}{\+\_\+connection\+\_\+migration}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00546}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+idle\+\_\+timeout}}, \doxymbox{\hyperlink{quic_8py_source_l00632}{\+\_\+idle\+\_\+timeout}}, \doxymbox{\hyperlink{quic_8py_source_l00631}{\+\_\+max\+\_\+streams}}, \doxymbox{\hyperlink{quic_8py_source_l00638}{\+\_\+private\+\_\+key}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00038}{p2p\+\_\+engine.\+transport.\+quic.\+Quic\+Configuration}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00706}{listen()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_abf55d98577d76683ef65ec95316daf85}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_generate\_selfsigned\_cert@{\_generate\_selfsigned\_cert}}
+\index{\_generate\_selfsigned\_cert@{\_generate\_selfsigned\_cert}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_generate\_selfsigned\_cert()}{\_generate\_selfsigned\_cert()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_abf55d98577d76683ef65ec95316daf85} 
+ Tuple\+[Any, Any]\+ p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+generate\+\_\+selfsigned\+\_\+cert (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}生成自签名证书
+
+Returns:
+    (certificate, private_key) 元组
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00877}{877}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a3944a58c3c35c50c9810d2055d911df3}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_parse\_address@{\_parse\_address}}
+\index{\_parse\_address@{\_parse\_address}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_parse\_address()}{\_parse\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a3944a58c3c35c50c9810d2055d911df3} 
+ Tuple\+[str, int]\+ p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+parse\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}解析地址
+
+支持格式:
+- host:port
+- /ip4/ip/udp/port/quic-v1
+- /ip6/ip/udp/port/quic-v1
+
+Returns:
+    (host, port) 元组
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00844}{844}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00656}{dial()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+dial()}}, \doxymbox{\hyperlink{quic_8py_source_l00706}{listen()}} , 以及 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00390}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+listen()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a32d96af9a030bd1bb59eb5f110a91960}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a32d96af9a030bd1bb59eb5f110a91960} 
+ None p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭传输层\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adb257dcbc0d5b57b08611a4b1e0ac285}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00750}{750}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00642}{\+\_\+connections}}, \doxymbox{\hyperlink{manager_8py_source_l00050}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+listeners}}, \doxymbox{\hyperlink{quic_8py_source_l00643}{\+\_\+listeners}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00646}{\+\_\+session\+\_\+tickets}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a881fe63626bf4f16abdb931199a7d93f}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!create\_0rtt\_connection@{create\_0rtt\_connection}}
+\index{create\_0rtt\_connection@{create\_0rtt\_connection}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{create\_0rtt\_connection()}{create\_0rtt\_connection()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a881fe63626bf4f16abdb931199a7d93f} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection}{QUICConnection}} p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+create\+\_\+0rtt\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{, }\item[{\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a642b7d316cc90859e5a07fcf9a944bc2}{Session\+Ticket}}}]{session\+\_\+ticket}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}创建 0-RTT 连接
+
+Args:
+    addr: 目标地址
+    session_ticket: 会话票据
+
+Returns:
+    QUIC 连接
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00778}{778}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00633}{\+\_\+enable\+\_\+0rtt}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a59147e223c17ab793643a7fac6d6ee61}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!dial@{dial}}
+\index{dial@{dial}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{dial()}{dial()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a59147e223c17ab793643a7fac6d6ee61} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection}{QUICConnection}} p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+dial (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}建立到指定地址的连接
+
+Args:
+    addr: 目标地址（格式: host:port 或 /ip4/ip/udp/port/quic-v1）
+
+Returns:
+    QUIC 连接
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_a75e857ad1537e55cb8c1c0c33bae9e16}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00656}{656}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00642}{\+\_\+connections}}, \doxymbox{\hyperlink{quic_8py_source_l00800}{\+\_\+create\+\_\+client\+\_\+configuration()}}, \doxymbox{\hyperlink{quic_8py_source_l00840}{\+\_\+create\+\_\+protocol()}}, \doxymbox{\hyperlink{quic_8py_source_l00844}{\+\_\+parse\+\_\+address()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00036}{p2p\+\_\+engine.\+transport.\+quic.\+connect}}.
+
+函数调用图:\+
+% FIG 7
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a7adf433b81f9f8ac38a8c30346ef77a2}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!listen@{listen}}
+\index{listen@{listen}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a7adf433b81f9f8ac38a8c30346ef77a2} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener}{QUICListener}} p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+listen (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}在指定地址开始监听
+
+Args:
+    addr: 监听地址（格式: host:port 或 /ip4/ip/udp/port/quic-v1）
+
+Returns:
+    QUIC 监听器
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_ad6b5a798b3530fb18570596f66334843}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00706}{706}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00840}{\+\_\+create\+\_\+protocol()}}, \doxymbox{\hyperlink{quic_8py_source_l00820}{\+\_\+create\+\_\+server\+\_\+configuration()}}, \doxymbox{\hyperlink{manager_8py_source_l00050}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+listeners}}, \doxymbox{\hyperlink{quic_8py_source_l00643}{\+\_\+listeners}}, \doxymbox{\hyperlink{quic_8py_source_l00844}{\+\_\+parse\+\_\+address()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00037}{p2p\+\_\+engine.\+transport.\+quic.\+serve}}.
+
+函数调用图:\+
+% FIG 8
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a2426491c1c197cf5405d40deea3d063b}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!protocols@{protocols}}
+\index{protocols@{protocols}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{protocols()}{protocols()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a2426491c1c197cf5405d40deea3d063b} 
+ List\+[str]\+ p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+protocols (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}返回支持的协议列表\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adfb364ee5a07f98fb541d346966a79ce}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00652}{652}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_ac23c38931efaa1c443f1e39ceaa5ef74}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_alpn\_protocols@{\_alpn\_protocols}}
+\index{\_alpn\_protocols@{\_alpn\_protocols}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_alpn\_protocols}{\_alpn\_protocols}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_ac23c38931efaa1c443f1e39ceaa5ef74} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+alpn\+\_\+protocols = alpn\+\_\+protocols or list(\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1quic_a70b20f9293ce3842e140f7b8957a83f3}{DEFAULT\+\_\+\+ALPN\+\_\+\+PROTOCOLS}})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00630}{630}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00800}{\+\_\+create\+\_\+client\+\_\+configuration()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00820}{\+\_\+create\+\_\+server\+\_\+configuration()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a0bd8a62a9172eb44673c9be828377b06}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_certificate@{\_certificate}}
+\index{\_certificate@{\_certificate}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_certificate}{\_certificate}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a0bd8a62a9172eb44673c9be828377b06} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+certificate = certificate\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00637}{637}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00820}{\+\_\+create\+\_\+server\+\_\+configuration()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_add75eff327104c620a32913b630e5166}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_closed@{\_closed}}
+\index{\_closed@{\_closed}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_closed}{\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_add75eff327104c620a32913b630e5166} 
+bool p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00641}{641}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00269}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00382}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+data\+\_\+channel\+\_\+callbacks()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00464}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+accept()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00448}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+accept()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00238}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+accept\+\_\+stream()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00342}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+addresses()}}, \doxymbox{\hyperlink{quic_8py_source_l00750}{close()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00414}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+close()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00136}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+close()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00484}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+close()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00224}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00460}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00652}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+close()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00276}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+close()}}, \doxymbox{\hyperlink{quic_8py_source_l00656}{dial()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+dial()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00597}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+dial()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00497}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+handle\+\_\+offer()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00152}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00495}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00220}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00254}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00486}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00249}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00337}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{quic_8py_source_l00706}{listen()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00390}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+listen()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00630}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+listen()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+open\+\_\+stream()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00097}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+read()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00175}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+read()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00253}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+read()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00119}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+write()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00201}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+write()}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00266}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_aa8d7dc6ea30428514bd5120eaac09b67}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_connection\_migration@{\_connection\_migration}}
+\index{\_connection\_migration@{\_connection\_migration}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_connection\_migration}{\_connection\_migration}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_aa8d7dc6ea30428514bd5120eaac09b67} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+connection\+\_\+migration = connection\+\_\+migration\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00634}{634}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00820}{\+\_\+create\+\_\+server\+\_\+configuration()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a59947c1cae2dc0e73db377cf54ea97e2}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_connections@{\_connections}}
+\index{\_connections@{\_connections}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_connections}{\_connections}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a59947c1cae2dc0e73db377cf54ea97e2} 
+list p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+connections = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00642}{642}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webrtc_8py_source_l00723}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+create\+\_\+connection()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00788}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+handle\+\_\+answer()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00805}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+\_\+handle\+\_\+ice\+\_\+candidate()}}, \doxymbox{\hyperlink{quic_8py_source_l00750}{close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00652}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+close()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00656}{dial()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a0f80b9d544614ee4b4770d3ac563fc8d}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_enable\_0rtt@{\_enable\_0rtt}}
+\index{\_enable\_0rtt@{\_enable\_0rtt}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_enable\_0rtt}{\_enable\_0rtt}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a0f80b9d544614ee4b4770d3ac563fc8d} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+enable\+\_\+0rtt = enable\+\_\+0rtt\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00633}{633}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00800}{\+\_\+create\+\_\+client\+\_\+configuration()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00290}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Zero\+RTTConnection\+Manager.\+connect\+\_\+with\+\_\+0rtt()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00782}{create\+\_\+0rtt\+\_\+connection()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_acbf7ebe0001920a0172f65c47a222a2b}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_idle\_timeout@{\_idle\_timeout}}
+\index{\_idle\_timeout@{\_idle\_timeout}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_idle\_timeout}{\_idle\_timeout}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_acbf7ebe0001920a0172f65c47a222a2b} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+idle\+\_\+timeout = idle\+\_\+timeout\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00632}{632}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00263}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic_8py_source_l00800}{\+\_\+create\+\_\+client\+\_\+configuration()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00820}{\+\_\+create\+\_\+server\+\_\+configuration()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a50b1c4df754cf9b8786b37ae0a71bd9b}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_listeners@{\_listeners}}
+\index{\_listeners@{\_listeners}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_listeners}{\_listeners}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a50b1c4df754cf9b8786b37ae0a71bd9b} 
+list p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+listeners = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00643}{643}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00750}{close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00652}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+close()}}, \doxymbox{\hyperlink{quic_8py_source_l00706}{listen()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00630}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+listen()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a5ca47c5613d517515c8930575ba7bfd8}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_max\_streams@{\_max\_streams}}
+\index{\_max\_streams@{\_max\_streams}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_max\_streams}{\_max\_streams}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a5ca47c5613d517515c8930575ba7bfd8} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+max\+\_\+streams = max\+\_\+streams\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00631}{631}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00800}{\+\_\+create\+\_\+client\+\_\+configuration()}} , 以及 \doxymbox{\hyperlink{quic_8py_source_l00820}{\+\_\+create\+\_\+server\+\_\+configuration()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_aa87adcdefbcbd348df300b98c2564659}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_private\_key@{\_private\_key}}
+\index{\_private\_key@{\_private\_key}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_private\_key}{\_private\_key}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_aa87adcdefbcbd348df300b98c2564659} 
+p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+private\+\_\+key = private\+\_\+key\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00638}{638}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00820}{\+\_\+create\+\_\+server\+\_\+configuration()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a006d615b2d51880cc066e28fb05e452d}\index{p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}!\_session\_tickets@{\_session\_tickets}}
+\index{\_session\_tickets@{\_session\_tickets}!p2p\_engine.transport.quic.QUICTransport@{p2p\_engine.transport.quic.QUICTransport}}
+\doxysubsubsection{\texorpdfstring{\_session\_tickets}{\_session\_tickets}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_a006d615b2d51880cc066e28fb05e452d} 
+dict p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+session\+\_\+tickets = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic_8py_source}{quic.\+py}} 第 \doxymbox{\hyperlink{quic_8py_source_l00646}{646}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic_8py_source_l00750}{close()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{quic_8py}{quic.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,652 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler" kind="class" language="Python" prot="public">
+    <compoundname>src::relay_server::relay::RelayHandler</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict src.relay_server.relay.RelayHandler::_sessions</definition>
+        <argsstring></argsstring>
+        <name>_sessions</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler._sessions</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="23" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="23" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a33f671a0a66935b7780618a18df4dd1a" compoundref="connection_8py" startline="257" endline="265">src.signaling_server.connection.ConnectionManager.add_ice_candidate</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3a9142eb111ef31eade20ba1fc0b70a6" compoundref="relay__server_2relay_8py" startline="139" endline="145">src.relay_server.relay.RelayHandler.add_permission</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af93d3de68fd70f94b6a0684c5f784888" compoundref="relay__server_2relay_8py" startline="220" endline="241">src.relay_server.relay.RelayHandler.cleanup_expired</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ad877bd7850b696ba59534b72f364a8f8" compoundref="relay__server_2relay_8py" startline="60" endline="97">src.relay_server.relay.RelayHandler.create_session</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a45acb861dcc49abb9fc3695e0869b404" compoundref="connection_8py" startline="207" endline="229">src.signaling_server.connection.ConnectionManager.create_session</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" compoundref="relay__server_2relay_8py" startline="116" endline="138">src.relay_server.relay.RelayHandler.delete_session</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1aed75c1f20fd9de889afaa35bcf3bee38" compoundref="connection_8py" startline="79" endline="106">src.signaling_server.connection.ConnectionManager.disconnect</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aa494f3e2411795cb73538f04606a14a4" compoundref="relay__server_2relay_8py" startline="98" endline="101">src.relay_server.relay.RelayHandler.get_session</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a92cb80cc39097d0f545aec49bc1ea92a" compoundref="connection_8py" startline="230" endline="233">src.signaling_server.connection.ConnectionManager.get_session</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aafe6bd021fea8fa5450e2d8ac996f8c4" compoundref="relay__server_2relay_8py" startline="102" endline="108">src.relay_server.relay.RelayHandler.get_session_by_client</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1abfbf8c554032a06b44ac08d6ae6f4277" compoundref="connection_8py" startline="234" endline="241">src.signaling_server.connection.ConnectionManager.get_session_by_devices</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af860cc4acc99d33cbeab4628235ea3f5" compoundref="relay__server_2relay_8py" startline="109" endline="115">src.relay_server.relay.RelayHandler.get_session_by_relay</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aeae1c28e6bf84d1be21420e74d1d320d" compoundref="relay__server_2relay_8py" startline="242" endline="259">src.relay_server.relay.RelayHandler.get_stats</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a6e67bc43f797be48dcb0b81c2487bc00" compoundref="connection_8py" startline="266" endline="270">src.signaling_server.connection.ConnectionManager.set_relay_mode</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a509e32f4f35618823680f7e0b8f66b6a" compoundref="connection_8py" startline="252" endline="256">src.signaling_server.connection.ConnectionManager.set_session_answer</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1aa39f398be997240f90401b4d01995d07" compoundref="connection_8py" startline="247" endline="251">src.signaling_server.connection.ConnectionManager.set_session_offer</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a43e221486772098d266b7f2a9202a0c2" compoundref="connection_8py" startline="242" endline="246">src.signaling_server.connection.ConnectionManager.update_session_status</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a9377fb1341aa355541b11caaecb12eaf" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict src.relay_server.relay.RelayHandler::_client_to_session</definition>
+        <argsstring></argsstring>
+        <name>_client_to_session</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler._client_to_session</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="24" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="24" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ad877bd7850b696ba59534b72f364a8f8" compoundref="relay__server_2relay_8py" startline="60" endline="97">src.relay_server.relay.RelayHandler.create_session</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" compoundref="relay__server_2relay_8py" startline="116" endline="138">src.relay_server.relay.RelayHandler.delete_session</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aafe6bd021fea8fa5450e2d8ac996f8c4" compoundref="relay__server_2relay_8py" startline="102" endline="108">src.relay_server.relay.RelayHandler.get_session_by_client</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a46ef28f89263e3aca64a7ac1c42048a9" prot="protected" static="no" mutable="no">
+        <type>dict</type>
+        <definition>dict src.relay_server.relay.RelayHandler::_relay_to_session</definition>
+        <argsstring></argsstring>
+        <name>_relay_to_session</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler._relay_to_session</qualifiedname>
+        <initializer>=  {}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="25" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ad877bd7850b696ba59534b72f364a8f8" compoundref="relay__server_2relay_8py" startline="60" endline="97">src.relay_server.relay.RelayHandler.create_session</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" compoundref="relay__server_2relay_8py" startline="116" endline="138">src.relay_server.relay.RelayHandler.delete_session</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af860cc4acc99d33cbeab4628235ea3f5" compoundref="relay__server_2relay_8py" startline="109" endline="115">src.relay_server.relay.RelayHandler.get_session_by_relay</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a7c6a72e970f7c0798fb203d008f1ea8c" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>src.relay_server.relay.RelayHandler::_lock</definition>
+        <argsstring></argsstring>
+        <name>_lock</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler._lock</qualifiedname>
+        <initializer>=  asyncio.Lock()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="26" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="26" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af93d3de68fd70f94b6a0684c5f784888" compoundref="relay__server_2relay_8py" startline="220" endline="241">src.relay_server.relay.RelayHandler.cleanup_expired</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a9b47ae485385c1ab2bedd3058bf1ca7d" compoundref="connection_8py" startline="304" endline="331">src.signaling_server.connection.ConnectionManager.cleanup_stale</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1a0b3d1243e6a19b08606989bf7693e41f" compoundref="connection_8py" startline="42" endline="78">src.signaling_server.connection.ConnectionManager.connect</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ad877bd7850b696ba59534b72f364a8f8" compoundref="relay__server_2relay_8py" startline="60" endline="97">src.relay_server.relay.RelayHandler.create_session</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" compoundref="relay__server_2relay_8py" startline="116" endline="138">src.relay_server.relay.RelayHandler.delete_session</referencedby>
+        <referencedby refid="classsrc_1_1signaling__server_1_1connection_1_1_connection_manager_1aed75c1f20fd9de889afaa35bcf3bee38" compoundref="connection_8py" startline="79" endline="106">src.signaling_server.connection.ConnectionManager.disconnect</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a20f251baee598c6a7d684d5454b76e56" prot="protected" static="no" mutable="no">
+        <type>Optional[asyncio.DatagramProtocol]</type>
+        <definition>Optional[asyncio.DatagramProtocol] src.relay_server.relay.RelayHandler::_socket</definition>
+        <argsstring></argsstring>
+        <name>_socket</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler._socket</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="27" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ade2a03e24a7434772f6ec35061a306c2" prot="protected" static="no" mutable="no">
+        <type>Optional[asyncio.DatagramTransport]</type>
+        <definition>src.relay_server.relay.RelayHandler::_transport</definition>
+        <argsstring></argsstring>
+        <name>_transport</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler._transport</qualifiedname>
+        <initializer>=  None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="28" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a5c8eabad20f183d4d59a5cdb6804eb1a" compoundref="relay__server_2relay_8py" startline="31" endline="47">src.relay_server.relay.RelayHandler.start</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a0511c8923e1ec3b69ca3c24424d4f9dd" compoundref="relay__server_2relay_8py" startline="48" endline="53">src.relay_server.relay.RelayHandler.stop</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a486ff47e3f11604a978632f30b1dfc5c" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>src.relay_server.relay.RelayHandler::_bandwidth_stats</definition>
+        <argsstring></argsstring>
+        <name>_bandwidth_stats</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler._bandwidth_stats</qualifiedname>
+        <initializer>=  <ref refid="classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats" kindref="compound">BandwidthStats</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="29" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aeae1c28e6bf84d1be21420e74d1d320d" compoundref="relay__server_2relay_8py" startline="242" endline="259">src.relay_server.relay.RelayHandler.get_stats</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3fe763c742c8dada961c4cf88f031a83" compoundref="relay__server_2relay_8py" startline="146" endline="187">src.relay_server.relay.RelayHandler.handle_client_data</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a027a5bdf0fd671e892f039542e4fe573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>src.relay_server.relay.RelayHandler.__init__</definition>
+        <argsstring>(self)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Initialize relay handler.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="21" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="21" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a5c8eabad20f183d4d59a5cdb6804eb1a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None src.relay_server.relay.RelayHandler.start</definition>
+        <argsstring>(self, str host, Tuple[int, int] port_range)</argsstring>
+        <name>start</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.start</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>port_range</declname>
+          <array>[int, int]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Start relay server.
+
+Args:
+    host: Host to bind to
+    port_range: (min_port, max_port) for relay ports
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="31" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="31" bodyend="47"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1af3e2de5bd8672d1388d031a724e7b1d7" compoundref="quic_8py" startline="479">p2p_engine.transport.quic.QUICListener._transport</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_quic_protocol_factory_1a3410d72c6b8a6505cfefae4892c8118f" compoundref="quic_8py" startline="953">p2p_engine.transport.quic.QuicProtocolFactory._transport</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1ae57d982b7caa38c7cd574058de16abec" compoundref="tcp__optimized_8py" startline="461">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._transport</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a4a4704ad57c7e9a79872c0b7ffc9a964" compoundref="webrtc_8py" startline="433">p2p_engine.transport.webrtc.WebRTCListener._transport</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ade2a03e24a7434772f6ec35061a306c2" compoundref="relay__server_2relay_8py" startline="28">src.relay_server.relay.RelayHandler._transport</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a0511c8923e1ec3b69ca3c24424d4f9dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None src.relay_server.relay.RelayHandler.stop</definition>
+        <argsstring>(self)</argsstring>
+        <name>stop</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.stop</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Stop relay handler.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="48" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="48" bodyend="53"/>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1af3e2de5bd8672d1388d031a724e7b1d7" compoundref="quic_8py" startline="479">p2p_engine.transport.quic.QUICListener._transport</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_quic_protocol_factory_1a3410d72c6b8a6505cfefae4892c8118f" compoundref="quic_8py" startline="953">p2p_engine.transport.quic.QuicProtocolFactory._transport</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1ae57d982b7caa38c7cd574058de16abec" compoundref="tcp__optimized_8py" startline="461">p2p_engine.transport.tcp_optimized.TCPOptimizedListener._transport</references>
+        <references refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a4a4704ad57c7e9a79872c0b7ffc9a964" compoundref="webrtc_8py" startline="433">p2p_engine.transport.webrtc.WebRTCListener._transport</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ade2a03e24a7434772f6ec35061a306c2" compoundref="relay__server_2relay_8py" startline="28">src.relay_server.relay.RelayHandler._transport</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ad877bd7850b696ba59534b72f364a8f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classsrc_1_1relay__server_1_1models_1_1_relay_session" kindref="compound">RelaySession</ref>]</type>
+        <definition> Optional[RelaySession] src.relay_server.relay.RelayHandler.create_session</definition>
+        <argsstring>(self, Tuple[str, int] client_addr, Tuple[str, int] relay_addr, int lifetime=600, TransportProtocol transport=TransportProtocol.UDP)</argsstring>
+        <name>create_session</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.create_session</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>client_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>relay_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lifetime</declname>
+          <defval>600</defval>
+        </param>
+        <param>
+          <type><ref refid="classsrc_1_1relay__server_1_1models_1_1_transport_protocol" kindref="compound">TransportProtocol</ref></type>
+          <declname>transport</declname>
+          <defval><ref refid="classsrc_1_1relay__server_1_1models_1_1_transport_protocol_1add3842c374c044ba2a61f0f8eafc207b" kindref="member">TransportProtocol.UDP</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a new relay session.
+
+Args:
+    client_addr: Client (ip, port)
+    relay_addr: Relay (ip, port)
+    lifetime: Session lifetime in seconds
+    transport: Transport protocol
+
+Returns:
+    RelaySession or None
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="54" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="60" bodyend="97"/>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a9377fb1341aa355541b11caaecb12eaf" compoundref="relay__server_2relay_8py" startline="24">src.relay_server.relay.RelayHandler._client_to_session</references>
+        <references refid="classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_1a750695be7f528e94d03124a6245d0d58" compoundref="provider_8py" startline="85">p2p_engine.dht.provider.ProviderManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_manager_1a8c80c6a0bb9b6505b249de4da5eed1c0" compoundref="query_8py" startline="139">p2p_engine.dht.query.QueryManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_1a7501db61628347922d6d7f95a7d1b653" compoundref="query__optimizer_8py" startline="362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_1a549fc27beba868d497943a6b15aa0adc" compoundref="query__optimizer_8py" startline="77">p2p_engine.dht.query_optimizer.QueryCache._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1routing_1_1_routing_table_1a83bc4b46e9b29218f6421e3dafa4c60d" compoundref="routing_8py" startline="351">p2p_engine.dht.routing.RoutingTable._lock</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1a04d2074044d4dcc46652b67d6a398e52" compoundref="event_8py" startline="238">p2p_engine.event.EventBus._lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1a8373f03103885b11a5b1979ff2b49e0b" compoundref="mplex__v2_8py" startline="549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_stream_i_d_pool_1a284fcd28af77bf5f99d4875248a9d951" compoundref="yamux__optimized_8py" startline="129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</references>
+        <references refid="classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_1aec3f14aff5459f4e06f68732653c75b1" compoundref="metrics_8py" startline="62">p2p_engine.observability.metrics.MetricsCollector._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_1a28f342951c805a3682b7acd03dc82b65" compoundref="quic__0rtt_8py" startline="116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool_1a1e5d118eaf03b2e4c2bd10eec7acdcf9" compoundref="tcp__optimized_8py" startline="191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1acf8036294e8f9db96825af6699f1665a" compoundref="upgrader_8py" startline="204">p2p_engine.transport.upgrader.MuxedSession._lock</references>
+        <references refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a6bf64835b288e571a5aeb568841e4d77" compoundref="client_8py" startline="213">p2p_sdk.client.P2PClient._lock</references>
+        <references refid="classsrc_1_1allocation_1_1_allocation_manager_1a71f99925044a1ba82065e08c734e5dc1" compoundref="allocation_8py" startline="120">src.allocation.AllocationManager._lock</references>
+        <references refid="classsrc_1_1allocation_1_1_port_pool_1a5a4fb0b4655e0b4306bc2c18c877c99a" compoundref="allocation_8py" startline="45">src.allocation.PortPool._lock</references>
+        <references refid="classsrc_1_1bandwidth_1_1_throughput_monitor_1a3e82d326a61efaf99760874ee8a766b1" compoundref="bandwidth_8py" startline="271">src.bandwidth.ThroughputMonitor._lock</references>
+        <references refid="classsrc_1_1bandwidth_1_1_token_bucket_1ad502806d5b90f4e4ea72791372e4ffee" compoundref="bandwidth_8py" startline="54">src.bandwidth.TokenBucket._lock</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a7c6a72e970f7c0798fb203d008f1ea8c" compoundref="relay__server_2relay_8py" startline="26">src.relay_server.relay.RelayHandler._lock</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a46ef28f89263e3aca64a7ac1c42048a9" compoundref="relay__server_2relay_8py" startline="25">src.relay_server.relay.RelayHandler._relay_to_session</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aa494f3e2411795cb73538f04606a14a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classsrc_1_1relay__server_1_1models_1_1_relay_session" kindref="compound">RelaySession</ref>]</type>
+        <definition> Optional[RelaySession] src.relay_server.relay.RelayHandler.get_session</definition>
+        <argsstring>(self, str session_id)</argsstring>
+        <name>get_session</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.get_session</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>session_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get session by ID.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="98" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="98" bodyend="101"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aafe6bd021fea8fa5450e2d8ac996f8c4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classsrc_1_1relay__server_1_1models_1_1_relay_session" kindref="compound">RelaySession</ref>]</type>
+        <definition> Optional[RelaySession] src.relay_server.relay.RelayHandler.get_session_by_client</definition>
+        <argsstring>(self, Tuple[str, int] client_addr)</argsstring>
+        <name>get_session_by_client</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.get_session_by_client</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>client_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get session by client address.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="102" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="102" bodyend="108"/>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a9377fb1341aa355541b11caaecb12eaf" compoundref="relay__server_2relay_8py" startline="24">src.relay_server.relay.RelayHandler._client_to_session</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3fe763c742c8dada961c4cf88f031a83" compoundref="relay__server_2relay_8py" startline="146" endline="187">src.relay_server.relay.RelayHandler.handle_client_data</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af860cc4acc99d33cbeab4628235ea3f5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classsrc_1_1relay__server_1_1models_1_1_relay_session" kindref="compound">RelaySession</ref>]</type>
+        <definition> Optional[RelaySession] src.relay_server.relay.RelayHandler.get_session_by_relay</definition>
+        <argsstring>(self, Tuple[str, int] relay_addr)</argsstring>
+        <name>get_session_by_relay</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.get_session_by_relay</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>relay_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get session by relay address.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="109" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="109" bodyend="115"/>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a46ef28f89263e3aca64a7ac1c42048a9" compoundref="relay__server_2relay_8py" startline="25">src.relay_server.relay.RelayHandler._relay_to_session</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a55e67f96b6e26dc281b72943b0184592" compoundref="relay__server_2relay_8py" startline="188" endline="219">src.relay_server.relay.RelayHandler.handle_peer_data</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.relay_server.relay.RelayHandler.delete_session</definition>
+        <argsstring>(self, str session_id)</argsstring>
+        <name>delete_session</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.delete_session</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>session_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Delete a relay session.
+
+Args:
+    session_id: Session ID
+
+Returns:
+    True if session was deleted
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="116" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="116" bodyend="138"/>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a9377fb1341aa355541b11caaecb12eaf" compoundref="relay__server_2relay_8py" startline="24">src.relay_server.relay.RelayHandler._client_to_session</references>
+        <references refid="classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_1a750695be7f528e94d03124a6245d0d58" compoundref="provider_8py" startline="85">p2p_engine.dht.provider.ProviderManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_manager_1a8c80c6a0bb9b6505b249de4da5eed1c0" compoundref="query_8py" startline="139">p2p_engine.dht.query.QueryManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_1a7501db61628347922d6d7f95a7d1b653" compoundref="query__optimizer_8py" startline="362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_1a549fc27beba868d497943a6b15aa0adc" compoundref="query__optimizer_8py" startline="77">p2p_engine.dht.query_optimizer.QueryCache._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1routing_1_1_routing_table_1a83bc4b46e9b29218f6421e3dafa4c60d" compoundref="routing_8py" startline="351">p2p_engine.dht.routing.RoutingTable._lock</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1a04d2074044d4dcc46652b67d6a398e52" compoundref="event_8py" startline="238">p2p_engine.event.EventBus._lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1a8373f03103885b11a5b1979ff2b49e0b" compoundref="mplex__v2_8py" startline="549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_stream_i_d_pool_1a284fcd28af77bf5f99d4875248a9d951" compoundref="yamux__optimized_8py" startline="129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</references>
+        <references refid="classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_1aec3f14aff5459f4e06f68732653c75b1" compoundref="metrics_8py" startline="62">p2p_engine.observability.metrics.MetricsCollector._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_1a28f342951c805a3682b7acd03dc82b65" compoundref="quic__0rtt_8py" startline="116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool_1a1e5d118eaf03b2e4c2bd10eec7acdcf9" compoundref="tcp__optimized_8py" startline="191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1acf8036294e8f9db96825af6699f1665a" compoundref="upgrader_8py" startline="204">p2p_engine.transport.upgrader.MuxedSession._lock</references>
+        <references refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a6bf64835b288e571a5aeb568841e4d77" compoundref="client_8py" startline="213">p2p_sdk.client.P2PClient._lock</references>
+        <references refid="classsrc_1_1allocation_1_1_allocation_manager_1a71f99925044a1ba82065e08c734e5dc1" compoundref="allocation_8py" startline="120">src.allocation.AllocationManager._lock</references>
+        <references refid="classsrc_1_1allocation_1_1_port_pool_1a5a4fb0b4655e0b4306bc2c18c877c99a" compoundref="allocation_8py" startline="45">src.allocation.PortPool._lock</references>
+        <references refid="classsrc_1_1bandwidth_1_1_throughput_monitor_1a3e82d326a61efaf99760874ee8a766b1" compoundref="bandwidth_8py" startline="271">src.bandwidth.ThroughputMonitor._lock</references>
+        <references refid="classsrc_1_1bandwidth_1_1_token_bucket_1ad502806d5b90f4e4ea72791372e4ffee" compoundref="bandwidth_8py" startline="54">src.bandwidth.TokenBucket._lock</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a7c6a72e970f7c0798fb203d008f1ea8c" compoundref="relay__server_2relay_8py" startline="26">src.relay_server.relay.RelayHandler._lock</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a46ef28f89263e3aca64a7ac1c42048a9" compoundref="relay__server_2relay_8py" startline="25">src.relay_server.relay.RelayHandler._relay_to_session</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af93d3de68fd70f94b6a0684c5f784888" compoundref="relay__server_2relay_8py" startline="220" endline="241">src.relay_server.relay.RelayHandler.cleanup_expired</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3fe763c742c8dada961c4cf88f031a83" compoundref="relay__server_2relay_8py" startline="146" endline="187">src.relay_server.relay.RelayHandler.handle_client_data</referencedby>
+        <referencedby refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a55e67f96b6e26dc281b72943b0184592" compoundref="relay__server_2relay_8py" startline="188" endline="219">src.relay_server.relay.RelayHandler.handle_peer_data</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3a9142eb111ef31eade20ba1fc0b70a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.relay_server.relay.RelayHandler.add_permission</definition>
+        <argsstring>(self, str session_id, Tuple[str, int] peer_addr)</argsstring>
+        <name>add_permission</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.add_permission</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>session_id</declname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>peer_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Add permission for peer to send data.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="139" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="139" bodyend="145"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3fe763c742c8dada961c4cf88f031a83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.relay_server.relay.RelayHandler.handle_client_data</definition>
+        <argsstring>(self, Tuple[str, int] client_addr, bytes data, Tuple[str, int] peer_addr)</argsstring>
+        <name>handle_client_data</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.handle_client_data</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>client_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>peer_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle data from client to relay to peer.
+
+Args:
+    client_addr: Client address
+    data: Data to relay
+    peer_addr: Destination peer address
+
+Returns:
+    True if data was relayed
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="146" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="146" bodyend="187"/>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a486ff47e3f11604a978632f30b1dfc5c" compoundref="relay__server_2relay_8py" startline="29">src.relay_server.relay.RelayHandler._bandwidth_stats</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" compoundref="relay__server_2relay_8py" startline="116" endline="138">src.relay_server.relay.RelayHandler.delete_session</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aafe6bd021fea8fa5450e2d8ac996f8c4" compoundref="relay__server_2relay_8py" startline="102" endline="108">src.relay_server.relay.RelayHandler.get_session_by_client</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a55e67f96b6e26dc281b72943b0184592" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool src.relay_server.relay.RelayHandler.handle_peer_data</definition>
+        <argsstring>(self, Tuple[str, int] relay_addr, bytes data)</argsstring>
+        <name>handle_peer_data</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.handle_peer_data</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Tuple</type>
+          <declname>relay_addr</declname>
+          <array>[str, int]</array>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Handle data from peer to relay to client.
+
+Args:
+    relay_addr: Relay address
+    data: Data to relay
+
+Returns:
+    True if data was relayed
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="188" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="188" bodyend="219"/>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" compoundref="relay__server_2relay_8py" startline="116" endline="138">src.relay_server.relay.RelayHandler.delete_session</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af860cc4acc99d33cbeab4628235ea3f5" compoundref="relay__server_2relay_8py" startline="109" endline="115">src.relay_server.relay.RelayHandler.get_session_by_relay</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af93d3de68fd70f94b6a0684c5f784888" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int src.relay_server.relay.RelayHandler.cleanup_expired</definition>
+        <argsstring>(self)</argsstring>
+        <name>cleanup_expired</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.cleanup_expired</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Clean up expired sessions.
+
+Returns:
+    Number of sessions removed
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="220" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="220" bodyend="241"/>
+        <references refid="classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_1a750695be7f528e94d03124a6245d0d58" compoundref="provider_8py" startline="85">p2p_engine.dht.provider.ProviderManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query_1_1_query_manager_1a8c80c6a0bb9b6505b249de4da5eed1c0" compoundref="query_8py" startline="139">p2p_engine.dht.query.QueryManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_1a7501db61628347922d6d7f95a7d1b653" compoundref="query__optimizer_8py" startline="362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_1a549fc27beba868d497943a6b15aa0adc" compoundref="query__optimizer_8py" startline="77">p2p_engine.dht.query_optimizer.QueryCache._lock</references>
+        <references refid="classp2p__engine_1_1dht_1_1routing_1_1_routing_table_1a83bc4b46e9b29218f6421e3dafa4c60d" compoundref="routing_8py" startline="351">p2p_engine.dht.routing.RoutingTable._lock</references>
+        <references refid="classp2p__engine_1_1event_1_1_event_bus_1a04d2074044d4dcc46652b67d6a398e52" compoundref="event_8py" startline="238">p2p_engine.event.EventBus._lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1a8373f03103885b11a5b1979ff2b49e0b" compoundref="mplex__v2_8py" startline="549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_stream_i_d_pool_1a284fcd28af77bf5f99d4875248a9d951" compoundref="yamux__optimized_8py" startline="129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</references>
+        <references refid="classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector_1aec3f14aff5459f4e06f68732653c75b1" compoundref="metrics_8py" startline="62">p2p_engine.observability.metrics.MetricsCollector._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_store_1a28f342951c805a3682b7acd03dc82b65" compoundref="quic__0rtt_8py" startline="116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool_1a1e5d118eaf03b2e4c2bd10eec7acdcf9" compoundref="tcp__optimized_8py" startline="191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1acf8036294e8f9db96825af6699f1665a" compoundref="upgrader_8py" startline="204">p2p_engine.transport.upgrader.MuxedSession._lock</references>
+        <references refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a6bf64835b288e571a5aeb568841e4d77" compoundref="client_8py" startline="213">p2p_sdk.client.P2PClient._lock</references>
+        <references refid="classsrc_1_1allocation_1_1_allocation_manager_1a71f99925044a1ba82065e08c734e5dc1" compoundref="allocation_8py" startline="120">src.allocation.AllocationManager._lock</references>
+        <references refid="classsrc_1_1allocation_1_1_port_pool_1a5a4fb0b4655e0b4306bc2c18c877c99a" compoundref="allocation_8py" startline="45">src.allocation.PortPool._lock</references>
+        <references refid="classsrc_1_1bandwidth_1_1_throughput_monitor_1a3e82d326a61efaf99760874ee8a766b1" compoundref="bandwidth_8py" startline="271">src.bandwidth.ThroughputMonitor._lock</references>
+        <references refid="classsrc_1_1bandwidth_1_1_token_bucket_1ad502806d5b90f4e4ea72791372e4ffee" compoundref="bandwidth_8py" startline="54">src.bandwidth.TokenBucket._lock</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a7c6a72e970f7c0798fb203d008f1ea8c" compoundref="relay__server_2relay_8py" startline="26">src.relay_server.relay.RelayHandler._lock</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" compoundref="relay__server_2relay_8py" startline="116" endline="138">src.relay_server.relay.RelayHandler.delete_session</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aeae1c28e6bf84d1be21420e74d1d320d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>dict</type>
+        <definition> dict src.relay_server.relay.RelayHandler.get_stats</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_stats</name>
+        <qualifiedname>src.relay_server.relay.RelayHandler.get_stats</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get relay statistics.</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="relay-server/src/relay_server/relay.py" line="242" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="242" bodyend="259"/>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a486ff47e3f11604a978632f30b1dfc5c" compoundref="relay__server_2relay_8py" startline="29">src.relay_server.relay.RelayHandler._bandwidth_stats</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxer_adapter_1aafefe7e75eed0af55bf82caa770cfa05" compoundref="mplex__adapter_8py" startline="30">p2p_engine.muxer.mplex_adapter.MplexMuxerAdapter._sessions</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_pool_1ab0016d51dbdca59369fa31debfe1a8a9" compoundref="mplex__v2_8py" startline="547">p2p_engine.muxer.mplex_v2.MplexSessionPool._sessions</references>
+        <references refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" compoundref="relay__server_2relay_8py" startline="23">src.relay_server.relay.RelayHandler._sessions</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Handles UDP data relay between clients and peers.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="relay-server/src/relay_server/relay.py" line="16" column="1" bodyfile="relay-server/src/relay_server/relay.py" bodystart="16" bodyend="259"/>
+    <listofallmembers>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a027a5bdf0fd671e892f039542e4fe573" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>__init__</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a486ff47e3f11604a978632f30b1dfc5c" prot="protected" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>_bandwidth_stats</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a9377fb1341aa355541b11caaecb12eaf" prot="protected" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>_client_to_session</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a7c6a72e970f7c0798fb203d008f1ea8c" prot="protected" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>_lock</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a46ef28f89263e3aca64a7ac1c42048a9" prot="protected" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>_relay_to_session</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ab8a8b283405a9d9a0a7bafb0b8662685" prot="protected" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>_sessions</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a20f251baee598c6a7d684d5454b76e56" prot="protected" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>_socket</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ade2a03e24a7434772f6ec35061a306c2" prot="protected" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>_transport</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3a9142eb111ef31eade20ba1fc0b70a6" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>add_permission</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af93d3de68fd70f94b6a0684c5f784888" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>cleanup_expired</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1ad877bd7850b696ba59534b72f364a8f8" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>create_session</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1add97381a1e19a4f7c79e2344844cf7aa" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>delete_session</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aa494f3e2411795cb73538f04606a14a4" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>get_session</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aafe6bd021fea8fa5450e2d8ac996f8c4" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>get_session_by_client</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1af860cc4acc99d33cbeab4628235ea3f5" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>get_session_by_relay</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1aeae1c28e6bf84d1be21420e74d1d320d" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>get_stats</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a3fe763c742c8dada961c4cf88f031a83" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>handle_client_data</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a55e67f96b6e26dc281b72943b0184592" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>handle_peer_data</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a5c8eabad20f183d4d59a5cdb6804eb1a" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>start</name></member>
+      <member refid="classsrc_1_1relay__server_1_1relay_1_1_relay_handler_1a0511c8923e1ec3b69ca3c24424d4f9dd" prot="public" virt="non-virtual"><scope>src::relay_server::relay::RelayHandler</scope><name>stop</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

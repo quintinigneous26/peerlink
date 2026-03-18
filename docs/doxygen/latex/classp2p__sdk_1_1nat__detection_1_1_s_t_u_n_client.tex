@@ -1,0 +1,260 @@
+\doxysection{p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient类 参考}
+\hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client}{}\label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a336841abd4da59453d3931996e35b640}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_acdd6dad832800aea41cb9c3ccb057deb}{stun\+\_\+server}}, int \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a5890bd816e2d2abc57c465fad26baed7}{stun\+\_\+port}}=3478)
+\item 
+Tuple\+[Optional\+[str]\+, Optional\+[int]\+]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a0f466a214f66d44ad2c5e3a0297bea05}{send\+\_\+request}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_acdd6dad832800aea41cb9c3ccb057deb}{stun\+\_\+server}} = stun\+\_\+server
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a5890bd816e2d2abc57c465fad26baed7}{stun\+\_\+port}} = stun\+\_\+port
+\item 
+float \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ad4964de80352bc644fc7c461c4fd87a6}{timeout}} = 5.\+0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_aece7fc55bed77a1c5fb0922ddcd226dd}{BINDING\+\_\+\+REQUEST}} = 0x0001
+\item 
+int \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ab80796129ba002257ea4ce1c6311f40c}{BINDING\+\_\+\+RESPONSE}} = 0x0101
+\item 
+int \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a4b1de573cd58b7a5b8d9f40ae3c32f73}{ATTR\+\_\+\+MAPPED\+\_\+\+ADDRESS}} = 0x0001
+\item 
+int \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a7ae096e294161a13911255f322f4896e}{ATTR\+\_\+\+XOR\+\_\+\+MAPPED\+\_\+\+ADDRESS}} = 0x0020
+\item 
+int \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a271e53899c42bb4e3a34ea32756f95bc}{ATTR\+\_\+\+CHANGE\+\_\+\+REQUEST}} = 0x0003
+\item 
+int \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a3786c65871de39c799aea300c10ead8b}{ATTR\+\_\+\+CHANGED\+\_\+\+ADDRESS}} = 0x0004
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a8726951196d368e532c968f11fc4d095}{\+\_\+pack\+\_\+stun\+\_\+request}} (self, int request\+\_\+type=\doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_aece7fc55bed77a1c5fb0922ddcd226dd}{BINDING\+\_\+\+REQUEST}})
+\item 
+Tuple\+[Optional\+[str]\+, Optional\+[int]\+]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ab7850558d553bc246804fc97aee79167}{\+\_\+unpack\+\_\+stun\+\_\+response}} (self, bytes data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}STUN protocol client for NAT detection.
+
+Implements a subset of RFC 5389 (STUN) for NAT type discovery.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00055}{55}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a336841abd4da59453d3931996e35b640}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a336841abd4da59453d3931996e35b640} 
+p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{stun\+\_\+server}{, }\item[{int }]{stun\+\_\+port}{ = {\ttfamily 3478}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize STUN client.
+
+Args:
+    stun_server: STUN server hostname or IP
+    stun_port: STUN server port (default 3478)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00072}{72}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a8726951196d368e532c968f11fc4d095}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!\_pack\_stun\_request@{\_pack\_stun\_request}}
+\index{\_pack\_stun\_request@{\_pack\_stun\_request}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_pack\_stun\_request()}{\_pack\_stun\_request()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a8726951196d368e532c968f11fc4d095} 
+ bytes p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+\_\+pack\+\_\+stun\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{request\+\_\+type}{ = {\ttfamily \doxymbox{\hyperlink{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_aece7fc55bed77a1c5fb0922ddcd226dd}{BINDING\+\_\+\+REQUEST}}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Pack a STUN request message.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00084}{84}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00159}{send\+\_\+request()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ab7850558d553bc246804fc97aee79167}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!\_unpack\_stun\_response@{\_unpack\_stun\_response}}
+\index{\_unpack\_stun\_response@{\_unpack\_stun\_response}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{\_unpack\_stun\_response()}{\_unpack\_stun\_response()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ab7850558d553bc246804fc97aee79167} 
+ Tuple\+[Optional\+[str]\+, Optional\+[int]\+]\+ p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+\_\+unpack\+\_\+stun\+\_\+response (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Unpack STUN response and extract mapped address.
+
+Returns:
+    Tuple of (ip, port) or (None, None) if parsing fails
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00098}{98}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00067}{ATTR\+\_\+\+MAPPED\+\_\+\+ADDRESS}} , 以及 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00068}{ATTR\+\_\+\+XOR\+\_\+\+MAPPED\+\_\+\+ADDRESS}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00159}{send\+\_\+request()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a0f466a214f66d44ad2c5e3a0297bea05}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!send\_request@{send\_request}}
+\index{send\_request@{send\_request}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{send\_request()}{send\_request()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a0f466a214f66d44ad2c5e3a0297bea05} 
+ Tuple\+[Optional\+[str]\+, Optional\+[int]\+]\+ p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+send\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send STUN binding request and get mapped address.
+
+Returns:
+    Tuple of (public_ip, public_port) or (None, None) on failure
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00159}{159}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00084}{\+\_\+pack\+\_\+stun\+\_\+request()}}, \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00098}{\+\_\+unpack\+\_\+stun\+\_\+response()}}, \doxymbox{\hyperlink{client_8py_source_l00131}{p2p\+\_\+sdk.\+client.\+P2\+PConfig.\+stun\+\_\+port}}, \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00081}{stun\+\_\+port}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00310}{p2p\+\_\+client.\+P2\+PClient.\+stun\+\_\+server}}, \doxymbox{\hyperlink{client_8py_source_l00128}{p2p\+\_\+sdk.\+client.\+P2\+PConfig.\+stun\+\_\+server}}, \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00080}{stun\+\_\+server}}, \doxymbox{\hyperlink{negotiator_8py_source_l00135}{p2p\+\_\+engine.\+protocol.\+negotiator.\+Protocol\+Negotiator.\+timeout}}, \doxymbox{\hyperlink{ping_8py_source_l00355}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Config.\+timeout}} , 以及 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00082}{timeout}}.
+
+函数调用图:\+
+% FIG 2
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a271e53899c42bb4e3a34ea32756f95bc}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!ATTR\_CHANGE\_REQUEST@{ATTR\_CHANGE\_REQUEST}}
+\index{ATTR\_CHANGE\_REQUEST@{ATTR\_CHANGE\_REQUEST}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{ATTR\_CHANGE\_REQUEST}{ATTR\_CHANGE\_REQUEST}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a271e53899c42bb4e3a34ea32756f95bc} 
+int p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+ATTR\+\_\+\+CHANGE\+\_\+\+REQUEST = 0x0003\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00069}{69}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a3786c65871de39c799aea300c10ead8b}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!ATTR\_CHANGED\_ADDRESS@{ATTR\_CHANGED\_ADDRESS}}
+\index{ATTR\_CHANGED\_ADDRESS@{ATTR\_CHANGED\_ADDRESS}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{ATTR\_CHANGED\_ADDRESS}{ATTR\_CHANGED\_ADDRESS}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a3786c65871de39c799aea300c10ead8b} 
+int p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+ATTR\+\_\+\+CHANGED\+\_\+\+ADDRESS = 0x0004\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00070}{70}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a4b1de573cd58b7a5b8d9f40ae3c32f73}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!ATTR\_MAPPED\_ADDRESS@{ATTR\_MAPPED\_ADDRESS}}
+\index{ATTR\_MAPPED\_ADDRESS@{ATTR\_MAPPED\_ADDRESS}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{ATTR\_MAPPED\_ADDRESS}{ATTR\_MAPPED\_ADDRESS}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a4b1de573cd58b7a5b8d9f40ae3c32f73} 
+int p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+ATTR\+\_\+\+MAPPED\+\_\+\+ADDRESS = 0x0001\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00067}{67}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00098}{\+\_\+unpack\+\_\+stun\+\_\+response()}}.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a7ae096e294161a13911255f322f4896e}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!ATTR\_XOR\_MAPPED\_ADDRESS@{ATTR\_XOR\_MAPPED\_ADDRESS}}
+\index{ATTR\_XOR\_MAPPED\_ADDRESS@{ATTR\_XOR\_MAPPED\_ADDRESS}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{ATTR\_XOR\_MAPPED\_ADDRESS}{ATTR\_XOR\_MAPPED\_ADDRESS}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a7ae096e294161a13911255f322f4896e} 
+int p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+ATTR\+\_\+\+XOR\+\_\+\+MAPPED\+\_\+\+ADDRESS = 0x0020\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00068}{68}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00098}{\+\_\+unpack\+\_\+stun\+\_\+response()}}.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_aece7fc55bed77a1c5fb0922ddcd226dd}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!BINDING\_REQUEST@{BINDING\_REQUEST}}
+\index{BINDING\_REQUEST@{BINDING\_REQUEST}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{BINDING\_REQUEST}{BINDING\_REQUEST}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_aece7fc55bed77a1c5fb0922ddcd226dd} 
+int p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+BINDING\+\_\+\+REQUEST = 0x0001\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00063}{63}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ab80796129ba002257ea4ce1c6311f40c}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!BINDING\_RESPONSE@{BINDING\_RESPONSE}}
+\index{BINDING\_RESPONSE@{BINDING\_RESPONSE}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{BINDING\_RESPONSE}{BINDING\_RESPONSE}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ab80796129ba002257ea4ce1c6311f40c} 
+int p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+BINDING\+\_\+\+RESPONSE = 0x0101\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00064}{64}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a5890bd816e2d2abc57c465fad26baed7}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!stun\_port@{stun\_port}}
+\index{stun\_port@{stun\_port}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{stun\_port}{stun\_port}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_a5890bd816e2d2abc57c465fad26baed7} 
+p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+stun\+\_\+port = stun\+\_\+port}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00081}{81}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00159}{send\+\_\+request()}}.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_acdd6dad832800aea41cb9c3ccb057deb}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!stun\_server@{stun\_server}}
+\index{stun\_server@{stun\_server}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{stun\_server}{stun\_server}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_acdd6dad832800aea41cb9c3ccb057deb} 
+p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+stun\+\_\+server = stun\+\_\+server}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00080}{80}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00159}{send\+\_\+request()}}.
+
+\Hypertarget{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ad4964de80352bc644fc7c461c4fd87a6}\index{p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}!timeout@{timeout}}
+\index{timeout@{timeout}!p2p\_sdk.nat\_detection.STUNClient@{p2p\_sdk.nat\_detection.STUNClient}}
+\doxysubsubsection{\texorpdfstring{timeout}{timeout}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1nat__detection_1_1_s_t_u_n_client_ad4964de80352bc644fc7c461c4fd87a6} 
+float p2p\+\_\+sdk.\+nat\+\_\+detection.\+STUNClient.\+timeout = 5.\+0}
+
+
+
+在文件 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source}{nat\+\_\+detection.\+py}} 第 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00082}{82}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00327}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+connect()}} , 以及 \doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py_source_l00159}{send\+\_\+request()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+client\+\_\+sdk/\+src/\+p2p\+\_\+sdk/\+\doxymbox{\hyperlink{client__sdk_2src_2p2p__sdk_2nat__detection_8py}{nat\+\_\+detection.\+py}}\end{DoxyCompactItemize}

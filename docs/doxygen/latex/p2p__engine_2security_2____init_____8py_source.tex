@@ -1,0 +1,99 @@
+\doxysection{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}
+\hypertarget{p2p__engine_2security_2____init_____8py_source}{}\label{p2p__engine_2security_2____init_____8py_source}\index{p2p\_engine/security/\_\_init\_\_.py@{p2p\_engine/security/\_\_init\_\_.py}}
+\doxymbox{\hyperlink{p2p__engine_2security_2____init_____8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1security}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00002}00002\ \textcolor{stringliteral}{Security\ module\ for\ P2P\ Engine.}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00004}00004\ \textcolor{stringliteral}{Provides\ cryptographic\ primitives\ and\ secure\ channel\ implementations.}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00007}00007\ \textcolor{keyword}{from}\ .crypto\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00008}00008\ \ \ \ \ \textcolor{comment}{\#\ Key\ generation}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00009}00009\ \ \ \ \ generate\_x25519\_keypair,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00010}00010\ \ \ \ \ generate\_ed25519\_keypair,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00011}00011\ \ \ \ \ generate\_ed25519\_keypair\_from\_seed,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00013}00013\ \ \ \ \ \textcolor{comment}{\#\ DH\ operations}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00014}00014\ \ \ \ \ dh,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00016}00016\ \ \ \ \ \textcolor{comment}{\#\ Ed25519\ signatures}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00017}00017\ \ \ \ \ sign\_ed25519,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00018}00018\ \ \ \ \ verify\_ed25519,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00019}00019\ \ \ \ \ ed25519\_public\_key\_from\_private,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00021}00021\ \ \ \ \ \textcolor{comment}{\#\ AEAD\ encryption}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00022}00022\ \ \ \ \ encrypt,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00023}00023\ \ \ \ \ decrypt,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00025}00025\ \ \ \ \ \textcolor{comment}{\#\ HKDF}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00026}00026\ \ \ \ \ hkdf,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00027}00027\ \ \ \ \ hkdf\_expand,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00029}00029\ \ \ \ \ \textcolor{comment}{\#\ Hash}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00030}00030\ \ \ \ \ hash,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00032}00032\ \ \ \ \ \textcolor{comment}{\#\ Constants}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00033}00033\ \ \ \ \ DH\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00034}00034\ \ \ \ \ HASH\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00035}00035\ \ \ \ \ KEY\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00036}00036\ \ \ \ \ NONCE\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00037}00037\ \ \ \ \ TAG\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00038}00038\ \ \ \ \ ED25519\_PRIVATE\_KEY\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00039}00039\ \ \ \ \ ED25519\_PUBLIC\_KEY\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00040}00040\ \ \ \ \ ED25519\_SIGNATURE\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00041}00041\ \ \ \ \ ED25519\_SEED\_LEN,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00043}00043\ \ \ \ \ \textcolor{comment}{\#\ Protocol\ name}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00044}00044\ \ \ \ \ NOISE\_PROTOCOL\_NAME,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00046}00046\ \ \ \ \ \textcolor{comment}{\#\ Exceptions}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00047}00047\ \ \ \ \ CryptoError,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00048}00048\ \ \ \ \ SignatureError,}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00049}00049\ )}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00051}\doxymbox{\hyperlink{namespacep2p__engine_1_1security_a6fced390944185bb68d1249e6f571fd4}{00051}}\ \_\_all\_\_\ =\ [}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00052}00052\ \ \ \ \ \textcolor{comment}{\#\ Key\ generation}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00053}00053\ \ \ \ \ \textcolor{stringliteral}{"{}generate\_x25519\_keypair"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00054}00054\ \ \ \ \ \textcolor{stringliteral}{"{}generate\_ed25519\_keypair"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00055}00055\ \ \ \ \ \textcolor{stringliteral}{"{}generate\_ed25519\_keypair\_from\_seed"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00057}00057\ \ \ \ \ \textcolor{comment}{\#\ DH\ operations}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00058}00058\ \ \ \ \ \textcolor{stringliteral}{"{}dh"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00060}00060\ \ \ \ \ \textcolor{comment}{\#\ Ed25519\ signatures}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00061}00061\ \ \ \ \ \textcolor{stringliteral}{"{}sign\_ed25519"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00062}00062\ \ \ \ \ \textcolor{stringliteral}{"{}verify\_ed25519"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00063}00063\ \ \ \ \ \textcolor{stringliteral}{"{}ed25519\_public\_key\_from\_private"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00065}00065\ \ \ \ \ \textcolor{comment}{\#\ AEAD\ encryption}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00066}00066\ \ \ \ \ \textcolor{stringliteral}{"{}encrypt"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00067}00067\ \ \ \ \ \textcolor{stringliteral}{"{}decrypt"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00069}00069\ \ \ \ \ \textcolor{comment}{\#\ HKDF}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00070}00070\ \ \ \ \ \textcolor{stringliteral}{"{}hkdf"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00071}00071\ \ \ \ \ \textcolor{stringliteral}{"{}hkdf\_expand"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00073}00073\ \ \ \ \ \textcolor{comment}{\#\ Hash}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00074}00074\ \ \ \ \ \textcolor{stringliteral}{"{}hash"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00076}00076\ \ \ \ \ \textcolor{comment}{\#\ Constants}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00077}00077\ \ \ \ \ \textcolor{stringliteral}{"{}DH\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00078}00078\ \ \ \ \ \textcolor{stringliteral}{"{}HASH\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00079}00079\ \ \ \ \ \textcolor{stringliteral}{"{}KEY\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00080}00080\ \ \ \ \ \textcolor{stringliteral}{"{}NONCE\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00081}00081\ \ \ \ \ \textcolor{stringliteral}{"{}TAG\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00082}00082\ \ \ \ \ \textcolor{stringliteral}{"{}ED25519\_PRIVATE\_KEY\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00083}00083\ \ \ \ \ \textcolor{stringliteral}{"{}ED25519\_PUBLIC\_KEY\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00084}00084\ \ \ \ \ \textcolor{stringliteral}{"{}ED25519\_SIGNATURE\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00085}00085\ \ \ \ \ \textcolor{stringliteral}{"{}ED25519\_SEED\_LEN"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00087}00087\ \ \ \ \ \textcolor{comment}{\#\ Protocol\ name}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00088}00088\ \ \ \ \ \textcolor{stringliteral}{"{}NOISE\_PROTOCOL\_NAME"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00090}00090\ \ \ \ \ \textcolor{comment}{\#\ Exceptions}}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00091}00091\ \ \ \ \ \textcolor{stringliteral}{"{}CryptoError"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00092}00092\ \ \ \ \ \textcolor{stringliteral}{"{}SignatureError"{}},}
+\DoxyCodeLine{\Hypertarget{p2p__engine_2security_2____init_____8py_source_l00093}00093\ ]}
+
+\end{DoxyCode}

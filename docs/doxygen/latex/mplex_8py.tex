@@ -1,0 +1,72 @@
+\doxysection{p2p\+\_\+engine/\+muxer/\+mplex.py 文件参考}
+\hypertarget{mplex_8py}{}\label{mplex_8py}\index{p2p\_engine/muxer/mplex.py@{p2p\_engine/muxer/mplex.py}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_flag}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Flag}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_stream_state}{p2p\+\_\+engine.\+muxer.\+mplex.\+Stream\+State}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_error}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_protocol_error}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Protocol\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_closed_error}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Closed\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_closed}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream\+Closed}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream_reset}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream\+Reset}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_window_exceeded}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Window\+Exceeded}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_frame}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Frame}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_stream}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Stream}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{命名空间}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespacep2p__engine}{p2p\+\_\+engine}}
+\item 
+namespace \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer}{p2p\+\_\+engine.\+muxer}}
+\item 
+namespace \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex}{p2p\+\_\+engine.\+muxer.\+mplex}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a416da3f1a5e7551cbd0993aae0dcf12e}{p2p\+\_\+engine.\+muxer.\+mplex.\+write\+\_\+uvarint}} (bytearray data, int value)
+\item 
+tuple\+[int, int]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a57c069100be1f16f5b0336c46957bf26}{p2p\+\_\+engine.\+muxer.\+mplex.\+read\+\_\+uvarint}} (bytes data, int offset=0)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a9d558f8190182b39b6e5ffd8139b5383}{p2p\+\_\+engine.\+muxer.\+mplex.\+logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+muxer.\+mplex"{})
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_acbba8cb72c391853dc98879ab4057679}{p2p\+\_\+engine.\+muxer.\+mplex.\+PROTOCOL\+\_\+\+STRING}} = "{}/\+mplex/\+6.\+7.\+0"{}
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_ae19a8033862a37cf94bc555b37e1690a}{p2p\+\_\+engine.\+muxer.\+mplex.\+INITIAL\+\_\+\+CLIENT\+\_\+\+STREAM\+\_\+\+ID}} = 0
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a7d64ff2254d6b073f93955f8ef90579f}{p2p\+\_\+engine.\+muxer.\+mplex.\+INITIAL\+\_\+\+SERVER\+\_\+\+STREAM\+\_\+\+ID}} = 1
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a655ddd09b6d457e033037d0dfea37cf8}{p2p\+\_\+engine.\+muxer.\+mplex.\+DEFAULT\+\_\+\+BUFFER\+\_\+\+SIZE}} = 64 \texorpdfstring{$\ast$}{*} 1024
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a5dc21fb99382ab8173201071ef85cb04}{p2p\+\_\+engine.\+muxer.\+mplex.\+MAX\+\_\+\+BUFFER\+\_\+\+SIZE}} = 16 \texorpdfstring{$\ast$}{*} 1024 \texorpdfstring{$\ast$}{*} 1024
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a80c181fa0b2b8677f49b604004a0aab0}{p2p\+\_\+engine.\+muxer.\+mplex.\+DEFAULT\+\_\+\+WINDOW\+\_\+\+SIZE}} = 256 \texorpdfstring{$\ast$}{*} 1024
+\item 
+float \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_aff4de9bc23300e8cc0ab922b1433443b}{p2p\+\_\+engine.\+muxer.\+mplex.\+DEFAULT\+\_\+\+ACCEPT\+\_\+\+TIMEOUT}} = 30.\+0
+\item 
+int \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a6f4f4c1dfacd14e7d692ec3e2246978f}{p2p\+\_\+engine.\+muxer.\+mplex.\+MAX\+\_\+\+STREAM\+\_\+\+ID}} = 2\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}63 -\/ 1
+\item 
+list \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a05d196a2f09f0b1cacc43af6c0eac4bc}{p2p\+\_\+engine.\+muxer.\+mplex.\+\_\+\+\_\+all\+\_\+\+\_\+}}
+\item 
+str \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_ad1aaa2d6a00b87b3755087b568cfcca8}{p2p\+\_\+engine.\+muxer.\+mplex.\+MPLEX\+\_\+\+PROTOCOL\+\_\+\+ID}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_acbba8cb72c391853dc98879ab4057679}{PROTOCOL\+\_\+\+STRING}}
+\item 
+None \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a5d5375a20ddd6e73a02b11d051aff9f0}{p2p\+\_\+engine.\+muxer.\+mplex.\+encode\+\_\+uvarint}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a416da3f1a5e7551cbd0993aae0dcf12e}{write\+\_\+uvarint}}
+\item 
+tuple\+[int, int]\+ \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_ac797f47d9ef08485c4abfafb74284f10}{p2p\+\_\+engine.\+muxer.\+mplex.\+decode\+\_\+uvarint}} = \doxymbox{\hyperlink{namespacep2p__engine_1_1muxer_1_1mplex_a57c069100be1f16f5b0336c46957bf26}{read\+\_\+uvarint}}
+\end{DoxyCompactItemize}

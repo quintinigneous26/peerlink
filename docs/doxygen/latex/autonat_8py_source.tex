@@ -1,0 +1,805 @@
+\doxysection{autonat.\+py}
+\hypertarget{autonat_8py_source}{}\label{autonat_8py_source}\index{p2p\_engine/detection/autonat.py@{p2p\_engine/detection/autonat.py}}
+\doxymbox{\hyperlink{autonat_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00002}00002\ \textcolor{stringliteral}{AutoNAT\ Protocol\ Implementation}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00004}00004\ \textcolor{stringliteral}{Implements\ libp2p\ AutoNAT\ protocol\ v1.0.0\ for\ NAT\ reachability\ detection.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00005}00005\ \textcolor{stringliteral}{Spec:\ https://github.com/libp2p/specs/blob/master/autonat/autonat-\/v1.md}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00006}00006\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00007}00007\ \textcolor{stringliteral}{Security:\ Implements\ RFC\ 3489\ Section\ 12.1.1\ DDoS\ protection\ by\ validating}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00008}00008\ \textcolor{stringliteral}{that\ dial-\/back\ addresses\ are\ based\ on\ the\ observed\ IP\ of\ the\ requesting\ node.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00009}00009\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00010}00010\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00011}00011\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00012}00012\ \textcolor{keyword}{import}\ socket}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00013}00013\ \textcolor{keyword}{import}\ struct}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00014}00014\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00015}00015\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ IntEnum}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00016}00016\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ List,\ Callable,\ Awaitable}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00018}00018\ \textcolor{keyword}{from}\ ..types\ \textcolor{keyword}{import}\ PeerInfo}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00021}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_aa54c22346ef2ab2c17ac819b9cbfb636}{00021}}\ logger\ =\ logging.getLogger(\textcolor{stringliteral}{"{}p2p\_engine.autonat"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00024}00024\ \textcolor{comment}{\#\ ====================\ Protocol\ Constants\ ====================}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00026}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a4213d61435d9c350542dc6448a69316d}{00026}}\ PROTOCOL\_ID\ =\ \textcolor{stringliteral}{"{}/libp2p/autonat/1.0.0"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00027}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_acfcde7436269f02c623ad5d53df51c06}{00027}}\ DIAL\_TIMEOUT\ =\ 10.0\ \ \textcolor{comment}{\#\ seconds}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00028}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a0866e961a22492c37ab16df5c33d34ea}{00028}}\ MAX\_DIAL\_ATTEMPTS\ =\ 5}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00031}00031\ \textcolor{comment}{\#\ ====================\ Protocol\ Enums\ ====================}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00033}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_message_type}{00033}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_message_type}{MessageType}}(IntEnum):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00034}00034\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}AutoNAT\ message\ types"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00035}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_message_type_a8add9f31a402c364ac71101910873403}{00035}}\ \ \ \ \ DIAL\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00036}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_message_type_a355a602898741be19e290ccf5889e6bc}{00036}}\ \ \ \ \ DIAL\_RESPONSE\ =\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00039}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status}{00039}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status}{ResponseStatus}}(IntEnum):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00040}00040\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}AutoNAT\ response\ status\ codes"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00041}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status_ae10ea76b6e2db8d8d399de8ca1f5ad16}{00041}}\ \ \ \ \ OK\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00042}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status_a15478797ccd065560aca8bbabdbd46da}{00042}}\ \ \ \ \ E\_DIAL\_ERROR\ =\ 100}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00043}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status_a1033d5d2f3ee1b9ea894619ac3a37997}{00043}}\ \ \ \ \ E\_DIAL\_REFUSED\ =\ 101}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00044}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status_a573200574317cd53702b9e3538b24a5b}{00044}}\ \ \ \ \ E\_BAD\_REQUEST\ =\ 200}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00045}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status_a8c73413025ebf37be09a23291b13c8c9}{00045}}\ \ \ \ \ E\_INTERNAL\_ERROR\ =\ 300}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00048}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_reachability_status}{00048}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_reachability_status}{ReachabilityStatus}}(IntEnum):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00049}00049\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}NAT\ reachability\ status"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00050}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_reachability_status_ad90e5e527751cce149f040a30eca5ed9}{00050}}\ \ \ \ \ PUBLIC\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00051}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_reachability_status_aa8002d07d13c3e23e9277dee1b2b4911}{00051}}\ \ \ \ \ PRIVATE\ =\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00052}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_reachability_status_a623d9face553029168cbcf254bcbc33f}{00052}}\ \ \ \ \ UNKNOWN\ =\ 2}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00055}00055\ \textcolor{comment}{\#\ ====================\ Protocol\ Data\ Structures\ ====================}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00057}00057\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00058}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{00058}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{DialPeerInfo}}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00059}00059\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Peer\ information\ in\ dial\ message"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00060}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info_ad526fb13baad9b040217d003aa146c01}{00060}}\ \ \ \ \ peer\_id:\ bytes\ =\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00061}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info_a57f80ca6aa615d1e15362d9e045000f1}{00061}}\ \ \ \ \ addrs:\ List[bytes]\ =\ field(default\_factory=list)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00064}00064\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00065}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message}{00065}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message}{DialMessage}}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00066}00066\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Dial\ request\ message"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00067}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message_a27ac5395f215fdcf56c6844980c3f6a2}{00067}}\ \ \ \ \ peer:\ DialPeerInfo\ =\ field(default\_factory=DialPeerInfo)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00070}00070\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00071}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response}{00071}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response}{DialResponse}}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00072}00072\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Dial\ response\ message"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00073}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response_a4136f8bbc38a242f2080e3330c970362}{00073}}\ \ \ \ \ status:\ ResponseStatus\ =\ ResponseStatus.OK}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00074}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response_ae66509898b855ad626e5770301b86325}{00074}}\ \ \ \ \ status\_text:\ str\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00075}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response_adf874b1f426e17cf660caadf9dcfad3d}{00075}}\ \ \ \ \ addr:\ bytes\ =\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00078}00078\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00079}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{00079}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{AutoNATMessage}}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00080}00080\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}AutoNAT\ protocol\ message"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00081}00081\ \ \ \ \ type:\ MessageType}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00082}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message_af0ac0da68926aae214112df6cea471c1}{00082}}\ \ \ \ \ dial:\ Optional[DialMessage]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00083}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message_ac2694d190bd3a22d4a9b35a8958fa92d}{00083}}\ \ \ \ \ dial\_response:\ Optional[DialResponse]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00086}00086\ \textcolor{comment}{\#\ ====================\ Multiaddress\ Utilities\ ====================}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00088}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_add35a98518ac3f2e74659ec71f6eca47}{00088}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_add35a98518ac3f2e74659ec71f6eca47}{parse\_multiaddr}}(data:\ bytes)\ -\/>\ Optional[tuple]:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00089}00089\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ Parse\ multiaddr\ and\ extract\ (ip,\ port)\ if\ applicable.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00091}00091\ \textcolor{stringliteral}{\ \ \ \ Supports\ /ip4/<ip>/tcp/<port>\ and\ /ip4/<ip>/udp/<port>\ formats.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00092}00092\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Simple\ multiaddr\ parser\ for\ common\ formats}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ data.startswith(b\textcolor{stringliteral}{'\(\backslash\)x04'}):\ \ \textcolor{comment}{\#\ /ip4/}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ idx\ =\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Read\ IPv4\ (4\ bytes)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ idx\ +\ 4\ >\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ ip\ =\ socket.inet\_ntoa(data[idx:idx+4])}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ 4}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Read\ protocol}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ idx\ <\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ proto\_code\ =\ data[idx]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ proto\_code\ ==\ 6:\ \ \textcolor{comment}{\#\ /tcp/}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ idx\ +\ 2\ >\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ port\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ data[idx:idx+2])[0]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (ip,\ port,\ \textcolor{stringliteral}{'tcp'})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ proto\_code\ ==\ 273:\ \ \textcolor{comment}{\#\ /udp/}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ idx\ +\ 2\ >\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ port\ =\ struct.unpack(\textcolor{stringliteral}{'>H'},\ data[idx:idx+2])[0]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (ip,\ port,\ \textcolor{stringliteral}{'udp'})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Skip\ variable\ length\ value}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ idx\ >=\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\_len\ =\ data[idx]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ 1\ +\ val\_len}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00124}00124\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00125}00125\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Failed\ to\ parse\ multiaddr:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00130}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7f9dae77673f435e8b5fde4e5b85765b}{00130}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7f9dae77673f435e8b5fde4e5b85765b}{validate\_ip\_match}}(observed\_ip:\ str,\ dial\_ip:\ str)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00131}00131\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00132}00132\ \textcolor{stringliteral}{\ \ \ \ Validate\ that\ dial-\/back\ IP\ matches\ observed\ IP\ (DDoS\ protection).}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00133}00133\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00134}00134\ \textcolor{stringliteral}{\ \ \ \ Per\ RFC\ 3489\ Section\ 12.1.1:\ Implementations\ MUST\ NOT\ dial\ any\ multiaddress}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00135}00135\ \textcolor{stringliteral}{\ \ \ \ unless\ it\ is\ based\ on\ the\ IP\ address\ the\ requesting\ node\ is\ observed\ as.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00136}00136\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00137}00137\ \ \ \ \ \textcolor{keywordflow}{return}\ observed\_ip\ ==\ dial\_ip}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00140}00140\ \textcolor{comment}{\#\ ====================\ Message\ Encoding/Decoding\ ====================}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00142}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{00142}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(value:\ int)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00143}00143\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ unsigned\ varint"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00144}00144\ \ \ \ \ \textcolor{keywordflow}{if}\ value\ <\ 0:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}Negative\ value"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00147}00147\ \ \ \ \ buf\ =\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{while}\ value\ >\ 0x7F:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ buf\ +=\ bytes([(value\ \&\ 0x7F)\ |\ 0x80])}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ value\ >>=\ 7}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00151}00151\ \ \ \ \ buf\ +=\ bytes([value])}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00152}00152\ \ \ \ \ \textcolor{keywordflow}{return}\ buf}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00155}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{00155}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data:\ bytes,\ offset:\ int\ =\ 0)\ -\/>\ tuple[int,\ int]:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00156}00156\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Decode\ unsigned\ varint,\ returns\ (value,\ new\_offset)"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00157}00157\ \ \ \ \ value\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00158}00158\ \ \ \ \ shift\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00159}00159\ \ \ \ \ idx\ =\ offset}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00161}00161\ \ \ \ \ \textcolor{keywordflow}{while}\ idx\ <\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ byte\ =\ data[idx]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ idx\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ value\ |=\ (byte\ \&\ 0x7F)\ <<\ shift}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ (byte\ \&\ 0x80):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ value,\ idx}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00169}00169\ \ \ \ \ \ \ \ \ shift\ +=\ 7}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ shift\ >=\ 64:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}Varint\ too\ large"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00173}00173\ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}Incomplete\ varint"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00176}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a594d43fe28a29f7dca631fed5f6a02d0}{00176}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a594d43fe28a29f7dca631fed5f6a02d0}{encode\_string}}(s:\ str)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00177}00177\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ string\ with\ length\ prefix"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00178}00178\ \ \ \ \ data\ =\ s.encode(\textcolor{stringliteral}{'utf-\/8'})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00179}00179\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(data))\ +\ data}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00182}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a28e627bdd5cf03ea84c5602b1e0d1aae}{00182}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a28e627bdd5cf03ea84c5602b1e0d1aae}{decode\_string}}(data:\ bytes,\ offset:\ int\ =\ 0)\ -\/>\ tuple[str,\ int]:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00183}00183\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Decode\ string\ with\ length\ prefix,\ returns\ (string,\ new\_offset)"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00184}00184\ \ \ \ \ length,\ offset\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ offset)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00185}00185\ \ \ \ \ \textcolor{keywordflow}{if}\ offset\ +\ length\ >\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ ValueError(\textcolor{stringliteral}{"{}String\ data\ incomplete"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00187}00187\ \ \ \ \ \textcolor{keywordflow}{return}\ data[offset:offset+length].decode(\textcolor{stringliteral}{'utf-\/8'}),\ offset\ +\ length}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00190}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a9c9b5b350dd3a97ca24cadfcf393bebd}{00190}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a9c9b5b350dd3a97ca24cadfcf393bebd}{encode\_dial\_peer\_info}}(peer\_info:\ DialPeerInfo)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00191}00191\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ DialPeerInfo"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00192}00192\ \ \ \ \ result\ =\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00194}00194\ \ \ \ \ \textcolor{comment}{\#\ Encode\ peer\_id\ (field\ 1,\ optional)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00195}00195\ \ \ \ \ \textcolor{keywordflow}{if}\ peer\_info.peer\_id:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00196}00196\ \ \ \ \ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x0A'}\ \ \textcolor{comment}{\#\ field\ 1,\ type\ 2\ (length-\/delimited)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00197}00197\ \ \ \ \ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(peer\_info.peer\_id))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00198}00198\ \ \ \ \ \ \ \ \ result\ +=\ peer\_info.peer\_id}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00199}00199\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00200}00200\ \ \ \ \ \textcolor{comment}{\#\ Encode\ addrs\ (field\ 2,\ repeated)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00201}00201\ \ \ \ \ \textcolor{keywordflow}{for}\ addr\ \textcolor{keywordflow}{in}\ peer\_info.addrs:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x12'}\ \ \textcolor{comment}{\#\ field\ 2,\ type\ 2}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(addr))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ result\ +=\ addr}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00206}00206\ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00209}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7b661327c0c791eca2444ed9abf5177d}{00209}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7b661327c0c791eca2444ed9abf5177d}{decode\_dial\_peer\_info}}(data:\ bytes,\ offset:\ int\ =\ 0)\ -\/>\ tuple[DialPeerInfo,\ int]:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00210}00210\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Decode\ DialPeerInfo,\ returns\ (peer\_info,\ new\_offset)"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00211}00211\ \ \ \ \ peer\_info\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{DialPeerInfo}}()}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00212}00212\ \ \ \ \ idx\ =\ offset}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00213}00213\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00214}00214\ \ \ \ \ \textcolor{keywordflow}{while}\ idx\ <\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00215}00215\ \ \ \ \ \ \ \ \ tag\ =\ data[idx]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00216}00216\ \ \ \ \ \ \ \ \ idx\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00218}00218\ \ \ \ \ \ \ \ \ field\_num\ =\ tag\ >>\ 3}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00219}00219\ \ \ \ \ \ \ \ \ wire\_type\ =\ tag\ \&\ 0x07}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ wire\_type\ ==\ 2:\ \ \textcolor{comment}{\#\ length-\/delimited}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ length,\ idx\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ value\ =\ data[idx:idx+length]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ length}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ field\_num\ ==\ 1:\ \ \textcolor{comment}{\#\ peer\_id}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ peer\_info.peer\_id\ =\ value}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ field\_num\ ==\ 2:\ \ \textcolor{comment}{\#\ addrs}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ peer\_info.addrs.append(value)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Skip\ unknown\ field}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ wire\_type\ ==\ 0:\ \ \textcolor{comment}{\#\ varint}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_,\ idx\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ wire\_type\ ==\ 5:\ \ \textcolor{comment}{\#\ 32-\/bit}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ 4}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ wire\_type\ ==\ 1:\ \ \textcolor{comment}{\#\ 64-\/bit}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ 8}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00239}00239\ \ \ \ \ \textcolor{keywordflow}{return}\ peer\_info,\ idx}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00242}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a4206c2189bedbd3e57ec234a471588db}{00242}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a4206c2189bedbd3e57ec234a471588db}{encode\_dial\_message}}(dial:\ DialMessage)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00243}00243\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ Dial\ message"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00244}00244\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ dial.peer:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ b\textcolor{stringliteral}{'\(\backslash\)x12\(\backslash\)x00'}\ \ \textcolor{comment}{\#\ Empty\ message}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00247}00247\ \ \ \ \ peer\_data\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a9c9b5b350dd3a97ca24cadfcf393bebd}{encode\_dial\_peer\_info}}(dial.peer)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00248}00248\ \ \ \ \ \textcolor{keywordflow}{return}\ b\textcolor{stringliteral}{'\(\backslash\)x12'}\ +\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(peer\_data))\ +\ peer\_data}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00249}00249\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00251}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a3beeb459d613b9f5b73375411d7db691}{00251}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a3beeb459d613b9f5b73375411d7db691}{encode\_dial\_response}}(response:\ DialResponse)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00252}00252\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ DialResponse\ message"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00253}00253\ \ \ \ \ result\ =\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00255}00255\ \ \ \ \ \textcolor{comment}{\#\ Encode\ status\ (field\ 1,\ optional)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00256}00256\ \ \ \ \ \textcolor{keywordflow}{if}\ response.status\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x08'}\ \ \textcolor{comment}{\#\ field\ 1,\ type\ 0\ (varint)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(response.status)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00260}00260\ \ \ \ \ \textcolor{comment}{\#\ Encode\ status\_text\ (field\ 2,\ optional)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00261}00261\ \ \ \ \ \textcolor{keywordflow}{if}\ response.status\_text:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ text\_data\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a594d43fe28a29f7dca631fed5f6a02d0}{encode\_string}}(response.status\_text)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x12'}\ \ \textcolor{comment}{\#\ field\ 2,\ type\ 2}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(text\_data))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00265}00265\ \ \ \ \ \ \ \ \ result\ +=\ text\_data}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00267}00267\ \ \ \ \ \textcolor{comment}{\#\ Encode\ addr\ (field\ 3,\ optional)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00268}00268\ \ \ \ \ \textcolor{keywordflow}{if}\ response.addr:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x1A'}\ \ \textcolor{comment}{\#\ field\ 3,\ type\ 2}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(response.addr))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00271}00271\ \ \ \ \ \ \ \ \ result\ +=\ response.addr}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00273}00273\ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00276}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a42be6fcb68dff71ec3e3b2d62cfe70dc}{00276}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a42be6fcb68dff71ec3e3b2d62cfe70dc}{encode\_message}}(msg:\ AutoNATMessage)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00277}00277\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Encode\ complete\ AutoNAT\ message"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00278}00278\ \ \ \ \ result\ =\ b\textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00280}00280\ \ \ \ \ \textcolor{comment}{\#\ Encode\ message\ type\ (field\ 1)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00281}00281\ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x08'}\ \ \textcolor{comment}{\#\ field\ 1,\ type\ 0\ (varint)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00282}00282\ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(msg.type)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00283}00283\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00284}00284\ \ \ \ \ \textcolor{comment}{\#\ Encode\ dial\ or\ dial\_response\ (field\ 2\ or\ 3)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00285}00285\ \ \ \ \ \textcolor{keywordflow}{if}\ msg.type\ ==\ MessageType.DIAL\ \textcolor{keywordflow}{and}\ msg.dial:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ dial\_data\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a4206c2189bedbd3e57ec234a471588db}{encode\_dial\_message}}(msg.dial)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x12'}\ \ \textcolor{comment}{\#\ field\ 2,\ type\ 2}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00288}00288\ \ \ \ \ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(dial\_data))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ result\ +=\ dial\_data}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00290}00290\ \ \ \ \ \textcolor{keywordflow}{elif}\ msg.type\ ==\ MessageType.DIAL\_RESPONSE\ \textcolor{keywordflow}{and}\ msg.dial\_response:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ response\_data\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a3beeb459d613b9f5b73375411d7db691}{encode\_dial\_response}}(msg.dial\_response)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00292}00292\ \ \ \ \ \ \ \ \ result\ +=\ b\textcolor{stringliteral}{'\(\backslash\)x1A'}\ \ \textcolor{comment}{\#\ field\ 3,\ type\ 2}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ result\ +=\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(response\_data))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ result\ +=\ response\_data}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00295}00295\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00296}00296\ \ \ \ \ \textcolor{comment}{\#\ Add\ length\ prefix}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00297}00297\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a53986468a66126afcf6981aff1e66dfb}{encode\_uvarint}}(len(result))\ +\ result}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00298}00298\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00299}00299\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00300}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a9c9fe3773ff6d4266967f06eb433b6d7}{00300}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a9c9fe3773ff6d4266967f06eb433b6d7}{decode\_message}}(data:\ bytes,\ offset:\ int\ =\ 0)\ -\/>\ tuple[Optional[AutoNATMessage],\ int]:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00301}00301\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00302}00302\ \textcolor{stringliteral}{\ \ \ \ Decode\ AutoNAT\ message,\ returns\ (message,\ new\_offset)\ or\ (None,\ offset)\ on\ error}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00303}00303\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00304}00304\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00305}00305\ \ \ \ \ \ \ \ \ idx\ =\ offset}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ msg\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{AutoNATMessage}}(type=MessageType.DIAL)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00307}00307\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ idx\ <\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ tag\ =\ data[idx]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ field\_num\ =\ tag\ >>\ 3}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ wire\_type\ =\ tag\ \&\ 0x07}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00314}00314\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ field\_num\ ==\ 1\ \textcolor{keywordflow}{and}\ wire\_type\ ==\ 0:\ \ \textcolor{comment}{\#\ type}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ value,\ idx\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.type\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_message_type}{MessageType}}(value)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ field\_num\ ==\ 2\ \textcolor{keywordflow}{and}\ wire\_type\ ==\ 2:\ \ \textcolor{comment}{\#\ dial}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ length,\ idx\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ idx\ +\ length\ >\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None},\ offset}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ peer\_info,\ \_\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7b661327c0c791eca2444ed9abf5177d}{decode\_dial\_peer\_info}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.dial\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message}{DialMessage}}(peer=peer\_info)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ length}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00326}00326\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ field\_num\ ==\ 3\ \textcolor{keywordflow}{and}\ wire\_type\ ==\ 2:\ \ \textcolor{comment}{\#\ dial\_response}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ length,\ idx\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ idx\ +\ length\ >\ len(data):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None},\ offset}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00331}00331\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.dial\_response\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_response}{DialResponse}}()}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_offset\ =\ idx}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_end\ =\ idx\ +\ length}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00335}00335\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ resp\_offset\ <\ resp\_end:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_tag\ =\ data[resp\_offset]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_offset\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_field\ =\ resp\_tag\ >>\ 3}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_wire\ =\ resp\_tag\ \&\ 0x07}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00342}00342\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ resp\_field\ ==\ 1\ \textcolor{keywordflow}{and}\ resp\_wire\ ==\ 0:\ \ \textcolor{comment}{\#\ status}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status,\ resp\_offset\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ resp\_offset)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.dial\_response.status\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_response_status}{ResponseStatus}}(status)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00346}00346\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ resp\_field\ ==\ 2\ \textcolor{keywordflow}{and}\ resp\_wire\ ==\ 2:\ \ \textcolor{comment}{\#\ status\_text}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ str\_len,\ resp\_offset\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ resp\_offset)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.dial\_response.status\_text\ =\ data[resp\_offset:resp\_offset+str\_len].decode(\textcolor{stringliteral}{'utf-\/8'})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_offset\ +=\ str\_len}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ resp\_field\ ==\ 3\ \textcolor{keywordflow}{and}\ resp\_wire\ ==\ 2:\ \ \textcolor{comment}{\#\ addr}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addr\_len,\ resp\_offset\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ resp\_offset)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ msg.dial\_response.addr\ =\ data[resp\_offset:resp\_offset+addr\_len]}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_offset\ +=\ addr\_len}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Skip\ unknown\ field}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ resp\_wire\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_,\ resp\_offset\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ resp\_offset)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ resp\_wire\ ==\ 2:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ str\_len,\ resp\_offset\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ resp\_offset)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resp\_offset\ +=\ str\_len}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx\ =\ resp\_end}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00366}00366\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ wire\_type\ ==\ 0:\ \ \textcolor{comment}{\#\ Skip\ unknown\ varint}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_,\ idx\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ wire\_type\ ==\ 2:\ \ \textcolor{comment}{\#\ Skip\ unknown\ length-\/delimited}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ length,\ idx\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a7fcf23d23da61828cc3a9ece6fb7ee6b}{decode\_uvarint}}(data,\ idx)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idx\ +=\ length}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00373}00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ msg,\ idx}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00375}00375\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00376}00376\ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Failed\ to\ decode\ message:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00377}00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None},\ offset}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00378}00378\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00380}00380\ \textcolor{comment}{\#\ ====================\ AutoNAT\ Client\ ====================}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00382}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client}{00382}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client}{AutoNATClient}}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00383}00383\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00384}00384\ \textcolor{stringliteral}{\ \ \ \ AutoNAT\ client\ -\/\ initiates\ reachability\ checks.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00385}00385\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00386}00386\ \textcolor{stringliteral}{\ \ \ \ Requests\ peers\ to\ dial\ back\ our\ public\ addresses\ to\ determine}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00387}00387\ \textcolor{stringliteral}{\ \ \ \ if\ we\ are\ behind\ a\ NAT.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00388}00388\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00390}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_ae4b9d95cc341a00cfde8f95b8814cb57}{00390}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_ae4b9d95cc341a00cfde8f95b8814cb57}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00391}00391\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ peer\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ observed\_addrs:\ List[bytes],}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00394}00394\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00396}00396\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ AutoNAT\ client.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00397}00397\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00398}00398\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00399}00399\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ peer\_id:\ Our\ peer\ ID}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00400}00400\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ observed\_addrs:\ Our\ observed\ public\ addresses\ (multiaddrs)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00401}00401\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00402}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a4fe69645a365a4ef96aa2d8199bab443}{00402}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a4fe69645a365a4ef96aa2d8199bab443}{peer\_id}}\ =\ peer\_id}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00403}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a3b29ae84ac8d7ecb305a306374334fc5}{00403}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a3b29ae84ac8d7ecb305a306374334fc5}{observed\_addrs}}\ =\ observed\_addrs}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00404}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a0b01dc9e6730e44eef4fd7c2afd3a1b0}{00404}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a0b01dc9e6730e44eef4fd7c2afd3a1b0}{\_successful\_dials}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00405}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_aa8432b9e87af7195ab76b4fe86ca4d05}{00405}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_aa8432b9e87af7195ab76b4fe86ca4d05}{\_failed\_dials}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00406}00406\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00407}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a7dd7134722e94af5c3bfb810f0a7ac28}{00407}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a7dd7134722e94af5c3bfb810f0a7ac28}{check\_reachability}}(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ dial\_back\_func:\ Callable[[bytes,\ bytes],\ Awaitable[tuple[ResponseStatus,\ str,\ bytes]]],}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ min\_confirmations:\ int\ =\ 3,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00411}00411\ \ \ \ \ )\ -\/>\ ReachabilityStatus:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00413}00413\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Check\ NAT\ reachability\ status.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00414}00414\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00415}00415\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00416}00416\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ dial\_back\_func:\ Async\ function\ to\ perform\ dial-\/back.\ Takes\ (peer\_id,\ addrs)\ and\ returns\ (status,\ text,\ addr)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00417}00417\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ min\_confirmations:\ Minimum\ number\ of\ successful\ dials\ to\ consider\ public}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00418}00418\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00419}00419\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00420}00420\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ ReachabilityStatus:\ PUBLIC,\ PRIVATE,\ or\ UNKNOWN}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00421}00421\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00422}00422\ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Starting\ AutoNAT\ reachability\ check\ (need\ \{min\_confirmations\}\ confirmations)"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00423}00423\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00424}00424\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Reset\ counters}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a0b01dc9e6730e44eef4fd7c2afd3a1b0}{\_successful\_dials}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_aa8432b9e87af7195ab76b4fe86ca4d05}{\_failed\_dials}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ dial\ message}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00429}00429\ \ \ \ \ \ \ \ \ dial\_msg\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_message}{AutoNATMessage}}(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ type=MessageType.DIAL,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ dial=\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_message}{DialMessage}}(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ peer=\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_dial_peer_info}{DialPeerInfo}}(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ peer\_id=self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a4fe69645a365a4ef96aa2d8199bab443}{peer\_id}},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addrs=self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a3b29ae84ac8d7ecb305a306374334fc5}{observed\_addrs}},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00438}00438\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Encode\ message}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00440}00440\ \ \ \ \ \ \ \ \ encoded\ =\ \doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a42be6fcb68dff71ec3e3b2d62cfe70dc}{encode\_message}}(dial\_msg)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00441}00441\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Perform\ dial-\/back\ check}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ status,\ status\_text,\ dialed\_addr\ =\ await\ dial\_back\_func(self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a4fe69645a365a4ef96aa2d8199bab443}{peer\_id}},\ encoded)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ status\ ==\ ResponseStatus.OK:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a0b01dc9e6730e44eef4fd7c2afd3a1b0}{\_successful\_dials}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}AutoNAT\ dial\ successful:\ \{dialed\_addr.hex()\ if\ dialed\_addr\ else\ 'N/A'\}"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00448}00448\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a0b01dc9e6730e44eef4fd7c2afd3a1b0}{\_successful\_dials}}\ >=\ min\_confirmations:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}AutoNAT:\ Node\ is\ PUBLIC\ (reachable)"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReachabilityStatus.PUBLIC}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_aa8432b9e87af7195ab76b4fe86ca4d05}{\_failed\_dials}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning(f\textcolor{stringliteral}{"{}AutoNAT\ dial\ failed:\ \{status\_text\}"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00455}00455\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_aa8432b9e87af7195ab76b4fe86ca4d05}{\_failed\_dials}}\ >=\ min\_confirmations:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}AutoNAT:\ Node\ is\ PRIVATE\ (behind\ NAT)"{}})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReachabilityStatus.PRIVATE}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ReachabilityStatus.UNKNOWN}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00461}00461\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00462}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a9af7aba3de83a52f65c18a8e1b959e17}{00462}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a9af7aba3de83a52f65c18a8e1b959e17}{get\_reachability\_summary}}(self)\ -\/>\ dict:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ summary\ of\ reachability\ checks"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}successful\_dials"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a0b01dc9e6730e44eef4fd7c2afd3a1b0}{\_successful\_dials}},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}failed\_dials"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_aa8432b9e87af7195ab76b4fe86ca4d05}{\_failed\_dials}},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}status"{}}:\ \textcolor{stringliteral}{"{}public"{}}\ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_a0b01dc9e6730e44eef4fd7c2afd3a1b0}{\_successful\_dials}}\ >=\ 3\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}private"{}}\ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_client_aa8432b9e87af7195ab76b4fe86ca4d05}{\_failed\_dials}}\ >=\ 3\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}unknown"{}},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00468}00468\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00469}00469\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00470}00470\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00471}00471\ \textcolor{comment}{\#\ ====================\ AutoNAT\ Server\ ====================}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00472}00472\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00473}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server}{00473}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server}{AutoNATServer}}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00474}00474\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00475}00475\ \textcolor{stringliteral}{\ \ \ \ AutoNAT\ server\ -\/\ responds\ to\ dial-\/back\ requests.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00476}00476\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00477}00477\ \textcolor{stringliteral}{\ \ \ \ Processes\ dial\ requests\ from\ peers\ and\ performs\ dial-\/back\ attempts.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00478}00478\ \textcolor{stringliteral}{\ \ \ \ Implements\ security\ checks\ to\ prevent\ DDoS\ attacks.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00479}00479\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00480}00480\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00481}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a7eef6cdb55a2864bf325504d8a883530}{00481}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a7eef6cdb55a2864bf325504d8a883530}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00482}00482\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ dial\_func:\ Callable[[str,\ int,\ str],\ Awaitable[bool]],}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ max\_concurrent\_dials:\ int\ =\ 10,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00485}00485\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00487}00487\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Initialize\ AutoNAT\ server.}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00488}00488\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00489}00489\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00490}00490\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ dial\_func:\ Async\ function\ to\ perform\ dial.\ Takes\ (ip,\ port,\ protocol)\ returns\ success\ bool}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00491}00491\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ max\_concurrent\_dials:\ Maximum\ concurrent\ dial-\/back\ attempts}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00492}00492\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00493}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a2142f21be0f5c7eb5ec3ec21a3d6ddfb}{00493}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a2142f21be0f5c7eb5ec3ec21a3d6ddfb}{\_dial\_func}}\ =\ dial\_func}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00494}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a90ddf493a0c0ca7c9203bd302d6e1979}{00494}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a90ddf493a0c0ca7c9203bd302d6e1979}{\_max\_concurrent\_dials}}\ =\ max\_concurrent\_dials}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00495}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a00f2305c0595b528f818185690634aee}{00495}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a00f2305c0595b528f818185690634aee}{\_semaphore}}\ =\ asyncio.Semaphore(max\_concurrent\_dials)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00496}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a31ffa381c27f7716a9795a4b91129cba}{00496}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a31ffa381c27f7716a9795a4b91129cba}{\_running}}\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00497}00497\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00498}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a19ce743e1569b194f88087dc075e0680}{00498}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a19ce743e1569b194f88087dc075e0680}{start}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00499}00499\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Start\ the\ AutoNAT\ server"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00500}00500\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.\_running\ =\ True}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00501}00501\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ logger.info("{}AutoNAT\ server\ started"{})}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00502}00502\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00503}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a41940dee5988adfb772d8007346c257e}{00503}}\ \textcolor{stringliteral}{\ \ \ \ async\ def\ stop(self)\ -\/>\ None:}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00504}00504\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}Stop\ the\ AutoNAT\ serve\textcolor{stringliteral}{r"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00505}00505\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.\_running\ =\ False}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00506}00506\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ logger.info("{}AutoNAT\ server\ stopped"{})}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00507}00507\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00508}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a30660c0da0332ec80a0ad801d2a7af41}{00508}}\ \textcolor{stringliteral}{\ \ \ \ async\ def\ handle\_dial\_request(}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00509}00509\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self,}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00510}00510\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ request\_data:\ bytes,}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00511}00511\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ observed\_ip:\ str,}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00512}00512\ \textcolor{stringliteral}{\ \ \ \ )\ -\/>\ bytes:}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00513}00513\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ Handle\ a\ dial\ request\ from\ a\ peer.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00515}00515\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00516}00516\ \ \ \ \ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ request\_data:\ Raw\ request\ message\ bytes}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ observed\_ip:\ The\ IP\ address\ of\ the\ requesting\ peer\ (for\ security\ validation)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00519}00519\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00520}00520\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ Encoded\ DialResponse\ message}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00522}00522\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00523}00523\ \ \ \ \ \ \ \ \ if\ not\ self.\_running:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ return\ self.\_encode\_error\_response(ResponseStatus.E\_INTERNAL\_ERROR,\ "{}Server\ not\ running"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00525}00525\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00526}00526\ \ \ \ \ \ \ \ \ \#\ Decode\ request}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00527}00527\ \ \ \ \ \ \ \ \ msg,\ \_\ =\ decode\_message(request\_data)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00528}00528\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00529}00529\ \ \ \ \ \ \ \ \ if\ not\ msg\ or\ msg.type\ !=\ MessageType.DIAL\ or\ not\ msg.dial:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ return\ self.\_encode\_error\_response(ResponseStatus.E\_BAD\_REQUEST,\ "{}Invalid\ dial\ message"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00531}00531\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00532}00532\ \ \ \ \ \ \ \ \ \#\ Extract\ peer\ info}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00533}00533\ \ \ \ \ \ \ \ \ peer\ =\ msg.dial.peer}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00534}00534\ \ \ \ \ \ \ \ \ if\ not\ peer:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ return\ self.\_encode\_error\_response(ResponseStatus.E\_BAD\_REQUEST,\ "{}Missing\ peer\ info"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00536}00536\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00537}00537\ \ \ \ \ \ \ \ \ logger.debug(f"{}AutoNAT:\ Dial\ request\ from\ peer\ \{peer.peer\_id.hex()[:16]\}..."{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00538}00538\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ \#\ Security\ check:\ Validate\ that\ at\ least\ one\ address\ matches\ observed\ IP}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00540}00540\ \ \ \ \ \ \ \ \ \#\ Per\ RFC\ 3489\ Section\ 12.1.1\ -\/\ prevent\ DDoS\ attacks}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00541}00541\ \ \ \ \ \ \ \ \ valid\_addr\ =\ None}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ for\ addr\_bytes\ in\ peer.addrs:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00543}00543\ \ \ \ \ \ \ \ \ \ \ \ \ parsed\ =\ parse\_multiaddr(addr\_bytes)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00544}00544\ \ \ \ \ \ \ \ \ \ \ \ \ if\ parsed\ and\ validate\_ip\_match(observed\_ip,\ parsed[0]):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00545}00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ valid\_addr\ =\ addr\_bytes}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ break}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00547}00547\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00548}00548\ \ \ \ \ \ \ \ \ if\ not\ valid\_addr:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ logger.warning("{}AutoNAT:\ Rejected\ dial\ request\ -\/\ no\ valid\ addresses\ matching\ observed\ IP"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ return\ self.\_encode\_error\_response(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResponseStatus.E\_DIAL\_REFUSED,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}No\ valid\ addresses\ (security\ check\ failed)"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00554}00554\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00555}00555\ \ \ \ \ \ \ \ \ \#\ Perform\ dial-\/back\ with\ rate\ limiting}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00556}00556\ \ \ \ \ \ \ \ \ async\ with\ self.\_semaphore:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ await\ self.\_perform\_dial\_back(peer,\ valid\_addr)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00558}00558\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00559}00559\ \ \ \ \ \ \ \ \ \#\ Encode\ response}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00560}00560\ \ \ \ \ \ \ \ \ response\_msg\ =\ AutoNATMessage(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ type=MessageType.DIAL\_RESPONSE,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ dial\_response=response,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00563}00563\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00564}00564\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00565}00565\ \ \ \ \ \ \ \ \ return\ encode\_message(response\_msg)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00566}00566\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00567}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_a98b5d08e91bd5c283eff389b5400421a}{00567}}\ \ \ \ \ async\ def\ \_perform\_dial\_back(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00568}00568\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00569}00569\ \ \ \ \ \ \ \ \ peer:\ DialPeerInfo,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00570}00570\ \ \ \ \ \ \ \ \ addr:\ bytes,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00571}00571\ \ \ \ \ )\ -\/>\ DialResponse:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00572}00572\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00573}00573\ \ \ \ \ \ \ \ \ Perform\ the\ actual\ dial-\/back\ attempt.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00574}00574\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00575}00575\ \ \ \ \ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ peer:\ Peer\ info\ from\ dial\ request}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ addr:\ Address\ to\ dial\ (validated)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00578}00578\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00579}00579\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ DialResponse\ with\ result}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00581}00581\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00582}00582\ \ \ \ \ \ \ \ \ parsed\ =\ parse\_multiaddr(addr)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00583}00583\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00584}00584\ \ \ \ \ \ \ \ \ if\ not\ parsed:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ return\ DialResponse(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=ResponseStatus.E\_BAD\_REQUEST,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\_text="{}Invalid\ address\ format"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00589}00589\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00590}00590\ \ \ \ \ \ \ \ \ ip,\ port,\ protocol\ =\ parsed}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00591}00591\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00592}00592\ \ \ \ \ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00593}00593\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ Try\ dial-\/back\ with\ timeout}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00594}00594\ \ \ \ \ \ \ \ \ \ \ \ \ success\ =\ await\ asyncio.wait\_for(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00595}00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\_dial\_func(ip,\ port,\ protocol),}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeout=DIAL\_TIMEOUT,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00597}00597\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00598}00598\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00599}00599\ \ \ \ \ \ \ \ \ \ \ \ \ if\ success:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00600}00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.info(f"{}AutoNAT:\ Dial-\/back\ successful\ to\ \{ip\}:\{port\}/\{protocol\}"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ DialResponse(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00602}00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=ResponseStatus.OK,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00603}00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addr=addr,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00604}00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00605}00605\ \ \ \ \ \ \ \ \ \ \ \ \ else:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00606}00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ DialResponse(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00607}00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=ResponseStatus.E\_DIAL\_ERROR,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00608}00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\_text=f"{}Dial\ failed\ to\ \{ip\}:\{port\}/\{protocol\}"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00610}00610\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00611}00611\ \ \ \ \ \ \ \ \ except\ asyncio.TimeoutError:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00612}00612\ \ \ \ \ \ \ \ \ \ \ \ \ return\ DialResponse(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00613}00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=ResponseStatus.E\_DIAL\_ERROR,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\_text=f"{}Dial\ timeout\ to\ \{ip\}:\{port\}/\{protocol\}"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00615}00615\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00616}00616\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00617}00617\ \ \ \ \ \ \ \ \ except\ Exception\ as\ e:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00618}00618\ \ \ \ \ \ \ \ \ \ \ \ \ logger.error(f"{}AutoNAT\ dial-\/back\ error:\ \{e\}"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00619}00619\ \ \ \ \ \ \ \ \ \ \ \ \ return\ DialResponse(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=ResponseStatus.E\_INTERNAL\_ERROR,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\_text=str(e),}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00623}00623\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00624}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_server_afc76558b672362536bec7819d7862ed3}{00624}}\ \ \ \ \ def\ \_encode\_error\_response(self,\ status:\ ResponseStatus,\ text:\ str)\ -\/>\ bytes:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00625}00625\ \ \ \ \ \ \ \ \ "{}"{}"{}Encode\ an\ error\ response"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00626}00626\ \ \ \ \ \ \ \ \ response\_msg\ =\ AutoNATMessage(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00627}00627\ \ \ \ \ \ \ \ \ \ \ \ \ type=MessageType.DIAL\_RESPONSE,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ dial\_response=DialResponse(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=status,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00630}00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\_text=text,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00632}00632\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00633}00633\ \ \ \ \ \ \ \ \ return\ encode\_message(response\_msg)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00634}00634\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00635}00635\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00636}00636\ \#\ ====================\ AutoNAT\ Protocol\ ====================}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00637}00637\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00638}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol}{00638}}\ class\ AutoNATProtocol:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00639}00639\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00640}00640\ \ \ \ \ Complete\ AutoNAT\ protocol\ implementation.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00641}00641\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00642}00642\ \ \ \ \ Combines\ client\ and\ server\ functionality\ for\ full\ libp2p\ AutoNAT\ v1.0.0}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00643}00643\ \ \ \ \ protocol\ support.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00644}00644\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00645}00645\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00646}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a164fe5a3f6c1ce81b29fc419c24a5896}{00646}}\ \ \ \ \ PROTOCOL\_ID\ =\ PROTOCOL\_ID}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00647}00647\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00648}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a535db41f6226c1740fbff421a8454a40}{00648}}\ \ \ \ \ def\ \_\_init\_\_(self):}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00649}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_af717993a1d0668d533c7f8f08aee4ef2}{00649}}\ \ \ \ \ \ \ \ \ self.\_client:\ Optional[AutoNATClient]\ =\ None}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00650}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a3b0c0fc4d1dd828389ed0ccf179880eb}{00650}}\ \ \ \ \ \ \ \ \ self.\_server:\ Optional[AutoNATServer]\ =\ None}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00651}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a4b48fbaa83eb1d7ef599f703a72bdf58}{00651}}\ \ \ \ \ \ \ \ \ self.\_running\ =\ False}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00652}00652\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00653}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a08d67c1011b43db257fb353d9a75df3f}{00653}}\ \ \ \ \ async\ def\ start(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00654}00654\ \ \ \ \ \ \ \ \ "{}"{}"{}Start\ the\ AutoNAT\ protocol"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00655}00655\ \ \ \ \ \ \ \ \ if\ self.\_running:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00656}00656\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00657}00657\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00658}00658\ \ \ \ \ \ \ \ \ self.\_running\ =\ True}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00659}00659\ \ \ \ \ \ \ \ \ logger.info("{}AutoNAT\ protocol\ started"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00660}00660\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00661}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_addcd518ce764c451271686c38536c3e3}{00661}}\ \ \ \ \ async\ def\ stop(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00662}00662\ \ \ \ \ \ \ \ \ "{}"{}"{}Stop\ the\ AutoNAT\ protocol"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00663}00663\ \ \ \ \ \ \ \ \ if\ not\ self.\_running:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00664}00664\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00665}00665\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00666}00666\ \ \ \ \ \ \ \ \ self.\_running\ =\ False}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00667}00667\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00668}00668\ \ \ \ \ \ \ \ \ if\ self.\_server:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00669}00669\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\_server.stop()}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00670}00670\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00671}00671\ \ \ \ \ \ \ \ \ logger.info("{}AutoNAT\ protocol\ stopped"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00672}00672\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00673}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a45b6774a66d98b3dcd833fa9f6bf9fd8}{00673}}\ \ \ \ \ def\ configure\_client(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00674}00674\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00675}00675\ \ \ \ \ \ \ \ \ peer\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00676}00676\ \ \ \ \ \ \ \ \ observed\_addrs:\ List[bytes],}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00677}00677\ \ \ \ \ )\ -\/>\ AutoNATClient:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00678}00678\ \ \ \ \ \ \ \ \ "{}"{}"{}Configure\ and\ get\ the\ AutoNAT\ client"{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00679}00679\ \ \ \ \ \ \ \ \ self.\_client\ =\ AutoNATClient(peer\_id,\ observed\_addrs)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00680}00680\ \ \ \ \ \ \ \ \ return\ self.\_client}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00681}00681\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00682}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a4d9eb436a3bce023f75b86acee12daea}{00682}}\ \ \ \ \ def\ configure\_server(}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00683}00683\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00684}00684\ \ \ \ \ \ \ \ \ dial\_func:\ Callable[[str,\ int,\ str],\ Awaitable[bool]],}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00685}00685\ \ \ \ \ \ \ \ \ max\_concurrent\_dials:\ int\ =\ 10,}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00686}00686\ \ \ \ \ )\ -\/>\ AutoNATServer:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00687}00687\ \ \ \ \ \ \ \ \ "{}"{}"{}Configure\ and\ get\ the\ AutoNAT\ serve\textcolor{stringliteral}{r"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00688}00688\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self.\_server\ =\ AutoNATServer(dial\_func,\ max\_concurrent\_dials)}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00689}00689\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ return\ self.\_server}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00690}00690\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00691}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_a2ca1b3367798a08bea04bc02a2fe8f3d}{00691}}\ \textcolor{stringliteral}{\ \ \ \ async\ def\ check\_reachability(}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00692}00692\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ self,}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00693}00693\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ peers:\ List[PeerInfo],}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00694}00694\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ dial\_back\_func:\ Callable[[bytes,\ bytes],\ Awaitable[tuple[ResponseStatus,\ str,\ bytes]]],}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00695}00695\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ min\_confirmations:\ int\ =\ 3,}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00696}00696\ \textcolor{stringliteral}{\ \ \ \ )\ -\/>\ str:}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00697}00697\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00698}00698\ \ \ \ \ \ \ \ \ Check\ NAT\ reachability\ status.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00699}00699\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00700}00700\ \ \ \ \ \ \ \ \ This\ is\ the\ main\ entry\ point\ for\ reachability\ detection.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00701}00701\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00702}00702\ \ \ \ \ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00703}00703\ \ \ \ \ \ \ \ \ \ \ \ \ peers:\ List\ of\ peers\ to\ query}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00704}00704\ \ \ \ \ \ \ \ \ \ \ \ \ dial\_back\_func:\ Function\ to\ perform\ dial-\/back}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00705}00705\ \ \ \ \ \ \ \ \ \ \ \ \ min\_confirmations:\ Minimum\ confirmations\ needed}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00706}00706\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00707}00707\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00708}00708\ \ \ \ \ \ \ \ \ \ \ \ \ "{}public"{}\ /\ "{}private"{}\ /\ "{}unknown"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00709}00709\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00710}00710\ \ \ \ \ \ \ \ \ if\ not\ self.\_client:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00711}00711\ \ \ \ \ \ \ \ \ \ \ \ \ raise\ RuntimeError("{}AutoNAT\ client\ not\ configured"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00712}00712\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00713}00713\ \ \ \ \ \ \ \ \ status\ =\ await\ self.\_client.check\_reachability(dial\_back\_func,\ min\_confirmations)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00714}00714\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00715}00715\ \ \ \ \ \ \ \ \ if\ status\ ==\ ReachabilityStatus.PUBLIC:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00716}00716\ \ \ \ \ \ \ \ \ \ \ \ \ return\ "{}public"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00717}00717\ \ \ \ \ \ \ \ \ elif\ status\ ==\ ReachabilityStatus.PRIVATE:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00718}00718\ \ \ \ \ \ \ \ \ \ \ \ \ return\ "{}private"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00719}00719\ \ \ \ \ \ \ \ \ return\ "{}unknown"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00720}00720\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00721}\doxymbox{\hyperlink{classp2p__engine_1_1detection_1_1autonat_1_1_auto_n_a_t_protocol_aeeec2bbd62423c81db2c3d48a7610c5e}{00721}}\ \ \ \ \ async\ def\ \_request\_dial\_back(self,\ peer:\ PeerInfo)\ -\/>\ DialResponse:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00722}00722\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00723}00723\ \ \ \ \ \ \ \ \ Request\ a\ dial-\/back\ from\ a\ specific\ peer.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00724}00724\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00725}00725\ \ \ \ \ \ \ \ \ Args:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00726}00726\ \ \ \ \ \ \ \ \ \ \ \ \ peer:\ The\ peer\ to\ request\ dial-\/back\ from}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00727}00727\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00728}00728\ \ \ \ \ \ \ \ \ Returns:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00729}00729\ \ \ \ \ \ \ \ \ \ \ \ \ DialResponse\ with\ the\ result}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00730}00730\ \ \ \ \ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00731}00731\ \ \ \ \ \ \ \ \ \#\ This\ would\ be\ implemented\ based\ on\ the\ transport\ layer}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00732}00732\ \ \ \ \ \ \ \ \ \#\ For\ now,\ it's\ a\ placeholder\ for\ the\ interface}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00733}00733\ \ \ \ \ \ \ \ \ raise\ NotImplementedError("{}Direct\ dial-\/back\ requests\ require\ transport\ integration"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00734}00734\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00735}00735\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00736}00736\ \#\ ====================\ Convenience\ Functions\ ====================}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00737}00737\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00738}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a87029d2c3323bf34e1dd8a462d119315}{00738}}\ def\ create\_dial\_socket(ip:\ str,\ port:\ int,\ protocol:\ str)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00739}00739\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00740}00740\ \ \ \ \ Default\ dial\ function\ for\ AutoNAT\ server.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00741}00741\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00742}00742\ \ \ \ \ Attempts\ to\ create\ a\ socket\ connection\ to\ the\ given\ address.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00743}00743\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00744}00744\ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00745}00745\ \ \ \ \ \ \ \ \ sock\_type\ =\ socket.SOCK\_STREAM\ if\ protocol\ ==\ "{}tcp"{}\ else\ socket.SOCK\_DGRAM}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00746}00746\ \ \ \ \ \ \ \ \ sock\ =\ socket.socket(socket.AF\_INET,\ sock\_type)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00747}00747\ \ \ \ \ \ \ \ \ sock.settimeout(DIAL\_TIMEOUT)}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00748}00748\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00749}00749\ \ \ \ \ \ \ \ \ if\ protocol\ ==\ "{}tcp"{}:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00750}00750\ \ \ \ \ \ \ \ \ \ \ \ \ sock.connect((ip,\ port))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00751}00751\ \ \ \ \ \ \ \ \ else:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00752}00752\ \ \ \ \ \ \ \ \ \ \ \ \ \#\ For\ UDP,\ just\ try\ to\ send\ something}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00753}00753\ \ \ \ \ \ \ \ \ \ \ \ \ sock.sendto(b"{}\(\backslash\)x00"{},\ (ip,\ port))}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00754}00754\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00755}00755\ \ \ \ \ \ \ \ \ sock.close()}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00756}00756\ \ \ \ \ \ \ \ \ return\ True}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00757}00757\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00758}00758\ \ \ \ \ except\ Exception\ as\ e:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00759}00759\ \ \ \ \ \ \ \ \ logger.debug(f"{}Dial\ attempt\ to\ \{ip\}:\{port\}/\{protocol\}\ failed:\ \{e\}"{})}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00760}00760\ \ \ \ \ \ \ \ \ return\ False}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00761}00761\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00762}00762\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00763}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a927352007013492932a7026294a18f06}{00763}}\ def\ get\_observed\_ip\_from\_socket(sock:\ socket.socket)\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00764}00764\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00765}00765\ \ \ \ \ Extract\ observed\ IP\ from\ a\ connected\ socket.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00766}00766\ \ \ \ \ Useful\ for\ getting\ the\ observed\ IP\ when\ handling\ AutoNAT\ requests.}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00767}00767\ \ \ \ \ "{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00768}00768\ \ \ \ \ try:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00769}00769\ \ \ \ \ \ \ \ \ peer\_addr\ =\ sock.getpeername()}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00770}00770\ \ \ \ \ \ \ \ \ return\ peer\_addr[0]\ if\ peer\_addr\ else\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00771}00771\ \ \ \ \ except\ Exception:}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00772}00772\ \ \ \ \ \ \ \ \ return\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00773}00773\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00774}00774\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00775}\doxymbox{\hyperlink{namespacep2p__engine_1_1detection_1_1autonat_a28350f27240a25a6bb39e2cc47b7c2c6}{00775}}\ \_\_all\_\_\ =\ [}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00776}00776\ \ \ \ \ \#\ Protocol\ constants}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00777}00777\ \ \ \ \ "{}PROTOCOL\_ID"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00778}00778\ \ \ \ \ "{}ReachabilityStatus"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00779}00779\ \ \ \ \ "{}ResponseStatus"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00780}00780\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00781}00781\ \ \ \ \ \#\ Data\ structures}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00782}00782\ \ \ \ \ "{}DialPeerInfo"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00783}00783\ \ \ \ \ "{}DialMessage"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00784}00784\ \ \ \ \ "{}DialResponse"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00785}00785\ \ \ \ \ "{}AutoNATMessage"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00786}00786\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00787}00787\ \ \ \ \ \#\ Main\ classes}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00788}00788\ \ \ \ \ "{}AutoNATClient"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00789}00789\ \ \ \ \ "{}AutoNATServer"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00790}00790\ \ \ \ \ "{}AutoNATProtocol"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00791}00791\ }
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00792}00792\ \ \ \ \ \#\ Utilities}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00793}00793\ \ \ \ \ "{}parse\_multiaddr"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00794}00794\ \ \ \ \ "{}validate\_ip\_match"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00795}00795\ \ \ \ \ "{}encode\_message"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00796}00796\ \ \ \ \ "{}decode\_message"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00797}00797\ \ \ \ \ "{}create\_dial\_socket"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00798}00798\ \ \ \ \ "{}get\_observed\_ip\_from\_socket"{},}
+\DoxyCodeLine{\Hypertarget{autonat_8py_source_l00799}00799\ ]}
+
+\end{DoxyCode}

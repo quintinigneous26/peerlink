@@ -1,0 +1,206 @@
+\doxysection{p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage类 参考}
+\hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message}{}\label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_ab8628c2d372fd8125879f6b7dc3a296d}{encode}} (self)
+\item 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message}{DCUt\+RMessage}}\textquotesingle{} \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a7c262c688ae30dae756ca748a2948fc7}{decode}} (cls, bytes data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+Tuple\+[int, int]\+ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a4c0188499b5ac43eb132f4109b9144d4}{decode\+\_\+varint}} (bytes data, int idx=0)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+List \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_aed10537129f62607a10cc3cce1f0024e}{obs\+\_\+addrs}} = field(default\+\_\+factory=list)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a609224395ba6b45dc17ed0cdda00f120}{\+\_\+encode\+\_\+protobuf}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_ab7616d37b3b4f39f79f53d43f32380ec}{\+\_\+encode\+\_\+varint}} (int value)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_aef14ed1cc80f1c532214d1c82b0eff90}{\+\_\+encode\+\_\+varint\+\_\+field}} (int field\+\_\+number, int value, bool is\+\_\+length=False)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}DCUtR protocol message
+
+Corresponds to the HolePunch protobuf message:
+```proto
+message HolePunch {
+  enum Type {
+    CONNECT = 100;
+    SYNC = 300;
+  }
+  required Type type = 1;
+  repeated bytes ObsAddrs = 2;
+}
+```
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00050}{50}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a609224395ba6b45dc17ed0cdda00f120}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}!\_encode\_protobuf@{\_encode\_protobuf}}
+\index{\_encode\_protobuf@{\_encode\_protobuf}!p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection{\texorpdfstring{\_encode\_protobuf()}{\_encode\_protobuf()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a609224395ba6b45dc17ed0cdda00f120} 
+ bytes p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage.\+\_\+encode\+\_\+protobuf (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Encode the message body in protobuf format\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00084}{84}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{dcutr_8py_source_l00112}{\+\_\+encode\+\_\+varint\+\_\+field()}} , 以及 \doxymbox{\hyperlink{dcutr_8py_source_l00067}{obs\+\_\+addrs}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dcutr_8py_source_l00069}{encode()}}.
+
+函数调用图:\+
+% FIG 0
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_ab7616d37b3b4f39f79f53d43f32380ec}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}!\_encode\_varint@{\_encode\_varint}}
+\index{\_encode\_varint@{\_encode\_varint}!p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection{\texorpdfstring{\_encode\_varint()}{\_encode\_varint()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_ab7616d37b3b4f39f79f53d43f32380ec} 
+ bytes p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage.\+\_\+encode\+\_\+varint (\begin{DoxyParamCaption}\item[{int}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\begin{DoxyVerb}Encode integer as unsigned varint\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00099}{99}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dcutr_8py_source_l00069}{encode()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_aef14ed1cc80f1c532214d1c82b0eff90}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}!\_encode\_varint\_field@{\_encode\_varint\_field}}
+\index{\_encode\_varint\_field@{\_encode\_varint\_field}!p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection{\texorpdfstring{\_encode\_varint\_field()}{\_encode\_varint\_field()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_aef14ed1cc80f1c532214d1c82b0eff90} 
+ bytes p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage.\+\_\+encode\+\_\+varint\+\_\+field (\begin{DoxyParamCaption}\item[{int}]{field\+\_\+number}{, }\item[{int}]{value}{, }\item[{bool }]{is\+\_\+length}{ = {\ttfamily False}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\begin{DoxyVerb}Encode a protobuf field with varint\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00112}{112}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dcutr_8py_source_l00084}{\+\_\+encode\+\_\+protobuf()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a7c262c688ae30dae756ca748a2948fc7}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}!decode@{decode}}
+\index{decode@{decode}!p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a7c262c688ae30dae756ca748a2948fc7} 
+ \textquotesingle{}\doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message}{DCUt\+RMessage}}\textquotesingle{} p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage.\+decode (\begin{DoxyParamCaption}\item[{}]{cls}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Decode message from bytes
+
+Args:
+    data: Message data without varint length prefix
+
+Returns:
+    DCUtRMessage instance
+
+Raises:
+    ValueError: If message is invalid
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00124}{124}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{dcutr_8py_source_l00182}{decode\+\_\+varint()}}.
+
+函数调用图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a4c0188499b5ac43eb132f4109b9144d4}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}!decode\_varint@{decode\_varint}}
+\index{decode\_varint@{decode\_varint}!p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection{\texorpdfstring{decode\_varint()}{decode\_varint()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_a4c0188499b5ac43eb132f4109b9144d4} 
+ Tuple\+[int, int]\+ p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage.\+decode\+\_\+varint (\begin{DoxyParamCaption}\item[{bytes}]{data}{, }\item[{int }]{idx}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Decode varint from bytes
+
+Returns:
+    Tuple of (value, new_index)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00182}{182}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dcutr_8py_source_l00124}{decode()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_ab8628c2d372fd8125879f6b7dc3a296d}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}!encode@{encode}}
+\index{encode@{encode}!p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_ab8628c2d372fd8125879f6b7dc3a296d} 
+ bytes p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage.\+encode (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Encode message to bytes with varint length prefix
+
+Format: [varint length][protobuf message]
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00069}{69}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{dcutr_8py_source_l00084}{\+\_\+encode\+\_\+protobuf()}} , 以及 \doxymbox{\hyperlink{dcutr_8py_source_l00099}{\+\_\+encode\+\_\+varint()}}.
+
+函数调用图:\+
+% FIG 6
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_aed10537129f62607a10cc3cce1f0024e}\index{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}!obs\_addrs@{obs\_addrs}}
+\index{obs\_addrs@{obs\_addrs}!p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage@{p2p\_engine.protocol.dcutr.dcutr.DCUtRMessage}}
+\doxysubsubsection{\texorpdfstring{obs\_addrs}{obs\_addrs}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_aed10537129f62607a10cc3cce1f0024e} 
+List p2p\+\_\+engine.\+protocol.\+dcutr.\+dcutr.\+DCUt\+RMessage.\+obs\+\_\+addrs = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{dcutr_8py_source}{dcutr.\+py}} 第 \doxymbox{\hyperlink{dcutr_8py_source_l00067}{67}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{dcutr_8py_source_l00084}{\+\_\+encode\+\_\+protobuf()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+protocol/\+dcutr/\+\doxymbox{\hyperlink{dcutr_8py}{dcutr.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,114 @@
+\doxysection{p2p\+\_\+engine.\+engine.\+P2\+PState类 参考}
+\hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state}{}\label{classp2p__engine_1_1engine_1_1_p2_p_state}\index{p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}}
+
+
+p2p\+\_\+engine.\+engine.\+P2\+PState 的协作图:\+
+% FIG 0
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_connection_state}{Connection\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_state_a000890ab017231dd039a44843ed4b890}{state}} = \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_connection_state_adedec970a1c4c7d79585db9a1157eb34}{Connection\+State.\+IDLE}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_state_a72a7e15d81a31e77984b2dfffc4f3692}{isp}} = \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p_ad8d880a57697e67f1ab00405eb48476a}{ISP.\+UNKNOWN}}
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_state_a750d0140d68f0ff86f3fdb8a944ac17e}{nat\+\_\+info}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_state_ae2c904f51e67e02174e63bd811032775}{peer\+\_\+info}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_state_a44e835b8d511d2ecafcdf7169f4ceec0}{connection\+\_\+result}} = None
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1engine_1_1_p2_p_state_af987af5e6acfe0a29efd4919af9bfa8f}{start\+\_\+time}} = 0.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}P2P引擎状态数据类
+
+存储P2P引擎的当前运行状态，包括连接状态、网络信息和连接结果。
+
+属性:
+    state (ConnectionState): 当前连接状态
+    isp (ISP): 检测到的本地ISP
+    nat_info (Optional[NATInfo]): 本地NAT信息
+    peer_info (Optional[PeerInfo]): 对端信息
+    connection_result (Optional[ConnectionResult]): 连接结果
+    start_time (float): 连接开始时间戳
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00058}{58}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state_a44e835b8d511d2ecafcdf7169f4ceec0}\index{p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}!connection\_result@{connection\_result}}
+\index{connection\_result@{connection\_result}!p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}}
+\doxysubsubsection{\texorpdfstring{connection\_result}{connection\_result}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_state_a44e835b8d511d2ecafcdf7169f4ceec0} 
+Optional p2p\+\_\+engine.\+engine.\+P2\+PState.\+connection\+\_\+result = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00076}{76}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state_a72a7e15d81a31e77984b2dfffc4f3692}\index{p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}!isp@{isp}}
+\index{isp@{isp}!p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}}
+\doxysubsubsection{\texorpdfstring{isp}{isp}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_state_a72a7e15d81a31e77984b2dfffc4f3692} 
+\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p}{ISP}} p2p\+\_\+engine.\+engine.\+P2\+PState.\+isp = \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_i_s_p_ad8d880a57697e67f1ab00405eb48476a}{ISP.\+UNKNOWN}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00073}{73}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{identify_8py_source_l00048}{p2p\+\_\+engine.\+protocol.\+identify.\+Identify\+Extension.\+to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state_a750d0140d68f0ff86f3fdb8a944ac17e}\index{p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}!nat\_info@{nat\_info}}
+\index{nat\_info@{nat\_info}!p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}}
+\doxysubsubsection{\texorpdfstring{nat\_info}{nat\_info}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_state_a750d0140d68f0ff86f3fdb8a944ac17e} 
+Optional p2p\+\_\+engine.\+engine.\+P2\+PState.\+nat\+\_\+info = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00074}{74}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state_ae2c904f51e67e02174e63bd811032775}\index{p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}!peer\_info@{peer\_info}}
+\index{peer\_info@{peer\_info}!p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}}
+\doxysubsubsection{\texorpdfstring{peer\_info}{peer\_info}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_state_ae2c904f51e67e02174e63bd811032775} 
+Optional p2p\+\_\+engine.\+engine.\+P2\+PState.\+peer\+\_\+info = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00075}{75}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state_af987af5e6acfe0a29efd4919af9bfa8f}\index{p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}!start\_time@{start\_time}}
+\index{start\_time@{start\_time}!p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}}
+\doxysubsubsection{\texorpdfstring{start\_time}{start\_time}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_state_af987af5e6acfe0a29efd4919af9bfa8f} 
+float p2p\+\_\+engine.\+engine.\+P2\+PState.\+start\+\_\+time = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00077}{77}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1engine_1_1_p2_p_state_a000890ab017231dd039a44843ed4b890}\index{p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}!state@{state}}
+\index{state@{state}!p2p\_engine.engine.P2PState@{p2p\_engine.engine.P2PState}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1engine_1_1_p2_p_state_a000890ab017231dd039a44843ed4b890} 
+\doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_connection_state}{Connection\+State}} p2p\+\_\+engine.\+engine.\+P2\+PState.\+state = \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_connection_state_adedec970a1c4c7d79585db9a1157eb34}{Connection\+State.\+IDLE}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{engine_8py_source}{engine.\+py}} 第 \doxymbox{\hyperlink{engine_8py_source_l00072}{72}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+\doxymbox{\hyperlink{engine_8py}{engine.\+py}}\end{DoxyCompactItemize}

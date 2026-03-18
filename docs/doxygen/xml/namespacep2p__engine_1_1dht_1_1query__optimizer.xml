@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1dht_1_1query__optimizer" kind="namespace" language="Python">
+    <compoundname>p2p_engine::dht::query_optimizer</compoundname>
+    <innerclass refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result" prot="public">p2p_engine::dht::query_optimizer::CachedResult</innerclass>
+    <innerclass refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache" prot="public">p2p_engine::dht::query_optimizer::QueryCache</innerclass>
+    <innerclass refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy" prot="public">p2p_engine::dht::query_optimizer::PeerSelectionStrategy</innerclass>
+    <innerclass refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector" prot="public">p2p_engine::dht::query_optimizer::PeerSelector</innerclass>
+    <innerclass refid="classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager" prot="public">p2p_engine::dht::query_optimizer::OptimizedQueryManager</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1aa52c7da2764423afe95441173b81d705" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::dht::query_optimizer.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="29" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1ab19e1198621ea9f85c15cb082083fe4c" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::query_optimizer.DEFAULT_CACHE_SIZE</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_CACHE_SIZE</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.DEFAULT_CACHE_SIZE</qualifiedname>
+        <initializer>=  1000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="34" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1a12dcb26e96fde51efacc97e4a887fe9f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::query_optimizer.CACHE_TTL</definition>
+        <argsstring></argsstring>
+        <name>CACHE_TTL</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.CACHE_TTL</qualifiedname>
+        <initializer>=  300</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="35" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1aff6fd50db0f5bd6145941fa734f7fc92" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::query_optimizer.MAX_PARALLEL_QUERIES</definition>
+        <argsstring></argsstring>
+        <name>MAX_PARALLEL_QUERIES</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.MAX_PARALLEL_QUERIES</qualifiedname>
+        <initializer>=  10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="36" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1ad45eeb1fcbb41fc9451ce64120c6beba" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine::dht::query_optimizer.QUERY_TIMEOUT</definition>
+        <argsstring></argsstring>
+        <name>QUERY_TIMEOUT</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.QUERY_TIMEOUT</qualifiedname>
+        <initializer>=  30.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="37" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1a2934941386d44eb51cc9407ce3df602f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::query_optimizer.MIN_ALPHA</definition>
+        <argsstring></argsstring>
+        <name>MIN_ALPHA</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.MIN_ALPHA</qualifiedname>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="40" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1aa30d6902e0aefcee3bb5de853781d200" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::query_optimizer.MAX_ALPHA</definition>
+        <argsstring></argsstring>
+        <name>MAX_ALPHA</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.MAX_ALPHA</qualifiedname>
+        <initializer>=  10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="41" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1a8615a549e8ec9d4bcf3c1db406527f52" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::dht::query_optimizer.ALPHA_ADAPTATION_INTERVAL</definition>
+        <argsstring></argsstring>
+        <name>ALPHA_ADAPTATION_INTERVAL</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.ALPHA_ADAPTATION_INTERVAL</qualifiedname>
+        <initializer>=  100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="42" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1dht_1_1query__optimizer_1a8a785f6fd6453450952366aa54ace099" prot="private" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine::dht::query_optimizer.__all__</definition>
+        <argsstring></argsstring>
+        <name>__all__</name>
+        <qualifiedname>p2p_engine.dht.query_optimizer.__all__</qualifiedname>
+        <initializer>=  [
+    &quot;QueryCache&quot;,
+    &quot;CachedResult&quot;,
+    &quot;PeerSelector&quot;,
+    &quot;PeerSelectionStrategy&quot;,
+    &quot;OptimizedQueryManager&quot;,
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/dht/query_optimizer.py" line="555" column="1" bodyfile="p2p_engine/dht/query_optimizer.py" bodystart="555" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>DHT Query Optimization Module
+
+This module provides optimizations for Kademlia DHT queries to improve
+lookup performance and reduce network overhead.
+
+Optimizations:
+- Parallel query execution with adaptive concurrency
+- Result caching
+- Query pipelining
+- Peer selection heuristics
+- Request coalescing
+
+Target: Faster DHT lookups with reduced latency (&lt; 100ms for common cases)
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/dht/query_optimizer.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

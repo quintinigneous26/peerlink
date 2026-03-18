@@ -1,0 +1,20 @@
+Source: p2p-platform
+Section: net
+Priority: optional
+Maintainer: Build Engineer <build@p2p-platform.com>
+Build-Depends: debhelper-compat (= 13), python3 (>= 3.11), dh-python
+Standards-Version: 4.6.0
+Homepage: https://github.com/yourusername/p2p-platform
+
+Package: p2p-platform
+Architecture: all
+Depends: ${misc:Depends}, python3 (>= 3.11), python3-pip, redis-server (>= 5.0.0), systemd
+Description: P2P Platform Server Components
+ P2P Platform provides STUN, TURN relay, signaling, and DID services
+ for peer-to-peer communication infrastructure.
+ .
+ This package includes:
+  - STUN server for NAT traversal
+  - TURN relay server for fallback connectivity
+  - WebRTC signaling server
+  - Decentralized Identity (DID) service

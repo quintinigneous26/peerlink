@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1protocol_1_1kademlia" kind="namespace" language="Python">
+    <compoundname>p2p_engine::protocol::kademlia</compoundname>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler" prot="public">p2p_engine::protocol::kademlia::KademliaProtocolHandler</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1kademlia_1a2d445de36f9d9e4187558b35be3b58f0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::protocol::kademlia.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.protocol.kademlia.logger</qualifiedname>
+        <initializer>=  logging.getLogger(__name__)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/kademlia.py" line="24" column="1" bodyfile="p2p_engine/protocol/kademlia.py" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1kademlia_1ae5e3e00ba5237c6d8ec545d1c852e786" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::kademlia.PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.protocol.kademlia.PROTOCOL_ID</qualifiedname>
+        <initializer>=  &quot;/ipfs/kad/1.0.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/kademlia.py" line="27" column="1" bodyfile="p2p_engine/protocol/kademlia.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1kademlia_1a95611487655a9e9b553f4b2980f341f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler" kindref="compound">KademliaProtocolHandler</ref></type>
+        <definition> KademliaProtocolHandler p2p_engine.protocol.kademlia.create_kademlia_handler</definition>
+        <argsstring>(bytes local_peer_id, bytes local_public_key, Optional[Callable[[bytes, bytes, str], Awaitable[bytes]]] network_send_func=None)</argsstring>
+        <name>create_kademlia_handler</name>
+        <qualifiedname>p2p_engine.protocol.kademlia.create_kademlia_handler</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>local_peer_id</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>local_public_key</declname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <defname>network_send_func</defname>
+          <array>[Callable[[bytes, bytes, str]</array>
+        </param>
+        <param>
+          <type>Awaitable]]</type>
+          <declname>network_send_func</declname>
+          <array>[bytes]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Factory function to create a Kademlia protocol handler.
+
+Args:
+    local_peer_id: Local peer&apos;s ID (32 bytes)
+    local_public_key: Local peer&apos;s public key
+    network_send_func: Async function to send DHT messages
+
+Returns:
+    KademliaProtocolHandler instance
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/kademlia.py" line="264" column="1" bodyfile="p2p_engine/protocol/kademlia.py" bodystart="268" bodyend="288"/>
+        <referencedby refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a0234101afd211a54577f5536d7b7eafe" compoundref="protocol_2kademlia_8py" startline="294" endline="319">p2p_engine.protocol.kademlia.find_peer_async</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1kademlia_1a0234101afd211a54577f5536d7b7eafe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry" kindref="compound">PeerEntry</ref>]</type>
+        <definition> Optional[PeerEntry] p2p_engine.protocol.kademlia.find_peer_async</definition>
+        <argsstring>(bytes local_peer_id, bytes target_peer_id, List[tuple[bytes, List[str]]] bootstrap_peers, Callable[[bytes, bytes, str], Awaitable[bytes]] network_send_func)</argsstring>
+        <name>find_peer_async</name>
+        <qualifiedname>p2p_engine.protocol.kademlia.find_peer_async</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>local_peer_id</declname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>target_peer_id</declname>
+        </param>
+        <param>
+          <type>List]]</type>
+          <declname>bootstrap_peers</declname>
+          <array>[tuple[bytes, List[str]</array>
+        </param>
+        <param>
+          <type>Callable</type>
+          <defname>network_send_func</defname>
+          <array>[[bytes, bytes, str]</array>
+        </param>
+        <param>
+          <type>Awaitable]</type>
+          <declname>network_send_func</declname>
+          <array>[bytes]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Convenience function to find a peer without persistent DHT instance.
+
+Args:
+    local_peer_id: Local peer ID
+    target_peer_id: Target peer ID to find
+    bootstrap_peers: List of (peer_id, addresses) tuples
+    network_send_func: Function to send DHT messages
+
+Returns:
+    Peer entry if found, None otherwise
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/kademlia.py" line="289" column="1" bodyfile="p2p_engine/protocol/kademlia.py" bodystart="294" bodyend="319"/>
+        <references refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a95611487655a9e9b553f4b2980f341f9" compoundref="protocol_2kademlia_8py" startline="268" endline="288">p2p_engine.protocol.kademlia.create_kademlia_handler</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Kademlia DHT Protocol Handler
+
+Integrates the Kademlia DHT implementation with the p2p_engine protocol layer.
+This module provides the protocol handler interface for DHT operations.
+
+Compatible with libp2p Kademlia DHT specification:
+https://github.com/libp2p/specs/tree/master/kad-dht
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/kademlia.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

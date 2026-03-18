@@ -1,0 +1,536 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: relay-server/src/bandwidth.py 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('bandwidth_8py_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">bandwidth.py</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="bandwidth_8py.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="namespacesrc_1_1bandwidth.html">    1</a></span><span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="stringliteral">Bandwidth Control and Rate Limiting</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="stringliteral">Implements token bucket rate limiting and bandwidth monitoring.</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">import</span> asyncio</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">import</span> time</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">from</span> dataclasses <span class="keyword">import</span> dataclass</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">from</span> typing <span class="keyword">import</span> Dict, Optional, Tuple</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">@dataclass</span></div>
+<div class="foldopen" id="foldopen00015" data-start="" data-end="">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">   15</a></span><span class="keyword">class </span><a class="code hl_class" href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">BandwidthLimit</a>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="stringliteral">&quot;&quot;&quot;Bandwidth limit configuration.&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    read_bps: int  <span class="comment"># Read bytes per second</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    write_bps: int  <span class="comment"># Write bytes per second</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    burst_bps: int  <span class="comment"># Burst allowance</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">@dataclass</span></div>
+</div>
+<div class="foldopen" id="foldopen00024" data-start="" data-end="">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a>:</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="stringliteral">&quot;&quot;&quot;Bandwidth statistics.&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html#a45546500827972bea4c510fde69b1d45">   27</a></span>    bytes_read: int = 0</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html#a2272509ceabcb03f80427d2dfb1995cf">   28</a></span>    bytes_written: int = 0</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html#a639ee0e906096dbcabf49004c2c1fc8d">   29</a></span>    current_read_rate: float = 0.0</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html#a213b9fda17fdd8ce597aa713a54ea747">   30</a></span>    current_write_rate: float = 0.0</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html#ae4c4dd3dd5d68206c1af773ac02ae47c">   31</a></span>    peak_read_rate: float = 0.0</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html#a0e4deae726b1ae8bf6022c1a34ca4d5b">   32</a></span>    peak_write_rate: float = 0.0</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+</div>
+<div class="foldopen" id="foldopen00035" data-start="" data-end="">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html">   35</a></span><span class="keyword">class </span><a class="code hl_class" href="classsrc_1_1bandwidth_1_1_token_bucket.html">TokenBucket</a>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="stringliteral">    Token bucket rate limiter.</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="stringliteral">    Allows bursts up to bucket capacity while maintaining average rate.</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00042" data-start="" data-end="">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a5113e7f7b424d62e34b7872a77142c23">   42</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a5113e7f7b424d62e34b7872a77142c23">__init__</a>(self, rate: int, capacity: int):</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="stringliteral">        Initialize token bucket.</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="stringliteral">            rate: Tokens per second (bytes per second)</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="stringliteral">            capacity: Maximum bucket size (burst allowance)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a4cbff83663405b8f40f7ad95b2447b79">   50</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a4cbff83663405b8f40f7ad95b2447b79">rate</a> = rate</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#adc857ac01a4e2fac9b7c9332625dfd36">   51</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#adc857ac01a4e2fac9b7c9332625dfd36">capacity</a> = capacity</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">   52</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a> = float(capacity)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a531da7dc6c80f27af077bb2fa2a56e90">   53</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a531da7dc6c80f27af077bb2fa2a56e90">last_update</a> = time.time()</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad502806d5b90f4e4ea72791372e4ffee">   54</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad502806d5b90f4e4ea72791372e4ffee">_lock</a> = asyncio.Lock()</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+</div>
+<div class="foldopen" id="foldopen00056" data-start="" data-end="">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad868c878f4cb00f4404547ea97a5fa43">   56</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad868c878f4cb00f4404547ea97a5fa43">consume</a>(self, tokens: int) -&gt; bool:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="stringliteral">        Try to consume tokens.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="stringliteral">            tokens: Number of tokens to consume</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="stringliteral">            True if tokens were consumed, False if insufficient tokens</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keyword">async</span> <span class="keyword">with</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad502806d5b90f4e4ea72791372e4ffee">_lock</a>:</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            now = time.time()</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            elapsed = now - self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a531da7dc6c80f27af077bb2fa2a56e90">last_update</a></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="comment"># Add new tokens based on elapsed time</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a> += elapsed * self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a4cbff83663405b8f40f7ad95b2447b79">rate</a></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a> = min(self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a>, self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#adc857ac01a4e2fac9b7c9332625dfd36">capacity</a>)</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a531da7dc6c80f27af077bb2fa2a56e90">last_update</a> = now</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">if</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a> &gt;= tokens:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a> -= tokens</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+</div>
+<div class="foldopen" id="foldopen00080" data-start="" data-end="">
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a0f54891afa5a3cb0dd5230be75fa1061">   80</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a0f54891afa5a3cb0dd5230be75fa1061">wait_for_tokens</a>(self, tokens: int) -&gt; bool:</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="stringliteral">        Wait until enough tokens are available.</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="stringliteral">            tokens: Number of tokens needed</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="stringliteral">            True if tokens acquired, False if rate is zero</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">if</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a4cbff83663405b8f40f7ad95b2447b79">rate</a> &lt;= 0:</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">while</span> <span class="keywordflow">not</span> await self.<a class="code hl_function" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad868c878f4cb00f4404547ea97a5fa43">consume</a>(tokens):</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            <span class="comment"># Calculate wait time</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="keyword">async</span> <span class="keyword">with</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad502806d5b90f4e4ea72791372e4ffee">_lock</a>:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                deficit = tokens - self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                wait_time = deficit / self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a4cbff83663405b8f40f7ad95b2447b79">rate</a></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a531da7dc6c80f27af077bb2fa2a56e90">last_update</a> = time.time()</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            await asyncio.sleep(min(wait_time, 1.0))</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+</div>
+<div class="foldopen" id="foldopen00104" data-start="" data-end="">
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ae52969fbebb296a2473b94cb452ec196">  104</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_token_bucket.html#ae52969fbebb296a2473b94cb452ec196">get_available_tokens</a>(self) -&gt; int:</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="stringliteral">&quot;&quot;&quot;Get currently available tokens.&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">return</span> int(self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">tokens</a>)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+</div>
+</div>
+<div class="foldopen" id="foldopen00109" data-start="" data-end="">
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html">  109</a></span><span class="keyword">class </span><a class="code hl_class" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html">BandwidthLimiter</a>:</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="stringliteral">    Bandwidth limiter using token bucket algorithm.</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="stringliteral">    Per-allocation and global limits support.</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="foldopen" id="foldopen00116" data-start="" data-end="">
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#aa87ea1ad1f6f0b9a849ecb6ee36b8a1c">  116</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#aa87ea1ad1f6f0b9a849ecb6ee36b8a1c">__init__</a>(self, default_limit: Optional[BandwidthLimit] = <span class="keywordtype">None</span>):</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="stringliteral">        Initialize bandwidth limiter.</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="stringliteral">            default_limit: Default bandwidth limit for all allocations</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afd49f1d82ed2e26f351c8e6e29fd7ed3">  123</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afd49f1d82ed2e26f351c8e6e29fd7ed3">default_limit</a> = default_limit <span class="keywordflow">or</span> <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">BandwidthLimit</a>(</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>            read_bps=3_000_000,  <span class="comment"># 3 Mbps</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            write_bps=3_000_000,  <span class="comment"># 3 Mbps</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            burst_bps=6_000_000,  <span class="comment"># 6 Mbps burst</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        )</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">  128</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">_limiters</a>: Dict[str, Dict[str, TokenBucket]] = {}</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a59f863a7f5128f17caa8ea9b8c9d10d3">  129</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a59f863a7f5128f17caa8ea9b8c9d10d3">_stats</a>: Dict[str, BandwidthStats] = defaultdict(BandwidthStats)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afb5b968a5f8bab9e1f1d63571b590b5f">  130</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afb5b968a5f8bab9e1f1d63571b590b5f">_global_read_bucket</a> = <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_token_bucket.html">TokenBucket</a>(</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>            rate=100_000_000,  <span class="comment"># 100 Mbps global</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            capacity=200_000_000,  <span class="comment"># 200 MB burst</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        )</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a798df6225af9c4798c006c6eeb88ecce">  134</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a798df6225af9c4798c006c6eeb88ecce">_global_write_bucket</a> = <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_token_bucket.html">TokenBucket</a>(</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>            rate=100_000_000,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            capacity=200_000_000,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>        )</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+</div>
+<div class="foldopen" id="foldopen00139" data-start="" data-end="">
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#af4609bbde00596273bb3a35b18bbbea6">  139</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#af4609bbde00596273bb3a35b18bbbea6">throttle_read</a>(self, allocation_id: str, size: int) -&gt; bool:</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="stringliteral">        Throttle read operation.</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="stringliteral">            allocation_id: Allocation ID</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="stringliteral">            size: Number of bytes to read</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="stringliteral">            True if read allowed, False if rate limited</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="comment"># Check global limit</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> await self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afb5b968a5f8bab9e1f1d63571b590b5f">_global_read_bucket</a>.consume(size):</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="comment"># Check per-allocation limit</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        limiters = self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">_limiters</a>.setdefault(allocation_id, {})</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">if</span> <span class="stringliteral">&quot;read&quot;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> limiters:</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            limiters[<span class="stringliteral">&quot;read&quot;</span>] = <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_token_bucket.html">TokenBucket</a>(</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                rate=self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afd49f1d82ed2e26f351c8e6e29fd7ed3">default_limit</a>.read_bps,</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>                capacity=self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afd49f1d82ed2e26f351c8e6e29fd7ed3">default_limit</a>.burst_bps,</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>            )</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">if</span> await limiters[<span class="stringliteral">&quot;read&quot;</span>].consume(size):</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            stats = self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a59f863a7f5128f17caa8ea9b8c9d10d3">_stats</a>[allocation_id]</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            stats.bytes_read += size</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+</div>
+<div class="foldopen" id="foldopen00169" data-start="" data-end="">
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#acc1e7b50b152006fd2cd87c7a11b6068">  169</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#acc1e7b50b152006fd2cd87c7a11b6068">throttle_write</a>(self, allocation_id: str, size: int) -&gt; bool:</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="stringliteral">        Throttle write operation.</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="stringliteral">            allocation_id: Allocation ID</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="stringliteral">            size: Number of bytes to write</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="stringliteral">            True if write allowed, False if rate limited</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="comment"># Check global limit</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">if</span> <span class="keywordflow">not</span> await self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a798df6225af9c4798c006c6eeb88ecce">_global_write_bucket</a>.consume(size):</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="comment"># Check per-allocation limit</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        limiters = self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">_limiters</a>.setdefault(allocation_id, {})</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        <span class="keywordflow">if</span> <span class="stringliteral">&quot;write&quot;</span> <span class="keywordflow">not</span> <span class="keywordflow">in</span> limiters:</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>            limiters[<span class="stringliteral">&quot;write&quot;</span>] = <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_token_bucket.html">TokenBucket</a>(</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>                rate=self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afd49f1d82ed2e26f351c8e6e29fd7ed3">default_limit</a>.write_bps,</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                capacity=self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afd49f1d82ed2e26f351c8e6e29fd7ed3">default_limit</a>.burst_bps,</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            )</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        <span class="keywordflow">if</span> await limiters[<span class="stringliteral">&quot;write&quot;</span>].consume(size):</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>            stats = self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a59f863a7f5128f17caa8ea9b8c9d10d3">_stats</a>[allocation_id]</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>            stats.bytes_written += size</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>            <span class="keywordflow">return</span> <span class="keyword">True</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <span class="keywordflow">return</span> <span class="keyword">False</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+</div>
+<div class="foldopen" id="foldopen00199" data-start="" data-end="">
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a8c2fa1a778e4cb0e9a4ab1509585f18f">  199</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a8c2fa1a778e4cb0e9a4ab1509585f18f">set_limit</a>(self, allocation_id: str, limit: BandwidthLimit):</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="stringliteral">        Set bandwidth limit for an allocation.</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="stringliteral">            allocation_id: Allocation ID</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="stringliteral">            limit: Bandwidth limit</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        limiters = self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">_limiters</a>.setdefault(allocation_id, {})</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        limiters[<span class="stringliteral">&quot;read&quot;</span>] = <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_token_bucket.html">TokenBucket</a>(</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>            rate=limit.read_bps,</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            capacity=limit.burst_bps,</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        )</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        limiters[<span class="stringliteral">&quot;write&quot;</span>] = <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_token_bucket.html">TokenBucket</a>(</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            rate=limit.write_bps,</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>            capacity=limit.burst_bps,</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        )</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+</div>
+<div class="foldopen" id="foldopen00218" data-start="" data-end="">
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#ab10791079e6da96fdd1f93484707bde4">  218</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#ab10791079e6da96fdd1f93484707bde4">remove_allocation</a>(self, allocation_id: str):</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="stringliteral">        Remove bandwidth limiter for allocation.</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="stringliteral">            allocation_id: Allocation ID</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">_limiters</a>.pop(allocation_id, <span class="keywordtype">None</span>)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a59f863a7f5128f17caa8ea9b8c9d10d3">_stats</a>.pop(allocation_id, <span class="keywordtype">None</span>)</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+</div>
+<div class="foldopen" id="foldopen00228" data-start="" data-end="">
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a3de8eb5c570f875b921b22792dba06b9">  228</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a3de8eb5c570f875b921b22792dba06b9">get_stats</a>(self, allocation_id: str) -&gt; BandwidthStats:</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="stringliteral">        Get bandwidth statistics for allocation.</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="stringliteral">            allocation_id: Allocation ID</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="stringliteral">            Bandwidth statistics</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        <span class="keywordflow">return</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a59f863a7f5128f17caa8ea9b8c9d10d3">_stats</a>.get(allocation_id, <a class="code hl_class" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a>())</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span> </div>
+</div>
+<div class="foldopen" id="foldopen00240" data-start="" data-end="">
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a296987427909f550d6f4907229f4f158">  240</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a296987427909f550d6f4907229f4f158">get_global_stats</a>(self) -&gt; Dict[str, int]:</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="stringliteral">        Get global bandwidth statistics.</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="stringliteral">            Dictionary with global stats</span></div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        <span class="keywordflow">return</span> {</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            <span class="stringliteral">&quot;available_read_tokens&quot;</span>: self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afb5b968a5f8bab9e1f1d63571b590b5f">_global_read_bucket</a>.get_available_tokens(),</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            <span class="stringliteral">&quot;available_write_tokens&quot;</span>: self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a798df6225af9c4798c006c6eeb88ecce">_global_write_bucket</a>.get_available_tokens(),</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            <span class="stringliteral">&quot;active_allocations&quot;</span>: len(self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">_limiters</a>),</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        }</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+</div>
+</div>
+<div class="foldopen" id="foldopen00254" data-start="" data-end="">
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html">  254</a></span><span class="keyword">class </span><a class="code hl_class" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html">ThroughputMonitor</a>:</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="stringliteral">    Monitor throughput rates.</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="stringliteral">    Tracks bytes transferred and calculates current rates.</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="stringliteral">    &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="foldopen" id="foldopen00261" data-start="" data-end="">
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a1a7f195bf5ef328a910912d44024cebe">  261</a></span>    <span class="keyword">def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a1a7f195bf5ef328a910912d44024cebe">__init__</a>(self, window_seconds: int = 5):</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="stringliteral">        Initialize throughput monitor.</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="stringliteral">            window_seconds: Time window for rate calculation</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a511f23f72e0ef0f1c2c94cf8c667a13e">  268</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a511f23f72e0ef0f1c2c94cf8c667a13e">window</a> = window_seconds</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">  269</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">_read_samples</a>: list = []</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">  270</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">_write_samples</a>: list = []</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a3e82d326a61efaf99760874ee8a766b1">  271</a></span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a3e82d326a61efaf99760874ee8a766b1">_lock</a> = asyncio.Lock()</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+</div>
+<div class="foldopen" id="foldopen00273" data-start="" data-end="">
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#abaf0ad6089b5a85cc33a41718e4b7044">  273</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#abaf0ad6089b5a85cc33a41718e4b7044">record_read</a>(self, bytes_count: int):</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="stringliteral">        Record read operation.</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="stringliteral">            bytes_count: Number of bytes read</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <span class="keyword">async</span> <span class="keyword">with</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a3e82d326a61efaf99760874ee8a766b1">_lock</a>:</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>            self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">_read_samples</a>.append((time.time(), bytes_count))</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            await self.<a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#ae369e64cad9d047bf2ca60bc646c8deb">_cleanup_old_samples</a>()</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
+</div>
+<div class="foldopen" id="foldopen00284" data-start="" data-end="">
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a6913253b44bfe7c25cdc68560c692ddc">  284</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a6913253b44bfe7c25cdc68560c692ddc">record_write</a>(self, bytes_count: int):</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="stringliteral">        Record write operation.</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="stringliteral">        Args:</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="stringliteral">            bytes_count: Number of bytes written</span></div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <span class="keyword">async</span> <span class="keyword">with</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a3e82d326a61efaf99760874ee8a766b1">_lock</a>:</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>            self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">_write_samples</a>.append((time.time(), bytes_count))</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>            await self.<a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#ae369e64cad9d047bf2ca60bc646c8deb">_cleanup_old_samples</a>()</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
+</div>
+<div class="foldopen" id="foldopen00295" data-start="" data-end="">
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#ae369e64cad9d047bf2ca60bc646c8deb">  295</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#ae369e64cad9d047bf2ca60bc646c8deb">_cleanup_old_samples</a>(self):</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>        <span class="stringliteral">&quot;&quot;&quot;Remove samples older than window.&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        cutoff = time.time() - self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a511f23f72e0ef0f1c2c94cf8c667a13e">window</a></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">_read_samples</a> = [(t, b) <span class="keywordflow">for</span> t, b <span class="keywordflow">in</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">_read_samples</a> <span class="keywordflow">if</span> t &gt; cutoff]</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">_write_samples</a> = [(t, b) <span class="keywordflow">for</span> t, b <span class="keywordflow">in</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">_write_samples</a> <span class="keywordflow">if</span> t &gt; cutoff]</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+</div>
+<div class="foldopen" id="foldopen00302" data-start="" data-end="">
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a4b8922e29dc5ba6a89f8f7893d51c08e">  302</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a4b8922e29dc5ba6a89f8f7893d51c08e">get_read_rate</a>(self) -&gt; float:</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="stringliteral">        Get current read rate (bytes/second).</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="stringliteral">            Read rate</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keyword">async</span> <span class="keyword">with</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a3e82d326a61efaf99760874ee8a766b1">_lock</a>:</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>            await self.<a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#ae369e64cad9d047bf2ca60bc646c8deb">_cleanup_old_samples</a>()</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">_read_samples</a>:</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>                <span class="keywordflow">return</span> 0.0</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>            total = sum(b <span class="keywordflow">for</span> _, b <span class="keywordflow">in</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">_read_samples</a>)</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>            <span class="keywordflow">return</span> total / self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a511f23f72e0ef0f1c2c94cf8c667a13e">window</a></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+</div>
+<div class="foldopen" id="foldopen00317" data-start="" data-end="">
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a8eaae207133c144f6add85eed4ebe52c">  317</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a8eaae207133c144f6add85eed4ebe52c">get_write_rate</a>(self) -&gt; float:</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="stringliteral">        Get current write rate (bytes/second).</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="stringliteral">            Write rate</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keyword">async</span> <span class="keyword">with</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a3e82d326a61efaf99760874ee8a766b1">_lock</a>:</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>            await self.<a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#ae369e64cad9d047bf2ca60bc646c8deb">_cleanup_old_samples</a>()</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            <span class="keywordflow">if</span> <span class="keywordflow">not</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">_write_samples</a>:</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>                <span class="keywordflow">return</span> 0.0</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>            total = sum(b <span class="keywordflow">for</span> _, b <span class="keywordflow">in</span> self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">_write_samples</a>)</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>            <span class="keywordflow">return</span> total / self.<a class="code hl_variable" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a511f23f72e0ef0f1c2c94cf8c667a13e">window</a></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+</div>
+<div class="foldopen" id="foldopen00332" data-start="" data-end="">
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a82f085b470c430bc58e0377d541ef3e2">  332</a></span>    <span class="keyword">async def </span><a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a82f085b470c430bc58e0377d541ef3e2">get_stats</a>(self) -&gt; Dict[str, float]:</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>        <span class="stringliteral">&quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="stringliteral">        Get throughput statistics.</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="stringliteral">        Returns:</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="stringliteral">            Dictionary with stats</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="stringliteral">        &quot;&quot;&quot;</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>        read_rate = await self.<a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a4b8922e29dc5ba6a89f8f7893d51c08e">get_read_rate</a>()</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>        write_rate = await self.<a class="code hl_function" href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a8eaae207133c144f6add85eed4ebe52c">get_write_rate</a>()</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>        <span class="keywordflow">return</span> {</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>            <span class="stringliteral">&quot;read_rate_bps&quot;</span>: read_rate,</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>            <span class="stringliteral">&quot;write_rate_bps&quot;</span>: write_rate,</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>            <span class="stringliteral">&quot;read_rate_mbps&quot;</span>: read_rate / 1_000_000,</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>            <span class="stringliteral">&quot;write_rate_mbps&quot;</span>: write_rate / 1_000_000,</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        }</div>
+</div>
+</div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limit_html"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">src.bandwidth.BandwidthLimit</a></div><div class="ttdef"><b>定义</b> <a href="#l00015">bandwidth.py:15</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html">src.bandwidth.BandwidthLimiter</a></div><div class="ttdef"><b>定义</b> <a href="#l00109">bandwidth.py:109</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_a1d14dbde3643723e93454c5dd0452e1a"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a1d14dbde3643723e93454c5dd0452e1a">src.bandwidth.BandwidthLimiter._limiters</a></div><div class="ttdeci">dict _limiters</div><div class="ttdef"><b>定义</b> <a href="#l00128">bandwidth.py:128</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_a296987427909f550d6f4907229f4f158"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a296987427909f550d6f4907229f4f158">src.bandwidth.BandwidthLimiter.get_global_stats</a></div><div class="ttdeci">Dict[str, int] get_global_stats(self)</div><div class="ttdef"><b>定义</b> <a href="#l00240">bandwidth.py:240</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_a3de8eb5c570f875b921b22792dba06b9"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a3de8eb5c570f875b921b22792dba06b9">src.bandwidth.BandwidthLimiter.get_stats</a></div><div class="ttdeci">BandwidthStats get_stats(self, str allocation_id)</div><div class="ttdef"><b>定义</b> <a href="#l00228">bandwidth.py:228</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_a59f863a7f5128f17caa8ea9b8c9d10d3"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a59f863a7f5128f17caa8ea9b8c9d10d3">src.bandwidth.BandwidthLimiter._stats</a></div><div class="ttdeci">Dict[str, BandwidthStats] _stats</div><div class="ttdef"><b>定义</b> <a href="#l00129">bandwidth.py:129</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_a798df6225af9c4798c006c6eeb88ecce"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a798df6225af9c4798c006c6eeb88ecce">src.bandwidth.BandwidthLimiter._global_write_bucket</a></div><div class="ttdeci">_global_write_bucket</div><div class="ttdef"><b>定义</b> <a href="#l00134">bandwidth.py:134</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_a8c2fa1a778e4cb0e9a4ab1509585f18f"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#a8c2fa1a778e4cb0e9a4ab1509585f18f">src.bandwidth.BandwidthLimiter.set_limit</a></div><div class="ttdeci">set_limit(self, str allocation_id, BandwidthLimit limit)</div><div class="ttdef"><b>定义</b> <a href="#l00199">bandwidth.py:199</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_aa87ea1ad1f6f0b9a849ecb6ee36b8a1c"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#aa87ea1ad1f6f0b9a849ecb6ee36b8a1c">src.bandwidth.BandwidthLimiter.__init__</a></div><div class="ttdeci">__init__(self, Optional[BandwidthLimit] default_limit=None)</div><div class="ttdef"><b>定义</b> <a href="#l00116">bandwidth.py:116</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_ab10791079e6da96fdd1f93484707bde4"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#ab10791079e6da96fdd1f93484707bde4">src.bandwidth.BandwidthLimiter.remove_allocation</a></div><div class="ttdeci">remove_allocation(self, str allocation_id)</div><div class="ttdef"><b>定义</b> <a href="#l00218">bandwidth.py:218</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_acc1e7b50b152006fd2cd87c7a11b6068"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#acc1e7b50b152006fd2cd87c7a11b6068">src.bandwidth.BandwidthLimiter.throttle_write</a></div><div class="ttdeci">bool throttle_write(self, str allocation_id, int size)</div><div class="ttdef"><b>定义</b> <a href="#l00169">bandwidth.py:169</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_af4609bbde00596273bb3a35b18bbbea6"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#af4609bbde00596273bb3a35b18bbbea6">src.bandwidth.BandwidthLimiter.throttle_read</a></div><div class="ttdeci">bool throttle_read(self, str allocation_id, int size)</div><div class="ttdef"><b>定义</b> <a href="#l00139">bandwidth.py:139</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_afb5b968a5f8bab9e1f1d63571b590b5f"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afb5b968a5f8bab9e1f1d63571b590b5f">src.bandwidth.BandwidthLimiter._global_read_bucket</a></div><div class="ttdeci">_global_read_bucket</div><div class="ttdef"><b>定义</b> <a href="#l00130">bandwidth.py:130</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_limiter_html_afd49f1d82ed2e26f351c8e6e29fd7ed3"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html#afd49f1d82ed2e26f351c8e6e29fd7ed3">src.bandwidth.BandwidthLimiter.default_limit</a></div><div class="ttdeci">default_limit</div><div class="ttdef"><b>定义</b> <a href="#l00123">bandwidth.py:123</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_bandwidth_stats_html"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">src.bandwidth.BandwidthStats</a></div><div class="ttdef"><b>定义</b> <a href="#l00024">bandwidth.py:24</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html">src.bandwidth.ThroughputMonitor</a></div><div class="ttdef"><b>定义</b> <a href="#l00254">bandwidth.py:254</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a1a7f195bf5ef328a910912d44024cebe"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a1a7f195bf5ef328a910912d44024cebe">src.bandwidth.ThroughputMonitor.__init__</a></div><div class="ttdeci">__init__(self, int window_seconds=5)</div><div class="ttdef"><b>定义</b> <a href="#l00261">bandwidth.py:261</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a3e82d326a61efaf99760874ee8a766b1"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a3e82d326a61efaf99760874ee8a766b1">src.bandwidth.ThroughputMonitor._lock</a></div><div class="ttdeci">_lock</div><div class="ttdef"><b>定义</b> <a href="#l00271">bandwidth.py:271</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a4b8922e29dc5ba6a89f8f7893d51c08e"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a4b8922e29dc5ba6a89f8f7893d51c08e">src.bandwidth.ThroughputMonitor.get_read_rate</a></div><div class="ttdeci">float get_read_rate(self)</div><div class="ttdef"><b>定义</b> <a href="#l00302">bandwidth.py:302</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a511f23f72e0ef0f1c2c94cf8c667a13e"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a511f23f72e0ef0f1c2c94cf8c667a13e">src.bandwidth.ThroughputMonitor.window</a></div><div class="ttdeci">window</div><div class="ttdef"><b>定义</b> <a href="#l00268">bandwidth.py:268</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a6913253b44bfe7c25cdc68560c692ddc"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a6913253b44bfe7c25cdc68560c692ddc">src.bandwidth.ThroughputMonitor.record_write</a></div><div class="ttdeci">record_write(self, int bytes_count)</div><div class="ttdef"><b>定义</b> <a href="#l00284">bandwidth.py:284</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a7716c4777ae682f4ff88cc9658bedb81"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a7716c4777ae682f4ff88cc9658bedb81">src.bandwidth.ThroughputMonitor._read_samples</a></div><div class="ttdeci">list _read_samples</div><div class="ttdef"><b>定义</b> <a href="#l00269">bandwidth.py:269</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a793622e7fa5a1a4bb79dc4044ee8b250"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a793622e7fa5a1a4bb79dc4044ee8b250">src.bandwidth.ThroughputMonitor._write_samples</a></div><div class="ttdeci">list _write_samples</div><div class="ttdef"><b>定义</b> <a href="#l00270">bandwidth.py:270</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a82f085b470c430bc58e0377d541ef3e2"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a82f085b470c430bc58e0377d541ef3e2">src.bandwidth.ThroughputMonitor.get_stats</a></div><div class="ttdeci">Dict[str, float] get_stats(self)</div><div class="ttdef"><b>定义</b> <a href="#l00332">bandwidth.py:332</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_a8eaae207133c144f6add85eed4ebe52c"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#a8eaae207133c144f6add85eed4ebe52c">src.bandwidth.ThroughputMonitor.get_write_rate</a></div><div class="ttdeci">float get_write_rate(self)</div><div class="ttdef"><b>定义</b> <a href="#l00317">bandwidth.py:317</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_abaf0ad6089b5a85cc33a41718e4b7044"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#abaf0ad6089b5a85cc33a41718e4b7044">src.bandwidth.ThroughputMonitor.record_read</a></div><div class="ttdeci">record_read(self, int bytes_count)</div><div class="ttdef"><b>定义</b> <a href="#l00273">bandwidth.py:273</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_throughput_monitor_html_ae369e64cad9d047bf2ca60bc646c8deb"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html#ae369e64cad9d047bf2ca60bc646c8deb">src.bandwidth.ThroughputMonitor._cleanup_old_samples</a></div><div class="ttdeci">_cleanup_old_samples(self)</div><div class="ttdef"><b>定义</b> <a href="#l00295">bandwidth.py:295</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html">src.bandwidth.TokenBucket</a></div><div class="ttdef"><b>定义</b> <a href="#l00035">bandwidth.py:35</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_a0f54891afa5a3cb0dd5230be75fa1061"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#a0f54891afa5a3cb0dd5230be75fa1061">src.bandwidth.TokenBucket.wait_for_tokens</a></div><div class="ttdeci">bool wait_for_tokens(self, int tokens)</div><div class="ttdef"><b>定义</b> <a href="#l00080">bandwidth.py:80</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_a4cbff83663405b8f40f7ad95b2447b79"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#a4cbff83663405b8f40f7ad95b2447b79">src.bandwidth.TokenBucket.rate</a></div><div class="ttdeci">rate</div><div class="ttdef"><b>定义</b> <a href="#l00050">bandwidth.py:50</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_a5113e7f7b424d62e34b7872a77142c23"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#a5113e7f7b424d62e34b7872a77142c23">src.bandwidth.TokenBucket.__init__</a></div><div class="ttdeci">__init__(self, int rate, int capacity)</div><div class="ttdef"><b>定义</b> <a href="#l00042">bandwidth.py:42</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_a531da7dc6c80f27af077bb2fa2a56e90"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#a531da7dc6c80f27af077bb2fa2a56e90">src.bandwidth.TokenBucket.last_update</a></div><div class="ttdeci">last_update</div><div class="ttdef"><b>定义</b> <a href="#l00053">bandwidth.py:53</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_a536b32c33ff418d8d661ca60faf366ad"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#a536b32c33ff418d8d661ca60faf366ad">src.bandwidth.TokenBucket.tokens</a></div><div class="ttdeci">tokens</div><div class="ttdef"><b>定义</b> <a href="#l00052">bandwidth.py:52</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_ad502806d5b90f4e4ea72791372e4ffee"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad502806d5b90f4e4ea72791372e4ffee">src.bandwidth.TokenBucket._lock</a></div><div class="ttdeci">_lock</div><div class="ttdef"><b>定义</b> <a href="#l00054">bandwidth.py:54</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_ad868c878f4cb00f4404547ea97a5fa43"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#ad868c878f4cb00f4404547ea97a5fa43">src.bandwidth.TokenBucket.consume</a></div><div class="ttdeci">bool consume(self, int tokens)</div><div class="ttdef"><b>定义</b> <a href="#l00056">bandwidth.py:56</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_adc857ac01a4e2fac9b7c9332625dfd36"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#adc857ac01a4e2fac9b7c9332625dfd36">src.bandwidth.TokenBucket.capacity</a></div><div class="ttdeci">capacity</div><div class="ttdef"><b>定义</b> <a href="#l00051">bandwidth.py:51</a></div></div>
+<div class="ttc" id="aclasssrc_1_1bandwidth_1_1_token_bucket_html_ae52969fbebb296a2473b94cb452ec196"><div class="ttname"><a href="classsrc_1_1bandwidth_1_1_token_bucket.html#ae52969fbebb296a2473b94cb452ec196">src.bandwidth.TokenBucket.get_available_tokens</a></div><div class="ttdeci">int get_available_tokens(self)</div><div class="ttdef"><b>定义</b> <a href="#l00104">bandwidth.py:104</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_6677ae9ab6b44745d84312e77c0c7357.html">relay-server</a></li><li class="navelem"><a href="dir_71c4896af3b30f8c835204c7a2810a19.html">src</a></li><li class="navelem"><a href="bandwidth_8py.html">bandwidth.py</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

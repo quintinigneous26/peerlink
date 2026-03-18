@@ -1,0 +1,213 @@
+\doxysection{src.\+bandwidth.\+Token\+Bucket类 参考}
+\hypertarget{classsrc_1_1bandwidth_1_1_token_bucket}{}\label{classsrc_1_1bandwidth_1_1_token_bucket}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a5113e7f7b424d62e34b7872a77142c23}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a4cbff83663405b8f40f7ad95b2447b79}{rate}}, int \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_adc857ac01a4e2fac9b7c9332625dfd36}{capacity}})
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_ad868c878f4cb00f4404547ea97a5fa43}{consume}} (self, int \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a536b32c33ff418d8d661ca60faf366ad}{tokens}})
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a0f54891afa5a3cb0dd5230be75fa1061}{wait\+\_\+for\+\_\+tokens}} (self, int \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a536b32c33ff418d8d661ca60faf366ad}{tokens}})
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_ae52969fbebb296a2473b94cb452ec196}{get\+\_\+available\+\_\+tokens}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a4cbff83663405b8f40f7ad95b2447b79}{rate}} = rate
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_adc857ac01a4e2fac9b7c9332625dfd36}{capacity}} = capacity
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a536b32c33ff418d8d661ca60faf366ad}{tokens}} = float(\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_adc857ac01a4e2fac9b7c9332625dfd36}{capacity}})
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_a531da7dc6c80f27af077bb2fa2a56e90}{last\+\_\+update}} = time.\+time()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_ad502806d5b90f4e4ea72791372e4ffee}{\+\_\+lock}} = asyncio.\+Lock()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Token bucket rate limiter.
+
+Allows bursts up to bucket capacity while maintaining average rate.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00035}{35}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_a5113e7f7b424d62e34b7872a77142c23}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_a5113e7f7b424d62e34b7872a77142c23} 
+src.\+bandwidth.\+Token\+Bucket.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{rate}{, }\item[{int}]{capacity}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize token bucket.
+
+Args:
+    rate: Tokens per second (bytes per second)
+    capacity: Maximum bucket size (burst allowance)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00042}{42}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_ad868c878f4cb00f4404547ea97a5fa43}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!consume@{consume}}
+\index{consume@{consume}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{consume()}{consume()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_ad868c878f4cb00f4404547ea97a5fa43} 
+ bool src.\+bandwidth.\+Token\+Bucket.\+consume (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{tokens}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Try to consume tokens.
+
+Args:
+    tokens: Number of tokens to consume
+
+Returns:
+    True if tokens were consumed, False if insufficient tokens
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{56}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00051}{capacity}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00053}{last\+\_\+update}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00050}{rate}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00052}{tokens}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{wait\+\_\+for\+\_\+tokens()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_ae52969fbebb296a2473b94cb452ec196}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!get\_available\_tokens@{get\_available\_tokens}}
+\index{get\_available\_tokens@{get\_available\_tokens}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{get\_available\_tokens()}{get\_available\_tokens()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_ae52969fbebb296a2473b94cb452ec196} 
+ int src.\+bandwidth.\+Token\+Bucket.\+get\+\_\+available\+\_\+tokens (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get currently available tokens.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00104}{104}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00052}{tokens}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_a0f54891afa5a3cb0dd5230be75fa1061}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!wait\_for\_tokens@{wait\_for\_tokens}}
+\index{wait\_for\_tokens@{wait\_for\_tokens}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{wait\_for\_tokens()}{wait\_for\_tokens()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_a0f54891afa5a3cb0dd5230be75fa1061} 
+ bool src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{tokens}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Wait until enough tokens are available.
+
+Args:
+    tokens: Number of tokens needed
+
+Returns:
+    True if tokens acquired, False if rate is zero
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{80}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{consume()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00053}{last\+\_\+update}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00050}{rate}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00052}{tokens}}.
+
+函数调用图:\+
+% FIG 1
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_ad502806d5b90f4e4ea72791372e4ffee}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_ad502806d5b90f4e4ea72791372e4ffee} 
+src.\+bandwidth.\+Token\+Bucket.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{54}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{consume()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_adc857ac01a4e2fac9b7c9332625dfd36}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!capacity@{capacity}}
+\index{capacity@{capacity}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{capacity}{capacity}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_adc857ac01a4e2fac9b7c9332625dfd36} 
+src.\+bandwidth.\+Token\+Bucket.\+capacity = capacity}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00051}{51}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{consume()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_a531da7dc6c80f27af077bb2fa2a56e90}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!last\_update@{last\_update}}
+\index{last\_update@{last\_update}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{last\_update}{last\_update}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_a531da7dc6c80f27af077bb2fa2a56e90} 
+src.\+bandwidth.\+Token\+Bucket.\+last\+\_\+update = time.\+time()}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00053}{53}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{consume()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_a4cbff83663405b8f40f7ad95b2447b79}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!rate@{rate}}
+\index{rate@{rate}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{rate}{rate}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_a4cbff83663405b8f40f7ad95b2447b79} 
+src.\+bandwidth.\+Token\+Bucket.\+rate = rate}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00050}{50}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{consume()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_token_bucket_a536b32c33ff418d8d661ca60faf366ad}\index{src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}!tokens@{tokens}}
+\index{tokens@{tokens}!src.bandwidth.TokenBucket@{src.bandwidth.TokenBucket}}
+\doxysubsubsection{\texorpdfstring{tokens}{tokens}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_token_bucket_a536b32c33ff418d8d661ca60faf366ad} 
+src.\+bandwidth.\+Token\+Bucket.\+tokens = float(\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_token_bucket_adc857ac01a4e2fac9b7c9332625dfd36}{capacity}})}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00052}{52}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{consume()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00104}{get\+\_\+available\+\_\+tokens()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{wait\+\_\+for\+\_\+tokens()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+\doxymbox{\hyperlink{bandwidth_8py}{bandwidth.\+py}}\end{DoxyCompactItemize}

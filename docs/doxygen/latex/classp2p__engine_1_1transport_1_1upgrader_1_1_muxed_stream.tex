@@ -1,0 +1,286 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{}\label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+
+
+类 p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_ae3c23efdf7061a914625a22de751e860}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acc68f53c82e48ee35ea28e9af8eb308a}{stream\+\_\+id}}, asyncio.\+Stream\+Reader read\+\_\+stream, asyncio.\+Stream\+Writer write\+\_\+stream)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acc68f53c82e48ee35ea28e9af8eb308a}{stream\+\_\+id}} (self)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a46baabc18cadf74ec34a91f3695458f5}{read}} (self, int n=-\/1)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a71faf0258926eb32e696346bfdbd3d65}{write}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acf14a5ec8c719c27fc8c14f4763ef31a}{close}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_abfdce4eecfaa85a474e260390a9fae6e}{is\+\_\+closed}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a930aaa553e5493b69fb9c7be4adb9d30}{remote\+\_\+address}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a158e0798b147e82fc3ccd3199b5fbb54}{local\+\_\+address}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a0f582564fb6ff8e81f1eab7b38328d65}{\+\_\+stream\+\_\+id}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acc68f53c82e48ee35ea28e9af8eb308a}{stream\+\_\+id}}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a2877c879998a0decdd39c94c819ea217}{\+\_\+reader}} = read\+\_\+stream
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_aa99dd8ae3c182d1a21ced5b7b6918e82}{\+\_\+writer}} = write\+\_\+stream
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}复用流
+
+在复用会话中的单个逻辑流。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00135}{135}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_ae3c23efdf7061a914625a22de751e860}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_ae3c23efdf7061a914625a22de751e860} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{stream\+\_\+id}{, }\item[{asyncio.\+Stream\+Reader}]{read\+\_\+stream}{, }\item[{asyncio.\+Stream\+Writer     }]{write\+\_\+stream}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00142}{142}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acf14a5ec8c719c27fc8c14f4763ef31a}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acf14a5ec8c719c27fc8c14f4763ef31a} 
+ None p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭连接\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a03bc6dc0ef2a59f073caa915a59e81da}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00169}{169}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{ping_8py_source_l00079}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+writer}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00074}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+writer}}, \doxymbox{\hyperlink{upgrader_8py_source_l00150}{\+\_\+writer}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00169}{close()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00169}{close()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_abfdce4eecfaa85a474e260390a9fae6e}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_abfdce4eecfaa85a474e260390a9fae6e} 
+ bool p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}检查连接是否已关闭\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_afd80c879b0a4036fce4ca9e8b8e34115}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00173}{173}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{ping_8py_source_l00079}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+writer}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00074}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+writer}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00150}{\+\_\+writer}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a158e0798b147e82fc3ccd3199b5fbb54}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!local\_address@{local\_address}}
+\index{local\_address@{local\_address}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{local\_address()}{local\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a158e0798b147e82fc3ccd3199b5fbb54} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+local\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取本地地址\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a2c2fdec8d0b32b8b7804c2c437a86c1d}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00181}{181}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a46baabc18cadf74ec34a91f3695458f5}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!read@{read}}
+\index{read@{read}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a46baabc18cadf74ec34a91f3695458f5} 
+ bytes p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{n}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}读取数据
+
+Args:
+    n: 读取字节数，-1 表示读取所有可用数据
+
+Returns:
+    读取的数据
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a4f82ab1576b25050f93e2a8679b5a055}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00157}{157}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00507}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00670}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{yamux_8py_source_l00527}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{ping_8py_source_l00078}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+reader}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00073}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+reader}}, \doxymbox{\hyperlink{upgrader_8py_source_l00149}{\+\_\+reader}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00157}{read()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00157}{read()}}.
+
+函数调用图:\+
+% FIG 4
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a930aaa553e5493b69fb9c7be4adb9d30}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!remote\_address@{remote\_address}}
+\index{remote\_address@{remote\_address}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{remote\_address()}{remote\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a930aaa553e5493b69fb9c7be4adb9d30} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+remote\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取远程地址\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_acf8091530c3865d3c01d74895388af65}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00177}{177}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acc68f53c82e48ee35ea28e9af8eb308a}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!stream\_id@{stream\_id}}
+\index{stream\_id@{stream\_id}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{stream\_id()}{stream\_id()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acc68f53c82e48ee35ea28e9af8eb308a} 
+ int p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+stream\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}流ID\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00153}{153}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00099}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+stream\+\_\+id}}, \doxymbox{\hyperlink{quic_8py_source_l00356}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+stream\+\_\+id}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00148}{\+\_\+stream\+\_\+id}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex_8py_source_l00169}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Frame.\+pack()}} , 以及 \doxymbox{\hyperlink{mplex__v2_8py_source_l00175}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Frame.\+pack()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a71faf0258926eb32e696346bfdbd3d65}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!write@{write}}
+\index{write@{write}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a71faf0258926eb32e696346bfdbd3d65} 
+ int p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}写入数据
+
+Args:
+    data: 要写入的数据
+
+Returns:
+    写入的字节数
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a1f8391923639cf4fd18b559d01bc345b}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00164}{164}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{ping_8py_source_l00079}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+writer}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00074}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+writer}}, \doxymbox{\hyperlink{upgrader_8py_source_l00150}{\+\_\+writer}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00164}{write()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00164}{write()}}.
+
+函数调用图:\+
+% FIG 7
+这是这个函数的调用关系图:\+
+% FIG 8
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a2877c879998a0decdd39c94c819ea217}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!\_reader@{\_reader}}
+\index{\_reader@{\_reader}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{\_reader}{\_reader}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a2877c879998a0decdd39c94c819ea217} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+reader = read\+\_\+stream\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00149}{149}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00292}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00274}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00157}{read()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00256}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+recv()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a0f582564fb6ff8e81f1eab7b38328d65}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!\_stream\_id@{\_stream\_id}}
+\index{\_stream\_id@{\_stream\_id}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{\_stream\_id}{\_stream\_id}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a0f582564fb6ff8e81f1eab7b38328d65} 
+int p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+stream\+\_\+id = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acc68f53c82e48ee35ea28e9af8eb308a}{stream\+\_\+id}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00148}{148}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00153}{stream\+\_\+id()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_aa99dd8ae3c182d1a21ced5b7b6918e82}\index{p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}!\_writer@{\_writer}}
+\index{\_writer@{\_writer}!p2p\_engine.transport.upgrader.MuxedStream@{p2p\_engine.transport.upgrader.MuxedStream}}
+\doxysubsubsection{\texorpdfstring{\_writer}{\_writer}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_aa99dd8ae3c182d1a21ced5b7b6918e82} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+writer = write\+\_\+stream\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00150}{150}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00250}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+send\+\_\+request()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00169}{close()}}, \doxymbox{\hyperlink{transport_8py_source_l00274}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00173}{is\+\_\+closed()}}, \doxymbox{\hyperlink{transport_8py_source_l00241}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+send()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00164}{write()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{upgrader_8py}{upgrader.\+py}}\end{DoxyCompactItemize}

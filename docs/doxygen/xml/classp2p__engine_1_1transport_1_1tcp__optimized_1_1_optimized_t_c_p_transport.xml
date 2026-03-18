@@ -1,0 +1,436 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</compoundname>
+    <basecompoundref refid="classp2p__engine_1_1transport_1_1base_1_1_transport" prot="public" virt="non-virtual">p2p_engine.transport.base.Transport</basecompoundref>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a702851697b1dcc3681ff0585c059e9c7" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport::_enable_fastopen</definition>
+        <argsstring></argsstring>
+        <name>_enable_fastopen</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._enable_fastopen</qualifiedname>
+        <initializer>=  enable_fastopen and <ref refid="namespacep2p__engine_1_1transport_1_1tcp__optimized_1ad3e6b84b56fd0874072006880f65cf0a" kindref="member">is_tcp_fastopen_available</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="319" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="319" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" compoundref="tcp__optimized_8py" startline="336" endline="366">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ab748f5006504a393466a8c2bb8b8684f" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport::_enable_pooling</definition>
+        <argsstring></argsstring>
+        <name>_enable_pooling</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._enable_pooling</qualifiedname>
+        <initializer>=  enable_pooling</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="320" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="320" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a0ef3e42aae54ad2eeda2f79855542a2b" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport::_pool</definition>
+        <argsstring></argsstring>
+        <name>_pool</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._pool</qualifiedname>
+        <initializer>=  <ref refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool" kindref="compound">ConnectionPool</ref>(max_size=pool_size) if enable_pooling else None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="321" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="321" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1did__service_1_1storage_1_1_device_storage_1a7959f606c797a14dea16d6560363e6d1" compoundref="storage_8py" startline="42" endline="53">src.did_service.storage.DeviceStorage._get_pool</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a5a5a2e75fe6d338067aa5178e94c8a30" compoundref="tcp__optimized_8py" startline="414" endline="425">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.close</referencedby>
+        <referencedby refid="classsrc_1_1did__service_1_1storage_1_1_device_storage_1ae6ab7f665793f59c3162365baa96c7a8" compoundref="storage_8py" startline="54" endline="59">src.did_service.storage.DeviceStorage.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" compoundref="tcp__optimized_8py" startline="336" endline="366">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool p2p_engine.transport.tcp_optimized.OptimizedTCPTransport::_closed</definition>
+        <argsstring></argsstring>
+        <name>_closed</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</qualifiedname>
+        <initializer>=  False</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="322" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="322" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a5901e4d980d850095697e5b80cf875da" compoundref="upgrader_8py" startline="269" endline="293">p2p_engine.transport.upgrader.MuxedSession._handle_incoming_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ab3d1f87c0356d6cfb43d36f35904b497" compoundref="webrtc_8py" startline="340" endline="381">p2p_engine.transport.webrtc.WebRTCConnection._setup_callbacks</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a0e0c1c70fb0e57db7379372f91c60858" compoundref="webrtc_8py" startline="382" endline="406">p2p_engine.transport.webrtc.WebRTCConnection._setup_data_channel_callbacks</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a6e420370dfdc068698fc7e1791dc7074" compoundref="tcp__optimized_8py" startline="464" endline="483">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.accept</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1ac4e3ff693a7ccb2cb9f4f5a74911f6e4" compoundref="webrtc_8py" startline="448" endline="459">p2p_engine.transport.webrtc.WebRTCListener.accept</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1ac635ca57b93cd43522b39f73f53953cf" compoundref="upgrader_8py" startline="238" endline="268">p2p_engine.transport.upgrader.MuxedSession.accept_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1a0e1f5d427e6250f5af7fbec961e29fd8" compoundref="webtransport_8py" startline="342" endline="347">p2p_engine.transport.webtransport.WebTransportListener.addresses</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a5a5a2e75fe6d338067aa5178e94c8a30" compoundref="tcp__optimized_8py" startline="414" endline="425">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1ac5b0e361db1da8858323e33f627685d8" compoundref="tcp__optimized_8py" startline="484" endline="494">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a3d43d2a558a18d7d4bbaf9d20963e372" compoundref="upgrader_8py" startline="294" endline="322">p2p_engine.transport.upgrader.MuxedSession.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a4847408d80964e250d3cea3d37998cf2" compoundref="webrtc_8py" startline="224" endline="253">p2p_engine.transport.webrtc.WebRTCConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1aa20a81a3733e9f666d055d0a756488f5" compoundref="webrtc_8py" startline="460" endline="485">p2p_engine.transport.webrtc.WebRTCListener.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a399c11aaf1c8c082a1392acc90866a29" compoundref="webrtc_8py" startline="652" endline="676">p2p_engine.transport.webrtc.WebRTCTransport.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1add2afadac6e7e6bd167a478fccdc3226" compoundref="webtransport_8py" startline="276" endline="290">p2p_engine.transport.webtransport.WebTransportConnection.close</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" compoundref="tcp__optimized_8py" startline="336" endline="366">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a734be440a3e0dda052e1baa3ed9115de" compoundref="webrtc_8py" startline="597" endline="629">p2p_engine.transport.webrtc.WebRTCTransport.dial</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a7d5dc8f447a4e5df0366bf0d8440905e" compoundref="webrtc_8py" startline="497" endline="526">p2p_engine.transport.webrtc.WebRTCListener.handle_offer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_optimized_listener_1a0a7afc0854f496891c07b347af25a375" compoundref="tcp__optimized_8py" startline="495" endline="498">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a58863a19f3250663088cf287b9e89dc5" compoundref="upgrader_8py" startline="220" endline="222">p2p_engine.transport.upgrader.MuxedSession.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1ac11fe8b7bc2356b9cdc19fd0aeb489fc" compoundref="webrtc_8py" startline="254" endline="257">p2p_engine.transport.webrtc.WebRTCConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_listener_1a80a27b30b497da7bd5292ac6467c73f4" compoundref="webrtc_8py" startline="486" endline="489">p2p_engine.transport.webrtc.WebRTCListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a3587fc10fb7c98dc708790297b0f60fe" compoundref="webtransport_8py" startline="249" endline="252">p2p_engine.transport.webtransport.WebTransportConnection.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_listener_1af53137f2c2cd0db7ffa4e1a39638326e" compoundref="webtransport_8py" startline="337" endline="340">p2p_engine.transport.webtransport.WebTransportListener.is_closed</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8d2efed25932f102c3b71b3c5fbee0bf" compoundref="tcp__optimized_8py" startline="390" endline="413">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.listen</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_transport_1a47c09e2d3c3d1ba10b0c9aee8b54f737" compoundref="webrtc_8py" startline="630" endline="651">p2p_engine.transport.webrtc.WebRTCTransport.listen</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session_1a4864ede2e7c21844c683199cc9c7b838" compoundref="upgrader_8py" startline="223" endline="237">p2p_engine.transport.upgrader.MuxedSession.open_stream</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a1b8f25022453d63672bcca8c65dd07c7" compoundref="webrtc_8py" startline="175" endline="200">p2p_engine.transport.webrtc.WebRTCConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a26c2731c6da14a4933fe5a5a293884b3" compoundref="webtransport_8py" startline="253" endline="265">p2p_engine.transport.webtransport.WebTransportConnection.read</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_1a5b5eac0ea06bb69b30e54a3676e62221" compoundref="webrtc_8py" startline="201" endline="223">p2p_engine.transport.webrtc.WebRTCConnection.write</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_1a64518eadb1d50405a40899b41fb79efd" compoundref="webtransport_8py" startline="266" endline="275">p2p_engine.transport.webtransport.WebTransportConnection.write</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a588809ff3a8ffda2929016aa6e05381c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.__init__</definition>
+        <argsstring>(self, bool enable_fastopen=True, bool enable_pooling=True, int pool_size=DEFAULT_MAX_POOL_SIZE)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enable_fastopen</declname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enable_pooling</declname>
+          <defval>True</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>pool_size</declname>
+          <defval><ref refid="namespacep2p__engine_1_1transport_1_1tcp__optimized_1a8b82ac90504af5b63df6e54f385d4136" kindref="member">DEFAULT_MAX_POOL_SIZE</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="313" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="318" bodyend="331"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ae282f67eb1ce27a0d35130e90e9ccb07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>List[str]</type>
+        <definition> List[str] p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.protocols</definition>
+        <argsstring>(self)</argsstring>
+        <name>protocols</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.protocols</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1adfb364ee5a07f98fb541d346966a79ce">protocols</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>返回支持的协议列表</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="332" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="332" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection" kindref="compound">TCPFastOpenConnection</ref></type>
+        <definition> TCPFastOpenConnection p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</definition>
+        <argsstring>(self, str addr)</argsstring>
+        <name>dial</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1a75e857ad1537e55cb8c1c0c33bae9e16">dial</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>建立到指定地址的连接
+
+支持连接池和 TCP Fast Open
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="336" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="336" bodyend="366"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a238c0c22bc08cac22c25c6ae9957aebf" compoundref="tcp__optimized_8py" startline="384" endline="389">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._dial_with_fastopen</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a702851697b1dcc3681ff0585c059e9c7" compoundref="tcp__optimized_8py" startline="319">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._enable_fastopen</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a3944a58c3c35c50c9810d2055d911df3" compoundref="quic_8py" startline="844" endline="876">p2p_engine.transport.quic.QUICTransport._parse_address</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a7f467205bae4ba1863a53bbde207987f" compoundref="tcp__optimized_8py" startline="426" endline="449">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._parse_address</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_stream_i_d_pool_1a2ab37b10da0be9fff3793b16860b9a4c" compoundref="yamux__optimized_8py" startline="128">p2p_engine.muxer.yamux_optimized.StreamIDPool._pool</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool_1a8ebd16b10d532f756a112a7da4e69e6b" compoundref="tcp__optimized_8py" startline="190">p2p_engine.transport.tcp_optimized.ConnectionPool._pool</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a0ef3e42aae54ad2eeda2f79855542a2b" compoundref="tcp__optimized_8py" startline="321">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._pool</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a2636f0b0fb888cc95e0bb2943f27dcae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection" kindref="compound">TCPFastOpenConnection</ref></type>
+        <definition> TCPFastOpenConnection p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial_standard</definition>
+        <argsstring>(self, str host, int port)</argsstring>
+        <name>dial_standard</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial_standard</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>标准 TCP 连接</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="367" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="367" bodyend="379"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8d2efed25932f102c3b71b3c5fbee0bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_listener" kindref="compound">Listener</ref></type>
+        <definition> Listener p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.listen</definition>
+        <argsstring>(self, str addr)</argsstring>
+        <name>listen</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.listen</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1ad6b5a798b3530fb18570596f66334843">listen</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>开始监听</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="390" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="390" bodyend="413"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1a3944a58c3c35c50c9810d2055d911df3" compoundref="quic_8py" startline="844" endline="876">p2p_engine.transport.quic.QUICTransport._parse_address</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a7f467205bae4ba1863a53bbde207987f" compoundref="tcp__optimized_8py" startline="426" endline="449">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._parse_address</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a5a5a2e75fe6d338067aa5178e94c8a30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.close</definition>
+        <argsstring>(self)</argsstring>
+        <name>close</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.close</qualifiedname>
+        <reimplements refid="classp2p__engine_1_1transport_1_1base_1_1_transport_1adb257dcbc0d5b57b08611a4b1e0ac285">close</reimplements>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>关闭传输层</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="414" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="414" bodyend="425"/>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex_1_1_mplex_session_1aaa229c3c57f0782b4d112238bdd89ea3" compoundref="mplex_8py" startline="523">p2p_engine.muxer.mplex.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_connection_writer_1a2f894d250e2badd2288d794d5702b0c0" compoundref="mplex__adapter_8py" startline="105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__adapter_1_1_mplex_muxed_session_1" compoundref="mplex__adapter_8py" startline="141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1mplex__v2_1_1_mplex_session_1a9b9f1607b2f271b864b723c8cd826344" compoundref="mplex__v2_8py" startline="694">p2p_engine.muxer.mplex_v2.MplexSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session_1acb8dae2c0482cb1d8319f56f50424ad1" compoundref="yamux_8py" startline="549">p2p_engine.muxer.yamux.YamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_optimized_yamux_session_1" compoundref="yamux__optimized_8py" startline="204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_connection_wrapper_1a7ac7a15bec4102c61bef56d24f29c05b" compoundref="identify_8py" startline="215">p2p_engine.protocol.identify.ConnectionWrapper._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_noise_security_transport_1a6deb7c5c924ed2048abb39367bc6d6b9" compoundref="noise_8py" startline="716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_security_transport_1a8c9afca03d78020b4fbda170eb1a6443" compoundref="tls_8py" startline="290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</references>
+        <references refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_session_1acfae555e6df360a9d2545ce15ee78e6f" compoundref="tls_8py" startline="648">p2p_engine.protocol.tls.TLSSession._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_manager_1ad1aec8ef5880597564e0351afef3fb88" compoundref="manager_8py" startline="53">p2p_engine.transport.manager.TransportManager._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_1a24810361bec6ada0112923902a52a8e5" compoundref="quic_8py" startline="102">p2p_engine.transport.quic.QUICConnection._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_listener_1abeded435440170c18ab42211d9b5d740" compoundref="quic_8py" startline="482">p2p_engine.transport.quic.QUICListener._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream_1a6d23393a766303464e75dd8bc19daab5" compoundref="quic_8py" startline="360">p2p_engine.transport.quic.QUICStream._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_transport_1add75eff327104c620a32913b630e5166" compoundref="quic_8py" startline="641">p2p_engine.transport.quic.QUICTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" compoundref="tcp__optimized_8py" startline="322">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._closed</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_1ad4e16a959ad78311093989a6c7592594" compoundref="tcp__optimized_8py" startline="72">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection._closed</references>
+        <references refid="classp2p__engine_1_1muxer_1_1yamux__optimized_1_1_stream_i_d_pool_1a2ab37b10da0be9fff3793b16860b9a4c" compoundref="yamux__optimized_8py" startline="128">p2p_engine.muxer.yamux_optimized.StreamIDPool._pool</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool_1a8ebd16b10d532f756a112a7da4e69e6b" compoundref="tcp__optimized_8py" startline="190">p2p_engine.transport.tcp_optimized.ConnectionPool._pool</references>
+        <references refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a0ef3e42aae54ad2eeda2f79855542a2b" compoundref="tcp__optimized_8py" startline="321">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._pool</references>
+        <referencedby refid="classp2p__sdk_1_1client_1_1_p2_p_client_1a62c68e9c1651f9faea4cd98b81da16ed" compoundref="client_8py" startline="516" endline="543">p2p_sdk.client.P2PClient._receive_loop</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a238c0c22bc08cac22c25c6ae9957aebf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection" kindref="compound">TCPFastOpenConnection</ref></type>
+        <definition> TCPFastOpenConnection p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._dial_with_fastopen</definition>
+        <argsstring>(self, str host, int port)</argsstring>
+        <name>_dial_with_fastopen</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._dial_with_fastopen</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>使用 TCP Fast Open 连接</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="380" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="384" bodyend="389"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" compoundref="tcp__optimized_8py" startline="336" endline="366">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a7f467205bae4ba1863a53bbde207987f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[str, int]</type>
+        <definition> Tuple[str, int] p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._parse_address</definition>
+        <argsstring>(self, str addr)</argsstring>
+        <name>_parse_address</name>
+        <qualifiedname>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport._parse_address</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>解析地址</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/tcp_optimized.py" line="426" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="426" bodyend="449"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" compoundref="tcp__optimized_8py" startline="336" endline="366">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8d2efed25932f102c3b71b3c5fbee0bf" compoundref="tcp__optimized_8py" startline="390" endline="413">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.listen</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>优化的 TCP 传输
+
+特性:
+- TCP Fast Open 支持
+- 连接池
+- 高性能 socket 配置
+</verbatim> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Transport</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_transport"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ABC</label>
+      </node>
+      <node id="1">
+        <label>p2p_engine.transport.tcp_optimized.OptimizedTCPTransport</label>
+        <link refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>p2p_engine.transport.base.Transport</label>
+        <link refid="classp2p__engine_1_1transport_1_1base_1_1_transport"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="p2p_engine/transport/tcp_optimized.py" line="303" column="1" bodyfile="p2p_engine/transport/tcp_optimized.py" bodystart="303" bodyend="449"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a588809ff3a8ffda2929016aa6e05381c" prot="public" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ad06cf761ea49a0635cbb549cd0b628c4" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>_closed</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a238c0c22bc08cac22c25c6ae9957aebf" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>_dial_with_fastopen</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a702851697b1dcc3681ff0585c059e9c7" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>_enable_fastopen</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ab748f5006504a393466a8c2bb8b8684f" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>_enable_pooling</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a7f467205bae4ba1863a53bbde207987f" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>_parse_address</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a0ef3e42aae54ad2eeda2f79855542a2b" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>_pool</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a5a5a2e75fe6d338067aa5178e94c8a30" prot="public" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>close</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8289ba9593d890276c29eff7c3a4b232" prot="public" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>dial</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a2636f0b0fb888cc95e0bb2943f27dcae" prot="public" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>dial_standard</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1a8d2efed25932f102c3b71b3c5fbee0bf" prot="public" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>listen</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_1ae282f67eb1ce27a0d35130e90e9ccb07" prot="public" virt="non-virtual"><scope>p2p_engine::transport::tcp_optimized::OptimizedTCPTransport</scope><name>protocols</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

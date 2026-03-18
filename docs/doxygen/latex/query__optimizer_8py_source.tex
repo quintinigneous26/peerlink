@@ -1,0 +1,567 @@
+\doxysection{query\+\_\+optimizer.\+py}
+\hypertarget{query__optimizer_8py_source}{}\label{query__optimizer_8py_source}\index{p2p\_engine/dht/query\_optimizer.py@{p2p\_engine/dht/query\_optimizer.py}}
+\doxymbox{\hyperlink{query__optimizer_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00002}00002\ \textcolor{stringliteral}{DHT\ Query\ Optimization\ Module}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00004}00004\ \textcolor{stringliteral}{This\ module\ provides\ optimizations\ for\ Kademlia\ DHT\ queries\ to\ improve}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00005}00005\ \textcolor{stringliteral}{lookup\ performance\ and\ reduce\ network\ overhead.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00006}00006\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00007}00007\ \textcolor{stringliteral}{Optimizations:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00008}00008\ \textcolor{stringliteral}{-\/\ Parallel\ query\ execution\ with\ adaptive\ concurrency}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00009}00009\ \textcolor{stringliteral}{-\/\ Result\ caching}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00010}00010\ \textcolor{stringliteral}{-\/\ Query\ pipelining}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00011}00011\ \textcolor{stringliteral}{-\/\ Peer\ selection\ heuristics}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00012}00012\ \textcolor{stringliteral}{-\/\ Request\ coalescing}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00013}00013\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00014}00014\ \textcolor{stringliteral}{Target:\ Faster\ DHT\ lookups\ with\ reduced\ latency\ (<\ 100ms\ for\ common\ cases)}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00015}00015\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00017}00017\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00018}00018\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00019}00019\ \textcolor{keyword}{import}\ time}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00020}00020\ \textcolor{keyword}{import}\ heapq}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00021}00021\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ List,\ Dict,\ Set,\ Callable,\ Awaitable,\ Tuple,\ Any}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00022}00022\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass,\ field}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00023}00023\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ Enum}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00024}00024\ \textcolor{keyword}{import}\ hashlib}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00026}00026\ \textcolor{keyword}{from}\ .routing\ \textcolor{keyword}{import}\ PeerEntry,\ calculate\_distance,\ K,\ ALPHA}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00027}00027\ \textcolor{keyword}{from}\ .query\ \textcolor{keyword}{import}\ QueryContext,\ QueryType,\ QueryState,\ QueryResult}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00029}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_aa52c7da2764423afe95441173b81d705}{00029}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00032}00032\ \textcolor{comment}{\#\ ====================\ Constants\ ====================}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00034}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_ab19e1198621ea9f85c15cb082083fe4c}{00034}}\ DEFAULT\_CACHE\_SIZE\ =\ 1000}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00035}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a12dcb26e96fde51efacc97e4a887fe9f}{00035}}\ CACHE\_TTL\ =\ 300\ \ \textcolor{comment}{\#\ 5\ minutes}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00036}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_aff6fd50db0f5bd6145941fa734f7fc92}{00036}}\ MAX\_PARALLEL\_QUERIES\ =\ 10}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00037}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_ad45eeb1fcbb41fc9451ce64120c6beba}{00037}}\ QUERY\_TIMEOUT\ =\ 30.0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00039}00039\ \textcolor{comment}{\#\ Adaptive\ concurrency}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00040}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a2934941386d44eb51cc9407ce3df602f}{00040}}\ MIN\_ALPHA\ =\ 2}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00041}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_aa30d6902e0aefcee3bb5de853781d200}{00041}}\ MAX\_ALPHA\ =\ 10}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00042}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a8615a549e8ec9d4bcf3c1db406527f52}{00042}}\ ALPHA\_ADAPTATION\_INTERVAL\ =\ 100\ \ \textcolor{comment}{\#\ queries}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00045}00045\ \textcolor{comment}{\#\ ====================\ Query\ Cache\ ====================}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00047}00047\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00048}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result}{00048}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result}{CachedResult}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00049}00049\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Cached\ DHT\ query\ result."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00050}00050\ \ \ \ \ key:\ bytes}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00051}00051\ \ \ \ \ result:\ QueryResult}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00052}00052\ \ \ \ \ timestamp:\ float}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00053}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result_a3e2fc95aed84472eb4eda8a4c00840a0}{00053}}\ \ \ \ \ hit\_count:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00055}00055\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00056}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result_a6b05f14fbc2e148511012f59afd9c1fe}{00056}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result_a6b05f14fbc2e148511012f59afd9c1fe}{is\_expired}}(self)\ -\/>\ bool:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Check\ if\ cache\ entry\ is\ expired."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ time.time()\ -\/\ self.timestamp\ >\ CACHE\_TTL}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00060}00060\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00061}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result_a1b48ed80ef58fe0de94681a8b95f21f2}{00061}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result_a1b48ed80ef58fe0de94681a8b95f21f2}{age}}(self)\ -\/>\ float:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ age\ in\ seconds."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ time.time()\ -\/\ self.timestamp}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00066}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache}{00066}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache}{QueryCache}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00067}00067\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00068}00068\ \textcolor{stringliteral}{\ \ \ \ LRU\ cache\ for\ DHT\ query\ results.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00069}00069\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00070}00070\ \textcolor{stringliteral}{\ \ \ \ Reduces\ redundant\ network\ queries\ for\ frequently\ accessed\ data.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00071}00071\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00073}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a61ae31a7031c0cb8552acd21d446c432}{00073}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a61ae31a7031c0cb8552acd21d446c432}{\_\_init\_\_}}(self,\ max\_size:\ int\ =\ DEFAULT\_CACHE\_SIZE):}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00074}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a302ca210f40ea373c5115c99b936b92e}{00074}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a302ca210f40ea373c5115c99b936b92e}{\_max\_size}}\ =\ max\_size}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00075}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{00075}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}:\ Dict[bytes,\ CachedResult]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00076}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{00076}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}:\ List[bytes]\ =\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00077}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a549fc27beba868d497943a6b15aa0adc}{00077}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a549fc27beba868d497943a6b15aa0adc}{\_lock}}\ =\ asyncio.Lock()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00078}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_aa5255156257daa8f2e49c7d490faabaa}{00078}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_aa5255156257daa8f2e49c7d490faabaa}{\_hits}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00079}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a192f4d3b24f843a4e0f40c7316c2226a}{00079}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a192f4d3b24f843a4e0f40c7316c2226a}{\_misses}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00081}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a53f27a84c8e230d1a61a0cb4fcf3e357}{00081}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a53f27a84c8e230d1a61a0cb4fcf3e357}{get}}(self,\ key:\ bytes)\ -\/>\ Optional[QueryResult]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00083}00083\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Get\ cached\ result.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00084}00084\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00085}00085\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00086}00086\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ key:\ Query\ key}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00087}00087\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00088}00088\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00089}00089\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Cached\ result\ if\ available\ and\ not\ expired}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00090}00090\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a549fc27beba868d497943a6b15aa0adc}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ cached\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a53f27a84c8e230d1a61a0cb4fcf3e357}{get}}(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ cached\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a192f4d3b24f843a4e0f40c7316c2226a}{\_misses}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ cached.is\_expired:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Remove\ expired\ entry}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}[key]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.remove(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a192f4d3b24f843a4e0f40c7316c2226a}{\_misses}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ access\ order\ (move\ to\ end)}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.remove(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.append(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ cached.hit\_count\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_aa5255156257daa8f2e49c7d490faabaa}{\_hits}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cached.result}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00114}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a90b6962cd8e4a77d7b3a24d20ef928e0}{00114}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a90b6962cd8e4a77d7b3a24d20ef928e0}{put}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00116}00116\ \ \ \ \ \ \ \ \ key:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ result:\ QueryResult,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00118}00118\ \ \ \ \ )\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Cache\ a\ result.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00121}00121\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00122}00122\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00123}00123\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ key:\ Query\ key}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00124}00124\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ result:\ Query\ result\ to\ cache}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00125}00125\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a549fc27beba868d497943a6b15aa0adc}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ existing\ entry}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ key\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.remove(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Evict\ oldest\ if\ at\ capacity}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ len(self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}})\ >=\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a302ca210f40ea373c5115c99b936b92e}{\_max\_size}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oldest\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.pop(0)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}[oldest]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ cached\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_cached_result}{CachedResult}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ key=key,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result=result,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timestamp=time.time(),}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}[key]\ =\ cached}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.append(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00145}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a8c7f576d283b30c239eaab72b899363b}{00145}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a8c7f576d283b30c239eaab72b899363b}{invalidate}}(self,\ key:\ bytes)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Invalidate\ a\ cache\ entry."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a549fc27beba868d497943a6b15aa0adc}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ key\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}[key]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.remove(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00152}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a450d24fb629f3374a545dccb103df215}{00152}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a450d24fb629f3374a545dccb103df215}{clear}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Clear\ all\ cache\ entries."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a549fc27beba868d497943a6b15aa0adc}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a450d24fb629f3374a545dccb103df215}{clear}}()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a450d24fb629f3374a545dccb103df215}{clear}}()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00158}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_aa62f6d502852a4825f19729a49e2dc36}{00158}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_aa62f6d502852a4825f19729a49e2dc36}{cleanup\_expired}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Remove\ expired\ entries."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a549fc27beba868d497943a6b15aa0adc}{\_lock}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ to\_remove\ =\ [}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ key\ \textcolor{keywordflow}{for}\ key,\ cached\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}.items()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ cached.is\_expired}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ key\ \textcolor{keywordflow}{in}\ to\_remove:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ del\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}}[key]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_ac7aade67acfb07ffe65dd58183bc49b0}{\_access\_order}}.remove(key)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ len(to\_remove)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00172}00172\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00173}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a215fce588c957af2af7d9ae4a4620f3b}{00173}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a215fce588c957af2af7d9ae4a4620f3b}{hit\_rate}}(self)\ -\/>\ float:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ cache\ hit\ rate."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ total\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_aa5255156257daa8f2e49c7d490faabaa}{\_hits}}\ +\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a192f4d3b24f843a4e0f40c7316c2226a}{\_misses}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_aa5255156257daa8f2e49c7d490faabaa}{\_hits}}\ /\ total\ \textcolor{keywordflow}{if}\ total\ >\ 0\ \textcolor{keywordflow}{else}\ 0.0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00178}00178\ \ \ \ \ \textcolor{preprocessor}{@property}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00179}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a531615a7b4e349f3395609ec2b711f09}{00179}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a531615a7b4e349f3395609ec2b711f09}{size}}(self)\ -\/>\ int:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ cache\ size."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ len(self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache_a978ec548b8518f91ff1a0b7c1a679c49}{\_cache}})}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00184}00184\ \textcolor{comment}{\#\ ====================\ Peer\ Selector\ ====================}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00186}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy}{00186}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy}{PeerSelectionStrategy}}(Enum):}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00187}00187\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Peer\ selection\ strategies."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00188}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy_a4e2d20cedead769e39d5fb3213570c9a}{00188}}\ \ \ \ \ CLOSEST\ =\ \textcolor{stringliteral}{"{}closest"{}}\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Select\ closest\ peers}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00189}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy_a195bca7a72054a6041ce4d4e4ba73b12}{00189}}\ \ \ \ \ RANDOM\ =\ \textcolor{stringliteral}{"{}random"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Random\ selection}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00190}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy_afb6bb465b1a2d680baafb818cae4d250}{00190}}\ \ \ \ \ LATENCY\_AWARE\ =\ \textcolor{stringliteral}{"{}latency"{}}\ \ \ \ \ \textcolor{comment}{\#\ Consider\ latency}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00191}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selection_strategy_afa44dcdf3731f7c39c4a7964990337ce}{00191}}\ \ \ \ \ ADAPTIVE\ =\ \textcolor{stringliteral}{"{}adaptive"{}}\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Adaptive\ based\ on\ performance}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00194}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector}{00194}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector}{PeerSelector}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00195}00195\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00196}00196\ \textcolor{stringliteral}{\ \ \ \ Selects\ optimal\ peers\ for\ DHT\ queries.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00197}00197\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00198}00198\ \textcolor{stringliteral}{\ \ \ \ Uses\ various\ strategies\ to\ optimize\ query\ performance.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00199}00199\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00201}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ae9e6675662403c9108a18aa98dae4ff9}{00201}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ae9e6675662403c9108a18aa98dae4ff9}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00202}00202\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ strategy:\ PeerSelectionStrategy\ =\ PeerSelectionStrategy.ADAPTIVE,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00204}00204\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00205}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a87e4327f2ffab06d140ccd4eaa906f03}{00205}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a87e4327f2ffab06d140ccd4eaa906f03}{\_strategy}}\ =\ strategy}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00206}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{00206}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}:\ Dict[bytes,\ Dict[str,\ float]]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00208}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ac4258750859c2d5fdd90ed72e0ec0aff}{00208}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ac4258750859c2d5fdd90ed72e0ec0aff}{select\_peers}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00209}00209\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00210}00210\ \ \ \ \ \ \ \ \ target\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00211}00211\ \ \ \ \ \ \ \ \ candidates:\ List[PeerEntry],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00212}00212\ \ \ \ \ \ \ \ \ count:\ int\ =\ ALPHA,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00213}00213\ \ \ \ \ )\ -\/>\ List[PeerEntry]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00215}00215\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Select\ peers\ for\ query.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00216}00216\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00217}00217\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00218}00218\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ target\_id:\ Target\ ID\ for\ distance\ calculation}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00219}00219\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ candidates:\ Available\ peers}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00220}00220\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ count:\ Number\ of\ peers\ to\ select}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00221}00221\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00222}00222\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00223}00223\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Selected\ peers}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00224}00224\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ candidates:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00228}00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a87e4327f2ffab06d140ccd4eaa906f03}{\_strategy}}\ ==\ PeerSelectionStrategy.CLOSEST:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ac1712238ba672d0a56df01819085cafa}{\_select\_closest}}(target\_id,\ candidates,\ count)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a87e4327f2ffab06d140ccd4eaa906f03}{\_strategy}}\ ==\ PeerSelectionStrategy.RANDOM:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_acc497ee1089f9ca0ff61cb0336cfc184}{\_select\_random}}(candidates,\ count)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a87e4327f2ffab06d140ccd4eaa906f03}{\_strategy}}\ ==\ PeerSelectionStrategy.LATENCY\_AWARE:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ad9b21d5a497b22c0ebf972e15e16b3dc}{\_select\_latency\_aware}}(target\_id,\ candidates,\ count)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_aaa13e4466a097464d91fc632a5c0824c}{\_select\_adaptive}}(target\_id,\ candidates,\ count)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00236}00236\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00237}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ac1712238ba672d0a56df01819085cafa}{00237}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ac1712238ba672d0a56df01819085cafa}{\_select\_closest}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00238}00238\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00239}00239\ \ \ \ \ \ \ \ \ target\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00240}00240\ \ \ \ \ \ \ \ \ candidates:\ List[PeerEntry],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00241}00241\ \ \ \ \ \ \ \ \ count:\ int,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00242}00242\ \ \ \ \ )\ -\/>\ List[PeerEntry]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Select\ closest\ peers\ by\ XOR\ distance."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ peers\_with\_dist\ =\ [}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ (calculate\_distance(peer.peer\_id,\ target\_id),\ peer)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ peer\ \textcolor{keywordflow}{in}\ candidates}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00247}00247\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ peers\_with\_dist.sort(key=\textcolor{keyword}{lambda}\ x:\ x[0])}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [peer\ \textcolor{keywordflow}{for}\ \_,\ peer\ \textcolor{keywordflow}{in}\ peers\_with\_dist[:count]]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00250}00250\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00251}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_acc497ee1089f9ca0ff61cb0336cfc184}{00251}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_acc497ee1089f9ca0ff61cb0336cfc184}{\_select\_random}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ candidates:\ List[PeerEntry],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00254}00254\ \ \ \ \ \ \ \ \ count:\ int,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00255}00255\ \ \ \ \ )\ -\/>\ List[PeerEntry]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Random\ peer\ selection."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{keyword}{import}\ random}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ random.sample(candidates,\ min(count,\ len(candidates)))}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00260}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ad9b21d5a497b22c0ebf972e15e16b3dc}{00260}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_ad9b21d5a497b22c0ebf972e15e16b3dc}{\_select\_latency\_aware}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00261}00261\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00262}00262\ \ \ \ \ \ \ \ \ target\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00263}00263\ \ \ \ \ \ \ \ \ candidates:\ List[PeerEntry],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00264}00264\ \ \ \ \ \ \ \ \ count:\ int,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00265}00265\ \ \ \ \ )\ -\/>\ List[PeerEntry]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Select\ peers\ considering\ latency."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00267}00267\ \ \ \ \ \ \ \ \ scored\_peers\ =\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ peer\ \textcolor{keywordflow}{in}\ candidates:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ distance\ =\ calculate\_distance(peer.peer\_id,\ target\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00271}00271\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Get\ peer\ latency\ info}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ perf\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}.get(peer.peer\_id,\ \{\})}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ latency\ =\ perf.get(\textcolor{stringliteral}{"{}avg\_latency\_ms"{}},\ 1000.0)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Score:\ balance\ distance\ and\ latency}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ score\ =\ distance\ /\ max(latency,\ 1.0)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ scored\_peers.append((score,\ peer))}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00280}00280\ \ \ \ \ \ \ \ \ scored\_peers.sort(key=\textcolor{keyword}{lambda}\ x:\ x[0])}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [peer\ \textcolor{keywordflow}{for}\ \_,\ peer\ \textcolor{keywordflow}{in}\ scored\_peers[:count]]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00283}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_aaa13e4466a097464d91fc632a5c0824c}{00283}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_aaa13e4466a097464d91fc632a5c0824c}{\_select\_adaptive}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00284}00284\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00285}00285\ \ \ \ \ \ \ \ \ target\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00286}00286\ \ \ \ \ \ \ \ \ candidates:\ List[PeerEntry],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00287}00287\ \ \ \ \ \ \ \ \ count:\ int,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00288}00288\ \ \ \ \ )\ -\/>\ List[PeerEntry]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00289}00289\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Adaptive\ peer\ selection\ based\ on\ historical\ performance."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Combine\ multiple\ factors}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00291}00291\ \ \ \ \ \ \ \ \ scored\_peers\ =\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00292}00292\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ peer\ \textcolor{keywordflow}{in}\ candidates:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ distance\ =\ calculate\_distance(peer.peer\_id,\ target\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ perf\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}.get(peer.peer\_id,\ \{\})}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Factors:\ distance,\ success\ rate,\ latency}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ success\_rate\ =\ perf.get(\textcolor{stringliteral}{"{}success\_rate"{}},\ 0.5)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ latency\ =\ perf.get(\textcolor{stringliteral}{"{}avg\_latency\_ms"{}},\ 1000.0)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00300}00300\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Lower\ is\ better}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ score\ =\ (distance\ *\ 0.6)\ +\ (1000\ /\ max(success\_rate,\ 0.01)\ *\ 0.3)\ +\ (latency\ *\ 0.1)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ scored\_peers.append((score,\ peer))}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00305}00305\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ scored\_peers.sort(key=\textcolor{keyword}{lambda}\ x:\ x[0])}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ [peer\ \textcolor{keywordflow}{for}\ \_,\ peer\ \textcolor{keywordflow}{in}\ scored\_peers[:count]]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00308}00308\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00309}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a57f3c44df43ad367d38a3abf4acf08b0}{00309}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a57f3c44df43ad367d38a3abf4acf08b0}{record\_success}}(self,\ peer\_id:\ bytes,\ latency\_ms:\ float)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Record\ successful\ query."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ peer\_id\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}[peer\_id]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}queries"{}}:\ 0,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}successes"{}}:\ 0,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_latency\_ms"{}}:\ 0.0,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00318}00318\ \ \ \ \ \ \ \ \ perf\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}[peer\_id]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00319}00319\ \ \ \ \ \ \ \ \ perf[\textcolor{stringliteral}{"{}queries"{}}]\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00320}00320\ \ \ \ \ \ \ \ \ perf[\textcolor{stringliteral}{"{}successes"{}}]\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00321}00321\ \ \ \ \ \ \ \ \ perf[\textcolor{stringliteral}{"{}total\_latency\_ms"{}}]\ +=\ latency\_ms}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00322}00322\ \ \ \ \ \ \ \ \ perf[\textcolor{stringliteral}{"{}avg\_latency\_ms"{}}]\ =\ perf[\textcolor{stringliteral}{"{}total\_latency\_ms"{}}]\ /\ perf[\textcolor{stringliteral}{"{}successes"{}}]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00323}00323\ \ \ \ \ \ \ \ \ perf[\textcolor{stringliteral}{"{}success\_rate"{}}]\ =\ perf[\textcolor{stringliteral}{"{}successes"{}}]\ /\ perf[\textcolor{stringliteral}{"{}queries"{}}]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00325}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a7da8dcfda924aa26c2ee1251e2c9954b}{00325}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a7da8dcfda924aa26c2ee1251e2c9954b}{record\_failure}}(self,\ peer\_id:\ bytes)\ -\/>\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00326}00326\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Record\ failed\ query."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ peer\_id\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}[peer\_id]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}queries"{}}:\ 0,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}successes"{}}:\ 0,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_latency\_ms"{}}:\ 0.0,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00333}00333\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ perf\ =\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector_a4aac96efa62141b18a8f31026a81f714}{\_peer\_performance}}[peer\_id]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ perf[\textcolor{stringliteral}{"{}queries"{}}]\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ perf[\textcolor{stringliteral}{"{}success\_rate"{}}]\ =\ perf[\textcolor{stringliteral}{"{}successes"{}}]\ /\ perf[\textcolor{stringliteral}{"{}queries"{}}]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00337}00337\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00339}00339\ \textcolor{comment}{\#\ ====================\ Optimized\ Query\ Manager\ ====================}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00340}00340\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00341}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager}{00341}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager}{OptimizedQueryManager}}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00342}00342\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00343}00343\ \textcolor{stringliteral}{\ \ \ \ Optimized\ DHT\ query\ manager.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00344}00344\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00345}00345\ \textcolor{stringliteral}{\ \ \ \ Implements:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00346}00346\ \textcolor{stringliteral}{\ \ \ \ -\/\ Adaptive\ concurrency}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00347}00347\ \textcolor{stringliteral}{\ \ \ \ -\/\ Result\ caching}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00348}00348\ \textcolor{stringliteral}{\ \ \ \ -\/\ Smart\ peer\ selection}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00349}00349\ \textcolor{stringliteral}{\ \ \ \ -\/\ Query\ pipelining}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00350}00350\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00352}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aeabe1cd9650405f9b7739dddd992884d}{00352}}\ \ \ \ \ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aeabe1cd9650405f9b7739dddd992884d}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ cache:\ Optional[QueryCache]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00355}00355\ \ \ \ \ \ \ \ \ peer\_selector:\ Optional[PeerSelector]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00356}00356\ \ \ \ \ ):}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00357}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a09c38d022a9e6a62adbd244c7e67c168}{00357}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a09c38d022a9e6a62adbd244c7e67c168}{\_cache}}\ =\ cache\ \textcolor{keywordflow}{or}\ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_query_cache}{QueryCache}}()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00358}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aa5715a90993ed55de52f61f463dc0ef6}{00358}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aa5715a90993ed55de52f61f463dc0ef6}{\_peer\_selector}}\ =\ peer\_selector\ \textcolor{keywordflow}{or}\ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_peer_selector}{PeerSelector}}()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00359}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_afe0661aa623f92d7fa8e059ff32ece49}{00359}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_afe0661aa623f92d7fa8e059ff32ece49}{\_active\_queries}}:\ Dict[str,\ QueryContext]\ =\ \{\}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00360}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189cb052f0177672fe165d850527a72a}{00360}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189cb052f0177672fe165d850527a72a}{\_query\_count}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00361}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{00361}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{\_current\_alpha}}\ =\ ALPHA}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00362}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a7501db61628347922d6d7f95a7d1b653}{00362}}\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a7501db61628347922d6d7f95a7d1b653}{\_lock}}\ =\ asyncio.Lock()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00363}00363\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00364}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a7fff0757e7004f395aca3adf19307ab8}{00364}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a7fff0757e7004f395aca3adf19307ab8}{find\_peer}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ target\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00367}00367\ \ \ \ \ \ \ \ \ routing\_table,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00368}00368\ \ \ \ \ \ \ \ \ query\_func:\ Callable[[bytes,\ bytes],\ Awaitable[List[PeerEntry]]],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00369}00369\ \ \ \ \ \ \ \ \ use\_cache:\ bool\ =\ \textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00370}00370\ \ \ \ \ )\ -\/>\ QueryResult:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00371}00371\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00372}00372\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Find\ peer\ with\ caching\ and\ optimizations.}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00373}00373\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00374}00374\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00375}00375\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ target\_id:\ Peer\ ID\ to\ find}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00376}00376\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ routing\_table:\ Routing\ table}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00377}00377\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ query\_func:\ Query\ function}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00378}00378\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ use\_cache:\ Whether\ to\ use\ cache}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00379}00379\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00380}00380\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00381}00381\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ Query\ result}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00382}00382\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00383}00383\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ cache\ first}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00384}00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ use\_cache:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ cached\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a09c38d022a9e6a62adbd244c7e67c168}{\_cache}}.get(target\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ cached:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Cache\ hit\ for\ peer\ \{target\_id.hex()[:8]\}"{}})}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cached}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00390}00390\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Get\ initial\ peers\ with\ smart\ selection}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00391}00391\ \ \ \ \ \ \ \ \ initial\_peers\ =\ routing\_table.find\_closest\_peers(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ target\_id,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{\_current\_alpha}}\ *\ 2\ \ \textcolor{comment}{\#\ Get\ more\ for\ selection}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00394}00394\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00395}00395\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00396}00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ initial\_peers:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_result}{QueryResult}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ success=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ error=\textcolor{stringliteral}{"{}No\ peers\ in\ routing\ table"{}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ duration\_ms=0.0}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00402}00402\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Select\ best\ peers}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00404}00404\ \ \ \ \ \ \ \ \ selected\_peers\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aa5715a90993ed55de52f61f463dc0ef6}{\_peer\_selector}}.select\_peers(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ target\_id,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ initial\_peers,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{\_current\_alpha}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00410}00410\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Execute\ optimized\ query}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00411}00411\ \ \ \ \ \ \ \ \ result\ =\ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_afb8206043dc47e77dd0911c6eb33e994}{\_execute\_adaptive\_query}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ target\_id,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ selected\_peers,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ query\_func,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00415}00415\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00416}00416\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00417}00417\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Cache\ successful\ results}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result.success\ \textcolor{keywordflow}{and}\ use\_cache:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a09c38d022a9e6a62adbd244c7e67c168}{\_cache}}.put(target\_id,\ result)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00420}00420\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00421}00421\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ peer\ performance}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00422}00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ peer\ \textcolor{keywordflow}{in}\ result.peers:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aa5715a90993ed55de52f61f463dc0ef6}{\_peer\_selector}}.record\_success(peer.peer\_id,\ 0.0)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00424}00424\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00425}00425\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Adapt\ concurrency}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00426}00426\ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189cb052f0177672fe165d850527a72a}{\_query\_count}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189cb052f0177672fe165d850527a72a}{\_query\_count}}\ \%\ ALPHA\_ADAPTATION\_INTERVAL\ ==\ 0:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ await\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_ad6afd60a8f633b8a8a233047a3aa02c0}{\_adapt\_alpha}}()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00430}00430\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00432}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_afb8206043dc47e77dd0911c6eb33e994}{00432}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_afb8206043dc47e77dd0911c6eb33e994}{\_execute\_adaptive\_query}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00433}00433\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00434}00434\ \ \ \ \ \ \ \ \ target\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ initial\_peers:\ List[PeerEntry],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ query\_func:\ Callable,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00437}00437\ \ \ \ \ )\ -\/>\ QueryResult:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Execute\ query\ with\ adaptive\ parallelism."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ start\_time\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00440}00440\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ context\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context}{QueryContext}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ query\_type=QueryType.FIND\_PEER,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ target\_id=target\_id,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00444}00444\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00445}00445\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Priority\ queue\ of\ peers\ by\ distance}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ pending:\ List[Tuple[int,\ PeerEntry]]\ =\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ peer\ \textcolor{keywordflow}{in}\ initial\_peers:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ distance\ =\ calculate\_distance(peer.peer\_id,\ target\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ heapq.heappush(pending,\ (distance,\ peer))}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00451}00451\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ contacted:\ Set[bytes]\ =\ set()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ closest\_distance\ =\ float(\textcolor{stringliteral}{'inf'})}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00454}00454\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ pending\ \textcolor{keywordflow}{and}\ \textcolor{keywordflow}{not}\ context.is\_expired(QUERY\_TIMEOUT):}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Select\ peers\ for\ this\ round}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ to\_query\ =\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00458}00458\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ len(to\_query)\ <\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{\_current\_alpha}}\ \textcolor{keywordflow}{and}\ pending:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ distance,\ peer\ =\ heapq.heappop(pending)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00461}00461\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ peer.peer\_id\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ contacted:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\_query.append((distance,\ peer))}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ to\_query:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00467}00467\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Query\ in\ parallel}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ tasks\ =\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ distance,\ peer\ \textcolor{keywordflow}{in}\ to\_query:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contacted.add(peer.peer\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tasks.append(self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189547c4fbd7f4a1142bb1a90118e5f4}{\_query\_peer}}(peer,\ target\_id,\ query\_func))}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00473}00473\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ results\ =\ await\ asyncio.gather(*tasks,\ return\_exceptions=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00475}00475\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Process\ results}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i,\ result\ \textcolor{keywordflow}{in}\ enumerate(results):}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ isinstance(result,\ Exception):}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_,\ peer\ =\ to\_query[i]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aa5715a90993ed55de52f61f463dc0ef6}{\_peer\_selector}}.record\_failure(peer.peer\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00482}00482\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ new\_peer\ \textcolor{keywordflow}{in}\ result:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ distance\ =\ calculate\_distance(new\_peer.peer\_id,\ target\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ heapq.heappush(pending,\ (distance,\ new\_peer))}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context.results.append(new\_peer)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00487}00487\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Check\ if\ found\ target}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ new\_peer.peer\_id\ ==\ target\_id:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context.state\ =\ QueryState.COMPLETED}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00492}00492\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ context.state\ ==\ QueryState.COMPLETED:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00495}00495\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Update\ closest\ distance}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ pending:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_closest\ =\ pending[0][0]}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ current\_closest\ >=\ closest\_distance:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ No\ improvement}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ closest\_distance\ =\ current\_closest}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00503}00503\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00504}00504\ \ \ \ \ \ \ \ \ duration\_ms\ =\ (time.time()\ -\/\ start\_time)\ *\ 1000}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00505}00505\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_result}{QueryResult}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ success=context.state\ ==\ QueryState.COMPLETED,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ peers=context.results[:K],}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ duration\_ms=duration\_ms,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00510}00510\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00512}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189547c4fbd7f4a1142bb1a90118e5f4}{00512}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189547c4fbd7f4a1142bb1a90118e5f4}{\_query\_peer}}(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ self,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00514}00514\ \ \ \ \ \ \ \ \ peer:\ PeerEntry,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00515}00515\ \ \ \ \ \ \ \ \ target\_id:\ bytes,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00516}00516\ \ \ \ \ \ \ \ \ query\_func:\ Callable,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00517}00517\ \ \ \ \ )\ -\/>\ List[PeerEntry]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00518}00518\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Query\ a\ single\ peer\ with\ timing."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00519}00519\ \ \ \ \ \ \ \ \ start\ =\ time.time()}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00520}00520\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00521}00521\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ await\ asyncio.wait\_for(}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ query\_func(peer.peer\_id,\ target\_id),}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeout=5.0,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00526}00526\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ latency\_ms\ =\ (time.time()\ -\/\ start)\ *\ 1000}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aa5715a90993ed55de52f61f463dc0ef6}{\_peer\_selector}}.record\_success(peer.peer\_id,\ latency\_ms)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00529}00529\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00531}00531\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00532}00532\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ logger.debug(f\textcolor{stringliteral}{"{}Query\ to\ \{peer.peer\_id.hex()[:8]\}\ failed:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_aa5715a90993ed55de52f61f463dc0ef6}{\_peer\_selector}}.record\_failure(peer.peer\_id)}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00535}00535\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ []}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00536}00536\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00537}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_ad6afd60a8f633b8a8a233047a3aa02c0}{00537}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_ad6afd60a8f633b8a8a233047a3aa02c0}{\_adapt\_alpha}}(self)\ -\/>\ None:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00538}00538\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Adapt\ concurrency\ based\ on\ performance."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Simple\ adaptation:\ increase\ if\ queries\ are\ fast,\ decrease\ if\ slow}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00540}00540\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ This\ is\ a\ placeholder\ for\ more\ sophisticated\ adaptation}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00541}00541\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{\_current\_alpha}}\ <\ MAX\_ALPHA:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ \ \ \ \ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{\_current\_alpha}}\ +=\ 1}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00543}00543\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00544}\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a3309505fa6ab959da6b17bb4ba5739d6}{00544}}\ \ \ \ \ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a3309505fa6ab959da6b17bb4ba5739d6}{get\_statistics}}(self)\ -\/>\ Dict[str,\ Any]:}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00545}00545\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Get\ query\ statistics."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00546}00546\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00547}00547\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cache\_size"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a09c38d022a9e6a62adbd244c7e67c168}{\_cache}}.size,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00548}00548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cache\_hit\_rate"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a09c38d022a9e6a62adbd244c7e67c168}{\_cache}}.hit\_rate,}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00549}00549\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}current\_alpha"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a049a217343ac54dc1d27e170ec642201}{\_current\_alpha}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00550}00550\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}active\_queries"{}}:\ len(self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_afe0661aa623f92d7fa8e059ff32ece49}{\_active\_queries}}),}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_queries"{}}:\ self.\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query__optimizer_1_1_optimized_query_manager_a189cb052f0177672fe165d850527a72a}{\_query\_count}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00552}00552\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00553}00553\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00554}00554\ }
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00555}\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1query__optimizer_a8a785f6fd6453450952366aa54ace099}{00555}}\ \_\_all\_\_\ =\ [}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00556}00556\ \ \ \ \ \textcolor{stringliteral}{"{}QueryCache"{}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00557}00557\ \ \ \ \ \textcolor{stringliteral}{"{}CachedResult"{}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00558}00558\ \ \ \ \ \textcolor{stringliteral}{"{}PeerSelector"{}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00559}00559\ \ \ \ \ \textcolor{stringliteral}{"{}PeerSelectionStrategy"{}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00560}00560\ \ \ \ \ \textcolor{stringliteral}{"{}OptimizedQueryManager"{}},}
+\DoxyCodeLine{\Hypertarget{query__optimizer_8py_source_l00561}00561\ ]}
+
+\end{DoxyCode}

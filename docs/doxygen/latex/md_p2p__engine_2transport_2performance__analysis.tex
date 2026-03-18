@@ -1,0 +1,279 @@
+\chapter{P2P 传输层与复用层性能分析报告 }
+\hypertarget{md_p2p__engine_2transport_2performance__analysis}{}\label{md_p2p__engine_2transport_2performance__analysis}\index{P2P 传输层与复用层性能分析报告@{P2P 传输层与复用层性能分析报告}}
+\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md38}%
+\Hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md38}%
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md39}{}\doxysection{\texorpdfstring{执行摘要}{执行摘要}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md39}
+对标 go-\/libp2p，当前实现在连接延迟、流延迟和吞吐量方面存在差距。本报告分析瓶颈并提供优化方案。
+
+\DoxyHorRuler{0}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md41}{}\doxysection{\texorpdfstring{1. 性能瓶颈分析}{1. 性能瓶颈分析}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md41}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md42}{}\doxysubsection{\texorpdfstring{1.\+1 传输层 (transport/\+)}{1.\+1 传输层 (transport/\+)}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md42}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md43}{}\doxysubsubsection{\texorpdfstring{现状}{现状}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md43}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}模块  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}当前状态  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}对比 go-\/libp2p  \\
+TCP  &基础实现，无优化  &缺少 TCP\+\_\+\+FASTOPEN  \\
+QUIC  &基于 aioquic，0-\/\+RTT 未实现  &缺少 0-\/RTT 和连接迁移  \\
+Web\+RTC  &基础框架  &缺少 ICE 优化  \\
+Web\+Transport  &未实现  &缺失功能  \\
+\end{DoxyTable}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md44}{}\doxysubsubsection{\texorpdfstring{瓶颈点}{瓶颈点}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md44}
+{\bfseries{TCP 传输}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ transport/manager.py:186}}
+\DoxyCodeLine{\textcolor{comment}{\#\ 当前:\ 标准连接，无优化}}
+\DoxyCodeLine{conn\ =\ await\ asyncio.wait\_for(}
+\DoxyCodeLine{\ \ \ \ transport.dial(addr),}
+\DoxyCodeLine{\ \ \ \ timeout=self.\_dial\_timeout\ \ \textcolor{comment}{\#\ 30s，没有快速失败}}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+
+
+问题：
+\begin{DoxyItemize}
+\item 无 TCP Fast Open (TFO) 支持
+\item 无连接池复用
+\item 无并发拨号优化
+\end{DoxyItemize}
+
+{\bfseries{QUIC 传输}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ transport/quic.py:686}}
+\DoxyCodeLine{\textcolor{comment}{\#\ 当前:\ 每次完整握手}}
+\DoxyCodeLine{protocol\ =\ await\ connect(host,\ port,\ configuration=configuration,\ ...)}
+
+\end{DoxyCode}
+
+
+问题：
+\begin{DoxyItemize}
+\item 0-\/RTT 未实现（会话票据缓存缺失）
+\item 连接迁移未实现
+\item 多路复用效率低
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md45}{}\doxysubsection{\texorpdfstring{1.\+2 流复用 (muxer/\+)}{1.\+2 流复用 (muxer/\+)}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md45}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md46}{}\doxysubsubsection{\texorpdfstring{现状}{现状}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md46}
+
+\begin{DoxyTable}{3}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}实现  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}特性完整性  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}性能  \\
+Yamux  &完整 (SYN/\+\+ACK/\+\+FIN/\+\+RST)  &良好，可优化  \\
+Mplex  &基础实现  &需优化帧解析  \\
+\end{DoxyTable}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md47}{}\doxysubsubsection{\texorpdfstring{瓶颈点}{瓶颈点}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md47}
+{\bfseries{Yamux 流创建延迟}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ muxer/yamux.py:600-\/643}}
+\DoxyCodeLine{\textcolor{comment}{\#\ 当前:\ 同步锁竞争}}
+\DoxyCodeLine{\textcolor{keyword}{async\ def\ }open\_stream(self)\ -\/>\ YamuxStream:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\_stream\_id\_lock:\ \ \textcolor{comment}{\#\ 瓶颈:\ 全局锁}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ stream\_id\ =\ self.\_next\_stream\_id}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.\_next\_stream\_id\ +=\ STREAM\_ID\_INCREMENT}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async}\ \textcolor{keyword}{with}\ self.\_streams\_lock:\ \ \textcolor{comment}{\#\ 瓶颈:\ 第二次锁}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ stream\_id\ \textcolor{keywordflow}{in}\ self.\_streams:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ YamuxProtocolError(...)}
+
+\end{DoxyCode}
+
+
+问题：
+\begin{DoxyItemize}
+\item 流 ID 分配使用全局锁，串行化流创建
+\item 无流 ID 预分配池
+\item 无批量流创建支持
+\end{DoxyItemize}
+
+{\bfseries{Mplex 帧解析}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ muxer/mplex.py:210-\/217}}
+\DoxyCodeLine{\textcolor{comment}{\#\ 当前:\ 对所有帧类型尝试解析数据}}
+\DoxyCodeLine{\textcolor{keywordflow}{if}\ remaining:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ length,\ data\_offset\ =\ read\_uvarint(remaining)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ...}
+
+\end{DoxyCode}
+
+
+问题：
+\begin{DoxyItemize}
+\item MESSAGE 以外的帧也尝试解析数据
+\item uvarint 解析无缓存优化
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md48}{}\doxysubsection{\texorpdfstring{1.\+3 DHT (dht/\+)}{1.\+3 DHT (dht/\+)}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md48}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md49}{}\doxysubsubsection{\texorpdfstring{瓶颈点}{瓶颈点}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md49}
+{\bfseries{查询并发度固定}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ dht/query.py:352-\/358}}
+\DoxyCodeLine{\textcolor{comment}{\#\ 当前:\ 固定\ ALPHA=3}}
+\DoxyCodeLine{\textcolor{keywordflow}{while}\ len(to\_query)\ <\ self.alpha\ \textcolor{keywordflow}{and}\ context.pending:}
+\DoxyCodeLine{\ \ \ \ peer\_info\ =\ heapq.heappop(context.pending)}
+
+\end{DoxyCode}
+
+
+问题：
+\begin{DoxyItemize}
+\item 无自适应并发度
+\item 无网络状况感知
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md50}{}\doxysubsection{\texorpdfstring{1.\+4 NAT 穿透 (puncher/\+)}{1.\+4 NAT 穿透 (puncher/\+)}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md50}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md51}{}\doxysubsubsection{\texorpdfstring{瓶颈点}{瓶颈点}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md51}
+{\bfseries{UDP 打孔串行化}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ puncher/udp\_puncher.py:160-\/168}}
+\DoxyCodeLine{\textcolor{comment}{\#\ 当前:\ 并行发送但等待第一个响应}}
+\DoxyCodeLine{tasks\ =\ []}
+\DoxyCodeLine{\textcolor{keywordflow}{for}\ port\ \textcolor{keywordflow}{in}\ prediction.ports:}
+\DoxyCodeLine{\ \ \ \ task\ =\ loop.sock\_sendto(self.\_socket,\ punch\_packet,\ (peer\_ip,\ port))}
+\DoxyCodeLine{\ \ \ \ tasks.append(task)}
+\DoxyCodeLine{await\ asyncio.gather(*tasks,\ return\_exceptions=\textcolor{keyword}{True})}
+
+\end{DoxyCode}
+
+
+问题：
+\begin{DoxyItemize}
+\item 无早期退出（找到可用端口后继续）
+\item 无自适应超时
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md53}{}\doxysection{\texorpdfstring{2. 优化方案}{2. 优化方案}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md53}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md54}{}\doxysubsection{\texorpdfstring{2.\+1 TCP 传输优化}{2.\+1 TCP 传输优化}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md54}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md55}{}\doxysubsubsection{\texorpdfstring{TCP Fast Open (TFO)}{TCP Fast Open (TFO)}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md55}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 新增:\ transport/tcp\_tfo.py}}
+\DoxyCodeLine{\textcolor{keyword}{class\ }TCPFastOpenTransport:}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}"{}"{}支持\ TCP\ Fast\ Open\ 的\ TCP\ 传输"{}"{}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }dial(self,\ addr:\ str)\ -\/>\ Connection:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 使用\ MSG\_FASTOPEN\ 或\ socket.connect()\ +\ TFO}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 目标:\ 将连接延迟从\ \string~50ms\ 降至\ <20ms}}
+
+\end{DoxyCode}
+
+
+预期收益：
+\begin{DoxyItemize}
+\item 连接延迟:\+ 50ms → 20ms (60\% 改善)
+\item 第二次连接:\+ 接近 0ms (使用 TFO cookie)
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md56}{}\doxysubsection{\texorpdfstring{2.\+2 Yamux 优化}{2.\+2 Yamux 优化}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md56}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md57}{}\doxysubsubsection{\texorpdfstring{流 ID 预分配池}{流 ID 预分配池}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md57}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 优化:\ muxer/yamux\_optimized.py}}
+\DoxyCodeLine{\textcolor{keyword}{class\ }YamuxSessionOptimized:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self,\ ...):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 预分配\ 64\ 个流\ ID}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.\_stream\_id\_pool\ =\ Queue(maxsize=64)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i\ \textcolor{keywordflow}{in}\ range(64):}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.\_stream\_id\_pool.put\_nowait(self.\_next\_stream\_id\ +\ i\ *\ 2)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ self.\_next\_stream\_id\ +=\ 128}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }open\_stream(self)\ -\/>\ YamuxStream:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 无锁获取预分配\ ID}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ stream\_id\ =\ await\ self.\_stream\_id\_pool.get()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ...}
+
+\end{DoxyCode}
+
+
+预期收益：
+\begin{DoxyItemize}
+\item 流创建延迟:\+ 5ms → \texorpdfstring{$<$}{<}2ms (60\% 改善)
+\item 并发流创建:\+ 无锁竞争
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md58}{}\doxysubsection{\texorpdfstring{2.\+3 Mplex 帧解析优化}{2.\+3 Mplex 帧解析优化}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md58}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md59}{}\doxysubsubsection{\texorpdfstring{智能帧解析}{智能帧解析}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md59}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 优化:\ muxer/mplex\_v2.py\ (已实现)}}
+\DoxyCodeLine{\textcolor{preprocessor}{@classmethod}}
+\DoxyCodeLine{\textcolor{keyword}{def\ }unpack(cls,\ data:\ bytes)\ -\/>\ tuple[\textcolor{stringliteral}{'MplexFrame'},\ int]:}
+\DoxyCodeLine{\ \ \ \ ...}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ 仅\ MESSAGE\ 帧解析数据}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ flag\ ==\ MplexFlag.MESSAGE:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ...}
+
+\end{DoxyCode}
+
+
+预期收益：
+\begin{DoxyItemize}
+\item 帧解析速度:\+ 30\% 提升
+\item CPU 使用:\+ 20\% 降低
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md60}{}\doxysubsection{\texorpdfstring{2.\+4 DHT 查询优化}{2.\+4 DHT 查询优化}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md60}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md61}{}\doxysubsubsection{\texorpdfstring{自适应并发度}{自适应并发度}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md61}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{\#\ 优化:\ dht/query\_optimizer.py\ (已实现)}}
+\DoxyCodeLine{\textcolor{keyword}{class\ }OptimizedQueryManager:}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{async\ def\ }\_adapt\_alpha(self)\ -\/>\ None:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{\#\ 根据网络状况动态调整\ ALPHA\ (2-\/10)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.\_current\_alpha\ <\ MAX\_ALPHA:}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ self.\_current\_alpha\ +=\ 1}
+
+\end{DoxyCode}
+
+
+预期收益：
+\begin{DoxyItemize}
+\item 查询延迟:\+ 100ms → \texorpdfstring{$<$}{<}50ms (50\% 改善)
+\item 网络开销:\+ 30\% 降低
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md63}{}\doxysection{\texorpdfstring{3. 优化实施计划}{3. 优化实施计划}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md63}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md64}{}\doxysubsection{\texorpdfstring{Phase 1:\+ 快速胜利 (Quick Wins)}{Phase 1:\+ 快速胜利 (Quick Wins)}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md64}
+
+\begin{DoxyItemize}
+\item[\DoxyChecked] Mplex 帧解析优化
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyChecked] DHT 查询缓存
+\item[\DoxyUnchecked] TCP Fast Open
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] Yamux 流 ID 预分配
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md65}{}\doxysubsection{\texorpdfstring{Phase 2:\+ 架构优化}{Phase 2:\+ 架构优化}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md65}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] QUIC 0-\/RTT (\doxylink{quic__0rtt_8py}{quic\+\_\+0rtt.\+py} 已创建，需集成)
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 连接池管理
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 批量流创建
+\end{DoxyItemize}\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md66}{}\doxysubsection{\texorpdfstring{Phase 3:\+ 高级特性}{Phase 3:\+ 高级特性}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md66}
+
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 连接迁移
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 自适应拥塞控制
+\end{DoxyItemize}
+\begin{DoxyItemize}
+\item[\DoxyUnchecked] 运营商配置优化
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md68}{}\doxysection{\texorpdfstring{4. 性能目标}{4. 性能目标}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md68}
+
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}指标  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}当前  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}目标  &\SetCell{c,bg=\tableheadbgcolor,font=\bfseries}go-\/libp2p  \\
+连接延迟  &\SetCell{c}\texorpdfstring{$\sim$}{\string~}50ms  &\SetCell{c}\texorpdfstring{$<$}{<}30ms  &\SetCell{c}\texorpdfstring{$\sim$}{\string~}20ms  \\
+流延迟  &\SetCell{c}\texorpdfstring{$\sim$}{\string~}5ms  &\SetCell{c}\texorpdfstring{$<$}{<}2ms  &\SetCell{c}\texorpdfstring{$\sim$}{\string~}1ms  \\
+吞吐量  &\SetCell{c}\texorpdfstring{$\sim$}{\string~}100\+Mbps  &\SetCell{c}\texorpdfstring{$>$}{>}200Mbps  &\SetCell{c}\texorpdfstring{$\sim$}{\string~}500\+Mbps  \\
+并发流  &\SetCell{c}\texorpdfstring{$\sim$}{\string~}500  &\SetCell{c}\texorpdfstring{$>$}{>}1000  &\SetCell{c}\texorpdfstring{$>$}{>}2000  \\
+\end{DoxyTable}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_p2p__engine_2transport_2performance__analysis_autotoc_md70}{}\doxysection{\texorpdfstring{5. 代码改进}{5. 代码改进}}\label{md_p2p__engine_2transport_2performance__analysis_autotoc_md70}
+详见以下新增文件：
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{mplex__v2_8py}{p2p\+\_\+engine/\+muxer/\+mplex\+\_\+v2.\+py}} -\/ 优化的 Mplex 实现
+\item {\ttfamily \doxylink{benchmark_8py}{p2p\+\_\+engine/\+muxer/\+benchmark.\+py}} -\/ 性能基准测试
+\item {\ttfamily \doxylink{quic__0rtt_8py}{p2p\+\_\+engine/\+transport/\+quic\+\_\+0rtt.\+py}} -\/ QUIC 0-\/RTT 优化
+\item {\ttfamily \doxylink{query__optimizer_8py}{p2p\+\_\+engine/\+dht/\+query\+\_\+optimizer.\+py}} -\/ DHT 查询优化 
+\end{DoxyItemize}

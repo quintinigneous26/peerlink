@@ -1,0 +1,233 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1muxer_1_1yamux" kind="namespace" language="Python">
+    <compoundname>p2p_engine::muxer::yamux</compoundname>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_frame_type" prot="public">p2p_engine::muxer::yamux::FrameType</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_frame_flag" prot="public">p2p_engine::muxer::yamux::FrameFlag</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_go_away_code" prot="public">p2p_engine::muxer::yamux::GoAwayCode</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_stream_state" prot="public">p2p_engine::muxer::yamux::StreamState</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_frame" prot="public">p2p_engine::muxer::yamux::YamuxFrame</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_config" prot="public">p2p_engine::muxer::yamux::YamuxConfig</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_error" prot="public">p2p_engine::muxer::yamux::YamuxError</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_protocol_error" prot="public">p2p_engine::muxer::yamux::YamuxProtocolError</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_closed_error" prot="public">p2p_engine::muxer::yamux::YamuxClosedError</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_reset" prot="public">p2p_engine::muxer::yamux::YamuxStreamReset</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream_closed" prot="public">p2p_engine::muxer::yamux::YamuxStreamClosed</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_window_exceeded" prot="public">p2p_engine::muxer::yamux::YamuxWindowExceeded</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_stream" prot="public">p2p_engine::muxer::yamux::YamuxStream</innerclass>
+    <innerclass refid="classp2p__engine_1_1muxer_1_1yamux_1_1_yamux_session" prot="public">p2p_engine::muxer::yamux::YamuxSession</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a55f051d8971b4485dbcb301bb55270ee" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine::muxer::yamux.logger</definition>
+        <argsstring></argsstring>
+        <name>logger</name>
+        <qualifiedname>p2p_engine.muxer.yamux.logger</qualifiedname>
+        <initializer>=  logging.getLogger(&quot;p2p_engine.muxer.yamux&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="22" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1acfffa5ab4d0e2451d9b003d4c635bda8" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::muxer::yamux.PROTOCOL_STRING</definition>
+        <argsstring></argsstring>
+        <name>PROTOCOL_STRING</name>
+        <qualifiedname>p2p_engine.muxer.yamux.PROTOCOL_STRING</qualifiedname>
+        <initializer>=  &quot;/yamux/1.0.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="27" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a1c6f1382fb299afda0b59585a0c9b3a8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.VERSION</definition>
+        <argsstring></argsstring>
+        <name>VERSION</name>
+        <qualifiedname>p2p_engine.muxer.yamux.VERSION</qualifiedname>
+        <initializer>=  0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="28" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a76cad4f8f1a9e5c322dac88582ad5390" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.HEADER_SIZE</definition>
+        <argsstring></argsstring>
+        <name>HEADER_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.yamux.HEADER_SIZE</qualifiedname>
+        <initializer>=  12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="29" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a35ab25877ab19a0b90aa06ac5892e73d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.DEFAULT_WINDOW_SIZE</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_WINDOW_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.yamux.DEFAULT_WINDOW_SIZE</qualifiedname>
+        <initializer>=  256 * 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="32" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1aebf2e1382d21777d405af9ea324921e0" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.MAX_WINDOW_SIZE</definition>
+        <argsstring></argsstring>
+        <name>MAX_WINDOW_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.yamux.MAX_WINDOW_SIZE</qualifiedname>
+        <initializer>=  16 * 1024 * 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="33" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a4184bfc8ad9eb80d04b1e7b5668e455b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.INITIAL_CLIENT_STREAM_ID</definition>
+        <argsstring></argsstring>
+        <name>INITIAL_CLIENT_STREAM_ID</name>
+        <qualifiedname>p2p_engine.muxer.yamux.INITIAL_CLIENT_STREAM_ID</qualifiedname>
+        <initializer>=  1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="36" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a31b1ec1f75eaa4de6de3542f774161ab" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.INITIAL_SERVER_STREAM_ID</definition>
+        <argsstring></argsstring>
+        <name>INITIAL_SERVER_STREAM_ID</name>
+        <qualifiedname>p2p_engine.muxer.yamux.INITIAL_SERVER_STREAM_ID</qualifiedname>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="37" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1acd36dae6c95173b0a0dc90969875b614" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.STREAM_ID_INCREMENT</definition>
+        <argsstring></argsstring>
+        <name>STREAM_ID_INCREMENT</name>
+        <qualifiedname>p2p_engine.muxer.yamux.STREAM_ID_INCREMENT</qualifiedname>
+        <initializer>=  2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="38" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a86bef40a684fd8f67ed2c3e79023817b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.STREAM_BUFFER_SIZE</definition>
+        <argsstring></argsstring>
+        <name>STREAM_BUFFER_SIZE</name>
+        <qualifiedname>p2p_engine.muxer.yamux.STREAM_BUFFER_SIZE</qualifiedname>
+        <initializer>=  64 * 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="41" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a96659527a0b3c34a3c9935962b6d8bba" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int p2p_engine::muxer::yamux.MAX_UNACKED_STREAMS</definition>
+        <argsstring></argsstring>
+        <name>MAX_UNACKED_STREAMS</name>
+        <qualifiedname>p2p_engine.muxer.yamux.MAX_UNACKED_STREAMS</qualifiedname>
+        <initializer>=  256</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="44" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1ab288a9db48dc02f7d2a6e1342fc6cdb4" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine::muxer::yamux.DEFAULT_CONNECTION_TIMEOUT</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_CONNECTION_TIMEOUT</name>
+        <qualifiedname>p2p_engine.muxer.yamux.DEFAULT_CONNECTION_TIMEOUT</qualifiedname>
+        <initializer>=  30.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="47" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1muxer_1_1yamux_1a51e54d12c0bcbbea07222d05bf04fca6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float p2p_engine::muxer::yamux.DEFAULT_KEEPALIVE_INTERVAL</definition>
+        <argsstring></argsstring>
+        <name>DEFAULT_KEEPALIVE_INTERVAL</name>
+        <qualifiedname>p2p_engine.muxer.yamux.DEFAULT_KEEPALIVE_INTERVAL</qualifiedname>
+        <initializer>=  30.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/muxer/yamux.py" line="48" column="1" bodyfile="p2p_engine/muxer/yamux.py" bodystart="48" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Yamux 流复用协议实现
+
+基于 libp2p yamux 规范: https://github.com/hashicorp/yamux/blob/master/spec.md
+
+协议字符串: /yamux/1.0.0
+
+特性:
+- 多路复用: 在单个连接上复用多个逻辑流
+- 背压: 基于窗口的流控制
+- 半关闭: 支持流的一端关闭而另一端继续发送
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/muxer/yamux.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

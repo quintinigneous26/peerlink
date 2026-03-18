@@ -1,0 +1,212 @@
+\doxysection{nat\+\_\+detection.\+py}
+\hypertarget{stun-server_2src_2nat__detection_8py_source}{}\label{stun-server_2src_2nat__detection_8py_source}\index{stun-\/server/src/nat\_detection.py@{stun-\/server/src/nat\_detection.py}}
+\doxymbox{\hyperlink{stun-server_2src_2nat__detection_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00001}\doxymbox{\hyperlink{namespacesrc_1_1nat__detection}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00002}00002\ \textcolor{stringliteral}{NAT\ Type\ Detection}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00004}00004\ \textcolor{stringliteral}{Implements\ NAT\ type\ detection\ algorithm\ based\ on\ RFC\ 3489.}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00005}00005\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00007}00007\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00008}00008\ \textcolor{keyword}{import}\ socket}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00009}00009\ \textcolor{keyword}{from}\ dataclasses\ \textcolor{keyword}{import}\ dataclass}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00010}00010\ \textcolor{keyword}{from}\ enum\ \textcolor{keyword}{import}\ Enum}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00011}00011\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional,\ Tuple}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00014}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type}{00014}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type}{NATType}}(Enum):}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00015}00015\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}NAT\ types\ detected\ by\ STUN."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00017}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type_aa1ebefee70a3948ccd5993a3030518c6}{00017}}\ \ \ \ \ OPEN\_INTERNET\ =\ \textcolor{stringliteral}{"{}Open\ Internet"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00018}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type_a7a2685e429f548d21c7ebd91cdaadf55}{00018}}\ \ \ \ \ FULL\_CONE\ =\ \textcolor{stringliteral}{"{}Full\ Cone\ NAT"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00019}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type_a169d42fe6ce4b97aa353803039b6a27f}{00019}}\ \ \ \ \ RESTRICTED\_CONE\ =\ \textcolor{stringliteral}{"{}Restricted\ Cone\ NAT"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00020}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type_a78a54281f6e5341e5f6c86b0695dc6ed}{00020}}\ \ \ \ \ PORT\_RESTRICTED\_CONE\ =\ \textcolor{stringliteral}{"{}Port\ Restricted\ Cone\ NAT"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00021}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type_aaafe5069920b4c719726c4387b8718a0}{00021}}\ \ \ \ \ SYMMETRIC\ =\ \textcolor{stringliteral}{"{}Symmetric\ NAT"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00022}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type_a88ab0edad105bd4bd5c701d2deff50cb}{00022}}\ \ \ \ \ BLOCKED\ =\ \textcolor{stringliteral}{"{}Firewall\ Blocks\ UDP"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00023}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_type_ab753ba8f2983fb2b3ef60cd973940fd5}{00023}}\ \ \ \ \ UNKNOWN\ =\ \textcolor{stringliteral}{"{}Unknown"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00026}00026\ \textcolor{preprocessor}{@dataclass}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00027}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_test_result}{00027}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_test_result}{NATTestResult}}:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00028}00028\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Result\ of\ NAT\ detection\ test."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00030}00030\ \ \ \ \ nat\_type:\ NATType}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00031}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_test_result_a2c66e9674ba8944f81b3003af56379ac}{00031}}\ \ \ \ \ public\_ip:\ Optional[str]}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00032}\doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_test_result_aa7eaeb79b9f4ece81190f809a202e0a3}{00032}}\ \ \ \ \ public\_port:\ Optional[int]}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00033}00033\ \ \ \ \ changed\_ip\_response:\ bool}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00034}00034\ \ \ \ \ changed\_port\_response:\ bool}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00037}\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_af11069e0c3e73816946c3eb9813086a3}{00037}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_af11069e0c3e73816946c3eb9813086a3}{send\_stun\_request}}(}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00038}00038\ \ \ \ \ host:\ str,\ port:\ int,\ timeout:\ float\ =\ 2.0}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00039}00039\ )\ -\/>\ Optional[Tuple[str,\ int]]:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00040}00040\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00041}00041\ \textcolor{stringliteral}{\ \ \ \ Send\ STUN\ binding\ request\ and\ get\ mapped\ address.}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00042}00042\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00043}00043\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00044}00044\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ host:\ STUN\ server\ hostname}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00045}00045\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ port:\ STUN\ server\ port}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00046}00046\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ timeout:\ Request\ timeout\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00047}00047\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00048}00048\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00049}00049\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Tuple\ of\ (mapped\_ip,\ mapped\_port)\ or\ None}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00050}00050\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00051}00051\ \ \ \ \ \textcolor{keyword}{from}\ .messages\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ MAGIC\_COOKIE,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ MessageType,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ StunMessage,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00055}00055\ \ \ \ \ \ \ \ \ parse\_xor\_mapped\_address,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00056}00056\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00058}00058\ \ \ \ \ \textcolor{comment}{\#\ Create\ STUN\ binding\ request}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00059}00059\ \ \ \ \ transaction\_id\ =\ asyncio.get\_event\_loop().time\_ns().to\_bytes(12,\ \textcolor{stringliteral}{"{}big"{}})}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00061}00061\ \ \ \ \ message\ =\ \doxymbox{\hyperlink{classsrc_1_1messages_1_1_stun_message}{StunMessage}}(}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ message\_type=MessageType.BINDING\_REQUEST,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ message\_length=0,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ magic\_cookie=MAGIC\_COOKIE,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ transaction\_id=transaction\_id,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ attributes=[],}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00067}00067\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00069}00069\ \ \ \ \ request\_data\ =\ message.serialize()}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00071}00071\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ UDP\ socket}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00073}00073\ \ \ \ \ \ \ \ \ sock\ =\ socket.socket(socket.AF\_INET,\ socket.SOCK\_DGRAM)}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ sock.settimeout(timeout)}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Send\ request}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00077}00077\ \ \ \ \ \ \ \ \ sock.sendto(request\_data,\ (host,\ port))}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Receive\ response}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ data,\ addr\ =\ sock.recvfrom(512)}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ sock.close()}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Parse\ response}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ response\ =\ StunMessage.parse(data)}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ response\ \textcolor{keywordflow}{and}\ response.message\_type\ ==\ MessageType.BINDING\_RESPONSE:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Get\ XOR-\/MAPPED-\/ADDRESS\ attribute}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ attr\ =\ response.get\_attribute(0x0020)\ \ \textcolor{comment}{\#\ XOR-\/MAPPED-\/ADDRESS}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ attr:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ result\ =\ parse\_xor\_mapped\_address(attr.value)}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ result:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{except}\ (socket.timeout,\ socket.error,\ OSError):}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00099}\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a3f9dbde576887b3a6a44e973acc7e5b9}{00099}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a3f9dbde576887b3a6a44e973acc7e5b9}{detect\_nat\_type}}(}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00100}00100\ \ \ \ \ stun\_server:\ str,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00101}00101\ \ \ \ \ stun\_port:\ int\ =\ 3478,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00102}00102\ \ \ \ \ stun\_alt\_server:\ Optional[str]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00103}00103\ \ \ \ \ stun\_alt\_port:\ Optional[int]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00104}00104\ )\ -\/>\ NATTestResult:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00105}00105\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00106}00106\ \textcolor{stringliteral}{\ \ \ \ Detect\ NAT\ type\ using\ RFC\ 3489\ algorithm.}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00107}00107\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00108}00108\ \textcolor{stringliteral}{\ \ \ \ This\ performs\ the\ STUN\ test\ sequence:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00109}00109\ \textcolor{stringliteral}{\ \ \ \ 1.\ Test\ I:\ Request\ to\ server\ A\ from\ same\ address/port}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00110}00110\ \textcolor{stringliteral}{\ \ \ \ 2.\ Test\ II:\ Request\ to\ server\ A\ with\ changed\ IP\ and\ port}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00111}00111\ \textcolor{stringliteral}{\ \ \ \ 3.\ Test\ III:\ Request\ to\ server\ A\ with\ changed\ port\ only}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00112}00112\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00113}00113\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00114}00114\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ stun\_server:\ Primary\ STUN\ server\ address}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00115}00115\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ stun\_port:\ Primary\ STUN\ server\ port}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00116}00116\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ stun\_alt\_server:\ Alternate\ STUN\ server\ (for\ test\ II)}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00117}00117\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ stun\_alt\_port:\ Alternate\ STUN\ server\ port\ (for\ test\ III)}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00118}00118\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00119}00119\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00120}00120\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ NATTestResult\ with\ detected\ NAT\ type}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00121}00121\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00122}00122\ \ \ \ \ \textcolor{comment}{\#\ Default\ to\ using\ same\ server\ for\ tests}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00123}00123\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ stun\_alt\_server:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00124}00124\ \ \ \ \ \ \ \ \ stun\_alt\_server\ =\ stun\_server}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00125}00125\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ stun\_alt\_port:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00126}00126\ \ \ \ \ \ \ \ \ stun\_alt\_port\ =\ stun\_port}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00128}00128\ \ \ \ \ \textcolor{comment}{\#\ Test\ I:\ Basic\ binding\ request}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00129}00129\ \ \ \ \ result\ =\ await\ \doxymbox{\hyperlink{namespacesrc_1_1nat__detection_af11069e0c3e73816946c3eb9813086a3}{send\_stun\_request}}(stun\_server,\ stun\_port)}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00131}00131\ \ \ \ \ \textcolor{keywordflow}{if}\ result\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ No\ response\ at\ all\ -\/\ likely\ blocked\ by\ firewall}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_test_result}{NATTestResult}}(}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ nat\_type=NATType.BLOCKED,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ public\_ip=\textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ public\_port=\textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ changed\_ip\_response=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ changed\_port\_response=\textcolor{keyword}{False},}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00139}00139\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00141}00141\ \ \ \ \ public\_ip,\ public\_port\ =\ result}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00143}00143\ \ \ \ \ \textcolor{comment}{\#\ Test\ II:\ Request\ from\ different\ address\ (simulated\ by\ using\ alt\ server)}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00144}00144\ \ \ \ \ \textcolor{comment}{\#\ In\ practice,\ this\ requires\ the\ server\ to\ respond\ from\ a\ different\ IP}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00145}00145\ \ \ \ \ alt\_result\ =\ await\ \doxymbox{\hyperlink{namespacesrc_1_1nat__detection_af11069e0c3e73816946c3eb9813086a3}{send\_stun\_request}}(stun\_alt\_server,\ stun\_alt\_port)}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00146}00146\ \ \ \ \ changed\_ip\_response\ =\ alt\_result\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00148}00148\ \ \ \ \ \textcolor{comment}{\#\ Test\ III:\ Request\ from\ different\ port}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00149}00149\ \ \ \ \ \textcolor{comment}{\#\ In\ practice,\ this\ requires\ server\ to\ respond\ from\ different\ port}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00150}00150\ \ \ \ \ changed\_port\_response\ =\ changed\_ip\_response\ \ \textcolor{comment}{\#\ Simplified}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00152}00152\ \ \ \ \ \textcolor{comment}{\#\ Determine\ NAT\ type\ based\ on\ RFC\ 3489\ algorithm}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00153}00153\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ changed\_ip\_response:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ No\ response\ from\ changed\ address/port}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ public\_ip\ ==\ \doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a7baa5bbc225e884a918cda01379c9d45}{get\_local\_ip}}():}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Public\ IP\ matches\ local\ -\/\ no\ NAT}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ nat\_type\ =\ NATType.OPEN\_INTERNET}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ NAT\ detected}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ nat\_type\ =\ NATType.SYMMETRIC}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00161}00161\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Response\ from\ changed\ address}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ public\_ip\ ==\ \doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a7baa5bbc225e884a918cda01379c9d45}{get\_local\_ip}}():}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ nat\_type\ =\ NATType.OPEN\_INTERNET}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Further\ tests\ needed\ to\ distinguish\ between\ cone\ types}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ For\ simplicity,\ default\ to\ full\ cone}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ nat\_type\ =\ NATType.FULL\_CONE}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00170}00170\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{classsrc_1_1nat__detection_1_1_n_a_t_test_result}{NATTestResult}}(}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00171}00171\ \ \ \ \ \ \ \ \ nat\_type=nat\_type,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00172}00172\ \ \ \ \ \ \ \ \ public\_ip=public\_ip,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00173}00173\ \ \ \ \ \ \ \ \ public\_port=public\_port,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00174}00174\ \ \ \ \ \ \ \ \ changed\_ip\_response=changed\_ip\_response,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00175}00175\ \ \ \ \ \ \ \ \ changed\_port\_response=changed\_port\_response,}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00176}00176\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00179}\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a7baa5bbc225e884a918cda01379c9d45}{00179}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a7baa5bbc225e884a918cda01379c9d45}{get\_local\_ip}}()\ -\/>\ str:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00180}00180\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00181}00181\ \textcolor{stringliteral}{\ \ \ \ Get\ local\ IP\ address.}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00182}00182\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00183}00183\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00184}00184\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Local\ IP\ address\ string}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00185}00185\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00186}00186\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Create\ socket\ to\ external\ address\ to\ determine\ local\ IP}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{with}\ socket.socket(socket.AF\_INET,\ socket.SOCK\_DGRAM)\ \textcolor{keyword}{as}\ s:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ s.connect((\textcolor{stringliteral}{"{}8.8.8.8"{}},\ 80))}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ local\_ip\ =\ s.getsockname()[0]}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ local\_ip}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00192}00192\ \ \ \ \ \textcolor{keywordflow}{except}\ OSError:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}127.0.0.1"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00196}\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a3767bd0c054db52a1ed4e2eecefd5e6a}{00196}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacesrc_1_1nat__detection_a3767bd0c054db52a1ed4e2eecefd5e6a}{simplify\_nat\_type}}(result:\ NATTestResult)\ -\/>\ NATType:}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00197}00197\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00198}00198\ \textcolor{stringliteral}{\ \ \ \ Simplify\ NAT\ type\ to\ one\ of\ the\ main\ categories.}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00199}00199\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00200}00200\ \textcolor{stringliteral}{\ \ \ \ Args:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00201}00201\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ result:\ Full\ NAT\ test\ result}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00202}00202\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00203}00203\ \textcolor{stringliteral}{\ \ \ \ Returns:}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00204}00204\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Simplified\ NAT\ type}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00205}00205\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{stun-server_2src_2nat__detection_8py_source_l00206}00206\ \ \ \ \ \textcolor{keywordflow}{return}\ result.nat\_type}
+
+\end{DoxyCode}

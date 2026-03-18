@@ -1,0 +1,429 @@
+\doxysection{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler类 参考}
+\hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler}{}\label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a027a5bdf0fd671e892f039542e4fe573}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+None \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a5c8eabad20f183d4d59a5cdb6804eb1a}{start}} (self, str host, Tuple\+[int, int]\+ port\+\_\+range)
+\item 
+None \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a0511c8923e1ec3b69ca3c24424d4f9dd}{stop}} (self)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ad877bd7850b696ba59534b72f364a8f8}{create\+\_\+session}} (self, Tuple\+[str, int]\+ client\+\_\+addr, Tuple\+[str, int]\+ relay\+\_\+addr, int lifetime=600, \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol}{Transport\+Protocol}} transport=\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol_add3842c374c044ba2a61f0f8eafc207b}{Transport\+Protocol.\+UDP}})
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aa494f3e2411795cb73538f04606a14a4}{get\+\_\+session}} (self, str session\+\_\+id)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aafe6bd021fea8fa5450e2d8ac996f8c4}{get\+\_\+session\+\_\+by\+\_\+client}} (self, Tuple\+[str, int]\+ client\+\_\+addr)
+\item 
+Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_af860cc4acc99d33cbeab4628235ea3f5}{get\+\_\+session\+\_\+by\+\_\+relay}} (self, Tuple\+[str, int]\+ relay\+\_\+addr)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_add97381a1e19a4f7c79e2344844cf7aa}{delete\+\_\+session}} (self, str session\+\_\+id)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a3a9142eb111ef31eade20ba1fc0b70a6}{add\+\_\+permission}} (self, str session\+\_\+id, Tuple\+[str, int]\+ peer\+\_\+addr)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a3fe763c742c8dada961c4cf88f031a83}{handle\+\_\+client\+\_\+data}} (self, Tuple\+[str, int]\+ client\+\_\+addr, bytes data, Tuple\+[str, int]\+ peer\+\_\+addr)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a55e67f96b6e26dc281b72943b0184592}{handle\+\_\+peer\+\_\+data}} (self, Tuple\+[str, int]\+ relay\+\_\+addr, bytes data)
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_af93d3de68fd70f94b6a0684c5f784888}{cleanup\+\_\+expired}} (self)
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aeae1c28e6bf84d1be21420e74d1d320d}{get\+\_\+stats}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ab8a8b283405a9d9a0a7bafb0b8662685}{\+\_\+sessions}} = \{\}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a9377fb1341aa355541b11caaecb12eaf}{\+\_\+client\+\_\+to\+\_\+session}} = \{\}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a46ef28f89263e3aca64a7ac1c42048a9}{\+\_\+relay\+\_\+to\+\_\+session}} = \{\}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a7c6a72e970f7c0798fb203d008f1ea8c}{\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Optional\+[asyncio.\+Datagram\+Protocol]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a20f251baee598c6a7d684d5454b76e56}{\+\_\+socket}} = None
+\item 
+Optional\+[asyncio.\+Datagram\+Transport]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ade2a03e24a7434772f6ec35061a306c2}{\+\_\+transport}} = None
+\item 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a486ff47e3f11604a978632f30b1dfc5c}{\+\_\+bandwidth\+\_\+stats}} = \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats}{Bandwidth\+Stats}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Handles UDP data relay between clients and peers.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00016}{16}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a027a5bdf0fd671e892f039542e4fe573}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a027a5bdf0fd671e892f039542e4fe573} 
+src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize relay handler.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00021}{21}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a3a9142eb111ef31eade20ba1fc0b70a6}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!add\_permission@{add\_permission}}
+\index{add\_permission@{add\_permission}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{add\_permission()}{add\_permission()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a3a9142eb111ef31eade20ba1fc0b70a6} 
+ bool src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+add\+\_\+permission (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{session\+\_\+id}{, }\item[{Tuple\+[str, int]\+}]{peer\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add permission for peer to send data.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00139}{139}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_af93d3de68fd70f94b6a0684c5f784888}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!cleanup\_expired@{cleanup\_expired}}
+\index{cleanup\_expired@{cleanup\_expired}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{cleanup\_expired()}{cleanup\_expired()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_af93d3de68fd70f94b6a0684c5f784888} 
+ int src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Clean up expired sessions.
+
+Returns:
+    Number of sessions removed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{220}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{src.\+bandwidth.\+Throughput\+Monitor.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{src.\+bandwidth.\+Token\+Bucket.\+\_\+lock}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00026}{\+\_\+lock}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{delete\+\_\+session()}}.
+
+函数调用图:\+
+% FIG 0
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ad877bd7850b696ba59534b72f364a8f8}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!create\_session@{create\_session}}
+\index{create\_session@{create\_session}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{create\_session()}{create\_session()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ad877bd7850b696ba59534b72f364a8f8} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{client\+\_\+addr}{, }\item[{Tuple\+[str, int]\+}]{relay\+\_\+addr}{, }\item[{int }]{lifetime}{ = {\ttfamily 600}, }\item[{\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol}{Transport\+Protocol}} }]{transport}{ = {\ttfamily \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol_add3842c374c044ba2a61f0f8eafc207b}{Transport\+Protocol.\+UDP}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Create a new relay session.
+
+Args:
+    client_addr: Client (ip, port)
+    relay_addr: Relay (ip, port)
+    lifetime: Session lifetime in seconds
+    transport: Transport protocol
+
+Returns:
+    RelaySession or None
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00054}{54}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00024}{\+\_\+client\+\_\+to\+\_\+session}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{src.\+bandwidth.\+Throughput\+Monitor.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{src.\+bandwidth.\+Token\+Bucket.\+\_\+lock}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00026}{\+\_\+lock}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00025}{\+\_\+relay\+\_\+to\+\_\+session}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_add97381a1e19a4f7c79e2344844cf7aa}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!delete\_session@{delete\_session}}
+\index{delete\_session@{delete\_session}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{delete\_session()}{delete\_session()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_add97381a1e19a4f7c79e2344844cf7aa} 
+ bool src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{session\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Delete a relay session.
+
+Args:
+    session_id: Session ID
+
+Returns:
+    True if session was deleted
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{116}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00024}{\+\_\+client\+\_\+to\+\_\+session}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{src.\+bandwidth.\+Throughput\+Monitor.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{src.\+bandwidth.\+Token\+Bucket.\+\_\+lock}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00026}{\+\_\+lock}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00025}{\+\_\+relay\+\_\+to\+\_\+session}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00146}{handle\+\_\+client\+\_\+data()}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00188}{handle\+\_\+peer\+\_\+data()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aa494f3e2411795cb73538f04606a14a4}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!get\_session@{get\_session}}
+\index{get\_session@{get\_session}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{get\_session()}{get\_session()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aa494f3e2411795cb73538f04606a14a4} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+session (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{session\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get session by ID.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00098}{98}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aafe6bd021fea8fa5450e2d8ac996f8c4}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!get\_session\_by\_client@{get\_session\_by\_client}}
+\index{get\_session\_by\_client@{get\_session\_by\_client}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{get\_session\_by\_client()}{get\_session\_by\_client()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aafe6bd021fea8fa5450e2d8ac996f8c4} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+session\+\_\+by\+\_\+client (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{client\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get session by client address.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00102}{102}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00024}{\+\_\+client\+\_\+to\+\_\+session}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00146}{handle\+\_\+client\+\_\+data()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_af860cc4acc99d33cbeab4628235ea3f5}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!get\_session\_by\_relay@{get\_session\_by\_relay}}
+\index{get\_session\_by\_relay@{get\_session\_by\_relay}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{get\_session\_by\_relay()}{get\_session\_by\_relay()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_af860cc4acc99d33cbeab4628235ea3f5} 
+ Optional\+[\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session}{Relay\+Session}}]\+ src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+session\+\_\+by\+\_\+relay (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{relay\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get session by relay address.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00109}{109}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00025}{\+\_\+relay\+\_\+to\+\_\+session}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00188}{handle\+\_\+peer\+\_\+data()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aeae1c28e6bf84d1be21420e74d1d320d}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!get\_stats@{get\_stats}}
+\index{get\_stats@{get\_stats}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{get\_stats()}{get\_stats()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_aeae1c28e6bf84d1be21420e74d1d320d} 
+ dict src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+get\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get relay statistics.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00242}{242}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00029}{\+\_\+bandwidth\+\_\+stats}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00030}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxer\+Adapter.\+\_\+sessions}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00547}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+sessions}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{\+\_\+sessions}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a3fe763c742c8dada961c4cf88f031a83}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!handle\_client\_data@{handle\_client\_data}}
+\index{handle\_client\_data@{handle\_client\_data}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{handle\_client\_data()}{handle\_client\_data()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a3fe763c742c8dada961c4cf88f031a83} 
+ bool src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+handle\+\_\+client\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{client\+\_\+addr}{, }\item[{bytes}]{data}{, }\item[{Tuple\+[str, int]\+}]{peer\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Handle data from client to relay to peer.
+
+Args:
+    client_addr: Client address
+    data: Data to relay
+    peer_addr: Destination peer address
+
+Returns:
+    True if data was relayed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00146}{146}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00029}{\+\_\+bandwidth\+\_\+stats}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{delete\+\_\+session()}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00102}{get\+\_\+session\+\_\+by\+\_\+client()}}.
+
+函数调用图:\+
+% FIG 4
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a55e67f96b6e26dc281b72943b0184592}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!handle\_peer\_data@{handle\_peer\_data}}
+\index{handle\_peer\_data@{handle\_peer\_data}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{handle\_peer\_data()}{handle\_peer\_data()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a55e67f96b6e26dc281b72943b0184592} 
+ bool src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+handle\+\_\+peer\+\_\+data (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{relay\+\_\+addr}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Handle data from peer to relay to client.
+
+Args:
+    relay_addr: Relay address
+    data: Data to relay
+
+Returns:
+    True if data was relayed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00188}{188}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{delete\+\_\+session()}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00109}{get\+\_\+session\+\_\+by\+\_\+relay()}}.
+
+函数调用图:\+
+% FIG 5
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a5c8eabad20f183d4d59a5cdb6804eb1a}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!start@{start}}
+\index{start@{start}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a5c8eabad20f183d4d59a5cdb6804eb1a} 
+ None src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+start (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{host}{, }\item[{Tuple\+[int, int]\+}]{port\+\_\+range}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Start relay server.
+
+Args:
+    host: Host to bind to
+    port_range: (min_port, max_port) for relay ports
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00031}{31}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00479}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+transport}}, \doxymbox{\hyperlink{quic_8py_source_l00953}{p2p\+\_\+engine.\+transport.\+quic.\+Quic\+Protocol\+Factory.\+\_\+transport}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00461}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+transport}}, \doxymbox{\hyperlink{webrtc_8py_source_l00433}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+transport}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00028}{\+\_\+transport}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a0511c8923e1ec3b69ca3c24424d4f9dd}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!stop@{stop}}
+\index{stop@{stop}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a0511c8923e1ec3b69ca3c24424d4f9dd} 
+ None src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+stop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Stop relay handler.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00048}{48}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic_8py_source_l00479}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+transport}}, \doxymbox{\hyperlink{quic_8py_source_l00953}{p2p\+\_\+engine.\+transport.\+quic.\+Quic\+Protocol\+Factory.\+\_\+transport}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00461}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+\_\+transport}}, \doxymbox{\hyperlink{webrtc_8py_source_l00433}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+\_\+transport}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00028}{\+\_\+transport}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a486ff47e3f11604a978632f30b1dfc5c}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_bandwidth\_stats@{\_bandwidth\_stats}}
+\index{\_bandwidth\_stats@{\_bandwidth\_stats}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_bandwidth\_stats}{\_bandwidth\_stats}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a486ff47e3f11604a978632f30b1dfc5c} 
+src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+bandwidth\+\_\+stats = \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_bandwidth_stats}{Bandwidth\+Stats}}()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00029}{29}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00242}{get\+\_\+stats()}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00146}{handle\+\_\+client\+\_\+data()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a9377fb1341aa355541b11caaecb12eaf}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_client\_to\_session@{\_client\_to\_session}}
+\index{\_client\_to\_session@{\_client\_to\_session}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_client\_to\_session}{\_client\_to\_session}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a9377fb1341aa355541b11caaecb12eaf} 
+dict src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+client\+\_\+to\+\_\+session = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00024}{24}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{create\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{delete\+\_\+session()}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00102}{get\+\_\+session\+\_\+by\+\_\+client()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a7c6a72e970f7c0798fb203d008f1ea8c}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a7c6a72e970f7c0798fb203d008f1ea8c} 
+src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00026}{26}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{create\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{delete\+\_\+session()}} , 以及 \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a46ef28f89263e3aca64a7ac1c42048a9}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_relay\_to\_session@{\_relay\_to\_session}}
+\index{\_relay\_to\_session@{\_relay\_to\_session}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_relay\_to\_session}{\_relay\_to\_session}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a46ef28f89263e3aca64a7ac1c42048a9} 
+dict src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+relay\+\_\+to\+\_\+session = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00025}{25}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{create\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{delete\+\_\+session()}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00109}{get\+\_\+session\+\_\+by\+\_\+relay()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ab8a8b283405a9d9a0a7bafb0b8662685}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_sessions@{\_sessions}}
+\index{\_sessions@{\_sessions}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_sessions}{\_sessions}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ab8a8b283405a9d9a0a7bafb0b8662685} 
+dict src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+sessions = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00023}{23}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{connection_8py_source_l00257}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+add\+\_\+ice\+\_\+candidate()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00139}{add\+\_\+permission()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{create\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00207}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+create\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00098}{get\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00230}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+get\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00102}{get\+\_\+session\+\_\+by\+\_\+client()}}, \doxymbox{\hyperlink{connection_8py_source_l00234}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+get\+\_\+session\+\_\+by\+\_\+devices()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00109}{get\+\_\+session\+\_\+by\+\_\+relay()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00242}{get\+\_\+stats()}}, \doxymbox{\hyperlink{connection_8py_source_l00266}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+set\+\_\+relay\+\_\+mode()}}, \doxymbox{\hyperlink{connection_8py_source_l00252}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+set\+\_\+session\+\_\+answer()}}, \doxymbox{\hyperlink{connection_8py_source_l00247}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+set\+\_\+session\+\_\+offer()}} , 以及 \doxymbox{\hyperlink{connection_8py_source_l00242}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+update\+\_\+session\+\_\+status()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a20f251baee598c6a7d684d5454b76e56}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_socket@{\_socket}}
+\index{\_socket@{\_socket}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_socket}{\_socket}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_a20f251baee598c6a7d684d5454b76e56} 
+Optional\+[asyncio.\+Datagram\+Protocol]\+ src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+socket = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00027}{27}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ade2a03e24a7434772f6ec35061a306c2}\index{src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}!\_transport@{\_transport}}
+\index{\_transport@{\_transport}!src.relay\_server.relay.RelayHandler@{src.relay\_server.relay.RelayHandler}}
+\doxysubsubsection{\texorpdfstring{\_transport}{\_transport}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1relay_1_1_relay_handler_ade2a03e24a7434772f6ec35061a306c2} 
+src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+\_\+transport = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay__server_2relay_8py_source}{relay.\+py}} 第 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00028}{28}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00031}{start()}} , 以及 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00048}{stop()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+relay\+\_\+server/\+\doxymbox{\hyperlink{relay__server_2relay_8py}{relay.\+py}}\end{DoxyCompactItemize}

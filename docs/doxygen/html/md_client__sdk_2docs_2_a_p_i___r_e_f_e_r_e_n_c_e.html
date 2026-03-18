@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: P2P SDK API 参考文档</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('md_client__sdk_2docs_2_a_p_i___r_e_f_e_r_e_n_c_e.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">P2P SDK API 参考文档 </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md76"></a></p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md77"></a>
+核心类</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
+P2PClient</h2>
+<p>主客户端类，用于 P2P 通信。</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
+构造函数</h3>
+<div class="fragment"><div class="line">P2PClient(</div>
+<div class="line">    did: str,</div>
+<div class="line">    signaling_server: str = <span class="stringliteral">&quot;localhost&quot;</span>,</div>
+<div class="line">    signaling_port: int = 8443,</div>
+<div class="line">    stun_server: str = <span class="stringliteral">&quot;stun.l.google.com&quot;</span>,</div>
+<div class="line">    stun_port: int = 19302,</div>
+<div class="line">    relay_server: str = <span class="stringliteral">&quot;localhost&quot;</span>,</div>
+<div class="line">    relay_port: int = 5000,</div>
+<div class="line">    local_port: int = 0,</div>
+<div class="line">    connection_timeout: float = 30.0,</div>
+<div class="line">    punch_timeout: float = 10.0,</div>
+<div class="line">    keepalive_interval: float = 5.0,</div>
+<div class="line">    max_retries: int = 3,</div>
+<div class="line">    auto_relay: bool = <span class="keyword">True</span>,</div>
+<div class="line">    recv_buffer_size: int = 8192</div>
+<div class="line">)</div>
+</div><!-- fragment --><p><b>参数：</b></p>
+<ul>
+<li><span class="tt">did</span> (str): 设备唯一标识符</li>
+<li><span class="tt">signaling_server</span> (str): 信令服务器地址</li>
+<li><span class="tt">signaling_port</span> (int): 信令服务器端口</li>
+<li><span class="tt">stun_server</span> (str): STUN 服务器地址</li>
+<li><span class="tt">stun_port</span> (int): STUN 服务器端口</li>
+<li><span class="tt">relay_server</span> (str): 中继服务器地址</li>
+<li><span class="tt">relay_port</span> (int): 中继服务器端口</li>
+<li><span class="tt">local_port</span> (int): 本地 UDP 端口（0 表示自动分配）</li>
+<li><span class="tt">connection_timeout</span> (float): 连接超时时间（秒）</li>
+<li><span class="tt">punch_timeout</span> (float): 打洞超时时间（秒）</li>
+<li><span class="tt">keepalive_interval</span> (float): 保活间隔（秒）</li>
+<li><span class="tt">max_retries</span> (int): 最大重试次数</li>
+<li><span class="tt">auto_relay</span> (bool): 是否自动回退到中继</li>
+<li><span class="tt">recv_buffer_size</span> (int): 接收缓冲区大小（字节）</li>
+</ul>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
+方法</h3>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+async initialize()</h4>
+<p>初始化客户端（NAT 检测、连接信令服务器）。</p>
+<div class="fragment"><div class="line">await client.initialize()</div>
+</div><!-- fragment --><p><b>返回：</b> None</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">NATDetectionError</span>: NAT 检测失败</li>
+<li><span class="tt">ConnectionError</span>: 信令服务器连接失败</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
+async detect_nat() -&gt; NATType</h4>
+<p>检测 NAT 类型。</p>
+<div class="fragment"><div class="line">nat_type = await client.detect_nat()</div>
+</div><!-- fragment --><p><b>返回：</b> <span class="tt">NATType</span> 枚举值</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">NATDetectionError</span>: NAT 检测失败</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+async connect(did: str) -&gt; bool</h4>
+<p>连接到对等设备。</p>
+<div class="fragment"><div class="line">success = await client.connect(<span class="stringliteral">&quot;peer-device-id&quot;</span>)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">did</span> (str): 对等设备 ID</li>
+</ul>
+<p><b>返回：</b> bool - 连接是否成功</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">ConnectionError</span>: 连接失败</li>
+<li><span class="tt">TimeoutError</span>: 连接超时</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
+async send_data(channel: int, data: bytes) -&gt; None</h4>
+<p>在指定通道上发送数据。</p>
+<div class="fragment"><div class="line">await client.send_data(channel_id, b<span class="stringliteral">&quot;Hello, peer!&quot;</span>)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">channel</span> (int): 通道 ID</li>
+<li><span class="tt">data</span> (bytes): 要发送的数据</li>
+</ul>
+<p><b>返回：</b> None</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">ConnectionError</span>: 连接已断开</li>
+<li><span class="tt">ValueError</span>: 通道不存在</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+async recv_data(channel: int, timeout: float = None) -&gt; bytes</h4>
+<p>从指定通道接收数据。</p>
+<div class="fragment"><div class="line">data = await client.recv_data(channel_id, timeout=10.0)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">channel</span> (int): 通道 ID</li>
+<li><span class="tt">timeout</span> (float, optional): 超时时间（秒），None 表示无限等待</li>
+</ul>
+<p><b>返回：</b> bytes - 接收到的数据</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">TimeoutError</span>: 接收超时</li>
+<li><span class="tt">ConnectionError</span>: 连接已断开</li>
+<li><span class="tt">ValueError</span>: 通道不存在</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
+create_channel(channel_type: ChannelType, reliable: bool = True, priority: int = 0) -&gt; int</h4>
+<p>创建新的数据通道。</p>
+<div class="fragment"><div class="line">channel_id = client.create_channel(ChannelType.DATA, reliable=<span class="keyword">True</span>, priority=5)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">channel_type</span> (ChannelType): 通道类型</li>
+<li><span class="tt">reliable</span> (bool): 是否可靠传输</li>
+<li><span class="tt">priority</span> (int): 通道优先级（0-10，数值越大优先级越高）</li>
+</ul>
+<p><b>返回：</b> int - 通道 ID</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">ValueError</span>: 参数无效</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+close_channel(channel_id: int) -&gt; None</h4>
+<p>关闭数据通道。</p>
+<div class="fragment"><div class="line">client.close_channel(channel_id)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">channel_id</span> (int): 通道 ID</li>
+</ul>
+<p><b>返回：</b> None</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
+async close() -&gt; None</h4>
+<p>关闭连接并清理资源。</p>
+<div class="fragment"><div class="line">await client.close()</div>
+</div><!-- fragment --><p><b>返回：</b> None</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
+async measure_latency() -&gt; float</h4>
+<p>测量到对等设备的延迟。</p>
+<div class="fragment"><div class="line">latency_ms = await client.measure_latency()</div>
+</div><!-- fragment --><p><b>返回：</b> float - 延迟时间（毫秒）</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">ConnectionError</span>: 连接已断开</li>
+<li><span class="tt">TimeoutError</span>: 测量超时</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
+get_statistics() -&gt; dict</h4>
+<p>获取连接统计信息。</p>
+<div class="fragment"><div class="line">stats = client.get_statistics()</div>
+<div class="line">print(f<span class="stringliteral">&quot;Bytes sent: {stats[&#39;bytes_sent&#39;]}&quot;</span>)</div>
+<div class="line">print(f<span class="stringliteral">&quot;Bytes received: {stats[&#39;bytes_received&#39;]}&quot;</span>)</div>
+</div><!-- fragment --><p><b>返回：</b> dict - 统计信息字典</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    <span class="stringliteral">&quot;bytes_sent&quot;</span>: int,</div>
+<div class="line">    <span class="stringliteral">&quot;bytes_received&quot;</span>: int,</div>
+<div class="line">    <span class="stringliteral">&quot;packets_sent&quot;</span>: int,</div>
+<div class="line">    <span class="stringliteral">&quot;packets_received&quot;</span>: int,</div>
+<div class="line">    <span class="stringliteral">&quot;send_rate&quot;</span>: float,  <span class="comment"># bytes/s</span></div>
+<div class="line">    <span class="stringliteral">&quot;recv_rate&quot;</span>: float,  <span class="comment"># bytes/s</span></div>
+<div class="line">    <span class="stringliteral">&quot;packet_loss&quot;</span>: float,  <span class="comment"># 0.0-1.0</span></div>
+<div class="line">    <span class="stringliteral">&quot;connection_time&quot;</span>: float,  <span class="comment"># seconds</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
+属性</h3>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
+nat_type: NATType</h4>
+<p>当前检测到的 NAT 类型。</p>
+<div class="fragment"><div class="line">print(f<span class="stringliteral">&quot;NAT Type: {client.nat_type}&quot;</span>)</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
+local_address: tuple[str, int]</h4>
+<p>本地地址（IP, 端口）。</p>
+<div class="fragment"><div class="line">ip, port = client.local_address</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
+public_address: tuple[str, int]</h4>
+<p>公网地址（IP, 端口）。</p>
+<div class="fragment"><div class="line">ip, port = client.public_address</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
+is_connected: bool</h4>
+<p>是否已连接到对等设备。</p>
+<div class="fragment"><div class="line"><span class="keywordflow">if</span> client.is_connected:</div>
+<div class="line">    print(<span class="stringliteral">&quot;Connected&quot;</span>)</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md96"></a>
+is_signaling_connected: bool</h4>
+<p>是否已连接到信令服务器。</p>
+<div class="fragment"><div class="line"><span class="keywordflow">if</span> client.is_signaling_connected:</div>
+<div class="line">    print(<span class="stringliteral">&quot;Signaling connected&quot;</span>)</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md97"></a>
+peer_did: str | None</h4>
+<p>当前连接的对等设备 ID。</p>
+<div class="fragment"><div class="line"><span class="keywordflow">if</span> client.peer_did:</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Connected to: {client.peer_did}&quot;</span>)</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md98"></a>
+事件处理器</h3>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
+@client.on_connected</h4>
+<p>连接建立时触发。</p>
+<div class="fragment"><div class="line"><span class="preprocessor">@client.on_connected</span></div>
+<div class="line"><span class="keyword">async def </span>on_connected():</div>
+<div class="line">    print(<span class="stringliteral">&quot;Connection established!&quot;</span>)</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md100"></a>
+@client.on_disconnected</h4>
+<p>连接断开时触发。</p>
+<div class="fragment"><div class="line"><span class="preprocessor">@client.on_disconnected</span></div>
+<div class="line"><span class="keyword">async def </span>on_disconnected():</div>
+<div class="line">    print(<span class="stringliteral">&quot;Connection lost&quot;</span>)</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md101"></a>
+@client.on_data</h4>
+<p>接收到数据时触发。</p>
+<div class="fragment"><div class="line"><span class="preprocessor">@client.on_data</span></div>
+<div class="line"><span class="keyword">async def </span>on_data(channel_id: int, data: bytes):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Received {len(data)} bytes on channel {channel_id}&quot;</span>)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">channel_id</span> (int): 通道 ID</li>
+<li><span class="tt">data</span> (bytes): 接收到的数据</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
+@client.on_error</h4>
+<p>发生错误时触发。</p>
+<div class="fragment"><div class="line"><span class="preprocessor">@client.on_error</span></div>
+<div class="line"><span class="keyword">async def </span>on_error(error: Exception):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Error: {error}&quot;</span>)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">error</span> (Exception): 错误对象</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md103"></a>
+@client.on_channel_opened</h4>
+<p>通道打开时触发。</p>
+<div class="fragment"><div class="line"><span class="preprocessor">@client.on_channel_opened</span></div>
+<div class="line"><span class="keyword">async def </span>on_channel_opened(channel_id: int, channel_type: ChannelType):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Channel {channel_id} opened: {channel_type}&quot;</span>)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">channel_id</span> (int): 通道 ID</li>
+<li><span class="tt">channel_type</span> (ChannelType): 通道类型</li>
+</ul>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md104"></a>
+@client.on_channel_closed</h4>
+<p>通道关闭时触发。</p>
+<div class="fragment"><div class="line"><span class="preprocessor">@client.on_channel_closed</span></div>
+<div class="line"><span class="keyword">async def </span>on_channel_closed(channel_id: int):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Channel {channel_id} closed&quot;</span>)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">channel_id</span> (int): 通道 ID</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md105"></a>
+枚举类型</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md106"></a>
+ChannelType</h2>
+<p>数据通道类型。</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>ChannelType(Enum):</div>
+<div class="line">    CONTROL = 0    <span class="comment"># 控制/信令通道</span></div>
+<div class="line">    DATA = 1       <span class="comment"># 通用数据通道</span></div>
+<div class="line">    VIDEO = 2      <span class="comment"># 视频流</span></div>
+<div class="line">    AUDIO = 3      <span class="comment"># 音频流</span></div>
+<div class="line">    CUSTOM = 4     <span class="comment"># 自定义应用通道</span></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md107"></a>
+NATType</h2>
+<p>NAT 类型。</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>NATType(Enum):</div>
+<div class="line">    PUBLIC_IP = 0              <span class="comment"># 无 NAT，公网 IP</span></div>
+<div class="line">    FULL_CONE = 1              <span class="comment"># 完全锥形 NAT</span></div>
+<div class="line">    RESTRICTED_CONE = 2        <span class="comment"># 限制锥形 NAT</span></div>
+<div class="line">    PORT_RESTRICTED_CONE = 3   <span class="comment"># 端口限制锥形 NAT</span></div>
+<div class="line">    SYMMETRIC = 4              <span class="comment"># 对称 NAT（需要中继）</span></div>
+<div class="line">    UNKNOWN = 5                <span class="comment"># 无法检测</span></div>
+<div class="line">    BLOCKED = 6                <span class="comment"># UDP 被阻止</span></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md108"></a>
+异常类</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md109"></a>
+P2PError</h2>
+<p>所有 P2P SDK 异常的基类。</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>P2PError(Exception):</div>
+<div class="line">    <span class="keywordflow">pass</span></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md110"></a>
+ConnectionError</h2>
+<p>连接相关错误。</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>ConnectionError(P2PError):</div>
+<div class="line">    <span class="keywordflow">pass</span></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md111"></a>
+NATDetectionError</h2>
+<p>NAT 检测失败。</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>NATDetectionError(P2PError):</div>
+<div class="line">    <span class="keywordflow">pass</span></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md112"></a>
+RelayError</h2>
+<p>中继服务器错误。</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>RelayError(P2PError):</div>
+<div class="line">    <span class="keywordflow">pass</span></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md113"></a>
+TimeoutError</h2>
+<p>操作超时。</p>
+<div class="fragment"><div class="line"><span class="keyword">class </span>TimeoutError(P2PError):</div>
+<div class="line">    <span class="keywordflow">pass</span></div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md114"></a>
+工具函数</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md115"></a>
+async detect_nat_type(stun_server: str, stun_port: int) -&gt; NATType</h2>
+<p>独立的 NAT 类型检测函数。</p>
+<div class="fragment"><div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> detect_nat_type</div>
+<div class="line"> </div>
+<div class="line">nat_type = await detect_nat_type(</div>
+<div class="line">    stun_server=<span class="stringliteral">&quot;stun.l.google.com&quot;</span>,</div>
+<div class="line">    stun_port=19302</div>
+<div class="line">)</div>
+</div><!-- fragment --><p><b>参数：</b></p><ul>
+<li><span class="tt">stun_server</span> (str): STUN 服务器地址</li>
+<li><span class="tt">stun_port</span> (int): STUN 服务器端口</li>
+</ul>
+<p><b>返回：</b> NATType</p>
+<p><b>异常：</b></p><ul>
+<li><span class="tt">NATDetectionError</span>: 检测失败</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md116"></a>
+协议格式</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md117"></a>
+消息格式</h2>
+<p>所有消息使用以下二进制格式：</p>
+<div class="fragment"><div class="line">[total_length(4)][json_length(4)][json_header][payload]</div>
+</div><!-- fragment --><ul>
+<li><span class="tt">total_length</span> (4 bytes): 整个消息的长度（大端序）</li>
+<li><span class="tt">json_length</span> (4 bytes): JSON 头部的长度（大端序）</li>
+<li><span class="tt">json_header</span> (variable): JSON 格式的消息头</li>
+<li><span class="tt">payload</span> (variable): 消息负载（可选）</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md118"></a>
+消息类型</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md119"></a>
+handshake</h3>
+<p>连接握手消息。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;type&quot;: &quot;handshake&quot;,</div>
+<div class="line">    &quot;version&quot;: &quot;1.0&quot;,</div>
+<div class="line">    &quot;did&quot;: &quot;device-001&quot;,</div>
+<div class="line">    &quot;timestamp&quot;: 1234567890</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md120"></a>
+keepalive</h3>
+<p>保活消息。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;type&quot;: &quot;keepalive&quot;,</div>
+<div class="line">    &quot;timestamp&quot;: 1234567890</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md121"></a>
+channel_data</h3>
+<p>通道数据传输。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;type&quot;: &quot;channel_data&quot;,</div>
+<div class="line">    &quot;channel_id&quot;: 1,</div>
+<div class="line">    &quot;data_length&quot;: 1024,</div>
+<div class="line">    &quot;timestamp&quot;: 1234567890</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md122"></a>
+channel_open</h3>
+<p>打开新通道。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;type&quot;: &quot;channel_open&quot;,</div>
+<div class="line">    &quot;channel_id&quot;: 1,</div>
+<div class="line">    &quot;channel_type&quot;: &quot;data&quot;,</div>
+<div class="line">    &quot;reliable&quot;: true,</div>
+<div class="line">    &quot;priority&quot;: 5</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md123"></a>
+channel_close</h3>
+<p>关闭通道。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;type&quot;: &quot;channel_close&quot;,</div>
+<div class="line">    &quot;channel_id&quot;: 1</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md124"></a>
+disconnect</h3>
+<p>优雅断开连接。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;type&quot;: &quot;disconnect&quot;,</div>
+<div class="line">    &quot;reason&quot;: &quot;user_requested&quot;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md125"></a>
+error</h3>
+<p>错误通知。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;type&quot;: &quot;error&quot;,</div>
+<div class="line">    &quot;code&quot;: &quot;connection_failed&quot;,</div>
+<div class="line">    &quot;message&quot;: &quot;Connection timeout&quot;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md126"></a>
+配置示例</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md127"></a>
+最小配置</h2>
+<div class="fragment"><div class="line">client = P2PClient(did=<span class="stringliteral">&quot;device-001&quot;</span>)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md128"></a>
+生产环境配置</h2>
+<div class="fragment"><div class="line">client = P2PClient(</div>
+<div class="line">    did=<span class="stringliteral">&quot;device-001&quot;</span>,</div>
+<div class="line">    signaling_server=<span class="stringliteral">&quot;signal.example.com&quot;</span>,</div>
+<div class="line">    signaling_port=8443,</div>
+<div class="line">    stun_server=<span class="stringliteral">&quot;stun.example.com&quot;</span>,</div>
+<div class="line">    stun_port=3478,</div>
+<div class="line">    relay_server=<span class="stringliteral">&quot;relay.example.com&quot;</span>,</div>
+<div class="line">    relay_port=5000,</div>
+<div class="line">    connection_timeout=30.0,</div>
+<div class="line">    punch_timeout=10.0,</div>
+<div class="line">    keepalive_interval=5.0,</div>
+<div class="line">    max_retries=3,</div>
+<div class="line">    auto_relay=<span class="keyword">True</span>,</div>
+<div class="line">    recv_buffer_size=65536</div>
+<div class="line">)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md129"></a>
+高性能配置</h2>
+<div class="fragment"><div class="line">client = P2PClient(</div>
+<div class="line">    did=<span class="stringliteral">&quot;device-001&quot;</span>,</div>
+<div class="line">    recv_buffer_size=131072,  <span class="comment"># 128KB</span></div>
+<div class="line">    keepalive_interval=3.0,   <span class="comment"># 更频繁的保活</span></div>
+<div class="line">    max_retries=5,            <span class="comment"># 更多重试</span></div>
+<div class="line">    auto_relay=<span class="keyword">True</span></div>
+<div class="line">)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md130"></a>
+低延迟配置</h2>
+<div class="fragment"><div class="line">client = P2PClient(</div>
+<div class="line">    did=<span class="stringliteral">&quot;device-001&quot;</span>,</div>
+<div class="line">    connection_timeout=10.0,  <span class="comment"># 更短的超时</span></div>
+<div class="line">    punch_timeout=5.0,</div>
+<div class="line">    keepalive_interval=2.0,   <span class="comment"># 更频繁的保活</span></div>
+<div class="line">    recv_buffer_size=8192     <span class="comment"># 更小的缓冲区</span></div>
+<div class="line">)</div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

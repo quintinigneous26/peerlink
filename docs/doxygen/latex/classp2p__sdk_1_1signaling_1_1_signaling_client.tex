@@ -1,0 +1,556 @@
+\doxysection{p2p\+\_\+sdk.\+signaling.\+Signaling\+Client类 参考}
+\hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client}{}\label{classp2p__sdk_1_1signaling_1_1_signaling_client}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+
+
+类 p2p\+\_\+sdk.\+signaling.\+Signaling\+Client 继承关系图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a23962d16d0ce7718c45668c2d8fb8b69}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a03c8c7fadfbc538ca5c2eb2f2b9985ce}{server}}, int \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a8bfb9471d099f385c03c46829aff8ed0}{port}}, str \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_af4b9505fbab969ad15638f062847e338}{did}}, bool \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_aa2800231b5a2b9cfa918a07fdc057f7e}{use\+\_\+tls}}=False)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a1338b1e24c261dd54f667fa8de1a49d2}{connect}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a471f4f7015a63b6dddd6494df6513c5a}{disconnect}} (self)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a1d73ec393460cfb43ca91361e2995819}{register\+\_\+device}} (self, str \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_af4b9505fbab969ad15638f062847e338}{did}}, str public\+\_\+ip, int public\+\_\+port, str nat\+\_\+type="{}unknown"{}, list capabilities=None)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a742c15bcaa78dbc09fed9e22c675157a}{query\+\_\+device}} (self, str \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_af4b9505fbab969ad15638f062847e338}{did}})
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_ad2686b7ffb15ea8d4f674a11addc0640}{request\+\_\+connection}} (self, str target\+\_\+did, bool use\+\_\+relay=False)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a5c1a9bf62afed3e8566ec8a2b0c10d2c}{accept\+\_\+connection}} (self, str request\+\_\+id)
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_af6c630a7f656de4f05075b9bda6b40e0}{reject\+\_\+connection}} (self, str request\+\_\+id, str reason="{}"{})
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_ad43db178488b9def2dbfcacf4ff779e5}{request\+\_\+relay}} (self, str target\+\_\+did)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a10c456a679ba4a560e248600c53fbb9b}{on\+\_\+event}} (self, \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_event_type}{Signaling\+Event\+Type}} event\+\_\+type, Callable\+[\+[\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_event}{Signaling\+Event}}]\+, Awaitable\+[None]\+]\+ handler)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a03c8c7fadfbc538ca5c2eb2f2b9985ce}{server}} = server
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a8bfb9471d099f385c03c46829aff8ed0}{port}} = port
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_af4b9505fbab969ad15638f062847e338}{did}} = did
+\item 
+\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_aa2800231b5a2b9cfa918a07fdc057f7e}{use\+\_\+tls}} = use\+\_\+tls
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+Dict\+[str, Any]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_ac2f6c485b8ee09fccd47bc3c6abfdf37}{\+\_\+send\+\_\+request}} (self, str method, Dict\+[str, Any]\+ payload)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_aeb2a0413787cca99c57640cd5c43d307}{\+\_\+message\+\_\+loop}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_ab0654a757da8c82ce979bd52639cb110}{\+\_\+handle\+\_\+message}} (self, Dict\+[str, Any]\+ message)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional\+[asyncio.\+Stream\+Reader]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a15e2b939c80fa6f3b14d32c9a7410700}{\+\_\+reader}} = None
+\item 
+Optional\+[asyncio.\+Stream\+Writer]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_ae5a84caaf3bb6e9301036ae5e227f970}{\+\_\+writer}} = None
+\item 
+bool \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a20f6e851c8d22c6975a00051c31b95a7}{\+\_\+connected}} = False
+\item 
+bool \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a6076b6aa296d04de72409f6f0cbdd80c}{\+\_\+running}} = False
+\item 
+dict \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a82a9e9e65edeccf226d6411cb757e113}{\+\_\+event\+\_\+handlers}} = \{\}
+\item 
+dict \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a0da5a797c9f51f8e7298a91e99fac738}{\+\_\+pending}} = \{\}
+\item 
+int \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_client_a4e56fcf040059a8759ce19f40f5182a0}{\+\_\+request\+\_\+id}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Client for communicating with the signaling server.
+
+Handles device registration, discovery, and connection coordination.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00040}{40}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a23962d16d0ce7718c45668c2d8fb8b69}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a23962d16d0ce7718c45668c2d8fb8b69} 
+p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{server}{, }\item[{int}]{port}{, }\item[{str}]{did}{, }\item[{bool }]{use\+\_\+tls}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize signaling client.
+
+Args:
+    server: Signaling server hostname
+    port: Signaling server port
+    did: Device ID
+    use_tls: Whether to use TLS/WSS
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00047}{47}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_ab0654a757da8c82ce979bd52639cb110}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_handle\_message@{\_handle\_message}}
+\index{\_handle\_message@{\_handle\_message}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_handle\_message()}{\_handle\_message()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_ab0654a757da8c82ce979bd52639cb110} 
+ None p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+handle\+\_\+message (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Dict\+[str, Any]\+}]{message}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Handle incoming message.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00311}{311}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00074}{\+\_\+event\+\_\+handlers}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00077}{\+\_\+pending}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00292}{\+\_\+message\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00446}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+ws\+\_\+message\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_aeb2a0413787cca99c57640cd5c43d307}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_message\_loop@{\_message\_loop}}
+\index{\_message\_loop@{\_message\_loop}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_message\_loop()}{\_message\_loop()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_aeb2a0413787cca99c57640cd5c43d307} 
+ None p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+message\+\_\+loop (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Handle incoming messages from server.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00292}{292}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00311}{\+\_\+handle\+\_\+message()}}, \doxymbox{\hyperlink{mplex_8py_source_l00507}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00670}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{yamux_8py_source_l00527}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{ping_8py_source_l00078}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+reader}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00073}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+reader}}, \doxymbox{\hyperlink{upgrader_8py_source_l00149}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+reader}}, \doxymbox{\hyperlink{signaling_8py_source_l00068}{\+\_\+reader}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{p2p\+\_\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{client_8py_source_l00214}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+running}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00071}{\+\_\+running}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_ac2f6c485b8ee09fccd47bc3c6abfdf37}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_send\_request@{\_send\_request}}
+\index{\_send\_request@{\_send\_request}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_send\_request()}{\_send\_request()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_ac2f6c485b8ee09fccd47bc3c6abfdf37} 
+ Dict\+[str, Any]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+send\+\_\+request (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{method}{, }\item[{Dict\+[str, Any]\+}]{payload}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Send request to signaling server.
+
+Args:
+    method: Request method
+    payload: Request payload
+
+Returns:
+    Response data
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00246}{246}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00070}{\+\_\+connected}}, \doxymbox{\hyperlink{signaling_8py_source_l00077}{\+\_\+pending}}, \doxymbox{\hyperlink{signaling_8py_source_l00078}{\+\_\+request\+\_\+id}}, \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{ping_8py_source_l00079}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+writer}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00074}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+writer}}, \doxymbox{\hyperlink{upgrader_8py_source_l00150}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+writer}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00069}{\+\_\+writer}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00186}{accept\+\_\+connection()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00151}{query\+\_\+device()}}, \doxymbox{\hyperlink{signaling_8py_source_l00127}{register\+\_\+device()}}, \doxymbox{\hyperlink{signaling_8py_source_l00198}{reject\+\_\+connection()}}, \doxymbox{\hyperlink{signaling_8py_source_l00167}{request\+\_\+connection()}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00215}{request\+\_\+relay()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a5c1a9bf62afed3e8566ec8a2b0c10d2c}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!accept\_connection@{accept\_connection}}
+\index{accept\_connection@{accept\_connection}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{accept\_connection()}{accept\_connection()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a5c1a9bf62afed3e8566ec8a2b0c10d2c} 
+ Dict\+[str, Any]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+accept\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{request\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Accept an incoming connection request.
+
+Args:
+    request_id: Connection request ID
+
+Returns:
+    Accept response
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00186}{186}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}.
+
+函数调用图:\+
+% FIG 5
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a1338b1e24c261dd54f667fa8de1a49d2}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!connect@{connect}}
+\index{connect@{connect}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a1338b1e24c261dd54f667fa8de1a49d2} 
+ None p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+connect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Connect to signaling server.\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_web_socket_signaling_client_a102f5f43eaa0164832ea26a759f53369}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00080}{80}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00070}{\+\_\+connected}}, \doxymbox{\hyperlink{signaling_8py_source_l00292}{\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{mplex_8py_source_l00507}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00670}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{yamux_8py_source_l00527}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+reader}}, \doxymbox{\hyperlink{ping_8py_source_l00078}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+reader}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00073}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+reader}}, \doxymbox{\hyperlink{upgrader_8py_source_l00149}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+reader}}, \doxymbox{\hyperlink{signaling_8py_source_l00068}{\+\_\+reader}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{p2p\+\_\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{client_8py_source_l00214}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00071}{\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}, \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{ping_8py_source_l00079}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+writer}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00074}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+writer}}, \doxymbox{\hyperlink{upgrader_8py_source_l00150}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+writer}}, \doxymbox{\hyperlink{signaling_8py_source_l00069}{\+\_\+writer}}, \doxymbox{\hyperlink{client_8py_source_l00179}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+did}}, \doxymbox{\hyperlink{signaling_8py_source_l00065}{did}}, \doxymbox{\hyperlink{signaling_8py_source_l00064}{port}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00063}{server}}.
+
+函数调用图:\+
+% FIG 6
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a471f4f7015a63b6dddd6494df6513c5a}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a471f4f7015a63b6dddd6494df6513c5a} 
+ None p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+disconnect (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Disconnect from signaling server.\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_web_socket_signaling_client_aa8e7dfe42d5a2457c1cdd29b542f2d94}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00102}{102}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00070}{\+\_\+connected}}, \doxymbox{\hyperlink{p2p__client_8py_source_l00318}{p2p\+\_\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00651}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATProtocol.\+\_\+running}}, \doxymbox{\hyperlink{autonat_8py_source_l00496}{p2p\+\_\+engine.\+detection.\+autonat.\+Auto\+NATServer.\+\_\+running}}, \doxymbox{\hyperlink{dht_2kademlia_8py_source_l00265}{p2p\+\_\+engine.\+dht.\+kademlia.\+Kademlia\+DHT.\+\_\+running}}, \doxymbox{\hyperlink{engine_8py_source_l00152}{p2p\+\_\+engine.\+engine.\+P2\+PEngine.\+\_\+running}}, \doxymbox{\hyperlink{event_8py_source_l00236}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+running}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00054}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+running}}, \doxymbox{\hyperlink{ping_8py_source_l00085}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l00814}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Gossip\+Sub.\+\_\+running}}, \doxymbox{\hyperlink{pubsub_8py_source_l01282}{p2p\+\_\+engine.\+protocol.\+pubsub.\+Pub\+Sub\+Protocol\+Handler.\+\_\+running}}, \doxymbox{\hyperlink{client_8py_source_l00214}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00071}{\+\_\+running}}, \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}, \doxymbox{\hyperlink{mplex_8py_source_l00508}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00671}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{yamux_8py_source_l00528}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+writer}}, \doxymbox{\hyperlink{ping_8py_source_l00079}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+writer}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00074}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+writer}}, \doxymbox{\hyperlink{upgrader_8py_source_l00150}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream.\+\_\+writer}}, \doxymbox{\hyperlink{signaling_8py_source_l00069}{\+\_\+writer}}, \doxymbox{\hyperlink{client_8py_source_l00179}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+did}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00065}{did}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}} , 以及 \doxymbox{\hyperlink{connection_8py_source_l00135}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+send\+\_\+message()}}.
+
+函数调用图:\+
+% FIG 7
+这是这个函数的调用关系图:\+
+% FIG 8
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a10c456a679ba4a560e248600c53fbb9b}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!on\_event@{on\_event}}
+\index{on\_event@{on\_event}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{on\_event()}{on\_event()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a10c456a679ba4a560e248600c53fbb9b} 
+ None p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+on\+\_\+event (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_event_type}{Signaling\+Event\+Type}}}]{event\+\_\+type}{, }\item[{Callable\+[\+[\doxymbox{\hyperlink{classp2p__sdk_1_1signaling_1_1_signaling_event}{Signaling\+Event}}]\+, Awaitable\+[None]\+]\+}]{handler}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register event handler.
+
+Args:
+    event_type: Event type to handle
+    handler: Async callback function
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00230}{230}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00074}{\+\_\+event\+\_\+handlers}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a742c15bcaa78dbc09fed9e22c675157a}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!query\_device@{query\_device}}
+\index{query\_device@{query\_device}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{query\_device()}{query\_device()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a742c15bcaa78dbc09fed9e22c675157a} 
+ Dict\+[str, Any]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+query\+\_\+device (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{did}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Query device information from signaling server.
+
+Args:
+    did: Device ID to query
+
+Returns:
+    Device information
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00151}{151}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}.
+
+函数调用图:\+
+% FIG 9
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a1d73ec393460cfb43ca91361e2995819}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!register\_device@{register\_device}}
+\index{register\_device@{register\_device}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{register\_device()}{register\_device()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a1d73ec393460cfb43ca91361e2995819} 
+ Dict\+[str, Any]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+register\+\_\+device (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{did}{, }\item[{str}]{public\+\_\+ip}{, }\item[{int}]{public\+\_\+port}{, }\item[{str }]{nat\+\_\+type}{ = {\ttfamily "{}unknown"{}}, }\item[{list }]{capabilities}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Register device with signaling server.
+
+Args:
+    did: Device ID
+    public_ip: Public IP address
+    public_port: Public UDP port
+    nat_type: Detected NAT type
+    capabilities: List of supported capabilities
+
+Returns:
+    Registration response
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00120}{120}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}.
+
+函数调用图:\+
+% FIG 10
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_af6c630a7f656de4f05075b9bda6b40e0}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!reject\_connection@{reject\_connection}}
+\index{reject\_connection@{reject\_connection}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{reject\_connection()}{reject\_connection()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_af6c630a7f656de4f05075b9bda6b40e0} 
+ Dict\+[str, Any]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+reject\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{request\+\_\+id}{, }\item[{str }]{reason}{ = {\ttfamily "{}"{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Reject an incoming connection request.
+
+Args:
+    request_id: Connection request ID
+    reason: Rejection reason
+
+Returns:
+    Reject response
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00198}{198}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}.
+
+函数调用图:\+
+% FIG 11
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_ad2686b7ffb15ea8d4f674a11addc0640}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!request\_connection@{request\_connection}}
+\index{request\_connection@{request\_connection}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{request\_connection()}{request\_connection()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_ad2686b7ffb15ea8d4f674a11addc0640} 
+ Dict\+[str, Any]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+request\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{target\+\_\+did}{, }\item[{bool }]{use\+\_\+relay}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Request connection to a device.
+
+Args:
+    target_did: Target device ID
+    use_relay: Whether to request relay mode
+
+Returns:
+    Connection response with peer info
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00163}{163}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}, \doxymbox{\hyperlink{client_8py_source_l00179}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+did}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00065}{did}}.
+
+函数调用图:\+
+% FIG 12
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_ad43db178488b9def2dbfcacf4ff779e5}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!request\_relay@{request\_relay}}
+\index{request\_relay@{request\_relay}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{request\_relay()}{request\_relay()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_ad43db178488b9def2dbfcacf4ff779e5} 
+ Dict\+[str, Any]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+request\+\_\+relay (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{target\+\_\+did}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Request relay server for connection.
+
+Args:
+    target_did: Target device ID
+
+Returns:
+    Relay server information
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00215}{215}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}, \doxymbox{\hyperlink{client_8py_source_l00179}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+did}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00065}{did}}.
+
+函数调用图:\+
+% FIG 13
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a20f6e851c8d22c6975a00051c31b95a7}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_connected@{\_connected}}
+\index{\_connected@{\_connected}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_connected}{\_connected}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a20f6e851c8d22c6975a00051c31b95a7} 
+bool p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+connected = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00070}{70}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00366}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00356}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+\_\+send\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}, \doxymbox{\hyperlink{signaling_8py_source_l00417}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+send\+\_\+ws\+\_\+request()}}, \doxymbox{\hyperlink{transport_8py_source_l00274}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+close()}}, \doxymbox{\hyperlink{transport_8py_source_l00378}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00327}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport.\+connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00403}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{transport_8py_source_l00256}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+recv()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00241}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+send()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a82a9e9e65edeccf226d6411cb757e113}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_event\_handlers@{\_event\_handlers}}
+\index{\_event\_handlers@{\_event\_handlers}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_event\_handlers}{\_event\_handlers}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a82a9e9e65edeccf226d6411cb757e113} 
+dict p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+event\+\_\+handlers = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00074}{74}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00311}{\+\_\+handle\+\_\+message()}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00234}{on\+\_\+event()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a0da5a797c9f51f8e7298a91e99fac738}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_pending@{\_pending}}
+\index{\_pending@{\_pending}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_pending}{\_pending}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a0da5a797c9f51f8e7298a91e99fac738} 
+dict p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+pending = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00077}{77}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00311}{\+\_\+handle\+\_\+message()}}, \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00417}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+send\+\_\+ws\+\_\+request()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a15e2b939c80fa6f3b14d32c9a7410700}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_reader@{\_reader}}
+\index{\_reader@{\_reader}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_reader}{\_reader}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a15e2b939c80fa6f3b14d32c9a7410700} 
+p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+reader = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00068}{68}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00292}{\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00274}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00256}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+recv()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a4e56fcf040059a8759ce19f40f5182a0}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_request\_id@{\_request\_id}}
+\index{\_request\_id@{\_request\_id}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_request\_id}{\_request\_id}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a4e56fcf040059a8759ce19f40f5182a0} 
+int p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+request\+\_\+id = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00078}{78}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00417}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+send\+\_\+ws\+\_\+request()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a6076b6aa296d04de72409f6f0cbdd80c}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_running@{\_running}}
+\index{\_running@{\_running}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_running}{\_running}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a6076b6aa296d04de72409f6f0cbdd80c} 
+bool p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+running = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00071}{71}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00292}{\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{transport_8py_source_l00154}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+\_\+recv\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00446}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+\_\+ws\+\_\+message\+\_\+loop()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00403}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00079}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+stop()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_ae5a84caaf3bb6e9301036ae5e227f970}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!\_writer@{\_writer}}
+\index{\_writer@{\_writer}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{\_writer}{\_writer}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_ae5a84caaf3bb6e9301036ae5e227f970} 
+Optional\+[asyncio.\+Stream\+Writer]\+ p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+\_\+writer = None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00069}{69}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00250}{\+\_\+send\+\_\+request()}}, \doxymbox{\hyperlink{transport_8py_source_l00274}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+close()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}}, \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{disconnect()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00241}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+send()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_af4b9505fbab969ad15638f062847e338}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!did@{did}}
+\index{did@{did}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{did}{did}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_af4b9505fbab969ad15638f062847e338} 
+p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+did = did}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00065}{65}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00102}{disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00403}{p2p\+\_\+sdk.\+signaling.\+Web\+Socket\+Signaling\+Client.\+disconnect()}}, \doxymbox{\hyperlink{signaling_8py_source_l00167}{request\+\_\+connection()}} , 以及 \doxymbox{\hyperlink{signaling_8py_source_l00215}{request\+\_\+relay()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a8bfb9471d099f385c03c46829aff8ed0}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!port@{port}}
+\index{port@{port}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a8bfb9471d099f385c03c46829aff8ed0} 
+p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+port = port}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00064}{64}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay_8py_source_l00198}{src.\+relay.\+Relay\+Server.\+\_\+start\+\_\+control\+\_\+channel()}}, \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_a03c8c7fadfbc538ca5c2eb2f2b9985ce}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!server@{server}}
+\index{server@{server}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{server}{server}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_a03c8c7fadfbc538ca5c2eb2f2b9985ce} 
+p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+server = server}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00063}{63}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling_8py_source_l00080}{connect()}} , 以及 \doxymbox{\hyperlink{transport_8py_source_l00206}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport.\+connect()}}.
+
+\Hypertarget{classp2p__sdk_1_1signaling_1_1_signaling_client_aa2800231b5a2b9cfa918a07fdc057f7e}\index{p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}!use\_tls@{use\_tls}}
+\index{use\_tls@{use\_tls}!p2p\_sdk.signaling.SignalingClient@{p2p\_sdk.signaling.SignalingClient}}
+\doxysubsubsection{\texorpdfstring{use\_tls}{use\_tls}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1signaling_1_1_signaling_client_aa2800231b5a2b9cfa918a07fdc057f7e} 
+p2p\+\_\+sdk.\+signaling.\+Signaling\+Client.\+use\+\_\+tls = use\+\_\+tls}
+
+
+
+在文件 \doxymbox{\hyperlink{signaling_8py_source}{signaling.\+py}} 第 \doxymbox{\hyperlink{signaling_8py_source_l00066}{66}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+client\+\_\+sdk/\+src/\+p2p\+\_\+sdk/\+\doxymbox{\hyperlink{signaling_8py}{signaling.\+py}}\end{DoxyCompactItemize}

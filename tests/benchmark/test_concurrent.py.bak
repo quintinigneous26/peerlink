@@ -1,0 +1,469 @@
+"""
+并发连接测试
+
+测试系统在大量并发连接下的性能和稳定性：
+- 并发连接数测试
+- 并发流测试 (流复用)
+- 内存使用分析
+- CPU 使用分析
+- 连接建立/关闭速率
+
+性能目标: 支持 1000+ 并发连接，内存使用 < 1GB
+"""
+import asyncio
+import os
+import resource
+import statistics
+import time
+from dataclasses import dataclass
+from typing import Any, AsyncGenerator
+
+import pytest
+import pytest_asyncio
+
+
+@dataclass
+class ConcurrentStats:
+    """并发测试统计结果"""
+    max_connections: int
+    successful_connections: int
+    failed_connections: int
+    total_time_sec: float
+    connections_per_sec: float
+    memory_mb: float
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "max_connections": self.max_connections,
+            "successful": self.successful_connections,
+            "failed": self.failed_connections,
+            "total_time_sec": round(self.total_time_sec, 3),
+            "connections_per_sec": round(self.connections_per_sec, 2),
+            "memory_mb": round(self.memory_mb, 2),
+        }
+
+
+class ResourceMonitor:
+    """资源使用监控"""
+
+    @staticmethod
+    def get_memory_usage_mb() -> float:
+        """
+        获取当前进程的内存使用量 (MB)
+
+        Returns:
+            float: 内存使用量 (MB)
+        """
+        try:
+            import psutil
+            process = psutil.Process()
+            return process.memory_info().rss / 1_000_000
+        except ImportError:
+            # 如果没有 psutil，使用 resource 模块 (仅限 Unix)
+            try:
+                # RSS 驻留集大小
+                return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024
+            except (OSError, AttributeError):
+                return 0.0
+
+    @staticmethod
+    def get_open_files_count() -> int:
+        """获取当前打开的文件描述符数量"""
+        try:
+            import psutil
+            process = psutil.Process()
+            return len(process.open_files())
+        except ImportError:
+            # Unix 系统
+            try:
+                import os
+                pid = os.getpid()
+                fd_dir = f"/proc/{pid}/fd"
+                return len(os.listdir(fd_dir)) if os.path.exists(fd_dir) else 0
+            except (OSError, ImportError):
+                return 0
+
+    @staticmethod
+    def get_cpu_usage() -> float:
+        """获取当前进程 CPU 使用率"""
+        try:
+            import psutil
+            process = psutil.Process()
+            return process.cpu_percent(interval=0.1)
+        except ImportError:
+            return 0.0
+
+
+# ===== 性能目标 =====
+
+CONCURRENT_TARGETS = {
+    "min_connections": 100,
+    "target_connections": 1000,
+    "max_memory_per_connection_mb": 0.5,  # 每个连接 < 0.5MB
+    "connections_per_sec": 100,
+}
+
+
+# ===== Fixtures =====
+
+
+@pytest_asyncio.fixture
+async def echo_server(free_port: int) -> AsyncGenerator[dict[str, Any], None]:
+    """
+    启动 echo 服务器用于并发测试
+    """
+    host = "127.0.0.1"
+    port = free_port
+
+    active_connections = 0
+
+    async def handle_client(
+        reader: asyncio.StreamReader, writer: asyncio.StreamWriter
+    ):
+        """Echo 服务处理 - 保持连接"""
+        nonlocal active_connections
+        active_connections += 1
+        try:
+            # 保持连接活跃，持续回显
+            while True:
+                data = await reader.read(1024)
+                if not data:
+                    break
+                writer.write(data)
+                await writer.drain()
+        except asyncio.CancelledError:
+            pass
+        finally:
+            active_connections -= 1
+            writer.close()
+            await writer.wait_closed()
+
+    server = await asyncio.start_server(handle_client, host, port)
+
+    async with server:
+        yield {"host": host, "port": port}
+
+
+# ===== 并发连接测试 =====
+
+
+@pytest.mark.benchmark
+@pytest.mark.slow
+class TestConcurrentConnections:
+    """并发连接测试"""
+
+    async def test_concurrent_connections_100(
+        self, echo_server: dict[str, Any]
+    ) -> ConcurrentStats:
+        """
+        测试 100 个并发连接
+
+        基准测试，验证基本并发能力
+        """
+        return await self._run_concurrent_test(echo_server, 100)
+
+    async def test_concurrent_connections_500(
+        self, echo_server: dict[str, Any]
+    ) -> ConcurrentStats:
+        """
+        测试 500 个并发连接
+
+        中等负载，验证系统在中等并发下的表现
+        """
+        return await self._run_concurrent_test(echo_server, 500)
+
+    @pytest.mark.slow
+    async def test_concurrent_connections_1000(
+        self, echo_server: dict[str, Any]
+    ) -> ConcurrentStats:
+        """
+        测试 1000 个并发连接
+
+        目标负载，验证系统达到目标并发能力
+        """
+        return await self._run_concurrent_test(echo_server, 1000)
+
+    async def _run_concurrent_test(
+        self, echo_server: dict[str, Any], num_connections: int
+    ) -> ConcurrentStats:
+        """
+        执行并发连接测试
+
+        Args:
+            echo_server: 服务器信息
+            num_connections: 并发连接数
+
+        Returns:
+            ConcurrentStats: 统计结果
+        """
+        host = echo_server["host"]
+        port = echo_server["port"]
+
+        async def create_and_keep_connection(
+            conn_id: int,
+        ) -> tuple[bool, float]:
+            """创建并保持连接"""
+            start = time.time()
+            try:
+                reader, writer = await asyncio.wait_for(
+                    asyncio.open_connection(host, port), timeout=10.0
+                )
+                conn_time = time.time() - start
+
+                # 保持连接一段时间
+                await asyncio.sleep(1.0)
+
+                writer.close()
+                await writer.wait_closed()
+
+                return True, conn_time
+            except (asyncio.TimeoutError, OSError) as e:
+                return False, 0.0
+
+        # 记录初始内存
+        initial_memory = ResourceMonitor.get_memory_usage_mb()
+
+        # 并发创建连接
+        start_time = time.time()
+        tasks = [
+            create_and_keep_connection(i) for i in range(num_connections)
+        ]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        total_time = time.time() - start_time
+
+        # 统计结果
+        successful = sum(1 for r in results if isinstance(r, tuple) and r[0])
+        failed = num_connections - successful
+
+        # 记录峰值内存
+        peak_memory = ResourceMonitor.get_memory_usage_mb()
+
+        stats = ConcurrentStats(
+            max_connections=num_connections,
+            successful_connections=successful,
+            failed_connections=failed,
+            total_time_sec=total_time,
+            connections_per_sec=num_connections / total_time if total_time > 0 else 0,
+            memory_mb=peak_memory - initial_memory,
+        )
+
+        print(f"\n并发连接测试 ({num_connections} 连接): {stats.to_dict()}")
+
+        # 验证
+        success_rate = successful / num_connections if num_connections > 0 else 0
+        assert success_rate >= 0.95, f"成功率 {success_rate:.2%} 低于 95%"
+
+        return stats
+
+
+# ===== 并发流测试 (流复用) =====
+
+
+@pytest.mark.benchmark
+@pytest.mark.slow
+class TestConcurrentStreams:
+    """并发流测试 (流复用器)"""
+
+    async def test_yamux_concurrent_streams(self):
+        """
+        测试 yamux 并发流
+
+        在单个连接上创建多个并发流
+        """
+        # TODO: 实现 yamux 并发流测试
+        pytest.skip("等待 yamux 并发流测试实现")
+
+    @pytest.mark.skipif(
+        True,  # 需要 mplex 实现后启用
+        reason="等待 mplex 实现完成"
+    )
+    async def test_mplex_concurrent_streams(self):
+        """
+        测试 mplex 并发流
+
+        对比 mplex 和 yamux 的并发流性能
+        """
+        # TODO: 实现 mplex 并发流测试
+        pytest.skip("等待 mplex 实现")
+
+
+# ===== 资源使用测试 =====
+
+
+@pytest.mark.benchmark
+class TestResourceUsage:
+    """资源使用测试"""
+
+    async def test_memory_per_connection(self, echo_server: dict[str, Any]):
+        """
+        测试每个连接的内存使用
+
+        目标: 每个连接 < 0.5MB
+        """
+        host = echo_server["host"]
+        port = echo_server["port"]
+
+        # 测试不同连接数的内存使用
+        connection_counts = [10, 50, 100]
+        memory_per_conn = []
+
+        for count in connection_counts:
+            initial_memory = ResourceMonitor.get_memory_usage_mb()
+
+            # 创建连接
+            connections = []
+            for _ in range(count):
+                try:
+                    reader, writer = await asyncio.wait_for(
+                        asyncio.open_connection(host, port), timeout=5.0
+                    )
+                    connections.append((reader, writer))
+                except (asyncio.TimeoutError, OSError):
+                    pass
+
+            # 等待稳定
+            await asyncio.sleep(0.5)
+
+            peak_memory = ResourceMonitor.get_memory_usage_mb()
+            memory_used = peak_memory - initial_memory
+            per_conn = memory_used / len(connections) if connections else 0
+            memory_per_conn.append(per_conn)
+
+            print(f"\n{len(connections)} 连接: 总内存 {memory_used:.2f}MB, 每连接 {per_conn:.2f}MB")
+
+            # 清理连接
+            for reader, writer in connections:
+                writer.close()
+                await writer.wait_closed()
+
+            await asyncio.sleep(0.5)
+
+        # 验证内存使用
+        avg_per_conn = statistics.mean(memory_per_conn)
+        assert (
+            avg_per_conn < CONCURRENT_TARGETS["max_memory_per_connection_mb"]
+        ), f"每连接内存 {avg_per_conn:.2f}MB 超过目标 {CONCURRENT_TARGETS['max_memory_per_connection_mb']}MB"
+
+    async def test_file_descriptor_usage(self, echo_server: dict[str, Any]):
+        """
+        测试文件描述符使用
+
+        每个连接应该使用 1 个文件描述符
+        """
+        initial_fds = ResourceMonitor.get_open_files_count()
+
+        # 创建 50 个连接
+        connections = []
+        for _ in range(50):
+            try:
+                reader, writer = await asyncio.wait_for(
+                    asyncio.open_connection(
+                        echo_server["host"], echo_server["port"]
+                    ),
+                    timeout=5.0,
+                )
+                connections.append((reader, writer))
+            except (asyncio.TimeoutError, OSError):
+                pass
+
+        await asyncio.sleep(0.5)
+
+        final_fds = ResourceMonitor.get_open_files_count()
+        fds_used = final_fds - initial_fds
+
+        print(f"\n文件描述符: 初始 {initial_fds}, 最终 {final_fds}, 使用 {fds_used}")
+
+        # 清理
+        for reader, writer in connections:
+            writer.close()
+            await writer.wait_closed()
+
+        # 验证: 每个连接大约使用 1 个文件描述符
+        # 允许一些误差 (socket, pipes 等)
+        assert fds_used <= len(connections) * 2, f"文件描述符使用过多: {fds_used}"
+
+    async def test_connection_rate(self, echo_server: dict[str, Any]):
+        """
+        测试连接建立速率
+
+        目标: > 100 连接/秒
+        """
+        host = echo_server["host"]
+        port = echo_server["port"]
+
+        num_connections = 100
+        start_time = time.time()
+
+        connections = []
+        for _ in range(num_connections):
+            try:
+                reader, writer = await asyncio.wait_for(
+                    asyncio.open_connection(host, port), timeout=5.0
+                )
+                connections.append((reader, writer))
+            except (asyncio.TimeoutError, OSError):
+                pass
+
+        total_time = time.time() - start_time
+        rate = num_connections / total_time if total_time > 0 else 0
+
+        print(f"\n连接建立速率: {rate:.2f} 连接/秒")
+
+        # 清理
+        for reader, writer in connections:
+            writer.close()
+            await writer.wait_closed()
+
+        # 验证
+        assert (
+            rate >= CONCURRENT_TARGETS["connections_per_sec"]
+        ), f"连接建立速率 {rate:.2f} 低于目标 {CONCURRENT_TARGETS['connections_per_sec']} 连接/秒"
+
+
+# ===== 连接池测试 =====
+
+
+@pytest.mark.benchmark
+class TestConnectionPool:
+    """连接池测试"""
+
+    async def test_connection_reuse(self, echo_server: dict[str, Any]):
+        """
+        测试连接复用性能
+
+        复用连接应该比新建连接快得多
+        """
+        host = echo_server["host"]
+        port = echo_server["port"]
+
+        # 测试新建连接时间
+        new_conn_times = []
+        for _ in range(10):
+            start = time.time()
+            reader, writer = await asyncio.open_connection(host, port)
+            new_conn_times.append(time.time() - start)
+            writer.close()
+            await writer.wait_closed()
+
+        # 测试复用连接时间 (使用现有连接发送数据)
+        reader, writer = await asyncio.open_connection(host, port)
+        reuse_times = []
+        for _ in range(10):
+            start = time.time()
+            writer.write(b"ping")
+            await writer.drain()
+            await reader.read(4)
+            reuse_times.append(time.time() - start)
+        writer.close()
+        await writer.wait_closed()
+
+        avg_new = statistics.mean(new_conn_times)
+        avg_reuse = statistics.mean(reuse_times)
+
+        print(f"\n新建连接平均时间: {avg_new*1000:.3f}ms")
+        print(f"复用连接平均时间: {avg_reuse*1000:.3f}ms")
+        print(f"加速比: {avg_new/avg_reuse:.1f}x")
+
+        # 复用应该快至少 10 倍
+        assert avg_new > avg_reuse * 10, "连接复用性能提升不足"

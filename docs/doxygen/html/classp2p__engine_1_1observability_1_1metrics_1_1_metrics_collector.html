@@ -1,0 +1,497 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.observability.metrics.MetricsCollector类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector.html','','classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.observability.metrics.MetricsCollector类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+p2p_engine.observability.metrics.MetricsCollector 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector__coll__graph.png" border="0" usemap="#ap2p__engine_8observability_8metrics_8_metrics_collector_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4a6b8dd8f4a688007a030b5a3a747f24" id="r_a4a6b8dd8f4a688007a030b5a3a747f24"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4a6b8dd8f4a688007a030b5a3a747f24">__init__</a> (self)</td></tr>
+<tr class="memitem:a3b799acf61eb1f08d4632041c2cef285" id="r_a3b799acf61eb1f08d4632041c2cef285"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a3b799acf61eb1f08d4632041c2cef285">record_connection</a> (self, <a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a> local_isp, <a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a> peer_isp, <a class="el" href="classp2p__engine_1_1types_1_1_connection_type.html">ConnectionType</a> connection_type, float latency_ms)</td></tr>
+<tr class="memitem:aca9423a0277abddfbafecbc9f68fa9a6" id="r_aca9423a0277abddfbafecbc9f68fa9a6"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#aca9423a0277abddfbafecbc9f68fa9a6">record_nat_detection</a> (self, <a class="el" href="classp2p__engine_1_1types_1_1_n_a_t_type.html">NATType</a> nat_type, bool is_cgnat)</td></tr>
+<tr class="memitem:a32ec50bc9d4ebde38a0c3d49b5dd72e5" id="r_a32ec50bc9d4ebde38a0c3d49b5dd72e5"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>&#160;</td><td class="memItemRight"><a class="el" href="#a32ec50bc9d4ebde38a0c3d49b5dd72e5">get_isp_metrics</a> (self, <a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a> isp)</td></tr>
+<tr class="memitem:abd7ce692a6f3f40ca602f8894c33f5ed" id="r_abd7ce692a6f3f40ca602f8894c33f5ed"><td class="memItemLeft">Dict[<a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a>, <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>]&#160;</td><td class="memItemRight"><a class="el" href="#abd7ce692a6f3f40ca602f8894c33f5ed">get_all_isp_metrics</a> (self)</td></tr>
+<tr class="memitem:a6e113cd165eb5d86e6c2abb2e2318882" id="r_a6e113cd165eb5d86e6c2abb2e2318882"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6e113cd165eb5d86e6c2abb2e2318882">get_total_metrics</a> (self)</td></tr>
+<tr class="memitem:a6096076415f05894009884878ea12932" id="r_a6096076415f05894009884878ea12932"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics.html">NATMetrics</a>&#160;</td><td class="memItemRight"><a class="el" href="#a6096076415f05894009884878ea12932">get_nat_metrics</a> (self)</td></tr>
+<tr class="memitem:a468c34f3bb5d0996f043983f3cad366e" id="r_a468c34f3bb5d0996f043983f3cad366e"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a468c34f3bb5d0996f043983f3cad366e">get_summary</a> (self)</td></tr>
+<tr class="memitem:a655123c5795c3e038a2bb9889e5b1a90" id="r_a655123c5795c3e038a2bb9889e5b1a90"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a655123c5795c3e038a2bb9889e5b1a90">reset</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:aec3f14aff5459f4e06f68732653c75b1" id="r_aec3f14aff5459f4e06f68732653c75b1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aec3f14aff5459f4e06f68732653c75b1">_lock</a> = Lock()</td></tr>
+<tr class="memitem:a4263bc9c18e8dcaaf7f689d3b13190a4" id="r_a4263bc9c18e8dcaaf7f689d3b13190a4"><td class="memItemLeft">Dict[<a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a>, <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a4263bc9c18e8dcaaf7f689d3b13190a4">_isp_metrics</a> = defaultdict(<a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>)</td></tr>
+<tr class="memitem:a7e865187fc8b5a6a6d871ca1fe01a82b" id="r_a7e865187fc8b5a6a6d871ca1fe01a82b"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7e865187fc8b5a6a6d871ca1fe01a82b">_nat_metrics</a> = <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics.html">NATMetrics</a>()</td></tr>
+<tr class="memitem:ab81546b061db43e74a2c82f3e82c1190" id="r_ab81546b061db43e74a2c82f3e82c1190"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab81546b061db43e74a2c82f3e82c1190">_total_metrics</a> = <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>()</td></tr>
+<tr class="memitem:a26f8ce84a11579441b0b8fe9b9d68fc7" id="r_a26f8ce84a11579441b0b8fe9b9d68fc7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a26f8ce84a11579441b0b8fe9b9d68fc7">_start_time</a> = time.time()</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">指标收集器</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00058">58</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a4a6b8dd8f4a688007a030b5a3a747f24" name="a4a6b8dd8f4a688007a030b5a3a747f24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6b8dd8f4a688007a030b5a3a747f24">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.observability.metrics.MetricsCollector.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00061">61</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="abd7ce692a6f3f40ca602f8894c33f5ed" name="abd7ce692a6f3f40ca602f8894c33f5ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd7ce692a6f3f40ca602f8894c33f5ed">&#9670;&#160;</a></span>get_all_isp_metrics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Dict[<a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a>, <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>] p2p_engine.observability.metrics.MetricsCollector.get_all_isp_metrics </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取所有运营商指标</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00126">126</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="metrics_8py_source.html#l00065">_isp_metrics</a>.</p>
+
+</div>
+</div>
+<a id="a32ec50bc9d4ebde38a0c3d49b5dd72e5" name="a32ec50bc9d4ebde38a0c3d49b5dd72e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32ec50bc9d4ebde38a0c3d49b5dd72e5">&#9670;&#160;</a></span>get_isp_metrics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a> p2p_engine.observability.metrics.MetricsCollector.get_isp_metrics </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a></td>          <td class="paramname"><span class="paramname"><em>isp</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取运营商指标</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00122">122</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="metrics_8py_source.html#l00065">_isp_metrics</a>.</p>
+
+</div>
+</div>
+<a id="a6096076415f05894009884878ea12932" name="a6096076415f05894009884878ea12932"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6096076415f05894009884878ea12932">&#9670;&#160;</a></span>get_nat_metrics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics.html">NATMetrics</a> p2p_engine.observability.metrics.MetricsCollector.get_nat_metrics </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取 NAT 指标</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00134">134</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="metrics_8py_source.html#l00068">_nat_metrics</a>.</p>
+
+</div>
+</div>
+<a id="a468c34f3bb5d0996f043983f3cad366e" name="a468c34f3bb5d0996f043983f3cad366e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a468c34f3bb5d0996f043983f3cad366e">&#9670;&#160;</a></span>get_summary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> dict p2p_engine.observability.metrics.MetricsCollector.get_summary </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取摘要报告</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00138">138</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="metrics_8py_source.html#l00065">_isp_metrics</a>, <a class="el" href="metrics_8py_source.html#l00068">_nat_metrics</a>, <a class="el" href="event_8py_source.html#l00245">p2p_engine.event.EventBus._start_time</a>, <a class="el" href="metrics_8py_source.html#l00074">_start_time</a> , 以及 <a class="el" href="metrics_8py_source.html#l00071">_total_metrics</a>.</p>
+
+</div>
+</div>
+<a id="a6e113cd165eb5d86e6c2abb2e2318882" name="a6e113cd165eb5d86e6c2abb2e2318882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e113cd165eb5d86e6c2abb2e2318882">&#9670;&#160;</a></span>get_total_metrics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a> p2p_engine.observability.metrics.MetricsCollector.get_total_metrics </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取总体指标</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00130">130</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="metrics_8py_source.html#l00071">_total_metrics</a>.</p>
+
+</div>
+</div>
+<a id="a3b799acf61eb1f08d4632041c2cef285" name="a3b799acf61eb1f08d4632041c2cef285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b799acf61eb1f08d4632041c2cef285">&#9670;&#160;</a></span>record_connection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.observability.metrics.MetricsCollector.record_connection </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a></td>          <td class="paramname"><span class="paramname"><em>local_isp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1types_1_1_i_s_p.html">ISP</a></td>          <td class="paramname"><span class="paramname"><em>peer_isp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1types_1_1_connection_type.html">ConnectionType</a></td>          <td class="paramname"><span class="paramname"><em>connection_type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>latency_ms</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">记录连接结果</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00076">76</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="metrics_8py_source.html#l00065">_isp_metrics</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">_lock</a> , 以及 <a class="el" href="metrics_8py_source.html#l00071">_total_metrics</a>.</p>
+
+</div>
+</div>
+<a id="aca9423a0277abddfbafecbc9f68fa9a6" name="aca9423a0277abddfbafecbc9f68fa9a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca9423a0277abddfbafecbc9f68fa9a6">&#9670;&#160;</a></span>record_nat_detection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.observability.metrics.MetricsCollector.record_nat_detection </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1types_1_1_n_a_t_type.html">NATType</a></td>          <td class="paramname"><span class="paramname"><em>nat_type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_cgnat</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">记录 NAT 检测结果</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00107">107</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">_lock</a> , 以及 <a class="el" href="metrics_8py_source.html#l00068">_nat_metrics</a>.</p>
+
+</div>
+</div>
+<a id="a655123c5795c3e038a2bb9889e5b1a90" name="a655123c5795c3e038a2bb9889e5b1a90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a655123c5795c3e038a2bb9889e5b1a90">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.observability.metrics.MetricsCollector.reset </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">重置指标</pre> 
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00172">172</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="metrics_8py_source.html#l00065">_isp_metrics</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">_lock</a>, <a class="el" href="metrics_8py_source.html#l00068">_nat_metrics</a>, <a class="el" href="event_8py_source.html#l00245">p2p_engine.event.EventBus._start_time</a>, <a class="el" href="metrics_8py_source.html#l00074">_start_time</a> , 以及 <a class="el" href="metrics_8py_source.html#l00071">_total_metrics</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a4263bc9c18e8dcaaf7f689d3b13190a4" name="a4263bc9c18e8dcaaf7f689d3b13190a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4263bc9c18e8dcaaf7f689d3b13190a4">&#9670;&#160;</a></span>_isp_metrics</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.observability.metrics.MetricsCollector._isp_metrics = defaultdict(<a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00065">65</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="metrics_8py_source.html#l00126">get_all_isp_metrics()</a>, <a class="el" href="metrics_8py_source.html#l00122">get_isp_metrics()</a>, <a class="el" href="metrics_8py_source.html#l00138">get_summary()</a>, <a class="el" href="metrics_8py_source.html#l00082">record_connection()</a> , 以及 <a class="el" href="metrics_8py_source.html#l00172">reset()</a>.</p>
+
+</div>
+</div>
+<a id="aec3f14aff5459f4e06f68732653c75b1" name="aec3f14aff5459f4e06f68732653c75b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec3f14aff5459f4e06f68732653c75b1">&#9670;&#160;</a></span>_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.observability.metrics.MetricsCollector._lock = Lock()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00062">62</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic__0rtt_8py_source.html#l00208">p2p_engine.transport.quic_0rtt.SessionTicketStore._cleanup_loop()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00263">p2p_engine.transport.tcp_optimized.ConnectionPool._cleanup_loop()</a>, <a class="el" href="upgrader_8py_source.html#l00269">p2p_engine.transport.upgrader.MuxedSession._handle_incoming_stream()</a>, <a class="el" href="allocation_8py_source.html#l00047">src.allocation.PortPool.acquire()</a>, <a class="el" href="allocation_8py_source.html#l00320">src.allocation.AllocationManager.cleanup_expired()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00220">src.relay_server.relay.RelayHandler.cleanup_expired()</a>, <a class="el" href="connection_8py_source.html#l00304">src.signaling_server.connection.ConnectionManager.cleanup_stale()</a>, <a class="el" href="quic__0rtt_8py_source.html#l00203">p2p_engine.transport.quic_0rtt.SessionTicketStore.clear_tickets()</a>, <a class="el" href="upgrader_8py_source.html#l00294">p2p_engine.transport.upgrader.MuxedSession.close()</a>, <a class="el" href="client_8py_source.html#l00309">p2p_sdk.client.P2PClient.connect()</a>, <a class="el" href="connection_8py_source.html#l00042">src.signaling_server.connection.ConnectionManager.connect()</a>, <a class="el" href="bandwidth_8py_source.html#l00056">src.bandwidth.TokenBucket.consume()</a>, <a class="el" href="allocation_8py_source.html#l00155">src.allocation.AllocationManager.create_allocation()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00060">src.relay_server.relay.RelayHandler.create_session()</a>, <a class="el" href="allocation_8py_source.html#l00275">src.allocation.AllocationManager.delete_allocation()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00116">src.relay_server.relay.RelayHandler.delete_session()</a>, <a class="el" href="connection_8py_source.html#l00079">src.signaling_server.connection.ConnectionManager.disconnect()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00216">p2p_engine.transport.tcp_optimized.ConnectionPool.get()</a>, <a class="el" href="bandwidth_8py_source.html#l00302">src.bandwidth.ThroughputMonitor.get_read_rate()</a>, <a class="el" href="quic__0rtt_8py_source.html#l00136">p2p_engine.transport.quic_0rtt.SessionTicketStore.get_ticket()</a>, <a class="el" href="bandwidth_8py_source.html#l00317">src.bandwidth.ThroughputMonitor.get_write_rate()</a>, <a class="el" href="upgrader_8py_source.html#l00223">p2p_engine.transport.upgrader.MuxedSession.open_stream()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00239">p2p_engine.transport.tcp_optimized.ConnectionPool.put()</a>, <a class="el" href="metrics_8py_source.html#l00082">record_connection()</a>, <a class="el" href="metrics_8py_source.html#l00111">record_nat_detection()</a>, <a class="el" href="bandwidth_8py_source.html#l00273">src.bandwidth.ThroughputMonitor.record_read()</a>, <a class="el" href="bandwidth_8py_source.html#l00284">src.bandwidth.ThroughputMonitor.record_write()</a>, <a class="el" href="allocation_8py_source.html#l00252">src.allocation.AllocationManager.refresh_allocation()</a>, <a class="el" href="allocation_8py_source.html#l00063">src.allocation.PortPool.release()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00251">p2p_engine.transport.tcp_optimized.ConnectionPool.remove()</a>, <a class="el" href="metrics_8py_source.html#l00172">reset()</a>, <a class="el" href="quic__0rtt_8py_source.html#l00196">p2p_engine.transport.quic_0rtt.SessionTicketStore.revoke_ticket()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00199">p2p_engine.transport.tcp_optimized.ConnectionPool.stop()</a>, <a class="el" href="quic__0rtt_8py_source.html#l00164">p2p_engine.transport.quic_0rtt.SessionTicketStore.store_ticket()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00080">src.bandwidth.TokenBucket.wait_for_tokens()</a>.</p>
+
+</div>
+</div>
+<a id="a7e865187fc8b5a6a6d871ca1fe01a82b" name="a7e865187fc8b5a6a6d871ca1fe01a82b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e865187fc8b5a6a6d871ca1fe01a82b">&#9670;&#160;</a></span>_nat_metrics</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.observability.metrics.MetricsCollector._nat_metrics = <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_n_a_t_metrics.html">NATMetrics</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00068">68</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="metrics_8py_source.html#l00134">get_nat_metrics()</a>, <a class="el" href="metrics_8py_source.html#l00138">get_summary()</a>, <a class="el" href="metrics_8py_source.html#l00111">record_nat_detection()</a> , 以及 <a class="el" href="metrics_8py_source.html#l00172">reset()</a>.</p>
+
+</div>
+</div>
+<a id="a26f8ce84a11579441b0b8fe9b9d68fc7" name="a26f8ce84a11579441b0b8fe9b9d68fc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26f8ce84a11579441b0b8fe9b9d68fc7">&#9670;&#160;</a></span>_start_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.observability.metrics.MetricsCollector._start_time = time.time()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00074">74</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="metrics_8py_source.html#l00138">get_summary()</a> , 以及 <a class="el" href="metrics_8py_source.html#l00172">reset()</a>.</p>
+
+</div>
+</div>
+<a id="ab81546b061db43e74a2c82f3e82c1190" name="ab81546b061db43e74a2c82f3e82c1190"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab81546b061db43e74a2c82f3e82c1190">&#9670;&#160;</a></span>_total_metrics</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.observability.metrics.MetricsCollector._total_metrics = <a class="el" href="classp2p__engine_1_1observability_1_1metrics_1_1_connection_metrics.html">ConnectionMetrics</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="metrics_8py_source.html">metrics.py</a> 第 <a class="el" href="metrics_8py_source.html#l00071">71</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="metrics_8py_source.html#l00138">get_summary()</a>, <a class="el" href="metrics_8py_source.html#l00130">get_total_metrics()</a>, <a class="el" href="metrics_8py_source.html#l00082">record_connection()</a> , 以及 <a class="el" href="metrics_8py_source.html#l00172">reset()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/observability/<a class="el" href="metrics_8py_source.html">metrics.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1observability.html">observability</a></li><li class="navelem"><a href="namespacep2p__engine_1_1observability_1_1metrics.html">metrics</a></li><li class="navelem"><a href="classp2p__engine_1_1observability_1_1metrics_1_1_metrics_collector.html">MetricsCollector</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

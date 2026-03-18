@@ -1,0 +1,84 @@
+[project]
+name = "p2p-sdk"
+version = "0.1.0"
+description = "P2P Platform Client SDK for Python - NAT traversal, UDP hole punching, and automatic relay fallback"
+authors = [
+    {name = "P2P Platform Team", email = "dev@p2p-platform.example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+keywords = ["p2p", "nat", "udp", "hole-punching", "webrtc", "networking", "stun", "turn", "relay"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Networking",
+    "Framework :: AsyncIO",
+    "Operating System :: OS Independent",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "ruff>=0.0.287",
+    "mypy>=1.5.0",
+]
+websockets = [
+    "websockets>=11.0",
+]
+all = [
+    "websockets>=11.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/p2p-platform/python-sdk"
+Documentation = "https://github.com/p2p-platform/python-sdk#readme"
+Repository = "https://github.com/p2p-platform/python-sdk.git"
+Issues = "https://github.com/p2p-platform/python-sdk/issues"
+Changelog = "https://github.com/p2p-platform/python-sdk/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/p2p_sdk"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/examples",
+    "/README.md",
+    "/LICENSE",
+    "/CHANGELOG.md",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

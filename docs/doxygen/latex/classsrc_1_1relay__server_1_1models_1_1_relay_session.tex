@@ -1,0 +1,308 @@
+\doxysection{src.\+relay\+\_\+server.\+models.\+Relay\+Session类 参考}
+\hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session}{}\label{classsrc_1_1relay__server_1_1models_1_1_relay_session}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+
+
+src.\+relay\+\_\+server.\+models.\+Relay\+Session 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a4d009574417f771d4b19105b07c9cd3b}{is\+\_\+expired}} (self, int timeout)
+\item 
+None \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_adf6a639433fd3cbda65253f561d5e3b3}{update\+\_\+activity}} (self)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_aa08860b3256dfb9121b23b6b7efe6dad}{add\+\_\+permission}} (self, Tuple\+[str, int]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a72450e9ff077047d8fd92474fc96f155}{peer\+\_\+addr}})
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_aef86cd76d28a74ca94893abb1d4cd49e}{has\+\_\+permission}} (self, Tuple\+[str, int]\+ \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a72450e9ff077047d8fd92474fc96f155}{peer\+\_\+addr}})
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a351935389a49e732fcc5daf62dd28c86}{to\+\_\+dict}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a8384c4279803cb044ef773d1c7bca8e8}{session\+\_\+id}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+Tuple \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a6eff5d46fb638e351be9faa2b0af2cdf}{client\+\_\+addr}} \+[str, int]\+
+\item 
+Tuple \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a64896ec9d2ab3045cb27911613f1fbf2}{relay\+\_\+addr}} \+[str, int]\+
+\item 
+Optional \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a72450e9ff077047d8fd92474fc96f155}{peer\+\_\+addr}} = None
+\item 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol}{Transport\+Protocol}} \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_ac4f9bdeeda8af74f18000246edd8493c}{transport}} = \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol_add3842c374c044ba2a61f0f8eafc207b}{Transport\+Protocol.\+UDP}}
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a60e20b51a534bb93f8966149c30e8d04}{lifetime}} = 600
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a0187963a9e847cd4dde922519a7fa910}{created\+\_\+at}} = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_aa53b707169acb2348080fc2781462637}{last\+\_\+activity}} = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))
+\item 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_allocation_status}{Allocation\+Status}} \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a175a908c2bf4f0f5e10666523c1735be}{status}} = \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_allocation_status_a25a8a03e9f952b11e2f0a1bc0c36c6ad}{Allocation\+Status.\+ACTIVE}}
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a45a7d88f73bd4834790cd514fd5e495a}{bytes\+\_\+sent}} = 0
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a08b34ce11fe1189ed76454c20cfd2f7d}{bytes\+\_\+received}} = 0
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_a4db1a71469a5fc5b042c1d2c4e8c43f6}{packets\+\_\+sent}} = 0
+\item 
+int \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_ae401f9e0cc4b248c0ca19bd6d90f2ad3}{packets\+\_\+received}} = 0
+\item 
+list \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_relay_session_ab3f1d7a1aeff4d727cd2c20af02877b5}{permissions}} = field(default\+\_\+factory=list)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Relay session between client and peer.
+
+Represents an active data relay session.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00028}{28}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_aa08860b3256dfb9121b23b6b7efe6dad}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!add\_permission@{add\_permission}}
+\index{add\_permission@{add\_permission}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{add\_permission()}{add\_permission()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_aa08860b3256dfb9121b23b6b7efe6dad} 
+ bool src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+add\+\_\+permission (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{peer\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add permission for peer address.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00060}{60}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00130}{src.\+messages.\+Turn\+Allocation.\+permissions}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00048}{permissions}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_aef86cd76d28a74ca94893abb1d4cd49e}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!has\_permission@{has\_permission}}
+\index{has\_permission@{has\_permission}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{has\_permission()}{has\_permission()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_aef86cd76d28a74ca94893abb1d4cd49e} 
+ bool src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+has\+\_\+permission (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tuple\+[str, int]\+}]{peer\+\_\+addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if peer has permission.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00067}{67}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00130}{src.\+messages.\+Turn\+Allocation.\+permissions}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00048}{permissions}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a4d009574417f771d4b19105b07c9cd3b}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!is\_expired@{is\_expired}}
+\index{is\_expired@{is\_expired}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{is\_expired()}{is\_expired()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a4d009574417f771d4b19105b07c9cd3b} 
+ bool src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+is\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{timeout}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if session has expired based on timeout.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00050}{50}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00042}{last\+\_\+activity}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a351935389a49e732fcc5daf62dd28c86}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!to\_dict@{to\_dict}}
+\index{to\_dict@{to\_dict}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{to\_dict()}{to\_dict()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a351935389a49e732fcc5daf62dd28c86} 
+ dict src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+to\+\_\+dict (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Convert to dictionary.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00071}{71}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{signaling-server_2src_2signaling__server_2models_8py_source_l00121}{src.\+signaling\+\_\+server.\+models.\+Message.\+to\+\_\+json()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_adf6a639433fd3cbda65253f561d5e3b3}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!update\_activity@{update\_activity}}
+\index{update\_activity@{update\_activity}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{update\_activity()}{update\_activity()}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_adf6a639433fd3cbda65253f561d5e3b3} 
+ None src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+update\+\_\+activity (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Update last activity timestamp.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00055}{55}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00042}{last\+\_\+activity}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a08b34ce11fe1189ed76454c20cfd2f7d}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!bytes\_received@{bytes\_received}}
+\index{bytes\_received@{bytes\_received}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{bytes\_received}{bytes\_received}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a08b34ce11fe1189ed76454c20cfd2f7d} 
+src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+bytes\+\_\+received = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00045}{45}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a45a7d88f73bd4834790cd514fd5e495a}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!bytes\_sent@{bytes\_sent}}
+\index{bytes\_sent@{bytes\_sent}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{bytes\_sent}{bytes\_sent}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a45a7d88f73bd4834790cd514fd5e495a} 
+src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+bytes\+\_\+sent = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00044}{44}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a6eff5d46fb638e351be9faa2b0af2cdf}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!client\_addr@{client\_addr}}
+\index{client\_addr@{client\_addr}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{client\_addr}{client\_addr}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a6eff5d46fb638e351be9faa2b0af2cdf} 
+Tuple src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+client\+\_\+addr \+[str, int]\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00036}{36}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a0187963a9e847cd4dde922519a7fa910}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!created\_at@{created\_at}}
+\index{created\_at@{created\_at}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{created\_at}{created\_at}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a0187963a9e847cd4dde922519a7fa910} 
+src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+created\+\_\+at = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00041}{41}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_aa53b707169acb2348080fc2781462637}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!last\_activity@{last\_activity}}
+\index{last\_activity@{last\_activity}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{last\_activity}{last\_activity}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_aa53b707169acb2348080fc2781462637} 
+src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+last\+\_\+activity = field(default\+\_\+factory=lambda:\+ int(datetime.\+now().timestamp()))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00042}{42}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00050}{is\+\_\+expired()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00055}{update\+\_\+activity()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a60e20b51a534bb93f8966149c30e8d04}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!lifetime@{lifetime}}
+\index{lifetime@{lifetime}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{lifetime}{lifetime}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a60e20b51a534bb93f8966149c30e8d04} 
+int src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+lifetime = 600\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00040}{40}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_ae401f9e0cc4b248c0ca19bd6d90f2ad3}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!packets\_received@{packets\_received}}
+\index{packets\_received@{packets\_received}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{packets\_received}{packets\_received}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_ae401f9e0cc4b248c0ca19bd6d90f2ad3} 
+src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+packets\+\_\+received = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00047}{47}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a4db1a71469a5fc5b042c1d2c4e8c43f6}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!packets\_sent@{packets\_sent}}
+\index{packets\_sent@{packets\_sent}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{packets\_sent}{packets\_sent}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a4db1a71469a5fc5b042c1d2c4e8c43f6} 
+src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+packets\+\_\+sent = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00046}{46}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a72450e9ff077047d8fd92474fc96f155}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!peer\_addr@{peer\_addr}}
+\index{peer\_addr@{peer\_addr}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{peer\_addr}{peer\_addr}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a72450e9ff077047d8fd92474fc96f155} 
+Optional src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+peer\+\_\+addr = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00038}{38}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_ab3f1d7a1aeff4d727cd2c20af02877b5}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!permissions@{permissions}}
+\index{permissions@{permissions}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{permissions}{permissions}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_ab3f1d7a1aeff4d727cd2c20af02877b5} 
+list src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+permissions = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00048}{48}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00060}{add\+\_\+permission()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00067}{has\+\_\+permission()}}.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a64896ec9d2ab3045cb27911613f1fbf2}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!relay\_addr@{relay\_addr}}
+\index{relay\_addr@{relay\_addr}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{relay\_addr}{relay\_addr}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a64896ec9d2ab3045cb27911613f1fbf2} 
+Tuple src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+relay\+\_\+addr \+[str, int]\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00037}{37}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a8384c4279803cb044ef773d1c7bca8e8}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!session\_id@{session\_id}}
+\index{session\_id@{session\_id}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{session\_id}{session\_id}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a8384c4279803cb044ef773d1c7bca8e8} 
+src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+session\+\_\+id}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00074}{74}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_a175a908c2bf4f0f5e10666523c1735be}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!status@{status}}
+\index{status@{status}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_a175a908c2bf4f0f5e10666523c1735be} 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_allocation_status}{Allocation\+Status}} src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+status = \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_allocation_status_a25a8a03e9f952b11e2f0a1bc0c36c6ad}{Allocation\+Status.\+ACTIVE}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00043}{43}} 行定义.
+
+\Hypertarget{classsrc_1_1relay__server_1_1models_1_1_relay_session_ac4f9bdeeda8af74f18000246edd8493c}\index{src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}!transport@{transport}}
+\index{transport@{transport}!src.relay\_server.models.RelaySession@{src.relay\_server.models.RelaySession}}
+\doxysubsubsection{\texorpdfstring{transport}{transport}}
+{\footnotesize\ttfamily \label{classsrc_1_1relay__server_1_1models_1_1_relay_session_ac4f9bdeeda8af74f18000246edd8493c} 
+\doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol}{Transport\+Protocol}} src.\+relay\+\_\+server.\+models.\+Relay\+Session.\+transport = \doxymbox{\hyperlink{classsrc_1_1relay__server_1_1models_1_1_transport_protocol_add3842c374c044ba2a61f0f8eafc207b}{Transport\+Protocol.\+UDP}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source}{models.\+py}} 第 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00039}{39}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00268}{src.\+relay\+\_\+server.\+relay.\+Relay\+Protocol.\+connection\+\_\+made()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+relay\+\_\+server/\+\doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py}{models.\+py}}\end{DoxyCompactItemize}

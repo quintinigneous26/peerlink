@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="protocol_2kademlia_8py" kind="file" language="Python">
+    <compoundname>kademlia.py</compoundname>
+    <innerclass refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler" prot="public">p2p_engine::protocol::kademlia::KademliaProtocolHandler</innerclass>
+    <innernamespace refid="namespacep2p__engine">p2p_engine</innernamespace>
+    <innernamespace refid="namespacep2p__engine_1_1protocol">p2p_engine::protocol</innernamespace>
+    <innernamespace refid="namespacep2p__engine_1_1protocol_1_1kademlia">p2p_engine::protocol::kademlia</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacep2p__engine_1_1protocol_1_1kademlia" refkind="compound"><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="2"><highlight class="stringliteral">Kademlia<sp/>DHT<sp/>Protocol<sp/>Handler</highlight></codeline>
+<codeline lineno="3"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="4"><highlight class="stringliteral">Integrates<sp/>the<sp/>Kademlia<sp/>DHT<sp/>implementation<sp/>with<sp/>the<sp/>p2p_engine<sp/>protocol<sp/>layer.</highlight></codeline>
+<codeline lineno="5"><highlight class="stringliteral">This<sp/>module<sp/>provides<sp/>the<sp/>protocol<sp/>handler<sp/>interface<sp/>for<sp/>DHT<sp/>operations.</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="7"><highlight class="stringliteral">Compatible<sp/>with<sp/>libp2p<sp/>Kademlia<sp/>DHT<sp/>specification:</highlight></codeline>
+<codeline lineno="8"><highlight class="stringliteral">https://github.com/libp2p/specs/tree/master/kad-dht</highlight></codeline>
+<codeline lineno="9"><highlight class="stringliteral">&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>asyncio</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>logging</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>typing<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Optional,<sp/>List,<sp/>Callable,<sp/>Awaitable</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>..dht<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>(</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>KademliaDHT,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>DHT,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>KademliaMessage,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>KademliaMessageType,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>PeerEntry,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>calculate_peer_id,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a2d445de36f9d9e4187558b35be3b58f0" refkind="member"><highlight class="normal">logger<sp/>=<sp/>logging.getLogger(__name__)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Protocol<sp/>ID</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="namespacep2p__engine_1_1protocol_1_1kademlia_1ae5e3e00ba5237c6d8ec545d1c852e786" refkind="member"><highlight class="normal">PROTOCOL_ID<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;/ipfs/kad/1.0.0&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler" kindref="compound">KademliaProtocolHandler</ref>:</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="32"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Protocol<sp/>handler<sp/>for<sp/>Kademlia<sp/>DHT.</highlight></codeline>
+<codeline lineno="33"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="34"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Integrates<sp/>with<sp/>the<sp/>p2p_engine<sp/>protocol<sp/>layer<sp/>and<sp/>provides</highlight></codeline>
+<codeline lineno="35"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>DHT<sp/>functionality<sp/>for<sp/>peer<sp/>discovery<sp/>and<sp/>content<sp/>routing.</highlight></codeline>
+<codeline lineno="36"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2bef672e8bd01fffad0b00a853bb6510" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2bef672e8bd01fffad0b00a853bb6510" kindref="member">__init__</ref>(</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id:<sp/>bytes,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_public_key:<sp/>bytes,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>network_send_func:<sp/>Optional[Callable[[bytes,<sp/>bytes,<sp/>str],<sp/>Awaitable[bytes]]]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>):</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="45"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Initialize<sp/>Kademlia<sp/>protocol<sp/>handler.</highlight></codeline>
+<codeline lineno="46"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="47"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="48"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id:<sp/>Local<sp/>peer&apos;s<sp/>ID<sp/>(32<sp/>bytes)</highlight></codeline>
+<codeline lineno="49"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_public_key:<sp/>Local<sp/>peer&apos;s<sp/>public<sp/>key<sp/>(for<sp/>deriving<sp/>peer<sp/>ID)</highlight></codeline>
+<codeline lineno="50"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>network_send_func:<sp/>Async<sp/>function<sp/>to<sp/>send<sp/>DHT<sp/>messages</highlight></codeline>
+<codeline lineno="51"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Calculate<sp/>peer<sp/>ID<sp/>from<sp/>public<sp/>key<sp/>if<sp/>not<sp/>provided</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>local_peer_id:</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id<sp/>=<sp/>calculate_peer_id(local_public_key)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a53d4917b62d4722745f5765e7247b353" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a53d4917b62d4722745f5765e7247b353" kindref="member">local_peer_id</ref><sp/>=<sp/>local_peer_id</highlight></codeline>
+<codeline lineno="57" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad6de947f03587a62cec6e2fcc810fe14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad6de947f03587a62cec6e2fcc810fe14" kindref="member">local_public_key</ref><sp/>=<sp/>local_public_key</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Create<sp/>DHT<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref><sp/>=<sp/><ref refid="classp2p__engine_1_1dht_1_1kademlia_1_1_kademlia_d_h_t" kindref="compound">KademliaDHT</ref>(</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id=local_peer_id,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>network_send_func=network_send_func,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Protocol<sp/>metadata</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a349a70ad816655260925e9b2e23ef410" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a349a70ad816655260925e9b2e23ef410" kindref="member">protocol_id</ref><sp/>=<sp/>PROTOCOL_ID</highlight></codeline>
+<codeline lineno="67" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref><sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" kindref="member">start</ref>(self)<sp/>-&gt;<sp/>None:</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Start<sp/>the<sp/>DHT<sp/>protocol<sp/>handler.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref>:</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" kindref="member">start</ref>()</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref><sp/>=<sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.info(f</highlight><highlight class="stringliteral">&quot;Kademlia<sp/>DHT<sp/>protocol<sp/>started:<sp/>{self.protocol_id}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a9bfb2f7930b861c473a4b8c01e2965ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a9bfb2f7930b861c473a4b8c01e2965ae" kindref="member">stop</ref>(self)<sp/>-&gt;<sp/>None:</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Stop<sp/>the<sp/>DHT<sp/>protocol<sp/>handler.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref>:</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a9bfb2f7930b861c473a4b8c01e2965ae" kindref="member">stop</ref>()</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref><sp/>=<sp/></highlight><highlight class="keyword">False</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.info(</highlight><highlight class="stringliteral">&quot;Kademlia<sp/>DHT<sp/>protocol<sp/>stopped&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a498152bf4edc3abff77cfc00e46d912a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a498152bf4edc3abff77cfc00e46d912a" kindref="member">handle_stream</ref>(</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reader:<sp/>asyncio.StreamReader,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>writer:<sp/>asyncio.StreamWriter</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="93"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Handle<sp/>incoming<sp/>DHT<sp/>stream.</highlight></codeline>
+<codeline lineno="94"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="95"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="96"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reader:<sp/>Stream<sp/>reader</highlight></codeline>
+<codeline lineno="97"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>writer:<sp/>Stream<sp/>writer</highlight></codeline>
+<codeline lineno="98"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>peer_addr<sp/>=<sp/>writer.get_extra_info(</highlight><highlight class="stringliteral">&quot;peername&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Read<sp/>message<sp/>length<sp/>(varint)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shift<sp/>=<sp/>0</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>byte_buf<sp/>=<sp/>await<sp/>reader.readexactly(1)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>byte<sp/>=<sp/>byte_buf[0]</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length<sp/>|=<sp/>(byte<sp/>&amp;<sp/>0x7F)<sp/>&lt;&lt;<sp/>shift</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>(byte<sp/>&amp;<sp/>0x80):</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shift<sp/>+=<sp/>7</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Read<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>length<sp/>&gt;<sp/>10<sp/>*<sp/>1024<sp/>*<sp/>1024:<sp/><sp/></highlight><highlight class="comment">#<sp/>10MB<sp/>limit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.warning(f</highlight><highlight class="stringliteral">&quot;Message<sp/>too<sp/>large:<sp/>{length}<sp/>bytes<sp/>from<sp/>{peer_addr}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>message_data<sp/>=<sp/>await<sp/>reader.readexactly(length)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Get<sp/>peer<sp/>ID<sp/>from<sp/>connection<sp/>(would<sp/>normally<sp/>come<sp/>from<sp/>Identify)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>For<sp/>now,<sp/>use<sp/>a<sp/>placeholder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>peer_id<sp/>=<sp/>b</highlight><highlight class="stringliteral">&quot;\x00&quot;</highlight><highlight class="normal"><sp/>*<sp/>32<sp/><sp/></highlight><highlight class="comment">#<sp/>Should<sp/>get<sp/>from<sp/>Identify<sp/>protocol</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Handle<sp/>message</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>response<sp/>=<sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.handle_message(peer_id,<sp/>message_data)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Send<sp/>response</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>response:</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Encode<sp/>response<sp/>length</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>response_length<sp/>=<sp/>len(response)</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length_bytes<sp/>=<sp/>bytearray()</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>response_length<sp/>&gt;<sp/>0x7F:</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length_bytes.append((response_length<sp/>&amp;<sp/>0x7F)<sp/>|<sp/>0x80)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>response_length<sp/>&gt;&gt;=<sp/>7</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>length_bytes.append(response_length)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>writer.write(bytes(length_bytes))</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>writer.write(response)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>writer.drain()</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>asyncio.IncompleteReadError:</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.debug(f</highlight><highlight class="stringliteral">&quot;Incomplete<sp/>read<sp/>from<sp/>{peer_addr}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>Exception<sp/></highlight><highlight class="keyword">as</highlight><highlight class="normal"><sp/>e:</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>logger.error(f</highlight><highlight class="stringliteral">&quot;Error<sp/>handling<sp/>DHT<sp/>stream:<sp/>{e}&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">finally</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>writer.close()</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>writer.wait_closed()</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">except</highlight><highlight class="normal"><sp/>Exception:</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>DHT<sp/>Operation<sp/>Wrappers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab375df38e19b1f5179f980084dc46fca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab375df38e19b1f5179f980084dc46fca" kindref="member">find_peer</ref>(self,<sp/>peer_id:<sp/>bytes)<sp/>-&gt;<sp/>Optional[PeerEntry]:</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="156"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Find<sp/>a<sp/>peer<sp/>by<sp/>ID.</highlight></codeline>
+<codeline lineno="157"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="158"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="159"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>peer_id:<sp/>Peer<sp/>ID<sp/>to<sp/>find<sp/>(32<sp/>bytes)</highlight></codeline>
+<codeline lineno="160"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="161"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="162"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Peer<sp/>entry<sp/>if<sp/>found,<sp/>None<sp/>otherwise</highlight></codeline>
+<codeline lineno="163"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref>:</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" kindref="member">start</ref>()</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab375df38e19b1f5179f980084dc46fca" kindref="member">find_peer</ref>(peer_id)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a7e0ae926275446942a5a2bb39cf4d8ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a7e0ae926275446942a5a2bb39cf4d8ce" kindref="member">provide</ref>(self,<sp/>cid:<sp/>bytes,<sp/>announce:<sp/>bool<sp/>=<sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal">)<sp/>-&gt;<sp/>bool:</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="171"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Announce<sp/>that<sp/>we<sp/>provide<sp/>a<sp/>content.</highlight></codeline>
+<codeline lineno="172"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="173"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="174"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cid:<sp/>Content<sp/>ID<sp/>(CID)</highlight></codeline>
+<codeline lineno="175"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>announce:<sp/>Whether<sp/>to<sp/>announce<sp/>to<sp/>network</highlight></codeline>
+<codeline lineno="176"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="177"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="178"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>True<sp/>if<sp/>successful</highlight></codeline>
+<codeline lineno="179"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref>:</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" kindref="member">start</ref>()</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a7e0ae926275446942a5a2bb39cf4d8ce" kindref="member">provide</ref>(cid,<sp/>announce)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a775dd5f589d1e85f42a828bf355caffe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a775dd5f589d1e85f42a828bf355caffe" kindref="member">find_providers</ref>(self,<sp/>cid:<sp/>bytes,<sp/>count:<sp/>int<sp/>=<sp/>20)<sp/>-&gt;<sp/>List[PeerEntry]:</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="187"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Find<sp/>providers<sp/>for<sp/>a<sp/>content.</highlight></codeline>
+<codeline lineno="188"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="189"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="190"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cid:<sp/>Content<sp/>ID<sp/>(CID)</highlight></codeline>
+<codeline lineno="191"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>count:<sp/>Maximum<sp/>number<sp/>of<sp/>providers<sp/>to<sp/>return</highlight></codeline>
+<codeline lineno="192"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="193"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="194"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>List<sp/>of<sp/>provider<sp/>peers</highlight></codeline>
+<codeline lineno="195"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref>:</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" kindref="member">start</ref>()</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a775dd5f589d1e85f42a828bf355caffe" kindref="member">find_providers</ref>(cid,<sp/>count)</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1aadce8e9d69eb9608702319ee2d328c7d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1aadce8e9d69eb9608702319ee2d328c7d" kindref="member">put_value</ref>(self,<sp/>key:<sp/>bytes,<sp/>value:<sp/>bytes)<sp/>-&gt;<sp/>bool:</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="203"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Store<sp/>a<sp/>key-value<sp/>pair<sp/>in<sp/>DHT.</highlight></codeline>
+<codeline lineno="204"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="205"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="206"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>key:<sp/>Key<sp/>to<sp/>store<sp/>under</highlight></codeline>
+<codeline lineno="207"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>value:<sp/>Value<sp/>to<sp/>store</highlight></codeline>
+<codeline lineno="208"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="209"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="210"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>True<sp/>if<sp/>successful</highlight></codeline>
+<codeline lineno="211"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref>:</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" kindref="member">start</ref>()</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1aadce8e9d69eb9608702319ee2d328c7d" kindref="member">put_value</ref>(key,<sp/>value)</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a29739e4954bbbafc38766afabc06a4e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a29739e4954bbbafc38766afabc06a4e9" kindref="member">get_value</ref>(self,<sp/>key:<sp/>bytes)<sp/>-&gt;<sp/>Optional[bytes]:</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="219"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Retrieve<sp/>a<sp/>value<sp/>from<sp/>DHT.</highlight></codeline>
+<codeline lineno="220"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="221"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="222"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>key:<sp/>Key<sp/>to<sp/>retrieve</highlight></codeline>
+<codeline lineno="223"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="224"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="225"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Value<sp/>if<sp/>found,<sp/>None<sp/>otherwise</highlight></codeline>
+<codeline lineno="226"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">not</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref>:</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a2961f6ca4b3b3222b84e6fbc06798847" kindref="member">start</ref>()</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a29739e4954bbbafc38766afabc06a4e9" kindref="member">get_value</ref>(key)</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a335dd915573ca6860b5702b0fa6d8857" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a335dd915573ca6860b5702b0fa6d8857" kindref="member">add_bootstrap_peer</ref>(</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self,</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>peer_id:<sp/>bytes,</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addresses:<sp/>List[str]</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>)<sp/>-&gt;<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="238"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Add<sp/>a<sp/>bootstrap<sp/>peer<sp/>to<sp/>routing<sp/>table.</highlight></codeline>
+<codeline lineno="239"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="240"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="241"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>peer_id:<sp/>Bootstrap<sp/>peer&apos;s<sp/>ID</highlight></codeline>
+<codeline lineno="242"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>addresses:<sp/>List<sp/>of<sp/>multiaddresses</highlight></codeline>
+<codeline lineno="243"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a335dd915573ca6860b5702b0fa6d8857" kindref="member">add_bootstrap_peer</ref>(peer_id,<sp/>addresses)</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Properties</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor">@property</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a4252429cb5c5c78cf7b195d5a462b27d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a4252429cb5c5c78cf7b195d5a462b27d" kindref="member">peer_count</ref>(self)<sp/>-&gt;<sp/>int:</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Get<sp/>number<sp/>of<sp/>peers<sp/>in<sp/>routing<sp/>table.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ad37b7dc6a59a353e25b6cac26f61cafd" kindref="member">dht</ref>.peer_count</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor">@property</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a9b0f03372f9081139b3fe923f63f3d4c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1a9b0f03372f9081139b3fe923f63f3d4c" kindref="member">is_running</ref>(self)<sp/>-&gt;<sp/>bool:</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Check<sp/>if<sp/>DHT<sp/>is<sp/>running.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>self.<ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1ab80d47554873b238833889fed76c900d" kindref="member">_started</ref></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="preprocessor">@property</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259" refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1aac920f740013593ebfd1c4b24fc07498" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler_1aac920f740013593ebfd1c4b24fc07498" kindref="member">supported_protocols</ref>(self)<sp/>-&gt;<sp/>List[str]:</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;Get<sp/>list<sp/>of<sp/>supported<sp/>protocols.&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>[PROTOCOL_ID]</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"></highlight></codeline>
+<codeline lineno="264" refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a95611487655a9e9b553f4b2980f341f9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a95611487655a9e9b553f4b2980f341f9" kindref="member">create_kademlia_handler</ref>(</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>local_peer_id:<sp/>bytes,</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>local_public_key:<sp/>bytes,</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>network_send_func:<sp/>Optional[Callable[[bytes,<sp/>bytes,<sp/>str],<sp/>Awaitable[bytes]]]<sp/>=<sp/></highlight><highlight class="keywordtype">None</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">)<sp/>-&gt;<sp/>KademliaProtocolHandler:</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="270"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Factory<sp/>function<sp/>to<sp/>create<sp/>a<sp/>Kademlia<sp/>protocol<sp/>handler.</highlight></codeline>
+<codeline lineno="271"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="272"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="273"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id:<sp/>Local<sp/>peer&apos;s<sp/>ID<sp/>(32<sp/>bytes)</highlight></codeline>
+<codeline lineno="274"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_public_key:<sp/>Local<sp/>peer&apos;s<sp/>public<sp/>key</highlight></codeline>
+<codeline lineno="275"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>network_send_func:<sp/>Async<sp/>function<sp/>to<sp/>send<sp/>DHT<sp/>messages</highlight></codeline>
+<codeline lineno="276"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="277"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="278"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>KademliaProtocolHandler<sp/>instance</highlight></codeline>
+<codeline lineno="279"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classp2p__engine_1_1protocol_1_1kademlia_1_1_kademlia_protocol_handler" kindref="compound">KademliaProtocolHandler</ref>(</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id=local_peer_id,</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_public_key=local_public_key,</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>network_send_func=network_send_func,</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Convenience<sp/>function<sp/>for<sp/>quick<sp/>DHT<sp/>operations</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289" refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a0234101afd211a54577f5536d7b7eafe" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">async<sp/>def<sp/></highlight><highlight class="normal"><ref refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a0234101afd211a54577f5536d7b7eafe" kindref="member">find_peer_async</ref>(</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>local_peer_id:<sp/>bytes,</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>target_peer_id:<sp/>bytes,</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>bootstrap_peers:<sp/>List[tuple[bytes,<sp/>List[str]]],</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>network_send_func:<sp/>Callable[[bytes,<sp/>bytes,<sp/>str],<sp/>Awaitable[bytes]],</highlight></codeline>
+<codeline lineno="294"><highlight class="normal">)<sp/>-&gt;<sp/>Optional[PeerEntry]:</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
+<codeline lineno="296"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Convenience<sp/>function<sp/>to<sp/>find<sp/>a<sp/>peer<sp/>without<sp/>persistent<sp/>DHT<sp/>instance.</highlight></codeline>
+<codeline lineno="297"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="298"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Args:</highlight></codeline>
+<codeline lineno="299"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id:<sp/>Local<sp/>peer<sp/>ID</highlight></codeline>
+<codeline lineno="300"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>target_peer_id:<sp/>Target<sp/>peer<sp/>ID<sp/>to<sp/>find</highlight></codeline>
+<codeline lineno="301"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bootstrap_peers:<sp/>List<sp/>of<sp/>(peer_id,<sp/>addresses)<sp/>tuples</highlight></codeline>
+<codeline lineno="302"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>network_send_func:<sp/>Function<sp/>to<sp/>send<sp/>DHT<sp/>messages</highlight></codeline>
+<codeline lineno="303"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="304"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>Returns:</highlight></codeline>
+<codeline lineno="305"><highlight class="stringliteral"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Peer<sp/>entry<sp/>if<sp/>found,<sp/>None<sp/>otherwise</highlight></codeline>
+<codeline lineno="306"><highlight class="stringliteral"><sp/><sp/><sp/><sp/>&quot;&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>handler<sp/>=<sp/><ref refid="namespacep2p__engine_1_1protocol_1_1kademlia_1a95611487655a9e9b553f4b2980f341f9" kindref="member">create_kademlia_handler</ref>(</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_peer_id=local_peer_id,</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>local_public_key=b</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">,<sp/><sp/></highlight><highlight class="comment">#<sp/>Not<sp/>used<sp/>for<sp/>transient<sp/>lookup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>network_send_func=network_send_func,</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Add<sp/>bootstrap<sp/>peers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>peer_id,<sp/>addresses<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>bootstrap_peers:</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>handler.add_bootstrap_peer(peer_id,<sp/>addresses)</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#<sp/>Find<sp/>peer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>await<sp/>handler.find_peer(target_peer_id)</highlight></codeline>
+    </programlisting>
+    <location file="p2p_engine/protocol/kademlia.py"/>
+  </compounddef>
+</doxygen>

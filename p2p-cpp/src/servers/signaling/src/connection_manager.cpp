@@ -1,0 +1,347 @@
+#include "connection_manager.hpp"
+#include "websocket_session.hpp"
+#include <boost/asio/co_spawn.hpp>
+#include <boost/asio/use_awaitable.hpp>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+
+namespace asio = boost::asio;
+
+namespace signaling {
+
+// Connection management
+asio::awaitable<void> ConnectionManager::connect(
+    std::string device_id,
+    std::shared_ptr<WebSocketSession> session,
+    std::string public_key,
+    std::vector<std::string> capabilities,
+    json metadata
+) {
+    {
+        std::unique_lock lock(devices_mutex_);
+
+        // Check if device already connected
+        auto it = devices_.find(device_id);
+        if (it != devices_.end()) {
+            // Close old connection
+            auto old_session = it->second.session;
+            if (old_session) {
+                co_await old_session->close();
+            }
+        }
+
+        // Create new device info
+        DeviceInfo device;
+        device.device_id = device_id;
+        device.session = std::move(session);
+        device.public_key = std::move(public_key);
+        device.capabilities = std::move(capabilities);
+        device.metadata = std::move(metadata);
+        device.connected_at = std::chrono::system_clock::now();
+        device.last_heartbeat = std::chrono::system_clock::now();
+
+        devices_[device_id] = std::move(device);
+    }
+
+    co_return;
+}
+
+asio::awaitable<void> ConnectionManager::disconnect(const std::string& device_id) {
+    {
+        std::unique_lock lock(devices_mutex_);
+
+        auto it = devices_.find(device_id);
+        if (it == devices_.end()) {
+            co_return;
+        }
+
+        devices_.erase(it);
+    }
+
+    // Clean up pending requests
+    {
+        std::unique_lock lock(pending_mutex_);
+        std::vector<std::string> to_remove;
+
+        for (const auto& [session_id, requester] : pending_requests_) {
+            if (requester == device_id) {
+                to_remove.push_back(session_id);
+            }
+        }
+
+        for (const auto& session_id : to_remove) {
+            pending_requests_.erase(session_id);
+        }
+    }
+
+    // Update related sessions
+    {
+        std::unique_lock lock(sessions_mutex_);
+        for (auto& [_, session] : sessions_) {
+            if (session.device_a == device_id || session.device_b == device_id) {
+                session.status = ConnectionStatus::DISCONNECTED;
+            }
+        }
+    }
+
+    co_return;
+}
+
+std::optional<DeviceInfo> ConnectionManager::get_device(
+    const std::string& device_id
+) const {
+    std::shared_lock lock(devices_mutex_);
+    auto it = devices_.find(device_id);
+    return it != devices_.end()
+        ? std::optional{it->second}
+        : std::nullopt;
+}
+
+bool ConnectionManager::is_connected(const std::string& device_id) const {
+    std::shared_lock lock(devices_mutex_);
+    return devices_.find(device_id) != devices_.end();
+}
+
+std::unordered_set<std::string> ConnectionManager::get_all_devices() const {
+    std::shared_lock lock(devices_mutex_);
+    std::unordered_set<std::string> result;
+    for (const auto& [device_id, _] : devices_) {
+        result.insert(device_id);
+    }
+    return result;
+}
+
+// Message sending
+asio::awaitable<bool> ConnectionManager::send_message(
+    const std::string& device_id,
+    const json& message
+) {
+    std::shared_ptr<WebSocketSession> session;
+
+    {
+        std::shared_lock lock(devices_mutex_);
+        auto it = devices_.find(device_id);
+        if (it == devices_.end()) {
+            co_return false;
+        }
+        session = it->second.session;
+    }
+
+    if (!session) {
+        co_return false;
+    }
+
+    try {
+        co_await session->send(message);
+        co_return true;
+    } catch (const std::exception&) {
+        // Cannot use co_await in catch block, schedule disconnect
+        // Note: Using lambda to avoid detached token issues
+        boost::asio::co_spawn(
+            session->get_executor(),
+            disconnect(device_id),
+            [](std::exception_ptr) {}
+        );
+        co_return false;
+    }
+}
+
+asio::awaitable<int> ConnectionManager::broadcast(
+    const json& message,
+    const std::unordered_set<std::string>& exclude
+) {
+    int count = 0;
+
+    std::vector<std::string> device_ids;
+    {
+        std::shared_lock lock(devices_mutex_);
+        for (const auto& [device_id, _] : devices_) {
+            if (exclude.find(device_id) == exclude.end()) {
+                device_ids.push_back(device_id);
+            }
+        }
+    }
+
+    for (const auto& device_id : device_ids) {
+        if (co_await send_message(device_id, message)) {
+            ++count;
+        }
+    }
+
+    co_return count;
+}
+
+asio::awaitable<bool> ConnectionManager::send_error(
+    const std::string& device_id,
+    ErrorCode code,
+    const std::string& message,
+    const std::optional<std::string>& request_id
+) {
+    ErrorResponse error{code, message, request_id};
+    co_return co_await send_message(device_id, error.to_json());
+}
+
+// Session management
+ConnectionSession ConnectionManager::create_session(
+    std::string device_a,
+    std::string device_b
+) {
+    boost::uuids::uuid uuid = boost::uuids::random_generator()();
+    std::string session_id = boost::uuids::to_string(uuid);
+
+    ConnectionSession session;
+    session.session_id = session_id;
+    session.device_a = std::move(device_a);
+    session.device_b = std::move(device_b);
+    session.created_at = std::chrono::system_clock::now();
+
+    {
+        std::unique_lock lock(sessions_mutex_);
+        sessions_[session_id] = session;
+    }
+
+    return session;
+}
+
+std::optional<ConnectionSession> ConnectionManager::get_session(
+    const std::string& session_id
+) const {
+    std::shared_lock lock(sessions_mutex_);
+    auto it = sessions_.find(session_id);
+    return it != sessions_.end()
+        ? std::optional{it->second}
+        : std::nullopt;
+}
+
+std::optional<ConnectionSession> ConnectionManager::get_session_by_devices(
+    const std::string& device_a,
+    const std::string& device_b
+) const {
+    std::shared_lock lock(sessions_mutex_);
+    for (const auto& [_, session] : sessions_) {
+        if ((session.device_a == device_a && session.device_b == device_b) ||
+            (session.device_a == device_b && session.device_b == device_a)) {
+            return session;
+        }
+    }
+    return std::nullopt;
+}
+
+void ConnectionManager::update_session_status(
+    const std::string& session_id,
+    ConnectionStatus status
+) {
+    std::unique_lock lock(sessions_mutex_);
+    auto it = sessions_.find(session_id);
+    if (it != sessions_.end()) {
+        it->second.status = status;
+    }
+}
+
+void ConnectionManager::set_session_offer(
+    const std::string& session_id,
+    std::string offer
+) {
+    std::unique_lock lock(sessions_mutex_);
+    auto it = sessions_.find(session_id);
+    if (it != sessions_.end()) {
+        it->second.offer = std::move(offer);
+    }
+}
+
+void ConnectionManager::set_session_answer(
+    const std::string& session_id,
+    std::string answer
+) {
+    std::unique_lock lock(sessions_mutex_);
+    auto it = sessions_.find(session_id);
+    if (it != sessions_.end()) {
+        it->second.answer = std::move(answer);
+    }
+}
+
+void ConnectionManager::add_ice_candidate(
+    const std::string& session_id,
+    const std::string& device_id,
+    json candidate
+) {
+    std::unique_lock lock(sessions_mutex_);
+    auto it = sessions_.find(session_id);
+    if (it != sessions_.end()) {
+        if (it->second.device_a == device_id) {
+            it->second.ice_candidates_a.push_back(std::move(candidate));
+        } else if (it->second.device_b == device_id) {
+            it->second.ice_candidates_b.push_back(std::move(candidate));
+        }
+    }
+}
+
+void ConnectionManager::set_relay_mode(const std::string& session_id) {
+    std::unique_lock lock(sessions_mutex_);
+    auto it = sessions_.find(session_id);
+    if (it != sessions_.end()) {
+        it->second.use_relay = true;
+    }
+}
+
+// Pending requests
+void ConnectionManager::add_pending_request(
+    const std::string& session_id,
+    std::string requester
+) {
+    std::unique_lock lock(pending_mutex_);
+    pending_requests_[session_id] = std::move(requester);
+}
+
+std::optional<std::string> ConnectionManager::get_pending_requester(
+    const std::string& session_id
+) const {
+    std::shared_lock lock(pending_mutex_);
+    auto it = pending_requests_.find(session_id);
+    return it != pending_requests_.end()
+        ? std::optional{it->second}
+        : std::nullopt;
+}
+
+void ConnectionManager::remove_pending_request(const std::string& session_id) {
+    std::unique_lock lock(pending_mutex_);
+    pending_requests_.erase(session_id);
+}
+
+// Heartbeat
+asio::awaitable<bool> ConnectionManager::update_heartbeat(
+    const std::string& device_id
+) {
+    std::unique_lock lock(devices_mutex_);
+    auto it = devices_.find(device_id);
+    if (it != devices_.end()) {
+        it->second.last_heartbeat = std::chrono::system_clock::now();
+        co_return true;
+    }
+    co_return false;
+}
+
+asio::awaitable<int> ConnectionManager::cleanup_stale(int timeout_seconds) {
+    auto now = std::chrono::system_clock::now();
+    auto timeout = std::chrono::seconds(timeout_seconds);
+
+    std::vector<std::string> to_remove;
+
+    {
+        std::shared_lock lock(devices_mutex_);
+        for (const auto& [device_id, device] : devices_) {
+            if (now - device.last_heartbeat > timeout) {
+                to_remove.push_back(device_id);
+            }
+        }
+    }
+
+    for (const auto& device_id : to_remove) {
+        co_await disconnect(device_id);
+    }
+
+    co_return static_cast<int>(to_remove.size());
+}
+
+} // namespace signaling

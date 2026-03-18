@@ -1,0 +1,218 @@
+\doxysection{p2p\+\_\+engine.\+dht.\+query.\+Query\+Context类 参考}
+\hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context}{}\label{classp2p__engine_1_1dht_1_1query_1_1_query_context}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+
+
+p2p\+\_\+engine.\+dht.\+query.\+Query\+Context 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a50886d2c032728c3169522f4eecfdccf}{elapsed\+\_\+ms}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a301f87a54c86383c6f867256b6724c12}{is\+\_\+expired}} (self, float timeout\+\_\+ms=60000.\+0)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a4c5739d6e9f57906b7abee984a980905}{target\+\_\+key}} = None
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a77c9cc9a58202e627d410d0c68a40703}{started\+\_\+at}} = field(default\+\_\+factory=time.\+time)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_state}{Query\+State}} \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_ab9ffc7f5545c22f7a3125afc2d6f3c67}{state}} = \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_state_ad85a126c3ec0eed44e09ad376ebf135c}{Query\+State.\+PENDING}}
+\item 
+Set \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_adf445e3b2eebd7d3e8d2b2949279ffa7}{contacted}} = field(default\+\_\+factory=set)
+\item 
+List \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a038f2ce0d08e57988166b1c7654ea2db}{pending}} = field(default\+\_\+factory=list)
+\item 
+List \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a563d8dafbcbaee94f956e4613f1c7a50}{results}} = field(default\+\_\+factory=list)
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a0304b34db5d90c0a998b50dc114e72da}{value}} = None
+\item 
+List \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a176e3c6dd8ed4a200b898f5975045466}{providers}} = field(default\+\_\+factory=list)
+\item 
+Optional \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a509171595e5bc717479f675a5c6a20ea}{error}} = None
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_context_a191fc6416e60f1e8646db9c43a8ac24b}{retries}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Context for an active query.
+
+Maintains query state, contacted peers, and results.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00074}{74}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a50886d2c032728c3169522f4eecfdccf}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!elapsed\_ms@{elapsed\_ms}}
+\index{elapsed\_ms@{elapsed\_ms}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{elapsed\_ms()}{elapsed\_ms()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a50886d2c032728c3169522f4eecfdccf} 
+ float p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+elapsed\+\_\+ms (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get elapsed time in milliseconds.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00104}{104}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{query_8py_source_l00083}{started\+\_\+at}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{query_8py_source_l00108}{is\+\_\+expired()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a301f87a54c86383c6f867256b6724c12}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!is\_expired@{is\_expired}}
+\index{is\_expired@{is\_expired}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{is\_expired()}{is\_expired()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a301f87a54c86383c6f867256b6724c12} 
+ bool p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+is\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{float }]{timeout\+\_\+ms}{ = {\ttfamily 60000.0}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if query has timed out.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00108}{108}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{query_8py_source_l00104}{elapsed\+\_\+ms()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00084}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+is\+\_\+valid()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_adf445e3b2eebd7d3e8d2b2949279ffa7}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!contacted@{contacted}}
+\index{contacted@{contacted}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{contacted}{contacted}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_adf445e3b2eebd7d3e8d2b2949279ffa7} 
+Set p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+contacted = field(default\+\_\+factory=set)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00089}{89}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a509171595e5bc717479f675a5c6a20ea}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!error@{error}}
+\index{error@{error}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{error}{error}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a509171595e5bc717479f675a5c6a20ea} 
+Optional p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+error = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00100}{100}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{did-service_2src_2did__service_2models_8py_source_l00099}{src.\+did\+\_\+service.\+models.\+APIResponse.\+to\+\_\+dict()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00140}{src.\+relay\+\_\+server.\+models.\+APIResponse.\+to\+\_\+dict()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a038f2ce0d08e57988166b1c7654ea2db}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!pending@{pending}}
+\index{pending@{pending}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{pending}{pending}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a038f2ce0d08e57988166b1c7654ea2db} 
+List p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+pending = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00090}{90}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a176e3c6dd8ed4a200b898f5975045466}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!providers@{providers}}
+\index{providers@{providers}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{providers}{providers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a176e3c6dd8ed4a200b898f5975045466} 
+List p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+providers = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00097}{97}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a563d8dafbcbaee94f956e4613f1c7a50}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!results@{results}}
+\index{results@{results}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{results}{results}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a563d8dafbcbaee94f956e4613f1c7a50} 
+List p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+results = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00091}{91}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{benchmark_8py_source_l00168}{p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+concurrent\+\_\+streams()}}, \doxymbox{\hyperlink{benchmark_8py_source_l00222}{p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+memory\+\_\+usage()}}, \doxymbox{\hyperlink{benchmark_8py_source_l00113}{p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+message\+\_\+throughput()}}, \doxymbox{\hyperlink{benchmark_8py_source_l00060}{p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+benchmark\+\_\+stream\+\_\+creation()}} , 以及 \doxymbox{\hyperlink{benchmark_8py_source_l00278}{p2p\+\_\+engine.\+muxer.\+benchmark.\+Muxer\+Benchmark.\+print\+\_\+results()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a191fc6416e60f1e8646db9c43a8ac24b}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!retries@{retries}}
+\index{retries@{retries}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{retries}{retries}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a191fc6416e60f1e8646db9c43a8ac24b} 
+int p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+retries = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00101}{101}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a77c9cc9a58202e627d410d0c68a40703}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!started\_at@{started\_at}}
+\index{started\_at@{started\_at}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{started\_at}{started\_at}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a77c9cc9a58202e627d410d0c68a40703} 
+p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+started\+\_\+at = field(default\+\_\+factory=time.\+time)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00083}{83}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{query_8py_source_l00104}{elapsed\+\_\+ms()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_ab9ffc7f5545c22f7a3125afc2d6f3c67}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!state@{state}}
+\index{state@{state}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_ab9ffc7f5545c22f7a3125afc2d6f3c67} 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_state}{Query\+State}} p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+state = \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1query_1_1_query_state_ad85a126c3ec0eed44e09ad376ebf135c}{Query\+State.\+PENDING}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00086}{86}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a4c5739d6e9f57906b7abee984a980905}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!target\_key@{target\_key}}
+\index{target\_key@{target\_key}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{target\_key}{target\_key}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a4c5739d6e9f57906b7abee984a980905} 
+Optional p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+target\+\_\+key = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00082}{82}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1query_1_1_query_context_a0304b34db5d90c0a998b50dc114e72da}\index{p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}!value@{value}}
+\index{value@{value}!p2p\_engine.dht.query.QueryContext@{p2p\_engine.dht.query.QueryContext}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1query_1_1_query_context_a0304b34db5d90c0a998b50dc114e72da} 
+Optional p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+value = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{query_8py_source}{query.\+py}} 第 \doxymbox{\hyperlink{query_8py_source_l00094}{94}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+dht/\+\doxymbox{\hyperlink{query_8py}{query.\+py}}\end{DoxyCompactItemize}

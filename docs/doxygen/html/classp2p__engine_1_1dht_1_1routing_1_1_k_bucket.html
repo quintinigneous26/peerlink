@@ -1,0 +1,696 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.dht.routing.KBucket类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1dht_1_1routing_1_1_k_bucket.html','','classp2p__engine_1_1dht_1_1routing_1_1_k_bucket-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.dht.routing.KBucket类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a9a6bc1d278c2e495a754d0570c9785d8" id="r_a9a6bc1d278c2e495a754d0570c9785d8"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9a6bc1d278c2e495a754d0570c9785d8">__init__</a> (self, int <a class="el" href="#ae373563ebaef7c729bd48f5ddf4f3a42">prefix_len</a>, int <a class="el" href="#a070ca0cfcc03747aa87d6565d8fc5a81">max_size</a>=<a class="el" href="namespacep2p__engine_1_1dht_1_1routing.html#ae9a0f57b017a18d993877306e54b1b1a">K</a>)</td></tr>
+<tr class="memitem:ab7fa8372b5409dbc15f50611fb6df74c" id="r_ab7fa8372b5409dbc15f50611fb6df74c"><td class="memItemLeft">List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]&#160;</td><td class="memItemRight"><a class="el" href="#ab7fa8372b5409dbc15f50611fb6df74c">peers</a> (self)</td></tr>
+<tr class="memitem:a27ba60c2fb57ea9f6e25b33466de5b91" id="r_a27ba60c2fb57ea9f6e25b33466de5b91"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a27ba60c2fb57ea9f6e25b33466de5b91">size</a> (self)</td></tr>
+<tr class="memitem:a9c5c3a217028c3c16f0fd4e390dba4be" id="r_a9c5c3a217028c3c16f0fd4e390dba4be"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9c5c3a217028c3c16f0fd4e390dba4be">is_full</a> (self)</td></tr>
+<tr class="memitem:a3e021ea2d7a0585326b72ee2feb4ae66" id="r_a3e021ea2d7a0585326b72ee2feb4ae66"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a3e021ea2d7a0585326b72ee2feb4ae66">add_peer</a> (self, <a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a> peer)</td></tr>
+<tr class="memitem:a9310455e7bc7054ad3cb7c8bc4082ee8" id="r_a9310455e7bc7054ad3cb7c8bc4082ee8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9310455e7bc7054ad3cb7c8bc4082ee8">remove_peer</a> (self, bytes peer_id)</td></tr>
+<tr class="memitem:a1f8116d5e9b30d90a81fa30b2e3f98db" id="r_a1f8116d5e9b30d90a81fa30b2e3f98db"><td class="memItemLeft">Optional[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a1f8116d5e9b30d90a81fa30b2e3f98db">get_peer</a> (self, bytes peer_id)</td></tr>
+<tr class="memitem:a7dadcee0dc3d43d820785e31471210f8" id="r_a7dadcee0dc3d43d820785e31471210f8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7dadcee0dc3d43d820785e31471210f8">has_peer</a> (self, bytes peer_id)</td></tr>
+<tr class="memitem:a3a91a2d5cc1f330cf7b946068807b1fb" id="r_a3a91a2d5cc1f330cf7b946068807b1fb"><td class="memItemLeft">Tuple[ '<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket.html">KBucket</a>', '<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket.html">KBucket</a>']&#160;</td><td class="memItemRight"><a class="el" href="#a3a91a2d5cc1f330cf7b946068807b1fb">split</a> (self, bytes local_id)</td></tr>
+<tr class="memitem:a59ad89647b2cda56c52597cb4cf94d91" id="r_a59ad89647b2cda56c52597cb4cf94d91"><td class="memItemLeft">List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a59ad89647b2cda56c52597cb4cf94d91">get_furthest_peers</a> (self, bytes target_id, int count=<a class="el" href="namespacep2p__engine_1_1dht_1_1routing.html#a2efbaa120a62c3e3f7c98853c53a8108">ALPHA</a>)</td></tr>
+<tr class="memitem:a2b45c413f053d91772124d4529d2065a" id="r_a2b45c413f053d91772124d4529d2065a"><td class="memItemLeft">List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a2b45c413f053d91772124d4529d2065a">get_closest_peers</a> (self, bytes target_id, int count=<a class="el" href="namespacep2p__engine_1_1dht_1_1routing.html#ae9a0f57b017a18d993877306e54b1b1a">K</a>)</td></tr>
+<tr class="memitem:ad29b1392e5a0382204458f0e84df0d2b" id="r_ad29b1392e5a0382204458f0e84df0d2b"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ad29b1392e5a0382204458f0e84df0d2b">cleanup_stale</a> (self, float stale_threshold=3600.0)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:ae373563ebaef7c729bd48f5ddf4f3a42" id="r_ae373563ebaef7c729bd48f5ddf4f3a42"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae373563ebaef7c729bd48f5ddf4f3a42">prefix_len</a> = prefix_len</td></tr>
+<tr class="memitem:a070ca0cfcc03747aa87d6565d8fc5a81" id="r_a070ca0cfcc03747aa87d6565d8fc5a81"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a070ca0cfcc03747aa87d6565d8fc5a81">max_size</a> = max_size</td></tr>
+<tr class="memitem:a3029a4d48de3675cbd21d5cc214a356e" id="r_a3029a4d48de3675cbd21d5cc214a356e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3029a4d48de3675cbd21d5cc214a356e">is_full</a></td></tr>
+<tr class="memitem:ae1afd5e4768484fa331c7bf528c76eeb" id="r_ae1afd5e4768484fa331c7bf528c76eeb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae1afd5e4768484fa331c7bf528c76eeb">peers</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a52026c277d74dda6ea55e8a5c3feb250" id="r_a52026c277d74dda6ea55e8a5c3feb250"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a52026c277d74dda6ea55e8a5c3feb250">_peers</a> = {}</td></tr>
+<tr class="memitem:a238658d665371b3d7ecfa7405040bc32" id="r_a238658d665371b3d7ecfa7405040bc32"><td class="memItemLeft">list&#160;</td><td class="memItemRight"><a class="el" href="#a238658d665371b3d7ecfa7405040bc32">_replacement_cache</a> = []</td></tr>
+<tr class="memitem:ae148a3ec4040277cccaf20c1f0828069" id="r_ae148a3ec4040277cccaf20c1f0828069"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ae148a3ec4040277cccaf20c1f0828069">_last_refresh</a> = time.time()</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">A k-bucket holds up to K peers.
+
+KBuckets are arranged in a binary tree structure where each bucket
+covers a range of the ID space. Peers are placed in buckets based on
+their common prefix length with the local node.
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00131">131</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a9a6bc1d278c2e495a754d0570c9785d8" name="a9a6bc1d278c2e495a754d0570c9785d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a6bc1d278c2e495a754d0570c9785d8">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.routing.KBucket.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>prefix_len</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>max_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacep2p__engine_1_1dht_1_1routing.html#ae9a0f57b017a18d993877306e54b1b1a">K</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize a k-bucket.
+
+Args:
+    prefix_len: The prefix length this bucket covers
+    max_size: Maximum number of peers in bucket (default K=20)
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00140">140</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a3e021ea2d7a0585326b72ee2feb4ae66" name="a3e021ea2d7a0585326b72ee2feb4ae66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e021ea2d7a0585326b72ee2feb4ae66">&#9670;&#160;</a></span>add_peer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.routing.KBucket.add_peer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a></td>          <td class="paramname"><span class="paramname"><em>peer</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Add a peer to the bucket.
+
+If bucket is full, peer is added to replacement cache.
+If peer already exists, it's moved to the end (LRU).
+
+Args:
+    peer: Peer entry to add
+
+Returns:
+    True if peer was added, False if cached
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00169">169</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00150">_peers</a>.</p>
+
+</div>
+</div>
+<a id="ad29b1392e5a0382204458f0e84df0d2b" name="ad29b1392e5a0382204458f0e84df0d2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad29b1392e5a0382204458f0e84df0d2b">&#9670;&#160;</a></span>cleanup_stale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int p2p_engine.dht.routing.KBucket.cleanup_stale </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>stale_threshold</em></span><span class="paramdefsep"> = </span><span class="paramdefval">3600.0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Remove stale peers from bucket.
+
+Args:
+    stale_threshold: Seconds after which peer is considered stale
+
+Returns:
+    Number of peers removed
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00308">308</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00150">_peers</a> , 以及 <a class="el" href="routing_8py_source.html#l00201">remove_peer()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_ad29b1392e5a0382204458f0e84df0d2b_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1routing_1_1_k_bucket_ad29b1392e5a0382204458f0e84df0d2b_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a2b45c413f053d91772124d4529d2065a" name="a2b45c413f053d91772124d4529d2065a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b45c413f053d91772124d4529d2065a">&#9670;&#160;</a></span>get_closest_peers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>] p2p_engine.dht.routing.KBucket.get_closest_peers </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>target_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>count</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacep2p__engine_1_1dht_1_1routing.html#ae9a0f57b017a18d993877306e54b1b1a">K</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get peers closest to target ID.
+
+Args:
+    target_id: Target peer ID
+    count: Maximum number of peers to return
+
+Returns:
+    List of peers sorted by distance (closest first)
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00286">286</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00076">p2p_engine.dht.routing.calculate_distance()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00074">p2p_engine.dht.kademlia.KademliaMessage.peers</a>, <a class="el" href="query_8py_source.html#l00066">p2p_engine.dht.query.QueryResult.peers</a> , 以及 <a class="el" href="routing_8py_source.html#l00254">peers</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a2b45c413f053d91772124d4529d2065a_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a2b45c413f053d91772124d4529d2065a_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a59ad89647b2cda56c52597cb4cf94d91" name="a59ad89647b2cda56c52597cb4cf94d91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59ad89647b2cda56c52597cb4cf94d91">&#9670;&#160;</a></span>get_furthest_peers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>] p2p_engine.dht.routing.KBucket.get_furthest_peers </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>target_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>count</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacep2p__engine_1_1dht_1_1routing.html#a2efbaa120a62c3e3f7c98853c53a8108">ALPHA</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get peers furthest from target ID.
+
+Used for iterative queries to find close nodes.
+
+Args:
+    target_id: Target peer ID
+    count: Maximum number of peers to return
+
+Returns:
+    List of peers sorted by distance (furthest first)
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00262">262</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00076">p2p_engine.dht.routing.calculate_distance()</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00074">p2p_engine.dht.kademlia.KademliaMessage.peers</a>, <a class="el" href="query_8py_source.html#l00066">p2p_engine.dht.query.QueryResult.peers</a> , 以及 <a class="el" href="routing_8py_source.html#l00254">peers</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a59ad89647b2cda56c52597cb4cf94d91_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a59ad89647b2cda56c52597cb4cf94d91_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a1f8116d5e9b30d90a81fa30b2e3f98db" name="a1f8116d5e9b30d90a81fa30b2e3f98db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8116d5e9b30d90a81fa30b2e3f98db">&#9670;&#160;</a></span>get_peer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>] p2p_engine.dht.routing.KBucket.get_peer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get peer by ID.</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00225">225</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00150">_peers</a>.</p>
+
+</div>
+</div>
+<a id="a7dadcee0dc3d43d820785e31471210f8" name="a7dadcee0dc3d43d820785e31471210f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dadcee0dc3d43d820785e31471210f8">&#9670;&#160;</a></span>has_peer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.routing.KBucket.has_peer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Check if peer exists in bucket.</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00229">229</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00150">_peers</a>.</p>
+
+</div>
+</div>
+<a id="a9c5c3a217028c3c16f0fd4e390dba4be" name="a9c5c3a217028c3c16f0fd4e390dba4be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c5c3a217028c3c16f0fd4e390dba4be">&#9670;&#160;</a></span>is_full()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.routing.KBucket.is_full </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Check if bucket is full.</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00165">165</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00149">max_size</a>, <a class="el" href="query__optimizer_8py_source.html#l00179">p2p_engine.dht.query_optimizer.QueryCache.size()</a> , 以及 <a class="el" href="routing_8py_source.html#l00160">size()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a9c5c3a217028c3c16f0fd4e390dba4be_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a9c5c3a217028c3c16f0fd4e390dba4be_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ab7fa8372b5409dbc15f50611fb6df74c" name="ab7fa8372b5409dbc15f50611fb6df74c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7fa8372b5409dbc15f50611fb6df74c">&#9670;&#160;</a></span>peers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> List[<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_peer_entry.html">PeerEntry</a>] p2p_engine.dht.routing.KBucket.peers </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get list of peers in the bucket.</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00155">155</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00150">_peers</a>.</p>
+
+</div>
+</div>
+<a id="a9310455e7bc7054ad3cb7c8bc4082ee8" name="a9310455e7bc7054ad3cb7c8bc4082ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9310455e7bc7054ad3cb7c8bc4082ee8">&#9670;&#160;</a></span>remove_peer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.dht.routing.KBucket.remove_peer </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>peer_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Remove a peer from the bucket.
+
+If replacement cache has entries, the most recent is promoted.
+
+Args:
+    peer_id: ID of peer to remove
+
+Returns:
+    True if peer was removed
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00201">201</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00150">_peers</a> , 以及 <a class="el" href="routing_8py_source.html#l00151">_replacement_cache</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="routing_8py_source.html#l00308">cleanup_stale()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a9310455e7bc7054ad3cb7c8bc4082ee8_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a9310455e7bc7054ad3cb7c8bc4082ee8_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a27ba60c2fb57ea9f6e25b33466de5b91" name="a27ba60c2fb57ea9f6e25b33466de5b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27ba60c2fb57ea9f6e25b33466de5b91">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int p2p_engine.dht.routing.KBucket.size </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get current bucket size.</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00160">160</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00150">_peers</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="routing_8py_source.html#l00165">is_full()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a27ba60c2fb57ea9f6e25b33466de5b91_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1dht_1_1routing_1_1_k_bucket_a27ba60c2fb57ea9f6e25b33466de5b91_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a3a91a2d5cc1f330cf7b946068807b1fb" name="a3a91a2d5cc1f330cf7b946068807b1fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a91a2d5cc1f330cf7b946068807b1fb">&#9670;&#160;</a></span>split()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Tuple['<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket.html">KBucket</a>', '<a class="el" href="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket.html">KBucket</a>'] p2p_engine.dht.routing.KBucket.split </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>local_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Split the bucket into two new buckets.
+
+Used when a bucket is full and needs to be split to maintain
+the k-bucket tree structure.
+
+Args:
+    local_id: Local peer's ID for determining split direction
+
+Returns:
+    Tuple of (left_bucket, right_bucket)
+</pre> 
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00233">233</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="routing_8py_source.html#l00149">max_size</a> , 以及 <a class="el" href="routing_8py_source.html#l00148">prefix_len</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="ae148a3ec4040277cccaf20c1f0828069" name="ae148a3ec4040277cccaf20c1f0828069"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae148a3ec4040277cccaf20c1f0828069">&#9670;&#160;</a></span>_last_refresh</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float p2p_engine.dht.routing.KBucket._last_refresh = time.time()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00152">152</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a52026c277d74dda6ea55e8a5c3feb250" name="a52026c277d74dda6ea55e8a5c3feb250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52026c277d74dda6ea55e8a5c3feb250">&#9670;&#160;</a></span>_peers</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.routing.KBucket._peers = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00150">150</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="routing_8py_source.html#l00169">add_peer()</a>, <a class="el" href="routing_8py_source.html#l00308">cleanup_stale()</a>, <a class="el" href="routing_8py_source.html#l00225">get_peer()</a>, <a class="el" href="routing_8py_source.html#l00229">has_peer()</a>, <a class="el" href="routing_8py_source.html#l00155">peers()</a>, <a class="el" href="routing_8py_source.html#l00201">remove_peer()</a> , 以及 <a class="el" href="routing_8py_source.html#l00160">size()</a>.</p>
+
+</div>
+</div>
+<a id="a238658d665371b3d7ecfa7405040bc32" name="a238658d665371b3d7ecfa7405040bc32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a238658d665371b3d7ecfa7405040bc32">&#9670;&#160;</a></span>_replacement_cache</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.routing.KBucket._replacement_cache = []</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00151">151</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="routing_8py_source.html#l00201">remove_peer()</a>.</p>
+
+</div>
+</div>
+<a id="a3029a4d48de3675cbd21d5cc214a356e" name="a3029a4d48de3675cbd21d5cc214a356e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3029a4d48de3675cbd21d5cc214a356e">&#9670;&#160;</a></span>is_full</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.routing.KBucket.is_full</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00191">191</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a070ca0cfcc03747aa87d6565d8fc5a81" name="a070ca0cfcc03747aa87d6565d8fc5a81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a070ca0cfcc03747aa87d6565d8fc5a81">&#9670;&#160;</a></span>max_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.routing.KBucket.max_size = max_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00149">149</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="routing_8py_source.html#l00165">is_full()</a> , 以及 <a class="el" href="routing_8py_source.html#l00233">split()</a>.</p>
+
+</div>
+</div>
+<a id="ae1afd5e4768484fa331c7bf528c76eeb" name="ae1afd5e4768484fa331c7bf528c76eeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1afd5e4768484fa331c7bf528c76eeb">&#9670;&#160;</a></span>peers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.routing.KBucket.peers</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00254">254</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="pubsub_8py_source.html#l01102">p2p_engine.protocol.pubsub.FloodSubRouter.add_peer()</a>, <a class="el" href="pubsub_8py_source.html#l00538">p2p_engine.protocol.pubsub.GossipSubRouter.add_peer()</a>, <a class="el" href="routing_8py_source.html#l00290">get_closest_peers()</a>, <a class="el" href="pubsub_8py_source.html#l01127">p2p_engine.protocol.pubsub.FloodSubRouter.get_forward_targets()</a>, <a class="el" href="routing_8py_source.html#l00266">get_furthest_peers()</a>, <a class="el" href="pubsub_8py_source.html#l00560">p2p_engine.protocol.pubsub.GossipSubRouter.get_peers()</a>, <a class="el" href="pubsub_8py_source.html#l01105">p2p_engine.protocol.pubsub.FloodSubRouter.remove_peer()</a>, <a class="el" href="pubsub_8py_source.html#l00542">p2p_engine.protocol.pubsub.GossipSubRouter.remove_peer()</a> , 以及 <a class="el" href="pubsub_8py_source.html#l00301">p2p_engine.protocol.pubsub.ControlPrune.to_dict()</a>.</p>
+
+</div>
+</div>
+<a id="ae373563ebaef7c729bd48f5ddf4f3a42" name="ae373563ebaef7c729bd48f5ddf4f3a42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae373563ebaef7c729bd48f5ddf4f3a42">&#9670;&#160;</a></span>prefix_len</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.dht.routing.KBucket.prefix_len = prefix_len</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="routing_8py_source.html">routing.py</a> 第 <a class="el" href="routing_8py_source.html#l00148">148</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="routing_8py_source.html#l00233">split()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/dht/<a class="el" href="routing_8py_source.html">routing.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1dht.html">dht</a></li><li class="navelem"><a href="namespacep2p__engine_1_1dht_1_1routing.html">routing</a></li><li class="navelem"><a href="classp2p__engine_1_1dht_1_1routing_1_1_k_bucket.html">KBucket</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

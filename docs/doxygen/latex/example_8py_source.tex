@@ -1,0 +1,211 @@
+\doxysection{example.\+py}
+\hypertarget{example_8py_source}{}\label{example_8py_source}\index{p2p\_engine/protocol/dcutr/example.py@{p2p\_engine/protocol/dcutr/example.py}}
+\doxymbox{\hyperlink{example_8py}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00001}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00002}00002\ \textcolor{stringliteral}{DCUtR\ Protocol\ Usage\ Example}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00004}00004\ \textcolor{stringliteral}{This\ example\ demonstrates\ how\ to\ use\ the\ DCUtR\ protocol\ to\ upgrade}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00005}00005\ \textcolor{stringliteral}{a\ relay\ connection\ to\ a\ direct\ connection.}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00007}00007\ \textcolor{keyword}{import}\ asyncio}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00008}00008\ \textcolor{keyword}{import}\ logging}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00010}00010\ \textcolor{keyword}{from}\ ...types\ \textcolor{keyword}{import}\ NATInfo,\ NATType,\ ISP}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00011}00011\ \textcolor{keyword}{from}\ ..dcutr\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00012}00012\ \ \ \ \ DCUtRProtocol,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00013}00013\ \ \ \ \ DCUtRMessage,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00014}00014\ \ \ \ \ DCUtRMessageType,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00015}00015\ \ \ \ \ PROTOCOL\_ID,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00016}00016\ )}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00019}00019\ logging.basicConfig(}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00020}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a78dc414004c9c266390e108c6157663f}{00020}}\ \ \ \ \ level=logging.INFO,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00021}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_af5529ad27ccf240e7d275ede7f9795e5}{00021}}\ \ \ \ \ format=\textcolor{stringliteral}{"{}[\%(asctime)s]\ [\%(name)s]\ [\%(levelname)s]\ \%(message)s"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00022}00022\ )}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00023}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a615f4bbfbe453fb83c693a13417c436e}{00023}}\ logger\ =\ logging.getLogger(\_\_name\_\_)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00026}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_abc27c0a7bf898204f7dfff1e14c25c8b}{00026}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_abc27c0a7bf898204f7dfff1e14c25c8b}{example\_dcutr\_active\_side}}():}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00027}00027\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00028}00028\ \textcolor{stringliteral}{\ \ \ \ Example:\ Active\ side\ (initiator)\ of\ DCUtR\ upgrade}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00029}00029\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00030}00030\ \textcolor{stringliteral}{\ \ \ \ This\ is\ the\ peer\ that\ initiates\ the\ upgrade\ from\ relay\ to\ direct.}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00031}00031\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00032}00032\ \ \ \ \ \textcolor{comment}{\#\ Setup\ local\ NAT\ information}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00033}00033\ \ \ \ \ local\_nat\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}}(}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ type=NATType.PORT\_RESTRICTED,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ public\_ip=\textcolor{stringliteral}{"{}203.0.113.1"{}},\ \ \textcolor{comment}{\#\ Example\ public\ IP}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ public\_port=12345,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ local\_ip=\textcolor{stringliteral}{"{}10.0.0.1"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ local\_port=54321,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00039}00039\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00041}00041\ \ \ \ \ \textcolor{comment}{\#\ Create\ DCUtR\ protocol\ instance}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00042}00042\ \ \ \ \ dcutr\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_protocol}{DCUtRProtocol}}(}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ local\_peer\_id=\textcolor{stringliteral}{"{}QmInitiatorPeer"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ local\_nat=local\_nat,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ local\_isp=ISP.CHINA\_TELECOM,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ max\_retry\_attempts=3,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ sync\_timeout\_ms=10000,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00048}00048\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00050}00050\ \ \ \ \ \textcolor{comment}{\#\ Simulated\ relay\ connection\ (in\ real\ use,\ this\ comes\ from\ circuit\ relay)}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00051}00051\ \ \ \ \ \textcolor{comment}{\#\ For\ this\ example,\ we'll\ skip\ the\ actual\ relay\ connection\ setup}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00053}00053\ \ \ \ \ \textcolor{comment}{\#\ Local\ addresses\ to\ share\ with\ remote\ peer}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00054}00054\ \ \ \ \ \textcolor{comment}{\#\ These\ would\ typically\ come\ from\ Identify\ protocol\ observations}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00055}00055\ \ \ \ \ local\_addrs\ =\ [}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/ip4/203.0.113.1/tcp/12345"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/ip4/203.0.113.1/udp/12346/quic"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00058}00058\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00060}00060\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Starting\ DCUtR\ upgrade\ (active\ side)..."{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00062}00062\ \ \ \ \ \textcolor{comment}{\#\ In\ a\ real\ scenario,\ you\ would\ have\ actual\ relay\ streams:}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00063}00063\ \ \ \ \ \textcolor{comment}{\#\ result\ =\ await\ dcutr.upgrade\_to\_direct(}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00064}00064\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ relay\_reader=relay\_reader,}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00065}00065\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ relay\_writer=relay\_writer,}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00066}00066\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ local\_addrs=local\_addrs,}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00067}00067\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ remote\_peer\_id="{}QmRemotePeer"{},}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00068}00068\ \ \ \ \ \textcolor{comment}{\#\ )}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00070}00070\ \ \ \ \ \textcolor{comment}{\#\ For\ this\ example,\ just\ show\ the\ flow}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00071}00071\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Would\ upgrade\ using\ addresses:\ \{local\_addrs\}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00072}00072\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Protocol\ ID:\ \{PROTOCOL\_ID\}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00074}00074\ \ \ \ \ \textcolor{comment}{\#\ Cleanup}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00075}00075\ \ \ \ \ dcutr.close()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00078}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a18d514323255c48ce868c15f6803af33}{00078}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a18d514323255c48ce868c15f6803af33}{example\_dcutr\_passive\_side}}():}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00079}00079\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00080}00080\ \textcolor{stringliteral}{\ \ \ \ Example:\ Passive\ side\ (receiver)\ of\ DCUtR\ upgrade}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00081}00081\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00082}00082\ \textcolor{stringliteral}{\ \ \ \ This\ is\ the\ peer\ that\ receives\ the\ upgrade\ request.}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00083}00083\ \textcolor{stringliteral}{\ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00084}00084\ \ \ \ \ \textcolor{comment}{\#\ Setup\ local\ NAT\ information}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00085}00085\ \ \ \ \ local\_nat\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1types_1_1_n_a_t_info}{NATInfo}}(}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ type=NATType.FULL\_CONE,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ public\_ip=\textcolor{stringliteral}{"{}198.51.100.1"{}},\ \ \textcolor{comment}{\#\ Example\ public\ IP}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ public\_port=23456,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ local\_ip=\textcolor{stringliteral}{"{}10.0.1.1"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ local\_port=65432,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00091}00091\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00093}00093\ \ \ \ \ \textcolor{comment}{\#\ Create\ DCUtR\ protocol\ instance}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00094}00094\ \ \ \ \ dcutr\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_protocol}{DCUtRProtocol}}(}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ local\_peer\_id=\textcolor{stringliteral}{"{}QmPassivePeer"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00096}00096\ \ \ \ \ \ \ \ \ local\_nat=local\_nat,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00097}00097\ \ \ \ \ \ \ \ \ local\_isp=ISP.CHINA\_UNICOM,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00098}00098\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00100}00100\ \ \ \ \ \textcolor{comment}{\#\ Local\ addresses\ to\ share}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00101}00101\ \ \ \ \ local\_addrs\ =\ [}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/ip4/198.51.100.1/tcp/23456"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}/ip4/198.51.100.1/udp/23457/quic"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00104}00104\ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00106}00106\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Waiting\ for\ DCUtR\ upgrade\ request\ (passive\ side)..."{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00108}00108\ \ \ \ \ \textcolor{comment}{\#\ In\ a\ real\ scenario,\ you\ would\ handle\ incoming\ requests:}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00109}00109\ \ \ \ \ \textcolor{comment}{\#\ result\ =\ await\ dcutr.handle\_incoming\_upgrade(}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00110}00110\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ relay\_reader=relay\_reader,}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00111}00111\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ relay\_writer=relay\_writer,}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00112}00112\ \ \ \ \ \textcolor{comment}{\#\ \ \ \ \ local\_addrs=local\_addrs,}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00113}00113\ \ \ \ \ \textcolor{comment}{\#\ )}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00115}00115\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Would\ share\ addresses:\ \{local\_addrs\}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00117}00117\ \ \ \ \ \textcolor{comment}{\#\ Cleanup}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00118}00118\ \ \ \ \ dcutr.close()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00121}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a4900cef308681aa7c2a08b14f1a67dd3}{00121}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a4900cef308681aa7c2a08b14f1a67dd3}{example\_message\_encoding}}():}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00122}00122\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Example:\ Encoding\ and\ decoding\ DCUtR\ messages"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00123}00123\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ DCUtR\ Message\ Encoding\ Example\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00125}00125\ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ CONNECT\ message\ with\ observed\ addresses}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00126}00126\ \ \ \ \ connect\_msg\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message}{DCUtRMessage}}(}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00127}00127\ \ \ \ \ \ \ \ \ message\_type=DCUtRMessageType.CONNECT,}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00128}00128\ \ \ \ \ \ \ \ \ obs\_addrs=[}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ b\textcolor{stringliteral}{"{}/ip4/203.0.113.1/tcp/12345"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ b\textcolor{stringliteral}{"{}/ip4/203.0.113.1/udp/12346/quic"{}},}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00131}00131\ \ \ \ \ \ \ \ \ ],}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00132}00132\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00134}00134\ \ \ \ \ \textcolor{comment}{\#\ Encode\ the\ message}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00135}00135\ \ \ \ \ encoded\ =\ connect\_msg.encode()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00136}00136\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Encoded\ CONNECT\ message:\ \{len(encoded)\}\ bytes"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00137}00137\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}\ \ Hex:\ \{encoded.hex()\}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00139}00139\ \ \ \ \ \textcolor{comment}{\#\ Decode\ the\ message}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00140}00140\ \ \ \ \ length,\ offset\ =\ DCUtRMessage.decode\_varint(encoded)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00141}00141\ \ \ \ \ msg\_data\ =\ encoded[offset:offset\ +\ length]}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00142}00142\ \ \ \ \ decoded\ =\ DCUtRMessage.decode(msg\_data)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00144}00144\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Decoded\ message\ type:\ \{decoded.message\_type.name\}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00145}00145\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Decoded\ addresses:\ \{[addr.decode()\ for\ addr\ in\ decoded.obs\_addrs]\}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00147}00147\ \ \ \ \ \textcolor{comment}{\#\ Create\ a\ SYNC\ message}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00148}00148\ \ \ \ \ sync\_msg\ =\ \doxymbox{\hyperlink{classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message}{DCUtRMessage}}(message\_type=DCUtRMessageType.SYNC)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00149}00149\ \ \ \ \ sync\_encoded\ =\ sync\_msg.encode()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00150}00150\ \ \ \ \ logger.info(f\textcolor{stringliteral}{"{}Encoded\ SYNC\ message:\ \{len(sync\_encoded)\}\ bytes"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00153}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_aede029a510514afdc5409f98095a182a}{00153}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_aede029a510514afdc5409f98095a182a}{example\_protocol\_flow}}():}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00154}00154\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Example:\ Complete\ DCUtR\ protocol\ flow"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00155}00155\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}===\ DCUtR\ Protocol\ Flow\ Example\ ==="{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00156}00156\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00157}00157\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Step\ 1:\ Relay\ connection\ established"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00158}00158\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ Peer\ A\ -\/-\/-\/relay-\/-\/-\/>\ Peer\ B"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00159}00159\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00160}00160\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Step\ 2:\ Peer\ B\ opens\ DCUtR\ stream"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00161}00161\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ B\ -\/>\ A:\ CONNECT\ (with\ B's\ observed\ addresses)"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00162}00162\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00163}00163\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Step\ 3:\ Peer\ A\ responds"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00164}00164\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ A\ -\/>\ B:\ CONNECT\ (with\ A's\ observed\ addresses)"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00165}00165\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ [RTT\ measured]"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00166}00166\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00167}00167\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Step\ 4:\ Peer\ B\ synchronizes"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00168}00168\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ B\ -\/>\ A:\ SYNC"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00169}00169\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ [B\ starts\ timer\ =\ RTT/2]"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00170}00170\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00171}00171\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Step\ 5:\ Simultaneous\ connect"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00172}00172\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ A:\ Immediately\ connects\ to\ B's\ addresses"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00173}00173\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ B:\ After\ timer,\ connects\ to\ A's\ addresses"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00174}00174\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00175}00175\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Step\ 6:\ Direct\ connection\ established"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00176}00176\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ Peer\ A\ <-\/-\/-\/direct-\/-\/-\/>\ Peer\ B"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00177}00177\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}\ \ Relay\ connection\ can\ be\ closed"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00179}00179\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00180}\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a9862a12b7fc546d445b9393a42fe04ab}{00180}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a9862a12b7fc546d445b9393a42fe04ab}{main}}():}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00181}00181\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Run\ all\ examples"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00182}00182\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00183}00183\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}DCUtR\ Protocol\ Examples"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00184}00184\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00185}00185\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00187}00187\ \ \ \ \ await\ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a4900cef308681aa7c2a08b14f1a67dd3}{example\_message\_encoding}}()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00188}00188\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00190}00190\ \ \ \ \ await\ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_aede029a510514afdc5409f98095a182a}{example\_protocol\_flow}}()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00191}00191\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00193}00193\ \ \ \ \ await\ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_abc27c0a7bf898204f7dfff1e14c25c8b}{example\_dcutr\_active\_side}}()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00194}00194\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00196}00196\ \ \ \ \ await\ \doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a18d514323255c48ce868c15f6803af33}{example\_dcutr\_passive\_side}}()}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00197}00197\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00199}00199\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00200}00200\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}Examples\ completed"{}})}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00201}00201\ \ \ \ \ logger.info(\textcolor{stringliteral}{"{}="{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00203}00203\ }
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00204}00204\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{example_8py_source_l00205}00205\ \ \ \ \ asyncio.run(\doxymbox{\hyperlink{namespacep2p__engine_1_1protocol_1_1dcutr_1_1example_a9862a12b7fc546d445b9393a42fe04ab}{main}}())}
+
+\end{DoxyCode}

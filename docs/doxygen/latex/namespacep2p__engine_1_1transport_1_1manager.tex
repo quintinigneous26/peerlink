@@ -1,0 +1,72 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+manager 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1transport_1_1manager}{}\label{namespacep2p__engine_1_1transport_1_1manager}\index{p2p\_engine.transport.manager@{p2p\_engine.transport.manager}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1manager_1_1_dial_error}{Dial\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1manager_1_1_listen_error}{Listen\+Error}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1manager_1_1_transport_manager}{Transport\+Manager}}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1manager_1_1_transport_builder}{Transport\+Builder}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1manager_1_1_transport_manager}{Transport\+Manager}} \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1manager_a4f1be87df907e82e283882c5490e6b17}{create\+\_\+transport\+\_\+manager}} (str local\+\_\+peer\+\_\+id, Optional\+[List\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport}{Transport}}]\+]\+ transports=None, Optional\+[List\+[Any]\+]\+ security\+\_\+transports=None, Optional\+[List\+[Any]\+]\+ muxers=None)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1manager_ade5ba366fc8fd2ac3936f28e672ea203}{logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+transport.\+manager"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Transport Manager - 传输管理器
+
+管理多个传输协议，提供统一的拨号和监听接口。
+支持多传输自动选择和故障转移。
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1manager_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1manager_a4f1be87df907e82e283882c5490e6b17}\index{p2p\_engine.transport.manager@{p2p\_engine.transport.manager}!create\_transport\_manager@{create\_transport\_manager}}
+\index{create\_transport\_manager@{create\_transport\_manager}!p2p\_engine.transport.manager@{p2p\_engine.transport.manager}}
+\doxysubsubsection{\texorpdfstring{create\_transport\_manager()}{create\_transport\_manager()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1manager_a4f1be87df907e82e283882c5490e6b17} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1manager_1_1_transport_manager}{Transport\+Manager}} p2p\+\_\+engine.\+transport.\+manager.\+create\+\_\+transport\+\_\+manager (\begin{DoxyParamCaption}\item[{str}]{local\+\_\+peer\+\_\+id}{, }\item[{Optional\+[List\+[\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport}{Transport}}]\+]\+ }]{transports}{ = {\ttfamily None}, }\item[{Optional\+[List\+[Any]\+]\+ }]{security\+\_\+transports}{ = {\ttfamily None}, }\item[{Optional\+[List\+[Any]\+]\+ }]{muxers}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}创建传输管理器的便捷函数
+
+Args:
+    local_peer_id: 本地对等节点ID
+    transports: 传输列表
+    security_transports: 安全传输列表
+    muxers: 流复用器列表
+
+Returns:
+    配置好的传输管理器
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{manager_8py_source}{manager.\+py}} 第 \doxymbox{\hyperlink{manager_8py_source_l00357}{357}} 行定义.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1manager_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1transport_1_1manager_ade5ba366fc8fd2ac3936f28e672ea203}\index{p2p\_engine.transport.manager@{p2p\_engine.transport.manager}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.transport.manager@{p2p\_engine.transport.manager}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1transport_1_1manager_ade5ba366fc8fd2ac3936f28e672ea203} 
+p2p\+\_\+engine.\+transport.\+manager.\+logger = logging.\+get\+Logger("{}p2p\+\_\+engine.\+transport.\+manager"{})}
+
+
+
+在文件 \doxymbox{\hyperlink{manager_8py_source}{manager.\+py}} 第 \doxymbox{\hyperlink{manager_8py_source_l00015}{15}} 行定义.
+

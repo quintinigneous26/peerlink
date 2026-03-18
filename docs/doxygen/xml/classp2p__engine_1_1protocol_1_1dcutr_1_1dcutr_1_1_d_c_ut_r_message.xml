@@ -1,0 +1,218 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1aed10537129f62607a10cc3cce1f0024e" prot="public" static="yes" mutable="no">
+        <type>List</type>
+        <definition>List p2p_engine.protocol.dcutr.dcutr.DCUtRMessage::obs_addrs</definition>
+        <argsstring></argsstring>
+        <name>obs_addrs</name>
+        <qualifiedname>p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.obs_addrs</qualifiedname>
+        <initializer>=  field(default_factory=list)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/dcutr/dcutr.py" line="67" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a609224395ba6b45dc17ed0cdda00f120" compoundref="dcutr_8py" startline="84" endline="97">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_protobuf</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1ab8628c2d372fd8125879f6b7dc3a296d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.encode</definition>
+        <argsstring>(self)</argsstring>
+        <name>encode</name>
+        <qualifiedname>p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.encode</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encode message to bytes with varint length prefix
+
+Format: [varint length][protobuf message]
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/dcutr/dcutr.py" line="69" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="69" bodyend="83"/>
+        <references refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a609224395ba6b45dc17ed0cdda00f120" compoundref="dcutr_8py" startline="84" endline="97">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_protobuf</references>
+        <references refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1ab7616d37b3b4f39f79f53d43f32380ec" compoundref="dcutr_8py" startline="99" endline="110">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_varint</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a7c262c688ae30dae756ca748a2948fc7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type> &apos;<ref refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message" kindref="compound">DCUtRMessage</ref>&apos;</type>
+        <definition> &apos;DCUtRMessage&apos; p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.decode</definition>
+        <argsstring>(cls, bytes data)</argsstring>
+        <name>decode</name>
+        <qualifiedname>p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.decode</qualifiedname>
+        <param>
+          <type>cls</type>
+          <defname>cls</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Decode message from bytes
+
+Args:
+    data: Message data without varint length prefix
+
+Returns:
+    DCUtRMessage instance
+
+Raises:
+    ValueError: If message is invalid
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/dcutr/dcutr.py" line="124" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="124" bodyend="180"/>
+        <references refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a4c0188499b5ac43eb132f4109b9144d4" compoundref="dcutr_8py" startline="182" endline="203">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.decode_varint</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a609224395ba6b45dc17ed0cdda00f120" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_protobuf</definition>
+        <argsstring>(self)</argsstring>
+        <name>_encode_protobuf</name>
+        <qualifiedname>p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_protobuf</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encode the message body in protobuf format</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/dcutr/dcutr.py" line="84" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="84" bodyend="97"/>
+        <references refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1aef14ed1cc80f1c532214d1c82b0eff90" compoundref="dcutr_8py" startline="112" endline="122">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_varint_field</references>
+        <references refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1aed10537129f62607a10cc3cce1f0024e" compoundref="dcutr_8py" startline="67">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.obs_addrs</references>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1ab8628c2d372fd8125879f6b7dc3a296d" compoundref="dcutr_8py" startline="69" endline="83">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.encode</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1ab7616d37b3b4f39f79f53d43f32380ec" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_varint</definition>
+        <argsstring>(int value)</argsstring>
+        <name>_encode_varint</name>
+        <qualifiedname>p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_varint</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encode integer as unsigned varint</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/dcutr/dcutr.py" line="99" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="99" bodyend="110"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1ab8628c2d372fd8125879f6b7dc3a296d" compoundref="dcutr_8py" startline="69" endline="83">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.encode</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1aef14ed1cc80f1c532214d1c82b0eff90" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_varint_field</definition>
+        <argsstring>(int field_number, int value, bool is_length=False)</argsstring>
+        <name>_encode_varint_field</name>
+        <qualifiedname>p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_varint_field</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>field_number</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_length</declname>
+          <defval>False</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Encode a protobuf field with varint</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/dcutr/dcutr.py" line="112" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="112" bodyend="122"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a609224395ba6b45dc17ed0cdda00f120" compoundref="dcutr_8py" startline="84" endline="97">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage._encode_protobuf</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a4c0188499b5ac43eb132f4109b9144d4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Tuple[int, int]</type>
+        <definition> Tuple[int, int] p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.decode_varint</definition>
+        <argsstring>(bytes data, int idx=0)</argsstring>
+        <name>decode_varint</name>
+        <qualifiedname>p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.decode_varint</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Decode varint from bytes
+
+Returns:
+    Tuple of (value, new_index)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/dcutr/dcutr.py" line="182" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="182" bodyend="203"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a7c262c688ae30dae756ca748a2948fc7" compoundref="dcutr_8py" startline="124" endline="180">p2p_engine.protocol.dcutr.dcutr.DCUtRMessage.decode</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>DCUtR protocol message
+
+Corresponds to the HolePunch protobuf message:
+```proto
+message HolePunch {
+  enum Type {
+    CONNECT = 100;
+    SYNC = 300;
+  }
+  required Type type = 1;
+  repeated bytes ObsAddrs = 2;
+}
+```
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/dcutr/dcutr.py" line="50" column="1" bodyfile="p2p_engine/protocol/dcutr/dcutr.py" bodystart="50" bodyend="203"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a609224395ba6b45dc17ed0cdda00f120" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</scope><name>_encode_protobuf</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1ab7616d37b3b4f39f79f53d43f32380ec" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</scope><name>_encode_varint</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1aef14ed1cc80f1c532214d1c82b0eff90" prot="protected" virt="non-virtual"><scope>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</scope><name>_encode_varint_field</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a7c262c688ae30dae756ca748a2948fc7" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</scope><name>decode</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1a4c0188499b5ac43eb132f4109b9144d4" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</scope><name>decode_varint</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1ab8628c2d372fd8125879f6b7dc3a296d" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</scope><name>encode</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1dcutr_1_1dcutr_1_1_d_c_ut_r_message_1aed10537129f62607a10cc3cce1f0024e" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::dcutr::dcutr::DCUtRMessage</scope><name>obs_addrs</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

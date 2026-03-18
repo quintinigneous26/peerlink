@@ -1,0 +1,306 @@
+\doxysection{src.\+bandwidth.\+Bandwidth\+Limiter类 参考}
+\hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter}{}\label{classsrc_1_1bandwidth_1_1_bandwidth_limiter}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+
+
+src.\+bandwidth.\+Bandwidth\+Limiter 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_aa87ea1ad1f6f0b9a849ecb6ee36b8a1c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Optional\+[\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limit}{Bandwidth\+Limit}}]\+ \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_afd49f1d82ed2e26f351c8e6e29fd7ed3}{default\+\_\+limit}}=None)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_af4609bbde00596273bb3a35b18bbbea6}{throttle\+\_\+read}} (self, str allocation\+\_\+id, int size)
+\item 
+bool \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_acc1e7b50b152006fd2cd87c7a11b6068}{throttle\+\_\+write}} (self, str allocation\+\_\+id, int size)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a8c2fa1a778e4cb0e9a4ab1509585f18f}{set\+\_\+limit}} (self, str allocation\+\_\+id, \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limit}{Bandwidth\+Limit}} limit)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_ab10791079e6da96fdd1f93484707bde4}{remove\+\_\+allocation}} (self, str allocation\+\_\+id)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_stats}{Bandwidth\+Stats}} \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a3de8eb5c570f875b921b22792dba06b9}{get\+\_\+stats}} (self, str allocation\+\_\+id)
+\item 
+Dict\+[str, int]\+ \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a296987427909f550d6f4907229f4f158}{get\+\_\+global\+\_\+stats}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_afd49f1d82ed2e26f351c8e6e29fd7ed3}{default\+\_\+limit}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a1d14dbde3643723e93454c5dd0452e1a}{\+\_\+limiters}} = \{\}
+\item 
+Dict\+[str, \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_stats}{Bandwidth\+Stats}}]\+ \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a59f863a7f5128f17caa8ea9b8c9d10d3}{\+\_\+stats}} = defaultdict(\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_stats}{Bandwidth\+Stats}})
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_afb5b968a5f8bab9e1f1d63571b590b5f}{\+\_\+global\+\_\+read\+\_\+bucket}}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a798df6225af9c4798c006c6eeb88ecce}{\+\_\+global\+\_\+write\+\_\+bucket}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Bandwidth limiter using token bucket algorithm.
+
+Per-allocation and global limits support.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00109}{109}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_aa87ea1ad1f6f0b9a849ecb6ee36b8a1c}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_aa87ea1ad1f6f0b9a849ecb6ee36b8a1c} 
+src.\+bandwidth.\+Bandwidth\+Limiter.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Optional\+[\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limit}{Bandwidth\+Limit}}]\+ }]{default\+\_\+limit}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize bandwidth limiter.
+
+Args:
+    default_limit: Default bandwidth limit for all allocations
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00116}{116}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a296987427909f550d6f4907229f4f158}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!get\_global\_stats@{get\_global\_stats}}
+\index{get\_global\_stats@{get\_global\_stats}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{get\_global\_stats()}{get\_global\_stats()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a296987427909f550d6f4907229f4f158} 
+ Dict\+[str, int]\+ src.\+bandwidth.\+Bandwidth\+Limiter.\+get\+\_\+global\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get global bandwidth statistics.
+
+Returns:
+    Dictionary with global stats
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00240}{240}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00130}{\+\_\+global\+\_\+read\+\_\+bucket}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00134}{\+\_\+global\+\_\+write\+\_\+bucket}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00128}{\+\_\+limiters}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a3de8eb5c570f875b921b22792dba06b9}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!get\_stats@{get\_stats}}
+\index{get\_stats@{get\_stats}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{get\_stats()}{get\_stats()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a3de8eb5c570f875b921b22792dba06b9} 
+ \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_stats}{Bandwidth\+Stats}} src.\+bandwidth.\+Bandwidth\+Limiter.\+get\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get bandwidth statistics for allocation.
+
+Args:
+    allocation_id: Allocation ID
+
+Returns:
+    Bandwidth statistics
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00228}{228}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+stats}}, \doxymbox{\hyperlink{ping_8py_source_l00084}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+stats}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00129}{\+\_\+stats}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_ab10791079e6da96fdd1f93484707bde4}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!remove\_allocation@{remove\_allocation}}
+\index{remove\_allocation@{remove\_allocation}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{remove\_allocation()}{remove\_allocation()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_ab10791079e6da96fdd1f93484707bde4} 
+src.\+bandwidth.\+Bandwidth\+Limiter.\+remove\+\_\+allocation (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove bandwidth limiter for allocation.
+
+Args:
+    allocation_id: Allocation ID
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00218}{218}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00128}{\+\_\+limiters}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+stats}}, \doxymbox{\hyperlink{ping_8py_source_l00084}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+stats}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00129}{\+\_\+stats}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a8c2fa1a778e4cb0e9a4ab1509585f18f}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!set\_limit@{set\_limit}}
+\index{set\_limit@{set\_limit}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{set\_limit()}{set\_limit()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a8c2fa1a778e4cb0e9a4ab1509585f18f} 
+src.\+bandwidth.\+Bandwidth\+Limiter.\+set\+\_\+limit (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{, }\item[{\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_limit}{Bandwidth\+Limit}}}]{limit}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Set bandwidth limit for an allocation.
+
+Args:
+    allocation_id: Allocation ID
+    limit: Bandwidth limit
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00199}{199}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00128}{\+\_\+limiters}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_af4609bbde00596273bb3a35b18bbbea6}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!throttle\_read@{throttle\_read}}
+\index{throttle\_read@{throttle\_read}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{throttle\_read()}{throttle\_read()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_af4609bbde00596273bb3a35b18bbbea6} 
+ bool src.\+bandwidth.\+Bandwidth\+Limiter.\+throttle\+\_\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{, }\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Throttle read operation.
+
+Args:
+    allocation_id: Allocation ID
+    size: Number of bytes to read
+
+Returns:
+    True if read allowed, False if rate limited
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00139}{139}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00130}{\+\_\+global\+\_\+read\+\_\+bucket}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00128}{\+\_\+limiters}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+stats}}, \doxymbox{\hyperlink{ping_8py_source_l00084}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+stats}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00129}{\+\_\+stats}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00123}{default\+\_\+limit}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_acc1e7b50b152006fd2cd87c7a11b6068}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!throttle\_write@{throttle\_write}}
+\index{throttle\_write@{throttle\_write}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{throttle\_write()}{throttle\_write()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_acc1e7b50b152006fd2cd87c7a11b6068} 
+ bool src.\+bandwidth.\+Bandwidth\+Limiter.\+throttle\+\_\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{allocation\+\_\+id}{, }\item[{int}]{size}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Throttle write operation.
+
+Args:
+    allocation_id: Allocation ID
+    size: Number of bytes to write
+
+Returns:
+    True if write allowed, False if rate limited
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00169}{169}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00134}{\+\_\+global\+\_\+write\+\_\+bucket}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00128}{\+\_\+limiters}}, \doxymbox{\hyperlink{heartbeat_8py_source_l00055}{p2p\+\_\+engine.\+keeper.\+heartbeat.\+Heartbeat\+Keeper.\+\_\+stats}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00189}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+stats}}, \doxymbox{\hyperlink{ping_8py_source_l00084}{p2p\+\_\+engine.\+protocol.\+ping.\+Ping\+Protocol.\+\_\+stats}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00129}{\+\_\+stats}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00123}{default\+\_\+limit}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_afb5b968a5f8bab9e1f1d63571b590b5f}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!\_global\_read\_bucket@{\_global\_read\_bucket}}
+\index{\_global\_read\_bucket@{\_global\_read\_bucket}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{\_global\_read\_bucket}{\_global\_read\_bucket}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_afb5b968a5f8bab9e1f1d63571b590b5f} 
+src.\+bandwidth.\+Bandwidth\+Limiter.\+\_\+global\+\_\+read\+\_\+bucket\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ TokenBucket(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ rate=100\_000\_000,\ \ \textcolor{comment}{\#\ 100\ Mbps\ global}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ capacity=200\_000\_000,\ \ \textcolor{comment}{\#\ 200\ MB\ burst}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00130}{130}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00240}{get\+\_\+global\+\_\+stats()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00139}{throttle\+\_\+read()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a798df6225af9c4798c006c6eeb88ecce}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!\_global\_write\_bucket@{\_global\_write\_bucket}}
+\index{\_global\_write\_bucket@{\_global\_write\_bucket}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{\_global\_write\_bucket}{\_global\_write\_bucket}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a798df6225af9c4798c006c6eeb88ecce} 
+src.\+bandwidth.\+Bandwidth\+Limiter.\+\_\+global\+\_\+write\+\_\+bucket\hspace{0.3cm}{\ttfamily [protected]}}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ TokenBucket(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ rate=100\_000\_000,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ capacity=200\_000\_000,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00134}{134}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00240}{get\+\_\+global\+\_\+stats()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00169}{throttle\+\_\+write()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a1d14dbde3643723e93454c5dd0452e1a}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!\_limiters@{\_limiters}}
+\index{\_limiters@{\_limiters}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{\_limiters}{\_limiters}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a1d14dbde3643723e93454c5dd0452e1a} 
+src.\+bandwidth.\+Bandwidth\+Limiter.\+\_\+limiters = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00128}{128}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00240}{get\+\_\+global\+\_\+stats()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00218}{remove\+\_\+allocation()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00199}{set\+\_\+limit()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00139}{throttle\+\_\+read()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00169}{throttle\+\_\+write()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a59f863a7f5128f17caa8ea9b8c9d10d3}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!\_stats@{\_stats}}
+\index{\_stats@{\_stats}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{\_stats}{\_stats}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_a59f863a7f5128f17caa8ea9b8c9d10d3} 
+Dict\+[str, \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_stats}{Bandwidth\+Stats}}]\+ src.\+bandwidth.\+Bandwidth\+Limiter.\+\_\+stats = defaultdict(\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_bandwidth_stats}{Bandwidth\+Stats}})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00129}{129}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00228}{get\+\_\+stats()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00218}{remove\+\_\+allocation()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00139}{throttle\+\_\+read()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00169}{throttle\+\_\+write()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_bandwidth_limiter_afd49f1d82ed2e26f351c8e6e29fd7ed3}\index{src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}!default\_limit@{default\_limit}}
+\index{default\_limit@{default\_limit}!src.bandwidth.BandwidthLimiter@{src.bandwidth.BandwidthLimiter}}
+\doxysubsubsection{\texorpdfstring{default\_limit}{default\_limit}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_bandwidth_limiter_afd49f1d82ed2e26f351c8e6e29fd7ed3} 
+src.\+bandwidth.\+Bandwidth\+Limiter.\+default\+\_\+limit}
+
+{\bfseries 初始值:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ default\_limit\ \textcolor{keywordflow}{or}\ BandwidthLimit(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ read\_bps=3\_000\_000,\ \ \textcolor{comment}{\#\ 3\ Mbps}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ write\_bps=3\_000\_000,\ \ \textcolor{comment}{\#\ 3\ Mbps}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ burst\_bps=6\_000\_000,\ \ \textcolor{comment}{\#\ 6\ Mbps\ burst}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00123}{123}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00139}{throttle\+\_\+read()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00169}{throttle\+\_\+write()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+\doxymbox{\hyperlink{bandwidth_8py}{bandwidth.\+py}}\end{DoxyCompactItemize}

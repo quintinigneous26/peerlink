@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="_q_u_i_c_k_s_t_a_r_t_8md" kind="file" language="Markdown">
+    <compoundname>QUICKSTART.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>P2P<sp/>SDK<sp/>快速开始指南</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>安装</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>从<sp/>PyPI<sp/>安装</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>p2p-sdk</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>从<sp/>Conda<sp/>安装</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">conda<sp/>install<sp/>-c<sp/>conda-forge<sp/>p2p-sdk</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>从源码安装</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/p2p-platform/python-sdk.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>python-sdk</highlight></codeline>
+<codeline><highlight class="normal">pip<sp/>install<sp/>-e<sp/>.</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>基础使用</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>1.<sp/>创建客户端</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>asyncio</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>p2p_sdk<sp/>import<sp/>P2PClient</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>main():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>创建客户端实例</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>did=&quot;device-001&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>signaling_server=&quot;localhost&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>signaling_port=8443</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>初始化（NAT<sp/>检测、连接信令服务器）</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f&quot;NAT<sp/>Type:<sp/>{client.nat_type}&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f&quot;Local<sp/>Address:<sp/>{client.local_address}&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">asyncio.run(main())</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>2.<sp/>连接到对等设备</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>connect_to_peer():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>连接到对等设备</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>success<sp/>=<sp/>await<sp/>client.connect(&quot;device-002&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>success:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(&quot;Connected<sp/>successfully!&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(&quot;Connection<sp/>failed&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>3.<sp/>发送和接收数据</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>p2p_sdk<sp/>import<sp/>P2PClient,<sp/>ChannelType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>send_receive_data():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>await<sp/>client.connect(&quot;device-002&quot;):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>创建数据通道</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>channel<sp/>=<sp/>client.create_channel(ChannelType.DATA)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>发送数据</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.send_data(channel,<sp/>b&quot;Hello,<sp/>peer!&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>接收数据</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data<sp/>=<sp/>await<sp/>client.recv_data(channel,<sp/>timeout=10.0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;Received:<sp/>{data.decode()}&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>高级功能</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>多通道通信</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>p2p_sdk<sp/>import<sp/>P2PClient,<sp/>ChannelType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>multi_channel_example():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>await<sp/>client.connect(&quot;device-002&quot;):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>创建多个通道</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>control_ch<sp/>=<sp/>client.create_channel(ChannelType.CONTROL)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>data_ch<sp/>=<sp/>client.create_channel(ChannelType.DATA)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>video_ch<sp/>=<sp/>client.create_channel(ChannelType.VIDEO,<sp/>priority=10)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>在不同通道上发送数据</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.send_data(control_ch,<sp/>b&quot;control<sp/>message&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.send_data(data_ch,<sp/>b&quot;data<sp/>payload&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.send_data(video_ch,<sp/>b&quot;video<sp/>frame&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>事件处理</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>event_handling_example():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>注册事件处理器</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>@client.on_connected</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>async<sp/>def<sp/>on_connected():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(&quot;Connection<sp/>established!&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>@client.on_disconnected</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>async<sp/>def<sp/>on_disconnected():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(&quot;Connection<sp/>lost&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>@client.on_data</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>async<sp/>def<sp/>on_data(channel_id:<sp/>int,<sp/>data:<sp/>bytes):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;Received<sp/>{len(data)}<sp/>bytes<sp/>on<sp/>channel<sp/>{channel_id}&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>@client.on_error</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>async<sp/>def<sp/>on_error(error:<sp/>Exception):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;Error<sp/>occurred:<sp/>{error}&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.connect(&quot;device-002&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>保持连接</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>asyncio.sleep(60)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>自定义配置</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>p2p_sdk<sp/>import<sp/>P2PClient</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>custom_config_example():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>did=&quot;device-001&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>signaling_server=&quot;signal.example.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>signaling_port=8443,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_server=&quot;stun.example.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_port=3478,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>relay_server=&quot;relay.example.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>relay_port=5000,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>connection_timeout=30.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>punch_timeout=10.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>keepalive_interval=5.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>max_retries=3,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto_relay=True</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>...<sp/>使用客户端</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>NAT<sp/>类型检测</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>p2p_sdk<sp/>import<sp/>detect_nat_type,<sp/>NATType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>detect_nat():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>nat_type<sp/>=<sp/>await<sp/>detect_nat_type(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_server=&quot;stun.l.google.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stun_port=19302</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>nat_type<sp/>==<sp/>NATType.SYMMETRIC:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(&quot;Symmetric<sp/>NAT<sp/>detected<sp/>-<sp/>relay<sp/>required&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>elif<sp/>nat_type<sp/>in<sp/>[NATType.FULL_CONE,<sp/>NATType.RESTRICTED_CONE]:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(&quot;NAT<sp/>type<sp/>supports<sp/>direct<sp/>P2P&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;NAT<sp/>Type:<sp/>{nat_type}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>错误处理</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>p2p_sdk<sp/>import<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>P2PClient,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>P2PError,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ConnectionError,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>NATDetectionError,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>RelayError,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TimeoutError</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>error_handling_example():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>try:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.connect(&quot;device-002&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>except<sp/>NATDetectionError<sp/>as<sp/>e:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;NAT<sp/>detection<sp/>failed:<sp/>{e}&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>except<sp/>ConnectionError<sp/>as<sp/>e:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;Connection<sp/>failed:<sp/>{e}&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>except<sp/>TimeoutError<sp/>as<sp/>e:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;Operation<sp/>timed<sp/>out:<sp/>{e}&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>except<sp/>P2PError<sp/>as<sp/>e:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(f&quot;P2P<sp/>error:<sp/>{e}&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>finally:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>最佳实践</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>1.<sp/>资源管理</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">始终使用<sp/>try-finally<sp/>或<sp/>async<sp/>with<sp/>确保资源清理：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>resource_management():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>try:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.initialize()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>...<sp/>使用客户端</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>finally:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>2.<sp/>超时设置</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">为所有阻塞操作设置合理的超时：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>连接超时</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;,<sp/>connection_timeout=30.0)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>接收超时</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>=<sp/>await<sp/>client.recv_data(channel,<sp/>timeout=10.0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>3.<sp/>错误重试</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">实现指数退避重试策略：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>connect_with_retry(client,<sp/>peer_did,<sp/>max_retries=3):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>attempt<sp/>in<sp/>range(max_retries):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>try:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>await<sp/>client.connect(peer_did):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>True</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>except<sp/>ConnectionError:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>attempt<sp/>&lt;<sp/>max_retries<sp/>-<sp/>1:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>asyncio.sleep(2<sp/>**<sp/>attempt)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>False</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>4.<sp/>日志记录</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">启用日志以便调试：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>logging</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">logging.basicConfig(level=logging.INFO)</highlight></codeline>
+<codeline><highlight class="normal">logger<sp/>=<sp/>logging.getLogger(&quot;p2p_sdk&quot;)</highlight></codeline>
+<codeline><highlight class="normal">logger.setLevel(logging.DEBUG)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>5.<sp/>网络状态监控</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">监控连接状态并实现自动重连：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>monitor_connection(client):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>@client.on_disconnected</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>async<sp/>def<sp/>on_disconnected():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>print(&quot;Connection<sp/>lost,<sp/>attempting<sp/>reconnect...&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>asyncio.sleep(5)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>await<sp/>client.connect(peer_did)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>性能优化</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>1.<sp/>通道优先级</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">为不同类型的数据设置优先级：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>高优先级通道（控制消息）</highlight></codeline>
+<codeline><highlight class="normal">control_ch<sp/>=<sp/>client.create_channel(ChannelType.CONTROL,<sp/>priority=10)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>中优先级通道（视频）</highlight></codeline>
+<codeline><highlight class="normal">video_ch<sp/>=<sp/>client.create_channel(ChannelType.VIDEO,<sp/>priority=5)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>低优先级通道（数据）</highlight></codeline>
+<codeline><highlight class="normal">data_ch<sp/>=<sp/>client.create_channel(ChannelType.DATA,<sp/>priority=1)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>2.<sp/>批量发送</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">批量发送小消息以减少开销：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>不推荐：多次小消息</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>i<sp/>in<sp/>range(100):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>await<sp/>client.send_data(channel,<sp/>f&quot;msg{i}&quot;.encode())</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>推荐：批量发送</highlight></codeline>
+<codeline><highlight class="normal">batch<sp/>=<sp/>b&quot;&quot;.join(f&quot;msg{i}&quot;.encode()<sp/>for<sp/>i<sp/>in<sp/>range(100))</highlight></codeline>
+<codeline><highlight class="normal">await<sp/>client.send_data(channel,<sp/>batch)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>3.<sp/>缓冲区大小</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">根据数据量调整缓冲区：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>大数据传输时增加缓冲区</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>did=&quot;device-001&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>recv_buffer_size=65536<sp/><sp/>#<sp/>64KB</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>故障排查</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>连接失败</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1.<sp/>检查<sp/>NAT<sp/>类型：</highlight></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;NAT<sp/>Type:<sp/>{client.nat_type}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.<sp/>验证信令服务器连接：</highlight></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>not<sp/>client.is_signaling_connected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(&quot;Signaling<sp/>server<sp/>not<sp/>connected&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">3.<sp/>启用详细日志：</highlight></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">import<sp/>logging</highlight></codeline>
+<codeline><highlight class="normal">logging.basicConfig(level=logging.DEBUG)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>性能问题</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">1.<sp/>检查网络延迟：</highlight></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">latency<sp/>=<sp/>await<sp/>client.measure_latency()</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;Latency:<sp/>{latency}ms&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">2.<sp/>监控数据速率：</highlight></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">stats<sp/>=<sp/>client.get_statistics()</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;Send<sp/>rate:<sp/>{stats[&apos;send_rate&apos;]}<sp/>bytes/s&quot;)</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;Recv<sp/>rate:<sp/>{stats[&apos;recv_rate&apos;]}<sp/>bytes/s&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>更多示例</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">完整示例代码请参见<sp/>`examples/`<sp/>目录：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`basic_usage.py`<sp/>-<sp/>基础<sp/>P2P<sp/>连接</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`multi_channel.py`<sp/>-<sp/>多通道通信</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`file_transfer.py`<sp/>-<sp/>文件传输</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`video_streaming.py`<sp/>-<sp/>视频流传输</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>支持</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>文档：https://github.com/p2p-platform/python-sdk#readme</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>问题反馈：https://github.com/p2p-platform/python-sdk/issues</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>讨论：https://github.com/p2p-platform/python-sdk/discussions</highlight></codeline>
+    </programlisting>
+    <location file="client_sdk/docs/QUICKSTART.md"/>
+  </compounddef>
+</doxygen>

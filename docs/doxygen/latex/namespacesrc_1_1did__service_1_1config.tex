@@ -1,0 +1,65 @@
+\doxysection{src.\+did\+\_\+service.\+config 命名空间参考}
+\hypertarget{namespacesrc_1_1did__service_1_1config}{}\label{namespacesrc_1_1did__service_1_1config}\index{src.did\_service.config@{src.did\_service.config}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config}{Config}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1config_a21742f3b9471eca39c9653417f509645}{\+\_\+get\+\_\+jwt\+\_\+secret}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacesrc_1_1did__service_1_1config_a934a5763b147ca8c51c70b02ede1b391}{config}} = \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config}{Config}}()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}DID Service Configuration
+
+Security Notice:
+- JWT_SECRET must be set via environment variable in production
+- Minimum key length: 32 characters
+- Use: python -c "import secrets; print(secrets.token_urlsafe(32))"
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacesrc_1_1did__service_1_1config_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacesrc_1_1did__service_1_1config_a21742f3b9471eca39c9653417f509645}\index{src.did\_service.config@{src.did\_service.config}!\_get\_jwt\_secret@{\_get\_jwt\_secret}}
+\index{\_get\_jwt\_secret@{\_get\_jwt\_secret}!src.did\_service.config@{src.did\_service.config}}
+\doxysubsubsection{\texorpdfstring{\_get\_jwt\_secret()}{\_get\_jwt\_secret()}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1config_a21742f3b9471eca39c9653417f509645} 
+ str src.\+did\+\_\+service.\+config.\+\_\+get\+\_\+jwt\+\_\+secret (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Get JWT secret with security validation.
+
+In production: JWT_SECRET is required (min 32 chars)
+In development: Allow default for convenience
+
+Returns:
+    JWT secret string
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00016}{16}} 行定义.
+
+
+
+\label{doc-var-members}
+\Hypertarget{namespacesrc_1_1did__service_1_1config_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacesrc_1_1did__service_1_1config_a934a5763b147ca8c51c70b02ede1b391}\index{src.did\_service.config@{src.did\_service.config}!config@{config}}
+\index{config@{config}!src.did\_service.config@{src.did\_service.config}}
+\doxysubsubsection{\texorpdfstring{config}{config}}
+{\footnotesize\ttfamily \label{namespacesrc_1_1did__service_1_1config_a934a5763b147ca8c51c70b02ede1b391} 
+src.\+did\+\_\+service.\+config.\+config = \doxymbox{\hyperlink{classsrc_1_1did__service_1_1config_1_1_config}{Config}}()}
+
+
+
+在文件 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source}{config.\+py}} 第 \doxymbox{\hyperlink{did-service_2src_2did__service_2config_8py_source_l00118}{118}} 行定义.
+

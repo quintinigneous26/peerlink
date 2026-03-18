@@ -1,0 +1,83 @@
+\doxysection{p2p\+\_\+engine.\+config.\+loader 命名空间参考}
+\hypertarget{namespacep2p__engine_1_1config_1_1loader}{}\label{namespacep2p__engine_1_1config_1_1loader}\index{p2p\_engine.config.loader@{p2p\_engine.config.loader}}
+\doxysubsubsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classp2p__engine_1_1config_1_1loader_1_1_config_loader}{Config\+Loader}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+dict \doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1loader_ad739d6aa8042131ca24f9d649f9cb5ae}{deep\+\_\+merge}} (dict base, dict override)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacep2p__engine_1_1config_1_1loader_a6fd49fef5eaa5cc597c3e3d78bea354c}{logger}} = logging.\+get\+Logger("{}p2p\+\_\+engine.\+config"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}配置加载器
+
+支持：
+  1. 本地配置文件
+  2. 远程配置中心
+  3. 热更新
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacep2p__engine_1_1config_1_1loader_doc-func-members}
+\doxysubsection{函数说明}
+\Hypertarget{namespacep2p__engine_1_1config_1_1loader_ad739d6aa8042131ca24f9d649f9cb5ae}\index{p2p\_engine.config.loader@{p2p\_engine.config.loader}!deep\_merge@{deep\_merge}}
+\index{deep\_merge@{deep\_merge}!p2p\_engine.config.loader@{p2p\_engine.config.loader}}
+\doxysubsubsection{\texorpdfstring{deep\_merge()}{deep\_merge()}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1config_1_1loader_ad739d6aa8042131ca24f9d649f9cb5ae} 
+ dict p2p\+\_\+engine.\+config.\+loader.\+deep\+\_\+merge (\begin{DoxyParamCaption}\item[{dict}]{base}{, }\item[{dict}]{override}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}深度合并两个字典。
+
+规则:
+1. override 中的键值覆盖 base 中的同名键
+2. 如果两个值都是字典，递归合并
+3. 其他情况直接覆盖
+
+Args:
+    base: 基础字典
+    override: 覆盖字典
+
+Returns:
+    合并后的新字典（不修改原字典）
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00023}{23}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{loader_8py_source_l00023}{deep\+\_\+merge()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{loader_8py_source_l00023}{deep\+\_\+merge()}}.
+
+函数调用图:\+
+% FIG 0
+这是这个函数的调用关系图:\+
+% FIG 1
+
+
+\label{doc-var-members}
+\Hypertarget{namespacep2p__engine_1_1config_1_1loader_doc-var-members}
+\doxysubsection{变量说明}
+\Hypertarget{namespacep2p__engine_1_1config_1_1loader_a6fd49fef5eaa5cc597c3e3d78bea354c}\index{p2p\_engine.config.loader@{p2p\_engine.config.loader}!logger@{logger}}
+\index{logger@{logger}!p2p\_engine.config.loader@{p2p\_engine.config.loader}}
+\doxysubsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily \label{namespacep2p__engine_1_1config_1_1loader_a6fd49fef5eaa5cc597c3e3d78bea354c} 
+p2p\+\_\+engine.\+config.\+loader.\+logger = logging.\+get\+Logger("{}p2p\+\_\+engine.\+config"{})}
+
+
+
+在文件 \doxymbox{\hyperlink{loader_8py_source}{loader.\+py}} 第 \doxymbox{\hyperlink{loader_8py_source_l00020}{20}} 行定义.
+

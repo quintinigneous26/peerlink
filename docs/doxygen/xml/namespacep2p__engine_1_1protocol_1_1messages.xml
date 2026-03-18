@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="namespacep2p__engine_1_1protocol_1_1messages" kind="namespace" language="Python">
+    <compoundname>p2p_engine::protocol::messages</compoundname>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1messages_1a6b03f2f9bff709ccfa8f2509047101a8" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::messages.MULTISTREAM_PROTOCOL_ID</definition>
+        <argsstring></argsstring>
+        <name>MULTISTREAM_PROTOCOL_ID</name>
+        <qualifiedname>p2p_engine.protocol.messages.MULTISTREAM_PROTOCOL_ID</qualifiedname>
+        <initializer>=  &quot;/multistream/1.0.0&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="105" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacep2p__engine_1_1protocol_1_1messages_1a7e6f3e60883f6b45cbc2558f9d6dd7cd" prot="public" static="no" mutable="no">
+        <type>str</type>
+        <definition>str p2p_engine::protocol::messages.NA_RESPONSE</definition>
+        <argsstring></argsstring>
+        <name>NA_RESPONSE</name>
+        <qualifiedname>p2p_engine.protocol.messages.NA_RESPONSE</qualifiedname>
+        <initializer>=  &quot;na&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="106" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="106" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1ab31ab602a17c2d8ff7e341ea63bf1dfe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.messages.encode_varint</definition>
+        <argsstring>(int value)</argsstring>
+        <name>encode_varint</name>
+        <qualifiedname>p2p_engine.protocol.messages.encode_varint</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>将无符号整数编码为 varint 格式
+
+Args:
+    value: 要编码的无符号整数
+
+Returns:
+    varint 编码的字节序列
+
+Raises:
+    ValueError: 如果值为负数
+
+Examples:
+    &gt;&gt;&gt; encode_varint(0)
+    b&apos;\\x00&apos;
+    &gt;&gt;&gt; encode_varint(3)
+    b&apos;\\x03&apos;
+    &gt;&gt;&gt; encode_varint(300)
+    b&apos;\\xac\\x02&apos;
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="16" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="16" bodyend="55"/>
+        <referencedby refid="namespacep2p__engine_1_1protocol_1_1messages_1adaff2cb9c035b17bff019e2af80ab421" compoundref="p2p__engine_2protocol_2messages_8py" startline="111" endline="137">p2p_engine.protocol.messages.encode_message</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1a7ddab3f2bb48ce45661ef0247150ff76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple[int, int]</type>
+        <definition> tuple[int, int] p2p_engine.protocol.messages.decode_varint</definition>
+        <argsstring>(bytes data, int offset=0)</argsstring>
+        <name>decode_varint</name>
+        <qualifiedname>p2p_engine.protocol.messages.decode_varint</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>从 varint 格式解码无符号整数
+
+Args:
+    data: 包含 varint 编码的字节序列
+    offset: 开始解码的位置偏移量
+
+Returns:
+    (解码后的值, 消耗的字节数)
+
+Raises:
+    ValueError: 如果 varint 格式无效或数据不足
+
+Examples:
+    &gt;&gt;&gt; decode_varint(b&apos;\\x00&apos;)
+    (0, 1)
+    &gt;&gt;&gt; decode_varint(b&apos;\\xac\\x02&apos;)
+    (300, 2)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="56" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="56" bodyend="104"/>
+        <referencedby refid="namespacep2p__engine_1_1protocol_1_1messages_1a2bfb84040dc6400da96182348211dbd1" compoundref="p2p__engine_2protocol_2messages_8py" startline="138" endline="172">p2p_engine.protocol.messages.decode_message</referencedby>
+        <referencedby refid="namespacep2p__engine_1_1protocol_1_1messages_1ac6cf9b542618c115e3adf4eaf670521b" compoundref="p2p__engine_2protocol_2messages_8py" startline="173" endline="204">p2p_engine.protocol.messages.decode_message_with_offset</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1adaff2cb9c035b17bff019e2af80ab421" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.messages.encode_message</definition>
+        <argsstring>(str data)</argsstring>
+        <name>encode_message</name>
+        <qualifiedname>p2p_engine.protocol.messages.encode_message</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>编码 multistream-select 消息
+
+格式: varint(长度) + UTF-8字符串 + \n
+
+Args:
+    data: 要编码的字符串
+
+Returns:
+    编码后的字节序列
+
+Examples:
+    &gt;&gt;&gt; encode_message(&quot;na&quot;)
+    b&apos;\\x03na\\n&apos;
+    &gt;&gt;&gt; encode_message(&quot;/multistream/1.0.0&quot;)
+    b&apos;\\x13/multistream/1.0.0\\n&apos;
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="111" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="111" bodyend="137"/>
+        <references refid="namespacep2p__engine_1_1protocol_1_1messages_1ab31ab602a17c2d8ff7e341ea63bf1dfe" compoundref="p2p__engine_2protocol_2messages_8py" startline="16" endline="55">p2p_engine.protocol.messages.encode_varint</references>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1a2bfb84040dc6400da96182348211dbd1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str p2p_engine.protocol.messages.decode_message</definition>
+        <argsstring>(bytes data)</argsstring>
+        <name>decode_message</name>
+        <qualifiedname>p2p_engine.protocol.messages.decode_message</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>解码 multistream-select 消息
+
+Args:
+    data: 要解码的字节序列
+
+Returns:
+    解码后的字符串 (不含换行符)
+
+Raises:
+    ValueError: 如果消息格式无效
+
+Examples:
+    &gt;&gt;&gt; decode_message(b&apos;\\x03na\\n&apos;)
+    &apos;na&apos;
+    &gt;&gt;&gt; decode_message(b&apos;\\x13/multistream/1.0.0\\n&apos;)
+    &apos;/multistream/1.0.0&apos;
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="138" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="138" bodyend="172"/>
+        <references refid="namespacep2p__engine_1_1protocol_1_1messages_1a7ddab3f2bb48ce45661ef0247150ff76" compoundref="p2p__engine_2protocol_2messages_8py" startline="56" endline="104">p2p_engine.protocol.messages.decode_varint</references>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1ac6cf9b542618c115e3adf4eaf670521b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple[str, int]</type>
+        <definition> tuple[str, int] p2p_engine.protocol.messages.decode_message_with_offset</definition>
+        <argsstring>(bytes data, int offset=0)</argsstring>
+        <name>decode_message_with_offset</name>
+        <qualifiedname>p2p_engine.protocol.messages.decode_message_with_offset</qualifiedname>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>offset</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>从指定偏移量解码 multistream-select 消息
+
+Args:
+    data: 要解码的字节序列
+    offset: 开始解码的位置偏移量
+
+Returns:
+    (解码后的字符串, 消耗的总字节数)
+
+Raises:
+    ValueError: 如果消息格式无效
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="173" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="173" bodyend="204"/>
+        <references refid="namespacep2p__engine_1_1protocol_1_1messages_1a7ddab3f2bb48ce45661ef0247150ff76" compoundref="p2p__engine_2protocol_2messages_8py" startline="56" endline="104">p2p_engine.protocol.messages.decode_varint</references>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1a75f43a30d922ff660495ac1cd28630e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.protocol.messages.is_valid_protocol_id</definition>
+        <argsstring>(str protocol_id)</argsstring>
+        <name>is_valid_protocol_id</name>
+        <qualifiedname>p2p_engine.protocol.messages.is_valid_protocol_id</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>protocol_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>验证协议 ID 是否有效
+
+有效的协议 ID 应该:
+1. 以 &apos;/&apos; 开头
+2. 不包含空格或控制字符
+3. 不为空
+
+Args:
+    protocol_id: 要验证的协议 ID
+
+Returns:
+    是否有效
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="205" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="205" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1abad16be2211b6d45474a3a3655dee9b2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.protocol.messages.is_multistream_protocol</definition>
+        <argsstring>(str message)</argsstring>
+        <name>is_multistream_protocol</name>
+        <qualifiedname>p2p_engine.protocol.messages.is_multistream_protocol</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检查消息是否是 multistream-select 协议 ID
+
+Args:
+    message: 要检查的消息字符串
+
+Returns:
+    是否是 multistream-select 协议 ID
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="236" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="236" bodyend="248"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacep2p__engine_1_1protocol_1_1messages_1a47edeae1dfcda7850fb438819851c405" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.protocol.messages.is_na_response</definition>
+        <argsstring>(str message)</argsstring>
+        <name>is_na_response</name>
+        <qualifiedname>p2p_engine.protocol.messages.is_na_response</qualifiedname>
+        <param>
+          <type>str</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检查消息是否是 &quot;na&quot; (不可用) 响应
+
+Args:
+    message: 要检查的消息字符串
+
+Returns:
+    是否是 &quot;na&quot; 响应
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/messages.py" line="249" column="1" bodyfile="p2p_engine/protocol/messages.py" bodystart="249" bodyend="260"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>multistream-select 消息编码/解码模块
+
+协议规范:
+- 消息格式: varint长度前缀 + UTF-8字符串 + \n
+- varint: 无符号变长整数编码 (multiformats unsigned varint)
+
+参考: https://github.com/multiformats/unsigned-varint
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/messages.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

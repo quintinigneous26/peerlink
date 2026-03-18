@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classsrc_1_1messages_1_1_stun_message" kind="class" language="Python" prot="public">
+    <compoundname>src::messages::StunMessage</compoundname>
+    <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classsrc_1_1messages_1_1_stun_message_1a41924f3de02283ac1959dae08d8c0564" prot="public" static="yes" mutable="no">
+        <type>List</type>
+        <definition>List src.messages.StunMessage::attributes</definition>
+        <argsstring></argsstring>
+        <name>attributes</name>
+        <qualifiedname>src.messages.StunMessage.attributes</qualifiedname>
+        <initializer>[<ref refid="classsrc_1_1messages_1_1_stun_attribute" kindref="compound">StunAttribute</ref>]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="64" column="1" bodyfile="stun-server/src/messages.py" bodystart="64" bodyend="-1"/>
+        <referencedby refid="classsrc_1_1messages_1_1_stun_message_1a97ca53862fa00823652273ff8034eefa" compoundref="stun-server_2src_2messages_8py" startline="149" endline="164">src.messages.StunMessage.get_attribute</referencedby>
+        <referencedby refid="classsrc_1_1messages_1_1_stun_message_1a634d14cfd8fc0ab956f1f9d5b6a1eec0" compoundref="stun-server_2src_2messages_8py" startline="120" endline="148">src.messages.StunMessage.serialize</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsrc_1_1messages_1_1_stun_message_1a96692ef9742b3a2a61ec43de1bf8cfa9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[&quot;StunMessage&quot;]</type>
+        <definition> Optional[&quot;StunMessage&quot;] src.messages.StunMessage.parse</definition>
+        <argsstring>(cls, bytes data)</argsstring>
+        <name>parse</name>
+        <qualifiedname>src.messages.StunMessage.parse</qualifiedname>
+        <param>
+          <type>cls</type>
+          <defname>cls</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Parse STUN message from bytes.
+
+Args:
+    data: Raw message bytes
+
+Returns:
+    StunMessage or None if invalid
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="67" column="1" bodyfile="stun-server/src/messages.py" bodystart="67" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1messages_1_1_stun_message_1a634d14cfd8fc0ab956f1f9d5b6a1eec0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes src.messages.StunMessage.serialize</definition>
+        <argsstring>(self)</argsstring>
+        <name>serialize</name>
+        <qualifiedname>src.messages.StunMessage.serialize</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Serialize STUN message to bytes.
+
+Returns:
+    Raw message bytes
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="120" column="1" bodyfile="stun-server/src/messages.py" bodystart="120" bodyend="148"/>
+        <references refid="classp2p__client_1_1_stun_message_1ac411dae4d6df305f3ae524ded007c874" compoundref="p2p__client_8py" startline="88">p2p_client.StunMessage.attributes</references>
+        <references refid="classsrc_1_1messages_1_1_stun_message_1a41924f3de02283ac1959dae08d8c0564" compoundref="stun-server_2src_2messages_8py" startline="64">src.messages.StunMessage.attributes</references>
+      </memberdef>
+      <memberdef kind="function" id="classsrc_1_1messages_1_1_stun_message_1a97ca53862fa00823652273ff8034eefa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Optional[<ref refid="classsrc_1_1messages_1_1_stun_attribute" kindref="compound">StunAttribute</ref>]</type>
+        <definition> Optional[StunAttribute] src.messages.StunMessage.get_attribute</definition>
+        <argsstring>(self, int attr_type)</argsstring>
+        <name>get_attribute</name>
+        <qualifiedname>src.messages.StunMessage.get_attribute</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>attr_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get attribute by type.
+
+Args:
+    attr_type: Attribute type
+
+Returns:
+    StunAttribute or None
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="stun-server/src/messages.py" line="149" column="1" bodyfile="stun-server/src/messages.py" bodystart="149" bodyend="164"/>
+        <references refid="classp2p__client_1_1_stun_message_1ac411dae4d6df305f3ae524ded007c874" compoundref="p2p__client_8py" startline="88">p2p_client.StunMessage.attributes</references>
+        <references refid="classsrc_1_1messages_1_1_stun_message_1a41924f3de02283ac1959dae08d8c0564" compoundref="stun-server_2src_2messages_8py" startline="64">src.messages.StunMessage.attributes</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>STUN Message.</verbatim> </para>
+    </detaileddescription>
+    <location file="stun-server/src/messages.py" line="57" column="1" bodyfile="stun-server/src/messages.py" bodystart="57" bodyend="164"/>
+    <listofallmembers>
+      <member refid="classsrc_1_1messages_1_1_stun_message_1a41924f3de02283ac1959dae08d8c0564" prot="public" virt="non-virtual"><scope>src::messages::StunMessage</scope><name>attributes</name></member>
+      <member refid="classsrc_1_1messages_1_1_stun_message_1a97ca53862fa00823652273ff8034eefa" prot="public" virt="non-virtual"><scope>src::messages::StunMessage</scope><name>get_attribute</name></member>
+      <member refid="classsrc_1_1messages_1_1_stun_message_1a96692ef9742b3a2a61ec43de1bf8cfa9" prot="public" virt="non-virtual"><scope>src::messages::StunMessage</scope><name>parse</name></member>
+      <member refid="classsrc_1_1messages_1_1_stun_message_1a634d14cfd8fc0ab956f1f9d5b6a1eec0" prot="public" virt="non-virtual"><scope>src::messages::StunMessage</scope><name>serialize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

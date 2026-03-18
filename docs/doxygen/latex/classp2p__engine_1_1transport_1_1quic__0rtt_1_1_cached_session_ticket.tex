@@ -1,0 +1,247 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket}{}\label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+
+
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket 的协作图:\+
+% FIG 0
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_aaed67293bb341f7d1342954e5898f347}{\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_af550a4e08d905e74a8fd990f8b8f4da0}{is\+\_\+expired}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_ab53919b184dd8e27222f9f3d61b419e9}{is\+\_\+valid}} (self)
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a2dd50a7ac768678e489f813f97a4685b}{age\+\_\+seconds}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a66427efa6b200da55dcb378f16699462}{mark\+\_\+used}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a26f67394c9f95f8868b53a34082741a8}{revoke}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+Dict \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a1c9ef69844cb3a9d07883eb959f13e09}{transport\+\_\+params}} \+[str, Any]\+
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a44eca270d915b1a41a960b8b6b7a77d2}{created\+\_\+at}} = field(default\+\_\+factory=time.\+time)
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a54dc6128efd9f3abe99993931c1a1be5}{expires\+\_\+at}} = 0.\+0
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a837a41f747a5c5bab32ce813dab2938c}{last\+\_\+used}} = 0.\+0
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a5e865ca7ea8c6796c7bc1b51cc7ef0a8}{usage\+\_\+count}} = 0
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_status}{Session\+Ticket\+Status}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_af9630189b8b406703c50c4a88889ad1e}{status}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_status_aec00cd0cc46e4a1e1fe45aa9164eb3a7}{Session\+Ticket\+Status.\+VALID}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Cached QUIC session ticket for 0-RTT.
+
+Attributes:
+    ticket_data: Raw ticket data
+    server_name: Server hostname
+    transport_params: Transport parameters
+    created_at: Creation timestamp
+    expires_at: Expiration timestamp
+    last_used: Last usage timestamp
+    usage_count: Number of times used
+    status: Ticket status
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00051}{51}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_aaed67293bb341f7d1342954e5898f347}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!\_\_post\_init\_\_@{\_\_post\_init\_\_}}
+\index{\_\_post\_init\_\_@{\_\_post\_init\_\_}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{\_\_post\_init\_\_()}{\_\_post\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_aaed67293bb341f7d1342954e5898f347} 
+p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00074}{74}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00068}{created\+\_\+at}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00069}{expires\+\_\+at}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a2dd50a7ac768678e489f813f97a4685b}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!age\_seconds@{age\_seconds}}
+\index{age\_seconds@{age\_seconds}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{age\_seconds()}{age\_seconds()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a2dd50a7ac768678e489f813f97a4685b} 
+ float p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+age\+\_\+seconds (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get ticket age in seconds.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00092}{92}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00068}{created\+\_\+at}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_af550a4e08d905e74a8fd990f8b8f4da0}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!is\_expired@{is\_expired}}
+\index{is\_expired@{is\_expired}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{is\_expired()}{is\_expired()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_af550a4e08d905e74a8fd990f8b8f4da0} 
+ bool p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+is\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if ticket is expired.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00079}{79}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00069}{expires\+\_\+at}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00084}{is\+\_\+valid()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_ab53919b184dd8e27222f9f3d61b419e9}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!is\_valid@{is\_valid}}
+\index{is\_valid@{is\_valid}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{is\_valid()}{is\_valid()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_ab53919b184dd8e27222f9f3d61b419e9} 
+ bool p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+is\+\_\+valid (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if ticket is valid for use.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00084}{84}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00042}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Record.\+is\+\_\+expired()}}, \doxymbox{\hyperlink{query_8py_source_l00108}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Context.\+is\+\_\+expired()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00056}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Cached\+Result.\+is\+\_\+expired()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00079}{is\+\_\+expired()}}, \doxymbox{\hyperlink{autonat_8py_source_l00073}{p2p\+\_\+engine.\+detection.\+autonat.\+Dial\+Response.\+status}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00072}{status}}.
+
+函数调用图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a66427efa6b200da55dcb378f16699462}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!mark\_used@{mark\_used}}
+\index{mark\_used@{mark\_used}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{mark\_used()}{mark\_used()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a66427efa6b200da55dcb378f16699462} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+mark\+\_\+used (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Mark ticket as used.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00096}{96}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00070}{last\+\_\+used}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00071}{usage\+\_\+count}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a26f67394c9f95f8868b53a34082741a8}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!revoke@{revoke}}
+\index{revoke@{revoke}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{revoke()}{revoke()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a26f67394c9f95f8868b53a34082741a8} 
+ None p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+revoke (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Revoke ticket.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00101}{101}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{autonat_8py_source_l00073}{p2p\+\_\+engine.\+detection.\+autonat.\+Dial\+Response.\+status}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00072}{status}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a44eca270d915b1a41a960b8b6b7a77d2}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!created\_at@{created\_at}}
+\index{created\_at@{created\_at}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{created\_at}{created\_at}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a44eca270d915b1a41a960b8b6b7a77d2} 
+float p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+created\+\_\+at = field(default\+\_\+factory=time.\+time)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00068}{68}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00074}{\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00135}{src.\+messages.\+Turn\+Allocation.\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00092}{age\+\_\+seconds()}}, \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00147}{src.\+messages.\+Turn\+Allocation.\+get\+\_\+remaining\+\_\+time()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2messages_8py_source_l00142}{src.\+messages.\+Turn\+Allocation.\+is\+\_\+expired()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a54dc6128efd9f3abe99993931c1a1be5}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!expires\_at@{expires\_at}}
+\index{expires\_at@{expires\_at}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{expires\_at}{expires\_at}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a54dc6128efd9f3abe99993931c1a1be5} 
+float p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+expires\+\_\+at = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00069}{69}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00074}{\+\_\+\+\_\+post\+\_\+init\+\_\+\+\_\+()}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00079}{is\+\_\+expired()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a837a41f747a5c5bab32ce813dab2938c}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!last\_used@{last\_used}}
+\index{last\_used@{last\_used}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{last\_used}{last\_used}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a837a41f747a5c5bab32ce813dab2938c} 
+float p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+last\+\_\+used = 0.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00070}{70}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00096}{mark\+\_\+used()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_af9630189b8b406703c50c4a88889ad1e}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!status@{status}}
+\index{status@{status}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_af9630189b8b406703c50c4a88889ad1e} 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_status}{Session\+Ticket\+Status}} p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+status = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_session_ticket_status_aec00cd0cc46e4a1e1fe45aa9164eb3a7}{Session\+Ticket\+Status.\+VALID}}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00072}{72}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00084}{is\+\_\+valid()}} , 以及 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00101}{revoke()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a1c9ef69844cb3a9d07883eb959f13e09}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!transport\_params@{transport\_params}}
+\index{transport\_params@{transport\_params}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{transport\_params}{transport\_params}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a1c9ef69844cb3a9d07883eb959f13e09} 
+Dict p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+transport\+\_\+params \+[str, Any]\+\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00067}{67}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a5e865ca7ea8c6796c7bc1b51cc7ef0a8}\index{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}!usage\_count@{usage\_count}}
+\index{usage\_count@{usage\_count}!p2p\_engine.transport.quic\_0rtt.CachedSessionTicket@{p2p\_engine.transport.quic\_0rtt.CachedSessionTicket}}
+\doxysubsubsection{\texorpdfstring{usage\_count}{usage\_count}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1quic__0rtt_1_1_cached_session_ticket_a5e865ca7ea8c6796c7bc1b51cc7ef0a8} 
+int p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+usage\+\_\+count = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{quic__0rtt_8py_source}{quic\+\_\+0rtt.\+py}} 第 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00071}{71}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00096}{mark\+\_\+used()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{quic__0rtt_8py}{quic\+\_\+0rtt.\+py}}\end{DoxyCompactItemize}

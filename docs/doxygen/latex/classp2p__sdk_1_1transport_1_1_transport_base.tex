@@ -1,0 +1,88 @@
+\doxysection{p2p\+\_\+sdk.\+transport.\+Transport\+Base类 参考}
+\hypertarget{classp2p__sdk_1_1transport_1_1_transport_base}{}\label{classp2p__sdk_1_1transport_1_1_transport_base}\index{p2p\_sdk.transport.TransportBase@{p2p\_sdk.transport.TransportBase}}
+
+
+类 p2p\+\_\+sdk.\+transport.\+Transport\+Base 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+sdk.\+transport.\+Transport\+Base 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_transport_base_a01bf7b150f45d31cd091a0c0d895e575}{send}} (self, bytes data)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_transport_base_a985e2fbf1f14e4698f07fa06cd1ad939}{recv}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_transport_base_abae803adfe16e4f22dda64e92e616563}{close}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Base class for transport implementations.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00016}{16}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_transport_base_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__sdk_1_1transport_1_1_transport_base_abae803adfe16e4f22dda64e92e616563}\index{p2p\_sdk.transport.TransportBase@{p2p\_sdk.transport.TransportBase}!close@{close}}
+\index{close@{close}!p2p\_sdk.transport.TransportBase@{p2p\_sdk.transport.TransportBase}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_transport_base_abae803adfe16e4f22dda64e92e616563} 
+ None p2p\+\_\+sdk.\+transport.\+Transport\+Base.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Close the transport.\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_relay_transport_a7627998cdb6af0f39632ab83119a811c}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport}} , 以及 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_web_socket_transport_a7280f6e0f9d92219baedf01e484558c9}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00030}{30}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00079}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+stop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__sdk_1_1transport_1_1_transport_base_a985e2fbf1f14e4698f07fa06cd1ad939}\index{p2p\_sdk.transport.TransportBase@{p2p\_sdk.transport.TransportBase}!recv@{recv}}
+\index{recv@{recv}!p2p\_sdk.transport.TransportBase@{p2p\_sdk.transport.TransportBase}}
+\doxysubsubsection{\texorpdfstring{recv()}{recv()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_transport_base_a985e2fbf1f14e4698f07fa06cd1ad939} 
+ bytes p2p\+\_\+sdk.\+transport.\+Transport\+Base.\+recv (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Receive data.\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_relay_transport_a1f6af886a2c2f9f17b95b447db0df9ea}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport}}, \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_ab87067abb0b841b230c50f8718a3b03c}{p2p\+\_\+sdk.\+transport.\+UDPTransport}} , 以及 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_web_socket_transport_a67bc13be961521bbfaa524b4fca4ca04}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00025}{25}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1transport_1_1_transport_base_a01bf7b150f45d31cd091a0c0d895e575}\index{p2p\_sdk.transport.TransportBase@{p2p\_sdk.transport.TransportBase}!send@{send}}
+\index{send@{send}!p2p\_sdk.transport.TransportBase@{p2p\_sdk.transport.TransportBase}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1transport_1_1_transport_base_a01bf7b150f45d31cd091a0c0d895e575} 
+ None p2p\+\_\+sdk.\+transport.\+Transport\+Base.\+send (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Send data.\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_relay_transport_aef8d63fc2da6175be63783e6d804989d}{p2p\+\_\+sdk.\+transport.\+Relay\+Transport}}, \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_u_d_p_transport_a21670999ced5da21d543f0c742a1a9e7}{p2p\+\_\+sdk.\+transport.\+UDPTransport}} , 以及 \doxymbox{\hyperlink{classp2p__sdk_1_1transport_1_1_web_socket_transport_a697509d7c24047cb6dbdfd118a6f1dde}{p2p\+\_\+sdk.\+transport.\+Web\+Socket\+Transport}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{transport_8py_source}{transport.\+py}} 第 \doxymbox{\hyperlink{transport_8py_source_l00020}{20}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+client\+\_\+sdk/\+src/\+p2p\+\_\+sdk/\+\doxymbox{\hyperlink{transport_8py}{transport.\+py}}\end{DoxyCompactItemize}

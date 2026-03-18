@@ -1,0 +1,156 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+base.\+Connection类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection}{}\label{classp2p__engine_1_1transport_1_1base_1_1_connection}\index{p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}}
+
+
+类 p2p\+\_\+engine.\+transport.\+base.\+Connection 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+base.\+Connection 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a4f82ab1576b25050f93e2a8679b5a055}{read}} (self, int n=-\/1)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a1f8391923639cf4fd18b559d01bc345b}{write}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a03bc6dc0ef2a59f073caa915a59e81da}{close}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_afd80c879b0a4036fce4ca9e8b8e34115}{is\+\_\+closed}} (self)
+\item 
+Optional\+[tuple]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_acf8091530c3865d3c01d74895388af65}{remote\+\_\+address}} (self)
+\item 
+Optional\+[tuple]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a2c2fdec8d0b32b8b7804c2c437a86c1d}{local\+\_\+address}} (self)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}连接抽象基类
+
+表示一个已建立的连接，提供数据传输功能。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00027}{27}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection_a03bc6dc0ef2a59f073caa915a59e81da}\index{p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_connection_a03bc6dc0ef2a59f073caa915a59e81da} 
+ None p2p\+\_\+engine.\+transport.\+base.\+Connection.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭连接\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_abd695bedd8094f6328f09b9f3174ebda}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_aab0f00d4c837fb340f962d9af9a3cc4a}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_acf14a5ec8c719c27fc8c14f4763ef31a}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection_ac4ac2e7c513d1547ae5b8432fa0e24e9}{p2p\+\_\+engine.\+transport.\+upgrader.\+Secure\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a2faeaa5e198f4d65bda917d0f508530f}{p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_a4847408d80964e250d3cea3d37998cf2}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_add2afadac6e7e6bd167a478fccdc3226}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00061}{61}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{webtransport_8py_source_l00302}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+\_\+handle\+\_\+event()}}, \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}} , 以及 \doxymbox{\hyperlink{webrtc_8py_source_l00382}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+data\+\_\+channel\+\_\+callbacks()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection_afd80c879b0a4036fce4ca9e8b8e34115}\index{p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_connection_afd80c879b0a4036fce4ca9e8b8e34115} 
+ bool p2p\+\_\+engine.\+transport.\+base.\+Connection.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}检查连接是否已关闭\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_ac4c634ed28273b4d18a0978f7849808b}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_a3a7d141d2b0f5a8df664def84e61550b}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_abfdce4eecfaa85a474e260390a9fae6e}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection_a1bffe89096549d072a4a737c8b7797a4}{p2p\+\_\+engine.\+transport.\+upgrader.\+Secure\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a72bf740668dcd3a70544b2e3d9b7f6c8}{p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_ac11fe8b7bc2356b9cdc19fd0aeb489fc}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a3587fc10fb7c98dc708790297b0f60fe}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00066}{66}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection_a2c2fdec8d0b32b8b7804c2c437a86c1d}\index{p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}!local\_address@{local\_address}}
+\index{local\_address@{local\_address}!p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}}
+\doxysubsubsection{\texorpdfstring{local\_address()}{local\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_connection_a2c2fdec8d0b32b8b7804c2c437a86c1d} 
+ Optional\+[tuple]\+ p2p\+\_\+engine.\+transport.\+base.\+Connection.\+local\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取本地地址\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a3335dded643d69af2ce070023d948d60}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_a9a860d39e47793741f775885051fecc4}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a158e0798b147e82fc3ccd3199b5fbb54}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection_ada1f3227d474bb10d58938b54a8c7437}{p2p\+\_\+engine.\+transport.\+upgrader.\+Secure\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a33205f59e5c487b86ddabc7173010e35}{p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_aa428451cebca0556b7ddbebeda1916f8}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a9fe50295c382fd62056dd82ade33919f}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00078}{78}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection_a4f82ab1576b25050f93e2a8679b5a055}\index{p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}!read@{read}}
+\index{read@{read}!p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_connection_a4f82ab1576b25050f93e2a8679b5a055} 
+ bytes p2p\+\_\+engine.\+transport.\+base.\+Connection.\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{n}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}读取数据
+
+Args:
+    n: 读取字节数，-1 表示读取所有可用数据
+
+Returns:
+    读取的数据
+\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a814e69add95d4d56bdb6f91aea91b26e}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_abfd278bf124e329262c5f4cde9f825ec}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a46baabc18cadf74ec34a91f3695458f5}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection_a8b31e951b00db73accd6b409ff65850c}{p2p\+\_\+engine.\+transport.\+upgrader.\+Secure\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_ada55db4d7125802e5a043d36ec168546}{p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_a1b8f25022453d63672bcca8c65dd07c7}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a26c2731c6da14a4933fe5a5a293884b3}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00035}{35}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection_acf8091530c3865d3c01d74895388af65}\index{p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}!remote\_address@{remote\_address}}
+\index{remote\_address@{remote\_address}!p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}}
+\doxysubsubsection{\texorpdfstring{remote\_address()}{remote\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_connection_acf8091530c3865d3c01d74895388af65} 
+ Optional\+[tuple]\+ p2p\+\_\+engine.\+transport.\+base.\+Connection.\+remote\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取远程地址\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_aa49784de6a4bc6e99210b4b13fecab03}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_a680d0b4cb388f7f502f44125eb06d682}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a930aaa553e5493b69fb9c7be4adb9d30}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection_aca0d3fef38e8b8b7765869ae11a648e9}{p2p\+\_\+engine.\+transport.\+upgrader.\+Secure\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a71a22fbb9daee5c2c6df8a89e39f378a}{p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_a35e0b6aa7273d3631726f8908a226b5c}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a4c264574b75a1e50a00ed479a58c249e}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00072}{72}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1base_1_1_connection_a1f8391923639cf4fd18b559d01bc345b}\index{p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}!write@{write}}
+\index{write@{write}!p2p\_engine.transport.base.Connection@{p2p\_engine.transport.base.Connection}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1base_1_1_connection_a1f8391923639cf4fd18b559d01bc345b} 
+ int p2p\+\_\+engine.\+transport.\+base.\+Connection.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}写入数据
+
+Args:
+    data: 要写入的数据
+
+Returns:
+    写入的字节数
+\end{DoxyVerb}
+ 
+
+被 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a1e401bcb887a8f52247f7faee2f6c599}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection_a385b9902f0737efdf736ba02f31b3eb1}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream_a71faf0258926eb32e696346bfdbd3d65}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Stream}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection_a02c9b2167194f12c2dbacb55b7d397bb}{p2p\+\_\+engine.\+transport.\+upgrader.\+Secure\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a1c9899b0492fe97783b74750408c1014}{p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection}}, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webrtc_1_1_web_r_t_c_connection_a5b5eac0ea06bb69b30e54a3676e62221}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection}} , 以及 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1webtransport_1_1_web_transport_connection_a64518eadb1d50405a40899b41fb79efd}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection}} 重载.
+
+
+
+在文件 \doxymbox{\hyperlink{base_8py_source}{base.\+py}} 第 \doxymbox{\hyperlink{base_8py_source_l00048}{48}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{base_8py}{base.\+py}}\end{DoxyCompactItemize}

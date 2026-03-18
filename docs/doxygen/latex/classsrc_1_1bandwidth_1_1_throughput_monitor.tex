@@ -1,0 +1,276 @@
+\doxysection{src.\+bandwidth.\+Throughput\+Monitor类 参考}
+\hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor}{}\label{classsrc_1_1bandwidth_1_1_throughput_monitor}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a1a7f195bf5ef328a910912d44024cebe}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int window\+\_\+seconds=5)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_abaf0ad6089b5a85cc33a41718e4b7044}{record\+\_\+read}} (self, int bytes\+\_\+count)
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a6913253b44bfe7c25cdc68560c692ddc}{record\+\_\+write}} (self, int bytes\+\_\+count)
+\item 
+float \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a4b8922e29dc5ba6a89f8f7893d51c08e}{get\+\_\+read\+\_\+rate}} (self)
+\item 
+float \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a8eaae207133c144f6add85eed4ebe52c}{get\+\_\+write\+\_\+rate}} (self)
+\item 
+Dict\+[str, float]\+ \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a82f085b470c430bc58e0377d541ef3e2}{get\+\_\+stats}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a511f23f72e0ef0f1c2c94cf8c667a13e}{window}} = window\+\_\+seconds
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_ae369e64cad9d047bf2ca60bc646c8deb}{\+\_\+cleanup\+\_\+old\+\_\+samples}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+list \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a7716c4777ae682f4ff88cc9658bedb81}{\+\_\+read\+\_\+samples}} = \+[$\,$]\+
+\item 
+list \doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a793622e7fa5a1a4bb79dc4044ee8b250}{\+\_\+write\+\_\+samples}} = \+[$\,$]\+
+\item 
+\doxymbox{\hyperlink{classsrc_1_1bandwidth_1_1_throughput_monitor_a3e82d326a61efaf99760874ee8a766b1}{\+\_\+lock}} = asyncio.\+Lock()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Monitor throughput rates.
+
+Tracks bytes transferred and calculates current rates.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00254}{254}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a1a7f195bf5ef328a910912d44024cebe}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a1a7f195bf5ef328a910912d44024cebe} 
+src.\+bandwidth.\+Throughput\+Monitor.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{window\+\_\+seconds}{ = {\ttfamily 5}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize throughput monitor.
+
+Args:
+    window_seconds: Time window for rate calculation
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00261}{261}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_ae369e64cad9d047bf2ca60bc646c8deb}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!\_cleanup\_old\_samples@{\_cleanup\_old\_samples}}
+\index{\_cleanup\_old\_samples@{\_cleanup\_old\_samples}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{\_cleanup\_old\_samples()}{\_cleanup\_old\_samples()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_ae369e64cad9d047bf2ca60bc646c8deb} 
+src.\+bandwidth.\+Throughput\+Monitor.\+\_\+cleanup\+\_\+old\+\_\+samples (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Remove samples older than window.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{295}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00269}{\+\_\+read\+\_\+samples}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00270}{\+\_\+write\+\_\+samples}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00268}{window}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{record\+\_\+read()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{record\+\_\+write()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a4b8922e29dc5ba6a89f8f7893d51c08e}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!get\_read\_rate@{get\_read\_rate}}
+\index{get\_read\_rate@{get\_read\_rate}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{get\_read\_rate()}{get\_read\_rate()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a4b8922e29dc5ba6a89f8f7893d51c08e} 
+ float src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get current read rate (bytes/second).
+
+Returns:
+    Read rate
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{302}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{\+\_\+cleanup\+\_\+old\+\_\+samples()}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{src.\+bandwidth.\+Token\+Bucket.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00269}{\+\_\+read\+\_\+samples}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00268}{window}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00332}{get\+\_\+stats()}}.
+
+函数调用图:\+
+% FIG 1
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a82f085b470c430bc58e0377d541ef3e2}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!get\_stats@{get\_stats}}
+\index{get\_stats@{get\_stats}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{get\_stats()}{get\_stats()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a82f085b470c430bc58e0377d541ef3e2} 
+ Dict\+[str, float]\+ src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+stats (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get throughput statistics.
+
+Returns:
+    Dictionary with stats
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00332}{332}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{get\+\_\+read\+\_\+rate()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{get\+\_\+write\+\_\+rate()}}.
+
+函数调用图:\+
+% FIG 3
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a8eaae207133c144f6add85eed4ebe52c}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!get\_write\_rate@{get\_write\_rate}}
+\index{get\_write\_rate@{get\_write\_rate}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{get\_write\_rate()}{get\_write\_rate()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a8eaae207133c144f6add85eed4ebe52c} 
+ float src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get current write rate (bytes/second).
+
+Returns:
+    Write rate
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{317}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{\+\_\+cleanup\+\_\+old\+\_\+samples()}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{src.\+bandwidth.\+Token\+Bucket.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00270}{\+\_\+write\+\_\+samples}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00268}{window}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00332}{get\+\_\+stats()}}.
+
+函数调用图:\+
+% FIG 4
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_abaf0ad6089b5a85cc33a41718e4b7044}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!record\_read@{record\_read}}
+\index{record\_read@{record\_read}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{record\_read()}{record\_read()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_abaf0ad6089b5a85cc33a41718e4b7044} 
+src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{bytes\+\_\+count}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Record read operation.
+
+Args:
+    bytes_count: Number of bytes read
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{273}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{\+\_\+cleanup\+\_\+old\+\_\+samples()}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{src.\+bandwidth.\+Token\+Bucket.\+\_\+lock}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00269}{\+\_\+read\+\_\+samples}}.
+
+函数调用图:\+
+% FIG 6
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a6913253b44bfe7c25cdc68560c692ddc}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!record\_write@{record\_write}}
+\index{record\_write@{record\_write}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{record\_write()}{record\_write()}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a6913253b44bfe7c25cdc68560c692ddc} 
+src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{bytes\+\_\+count}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Record write operation.
+
+Args:
+    bytes_count: Number of bytes written
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{284}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{\+\_\+cleanup\+\_\+old\+\_\+samples()}}, \doxymbox{\hyperlink{provider_8py_source_l00085}{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query_8py_source_l00139}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00362}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Optimized\+Query\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00077}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+\_\+lock}}, \doxymbox{\hyperlink{routing_8py_source_l00351}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+\_\+lock}}, \doxymbox{\hyperlink{event_8py_source_l00238}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+lock}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00129}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+lock}}, \doxymbox{\hyperlink{metrics_8py_source_l00062}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+\_\+lock}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00116}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+lock}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00191}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{upgrader_8py_source_l00204}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+lock}}, \doxymbox{\hyperlink{client_8py_source_l00213}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00120}{src.\+allocation.\+Allocation\+Manager.\+\_\+lock}}, \doxymbox{\hyperlink{allocation_8py_source_l00045}{src.\+allocation.\+Port\+Pool.\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{\+\_\+lock}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00054}{src.\+bandwidth.\+Token\+Bucket.\+\_\+lock}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00270}{\+\_\+write\+\_\+samples}}.
+
+函数调用图:\+
+% FIG 7
+
+
+\label{doc-variable-members}
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a3e82d326a61efaf99760874ee8a766b1}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a3e82d326a61efaf99760874ee8a766b1} 
+src.\+bandwidth.\+Throughput\+Monitor.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00271}{271}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{record\+\_\+read()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{record\+\_\+write()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a7716c4777ae682f4ff88cc9658bedb81}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!\_read\_samples@{\_read\_samples}}
+\index{\_read\_samples@{\_read\_samples}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{\_read\_samples}{\_read\_samples}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a7716c4777ae682f4ff88cc9658bedb81} 
+list src.\+bandwidth.\+Throughput\+Monitor.\+\_\+read\+\_\+samples = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00269}{269}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{\+\_\+cleanup\+\_\+old\+\_\+samples()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{get\+\_\+read\+\_\+rate()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{record\+\_\+read()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a793622e7fa5a1a4bb79dc4044ee8b250}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!\_write\_samples@{\_write\_samples}}
+\index{\_write\_samples@{\_write\_samples}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{\_write\_samples}{\_write\_samples}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a793622e7fa5a1a4bb79dc4044ee8b250} 
+list src.\+bandwidth.\+Throughput\+Monitor.\+\_\+write\+\_\+samples = \+[$\,$]\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00270}{270}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{\+\_\+cleanup\+\_\+old\+\_\+samples()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{get\+\_\+write\+\_\+rate()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{record\+\_\+write()}}.
+
+\Hypertarget{classsrc_1_1bandwidth_1_1_throughput_monitor_a511f23f72e0ef0f1c2c94cf8c667a13e}\index{src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}!window@{window}}
+\index{window@{window}!src.bandwidth.ThroughputMonitor@{src.bandwidth.ThroughputMonitor}}
+\doxysubsubsection{\texorpdfstring{window}{window}}
+{\footnotesize\ttfamily \label{classsrc_1_1bandwidth_1_1_throughput_monitor_a511f23f72e0ef0f1c2c94cf8c667a13e} 
+src.\+bandwidth.\+Throughput\+Monitor.\+window = window\+\_\+seconds}
+
+
+
+在文件 \doxymbox{\hyperlink{bandwidth_8py_source}{bandwidth.\+py}} 第 \doxymbox{\hyperlink{bandwidth_8py_source_l00268}{268}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{bandwidth_8py_source_l00295}{\+\_\+cleanup\+\_\+old\+\_\+samples()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{get\+\_\+read\+\_\+rate()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{get\+\_\+write\+\_\+rate()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+relay-\/server/\+src/\+\doxymbox{\hyperlink{bandwidth_8py}{bandwidth.\+py}}\end{DoxyCompactItemize}

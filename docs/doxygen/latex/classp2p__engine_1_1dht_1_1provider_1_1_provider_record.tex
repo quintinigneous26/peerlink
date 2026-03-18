@@ -1,0 +1,110 @@
+\doxysection{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Record类 参考}
+\hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_record}{}\label{classp2p__engine_1_1dht_1_1provider_1_1_provider_record}\index{p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_acf77a3bae4811b66ca15e67df5839d91}{is\+\_\+expired}} (self)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_ab0104a54b56bc435f2c29ea8f65833f3}{refresh}} (self, float ttl=\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a182cff9554c8c7ab7face4bb4abf57c6}{PROVIDER\+\_\+\+EXPIRATION}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_a68cb3d838353c642166eda6676533b39}{timestamp}} = field(default\+\_\+factory=time.\+time)
+\item 
+float \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_a73413ad926477501fd3078bbec0f1775}{expires}} = field(default\+\_\+factory=lambda:\+ time.\+time() + \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a182cff9554c8c7ab7face4bb4abf57c6}{PROVIDER\+\_\+\+EXPIRATION}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Record of a peer providing a specific content key.
+
+Attributes:
+    peer_id: ID of the provider peer
+    key: Content key (CID hash)
+    timestamp: When this record was created
+    expires: When this record expires
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00027}{27}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_acf77a3bae4811b66ca15e67df5839d91}\index{p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}!is\_expired@{is\_expired}}
+\index{is\_expired@{is\_expired}!p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}}
+\doxysubsubsection{\texorpdfstring{is\_expired()}{is\_expired()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_acf77a3bae4811b66ca15e67df5839d91} 
+ bool p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Record.\+is\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if provider record has expired.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00042}{42}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00040}{expires}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{quic__0rtt_8py_source_l00084}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Cached\+Session\+Ticket.\+is\+\_\+valid()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_ab0104a54b56bc435f2c29ea8f65833f3}\index{p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}!refresh@{refresh}}
+\index{refresh@{refresh}!p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}}
+\doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_ab0104a54b56bc435f2c29ea8f65833f3} 
+ None p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Record.\+refresh (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{float }]{ttl}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a182cff9554c8c7ab7face4bb4abf57c6}{PROVIDER\+\_\+\+EXPIRATION}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Refresh the provider record.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00046}{46}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00040}{expires}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00039}{timestamp}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_a73413ad926477501fd3078bbec0f1775}\index{p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}!expires@{expires}}
+\index{expires@{expires}!p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}}
+\doxysubsubsection{\texorpdfstring{expires}{expires}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_a73413ad926477501fd3078bbec0f1775} 
+float p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Record.\+expires = field(default\+\_\+factory=lambda:\+ time.\+time() + \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a182cff9554c8c7ab7face4bb4abf57c6}{PROVIDER\+\_\+\+EXPIRATION}})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00040}{40}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{provider_8py_source_l00042}{is\+\_\+expired()}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00046}{refresh()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_a68cb3d838353c642166eda6676533b39}\index{p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!p2p\_engine.dht.provider.ProviderRecord@{p2p\_engine.dht.provider.ProviderRecord}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_record_a68cb3d838353c642166eda6676533b39} 
+float p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Record.\+timestamp = field(default\+\_\+factory=time.\+time)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00039}{39}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{query__optimizer_8py_source_l00061}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Cached\+Result.\+age()}}, \doxymbox{\hyperlink{protocol_8py_source_l00056}{p2p\+\_\+sdk.\+protocol.\+P2\+PMessage.\+encode()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00056}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Cached\+Result.\+is\+\_\+expired()}}, \doxymbox{\hyperlink{provider_8py_source_l00046}{refresh()}}, \doxymbox{\hyperlink{did-service_2src_2did__service_2models_8py_source_l00099}{src.\+did\+\_\+service.\+models.\+APIResponse.\+to\+\_\+dict()}} , 以及 \doxymbox{\hyperlink{relay-server_2src_2relay__server_2models_8py_source_l00140}{src.\+relay\+\_\+server.\+models.\+APIResponse.\+to\+\_\+dict()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+dht/\+\doxymbox{\hyperlink{provider_8py}{provider.\+py}}\end{DoxyCompactItemize}

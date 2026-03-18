@@ -1,0 +1,148 @@
+\doxysection{p2p\+\_\+sdk.\+protocol.\+Handshake\+Message类 参考}
+\hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message}{}\label{classp2p__sdk_1_1protocol_1_1_handshake_message}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+
+
+类 p2p\+\_\+sdk.\+protocol.\+Handshake\+Message 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+sdk.\+protocol.\+Handshake\+Message 的协作图:\+
+% FIG 1
+\doxysubsubsection*{静态 Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+Optional \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a1b1f1bc8e1f1b727ad87fe57f0f67e2a}{public\+\_\+ip}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a9558e3ccc1a2ea428d40fc7d1e1a62c2}{public\+\_\+port}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_aca8f06d4a6c5d3b6536959a375037207}{local\+\_\+ip}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a3c62ad32415b13eaed0a36ec8f54baf8}{local\+\_\+port}} = None
+\item 
+Optional \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a2eea66c7b40be1b741ec70b3885f22c6}{nat\+\_\+type}} = None
+\item 
+bool \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_aa22a4e68b7adf33fdd8773008355e6c5}{is\+\_\+ack}} = False
+\item 
+list \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_handshake_message_a23745222d6917edf8446f698803fd457}{capabilities}} = field(default\+\_\+factory=list)
+\end{DoxyCompactItemize}
+\doxysubsection*{静态 Public 属性 继承自 \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{p2p\+\_\+sdk.\+protocol.\+P2\+PMessage}}}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aa7672c60cb04a66b5e32bdfed69d1685}{message\+\_\+id}} = field(default\+\_\+factory=lambda:\+ str(uuid.\+uuid4()))
+\item 
+Optional \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a5ebedfcdd320821ca720c2969fa229bd}{channel\+\_\+id}} = None
+\item 
+bytes \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a3c4454ed3f59f09b8f710556ff06d461}{payload}} = b"{}"{}
+\item 
+float \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_a960b2a0fc61ed08854df531cbcd07324}{timestamp}} = 0.\+0
+\item 
+Dict \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_aeec87a806b35890e633714bee75de86d}{metadata}} = field(default\+\_\+factory=dict)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{额外继承的成员函数}
+\doxysubsection*{Public 成员函数 继承自 \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message}{p2p\+\_\+sdk.\+protocol.\+P2\+PMessage}}}
+\begin{DoxyCompactItemize}
+\item 
+bytes \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_affe86774875519b67b8dd44b40f8d849}{encode}} (self)
+\item 
+Optional\+["{}P2\+PMessage"{}]\+ \doxymbox{\hyperlink{classp2p__sdk_1_1protocol_1_1_p2_p_message_ac25f2c1f420b53f6c515fb3bd97bd81a}{decode}} (cls, bytes data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Handshake message for connection establishment.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00114}{114}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_a23745222d6917edf8446f698803fd457}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}!capabilities@{capabilities}}
+\index{capabilities@{capabilities}!p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+\doxysubsubsection{\texorpdfstring{capabilities}{capabilities}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_handshake_message_a23745222d6917edf8446f698803fd457} 
+list p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+capabilities = field(default\+\_\+factory=list)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00123}{123}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_aa22a4e68b7adf33fdd8773008355e6c5}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}!is\_ack@{is\_ack}}
+\index{is\_ack@{is\_ack}!p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+\doxysubsubsection{\texorpdfstring{is\_ack}{is\_ack}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_handshake_message_aa22a4e68b7adf33fdd8773008355e6c5} 
+bool p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+is\+\_\+ack = False\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00122}{122}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_aca8f06d4a6c5d3b6536959a375037207}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}!local\_ip@{local\_ip}}
+\index{local\_ip@{local\_ip}!p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+\doxysubsubsection{\texorpdfstring{local\_ip}{local\_ip}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_handshake_message_aca8f06d4a6c5d3b6536959a375037207} 
+Optional p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+local\+\_\+ip = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00119}{119}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}}.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_a3c62ad32415b13eaed0a36ec8f54baf8}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}!local\_port@{local\_port}}
+\index{local\_port@{local\_port}!p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+\doxysubsubsection{\texorpdfstring{local\_port}{local\_port}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_handshake_message_a3c62ad32415b13eaed0a36ec8f54baf8} 
+Optional p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+local\+\_\+port = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00120}{120}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{transport_8py_source_l00059}{p2p\+\_\+sdk.\+transport.\+UDPTransport.\+start()}}.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_a2eea66c7b40be1b741ec70b3885f22c6}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}!nat\_type@{nat\_type}}
+\index{nat\_type@{nat\_type}!p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+\doxysubsubsection{\texorpdfstring{nat\_type}{nat\_type}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_handshake_message_a2eea66c7b40be1b741ec70b3885f22c6} 
+Optional p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+nat\+\_\+type = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00121}{121}} 行定义.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_a1b1f1bc8e1f1b727ad87fe57f0f67e2a}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}!public\_ip@{public\_ip}}
+\index{public\_ip@{public\_ip}!p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+\doxysubsubsection{\texorpdfstring{public\_ip}{public\_ip}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_handshake_message_a1b1f1bc8e1f1b727ad87fe57f0f67e2a} 
+Optional p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+public\+\_\+ip = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00117}{117}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{relay_8py_source_l00301}{src.\+relay.\+Relay\+Server.\+\_\+handle\+\_\+allocate()}}.
+
+\Hypertarget{classp2p__sdk_1_1protocol_1_1_handshake_message_a9558e3ccc1a2ea428d40fc7d1e1a62c2}\index{p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}!public\_port@{public\_port}}
+\index{public\_port@{public\_port}!p2p\_sdk.protocol.HandshakeMessage@{p2p\_sdk.protocol.HandshakeMessage}}
+\doxysubsubsection{\texorpdfstring{public\_port}{public\_port}}
+{\footnotesize\ttfamily \label{classp2p__sdk_1_1protocol_1_1_handshake_message_a9558e3ccc1a2ea428d40fc7d1e1a62c2} 
+Optional p2p\+\_\+sdk.\+protocol.\+Handshake\+Message.\+public\+\_\+port = None\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+在文件 \doxymbox{\hyperlink{protocol_8py_source}{protocol.\+py}} 第 \doxymbox{\hyperlink{protocol_8py_source_l00118}{118}} 行定义.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+client\+\_\+sdk/\+src/\+p2p\+\_\+sdk/\+\doxymbox{\hyperlink{protocol_8py}{protocol.\+py}}\end{DoxyCompactItemize}

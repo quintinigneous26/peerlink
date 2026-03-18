@@ -1,0 +1,435 @@
+\doxysection{p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager类 参考}
+\hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager}{}\label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3890b1f561d82008f039f20982272228}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3c7d9ff4d34f6e6cca356c338f36efcf}{max\+\_\+providers}}=\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a10fe906c3ccd54fa9a8944a214bbde17}{MAX\+\_\+\+PROVIDERS\+\_\+\+PER\+\_\+\+KEY}})
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a8102d51fb8cbd6669b720cec7325d5f1}{add\+\_\+provider}} (self, bytes key, bytes peer\+\_\+id, float ttl=\doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a182cff9554c8c7ab7face4bb4abf57c6}{PROVIDER\+\_\+\+EXPIRATION}})
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a8e407c25964ead496dee0fe15b8927d5}{remove\+\_\+provider}} (self, bytes key, bytes peer\+\_\+id)
+\item 
+List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_record}{Provider\+Record}}]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_aa04ad900809d89d6a5761831bd7c9943}{get\+\_\+providers}} (self, bytes key, int max\+\_\+count=20)
+\item 
+List\+[bytes]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a71cd9955218ed5839b732e18ad74a0da}{get\+\_\+provider\+\_\+peer\+\_\+ids}} (self, bytes key, int max\+\_\+count=20)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a184acf8a06d3362723fc0dd2ceadde35}{add\+\_\+local\+\_\+provider}} (self, bytes key)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ab3ffcd76f1a7bc34ae51b3b11c617c5d}{remove\+\_\+local\+\_\+provider}} (self, bytes key)
+\item 
+List\+[bytes]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a9237d87f87af4ea6e874beb390fc654d}{get\+\_\+local\+\_\+providers}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a9d43dcef9a488de23bbf6097872427ad}{is\+\_\+providing}} (self, bytes key)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ac3340d4effee1976e405fa9ff22647a2}{cleanup\+\_\+expired}} (self)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a48c93d81a87f6ce14a8cbe2f4b717ea8}{provider\+\_\+count}} (self)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3b1749f6c5b48d3f568b07859e6a6057}{key\+\_\+count}} (self)
+\item 
+Dict\+[bytes, List\+[bytes]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a0fbf50f2a1ff6e3848fce9123c7bf178}{get\+\_\+all\+\_\+providers\+\_\+for\+\_\+keys}} (self, List\+[bytes]\+ keys)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3c7d9ff4d34f6e6cca356c338f36efcf}{max\+\_\+providers}} = max\+\_\+providers
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+Dict\+[bytes, Set\+[bytes]\+]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a28328f64065c93cc263aa65c29ce4fa9}{\+\_\+providers}} = defaultdict(set)
+\item 
+dict \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a4dfca64d61b2efa5a6a1fbe0f8f1b1ff}{\+\_\+records}} = \{\}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a750695be7f528e94d03124a6245d0d58}{\+\_\+lock}} = asyncio.\+Lock()
+\item 
+Set\+[bytes]\+ \doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ae6e08cda483dada087f0437fc474737e}{\+\_\+local\+\_\+providers}} = set()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}Manages provider records for content routing.
+
+Tracks which peers provide which content and handles
+provider announcements and lookups.
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00067}{67}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3890b1f561d82008f039f20982272228}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3890b1f561d82008f039f20982272228} 
+p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{max\+\_\+providers}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a10fe906c3ccd54fa9a8944a214bbde17}{MAX\+\_\+\+PROVIDERS\+\_\+\+PER\+\_\+\+KEY}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Initialize provider manager.
+
+Args:
+    max_providers: Maximum providers to track per key
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00075}{75}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a184acf8a06d3362723fc0dd2ceadde35}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!add\_local\_provider@{add\_local\_provider}}
+\index{add\_local\_provider@{add\_local\_provider}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{add\_local\_provider()}{add\_local\_provider()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a184acf8a06d3362723fc0dd2ceadde35} 
+ None p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+add\+\_\+local\+\_\+provider (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a local provider record (we provide this content).
+
+Args:
+    key: Content key (CID)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00206}{206}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00086}{\+\_\+local\+\_\+providers}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a8102d51fb8cbd6669b720cec7325d5f1}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!add\_provider@{add\_provider}}
+\index{add\_provider@{add\_provider}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{add\_provider()}{add\_provider()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a8102d51fb8cbd6669b720cec7325d5f1} 
+ bool p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+add\+\_\+provider (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{key}{, }\item[{bytes}]{peer\+\_\+id}{, }\item[{float }]{ttl}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1dht_1_1provider_a182cff9554c8c7ab7face4bb4abf57c6}{PROVIDER\+\_\+\+EXPIRATION}}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add a provider record.
+
+Args:
+    key: Content key (CID)
+    peer_id: ID of the provider peer
+    ttl: Time to live for this record
+
+Returns:
+    True if provider was added
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00088}{88}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{\+\_\+lock}}, \doxymbox{\hyperlink{provider_8py_source_l00083}{\+\_\+providers}}, \doxymbox{\hyperlink{provider_8py_source_l00084}{\+\_\+records}}, \doxymbox{\hyperlink{provider_8py_source_l00052}{p2p\+\_\+engine.\+dht.\+provider.\+compute\+\_\+key()}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00082}{max\+\_\+providers}}.
+
+函数调用图:\+
+% FIG 0
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ac3340d4effee1976e405fa9ff22647a2}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!cleanup\_expired@{cleanup\_expired}}
+\index{cleanup\_expired@{cleanup\_expired}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{cleanup\_expired()}{cleanup\_expired()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ac3340d4effee1976e405fa9ff22647a2} 
+ int p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+cleanup\+\_\+expired (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove expired provider records.
+
+Returns:
+    Number of records removed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00245}{245}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{\+\_\+lock}}, \doxymbox{\hyperlink{provider_8py_source_l00083}{\+\_\+providers}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00084}{\+\_\+records}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{allocation_8py_source_l00138}{src.\+allocation.\+Allocation\+Manager.\+\_\+cleanup\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 1
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a0fbf50f2a1ff6e3848fce9123c7bf178}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!get\_all\_providers\_for\_keys@{get\_all\_providers\_for\_keys}}
+\index{get\_all\_providers\_for\_keys@{get\_all\_providers\_for\_keys}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{get\_all\_providers\_for\_keys()}{get\_all\_providers\_for\_keys()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a0fbf50f2a1ff6e3848fce9123c7bf178} 
+ Dict\+[bytes, List\+[bytes]\+]\+ p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+get\+\_\+all\+\_\+providers\+\_\+for\+\_\+keys (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{List\+[bytes]\+     }]{keys}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get providers for multiple keys efficiently.
+
+Args:
+    keys: List of content keys
+
+Returns:
+    Dict mapping key to list of peer IDs
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00280}{280}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00192}{get\+\_\+provider\+\_\+peer\+\_\+ids()}}.
+
+函数调用图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a9237d87f87af4ea6e874beb390fc654d}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!get\_local\_providers@{get\_local\_providers}}
+\index{get\_local\_providers@{get\_local\_providers}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{get\_local\_providers()}{get\_local\_providers()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a9237d87f87af4ea6e874beb390fc654d} 
+ List\+[bytes]\+ p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+get\+\_\+local\+\_\+providers (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get all keys we're providing.
+
+Returns:
+    List of content keys
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00224}{224}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00086}{\+\_\+local\+\_\+providers}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a71cd9955218ed5839b732e18ad74a0da}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!get\_provider\_peer\_ids@{get\_provider\_peer\_ids}}
+\index{get\_provider\_peer\_ids@{get\_provider\_peer\_ids}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{get\_provider\_peer\_ids()}{get\_provider\_peer\_ids()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a71cd9955218ed5839b732e18ad74a0da} 
+ List\+[bytes]\+ p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+get\+\_\+provider\+\_\+peer\+\_\+ids (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{key}{, }\item[{int }]{max\+\_\+count}{ = {\ttfamily 20}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get provider peer IDs for a content key.
+
+Args:
+    key: Content key (CID)
+    max_count: Maximum number of providers to return
+
+Returns:
+    List of peer IDs
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00192}{192}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00167}{get\+\_\+providers()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{provider_8py_source_l00283}{get\+\_\+all\+\_\+providers\+\_\+for\+\_\+keys()}}.
+
+函数调用图:\+
+% FIG 3
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_aa04ad900809d89d6a5761831bd7c9943}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!get\_providers@{get\_providers}}
+\index{get\_providers@{get\_providers}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{get\_providers()}{get\_providers()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_aa04ad900809d89d6a5761831bd7c9943} 
+ List\+[\doxymbox{\hyperlink{classp2p__engine_1_1dht_1_1provider_1_1_provider_record}{Provider\+Record}}]\+ p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+get\+\_\+providers (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{key}{, }\item[{int }]{max\+\_\+count}{ = {\ttfamily 20}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get providers for a content key.
+
+Args:
+    key: Content key (CID)
+    max_count: Maximum number of providers to return
+
+Returns:
+    List of provider records
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00167}{167}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00083}{\+\_\+providers}}, \doxymbox{\hyperlink{provider_8py_source_l00084}{\+\_\+records}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00052}{p2p\+\_\+engine.\+dht.\+provider.\+compute\+\_\+key()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{provider_8py_source_l00192}{get\+\_\+provider\+\_\+peer\+\_\+ids()}}.
+
+函数调用图:\+
+% FIG 5
+这是这个函数的调用关系图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a9d43dcef9a488de23bbf6097872427ad}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!is\_providing@{is\_providing}}
+\index{is\_providing@{is\_providing}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{is\_providing()}{is\_providing()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a9d43dcef9a488de23bbf6097872427ad} 
+ bool p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+is\+\_\+providing (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Check if we're providing a specific key.
+
+Args:
+    key: Content key (CID)
+
+Returns:
+    True if we're providing this key
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00233}{233}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00086}{\+\_\+local\+\_\+providers}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3b1749f6c5b48d3f568b07859e6a6057}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!key\_count@{key\_count}}
+\index{key\_count@{key\_count}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{key\_count()}{key\_count()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3b1749f6c5b48d3f568b07859e6a6057} 
+ int p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+key\+\_\+count (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get number of keys with providers.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00276}{276}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00083}{\+\_\+providers}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a48c93d81a87f6ce14a8cbe2f4b717ea8}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!provider\_count@{provider\_count}}
+\index{provider\_count@{provider\_count}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{provider\_count()}{provider\_count()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a48c93d81a87f6ce14a8cbe2f4b717ea8} 
+ int p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+provider\+\_\+count (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Get total number of provider records.\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00271}{271}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00084}{\+\_\+records}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ab3ffcd76f1a7bc34ae51b3b11c617c5d}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!remove\_local\_provider@{remove\_local\_provider}}
+\index{remove\_local\_provider@{remove\_local\_provider}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{remove\_local\_provider()}{remove\_local\_provider()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ab3ffcd76f1a7bc34ae51b3b11c617c5d} 
+ None p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+remove\+\_\+local\+\_\+provider (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{key}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove a local provider record.
+
+Args:
+    key: Content key (CID)
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00215}{215}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00086}{\+\_\+local\+\_\+providers}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a8e407c25964ead496dee0fe15b8927d5}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!remove\_provider@{remove\_provider}}
+\index{remove\_provider@{remove\_provider}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{remove\_provider()}{remove\_provider()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a8e407c25964ead496dee0fe15b8927d5} 
+ bool p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+remove\+\_\+provider (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{key}{, }\item[{bytes}]{peer\+\_\+id}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Remove a provider record.
+
+Args:
+    key: Content key (CID)
+    peer_id: ID of the provider peer
+
+Returns:
+    True if provider was found and removed
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00140}{140}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{provider_8py_source_l00085}{\+\_\+lock}}, \doxymbox{\hyperlink{provider_8py_source_l00083}{\+\_\+providers}}, \doxymbox{\hyperlink{provider_8py_source_l00084}{\+\_\+records}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00052}{p2p\+\_\+engine.\+dht.\+provider.\+compute\+\_\+key()}}.
+
+函数调用图:\+
+% FIG 7
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ae6e08cda483dada087f0437fc474737e}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!\_local\_providers@{\_local\_providers}}
+\index{\_local\_providers@{\_local\_providers}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{\_local\_providers}{\_local\_providers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_ae6e08cda483dada087f0437fc474737e} 
+p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+local\+\_\+providers = set()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00086}{86}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{provider_8py_source_l00206}{add\+\_\+local\+\_\+provider()}}, \doxymbox{\hyperlink{provider_8py_source_l00224}{get\+\_\+local\+\_\+providers()}}, \doxymbox{\hyperlink{provider_8py_source_l00233}{is\+\_\+providing()}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00215}{remove\+\_\+local\+\_\+provider()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a750695be7f528e94d03124a6245d0d58}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!\_lock@{\_lock}}
+\index{\_lock@{\_lock}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{\_lock}{\_lock}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a750695be7f528e94d03124a6245d0d58} 
+p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+lock = asyncio.\+Lock()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00085}{85}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{mplex__v2_8py_source_l00617}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00208}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00263}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+cleanup\+\_\+loop()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00269}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{event_8py_source_l00462}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+\_\+process\+\_\+event()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00155}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+refill\+\_\+async()}}, \doxymbox{\hyperlink{allocation_8py_source_l00047}{src.\+allocation.\+Port\+Pool.\+acquire()}}, \doxymbox{\hyperlink{routing_8py_source_l00353}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+add\+\_\+peer()}}, \doxymbox{\hyperlink{provider_8py_source_l00093}{add\+\_\+provider()}}, \doxymbox{\hyperlink{provider_8py_source_l00245}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00158}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{allocation_8py_source_l00320}{src.\+allocation.\+Allocation\+Manager.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00220}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{query_8py_source_l00475}{p2p\+\_\+engine.\+dht.\+query.\+Query\+Manager.\+cleanup\+\_\+expired\+\_\+queries()}}, \doxymbox{\hyperlink{routing_8py_source_l00469}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{connection_8py_source_l00304}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+cleanup\+\_\+stale()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00152}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+clear()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00203}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+clear\+\_\+tickets()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close()}}, \doxymbox{\hyperlink{client_8py_source_l00309}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+connect()}}, \doxymbox{\hyperlink{connection_8py_source_l00042}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+connect()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00056}{src.\+bandwidth.\+Token\+Bucket.\+consume()}}, \doxymbox{\hyperlink{allocation_8py_source_l00155}{src.\+allocation.\+Allocation\+Manager.\+create\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00060}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+create\+\_\+session()}}, \doxymbox{\hyperlink{allocation_8py_source_l00275}{src.\+allocation.\+Allocation\+Manager.\+delete\+\_\+allocation()}}, \doxymbox{\hyperlink{relay__server_2relay_8py_source_l00116}{src.\+relay\+\_\+server.\+relay.\+Relay\+Handler.\+delete\+\_\+session()}}, \doxymbox{\hyperlink{connection_8py_source_l00079}{src.\+signaling\+\_\+server.\+connection.\+Connection\+Manager.\+disconnect()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00081}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+get()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00216}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+get()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00302}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+read\+\_\+rate()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00579}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+get\+\_\+session()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00136}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+get\+\_\+ticket()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00317}{src.\+bandwidth.\+Throughput\+Monitor.\+get\+\_\+write\+\_\+rate()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00145}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+invalidate()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+open\+\_\+stream()}}, \doxymbox{\hyperlink{query__optimizer_8py_source_l00118}{p2p\+\_\+engine.\+dht.\+query\+\_\+optimizer.\+Query\+Cache.\+put()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00239}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+put()}}, \doxymbox{\hyperlink{metrics_8py_source_l00082}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+record\+\_\+connection()}}, \doxymbox{\hyperlink{metrics_8py_source_l00111}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+record\+\_\+nat\+\_\+detection()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00273}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+read()}}, \doxymbox{\hyperlink{bandwidth_8py_source_l00284}{src.\+bandwidth.\+Throughput\+Monitor.\+record\+\_\+write()}}, \doxymbox{\hyperlink{allocation_8py_source_l00252}{src.\+allocation.\+Allocation\+Manager.\+refresh\+\_\+allocation()}}, \doxymbox{\hyperlink{allocation_8py_source_l00063}{src.\+allocation.\+Port\+Pool.\+release()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00251}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+remove()}}, \doxymbox{\hyperlink{routing_8py_source_l00385}{p2p\+\_\+engine.\+dht.\+routing.\+Routing\+Table.\+remove\+\_\+peer()}}, \doxymbox{\hyperlink{provider_8py_source_l00140}{remove\+\_\+provider()}}, \doxymbox{\hyperlink{metrics_8py_source_l00172}{p2p\+\_\+engine.\+observability.\+metrics.\+Metrics\+Collector.\+reset()}}, \doxymbox{\hyperlink{event_8py_source_l00516}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+reset\+\_\+metrics()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00196}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+revoke\+\_\+ticket()}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00557}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session\+Pool.\+stop()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00199}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+stop()}}, \doxymbox{\hyperlink{quic__0rtt_8py_source_l00164}{p2p\+\_\+engine.\+transport.\+quic\+\_\+0rtt.\+Session\+Ticket\+Store.\+store\+\_\+ticket()}}, \doxymbox{\hyperlink{event_8py_source_l00294}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+subscribe()}}, \doxymbox{\hyperlink{event_8py_source_l00326}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+subscribe\+\_\+all()}}, \doxymbox{\hyperlink{event_8py_source_l00352}{p2p\+\_\+engine.\+event.\+Event\+Bus.\+unsubscribe()}} , 以及 \doxymbox{\hyperlink{bandwidth_8py_source_l00080}{src.\+bandwidth.\+Token\+Bucket.\+wait\+\_\+for\+\_\+tokens()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a28328f64065c93cc263aa65c29ce4fa9}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!\_providers@{\_providers}}
+\index{\_providers@{\_providers}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{\_providers}{\_providers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a28328f64065c93cc263aa65c29ce4fa9} 
+p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+providers = defaultdict(set)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00083}{83}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{provider_8py_source_l00093}{add\+\_\+provider()}}, \doxymbox{\hyperlink{provider_8py_source_l00245}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{provider_8py_source_l00167}{get\+\_\+providers()}}, \doxymbox{\hyperlink{provider_8py_source_l00276}{key\+\_\+count()}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00140}{remove\+\_\+provider()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a4dfca64d61b2efa5a6a1fbe0f8f1b1ff}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!\_records@{\_records}}
+\index{\_records@{\_records}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{\_records}{\_records}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a4dfca64d61b2efa5a6a1fbe0f8f1b1ff} 
+p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+\_\+records = \{\}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00084}{84}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{provider_8py_source_l00093}{add\+\_\+provider()}}, \doxymbox{\hyperlink{provider_8py_source_l00245}{cleanup\+\_\+expired()}}, \doxymbox{\hyperlink{provider_8py_source_l00167}{get\+\_\+providers()}}, \doxymbox{\hyperlink{provider_8py_source_l00271}{provider\+\_\+count()}} , 以及 \doxymbox{\hyperlink{provider_8py_source_l00140}{remove\+\_\+provider()}}.
+
+\Hypertarget{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3c7d9ff4d34f6e6cca356c338f36efcf}\index{p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}!max\_providers@{max\_providers}}
+\index{max\_providers@{max\_providers}!p2p\_engine.dht.provider.ProviderManager@{p2p\_engine.dht.provider.ProviderManager}}
+\doxysubsubsection{\texorpdfstring{max\_providers}{max\_providers}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1dht_1_1provider_1_1_provider_manager_a3c7d9ff4d34f6e6cca356c338f36efcf} 
+p2p\+\_\+engine.\+dht.\+provider.\+Provider\+Manager.\+max\+\_\+providers = max\+\_\+providers}
+
+
+
+在文件 \doxymbox{\hyperlink{provider_8py_source}{provider.\+py}} 第 \doxymbox{\hyperlink{provider_8py_source_l00082}{82}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{provider_8py_source_l00093}{add\+\_\+provider()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+dht/\+\doxymbox{\hyperlink{provider_8py}{provider.\+py}}\end{DoxyCompactItemize}

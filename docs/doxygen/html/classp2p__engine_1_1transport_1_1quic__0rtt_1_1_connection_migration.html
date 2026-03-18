@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.transport.quic_0rtt.ConnectionMigration类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_migration.html','','classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_migration-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.transport.quic_0rtt.ConnectionMigration类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4e47dbbb90a22f39f3302ef5cb0eda2e" id="r_a4e47dbbb90a22f39f3302ef5cb0eda2e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4e47dbbb90a22f39f3302ef5cb0eda2e">__init__</a> (self, int max_attempts=<a class="el" href="namespacep2p__engine_1_1transport_1_1quic__0rtt.html#ae2e964f646cfd8482a804a8f5fa148f8">MAX_MIGRATION_ATTEMPTS</a>)</td></tr>
+<tr class="memitem:ac0ec8f957c398269c1c6f429948f0b43" id="r_ac0ec8f957c398269c1c6f429948f0b43"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac0ec8f957c398269c1c6f429948f0b43">migrate_connection</a> (self, Any connection, Tuple[str, int] new_address, float timeout=<a class="el" href="namespacep2p__engine_1_1transport_1_1quic__0rtt.html#ae006fb552fb1319cda6acdef837f976e">MIGRATION_TIMEOUT</a>)</td></tr>
+<tr class="memitem:a56b939fe4a5cd5f4281a3bee0ae77661" id="r_a56b939fe4a5cd5f4281a3bee0ae77661"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a56b939fe4a5cd5f4281a3bee0ae77661">cancel_migration</a> (self, Any connection)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a298dbd43857d6540c444db2ce5e59ce1" id="r_a298dbd43857d6540c444db2ce5e59ce1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a298dbd43857d6540c444db2ce5e59ce1">_do_migration</a> (self, Any connection, Tuple[str, int] new_address, float timeout)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:ad7260f4578a82168e8fea83b053c6f10" id="r_ad7260f4578a82168e8fea83b053c6f10"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad7260f4578a82168e8fea83b053c6f10">_max_attempts</a> = max_attempts</td></tr>
+<tr class="memitem:a873132931ff5887521542f66adee376d" id="r_a873132931ff5887521542f66adee376d"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a873132931ff5887521542f66adee376d">_active_migrations</a> = {}</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">QUIC connection migration support.
+
+Allows connections to survive network changes (e.g., WiFi to cellular).
+</pre> 
+<p class="definition">在文件 <a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a> 第 <a class="el" href="quic__0rtt_8py_source.html#l00437">437</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a4e47dbbb90a22f39f3302ef5cb0eda2e" name="a4e47dbbb90a22f39f3302ef5cb0eda2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e47dbbb90a22f39f3302ef5cb0eda2e">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.transport.quic_0rtt.ConnectionMigration.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>max_attempts</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacep2p__engine_1_1transport_1_1quic__0rtt.html#ae2e964f646cfd8482a804a8f5fa148f8">MAX_MIGRATION_ATTEMPTS</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a> 第 <a class="el" href="quic__0rtt_8py_source.html#l00444">444</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a298dbd43857d6540c444db2ce5e59ce1" name="a298dbd43857d6540c444db2ce5e59ce1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a298dbd43857d6540c444db2ce5e59ce1">&#9670;&#160;</a></span>_do_migration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.transport.quic_0rtt.ConnectionMigration._do_migration </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Any</td>          <td class="paramname"><span class="paramname"><em>connection</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]</td>          <td class="paramname"><span class="paramname"><em>new_address</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>timeout</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Perform connection migration.</pre> 
+<p class="definition">在文件 <a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a> 第 <a class="el" href="quic__0rtt_8py_source.html#l00486">486</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic__0rtt_8py_source.html#l00445">_max_attempts</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic__0rtt_8py_source.html#l00453">migrate_connection()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_migration_a298dbd43857d6540c444db2ce5e59ce1_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_migration_a298dbd43857d6540c444db2ce5e59ce1_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a56b939fe4a5cd5f4281a3bee0ae77661" name="a56b939fe4a5cd5f4281a3bee0ae77661"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56b939fe4a5cd5f4281a3bee0ae77661">&#9670;&#160;</a></span>cancel_migration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.transport.quic_0rtt.ConnectionMigration.cancel_migration </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Any</td>          <td class="paramname"><span class="paramname"><em>connection</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Cancel ongoing migration for connection.</pre> 
+<p class="definition">在文件 <a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a> 第 <a class="el" href="quic__0rtt_8py_source.html#l00519">519</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic__0rtt_8py_source.html#l00446">_active_migrations</a>.</p>
+
+</div>
+</div>
+<a id="ac0ec8f957c398269c1c6f429948f0b43" name="ac0ec8f957c398269c1c6f429948f0b43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0ec8f957c398269c1c6f429948f0b43">&#9670;&#160;</a></span>migrate_connection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.transport.quic_0rtt.ConnectionMigration.migrate_connection </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Any</td>          <td class="paramname"><span class="paramname"><em>connection</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Tuple[str, int]</td>          <td class="paramname"><span class="paramname"><em>new_address</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="namespacep2p__engine_1_1transport_1_1quic__0rtt.html#ae006fb552fb1319cda6acdef837f976e">MIGRATION_TIMEOUT</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Migrate connection to new address.
+
+Args:
+    connection: QUIC connection to migrate
+    new_address: New (host, port) address
+    timeout: Migration timeout
+
+Returns:
+    True if migration succeeded
+</pre> 
+<p class="definition">在文件 <a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a> 第 <a class="el" href="quic__0rtt_8py_source.html#l00448">448</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic__0rtt_8py_source.html#l00446">_active_migrations</a> , 以及 <a class="el" href="quic__0rtt_8py_source.html#l00491">_do_migration()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_migration_ac0ec8f957c398269c1c6f429948f0b43_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_migration_ac0ec8f957c398269c1c6f429948f0b43_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a873132931ff5887521542f66adee376d" name="a873132931ff5887521542f66adee376d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a873132931ff5887521542f66adee376d">&#9670;&#160;</a></span>_active_migrations</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict p2p_engine.transport.quic_0rtt.ConnectionMigration._active_migrations = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a> 第 <a class="el" href="quic__0rtt_8py_source.html#l00446">446</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic__0rtt_8py_source.html#l00519">cancel_migration()</a> , 以及 <a class="el" href="quic__0rtt_8py_source.html#l00453">migrate_connection()</a>.</p>
+
+</div>
+</div>
+<a id="ad7260f4578a82168e8fea83b053c6f10" name="ad7260f4578a82168e8fea83b053c6f10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7260f4578a82168e8fea83b053c6f10">&#9670;&#160;</a></span>_max_attempts</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.transport.quic_0rtt.ConnectionMigration._max_attempts = max_attempts</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a> 第 <a class="el" href="quic__0rtt_8py_source.html#l00445">445</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic__0rtt_8py_source.html#l00491">_do_migration()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/transport/<a class="el" href="quic__0rtt_8py_source.html">quic_0rtt.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1transport.html">transport</a></li><li class="navelem"><a href="namespacep2p__engine_1_1transport_1_1quic__0rtt.html">quic_0rtt</a></li><li class="navelem"><a href="classp2p__engine_1_1transport_1_1quic__0rtt_1_1_connection_migration.html">ConnectionMigration</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

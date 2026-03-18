@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::transport::upgrader::TransportUpgrader</compoundname>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a2b766604e9ae56f1d60ab26e7d82d510" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.TransportUpgrader::_security_transports</definition>
+        <argsstring></argsstring>
+        <name>_security_transports</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader._security_transports</qualifiedname>
+        <initializer>=  security_transports or []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="342" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="342" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a5a35c69f2b698e291d16213a9108adf1" compoundref="upgrader_8py" startline="426" endline="448">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_inbound</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a47be87b845799c913b1320a2837c9ef2" compoundref="upgrader_8py" startline="453" endline="470">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_outbound</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1ae7d66bc1a958640f20fc6ec60fea48b0" compoundref="upgrader_8py" startline="346" endline="349">p2p_engine.transport.upgrader.TransportUpgrader.add_security_transport</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1af11f8c69ac941ed8db633373903de4a7" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.TransportUpgrader::_muxers</definition>
+        <argsstring></argsstring>
+        <name>_muxers</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader._muxers</qualifiedname>
+        <initializer>=  muxers or []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="343" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="343" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1aba136872b36de8cdf33e0736537abf95" compoundref="upgrader_8py" startline="475" endline="493">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_muxer</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a4b2fbf76cbd22eaa8a4c33a7e092973d" compoundref="upgrader_8py" startline="350" endline="353">p2p_engine.transport.upgrader.TransportUpgrader.add_muxer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a050b8eb17e44bff244324cc9639dc38c" prot="protected" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine.transport.upgrader.TransportUpgrader::_upgrade_callbacks</definition>
+        <argsstring></argsstring>
+        <name>_upgrade_callbacks</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader._upgrade_callbacks</qualifiedname>
+        <initializer>=  []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="344" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="344" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a52abbbbe83003e5314de69aaa64479ec" compoundref="upgrader_8py" startline="354" endline="357">p2p_engine.transport.upgrader.TransportUpgrader.on_upgrade</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a1c464f41c5ff893d3291a6374c213e43" compoundref="upgrader_8py" startline="362" endline="389">p2p_engine.transport.upgrader.TransportUpgrader.upgrade_inbound</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a9f8ab633745d922f2fa7de543de134d9" compoundref="upgrader_8py" startline="394" endline="421">p2p_engine.transport.upgrader.TransportUpgrader.upgrade_outbound</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a6bb97a3019f57ad4fb9d3851894d0740" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.transport.upgrader.TransportUpgrader.__init__</definition>
+        <argsstring>(self, Optional[List[SecurityTransport]] security_transports=None, Optional[List[StreamMuxer]] muxers=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Optional]</type>
+          <declname>security_transports</declname>
+          <array>[List[SecurityTransport]</array>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>Optional]</type>
+          <declname>muxers</declname>
+          <array>[List[StreamMuxer]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>初始化传输升级器
+
+Args:
+    security_transports: 支持的安全传输列表（按优先级排序）
+    muxers: 支持的流复用器列表（按优先级排序）
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="330" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="334" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1ae7d66bc1a958640f20fc6ec60fea48b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.upgrader.TransportUpgrader.add_security_transport</definition>
+        <argsstring>(self, SecurityTransport transport)</argsstring>
+        <name>add_security_transport</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader.add_security_transport</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1upgrader_1_1_security_transport" kindref="compound">SecurityTransport</ref></type>
+          <declname>transport</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>添加安全传输</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="346" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="346" bodyend="349"/>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_builder_1a74f20203d3462b8e9a42281fe13db342" compoundref="manager_8py" startline="321">p2p_engine.transport.manager.TransportBuilder._security_transports</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a2b766604e9ae56f1d60ab26e7d82d510" compoundref="upgrader_8py" startline="342">p2p_engine.transport.upgrader.TransportUpgrader._security_transports</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a4b2fbf76cbd22eaa8a4c33a7e092973d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.upgrader.TransportUpgrader.add_muxer</definition>
+        <argsstring>(self, StreamMuxer muxer)</argsstring>
+        <name>add_muxer</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader.add_muxer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1upgrader_1_1_stream_muxer" kindref="compound">StreamMuxer</ref></type>
+          <declname>muxer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>添加流复用器</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="350" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="350" bodyend="353"/>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_builder_1a66e9f0e794f6cc5caee971f2bb7e8249" compoundref="manager_8py" startline="322">p2p_engine.transport.manager.TransportBuilder._muxers</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1af11f8c69ac941ed8db633373903de4a7" compoundref="upgrader_8py" startline="343">p2p_engine.transport.upgrader.TransportUpgrader._muxers</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a52abbbbe83003e5314de69aaa64479ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.transport.upgrader.TransportUpgrader.on_upgrade</definition>
+        <argsstring>(self, Callable[[], Awaitable[None]] callback)</argsstring>
+        <name>on_upgrade</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader.on_upgrade</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Callable</type>
+          <defname>callback</defname>
+          <array>[[]</array>
+        </param>
+        <param>
+          <type>Awaitable]</type>
+          <declname>callback</declname>
+          <array>[None]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>注册升级完成回调</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="354" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="354" bodyend="357"/>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a050b8eb17e44bff244324cc9639dc38c" compoundref="upgrader_8py" startline="344">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_callbacks</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a1c464f41c5ff893d3291a6374c213e43" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>&quot;UpgradedConnection&quot;</type>
+        <definition> &quot;UpgradedConnection&quot; p2p_engine.transport.upgrader.TransportUpgrader.upgrade_inbound</definition>
+        <argsstring>(self, Connection conn, Optional[str] peer_id=None)</argsstring>
+        <name>upgrade_inbound</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader.upgrade_inbound</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" kindref="compound">Connection</ref></type>
+          <declname>conn</declname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>peer_id</declname>
+          <array>[str]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>升级入站连接
+
+Args:
+    conn: 原始连接
+    peer_id: 可选的对等节点ID
+
+Returns:
+    升级后的连接
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="358" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="362" bodyend="389"/>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a050b8eb17e44bff244324cc9639dc38c" compoundref="upgrader_8py" startline="344">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_callbacks</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1aba136872b36de8cdf33e0736537abf95" compoundref="upgrader_8py" startline="475" endline="493">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_muxer</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a5a35c69f2b698e291d16213a9108adf1" compoundref="upgrader_8py" startline="426" endline="448">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_inbound</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a9f8ab633745d922f2fa7de543de134d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>&quot;UpgradedConnection&quot;</type>
+        <definition> &quot;UpgradedConnection&quot; p2p_engine.transport.upgrader.TransportUpgrader.upgrade_outbound</definition>
+        <argsstring>(self, Connection conn, str peer_id)</argsstring>
+        <name>upgrade_outbound</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader.upgrade_outbound</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" kindref="compound">Connection</ref></type>
+          <declname>conn</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>升级出站连接
+
+Args:
+    conn: 原始连接
+    peer_id: 目标对等节点ID
+
+Returns:
+    升级后的连接
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="390" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="394" bodyend="421"/>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a050b8eb17e44bff244324cc9639dc38c" compoundref="upgrader_8py" startline="344">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_callbacks</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1aba136872b36de8cdf33e0736537abf95" compoundref="upgrader_8py" startline="475" endline="493">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_muxer</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a47be87b845799c913b1320a2837c9ef2" compoundref="upgrader_8py" startline="453" endline="470">p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_outbound</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a5a35c69f2b698e291d16213a9108adf1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection" kindref="compound">SecureConnection</ref></type>
+        <definition> SecureConnection p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_inbound</definition>
+        <argsstring>(self, Connection conn, Optional[str] peer_id)</argsstring>
+        <name>_upgrade_security_inbound</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_inbound</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" kindref="compound">Connection</ref></type>
+          <declname>conn</declname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>peer_id</declname>
+          <array>[str]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>入站安全升级</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="422" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="426" bodyend="448"/>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_builder_1a74f20203d3462b8e9a42281fe13db342" compoundref="manager_8py" startline="321">p2p_engine.transport.manager.TransportBuilder._security_transports</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a2b766604e9ae56f1d60ab26e7d82d510" compoundref="upgrader_8py" startline="342">p2p_engine.transport.upgrader.TransportUpgrader._security_transports</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a1c464f41c5ff893d3291a6374c213e43" compoundref="upgrader_8py" startline="362" endline="389">p2p_engine.transport.upgrader.TransportUpgrader.upgrade_inbound</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a47be87b845799c913b1320a2837c9ef2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection" kindref="compound">SecureConnection</ref></type>
+        <definition> SecureConnection p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_outbound</definition>
+        <argsstring>(self, Connection conn, str peer_id)</argsstring>
+        <name>_upgrade_security_outbound</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader._upgrade_security_outbound</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1base_1_1_connection" kindref="compound">Connection</ref></type>
+          <declname>conn</declname>
+        </param>
+        <param>
+          <type>str</type>
+          <declname>peer_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>出站安全升级</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="449" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="453" bodyend="470"/>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_builder_1a74f20203d3462b8e9a42281fe13db342" compoundref="manager_8py" startline="321">p2p_engine.transport.manager.TransportBuilder._security_transports</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a2b766604e9ae56f1d60ab26e7d82d510" compoundref="upgrader_8py" startline="342">p2p_engine.transport.upgrader.TransportUpgrader._security_transports</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a9f8ab633745d922f2fa7de543de134d9" compoundref="upgrader_8py" startline="394" endline="421">p2p_engine.transport.upgrader.TransportUpgrader.upgrade_outbound</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1aba136872b36de8cdf33e0736537abf95" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session" kindref="compound">MuxedSession</ref></type>
+        <definition> MuxedSession p2p_engine.transport.upgrader.TransportUpgrader._upgrade_muxer</definition>
+        <argsstring>(self, SecureConnection conn, bool is_initiator)</argsstring>
+        <name>_upgrade_muxer</name>
+        <qualifiedname>p2p_engine.transport.upgrader.TransportUpgrader._upgrade_muxer</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection" kindref="compound">SecureConnection</ref></type>
+          <declname>conn</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_initiator</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>流复用升级</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/transport/upgrader.py" line="471" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="475" bodyend="493"/>
+        <references refid="classp2p__engine_1_1transport_1_1manager_1_1_transport_builder_1a66e9f0e794f6cc5caee971f2bb7e8249" compoundref="manager_8py" startline="322">p2p_engine.transport.manager.TransportBuilder._muxers</references>
+        <references refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1af11f8c69ac941ed8db633373903de4a7" compoundref="upgrader_8py" startline="343">p2p_engine.transport.upgrader.TransportUpgrader._muxers</references>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a1c464f41c5ff893d3291a6374c213e43" compoundref="upgrader_8py" startline="362" endline="389">p2p_engine.transport.upgrader.TransportUpgrader.upgrade_inbound</referencedby>
+        <referencedby refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a9f8ab633745d922f2fa7de543de134d9" compoundref="upgrader_8py" startline="394" endline="421">p2p_engine.transport.upgrader.TransportUpgrader.upgrade_outbound</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>传输升级器
+
+负责将原始传输连接升级为支持安全通道和流复用的完整连接。
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/transport/upgrader.py" line="323" column="1" bodyfile="p2p_engine/transport/upgrader.py" bodystart="323" bodyend="493"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a6bb97a3019f57ad4fb9d3851894d0740" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1af11f8c69ac941ed8db633373903de4a7" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>_muxers</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a2b766604e9ae56f1d60ab26e7d82d510" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>_security_transports</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a050b8eb17e44bff244324cc9639dc38c" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>_upgrade_callbacks</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1aba136872b36de8cdf33e0736537abf95" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>_upgrade_muxer</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a5a35c69f2b698e291d16213a9108adf1" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>_upgrade_security_inbound</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a47be87b845799c913b1320a2837c9ef2" prot="protected" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>_upgrade_security_outbound</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a4b2fbf76cbd22eaa8a4c33a7e092973d" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>add_muxer</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1ae7d66bc1a958640f20fc6ec60fea48b0" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>add_security_transport</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a52abbbbe83003e5314de69aaa64479ec" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>on_upgrade</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a1c464f41c5ff893d3291a6374c213e43" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>upgrade_inbound</name></member>
+      <member refid="classp2p__engine_1_1transport_1_1upgrader_1_1_transport_upgrader_1a9f8ab633745d922f2fa7de543de134d9" prot="public" virt="non-virtual"><scope>p2p_engine::transport::upgrader::TransportUpgrader</scope><name>upgrade_outbound</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

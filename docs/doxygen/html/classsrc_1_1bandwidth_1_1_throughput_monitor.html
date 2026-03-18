@@ -1,0 +1,480 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: src.bandwidth.ThroughputMonitor类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classsrc_1_1bandwidth_1_1_throughput_monitor.html','','classsrc_1_1bandwidth_1_1_throughput_monitor-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">src.bandwidth.ThroughputMonitor类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a1a7f195bf5ef328a910912d44024cebe" id="r_a1a7f195bf5ef328a910912d44024cebe"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1a7f195bf5ef328a910912d44024cebe">__init__</a> (self, int window_seconds=5)</td></tr>
+<tr class="memitem:abaf0ad6089b5a85cc33a41718e4b7044" id="r_abaf0ad6089b5a85cc33a41718e4b7044"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#abaf0ad6089b5a85cc33a41718e4b7044">record_read</a> (self, int bytes_count)</td></tr>
+<tr class="memitem:a6913253b44bfe7c25cdc68560c692ddc" id="r_a6913253b44bfe7c25cdc68560c692ddc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6913253b44bfe7c25cdc68560c692ddc">record_write</a> (self, int bytes_count)</td></tr>
+<tr class="memitem:a4b8922e29dc5ba6a89f8f7893d51c08e" id="r_a4b8922e29dc5ba6a89f8f7893d51c08e"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a4b8922e29dc5ba6a89f8f7893d51c08e">get_read_rate</a> (self)</td></tr>
+<tr class="memitem:a8eaae207133c144f6add85eed4ebe52c" id="r_a8eaae207133c144f6add85eed4ebe52c"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a8eaae207133c144f6add85eed4ebe52c">get_write_rate</a> (self)</td></tr>
+<tr class="memitem:a82f085b470c430bc58e0377d541ef3e2" id="r_a82f085b470c430bc58e0377d541ef3e2"><td class="memItemLeft">Dict[str, float]&#160;</td><td class="memItemRight"><a class="el" href="#a82f085b470c430bc58e0377d541ef3e2">get_stats</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:a511f23f72e0ef0f1c2c94cf8c667a13e" id="r_a511f23f72e0ef0f1c2c94cf8c667a13e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a511f23f72e0ef0f1c2c94cf8c667a13e">window</a> = window_seconds</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ae369e64cad9d047bf2ca60bc646c8deb" id="r_ae369e64cad9d047bf2ca60bc646c8deb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ae369e64cad9d047bf2ca60bc646c8deb">_cleanup_old_samples</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a7716c4777ae682f4ff88cc9658bedb81" id="r_a7716c4777ae682f4ff88cc9658bedb81"><td class="memItemLeft">list&#160;</td><td class="memItemRight"><a class="el" href="#a7716c4777ae682f4ff88cc9658bedb81">_read_samples</a> = []</td></tr>
+<tr class="memitem:a793622e7fa5a1a4bb79dc4044ee8b250" id="r_a793622e7fa5a1a4bb79dc4044ee8b250"><td class="memItemLeft">list&#160;</td><td class="memItemRight"><a class="el" href="#a793622e7fa5a1a4bb79dc4044ee8b250">_write_samples</a> = []</td></tr>
+<tr class="memitem:a3e82d326a61efaf99760874ee8a766b1" id="r_a3e82d326a61efaf99760874ee8a766b1"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a3e82d326a61efaf99760874ee8a766b1">_lock</a> = asyncio.Lock()</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Monitor throughput rates.
+
+Tracks bytes transferred and calculates current rates.
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00254">254</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a1a7f195bf5ef328a910912d44024cebe" name="a1a7f195bf5ef328a910912d44024cebe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a7f195bf5ef328a910912d44024cebe">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.ThroughputMonitor.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>window_seconds</em></span><span class="paramdefsep"> = </span><span class="paramdefval">5</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize throughput monitor.
+
+Args:
+    window_seconds: Time window for rate calculation
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00261">261</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="ae369e64cad9d047bf2ca60bc646c8deb" name="ae369e64cad9d047bf2ca60bc646c8deb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae369e64cad9d047bf2ca60bc646c8deb">&#9670;&#160;</a></span>_cleanup_old_samples()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.ThroughputMonitor._cleanup_old_samples </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Remove samples older than window.</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00295">295</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00269">_read_samples</a>, <a class="el" href="bandwidth_8py_source.html#l00270">_write_samples</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00268">window</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00302">get_read_rate()</a>, <a class="el" href="bandwidth_8py_source.html#l00317">get_write_rate()</a>, <a class="el" href="bandwidth_8py_source.html#l00273">record_read()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00284">record_write()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_ae369e64cad9d047bf2ca60bc646c8deb_icgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_ae369e64cad9d047bf2ca60bc646c8deb_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a4b8922e29dc5ba6a89f8f7893d51c08e" name="a4b8922e29dc5ba6a89f8f7893d51c08e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b8922e29dc5ba6a89f8f7893d51c08e">&#9670;&#160;</a></span>get_read_rate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> float src.bandwidth.ThroughputMonitor.get_read_rate </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get current read rate (bytes/second).
+
+Returns:
+    Read rate
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00302">302</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00295">_cleanup_old_samples()</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">src.allocation.AllocationManager._lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00271">_lock</a>, <a class="el" href="bandwidth_8py_source.html#l00054">src.bandwidth.TokenBucket._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00269">_read_samples</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00268">window</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00332">get_stats()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_a4b8922e29dc5ba6a89f8f7893d51c08e_cgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_a4b8922e29dc5ba6a89f8f7893d51c08e_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_a4b8922e29dc5ba6a89f8f7893d51c08e_icgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_a4b8922e29dc5ba6a89f8f7893d51c08e_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a82f085b470c430bc58e0377d541ef3e2" name="a82f085b470c430bc58e0377d541ef3e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82f085b470c430bc58e0377d541ef3e2">&#9670;&#160;</a></span>get_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Dict[str, float] src.bandwidth.ThroughputMonitor.get_stats </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get throughput statistics.
+
+Returns:
+    Dictionary with stats
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00332">332</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00302">get_read_rate()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00317">get_write_rate()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_a82f085b470c430bc58e0377d541ef3e2_cgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_a82f085b470c430bc58e0377d541ef3e2_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a8eaae207133c144f6add85eed4ebe52c" name="a8eaae207133c144f6add85eed4ebe52c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eaae207133c144f6add85eed4ebe52c">&#9670;&#160;</a></span>get_write_rate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> float src.bandwidth.ThroughputMonitor.get_write_rate </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get current write rate (bytes/second).
+
+Returns:
+    Write rate
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00317">317</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00295">_cleanup_old_samples()</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">src.allocation.AllocationManager._lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00271">_lock</a>, <a class="el" href="bandwidth_8py_source.html#l00054">src.bandwidth.TokenBucket._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00270">_write_samples</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00268">window</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00332">get_stats()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_a8eaae207133c144f6add85eed4ebe52c_cgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_a8eaae207133c144f6add85eed4ebe52c_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_a8eaae207133c144f6add85eed4ebe52c_icgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_a8eaae207133c144f6add85eed4ebe52c_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="abaf0ad6089b5a85cc33a41718e4b7044" name="abaf0ad6089b5a85cc33a41718e4b7044"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaf0ad6089b5a85cc33a41718e4b7044">&#9670;&#160;</a></span>record_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.ThroughputMonitor.record_read </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>bytes_count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Record read operation.
+
+Args:
+    bytes_count: Number of bytes read
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00273">273</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00295">_cleanup_old_samples()</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">src.allocation.AllocationManager._lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00271">_lock</a>, <a class="el" href="bandwidth_8py_source.html#l00054">src.bandwidth.TokenBucket._lock</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00269">_read_samples</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_abaf0ad6089b5a85cc33a41718e4b7044_cgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_abaf0ad6089b5a85cc33a41718e4b7044_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a6913253b44bfe7c25cdc68560c692ddc" name="a6913253b44bfe7c25cdc68560c692ddc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6913253b44bfe7c25cdc68560c692ddc">&#9670;&#160;</a></span>record_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.ThroughputMonitor.record_write </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>bytes_count</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Record write operation.
+
+Args:
+    bytes_count: Number of bytes written
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00284">284</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00295">_cleanup_old_samples()</a>, <a class="el" href="provider_8py_source.html#l00085">p2p_engine.dht.provider.ProviderManager._lock</a>, <a class="el" href="query_8py_source.html#l00139">p2p_engine.dht.query.QueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00362">p2p_engine.dht.query_optimizer.OptimizedQueryManager._lock</a>, <a class="el" href="query__optimizer_8py_source.html#l00077">p2p_engine.dht.query_optimizer.QueryCache._lock</a>, <a class="el" href="routing_8py_source.html#l00351">p2p_engine.dht.routing.RoutingTable._lock</a>, <a class="el" href="event_8py_source.html#l00238">p2p_engine.event.EventBus._lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00549">p2p_engine.muxer.mplex_v2.MplexSessionPool._lock</a>, <a class="el" href="yamux__optimized_8py_source.html#l00129">p2p_engine.muxer.yamux_optimized.StreamIDPool._lock</a>, <a class="el" href="metrics_8py_source.html#l00062">p2p_engine.observability.metrics.MetricsCollector._lock</a>, <a class="el" href="quic__0rtt_8py_source.html#l00116">p2p_engine.transport.quic_0rtt.SessionTicketStore._lock</a>, <a class="el" href="tcp__optimized_8py_source.html#l00191">p2p_engine.transport.tcp_optimized.ConnectionPool._lock</a>, <a class="el" href="upgrader_8py_source.html#l00204">p2p_engine.transport.upgrader.MuxedSession._lock</a>, <a class="el" href="client_8py_source.html#l00213">p2p_sdk.client.P2PClient._lock</a>, <a class="el" href="allocation_8py_source.html#l00120">src.allocation.AllocationManager._lock</a>, <a class="el" href="allocation_8py_source.html#l00045">src.allocation.PortPool._lock</a>, <a class="el" href="bandwidth_8py_source.html#l00271">_lock</a>, <a class="el" href="bandwidth_8py_source.html#l00054">src.bandwidth.TokenBucket._lock</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00270">_write_samples</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_throughput_monitor_a6913253b44bfe7c25cdc68560c692ddc_cgraph.png" border="0" usemap="#aclasssrc_1_1bandwidth_1_1_throughput_monitor_a6913253b44bfe7c25cdc68560c692ddc_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a3e82d326a61efaf99760874ee8a766b1" name="a3e82d326a61efaf99760874ee8a766b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e82d326a61efaf99760874ee8a766b1">&#9670;&#160;</a></span>_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.ThroughputMonitor._lock = asyncio.Lock()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00271">271</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="relay__server_2relay_8py_source.html#l00220">src.relay_server.relay.RelayHandler.cleanup_expired()</a>, <a class="el" href="connection_8py_source.html#l00304">src.signaling_server.connection.ConnectionManager.cleanup_stale()</a>, <a class="el" href="connection_8py_source.html#l00042">src.signaling_server.connection.ConnectionManager.connect()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00060">src.relay_server.relay.RelayHandler.create_session()</a>, <a class="el" href="relay__server_2relay_8py_source.html#l00116">src.relay_server.relay.RelayHandler.delete_session()</a>, <a class="el" href="connection_8py_source.html#l00079">src.signaling_server.connection.ConnectionManager.disconnect()</a>, <a class="el" href="bandwidth_8py_source.html#l00302">get_read_rate()</a>, <a class="el" href="bandwidth_8py_source.html#l00317">get_write_rate()</a>, <a class="el" href="bandwidth_8py_source.html#l00273">record_read()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00284">record_write()</a>.</p>
+
+</div>
+</div>
+<a id="a7716c4777ae682f4ff88cc9658bedb81" name="a7716c4777ae682f4ff88cc9658bedb81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7716c4777ae682f4ff88cc9658bedb81">&#9670;&#160;</a></span>_read_samples</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list src.bandwidth.ThroughputMonitor._read_samples = []</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00269">269</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00295">_cleanup_old_samples()</a>, <a class="el" href="bandwidth_8py_source.html#l00302">get_read_rate()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00273">record_read()</a>.</p>
+
+</div>
+</div>
+<a id="a793622e7fa5a1a4bb79dc4044ee8b250" name="a793622e7fa5a1a4bb79dc4044ee8b250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a793622e7fa5a1a4bb79dc4044ee8b250">&#9670;&#160;</a></span>_write_samples</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">list src.bandwidth.ThroughputMonitor._write_samples = []</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00270">270</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00295">_cleanup_old_samples()</a>, <a class="el" href="bandwidth_8py_source.html#l00317">get_write_rate()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00284">record_write()</a>.</p>
+
+</div>
+</div>
+<a id="a511f23f72e0ef0f1c2c94cf8c667a13e" name="a511f23f72e0ef0f1c2c94cf8c667a13e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511f23f72e0ef0f1c2c94cf8c667a13e">&#9670;&#160;</a></span>window</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.ThroughputMonitor.window = window_seconds</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00268">268</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00295">_cleanup_old_samples()</a>, <a class="el" href="bandwidth_8py_source.html#l00302">get_read_rate()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00317">get_write_rate()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>relay-server/src/<a class="el" href="bandwidth_8py_source.html">bandwidth.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacesrc.html">src</a></li><li class="navelem"><a href="namespacesrc_1_1bandwidth.html">bandwidth</a></li><li class="navelem"><a href="classsrc_1_1bandwidth_1_1_throughput_monitor.html">ThroughputMonitor</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

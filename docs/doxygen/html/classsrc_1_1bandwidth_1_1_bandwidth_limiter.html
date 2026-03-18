@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: src.bandwidth.BandwidthLimiter类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classsrc_1_1bandwidth_1_1_bandwidth_limiter.html','','classsrc_1_1bandwidth_1_1_bandwidth_limiter-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">src.bandwidth.BandwidthLimiter类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+src.bandwidth.BandwidthLimiter 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classsrc_1_1bandwidth_1_1_bandwidth_limiter__coll__graph.png" border="0" usemap="#asrc_8bandwidth_8_bandwidth_limiter_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aa87ea1ad1f6f0b9a849ecb6ee36b8a1c" id="r_aa87ea1ad1f6f0b9a849ecb6ee36b8a1c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aa87ea1ad1f6f0b9a849ecb6ee36b8a1c">__init__</a> (self, Optional[<a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">BandwidthLimit</a>] <a class="el" href="#afd49f1d82ed2e26f351c8e6e29fd7ed3">default_limit</a>=None)</td></tr>
+<tr class="memitem:af4609bbde00596273bb3a35b18bbbea6" id="r_af4609bbde00596273bb3a35b18bbbea6"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af4609bbde00596273bb3a35b18bbbea6">throttle_read</a> (self, str allocation_id, int size)</td></tr>
+<tr class="memitem:acc1e7b50b152006fd2cd87c7a11b6068" id="r_acc1e7b50b152006fd2cd87c7a11b6068"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#acc1e7b50b152006fd2cd87c7a11b6068">throttle_write</a> (self, str allocation_id, int size)</td></tr>
+<tr class="memitem:a8c2fa1a778e4cb0e9a4ab1509585f18f" id="r_a8c2fa1a778e4cb0e9a4ab1509585f18f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8c2fa1a778e4cb0e9a4ab1509585f18f">set_limit</a> (self, str allocation_id, <a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">BandwidthLimit</a> limit)</td></tr>
+<tr class="memitem:ab10791079e6da96fdd1f93484707bde4" id="r_ab10791079e6da96fdd1f93484707bde4"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab10791079e6da96fdd1f93484707bde4">remove_allocation</a> (self, str allocation_id)</td></tr>
+<tr class="memitem:a3de8eb5c570f875b921b22792dba06b9" id="r_a3de8eb5c570f875b921b22792dba06b9"><td class="memItemLeft"><a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a>&#160;</td><td class="memItemRight"><a class="el" href="#a3de8eb5c570f875b921b22792dba06b9">get_stats</a> (self, str allocation_id)</td></tr>
+<tr class="memitem:a296987427909f550d6f4907229f4f158" id="r_a296987427909f550d6f4907229f4f158"><td class="memItemLeft">Dict[str, int]&#160;</td><td class="memItemRight"><a class="el" href="#a296987427909f550d6f4907229f4f158">get_global_stats</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:afd49f1d82ed2e26f351c8e6e29fd7ed3" id="r_afd49f1d82ed2e26f351c8e6e29fd7ed3"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afd49f1d82ed2e26f351c8e6e29fd7ed3">default_limit</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a1d14dbde3643723e93454c5dd0452e1a" id="r_a1d14dbde3643723e93454c5dd0452e1a"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a1d14dbde3643723e93454c5dd0452e1a">_limiters</a> = {}</td></tr>
+<tr class="memitem:a59f863a7f5128f17caa8ea9b8c9d10d3" id="r_a59f863a7f5128f17caa8ea9b8c9d10d3"><td class="memItemLeft">Dict[str, <a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a59f863a7f5128f17caa8ea9b8c9d10d3">_stats</a> = defaultdict(<a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a>)</td></tr>
+<tr class="memitem:afb5b968a5f8bab9e1f1d63571b590b5f" id="r_afb5b968a5f8bab9e1f1d63571b590b5f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afb5b968a5f8bab9e1f1d63571b590b5f">_global_read_bucket</a></td></tr>
+<tr class="memitem:a798df6225af9c4798c006c6eeb88ecce" id="r_a798df6225af9c4798c006c6eeb88ecce"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a798df6225af9c4798c006c6eeb88ecce">_global_write_bucket</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">Bandwidth limiter using token bucket algorithm.
+
+Per-allocation and global limits support.
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00109">109</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="aa87ea1ad1f6f0b9a849ecb6ee36b8a1c" name="aa87ea1ad1f6f0b9a849ecb6ee36b8a1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa87ea1ad1f6f0b9a849ecb6ee36b8a1c">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.BandwidthLimiter.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[<a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">BandwidthLimit</a>] </td>          <td class="paramname"><span class="paramname"><em>default_limit</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize bandwidth limiter.
+
+Args:
+    default_limit: Default bandwidth limit for all allocations
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00116">116</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a296987427909f550d6f4907229f4f158" name="a296987427909f550d6f4907229f4f158"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a296987427909f550d6f4907229f4f158">&#9670;&#160;</a></span>get_global_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Dict[str, int] src.bandwidth.BandwidthLimiter.get_global_stats </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get global bandwidth statistics.
+
+Returns:
+    Dictionary with global stats
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00240">240</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00130">_global_read_bucket</a>, <a class="el" href="bandwidth_8py_source.html#l00134">_global_write_bucket</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00128">_limiters</a>.</p>
+
+</div>
+</div>
+<a id="a3de8eb5c570f875b921b22792dba06b9" name="a3de8eb5c570f875b921b22792dba06b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3de8eb5c570f875b921b22792dba06b9">&#9670;&#160;</a></span>get_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a> src.bandwidth.BandwidthLimiter.get_stats </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get bandwidth statistics for allocation.
+
+Args:
+    allocation_id: Allocation ID
+
+Returns:
+    Bandwidth statistics
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00228">228</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a>, <a class="el" href="ping_8py_source.html#l00084">p2p_engine.protocol.ping.PingProtocol._stats</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00129">_stats</a>.</p>
+
+</div>
+</div>
+<a id="ab10791079e6da96fdd1f93484707bde4" name="ab10791079e6da96fdd1f93484707bde4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab10791079e6da96fdd1f93484707bde4">&#9670;&#160;</a></span>remove_allocation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.BandwidthLimiter.remove_allocation </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Remove bandwidth limiter for allocation.
+
+Args:
+    allocation_id: Allocation ID
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00218">218</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00128">_limiters</a>, <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a>, <a class="el" href="ping_8py_source.html#l00084">p2p_engine.protocol.ping.PingProtocol._stats</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00129">_stats</a>.</p>
+
+</div>
+</div>
+<a id="a8c2fa1a778e4cb0e9a4ab1509585f18f" name="a8c2fa1a778e4cb0e9a4ab1509585f18f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c2fa1a778e4cb0e9a4ab1509585f18f">&#9670;&#160;</a></span>set_limit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.BandwidthLimiter.set_limit </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_limit.html">BandwidthLimit</a></td>          <td class="paramname"><span class="paramname"><em>limit</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Set bandwidth limit for an allocation.
+
+Args:
+    allocation_id: Allocation ID
+    limit: Bandwidth limit
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00199">199</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00128">_limiters</a>.</p>
+
+</div>
+</div>
+<a id="af4609bbde00596273bb3a35b18bbbea6" name="af4609bbde00596273bb3a35b18bbbea6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4609bbde00596273bb3a35b18bbbea6">&#9670;&#160;</a></span>throttle_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.bandwidth.BandwidthLimiter.throttle_read </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Throttle read operation.
+
+Args:
+    allocation_id: Allocation ID
+    size: Number of bytes to read
+
+Returns:
+    True if read allowed, False if rate limited
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00139">139</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00130">_global_read_bucket</a>, <a class="el" href="bandwidth_8py_source.html#l00128">_limiters</a>, <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a>, <a class="el" href="ping_8py_source.html#l00084">p2p_engine.protocol.ping.PingProtocol._stats</a>, <a class="el" href="bandwidth_8py_source.html#l00129">_stats</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00123">default_limit</a>.</p>
+
+</div>
+</div>
+<a id="acc1e7b50b152006fd2cd87c7a11b6068" name="acc1e7b50b152006fd2cd87c7a11b6068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1e7b50b152006fd2cd87c7a11b6068">&#9670;&#160;</a></span>throttle_write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool src.bandwidth.BandwidthLimiter.throttle_write </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>allocation_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>size</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Throttle write operation.
+
+Args:
+    allocation_id: Allocation ID
+    size: Number of bytes to write
+
+Returns:
+    True if write allowed, False if rate limited
+</pre> 
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00169">169</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="bandwidth_8py_source.html#l00134">_global_write_bucket</a>, <a class="el" href="bandwidth_8py_source.html#l00128">_limiters</a>, <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a>, <a class="el" href="ping_8py_source.html#l00084">p2p_engine.protocol.ping.PingProtocol._stats</a>, <a class="el" href="bandwidth_8py_source.html#l00129">_stats</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00123">default_limit</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="afb5b968a5f8bab9e1f1d63571b590b5f" name="afb5b968a5f8bab9e1f1d63571b590b5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb5b968a5f8bab9e1f1d63571b590b5f">&#9670;&#160;</a></span>_global_read_bucket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.BandwidthLimiter._global_read_bucket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=  TokenBucket(</div>
+<div class="line">            rate=100_000_000,  <span class="comment"># 100 Mbps global</span></div>
+<div class="line">            capacity=200_000_000,  <span class="comment"># 200 MB burst</span></div>
+<div class="line">        )</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00130">130</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00240">get_global_stats()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00139">throttle_read()</a>.</p>
+
+</div>
+</div>
+<a id="a798df6225af9c4798c006c6eeb88ecce" name="a798df6225af9c4798c006c6eeb88ecce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a798df6225af9c4798c006c6eeb88ecce">&#9670;&#160;</a></span>_global_write_bucket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.BandwidthLimiter._global_write_bucket</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=  TokenBucket(</div>
+<div class="line">            rate=100_000_000,</div>
+<div class="line">            capacity=200_000_000,</div>
+<div class="line">        )</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00134">134</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00240">get_global_stats()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00169">throttle_write()</a>.</p>
+
+</div>
+</div>
+<a id="a1d14dbde3643723e93454c5dd0452e1a" name="a1d14dbde3643723e93454c5dd0452e1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d14dbde3643723e93454c5dd0452e1a">&#9670;&#160;</a></span>_limiters</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.BandwidthLimiter._limiters = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00128">128</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00240">get_global_stats()</a>, <a class="el" href="bandwidth_8py_source.html#l00218">remove_allocation()</a>, <a class="el" href="bandwidth_8py_source.html#l00199">set_limit()</a>, <a class="el" href="bandwidth_8py_source.html#l00139">throttle_read()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00169">throttle_write()</a>.</p>
+
+</div>
+</div>
+<a id="a59f863a7f5128f17caa8ea9b8c9d10d3" name="a59f863a7f5128f17caa8ea9b8c9d10d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59f863a7f5128f17caa8ea9b8c9d10d3">&#9670;&#160;</a></span>_stats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dict[str, <a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a>] src.bandwidth.BandwidthLimiter._stats = defaultdict(<a class="el" href="classsrc_1_1bandwidth_1_1_bandwidth_stats.html">BandwidthStats</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00129">129</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00228">get_stats()</a>, <a class="el" href="bandwidth_8py_source.html#l00218">remove_allocation()</a>, <a class="el" href="bandwidth_8py_source.html#l00139">throttle_read()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00169">throttle_write()</a>.</p>
+
+</div>
+</div>
+<a id="afd49f1d82ed2e26f351c8e6e29fd7ed3" name="afd49f1d82ed2e26f351c8e6e29fd7ed3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd49f1d82ed2e26f351c8e6e29fd7ed3">&#9670;&#160;</a></span>default_limit</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">src.bandwidth.BandwidthLimiter.default_limit</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">=  default_limit <span class="keywordflow">or</span> BandwidthLimit(</div>
+<div class="line">            read_bps=3_000_000,  <span class="comment"># 3 Mbps</span></div>
+<div class="line">            write_bps=3_000_000,  <span class="comment"># 3 Mbps</span></div>
+<div class="line">            burst_bps=6_000_000,  <span class="comment"># 6 Mbps burst</span></div>
+<div class="line">        )</div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="bandwidth_8py_source.html">bandwidth.py</a> 第 <a class="el" href="bandwidth_8py_source.html#l00123">123</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="bandwidth_8py_source.html#l00139">throttle_read()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00169">throttle_write()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>relay-server/src/<a class="el" href="bandwidth_8py_source.html">bandwidth.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacesrc.html">src</a></li><li class="navelem"><a href="namespacesrc_1_1bandwidth.html">bandwidth</a></li><li class="navelem"><a href="classsrc_1_1bandwidth_1_1_bandwidth_limiter.html">BandwidthLimiter</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

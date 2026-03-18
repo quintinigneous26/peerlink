@@ -1,0 +1,605 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="_a_p_i___r_e_f_e_r_e_n_c_e_8md" kind="file" language="Markdown">
+    <compoundname>API_REFERENCE.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>P2P<sp/>SDK<sp/>API<sp/>参考文档</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>核心类</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>P2PClient</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">主客户端类，用于<sp/>P2P<sp/>通信。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>构造函数</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>did:<sp/>str,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>signaling_server:<sp/>str<sp/>=<sp/>&quot;localhost&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>signaling_port:<sp/>int<sp/>=<sp/>8443,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_server:<sp/>str<sp/>=<sp/>&quot;stun.l.google.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_port:<sp/>int<sp/>=<sp/>19302,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>relay_server:<sp/>str<sp/>=<sp/>&quot;localhost&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>relay_port:<sp/>int<sp/>=<sp/>5000,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>local_port:<sp/>int<sp/>=<sp/>0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>connection_timeout:<sp/>float<sp/>=<sp/>30.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>punch_timeout:<sp/>float<sp/>=<sp/>10.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>keepalive_interval:<sp/>float<sp/>=<sp/>5.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>max_retries:<sp/>int<sp/>=<sp/>3,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_relay:<sp/>bool<sp/>=<sp/>True,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>recv_buffer_size:<sp/>int<sp/>=<sp/>8192</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`did`<sp/>(str):<sp/>设备唯一标识符</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`signaling_server`<sp/>(str):<sp/>信令服务器地址</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`signaling_port`<sp/>(int):<sp/>信令服务器端口</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`stun_server`<sp/>(str):<sp/>STUN<sp/>服务器地址</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`stun_port`<sp/>(int):<sp/>STUN<sp/>服务器端口</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`relay_server`<sp/>(str):<sp/>中继服务器地址</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`relay_port`<sp/>(int):<sp/>中继服务器端口</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`local_port`<sp/>(int):<sp/>本地<sp/>UDP<sp/>端口（0<sp/>表示自动分配）</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`connection_timeout`<sp/>(float):<sp/>连接超时时间（秒）</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`punch_timeout`<sp/>(float):<sp/>打洞超时时间（秒）</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`keepalive_interval`<sp/>(float):<sp/>保活间隔（秒）</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`max_retries`<sp/>(int):<sp/>最大重试次数</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`auto_relay`<sp/>(bool):<sp/>是否自动回退到中继</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`recv_buffer_size`<sp/>(int):<sp/>接收缓冲区大小（字节）</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>方法</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>async<sp/>initialize()</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">初始化客户端（NAT<sp/>检测、连接信令服务器）。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">await<sp/>client.initialize()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`NATDetectionError`:<sp/>NAT<sp/>检测失败</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ConnectionError`:<sp/>信令服务器连接失败</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>async<sp/>detect_nat()<sp/>-&gt;<sp/>NATType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">检测<sp/>NAT<sp/>类型。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">nat_type<sp/>=<sp/>await<sp/>client.detect_nat()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>`NATType`<sp/>枚举值</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`NATDetectionError`:<sp/>NAT<sp/>检测失败</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>async<sp/>connect(did:<sp/>str)<sp/>-&gt;<sp/>bool</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">连接到对等设备。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">success<sp/>=<sp/>await<sp/>client.connect(&quot;peer-device-id&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`did`<sp/>(str):<sp/>对等设备<sp/>ID</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>bool<sp/>-<sp/>连接是否成功</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ConnectionError`:<sp/>连接失败</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`TimeoutError`:<sp/>连接超时</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>async<sp/>send_data(channel:<sp/>int,<sp/>data:<sp/>bytes)<sp/>-&gt;<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">在指定通道上发送数据。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">await<sp/>client.send_data(channel_id,<sp/>b&quot;Hello,<sp/>peer!&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel`<sp/>(int):<sp/>通道<sp/>ID</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`data`<sp/>(bytes):<sp/>要发送的数据</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ConnectionError`:<sp/>连接已断开</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ValueError`:<sp/>通道不存在</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>async<sp/>recv_data(channel:<sp/>int,<sp/>timeout:<sp/>float<sp/>=<sp/>None)<sp/>-&gt;<sp/>bytes</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">从指定通道接收数据。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">data<sp/>=<sp/>await<sp/>client.recv_data(channel_id,<sp/>timeout=10.0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel`<sp/>(int):<sp/>通道<sp/>ID</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`timeout`<sp/>(float,<sp/>optional):<sp/>超时时间（秒），None<sp/>表示无限等待</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>bytes<sp/>-<sp/>接收到的数据</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`TimeoutError`:<sp/>接收超时</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ConnectionError`:<sp/>连接已断开</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ValueError`:<sp/>通道不存在</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>create_channel(channel_type:<sp/>ChannelType,<sp/>reliable:<sp/>bool<sp/>=<sp/>True,<sp/>priority:<sp/>int<sp/>=<sp/>0)<sp/>-&gt;<sp/>int</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">创建新的数据通道。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">channel_id<sp/>=<sp/>client.create_channel(ChannelType.DATA,<sp/>reliable=True,<sp/>priority=5)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel_type`<sp/>(ChannelType):<sp/>通道类型</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`reliable`<sp/>(bool):<sp/>是否可靠传输</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`priority`<sp/>(int):<sp/>通道优先级（0-10，数值越大优先级越高）</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>int<sp/>-<sp/>通道<sp/>ID</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ValueError`:<sp/>参数无效</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>close_channel(channel_id:<sp/>int)<sp/>-&gt;<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">关闭数据通道。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">client.close_channel(channel_id)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel_id`<sp/>(int):<sp/>通道<sp/>ID</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>async<sp/>close()<sp/>-&gt;<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">关闭连接并清理资源。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">await<sp/>client.close()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>async<sp/>measure_latency()<sp/>-&gt;<sp/>float</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">测量到对等设备的延迟。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">latency_ms<sp/>=<sp/>await<sp/>client.measure_latency()</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>float<sp/>-<sp/>延迟时间（毫秒）</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`ConnectionError`:<sp/>连接已断开</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`TimeoutError`:<sp/>测量超时</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>get_statistics()<sp/>-&gt;<sp/>dict</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">获取连接统计信息。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">stats<sp/>=<sp/>client.get_statistics()</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;Bytes<sp/>sent:<sp/>{stats[&apos;bytes_sent&apos;]}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;Bytes<sp/>received:<sp/>{stats[&apos;bytes_received&apos;]}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>dict<sp/>-<sp/>统计信息字典</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;bytes_sent&quot;:<sp/>int,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;bytes_received&quot;:<sp/>int,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;packets_sent&quot;:<sp/>int,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;packets_received&quot;:<sp/>int,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;send_rate&quot;:<sp/>float,<sp/><sp/>#<sp/>bytes/s</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;recv_rate&quot;:<sp/>float,<sp/><sp/>#<sp/>bytes/s</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;packet_loss&quot;:<sp/>float,<sp/><sp/>#<sp/>0.0-1.0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;connection_time&quot;:<sp/>float,<sp/><sp/>#<sp/>seconds</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>属性</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>nat_type:<sp/>NATType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">当前检测到的<sp/>NAT<sp/>类型。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">print(f&quot;NAT<sp/>Type:<sp/>{client.nat_type}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>local_address:<sp/>tuple[str,<sp/>int]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">本地地址（IP,<sp/>端口）。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">ip,<sp/>port<sp/>=<sp/>client.local_address</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>public_address:<sp/>tuple[str,<sp/>int]</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">公网地址（IP,<sp/>端口）。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">ip,<sp/>port<sp/>=<sp/>client.public_address</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>is_connected:<sp/>bool</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">是否已连接到对等设备。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>client.is_connected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(&quot;Connected&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>is_signaling_connected:<sp/>bool</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">是否已连接到信令服务器。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>client.is_signaling_connected:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(&quot;Signaling<sp/>connected&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>peer_did:<sp/>str<sp/>|<sp/>None</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">当前连接的对等设备<sp/>ID。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>client.peer_did:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f&quot;Connected<sp/>to:<sp/>{client.peer_did}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>事件处理器</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>@client.on_connected</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">连接建立时触发。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">@client.on_connected</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>on_connected():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(&quot;Connection<sp/>established!&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>@client.on_disconnected</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">连接断开时触发。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">@client.on_disconnected</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>on_disconnected():</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(&quot;Connection<sp/>lost&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>@client.on_data</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">接收到数据时触发。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">@client.on_data</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>on_data(channel_id:<sp/>int,<sp/>data:<sp/>bytes):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f&quot;Received<sp/>{len(data)}<sp/>bytes<sp/>on<sp/>channel<sp/>{channel_id}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel_id`<sp/>(int):<sp/>通道<sp/>ID</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`data`<sp/>(bytes):<sp/>接收到的数据</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>@client.on_error</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">发生错误时触发。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">@client.on_error</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>on_error(error:<sp/>Exception):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f&quot;Error:<sp/>{error}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`error`<sp/>(Exception):<sp/>错误对象</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>@client.on_channel_opened</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">通道打开时触发。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">@client.on_channel_opened</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>on_channel_opened(channel_id:<sp/>int,<sp/>channel_type:<sp/>ChannelType):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f&quot;Channel<sp/>{channel_id}<sp/>opened:<sp/>{channel_type}&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel_id`<sp/>(int):<sp/>通道<sp/>ID</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel_type`<sp/>(ChannelType):<sp/>通道类型</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#####<sp/>@client.on_channel_closed</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">通道关闭时触发。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">@client.on_channel_closed</highlight></codeline>
+<codeline><highlight class="normal">async<sp/>def<sp/>on_channel_closed(channel_id:<sp/>int):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>print(f&quot;Channel<sp/>{channel_id}<sp/>closed&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`channel_id`<sp/>(int):<sp/>通道<sp/>ID</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>枚举类型</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>ChannelType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">数据通道类型。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>ChannelType(Enum):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CONTROL<sp/>=<sp/>0<sp/><sp/><sp/><sp/>#<sp/>控制/信令通道</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>DATA<sp/>=<sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>通用数据通道</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>VIDEO<sp/>=<sp/>2<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>视频流</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>AUDIO<sp/>=<sp/>3<sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>音频流</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>CUSTOM<sp/>=<sp/>4<sp/><sp/><sp/><sp/><sp/>#<sp/>自定义应用通道</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>NATType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NAT<sp/>类型。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>NATType(Enum):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PUBLIC_IP<sp/>=<sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>无<sp/>NAT，公网<sp/>IP</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>FULL_CONE<sp/>=<sp/>1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>完全锥形<sp/>NAT</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>RESTRICTED_CONE<sp/>=<sp/>2<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>限制锥形<sp/>NAT</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>PORT_RESTRICTED_CONE<sp/>=<sp/>3<sp/><sp/><sp/>#<sp/>端口限制锥形<sp/>NAT</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>SYMMETRIC<sp/>=<sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>对称<sp/>NAT（需要中继）</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>UNKNOWN<sp/>=<sp/>5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>无法检测</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>BLOCKED<sp/>=<sp/>6<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>UDP<sp/>被阻止</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>异常类</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>P2PError</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">所有<sp/>P2P<sp/>SDK<sp/>异常的基类。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>P2PError(Exception):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pass</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>ConnectionError</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">连接相关错误。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>ConnectionError(P2PError):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pass</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>NATDetectionError</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">NAT<sp/>检测失败。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>NATDetectionError(P2PError):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pass</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>RelayError</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">中继服务器错误。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>RelayError(P2PError):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pass</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>TimeoutError</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">操作超时。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>TimeoutError(P2PError):</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pass</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>工具函数</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>async<sp/>detect_nat_type(stun_server:<sp/>str,<sp/>stun_port:<sp/>int)<sp/>-&gt;<sp/>NATType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">独立的<sp/>NAT<sp/>类型检测函数。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">from<sp/>p2p_sdk<sp/>import<sp/>detect_nat_type</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">nat_type<sp/>=<sp/>await<sp/>detect_nat_type(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_server=&quot;stun.l.google.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_port=19302</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**参数：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`stun_server`<sp/>(str):<sp/>STUN<sp/>服务器地址</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`stun_port`<sp/>(int):<sp/>STUN<sp/>服务器端口</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**返回：**<sp/>NATType</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**异常：**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`NATDetectionError`:<sp/>检测失败</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>协议格式</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>消息格式</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">所有消息使用以下二进制格式：</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">[total_length(4)][json_length(4)][json_header][payload]</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>`total_length`<sp/>(4<sp/>bytes):<sp/>整个消息的长度（大端序）</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`json_length`<sp/>(4<sp/>bytes):<sp/>JSON<sp/>头部的长度（大端序）</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`json_header`<sp/>(variable):<sp/>JSON<sp/>格式的消息头</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>`payload`<sp/>(variable):<sp/>消息负载（可选）</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>消息类型</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>handshake</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">连接握手消息。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;handshake&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;version&quot;:<sp/>&quot;1.0&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;did&quot;:<sp/>&quot;device-001&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;timestamp&quot;:<sp/>1234567890</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>keepalive</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">保活消息。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;keepalive&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;timestamp&quot;:<sp/>1234567890</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>channel_data</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">通道数据传输。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;channel_data&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;channel_id&quot;:<sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;data_length&quot;:<sp/>1024,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;timestamp&quot;:<sp/>1234567890</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>channel_open</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">打开新通道。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;channel_open&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;channel_id&quot;:<sp/>1,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;channel_type&quot;:<sp/>&quot;data&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;reliable&quot;:<sp/>true,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;priority&quot;:<sp/>5</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>channel_close</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">关闭通道。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;channel_close&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;channel_id&quot;:<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>disconnect</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">优雅断开连接。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;disconnect&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;reason&quot;:<sp/>&quot;user_requested&quot;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>error</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">错误通知。</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```json</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;error&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;code&quot;:<sp/>&quot;connection_failed&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>&quot;message&quot;:<sp/>&quot;Connection<sp/>timeout&quot;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>配置示例</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>最小配置</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(did=&quot;device-001&quot;)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>生产环境配置</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>did=&quot;device-001&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>signaling_server=&quot;signal.example.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>signaling_port=8443,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_server=&quot;stun.example.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>stun_port=3478,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>relay_server=&quot;relay.example.com&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>relay_port=5000,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>connection_timeout=30.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>punch_timeout=10.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>keepalive_interval=5.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>max_retries=3,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_relay=True,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>recv_buffer_size=65536</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>高性能配置</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>did=&quot;device-001&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>recv_buffer_size=131072,<sp/><sp/>#<sp/>128KB</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>keepalive_interval=3.0,<sp/><sp/><sp/>#<sp/>更频繁的保活</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>max_retries=5,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>更多重试</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto_relay=True</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>低延迟配置</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```python</highlight></codeline>
+<codeline><highlight class="normal">client<sp/>=<sp/>P2PClient(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>did=&quot;device-001&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>connection_timeout=10.0,<sp/><sp/>#<sp/>更短的超时</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>punch_timeout=5.0,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>keepalive_interval=2.0,<sp/><sp/><sp/>#<sp/>更频繁的保活</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>recv_buffer_size=8192<sp/><sp/><sp/><sp/><sp/>#<sp/>更小的缓冲区</highlight></codeline>
+<codeline><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+    </programlisting>
+    <location file="client_sdk/docs/API_REFERENCE.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,390 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection}{}\label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+
+
+类 p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a175acdb41011390c283cb15776c17330}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection}{Secure\+Connection}} secure\+\_\+conn, \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{Muxed\+Session}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7f4e1b350400b451e69b56b18f44f963}{muxed\+\_\+session}})
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection}{Secure\+Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_aa6150cc183dab51f0ff929d27528d470}{secure\+\_\+connection}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{Muxed\+Session}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7f4e1b350400b451e69b56b18f44f963}{muxed\+\_\+session}} (self)
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_aff7bb3402dd38b9aed07be65e96f8755}{peer\+\_\+id}} (self)
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7924ea78ffe5172d60943787b376fc7f}{security\+\_\+protocol}} (self)
+\item 
+str \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a43d52551744ffce8dd80c6acdae144a4}{muxer\+\_\+protocol}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a67d5f8601b9f62a7eafc481950f5b52c}{open\+\_\+stream}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a3e33659ac017265c1d6a4bf13741e0e0}{accept\+\_\+stream}} (self)
+\item 
+bytes \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_ada55db4d7125802e5a043d36ec168546}{read}} (self, int n=-\/1)
+\item 
+int \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a1c9899b0492fe97783b74750408c1014}{write}} (self, bytes data)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a2faeaa5e198f4d65bda917d0f508530f}{close}} (self)
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a72bf740668dcd3a70544b2e3d9b7f6c8}{is\+\_\+closed}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a71a22fbb9daee5c2c6df8a89e39f378a}{remote\+\_\+address}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a33205f59e5c487b86ddabc7173010e35}{local\+\_\+address}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a27555d7ffda907a4d25eac0ff37fa45f}{\+\_\+secure\+\_\+conn}} = secure\+\_\+conn
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{Muxed\+Session}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a62dfe6f52bbc18787afe50c31763c99c}{\+\_\+muxed\+\_\+session}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7f4e1b350400b451e69b56b18f44f963}{muxed\+\_\+session}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}升级后的连接
+
+包含安全连接和复用会话的完整连接。
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00494}{494}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a175acdb41011390c283cb15776c17330}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a175acdb41011390c283cb15776c17330} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection}{Secure\+Connection}}}]{secure\+\_\+conn}{, }\item[{\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{Muxed\+Session}}     }]{muxed\+\_\+session}{}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00501}{501}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a3e33659ac017265c1d6a4bf13741e0e0}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!accept\_stream@{accept\_stream}}
+\index{accept\_stream@{accept\_stream}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{accept\_stream()}{accept\_stream()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a3e33659ac017265c1d6a4bf13741e0e0} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+accept\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}接受传入的复用流\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00538}{538}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00507}{\+\_\+muxed\+\_\+session}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00538}{accept\+\_\+stream()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00538}{accept\+\_\+stream()}}.
+
+函数调用图:\+
+% FIG 2
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a2faeaa5e198f4d65bda917d0f508530f}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a2faeaa5e198f4d65bda917d0f508530f} 
+ None p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭连接\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a03bc6dc0ef2a59f073caa915a59e81da}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00550}{550}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00507}{\+\_\+muxed\+\_\+session}}, \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00550}{close()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00550}{close()}}.
+
+函数调用图:\+
+% FIG 4
+这是这个函数的调用关系图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a72bf740668dcd3a70544b2e3d9b7f6c8}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!is\_closed@{is\_closed}}
+\index{is\_closed@{is\_closed}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{is\_closed()}{is\_closed()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a72bf740668dcd3a70544b2e3d9b7f6c8} 
+ bool p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+is\+\_\+closed (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}检查连接是否已关闭\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_afd80c879b0a4036fce4ca9e8b8e34115}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00555}{555}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00555}{is\+\_\+closed()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00555}{is\+\_\+closed()}}.
+
+函数调用图:\+
+% FIG 6
+这是这个函数的调用关系图:\+
+% FIG 7
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a33205f59e5c487b86ddabc7173010e35}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!local\_address@{local\_address}}
+\index{local\_address@{local\_address}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{local\_address()}{local\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a33205f59e5c487b86ddabc7173010e35} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+local\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取本地地址\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a2c2fdec8d0b32b8b7804c2c437a86c1d}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00563}{563}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7f4e1b350400b451e69b56b18f44f963}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!muxed\_session@{muxed\_session}}
+\index{muxed\_session@{muxed\_session}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{muxed\_session()}{muxed\_session()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7f4e1b350400b451e69b56b18f44f963} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{Muxed\+Session}} p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+muxed\+\_\+session (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}复用会话\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00515}{515}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00507}{\+\_\+muxed\+\_\+session}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a43d52551744ffce8dd80c6acdae144a4}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!muxer\_protocol@{muxer\_protocol}}
+\index{muxer\_protocol@{muxer\_protocol}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{muxer\_protocol()}{muxer\_protocol()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a43d52551744ffce8dd80c6acdae144a4} 
+ str p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+muxer\+\_\+protocol (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}复用协议ID\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00530}{530}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00507}{\+\_\+muxed\+\_\+session}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a67d5f8601b9f62a7eafc481950f5b52c}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!open\_stream@{open\_stream}}
+\index{open\_stream@{open\_stream}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{open\_stream()}{open\_stream()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a67d5f8601b9f62a7eafc481950f5b52c} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_stream}{Muxed\+Stream}} p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+open\+\_\+stream (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}打开新的复用流\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00534}{534}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00507}{\+\_\+muxed\+\_\+session}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00534}{open\+\_\+stream()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00534}{open\+\_\+stream()}}.
+
+函数调用图:\+
+% FIG 8
+这是这个函数的调用关系图:\+
+% FIG 9
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_aff7bb3402dd38b9aed07be65e96f8755}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!peer\_id@{peer\_id}}
+\index{peer\_id@{peer\_id}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{peer\_id()}{peer\_id()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_aff7bb3402dd38b9aed07be65e96f8755} 
+ str p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+peer\+\_\+id (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}对等节点ID\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00520}{520}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tls_8py_source_l00175}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSHandshake\+Payload.\+encode()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 10
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_ada55db4d7125802e5a043d36ec168546}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!read@{read}}
+\index{read@{read}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_ada55db4d7125802e5a043d36ec168546} 
+ bytes p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+read (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int }]{n}{ = {\ttfamily -\/1}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}直接从安全连接读取（不推荐，应使用流）\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a4f82ab1576b25050f93e2a8679b5a055}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00542}{542}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00542}{read()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00542}{read()}}.
+
+函数调用图:\+
+% FIG 11
+这是这个函数的调用关系图:\+
+% FIG 12
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a71a22fbb9daee5c2c6df8a89e39f378a}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!remote\_address@{remote\_address}}
+\index{remote\_address@{remote\_address}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{remote\_address()}{remote\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a71a22fbb9daee5c2c6df8a89e39f378a} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+remote\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}获取远程地址\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_acf8091530c3865d3c01d74895388af65}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00559}{559}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_aa6150cc183dab51f0ff929d27528d470}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!secure\_connection@{secure\_connection}}
+\index{secure\_connection@{secure\_connection}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{secure\_connection()}{secure\_connection()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_aa6150cc183dab51f0ff929d27528d470} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_secure_connection}{Secure\+Connection}} p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+secure\+\_\+connection (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}安全连接\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00510}{510}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7924ea78ffe5172d60943787b376fc7f}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!security\_protocol@{security\_protocol}}
+\index{security\_protocol@{security\_protocol}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{security\_protocol()}{security\_protocol()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7924ea78ffe5172d60943787b376fc7f} 
+ str p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+security\+\_\+protocol (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}安全协议ID\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00525}{525}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a1c9899b0492fe97783b74750408c1014}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!write@{write}}
+\index{write@{write}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a1c9899b0492fe97783b74750408c1014} 
+ int p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+write (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bytes}]{data}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}直接写入安全连接（不推荐，应使用流）\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_connection_a1f8391923639cf4fd18b559d01bc345b}{p2p\+\_\+engine.\+transport.\+base.\+Connection}} .
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00546}{546}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{\+\_\+secure\+\_\+conn}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00546}{write()}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00546}{write()}}.
+
+函数调用图:\+
+% FIG 13
+这是这个函数的调用关系图:\+
+% FIG 14
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a62dfe6f52bbc18787afe50c31763c99c}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!\_muxed\_session@{\_muxed\_session}}
+\index{\_muxed\_session@{\_muxed\_session}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{\_muxed\_session}{\_muxed\_session}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a62dfe6f52bbc18787afe50c31763c99c} 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_muxed_session}{Muxed\+Session}} p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+\_\+muxed\+\_\+session = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a7f4e1b350400b451e69b56b18f44f963}{muxed\+\_\+session}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00507}{507}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00538}{accept\+\_\+stream()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00550}{close()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00515}{muxed\+\_\+session()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00530}{muxer\+\_\+protocol()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00534}{open\+\_\+stream()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a27555d7ffda907a4d25eac0ff37fa45f}\index{p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}!\_secure\_conn@{\_secure\_conn}}
+\index{\_secure\_conn@{\_secure\_conn}!p2p\_engine.transport.upgrader.UpgradedConnection@{p2p\_engine.transport.upgrader.UpgradedConnection}}
+\doxysubsubsection{\texorpdfstring{\_secure\_conn}{\_secure\_conn}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1upgrader_1_1_upgraded_connection_a27555d7ffda907a4d25eac0ff37fa45f} 
+p2p\+\_\+engine.\+transport.\+upgrader.\+Upgraded\+Connection.\+\_\+secure\+\_\+conn = secure\+\_\+conn\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{upgrader_8py_source}{upgrader.\+py}} 第 \doxymbox{\hyperlink{upgrader_8py_source_l00506}{506}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00550}{close()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00555}{is\+\_\+closed()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00563}{local\+\_\+address()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00520}{peer\+\_\+id()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00542}{read()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00559}{remote\+\_\+address()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00510}{secure\+\_\+connection()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00525}{security\+\_\+protocol()}} , 以及 \doxymbox{\hyperlink{upgrader_8py_source_l00546}{write()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{upgrader_8py}{upgrader.\+py}}\end{DoxyCompactItemize}

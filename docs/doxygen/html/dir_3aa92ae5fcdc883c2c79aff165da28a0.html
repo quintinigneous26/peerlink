@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: client_sdk 目录参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('dir_3aa92ae5fcdc883c2c79aff165da28a0.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">client_sdk 目录参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-subdirs" class="groupheader"><a id="subdirs" name="subdirs"></a>
+目录</h2></td></tr>
+<tr class="memitem:docs" id="r_docs"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_e632f5cf078eed0fa0511630770bf840.html">docs</a></td></tr>
+<tr class="memitem:examples" id="r_examples"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_1911159a05fe271b978b15e84bf3b4ee.html">examples</a></td></tr>
+<tr class="memitem:src" id="r_src"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_170c7f113792c8d246b9b95671710d1a.html">src</a></td></tr>
+<tr class="memitem:tests" id="r_tests"><td class="memItemLeft"><span class="iconfolder"><div class="folder-icon"></div></span>&#160;</td><td class="memItemRight"><a class="el" href="dir_5a9f6a0b09253ba8fb36779792cf8954.html">tests</a></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><h1 class="doxsection"><a class="anchor" id="autotoc_md241"></a>
+P2P Platform Client SDK (Python)</h1>
+<p>A Python SDK for P2P device communication with NAT traversal, UDP hole punching, and automatic relay fallback.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md242"></a>
+Features</h1>
+<ul>
+<li><b>NAT Detection</b>: Automatic NAT type detection using STUN</li>
+<li><b>UDP Hole Punching</b>: Direct P2P connection establishment</li>
+<li><b>Multi-Channel Support</b>: Separate channels for control, data, video, audio</li>
+<li><b>Automatic Relay Fallback</b>: Seamless fallback to relay when P2P fails</li>
+<li><b>Auto-Reconnection</b>: Automatic reconnection on network failures</li>
+<li><b>Event-Driven</b>: Async/await based API with event handlers</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md243"></a>
+Installation</h1>
+<div class="fragment"><div class="line">pip install p2p-sdk</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md244"></a>
+Quick Start</h1>
+<div class="fragment"><div class="line"><span class="keyword">import</span> asyncio</div>
+<div class="line"><span class="keyword">from</span> p2p_sdk <span class="keyword">import</span> P2PClient, P2PConfig, ChannelType</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">async def </span>main():</div>
+<div class="line">    <span class="comment"># Configure client</span></div>
+<div class="line">    config = P2PConfig(</div>
+<div class="line">        signaling_server=<span class="stringliteral">&quot;localhost&quot;</span>,</div>
+<div class="line">        signaling_port=8443,</div>
+<div class="line">        auto_relay=<span class="keyword">True</span>,</div>
+<div class="line">    )</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment"># Create and initialize client</span></div>
+<div class="line">    client = P2PClient(did=<span class="stringliteral">&quot;my-device&quot;</span>, config=config)</div>
+<div class="line">    await client.initialize()</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment"># Connect to peer</span></div>
+<div class="line">    <span class="keywordflow">if</span> await client.connect(<span class="stringliteral">&quot;peer-device&quot;</span>):</div>
+<div class="line">        <span class="comment"># Create channel and send data</span></div>
+<div class="line">        channel = client.create_channel(ChannelType.DATA)</div>
+<div class="line">        await client.send_data(channel, b<span class="stringliteral">&quot;Hello, peer!&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment"># Receive data</span></div>
+<div class="line">        data = await client.recv_data(channel)</div>
+<div class="line"> </div>
+<div class="line">    await client.close()</div>
+<div class="line"> </div>
+<div class="line">asyncio.run(main())</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md245"></a>
+API Reference</h1>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md246"></a>
+P2PClient</h2>
+<p>Main client class for P2P communication.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md247"></a>
+Methods</h3>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md248"></a>
+<span class="tt">async initialize()</span></h4>
+<p>Initialize the client (NAT detection, signaling connection).</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md249"></a>
+<span class="tt">async detect_nat() -&gt; NATType</span></h4>
+<p>Detect NAT type.</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md250"></a>
+<span class="tt">async connect(did: str) -&gt; bool</span></h4>
+<p>Connect to a device by ID.</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md251"></a>
+<span class="tt">async send_data(channel: int, data: bytes) -&gt; None</span></h4>
+<p>Send data on a channel.</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md252"></a>
+<span class="tt">async recv_data(channel: int, timeout: float = None) -&gt; bytes</span></h4>
+<p>Receive data from a channel.</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md253"></a>
+<span class="tt">create_channel(channel_type: ChannelType, reliable: bool = True, priority: int = 0) -&gt; int</span></h4>
+<p>Create a new data channel.</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md254"></a>
+<span class="tt">close_channel(channel_id: int) -&gt; None</span></h4>
+<p>Close a data channel.</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md255"></a>
+<span class="tt">async close() -&gt; None</span></h4>
+<p>Close the connection and cleanup.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md256"></a>
+Event Handlers</h3>
+<div class="fragment"><div class="line"><span class="preprocessor">@client.on_connected</span></div>
+<div class="line"><span class="keyword">async def </span>on_connected():</div>
+<div class="line">    print(<span class="stringliteral">&quot;Connected!&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">@client.on_disconnected</span></div>
+<div class="line"><span class="keyword">async def </span>on_disconnected():</div>
+<div class="line">    print(<span class="stringliteral">&quot;Disconnected&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">@client.on_data</span></div>
+<div class="line"><span class="keyword">async def </span>on_data(channel_id: int, data: bytes):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Received {len(data)} bytes on channel {channel_id}&quot;</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">@client.on_error</span></div>
+<div class="line"><span class="keyword">async def </span>on_error(error: Exception):</div>
+<div class="line">    print(f<span class="stringliteral">&quot;Error: {error}&quot;</span>)</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md257"></a>
+P2PConfig</h2>
+<p>Configuration for P2P client.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Parameter  </th><th class="markdownTableHeadNone">Type  </th><th class="markdownTableHeadNone">Default  </th><th class="markdownTableHeadNone">Description  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">signaling_server</span>  </td><td class="markdownTableBodyNone">str  </td><td class="markdownTableBodyNone">"localhost"  </td><td class="markdownTableBodyNone">Signaling server address  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">signaling_port</span>  </td><td class="markdownTableBodyNone">int  </td><td class="markdownTableBodyNone">8443  </td><td class="markdownTableBodyNone">Signaling server port  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">stun_server</span>  </td><td class="markdownTableBodyNone">str  </td><td class="markdownTableBodyNone">"stun.l.google.com"  </td><td class="markdownTableBodyNone">STUN server  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">stun_port</span>  </td><td class="markdownTableBodyNone">int  </td><td class="markdownTableBodyNone">19302  </td><td class="markdownTableBodyNone">STUN server port  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">relay_server</span>  </td><td class="markdownTableBodyNone">str  </td><td class="markdownTableBodyNone">"localhost"  </td><td class="markdownTableBodyNone">Relay server address  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">relay_port</span>  </td><td class="markdownTableBodyNone">int  </td><td class="markdownTableBodyNone">5000  </td><td class="markdownTableBodyNone">Relay server port  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">local_port</span>  </td><td class="markdownTableBodyNone">int  </td><td class="markdownTableBodyNone">0  </td><td class="markdownTableBodyNone">Local UDP port (0 = auto)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">connection_timeout</span>  </td><td class="markdownTableBodyNone">float  </td><td class="markdownTableBodyNone">30.0  </td><td class="markdownTableBodyNone">Connection timeout (seconds)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">punch_timeout</span>  </td><td class="markdownTableBodyNone">float  </td><td class="markdownTableBodyNone">10.0  </td><td class="markdownTableBodyNone">Hole punch timeout (seconds)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">keepalive_interval</span>  </td><td class="markdownTableBodyNone">float  </td><td class="markdownTableBodyNone">5.0  </td><td class="markdownTableBodyNone">Keepalive interval (seconds)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">max_retries</span>  </td><td class="markdownTableBodyNone">int  </td><td class="markdownTableBodyNone">3  </td><td class="markdownTableBodyNone">Max connection retries  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">auto_relay</span>  </td><td class="markdownTableBodyNone">bool  </td><td class="markdownTableBodyNone">True  </td><td class="markdownTableBodyNone">Auto fallback to relay  </td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md258"></a>
+ChannelType</h2>
+<p>Types of data channels.</p>
+<ul>
+<li><span class="tt">ChannelType.CONTROL</span> - Control/signaling channel</li>
+<li><span class="tt">ChannelType.DATA</span> - General data channel</li>
+<li><span class="tt">ChannelType.VIDEO</span> - Video streaming</li>
+<li><span class="tt">ChannelType.AUDIO</span> - Audio streaming</li>
+<li><span class="tt">ChannelType.CUSTOM</span> - Custom application channel</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md259"></a>
+NATType</h2>
+<p>Detected NAT types.</p>
+<ul>
+<li><span class="tt">NATType.PUBLIC_IP</span> - No NAT, public IP</li>
+<li><span class="tt">NATType.FULL_CONE</span> - Full cone NAT</li>
+<li><span class="tt">NATType.RESTRICTED_CONE</span> - Restricted cone NAT</li>
+<li><span class="tt">NATType.PORT_RESTRICTED_CONE</span> - Port restricted cone NAT</li>
+<li><span class="tt">NATType.SYMMETRIC</span> - Symmetric NAT (requires relay)</li>
+<li><span class="tt">NATType.UNKNOWN</span> - Could not detect</li>
+<li><span class="tt">NATType.BLOCKED</span> - UDP blocked</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md260"></a>
+Protocol</h1>
+<p>The SDK uses a custom binary protocol with the following format:</p>
+<div class="fragment"><div class="line">[total_length(4)][json_length(4)][json_header][payload]</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md261"></a>
+Message Types</h2>
+<ul>
+<li><span class="tt">handshake</span> - Connection establishment</li>
+<li><span class="tt">keepalive</span> - Connection keepalive</li>
+<li><span class="tt">channel_data</span> - Channel data transfer</li>
+<li><span class="tt">channel_open</span> - Open new channel</li>
+<li><span class="tt">channel_close</span> - Close channel</li>
+<li><span class="tt">disconnect</span> - Graceful disconnect</li>
+<li><span class="tt">error</span> - Error notification</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md262"></a>
+Testing</h1>
+<div class="fragment"><div class="line"># Run tests</div>
+<div class="line">pytest tests/</div>
+<div class="line"> </div>
+<div class="line"># Run with coverage</div>
+<div class="line">pytest --cov=p2p_sdk tests/</div>
+</div><!-- fragment --><h1 class="doxsection"><a class="anchor" id="autotoc_md263"></a>
+Examples</h1>
+<p>See the <span class="tt">examples/</span> directory for complete examples:</p><ul>
+<li><span class="tt"><a class="el" href="basic__usage_8py.html">basic_usage.py</a></span> - Basic P2P connection</li>
+<li><span class="tt"><a class="el" href="multi__channel_8py.html">multi_channel.py</a></span> - Multi-channel communication</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md264"></a>
+License</h1>
+<p>MIT License </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_3aa92ae5fcdc883c2c79aff165da28a0.html">client_sdk</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

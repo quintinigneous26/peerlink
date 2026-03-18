@@ -1,0 +1,269 @@
+\doxysection{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport类 参考}
+\hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport}{}\label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+
+
+类 p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport 继承关系图:\+
+% FIG 0
+
+
+p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport 的协作图:\+
+% FIG 1
+\doxysubsubsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a588809ff3a8ffda2929016aa6e05381c}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, bool enable\+\_\+fastopen=True, bool enable\+\_\+pooling=True, int pool\+\_\+size=\doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a8b82ac90504af5b63df6e54f385d4136}{DEFAULT\+\_\+\+MAX\+\_\+\+POOL\+\_\+\+SIZE}})
+\item 
+List\+[str]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ae282f67eb1ce27a0d35130e90e9ccb07}{protocols}} (self)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection}{TCPFast\+Open\+Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8289ba9593d890276c29eff7c3a4b232}{dial}} (self, str addr)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection}{TCPFast\+Open\+Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a2636f0b0fb888cc95e0bb2943f27dcae}{dial\+\_\+standard}} (self, str host, int port)
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener}{Listener}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8d2efed25932f102c3b71b3c5fbee0bf}{listen}} (self, str addr)
+\item 
+None \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a5a5a2e75fe6d338067aa5178e94c8a30}{close}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection}{TCPFast\+Open\+Connection}} \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a238c0c22bc08cac22c25c6ae9957aebf}{\+\_\+dial\+\_\+with\+\_\+fastopen}} (self, str host, int port)
+\item 
+Tuple\+[str, int]\+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a7f467205bae4ba1863a53bbde207987f}{\+\_\+parse\+\_\+address}} (self, str addr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected 属性}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a702851697b1dcc3681ff0585c059e9c7}{\+\_\+enable\+\_\+fastopen}} = enable\+\_\+fastopen and \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad3e6b84b56fd0874072006880f65cf0a}{is\+\_\+tcp\+\_\+fastopen\+\_\+available}}()
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ab748f5006504a393466a8c2bb8b8684f}{\+\_\+enable\+\_\+pooling}} = enable\+\_\+pooling
+\item 
+\doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a0ef3e42aae54ad2eeda2f79855542a2b}{\+\_\+pool}} = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool}{Connection\+Pool}}(max\+\_\+size=pool\+\_\+size) if enable\+\_\+pooling else None
+\item 
+bool \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ad06cf761ea49a0635cbb549cd0b628c4}{\+\_\+closed}} = False
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyVerb}优化的 TCP 传输
+
+特性:
+- TCP Fast Open 支持
+- 连接池
+- 高性能 socket 配置
+\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00303}{303}} 行定义.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_doc-constructors}
+\doxysubsection{构造及析构函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a588809ff3a8ffda2929016aa6e05381c}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a588809ff3a8ffda2929016aa6e05381c} 
+p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{enable\+\_\+fastopen}{ = {\ttfamily True}, }\item[{bool }]{enable\+\_\+pooling}{ = {\ttfamily True}, }\item[{int }]{pool\+\_\+size}{ = {\ttfamily \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_a8b82ac90504af5b63df6e54f385d4136}{DEFAULT\+\_\+\+MAX\+\_\+\+POOL\+\_\+\+SIZE}}}}\end{DoxyParamCaption})}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00313}{313}} 行定义.
+
+
+
+\label{doc-func-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_doc-func-members}
+\doxysubsection{成员函数说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a238c0c22bc08cac22c25c6ae9957aebf}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!\_dial\_with\_fastopen@{\_dial\_with\_fastopen}}
+\index{\_dial\_with\_fastopen@{\_dial\_with\_fastopen}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{\_dial\_with\_fastopen()}{\_dial\_with\_fastopen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a238c0c22bc08cac22c25c6ae9957aebf} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection}{TCPFast\+Open\+Connection}} p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+dial\+\_\+with\+\_\+fastopen (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{host}{, }\item[{int}]{port}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}使用 TCP Fast Open 连接\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00380}{380}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{dial()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 2
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a7f467205bae4ba1863a53bbde207987f}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!\_parse\_address@{\_parse\_address}}
+\index{\_parse\_address@{\_parse\_address}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{\_parse\_address()}{\_parse\_address()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a7f467205bae4ba1863a53bbde207987f} 
+ Tuple\+[str, int]\+ p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+parse\+\_\+address (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}解析地址\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00426}{426}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{dial()}} , 以及 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00390}{listen()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 3
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a5a5a2e75fe6d338067aa5178e94c8a30}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!close@{close}}
+\index{close@{close}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a5a5a2e75fe6d338067aa5178e94c8a30} 
+ None p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+close (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}关闭传输层\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adb257dcbc0d5b57b08611a4b1e0ac285}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00414}{414}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00128}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+pool}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00190}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+pool}} , 以及 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00321}{\+\_\+pool}}.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{client_8py_source_l00516}{p2p\+\_\+sdk.\+client.\+P2\+PClient.\+\_\+receive\+\_\+loop()}}.
+
+这是这个函数的调用关系图:\+
+% FIG 4
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8289ba9593d890276c29eff7c3a4b232}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!dial@{dial}}
+\index{dial@{dial}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{dial()}{dial()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8289ba9593d890276c29eff7c3a4b232} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection}{TCPFast\+Open\+Connection}} p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+dial (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}建立到指定地址的连接
+
+支持连接池和 TCP Fast Open
+\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_a75e857ad1537e55cb8c1c0c33bae9e16}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{336}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00384}{\+\_\+dial\+\_\+with\+\_\+fastopen()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00319}{\+\_\+enable\+\_\+fastopen}}, \doxymbox{\hyperlink{quic_8py_source_l00844}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+parse\+\_\+address()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00426}{\+\_\+parse\+\_\+address()}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00128}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Stream\+IDPool.\+\_\+pool}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00190}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Connection\+Pool.\+\_\+pool}} , 以及 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00321}{\+\_\+pool}}.
+
+函数调用图:\+
+% FIG 5
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a2636f0b0fb888cc95e0bb2943f27dcae}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!dial\_standard@{dial\_standard}}
+\index{dial\_standard@{dial\_standard}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{dial\_standard()}{dial\_standard()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a2636f0b0fb888cc95e0bb2943f27dcae} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_t_c_p_fast_open_connection}{TCPFast\+Open\+Connection}} p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+dial\+\_\+standard (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{host}{, }\item[{int}]{port}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}标准 TCP 连接\end{DoxyVerb}
+ 
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00367}{367}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8d2efed25932f102c3b71b3c5fbee0bf}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!listen@{listen}}
+\index{listen@{listen}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a8d2efed25932f102c3b71b3c5fbee0bf} 
+ \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_listener}{Listener}} p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+listen (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{addr}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}开始监听\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_ad6b5a798b3530fb18570596f66334843}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00390}{390}} 行定义.
+
+
+
+引用了 \doxymbox{\hyperlink{mplex_8py_source_l00523}{p2p\+\_\+engine.\+muxer.\+mplex.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00105}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Connection\+Writer.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__adapter_8py_source_l00141}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+adapter.\+Mplex\+Muxed\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{mplex__v2_8py_source_l00694}{p2p\+\_\+engine.\+muxer.\+mplex\+\_\+v2.\+Mplex\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux_8py_source_l00549}{p2p\+\_\+engine.\+muxer.\+yamux.\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{yamux__optimized_8py_source_l00204}{p2p\+\_\+engine.\+muxer.\+yamux\+\_\+optimized.\+Optimized\+Yamux\+Session.\+\_\+closed}}, \doxymbox{\hyperlink{identify_8py_source_l00215}{p2p\+\_\+engine.\+protocol.\+identify.\+Connection\+Wrapper.\+\_\+closed}}, \doxymbox{\hyperlink{noise_8py_source_l00716}{p2p\+\_\+engine.\+protocol.\+noise.\+Noise\+Security\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00290}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSecurity\+Transport.\+\_\+closed}}, \doxymbox{\hyperlink{tls_8py_source_l00648}{p2p\+\_\+engine.\+protocol.\+tls.\+TLSSession.\+\_\+closed}}, \doxymbox{\hyperlink{manager_8py_source_l00053}{p2p\+\_\+engine.\+transport.\+manager.\+Transport\+Manager.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00102}{p2p\+\_\+engine.\+transport.\+quic.\+QUICConnection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00482}{p2p\+\_\+engine.\+transport.\+quic.\+QUICListener.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00360}{p2p\+\_\+engine.\+transport.\+quic.\+QUICStream.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00641}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{\+\_\+closed}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00072}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPFast\+Open\+Connection.\+\_\+closed}}, \doxymbox{\hyperlink{quic_8py_source_l00844}{p2p\+\_\+engine.\+transport.\+quic.\+QUICTransport.\+\_\+parse\+\_\+address()}} , 以及 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00426}{\+\_\+parse\+\_\+address()}}.
+
+函数调用图:\+
+% FIG 6
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ae282f67eb1ce27a0d35130e90e9ccb07}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!protocols@{protocols}}
+\index{protocols@{protocols}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{protocols()}{protocols()}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ae282f67eb1ce27a0d35130e90e9ccb07} 
+ List\+[str]\+ p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+protocols (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}返回支持的协议列表\end{DoxyVerb}
+ 
+
+重载 \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1base_1_1_transport_adfb364ee5a07f98fb541d346966a79ce}{p2p\+\_\+engine.\+transport.\+base.\+Transport}} .
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00332}{332}} 行定义.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_doc-variable-members}
+\doxysubsection{类成员变量说明}
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ad06cf761ea49a0635cbb549cd0b628c4}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!\_closed@{\_closed}}
+\index{\_closed@{\_closed}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{\_closed}{\_closed}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ad06cf761ea49a0635cbb549cd0b628c4} 
+bool p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+closed = False\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00322}{322}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{upgrader_8py_source_l00269}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+\_\+handle\+\_\+incoming\+\_\+stream()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00340}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+callbacks()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00382}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+\_\+setup\+\_\+data\+\_\+channel\+\_\+callbacks()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00464}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+accept()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00448}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+accept()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00238}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+accept\+\_\+stream()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00342}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+addresses()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00414}{close()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00484}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+close()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00294}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00224}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00460}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+close()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00652}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+close()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00276}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+close()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{dial()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00597}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+dial()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00497}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+handle\+\_\+offer()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00495}{p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+TCPOptimized\+Listener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00220}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00254}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00486}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCListener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00249}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00337}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Listener.\+is\+\_\+closed()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00390}{listen()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00630}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCTransport.\+listen()}}, \doxymbox{\hyperlink{upgrader_8py_source_l00223}{p2p\+\_\+engine.\+transport.\+upgrader.\+Muxed\+Session.\+open\+\_\+stream()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00175}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+read()}}, \doxymbox{\hyperlink{webtransport_8py_source_l00253}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+read()}}, \doxymbox{\hyperlink{webrtc_8py_source_l00201}{p2p\+\_\+engine.\+transport.\+webrtc.\+Web\+RTCConnection.\+write()}} , 以及 \doxymbox{\hyperlink{webtransport_8py_source_l00266}{p2p\+\_\+engine.\+transport.\+webtransport.\+Web\+Transport\+Connection.\+write()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a702851697b1dcc3681ff0585c059e9c7}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!\_enable\_fastopen@{\_enable\_fastopen}}
+\index{\_enable\_fastopen@{\_enable\_fastopen}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{\_enable\_fastopen}{\_enable\_fastopen}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a702851697b1dcc3681ff0585c059e9c7} 
+p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+enable\+\_\+fastopen = enable\+\_\+fastopen and \doxymbox{\hyperlink{namespacep2p__engine_1_1transport_1_1tcp__optimized_ad3e6b84b56fd0874072006880f65cf0a}{is\+\_\+tcp\+\_\+fastopen\+\_\+available}}()\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00319}{319}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{dial()}}.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ab748f5006504a393466a8c2bb8b8684f}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!\_enable\_pooling@{\_enable\_pooling}}
+\index{\_enable\_pooling@{\_enable\_pooling}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{\_enable\_pooling}{\_enable\_pooling}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_ab748f5006504a393466a8c2bb8b8684f} 
+p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+enable\+\_\+pooling = enable\+\_\+pooling\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00320}{320}} 行定义.
+
+\Hypertarget{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a0ef3e42aae54ad2eeda2f79855542a2b}\index{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}!\_pool@{\_pool}}
+\index{\_pool@{\_pool}!p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport@{p2p\_engine.transport.tcp\_optimized.OptimizedTCPTransport}}
+\doxysubsubsection{\texorpdfstring{\_pool}{\_pool}}
+{\footnotesize\ttfamily \label{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_optimized_t_c_p_transport_a0ef3e42aae54ad2eeda2f79855542a2b} 
+p2p\+\_\+engine.\+transport.\+tcp\+\_\+optimized.\+Optimized\+TCPTransport.\+\_\+pool = \doxymbox{\hyperlink{classp2p__engine_1_1transport_1_1tcp__optimized_1_1_connection_pool}{Connection\+Pool}}(max\+\_\+size=pool\+\_\+size) if enable\+\_\+pooling else None\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+在文件 \doxymbox{\hyperlink{tcp__optimized_8py_source}{tcp\+\_\+optimized.\+py}} 第 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00321}{321}} 行定义.
+
+
+
+被这些函数引用 \doxymbox{\hyperlink{storage_8py_source_l00042}{src.\+did\+\_\+service.\+storage.\+Device\+Storage.\+\_\+get\+\_\+pool()}}, \doxymbox{\hyperlink{tcp__optimized_8py_source_l00414}{close()}}, \doxymbox{\hyperlink{storage_8py_source_l00054}{src.\+did\+\_\+service.\+storage.\+Device\+Storage.\+close()}} , 以及 \doxymbox{\hyperlink{tcp__optimized_8py_source_l00336}{dial()}}.
+
+
+
+该类的文档由以下文件生成:\+\begin{DoxyCompactItemize}
+\item 
+p2p\+\_\+engine/\+transport/\+\doxymbox{\hyperlink{tcp__optimized_8py}{tcp\+\_\+optimized.\+py}}\end{DoxyCompactItemize}

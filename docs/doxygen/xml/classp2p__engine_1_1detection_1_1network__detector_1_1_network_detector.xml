@@ -1,0 +1,443 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::detection::network_detector::NetworkDetector</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.detection.network_detector.NetworkDetector::stun_client</definition>
+        <argsstring></argsstring>
+        <name>stun_client</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector.stun_client</qualifiedname>
+        <initializer>=  stun_client</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="34" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="34" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ac6066d496e156ff8e6954a3b56aee0a4" compoundref="network__detector_8py" startline="200" endline="225">p2p_engine.detection.network_detector.NetworkDetector._detect_cdn</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a13272fedb6900aebd2e6e42be0485d4f" compoundref="network__detector_8py" startline="320" endline="350">p2p_engine.detection.network_detector.NetworkDetector._detect_link_quality</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ace679ab1942e0d3db9e29b7e8bf87f2b" compoundref="network__detector_8py" startline="255" endline="292">p2p_engine.detection.network_detector.NetworkDetector._detect_mobile_network</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1aa1c21d1a9958f1f91e774e0010a689ac" compoundref="network__detector_8py" startline="86" endline="144">p2p_engine.detection.network_detector.NetworkDetector._detect_nat_level</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ab572cd5211ee6580c3da2fb4c7114c2d" compoundref="network__detector_8py" startline="156" endline="199">p2p_engine.detection.network_detector.NetworkDetector._detect_vpn</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" compoundref="network__detector_8py" startline="381" endline="422">p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1acb541bf0883d70f05723db9a4744cec8" prot="protected" static="no" mutable="no">
+        <type>list</type>
+        <definition>list p2p_engine.detection.network_detector.NetworkDetector::_observations</definition>
+        <argsstring></argsstring>
+        <name>_observations</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._observations</qualifiedname>
+        <initializer>=  []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="35" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ac55306c2f69c5b1aeac162a39c80570c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.detection.network_detector.NetworkDetector.__init__</definition>
+        <argsstring>(self, STUNClient stun_client)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1detection_1_1stun__client_1_1_s_t_u_n_client" kindref="compound">STUNClient</ref></type>
+          <declname>stun_client</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="33" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classp2p__engine_1_1types_1_1_network_environment" kindref="compound">NetworkEnvironment</ref></type>
+        <definition> NetworkEnvironment p2p_engine.detection.network_detector.NetworkDetector.detect</definition>
+        <argsstring>(self)</argsstring>
+        <name>detect</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector.detect</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测网络环境
+
+检测项目：
+1. NAT 层级
+2. VPN 环境
+3. CDN 环境
+4. 企业网络
+5. 移动网络
+6. IPv6 可用性
+7. 链路质量
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="37" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="37" bodyend="85"/>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ac6066d496e156ff8e6954a3b56aee0a4" compoundref="network__detector_8py" startline="200" endline="225">p2p_engine.detection.network_detector.NetworkDetector._detect_cdn</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a16ad93b9ef51cb1f3e14f7d35e799061" compoundref="network__detector_8py" startline="226" endline="254">p2p_engine.detection.network_detector.NetworkDetector._detect_enterprise_network</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a8d44404ab4250a0ec2ef6aff2db94244" compoundref="network__detector_8py" startline="293" endline="319">p2p_engine.detection.network_detector.NetworkDetector._detect_ipv6</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a13272fedb6900aebd2e6e42be0485d4f" compoundref="network__detector_8py" startline="320" endline="350">p2p_engine.detection.network_detector.NetworkDetector._detect_link_quality</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ace679ab1942e0d3db9e29b7e8bf87f2b" compoundref="network__detector_8py" startline="255" endline="292">p2p_engine.detection.network_detector.NetworkDetector._detect_mobile_network</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1aa1c21d1a9958f1f91e774e0010a689ac" compoundref="network__detector_8py" startline="86" endline="144">p2p_engine.detection.network_detector.NetworkDetector._detect_nat_level</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ab572cd5211ee6580c3da2fb4c7114c2d" compoundref="network__detector_8py" startline="156" endline="199">p2p_engine.detection.network_detector.NetworkDetector._detect_vpn</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a324c2ca1ae88d027e7c93d69ba7c11a8" compoundref="network__detector_8py" startline="351" endline="367">p2p_engine.detection.network_detector.NetworkDetector._infer_firewall_type</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a9eb58ef5a1b5b264a6aa6c09dc9a8eb8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.detection.network_detector.NetworkDetector.is_complex_environment</definition>
+        <argsstring>(self, NetworkEnvironment env)</argsstring>
+        <name>is_complex_environment</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector.is_complex_environment</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1types_1_1_network_environment" kindref="compound">NetworkEnvironment</ref></type>
+          <declname>env</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>判断是否为复杂网络环境</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="368" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="368" bodyend="377"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>None</type>
+        <definition> None p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</definition>
+        <argsstring>(self, int check_interval_sec=60)</argsstring>
+        <name>monitor_changes</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>check_interval_sec</declname>
+          <defval>60</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>持续监控网络变化
+
+检测：
+1. IP 变化（网络切换）
+2. 延迟变化
+3. NAT 行为变化
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="378" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="381" bodyend="422"/>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ac6066d496e156ff8e6954a3b56aee0a4" compoundref="network__detector_8py" startline="200" endline="225">p2p_engine.detection.network_detector.NetworkDetector._detect_cdn</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a16ad93b9ef51cb1f3e14f7d35e799061" compoundref="network__detector_8py" startline="226" endline="254">p2p_engine.detection.network_detector.NetworkDetector._detect_enterprise_network</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ace679ab1942e0d3db9e29b7e8bf87f2b" compoundref="network__detector_8py" startline="255" endline="292">p2p_engine.detection.network_detector.NetworkDetector._detect_mobile_network</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1aa1c21d1a9958f1f91e774e0010a689ac" compoundref="network__detector_8py" startline="86" endline="144">p2p_engine.detection.network_detector.NetworkDetector._detect_nat_level</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ab572cd5211ee6580c3da2fb4c7114c2d" compoundref="network__detector_8py" startline="156" endline="199">p2p_engine.detection.network_detector.NetworkDetector._detect_vpn</references>
+        <references refid="classp2p__engine_1_1detection_1_1device__detector_1_1_device_detector_1a7affc171033691bc86454e5959a3a112" compoundref="device__detector_8py" startline="335">p2p_engine.detection.device_detector.DeviceDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1isp__detector_1_1_i_s_p_detector_1a91c84a11da0c271961b41fec0651d665" compoundref="isp__detector_8py" startline="82">p2p_engine.detection.isp_detector.ISPDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_1a7508b2905f5b4d8e0e727c6d4da2faab" compoundref="nat__detector_8py" startline="21">p2p_engine.detection.nat_detector.NATDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" compoundref="network__detector_8py" startline="34">p2p_engine.detection.network_detector.NetworkDetector.stun_client</references>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1aa1c21d1a9958f1f91e774e0010a689ac" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition> int p2p_engine.detection.network_detector.NetworkDetector._detect_nat_level</definition>
+        <argsstring>(self)</argsstring>
+        <name>_detect_nat_level</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._detect_nat_level</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测 NAT 层级
+
+方法：
+1. 比较本地 IP 和 STUN 返回的公网 IP
+2. 如果差异大（不同网段），说明有多层 NAT
+3. CGNAT IP 段检测
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="86" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="86" bodyend="144"/>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1acdc7ae90982f57dab341af4cae3b5439" compoundref="network__detector_8py" startline="145" endline="155">p2p_engine.detection.network_detector.NetworkDetector._get_local_ip</references>
+        <references refid="classp2p__engine_1_1detection_1_1device__detector_1_1_device_detector_1a7affc171033691bc86454e5959a3a112" compoundref="device__detector_8py" startline="335">p2p_engine.detection.device_detector.DeviceDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1isp__detector_1_1_i_s_p_detector_1a91c84a11da0c271961b41fec0651d665" compoundref="isp__detector_8py" startline="82">p2p_engine.detection.isp_detector.ISPDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_1a7508b2905f5b4d8e0e727c6d4da2faab" compoundref="nat__detector_8py" startline="21">p2p_engine.detection.nat_detector.NATDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" compoundref="network__detector_8py" startline="34">p2p_engine.detection.network_detector.NetworkDetector.stun_client</references>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" compoundref="network__detector_8py" startline="381" endline="422">p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1acdc7ae90982f57dab341af4cae3b5439" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str p2p_engine.detection.network_detector.NetworkDetector._get_local_ip</definition>
+        <argsstring>(self)</argsstring>
+        <name>_get_local_ip</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._get_local_ip</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>获取本地 IP</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="145" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="145" bodyend="155"/>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a16ad93b9ef51cb1f3e14f7d35e799061" compoundref="network__detector_8py" startline="226" endline="254">p2p_engine.detection.network_detector.NetworkDetector._detect_enterprise_network</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1aa1c21d1a9958f1f91e774e0010a689ac" compoundref="network__detector_8py" startline="86" endline="144">p2p_engine.detection.network_detector.NetworkDetector._detect_nat_level</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ab572cd5211ee6580c3da2fb4c7114c2d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.detection.network_detector.NetworkDetector._detect_vpn</definition>
+        <argsstring>(self)</argsstring>
+        <name>_detect_vpn</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._detect_vpn</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测 VPN 环境
+
+方法：
+1. 检查常见 VPN 接口（tun0, ppp0 等）
+2. 检查 MTU 大小（VPN 通常较小）
+3. 检查公网 IP 是否为 VPN 出口
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="156" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="156" bodyend="199"/>
+        <references refid="classp2p__engine_1_1detection_1_1device__detector_1_1_device_detector_1a7affc171033691bc86454e5959a3a112" compoundref="device__detector_8py" startline="335">p2p_engine.detection.device_detector.DeviceDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1isp__detector_1_1_i_s_p_detector_1a91c84a11da0c271961b41fec0651d665" compoundref="isp__detector_8py" startline="82">p2p_engine.detection.isp_detector.ISPDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_1a7508b2905f5b4d8e0e727c6d4da2faab" compoundref="nat__detector_8py" startline="21">p2p_engine.detection.nat_detector.NATDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" compoundref="network__detector_8py" startline="34">p2p_engine.detection.network_detector.NetworkDetector.stun_client</references>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" compoundref="network__detector_8py" startline="381" endline="422">p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ac6066d496e156ff8e6954a3b56aee0a4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.detection.network_detector.NetworkDetector._detect_cdn</definition>
+        <argsstring>(self)</argsstring>
+        <name>_detect_cdn</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._detect_cdn</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测 CDN 环境
+
+方法：
+1. 多次请求 STUN，如果返回的 IP 频繁变化，可能是 CDN
+2. 检查 IP 是否属于 CDN 厂商
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="200" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="200" bodyend="225"/>
+        <references refid="classp2p__engine_1_1detection_1_1device__detector_1_1_device_detector_1a7affc171033691bc86454e5959a3a112" compoundref="device__detector_8py" startline="335">p2p_engine.detection.device_detector.DeviceDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1isp__detector_1_1_i_s_p_detector_1a91c84a11da0c271961b41fec0651d665" compoundref="isp__detector_8py" startline="82">p2p_engine.detection.isp_detector.ISPDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_1a7508b2905f5b4d8e0e727c6d4da2faab" compoundref="nat__detector_8py" startline="21">p2p_engine.detection.nat_detector.NATDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" compoundref="network__detector_8py" startline="34">p2p_engine.detection.network_detector.NetworkDetector.stun_client</references>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" compoundref="network__detector_8py" startline="381" endline="422">p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a16ad93b9ef51cb1f3e14f7d35e799061" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.detection.network_detector.NetworkDetector._detect_enterprise_network</definition>
+        <argsstring>(self)</argsstring>
+        <name>_detect_enterprise_network</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._detect_enterprise_network</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测企业网络
+
+方法：
+1. 检查内网 IP 段（10.x, 172.16-31.x）
+2. 检查是否有企业防火墙特征
+3. 检查 DNS 是否为企业 DNS
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="226" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="226" bodyend="254"/>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1acdc7ae90982f57dab341af4cae3b5439" compoundref="network__detector_8py" startline="145" endline="155">p2p_engine.detection.network_detector.NetworkDetector._get_local_ip</references>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" compoundref="network__detector_8py" startline="381" endline="422">p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ace679ab1942e0d3db9e29b7e8bf87f2b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition> bool p2p_engine.detection.network_detector.NetworkDetector._detect_mobile_network</definition>
+        <argsstring>(self)</argsstring>
+        <name>_detect_mobile_network</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._detect_mobile_network</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测移动网络（4G/5G）
+
+方法：
+1. 检查 MTU 大小（移动网络通常较小）
+2. 检查网络延迟和抖动
+3. 检查 IP 变化频率
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="255" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="255" bodyend="292"/>
+        <references refid="classp2p__engine_1_1detection_1_1device__detector_1_1_device_detector_1a7affc171033691bc86454e5959a3a112" compoundref="device__detector_8py" startline="335">p2p_engine.detection.device_detector.DeviceDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1isp__detector_1_1_i_s_p_detector_1a91c84a11da0c271961b41fec0651d665" compoundref="isp__detector_8py" startline="82">p2p_engine.detection.isp_detector.ISPDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_1a7508b2905f5b4d8e0e727c6d4da2faab" compoundref="nat__detector_8py" startline="21">p2p_engine.detection.nat_detector.NATDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" compoundref="network__detector_8py" startline="34">p2p_engine.detection.network_detector.NetworkDetector.stun_client</references>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" compoundref="network__detector_8py" startline="381" endline="422">p2p_engine.detection.network_detector.NetworkDetector.monitor_changes</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a8d44404ab4250a0ec2ef6aff2db94244" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple</type>
+        <definition> tuple p2p_engine.detection.network_detector.NetworkDetector._detect_ipv6</definition>
+        <argsstring>(self)</argsstring>
+        <name>_detect_ipv6</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._detect_ipv6</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测 IPv6 可用性
+
+Returns:
+    (是否可用, 是否优先)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="293" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="293" bodyend="319"/>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a13272fedb6900aebd2e6e42be0485d4f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tuple</type>
+        <definition> tuple p2p_engine.detection.network_detector.NetworkDetector._detect_link_quality</definition>
+        <argsstring>(self)</argsstring>
+        <name>_detect_link_quality</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._detect_link_quality</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>检测链路质量
+
+Returns:
+    (丢包率, 平均延迟)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="320" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="320" bodyend="350"/>
+        <references refid="classp2p__engine_1_1detection_1_1device__detector_1_1_device_detector_1a7affc171033691bc86454e5959a3a112" compoundref="device__detector_8py" startline="335">p2p_engine.detection.device_detector.DeviceDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1isp__detector_1_1_i_s_p_detector_1a91c84a11da0c271961b41fec0651d665" compoundref="isp__detector_8py" startline="82">p2p_engine.detection.isp_detector.ISPDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1nat__detector_1_1_n_a_t_detector_1a7508b2905f5b4d8e0e727c6d4da2faab" compoundref="nat__detector_8py" startline="21">p2p_engine.detection.nat_detector.NATDetector.stun_client</references>
+        <references refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" compoundref="network__detector_8py" startline="34">p2p_engine.detection.network_detector.NetworkDetector.stun_client</references>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a324c2ca1ae88d027e7c93d69ba7c11a8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>str</type>
+        <definition> str p2p_engine.detection.network_detector.NetworkDetector._infer_firewall_type</definition>
+        <argsstring>(self, NetworkEnvironment env)</argsstring>
+        <name>_infer_firewall_type</name>
+        <qualifiedname>p2p_engine.detection.network_detector.NetworkDetector._infer_firewall_type</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type><ref refid="classp2p__engine_1_1types_1_1_network_environment" kindref="compound">NetworkEnvironment</ref></type>
+          <declname>env</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>根据环境特征推断防火墙类型</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/detection/network_detector.py" line="351" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="351" bodyend="367"/>
+        <referencedby refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" compoundref="network__detector_8py" startline="37" endline="85">p2p_engine.detection.network_detector.NetworkDetector.detect</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>网络环境检测器</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/detection/network_detector.py" line="30" column="1" bodyfile="p2p_engine/detection/network_detector.py" bodystart="30" bodyend="422"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ac55306c2f69c5b1aeac162a39c80570c" prot="public" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ac6066d496e156ff8e6954a3b56aee0a4" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_detect_cdn</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a16ad93b9ef51cb1f3e14f7d35e799061" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_detect_enterprise_network</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a8d44404ab4250a0ec2ef6aff2db94244" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_detect_ipv6</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a13272fedb6900aebd2e6e42be0485d4f" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_detect_link_quality</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ace679ab1942e0d3db9e29b7e8bf87f2b" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_detect_mobile_network</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1aa1c21d1a9958f1f91e774e0010a689ac" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_detect_nat_level</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1ab572cd5211ee6580c3da2fb4c7114c2d" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_detect_vpn</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1acdc7ae90982f57dab341af4cae3b5439" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_get_local_ip</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a324c2ca1ae88d027e7c93d69ba7c11a8" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_infer_firewall_type</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1acb541bf0883d70f05723db9a4744cec8" prot="protected" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>_observations</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a2beb53d0d581c5fa272bafceecea8181" prot="public" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>detect</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a9eb58ef5a1b5b264a6aa6c09dc9a8eb8" prot="public" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>is_complex_environment</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a7b0abb064a6cd9fe6dfb497af9c9f0ea" prot="public" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>monitor_changes</name></member>
+      <member refid="classp2p__engine_1_1detection_1_1network__detector_1_1_network_detector_1a0fef01a6eabccfdc5f072b62f7e709a0" prot="public" virt="non-virtual"><scope>p2p_engine::detection::network_detector::NetworkDetector</scope><name>stun_client</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

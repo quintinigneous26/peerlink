@@ -1,0 +1,1073 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.transport.quic.QUICConnection类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection.html','','classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.transport.quic.QUICConnection类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 p2p_engine.transport.quic.QUICConnection 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection__inherit__graph.png" border="0" usemap="#ap2p__engine_8transport_8quic_8_q_u_i_c_connection_inherit__map" loading="lazy" alt="Inheritance graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+p2p_engine.transport.quic.QUICConnection 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection__coll__graph.png" border="0" usemap="#ap2p__engine_8transport_8quic_8_q_u_i_c_connection_coll__map" loading="lazy" alt="Collaboration graph"/></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4ba16845dbbdb47c6cdb344dc80d91bb" id="r_a4ba16845dbbdb47c6cdb344dc80d91bb"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4ba16845dbbdb47c6cdb344dc80d91bb">__init__</a> (self, '<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#aa6ead5f09ae1dbe73dfc93c7b876071e">QuicConnectionProtocol</a>' <a class="el" href="#aebcc9c5bca6d5898bdc6b41e6074e8ff">protocol</a>, bool <a class="el" href="#a9c49cf567e9b6266c1ea7af7b25985ff">is_initiator</a>=False, Optional[int] <a class="el" href="#a609a3c6eeacee9e74cf2564b5d5b3c60">stream_id</a>=None)</td></tr>
+<tr class="memitem:aebcc9c5bca6d5898bdc6b41e6074e8ff" id="r_aebcc9c5bca6d5898bdc6b41e6074e8ff"><td class="memItemLeft"> '<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#aa6ead5f09ae1dbe73dfc93c7b876071e">QuicConnectionProtocol</a>'&#160;</td><td class="memItemRight"><a class="el" href="#aebcc9c5bca6d5898bdc6b41e6074e8ff">protocol</a> (self)</td></tr>
+<tr class="memitem:a9c49cf567e9b6266c1ea7af7b25985ff" id="r_a9c49cf567e9b6266c1ea7af7b25985ff"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9c49cf567e9b6266c1ea7af7b25985ff">is_initiator</a> (self)</td></tr>
+<tr class="memitem:a609a3c6eeacee9e74cf2564b5d5b3c60" id="r_a609a3c6eeacee9e74cf2564b5d5b3c60"><td class="memItemLeft">Optional[int]&#160;</td><td class="memItemRight"><a class="el" href="#a609a3c6eeacee9e74cf2564b5d5b3c60">stream_id</a> (self)</td></tr>
+<tr class="memitem:a20007ce603cb1cdaf6dbeecf6329ce89" id="r_a20007ce603cb1cdaf6dbeecf6329ce89"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a20007ce603cb1cdaf6dbeecf6329ce89">supports_0rtt</a> (self)</td></tr>
+<tr class="memitem:ac484d10c498ae5bec75fc5534bdf543a" id="r_ac484d10c498ae5bec75fc5534bdf543a"><td class="memItemLeft">Optional[<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#a642b7d316cc90859e5a07fcf9a944bc2">SessionTicket</a>]&#160;</td><td class="memItemRight"><a class="el" href="#ac484d10c498ae5bec75fc5534bdf543a">session_ticket</a> (self)</td></tr>
+<tr class="memitem:a814e69add95d4d56bdb6f91aea91b26e" id="r_a814e69add95d4d56bdb6f91aea91b26e"><td class="memItemLeft">bytes&#160;</td><td class="memItemRight"><a class="el" href="#a814e69add95d4d56bdb6f91aea91b26e">read</a> (self, int n=-1)</td></tr>
+<tr class="memitem:a1e401bcb887a8f52247f7faee2f6c599" id="r_a1e401bcb887a8f52247f7faee2f6c599"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a1e401bcb887a8f52247f7faee2f6c599">write</a> (self, bytes data)</td></tr>
+<tr class="memitem:abd695bedd8094f6328f09b9f3174ebda" id="r_abd695bedd8094f6328f09b9f3174ebda"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#abd695bedd8094f6328f09b9f3174ebda">close</a> (self)</td></tr>
+<tr class="memitem:ac4c634ed28273b4d18a0978f7849808b" id="r_ac4c634ed28273b4d18a0978f7849808b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac4c634ed28273b4d18a0978f7849808b">is_closed</a> (self)</td></tr>
+<tr class="memitem:aa49784de6a4bc6e99210b4b13fecab03" id="r_aa49784de6a4bc6e99210b4b13fecab03"><td class="memItemLeft">Optional[tuple]&#160;</td><td class="memItemRight"><a class="el" href="#aa49784de6a4bc6e99210b4b13fecab03">remote_address</a> (self)</td></tr>
+<tr class="memitem:a3335dded643d69af2ce070023d948d60" id="r_a3335dded643d69af2ce070023d948d60"><td class="memItemLeft">Optional[tuple]&#160;</td><td class="memItemRight"><a class="el" href="#a3335dded643d69af2ce070023d948d60">local_address</a> (self)</td></tr>
+<tr class="memitem:a9ef19ac30fb408de98738707f4393530" id="r_a9ef19ac30fb408de98738707f4393530"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a9ef19ac30fb408de98738707f4393530">wait_handshake</a> (self, float timeout=10.0)</td></tr>
+<tr class="memitem:af974508d041449ec634c31d26d67ed7f" id="r_af974508d041449ec634c31d26d67ed7f"><td class="memItemLeft"> '<a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream.html">QUICStream</a>'&#160;</td><td class="memItemRight"><a class="el" href="#af974508d041449ec634c31d26d67ed7f">open_stream</a> (self, <a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_quic_stream_type.html">QuicStreamType</a> stream_type=<a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_quic_stream_type.html#aaec5f532fa1368ec0b3098f3bcfae9ad">QuicStreamType.BIDI</a>)</td></tr>
+<tr class="memitem:ae2b62ff3f455a8dc7c2d7d46857d1e3e" id="r_ae2b62ff3f455a8dc7c2d7d46857d1e3e"><td class="memItemLeft"> '<a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream.html">QUICStream</a>'&#160;</td><td class="memItemRight"><a class="el" href="#ae2b62ff3f455a8dc7c2d7d46857d1e3e">accept_stream</a> (self)</td></tr>
+<tr class="memitem:a01ac2c817d450e7d93b119d5d3cd5994" id="r_a01ac2c817d450e7d93b119d5d3cd5994"><td class="memItemLeft">Optional[ '<a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream.html">QUICStream</a>']&#160;</td><td class="memItemRight"><a class="el" href="#a01ac2c817d450e7d93b119d5d3cd5994">get_stream</a> (self, int <a class="el" href="#a609a3c6eeacee9e74cf2564b5d5b3c60">stream_id</a>)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a99966979c1ca3dd015f71492814583ad" id="r_a99966979c1ca3dd015f71492814583ad"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a99966979c1ca3dd015f71492814583ad">_setup_protocol_callbacks</a> (self)</td></tr>
+<tr class="memitem:a47b750c88e7af6066f70451d1c1a3451" id="r_a47b750c88e7af6066f70451d1c1a3451"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a47b750c88e7af6066f70451d1c1a3451">_handle_quic_event</a> (self, 'QuicEvent' <a class="el" href="namespacep2p__engine_1_1event.html">event</a>)</td></tr>
+<tr class="memitem:aed5dc0723cbeaaf8f6c23b858b9260b1" id="r_aed5dc0723cbeaaf8f6c23b858b9260b1"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#aed5dc0723cbeaaf8f6c23b858b9260b1">_get_or_create_stream</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a92bd4ac301886aca775e6d5ae759b170" id="r_a92bd4ac301886aca775e6d5ae759b170"><td class="memItemLeft">'<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#aa6ead5f09ae1dbe73dfc93c7b876071e">QuicConnectionProtocol</a>'&#160;</td><td class="memItemRight"><a class="el" href="#a92bd4ac301886aca775e6d5ae759b170">_protocol</a> = <a class="el" href="#aebcc9c5bca6d5898bdc6b41e6074e8ff">protocol</a></td></tr>
+<tr class="memitem:ae9d335e7e4784141afcd7e28acb44bf8" id="r_ae9d335e7e4784141afcd7e28acb44bf8"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae9d335e7e4784141afcd7e28acb44bf8">_is_initiator</a> = <a class="el" href="#a9c49cf567e9b6266c1ea7af7b25985ff">is_initiator</a></td></tr>
+<tr class="memitem:a6f7ba367ec7f824833f1839f2a620b01" id="r_a6f7ba367ec7f824833f1839f2a620b01"><td class="memItemLeft">Optional[int]&#160;</td><td class="memItemRight"><a class="el" href="#a6f7ba367ec7f824833f1839f2a620b01">_stream_id</a> = <a class="el" href="#a609a3c6eeacee9e74cf2564b5d5b3c60">stream_id</a></td></tr>
+<tr class="memitem:a24810361bec6ada0112923902a52a8e5" id="r_a24810361bec6ada0112923902a52a8e5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a24810361bec6ada0112923902a52a8e5">_closed</a> = False</td></tr>
+<tr class="memitem:a7a992f2c452ff4402fe84757ef7ca24e" id="r_a7a992f2c452ff4402fe84757ef7ca24e"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7a992f2c452ff4402fe84757ef7ca24e">_handshake_complete</a> = asyncio.Event()</td></tr>
+<tr class="memitem:a51cc19097e4cdea2af149fb20d44df0f" id="r_a51cc19097e4cdea2af149fb20d44df0f"><td class="memItemLeft">asyncio.Queue[bytes]&#160;</td><td class="memItemRight"><a class="el" href="#a51cc19097e4cdea2af149fb20d44df0f">_read_queue</a> = asyncio.Queue()</td></tr>
+<tr class="memitem:a4ab8892e2d83f0d4a5450aa5103ce733" id="r_a4ab8892e2d83f0d4a5450aa5103ce733"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a4ab8892e2d83f0d4a5450aa5103ce733">_write_lock</a> = asyncio.Lock()</td></tr>
+<tr class="memitem:afae02292483c3a3d7cfc76712f16ecac" id="r_afae02292483c3a3d7cfc76712f16ecac"><td class="memItemLeft">Optional[tuple]&#160;</td><td class="memItemRight"><a class="el" href="#afae02292483c3a3d7cfc76712f16ecac">_remote_address</a> = None</td></tr>
+<tr class="memitem:aeb6069c5e46e1bb2349a7be662eb14ba" id="r_aeb6069c5e46e1bb2349a7be662eb14ba"><td class="memItemLeft">Optional[tuple]&#160;</td><td class="memItemRight"><a class="el" href="#aeb6069c5e46e1bb2349a7be662eb14ba">_local_address</a> = None</td></tr>
+<tr class="memitem:a773ccefa18208e479a2303a0ab7899fd" id="r_a773ccefa18208e479a2303a0ab7899fd"><td class="memItemLeft">dict&#160;</td><td class="memItemRight"><a class="el" href="#a773ccefa18208e479a2303a0ab7899fd">_active_streams</a> = {}</td></tr>
+<tr class="memitem:ac9a89c062a5a377112d36fd4f90a5b7c" id="r_ac9a89c062a5a377112d36fd4f90a5b7c"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#ac9a89c062a5a377112d36fd4f90a5b7c">_next_stream_id</a> = 0</td></tr>
+<tr class="memitem:a4437419ab49ddba917ebe589f40ea415" id="r_a4437419ab49ddba917ebe589f40ea415"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4437419ab49ddba917ebe589f40ea415">_supports_0rtt</a> = False</td></tr>
+<tr class="memitem:a440430f12e2366f1e048f0452738fc1b" id="r_a440430f12e2366f1e048f0452738fc1b"><td class="memItemLeft">Optional[<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#a642b7d316cc90859e5a07fcf9a944bc2">SessionTicket</a>]&#160;</td><td class="memItemRight"><a class="el" href="#a440430f12e2366f1e048f0452738fc1b">_session_ticket</a> = None</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">QUIC 连接
+
+封装 aioquic 连接和流操作，
+提供 libp2p 传输层接口。
+</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00077">77</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a4ba16845dbbdb47c6cdb344dc80d91bb" name="a4ba16845dbbdb47c6cdb344dc80d91bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ba16845dbbdb47c6cdb344dc80d91bb">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.transport.quic.QUICConnection.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">'<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#aa6ead5f09ae1dbe73dfc93c7b876071e">QuicConnectionProtocol</a>'</td>          <td class="paramname"><span class="paramname"><em>protocol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool </td>          <td class="paramname"><span class="paramname"><em>is_initiator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">False</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[int] </td>          <td class="paramname"><span class="paramname"><em>stream_id</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00085">85</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="aed5dc0723cbeaaf8f6c23b858b9260b1" name="aed5dc0723cbeaaf8f6c23b858b9260b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed5dc0723cbeaaf8f6c23b858b9260b1">&#9670;&#160;</a></span>_get_or_create_stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int p2p_engine.transport.quic.QUICConnection._get_or_create_stream </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">获取或创建流</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00329">329</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00099">_stream_id</a>, <a class="el" href="mplex_8py_source.html#l00561">p2p_engine.muxer.mplex.MplexSession.open_stream()</a>, <a class="el" href="mplex__adapter_8py_source.html#l00158">p2p_engine.muxer.mplex_adapter.MplexMuxedSession.open_stream()</a>, <a class="el" href="mplex__v2_8py_source.html#l00754">p2p_engine.muxer.mplex_v2.MplexSession.open_stream()</a>, <a class="el" href="yamux_8py_source.html#l00600">p2p_engine.muxer.yamux.YamuxSession.open_stream()</a>, <a class="el" href="yamux__optimized_8py_source.html#l00198">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession.open_stream()</a> , 以及 <a class="el" href="quic_8py_source.html#l00256">open_stream()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00173">write()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_aed5dc0723cbeaaf8f6c23b858b9260b1_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_aed5dc0723cbeaaf8f6c23b858b9260b1_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_aed5dc0723cbeaaf8f6c23b858b9260b1_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_aed5dc0723cbeaaf8f6c23b858b9260b1_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a47b750c88e7af6066f70451d1c1a3451" name="a47b750c88e7af6066f70451d1c1a3451"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47b750c88e7af6066f70451d1c1a3451">&#9670;&#160;</a></span>_handle_quic_event()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.transport.quic.QUICConnection._handle_quic_event </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">'QuicEvent'</td>          <td class="paramname"><span class="paramname"><em>event</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">处理 QUIC 事件
+
+Args:
+    event: QUIC 事件
+</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00301">301</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00112">_active_streams</a>, <a class="el" href="quic_8py_source.html#l00103">_handshake_complete</a>, <a class="el" href="quic_8py_source.html#l00104">_read_queue</a>, <a class="el" href="quic_8py_source.html#l00117">_session_ticket</a>, <a class="el" href="quic_8py_source.html#l00099">_stream_id</a> , 以及 <a class="el" href="quic_8py_source.html#l00116">_supports_0rtt</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00293">_setup_protocol_callbacks()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a47b750c88e7af6066f70451d1c1a3451_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a47b750c88e7af6066f70451d1c1a3451_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a99966979c1ca3dd015f71492814583ad" name="a99966979c1ca3dd015f71492814583ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99966979c1ca3dd015f71492814583ad">&#9670;&#160;</a></span>_setup_protocol_callbacks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.transport.quic.QUICConnection._setup_protocol_callbacks </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">设置协议回调</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00293">293</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00301">_handle_quic_event()</a> , 以及 <a class="el" href="quic_8py_source.html#l00097">_protocol</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a99966979c1ca3dd015f71492814583ad_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a99966979c1ca3dd015f71492814583ad_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ae2b62ff3f455a8dc7c2d7d46857d1e3e" name="ae2b62ff3f455a8dc7c2d7d46857d1e3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2b62ff3f455a8dc7c2d7d46857d1e3e">&#9670;&#160;</a></span>accept_stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> '<a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream.html">QUICStream</a>' p2p_engine.transport.quic.QUICConnection.accept_stream </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">接受入站流
+
+Returns:
+    接受的流对象
+</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00278">278</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abd695bedd8094f6328f09b9f3174ebda" name="abd695bedd8094f6328f09b9f3174ebda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd695bedd8094f6328f09b9f3174ebda">&#9670;&#160;</a></span>close()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.transport.quic.QUICConnection.close </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">关闭连接</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1transport_1_1base_1_1_connection.html#a03bc6dc0ef2a59f073caa915a59e81da">p2p_engine.transport.base.Connection</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00195">195</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00112">_active_streams</a>, <a class="el" href="mplex_8py_source.html#l00523">p2p_engine.muxer.mplex.MplexSession._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</a>, <a class="el" href="mplex__v2_8py_source.html#l00694">p2p_engine.muxer.mplex_v2.MplexSession._closed</a>, <a class="el" href="yamux_8py_source.html#l00549">p2p_engine.muxer.yamux.YamuxSession._closed</a>, <a class="el" href="yamux__optimized_8py_source.html#l00204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</a>, <a class="el" href="identify_8py_source.html#l00215">p2p_engine.protocol.identify.ConnectionWrapper._closed</a>, <a class="el" href="noise_8py_source.html#l00716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00648">p2p_engine.protocol.tls.TLSSession._closed</a>, <a class="el" href="manager_8py_source.html#l00053">p2p_engine.transport.manager.TransportManager._closed</a>, <a class="el" href="quic_8py_source.html#l00102">_closed</a>, <a class="el" href="quic_8py_source.html#l00097">_protocol</a>, <a class="el" href="quic_8py_source.html#l00104">_read_queue</a> , 以及 <a class="el" href="quic_8py_source.html#l00195">close()</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="client_8py_source.html#l00516">p2p_sdk.client.P2PClient._receive_loop()</a> , 以及 <a class="el" href="quic_8py_source.html#l00195">close()</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_abd695bedd8094f6328f09b9f3174ebda_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_abd695bedd8094f6328f09b9f3174ebda_cgraph" loading="lazy" alt=""/></div>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_abd695bedd8094f6328f09b9f3174ebda_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_abd695bedd8094f6328f09b9f3174ebda_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a01ac2c817d450e7d93b119d5d3cd5994" name="a01ac2c817d450e7d93b119d5d3cd5994"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01ac2c817d450e7d93b119d5d3cd5994">&#9670;&#160;</a></span>get_stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional['<a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream.html">QUICStream</a>'] p2p_engine.transport.quic.QUICConnection.get_stream </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>stream_id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取指定流</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00289">289</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00112">_active_streams</a>.</p>
+
+</div>
+</div>
+<a id="ac4c634ed28273b4d18a0978f7849808b" name="ac4c634ed28273b4d18a0978f7849808b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4c634ed28273b4d18a0978f7849808b">&#9670;&#160;</a></span>is_closed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.transport.quic.QUICConnection.is_closed </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">检查连接是否已关闭</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1transport_1_1base_1_1_connection.html#afd80c879b0a4036fce4ca9e8b8e34115">p2p_engine.transport.base.Connection</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00227">227</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex_8py_source.html#l00523">p2p_engine.muxer.mplex.MplexSession._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</a>, <a class="el" href="mplex__v2_8py_source.html#l00694">p2p_engine.muxer.mplex_v2.MplexSession._closed</a>, <a class="el" href="yamux_8py_source.html#l00549">p2p_engine.muxer.yamux.YamuxSession._closed</a>, <a class="el" href="yamux__optimized_8py_source.html#l00204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</a>, <a class="el" href="identify_8py_source.html#l00215">p2p_engine.protocol.identify.ConnectionWrapper._closed</a>, <a class="el" href="noise_8py_source.html#l00716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00648">p2p_engine.protocol.tls.TLSSession._closed</a>, <a class="el" href="manager_8py_source.html#l00053">p2p_engine.transport.manager.TransportManager._closed</a> , 以及 <a class="el" href="quic_8py_source.html#l00102">_closed</a>.</p>
+
+</div>
+</div>
+<a id="a9c49cf567e9b6266c1ea7af7b25985ff" name="a9c49cf567e9b6266c1ea7af7b25985ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c49cf567e9b6266c1ea7af7b25985ff">&#9670;&#160;</a></span>is_initiator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.transport.quic.QUICConnection.is_initiator </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">是否为发起方</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00128">128</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex_8py_source.html#l00249">p2p_engine.muxer.mplex.MplexStream._is_initiator</a>, <a class="el" href="mplex__v2_8py_source.html#l00269">p2p_engine.muxer.mplex_v2.MplexStream._is_initiator</a>, <a class="el" href="yamux_8py_source.html#l00229">p2p_engine.muxer.yamux.YamuxStream._is_initiator</a> , 以及 <a class="el" href="quic_8py_source.html#l00098">_is_initiator</a>.</p>
+
+</div>
+</div>
+<a id="a3335dded643d69af2ce070023d948d60" name="a3335dded643d69af2ce070023d948d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3335dded643d69af2ce070023d948d60">&#9670;&#160;</a></span>local_address()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[tuple] p2p_engine.transport.quic.QUICConnection.local_address </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取本地地址</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1transport_1_1base_1_1_connection.html#a2c2fdec8d0b32b8b7804c2c437a86c1d">p2p_engine.transport.base.Connection</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00237">237</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00109">_local_address</a>.</p>
+
+</div>
+</div>
+<a id="af974508d041449ec634c31d26d67ed7f" name="af974508d041449ec634c31d26d67ed7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af974508d041449ec634c31d26d67ed7f">&#9670;&#160;</a></span>open_stream()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> '<a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_stream.html">QUICStream</a>' p2p_engine.transport.quic.QUICConnection.open_stream </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_quic_stream_type.html">QuicStreamType</a> </td>          <td class="paramname"><span class="paramname"><em>stream_type</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="classp2p__engine_1_1transport_1_1quic_1_1_quic_stream_type.html#aaec5f532fa1368ec0b3098f3bcfae9ad">QuicStreamType.BIDI</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">打开新流
+
+Args:
+    stream_type: 流类型
+
+Returns:
+    新流对象
+</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00256">256</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00112">_active_streams</a>, <a class="el" href="mplex_8py_source.html#l00523">p2p_engine.muxer.mplex.MplexSession._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</a>, <a class="el" href="mplex__v2_8py_source.html#l00694">p2p_engine.muxer.mplex_v2.MplexSession._closed</a>, <a class="el" href="yamux_8py_source.html#l00549">p2p_engine.muxer.yamux.YamuxSession._closed</a>, <a class="el" href="yamux__optimized_8py_source.html#l00204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</a>, <a class="el" href="identify_8py_source.html#l00215">p2p_engine.protocol.identify.ConnectionWrapper._closed</a>, <a class="el" href="noise_8py_source.html#l00716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00648">p2p_engine.protocol.tls.TLSSession._closed</a>, <a class="el" href="manager_8py_source.html#l00053">p2p_engine.transport.manager.TransportManager._closed</a>, <a class="el" href="quic_8py_source.html#l00102">_closed</a> , 以及 <a class="el" href="quic_8py_source.html#l00097">_protocol</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00329">_get_or_create_stream()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_af974508d041449ec634c31d26d67ed7f_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_af974508d041449ec634c31d26d67ed7f_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aebcc9c5bca6d5898bdc6b41e6074e8ff" name="aebcc9c5bca6d5898bdc6b41e6074e8ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebcc9c5bca6d5898bdc6b41e6074e8ff">&#9670;&#160;</a></span>protocol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> '<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#aa6ead5f09ae1dbe73dfc93c7b876071e">QuicConnectionProtocol</a>' p2p_engine.transport.quic.QUICConnection.protocol </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取底层 QUIC 协议</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00123">123</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00097">_protocol</a>.</p>
+
+</div>
+</div>
+<a id="a814e69add95d4d56bdb6f91aea91b26e" name="a814e69add95d4d56bdb6f91aea91b26e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a814e69add95d4d56bdb6f91aea91b26e">&#9670;&#160;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bytes p2p_engine.transport.quic.QUICConnection.read </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>n</em></span><span class="paramdefsep"> = </span><span class="paramdefval">-1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">读取数据
+
+Args:
+    n: 读取字节数，-1 表示读取所有
+
+Returns:
+    读取的数据
+</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1transport_1_1base_1_1_connection.html#a4f82ab1576b25050f93e2a8679b5a055">p2p_engine.transport.base.Connection</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00147">147</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex_8py_source.html#l00523">p2p_engine.muxer.mplex.MplexSession._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</a>, <a class="el" href="mplex__v2_8py_source.html#l00694">p2p_engine.muxer.mplex_v2.MplexSession._closed</a>, <a class="el" href="yamux_8py_source.html#l00549">p2p_engine.muxer.yamux.YamuxSession._closed</a>, <a class="el" href="yamux__optimized_8py_source.html#l00204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</a>, <a class="el" href="identify_8py_source.html#l00215">p2p_engine.protocol.identify.ConnectionWrapper._closed</a>, <a class="el" href="noise_8py_source.html#l00716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00648">p2p_engine.protocol.tls.TLSSession._closed</a>, <a class="el" href="manager_8py_source.html#l00053">p2p_engine.transport.manager.TransportManager._closed</a>, <a class="el" href="quic_8py_source.html#l00102">_closed</a> , 以及 <a class="el" href="quic_8py_source.html#l00104">_read_queue</a>.</p>
+
+</div>
+</div>
+<a id="aa49784de6a4bc6e99210b4b13fecab03" name="aa49784de6a4bc6e99210b4b13fecab03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa49784de6a4bc6e99210b4b13fecab03">&#9670;&#160;</a></span>remote_address()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[tuple] p2p_engine.transport.quic.QUICConnection.remote_address </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取远程地址</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1transport_1_1base_1_1_connection.html#acf8091530c3865d3c01d74895388af65">p2p_engine.transport.base.Connection</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00232">232</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00108">_remote_address</a>.</p>
+
+</div>
+</div>
+<a id="ac484d10c498ae5bec75fc5534bdf543a" name="ac484d10c498ae5bec75fc5534bdf543a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac484d10c498ae5bec75fc5534bdf543a">&#9670;&#160;</a></span>session_ticket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#a642b7d316cc90859e5a07fcf9a944bc2">SessionTicket</a>] p2p_engine.transport.quic.QUICConnection.session_ticket </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取会话票据（用于 0-RTT）</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00143">143</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00117">_session_ticket</a>.</p>
+
+</div>
+</div>
+<a id="a609a3c6eeacee9e74cf2564b5d5b3c60" name="a609a3c6eeacee9e74cf2564b5d5b3c60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a609a3c6eeacee9e74cf2564b5d5b3c60">&#9670;&#160;</a></span>stream_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> Optional[int] p2p_engine.transport.quic.QUICConnection.stream_id </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">获取主流 ID</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00133">133</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00099">_stream_id</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="mplex_8py_source.html#l00169">p2p_engine.muxer.mplex.MplexFrame.pack()</a> , 以及 <a class="el" href="mplex__v2_8py_source.html#l00175">p2p_engine.muxer.mplex_v2.MplexFrame.pack()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a609a3c6eeacee9e74cf2564b5d5b3c60_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a609a3c6eeacee9e74cf2564b5d5b3c60_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a20007ce603cb1cdaf6dbeecf6329ce89" name="a20007ce603cb1cdaf6dbeecf6329ce89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20007ce603cb1cdaf6dbeecf6329ce89">&#9670;&#160;</a></span>supports_0rtt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.transport.quic.QUICConnection.supports_0rtt </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">是否支持 0-RTT</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00138">138</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00116">_supports_0rtt</a>.</p>
+
+</div>
+</div>
+<a id="a9ef19ac30fb408de98738707f4393530" name="a9ef19ac30fb408de98738707f4393530"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ef19ac30fb408de98738707f4393530">&#9670;&#160;</a></span>wait_handshake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.transport.quic.QUICConnection.wait_handshake </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">10.0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">等待握手完成
+
+Args:
+    timeout: 超时时间（秒）
+</pre> 
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00241">241</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="quic_8py_source.html#l00103">_handshake_complete</a>.</p>
+
+</div>
+</div>
+<a id="a1e401bcb887a8f52247f7faee2f6c599" name="a1e401bcb887a8f52247f7faee2f6c599"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e401bcb887a8f52247f7faee2f6c599">&#9670;&#160;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> int p2p_engine.transport.quic.QUICConnection.write </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bytes</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">写入数据
+
+Args:
+    data: 要写入的数据
+
+Returns:
+    写入的字节数
+</pre> 
+<p>重载 <a class="el" href="classp2p__engine_1_1transport_1_1base_1_1_connection.html#a1f8391923639cf4fd18b559d01bc345b">p2p_engine.transport.base.Connection</a> .</p>
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00173">173</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex_8py_source.html#l00523">p2p_engine.muxer.mplex.MplexSession._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00105">p2p_engine.muxer.mplex_adapter.ConnectionWriter._closed</a>, <a class="el" href="mplex__adapter_8py_source.html#l00141">p2p_engine.muxer.mplex_adapter.MplexMuxedSession._closed</a>, <a class="el" href="mplex__v2_8py_source.html#l00694">p2p_engine.muxer.mplex_v2.MplexSession._closed</a>, <a class="el" href="yamux_8py_source.html#l00549">p2p_engine.muxer.yamux.YamuxSession._closed</a>, <a class="el" href="yamux__optimized_8py_source.html#l00204">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._closed</a>, <a class="el" href="identify_8py_source.html#l00215">p2p_engine.protocol.identify.ConnectionWrapper._closed</a>, <a class="el" href="noise_8py_source.html#l00716">p2p_engine.protocol.noise.NoiseSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00290">p2p_engine.protocol.tls.TLSSecurityTransport._closed</a>, <a class="el" href="tls_8py_source.html#l00648">p2p_engine.protocol.tls.TLSSession._closed</a>, <a class="el" href="manager_8py_source.html#l00053">p2p_engine.transport.manager.TransportManager._closed</a>, <a class="el" href="quic_8py_source.html#l00102">_closed</a>, <a class="el" href="quic_8py_source.html#l00329">_get_or_create_stream()</a>, <a class="el" href="quic_8py_source.html#l00097">_protocol</a>, <a class="el" href="quic_8py_source.html#l00099">_stream_id</a>, <a class="el" href="mplex_8py_source.html#l00254">p2p_engine.muxer.mplex.MplexStream._write_lock</a>, <a class="el" href="mplex__v2_8py_source.html#l00275">p2p_engine.muxer.mplex_v2.MplexStream._write_lock</a>, <a class="el" href="yamux_8py_source.html#l00235">p2p_engine.muxer.yamux.YamuxStream._write_lock</a> , 以及 <a class="el" href="quic_8py_source.html#l00105">_write_lock</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a1e401bcb887a8f52247f7faee2f6c599_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection_a1e401bcb887a8f52247f7faee2f6c599_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a773ccefa18208e479a2303a0ab7899fd" name="a773ccefa18208e479a2303a0ab7899fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a773ccefa18208e479a2303a0ab7899fd">&#9670;&#160;</a></span>_active_streams</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">dict p2p_engine.transport.quic.QUICConnection._active_streams = {}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00112">112</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00301">_handle_quic_event()</a>, <a class="el" href="quic_8py_source.html#l00195">close()</a>, <a class="el" href="quic_8py_source.html#l00289">get_stream()</a> , 以及 <a class="el" href="quic_8py_source.html#l00256">open_stream()</a>.</p>
+
+</div>
+</div>
+<a id="a24810361bec6ada0112923902a52a8e5" name="a24810361bec6ada0112923902a52a8e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24810361bec6ada0112923902a52a8e5">&#9670;&#160;</a></span>_closed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool p2p_engine.transport.quic.QUICConnection._closed = False</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00102">102</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00567">p2p_engine.transport.quic.QUICListener._handle_connection()</a>, <a class="el" href="quic_8py_source.html#l00448">p2p_engine.transport.quic.QUICStream._handle_data()</a>, <a class="el" href="upgrader_8py_source.html#l00269">p2p_engine.transport.upgrader.MuxedSession._handle_incoming_stream()</a>, <a class="el" href="webrtc_8py_source.html#l00340">p2p_engine.transport.webrtc.WebRTCConnection._setup_callbacks()</a>, <a class="el" href="webrtc_8py_source.html#l00382">p2p_engine.transport.webrtc.WebRTCConnection._setup_data_channel_callbacks()</a>, <a class="el" href="quic_8py_source.html#l00505">p2p_engine.transport.quic.QUICListener.accept()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00464">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.accept()</a>, <a class="el" href="webrtc_8py_source.html#l00448">p2p_engine.transport.webrtc.WebRTCListener.accept()</a>, <a class="el" href="quic_8py_source.html#l00517">p2p_engine.transport.quic.QUICListener.accept_stream()</a>, <a class="el" href="upgrader_8py_source.html#l00238">p2p_engine.transport.upgrader.MuxedSession.accept_stream()</a>, <a class="el" href="webtransport_8py_source.html#l00342">p2p_engine.transport.webtransport.WebTransportListener.addresses()</a>, <a class="el" href="quic_8py_source.html#l00195">close()</a>, <a class="el" href="quic_8py_source.html#l00534">p2p_engine.transport.quic.QUICListener.close()</a>, <a class="el" href="quic_8py_source.html#l00425">p2p_engine.transport.quic.QUICStream.close()</a>, <a class="el" href="quic_8py_source.html#l00750">p2p_engine.transport.quic.QUICTransport.close()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00414">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.close()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00136">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.close()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00484">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.close()</a>, <a class="el" href="upgrader_8py_source.html#l00294">p2p_engine.transport.upgrader.MuxedSession.close()</a>, <a class="el" href="webrtc_8py_source.html#l00224">p2p_engine.transport.webrtc.WebRTCConnection.close()</a>, <a class="el" href="webrtc_8py_source.html#l00460">p2p_engine.transport.webrtc.WebRTCListener.close()</a>, <a class="el" href="webrtc_8py_source.html#l00652">p2p_engine.transport.webrtc.WebRTCTransport.close()</a>, <a class="el" href="webtransport_8py_source.html#l00276">p2p_engine.transport.webtransport.WebTransportConnection.close()</a>, <a class="el" href="quic_8py_source.html#l00656">p2p_engine.transport.quic.QUICTransport.dial()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00336">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.dial()</a>, <a class="el" href="webrtc_8py_source.html#l00597">p2p_engine.transport.webrtc.WebRTCTransport.dial()</a>, <a class="el" href="webrtc_8py_source.html#l00497">p2p_engine.transport.webrtc.WebRTCListener.handle_offer()</a>, <a class="el" href="quic_8py_source.html#l00227">is_closed()</a>, <a class="el" href="quic_8py_source.html#l00558">p2p_engine.transport.quic.QUICListener.is_closed()</a>, <a class="el" href="quic_8py_source.html#l00444">p2p_engine.transport.quic.QUICStream.is_closed()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00152">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.is_closed()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00495">p2p_engine.transport.tcp_optimized.TCPOptimizedListener.is_closed()</a>, <a class="el" href="upgrader_8py_source.html#l00220">p2p_engine.transport.upgrader.MuxedSession.is_closed()</a>, <a class="el" href="webrtc_8py_source.html#l00254">p2p_engine.transport.webrtc.WebRTCConnection.is_closed()</a>, <a class="el" href="webrtc_8py_source.html#l00486">p2p_engine.transport.webrtc.WebRTCListener.is_closed()</a>, <a class="el" href="webtransport_8py_source.html#l00249">p2p_engine.transport.webtransport.WebTransportConnection.is_closed()</a>, <a class="el" href="webtransport_8py_source.html#l00337">p2p_engine.transport.webtransport.WebTransportListener.is_closed()</a>, <a class="el" href="quic_8py_source.html#l00706">p2p_engine.transport.quic.QUICTransport.listen()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00390">p2p_engine.transport.tcp_optimized.OptimizedTCPTransport.listen()</a>, <a class="el" href="webrtc_8py_source.html#l00630">p2p_engine.transport.webrtc.WebRTCTransport.listen()</a>, <a class="el" href="quic_8py_source.html#l00256">open_stream()</a>, <a class="el" href="upgrader_8py_source.html#l00223">p2p_engine.transport.upgrader.MuxedSession.open_stream()</a>, <a class="el" href="quic_8py_source.html#l00147">read()</a>, <a class="el" href="quic_8py_source.html#l00379">p2p_engine.transport.quic.QUICStream.read()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00097">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.read()</a>, <a class="el" href="webrtc_8py_source.html#l00175">p2p_engine.transport.webrtc.WebRTCConnection.read()</a>, <a class="el" href="webtransport_8py_source.html#l00253">p2p_engine.transport.webtransport.WebTransportConnection.read()</a>, <a class="el" href="quic_8py_source.html#l00173">write()</a>, <a class="el" href="quic_8py_source.html#l00405">p2p_engine.transport.quic.QUICStream.write()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00119">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.write()</a>, <a class="el" href="webrtc_8py_source.html#l00201">p2p_engine.transport.webrtc.WebRTCConnection.write()</a> , 以及 <a class="el" href="webtransport_8py_source.html#l00266">p2p_engine.transport.webtransport.WebTransportConnection.write()</a>.</p>
+
+</div>
+</div>
+<a id="a7a992f2c452ff4402fe84757ef7ca24e" name="a7a992f2c452ff4402fe84757ef7ca24e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a992f2c452ff4402fe84757ef7ca24e">&#9670;&#160;</a></span>_handshake_complete</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.transport.quic.QUICConnection._handshake_complete = asyncio.Event()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00103">103</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00301">_handle_quic_event()</a> , 以及 <a class="el" href="quic_8py_source.html#l00241">wait_handshake()</a>.</p>
+
+</div>
+</div>
+<a id="ae9d335e7e4784141afcd7e28acb44bf8" name="ae9d335e7e4784141afcd7e28acb44bf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9d335e7e4784141afcd7e28acb44bf8">&#9670;&#160;</a></span>_is_initiator</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool p2p_engine.transport.quic.QUICConnection._is_initiator = <a class="el" href="#a9c49cf567e9b6266c1ea7af7b25985ff">is_initiator</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00098">98</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="webrtc_8py_source.html#l00340">p2p_engine.transport.webrtc.WebRTCConnection._setup_callbacks()</a>, <a class="el" href="webrtc_8py_source.html#l00294">p2p_engine.transport.webrtc.WebRTCConnection.create_answer()</a>, <a class="el" href="webrtc_8py_source.html#l00276">p2p_engine.transport.webrtc.WebRTCConnection.create_offer()</a>, <a class="el" href="quic_8py_source.html#l00128">is_initiator()</a>, <a class="el" href="upgrader_8py_source.html#l00213">p2p_engine.transport.upgrader.MuxedSession.is_initiator()</a> , 以及 <a class="el" href="webrtc_8py_source.html#l00171">p2p_engine.transport.webrtc.WebRTCConnection.is_initiator()</a>.</p>
+
+</div>
+</div>
+<a id="aeb6069c5e46e1bb2349a7be662eb14ba" name="aeb6069c5e46e1bb2349a7be662eb14ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb6069c5e46e1bb2349a7be662eb14ba">&#9670;&#160;</a></span>_local_address</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[tuple] p2p_engine.transport.quic.QUICConnection._local_address = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00109">109</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="webrtc_8py_source.html#l00491">p2p_engine.transport.webrtc.WebRTCListener.addresses()</a>, <a class="el" href="quic_8py_source.html#l00237">local_address()</a> , 以及 <a class="el" href="webrtc_8py_source.html#l00264">p2p_engine.transport.webrtc.WebRTCConnection.local_address()</a>.</p>
+
+</div>
+</div>
+<a id="ac9a89c062a5a377112d36fd4f90a5b7c" name="ac9a89c062a5a377112d36fd4f90a5b7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9a89c062a5a377112d36fd4f90a5b7c">&#9670;&#160;</a></span>_next_stream_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int p2p_engine.transport.quic.QUICConnection._next_stream_id = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00113">113</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="upgrader_8py_source.html#l00223">p2p_engine.transport.upgrader.MuxedSession.open_stream()</a>.</p>
+
+</div>
+</div>
+<a id="a92bd4ac301886aca775e6d5ae759b170" name="a92bd4ac301886aca775e6d5ae759b170"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92bd4ac301886aca775e6d5ae759b170">&#9670;&#160;</a></span>_protocol</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">'<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#aa6ead5f09ae1dbe73dfc93c7b876071e">QuicConnectionProtocol</a>' p2p_engine.transport.quic.QUICConnection._protocol = <a class="el" href="#aebcc9c5bca6d5898bdc6b41e6074e8ff">protocol</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00293">_setup_protocol_callbacks()</a>, <a class="el" href="quic_8py_source.html#l00195">close()</a>, <a class="el" href="quic_8py_source.html#l00256">open_stream()</a>, <a class="el" href="quic_8py_source.html#l00123">protocol()</a> , 以及 <a class="el" href="quic_8py_source.html#l00173">write()</a>.</p>
+
+</div>
+</div>
+<a id="a51cc19097e4cdea2af149fb20d44df0f" name="a51cc19097e4cdea2af149fb20d44df0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51cc19097e4cdea2af149fb20d44df0f">&#9670;&#160;</a></span>_read_queue</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">asyncio.Queue[bytes] p2p_engine.transport.quic.QUICConnection._read_queue = asyncio.Queue()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00104">104</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00448">p2p_engine.transport.quic.QUICStream._handle_data()</a>, <a class="el" href="quic_8py_source.html#l00301">_handle_quic_event()</a>, <a class="el" href="webrtc_8py_source.html#l00382">p2p_engine.transport.webrtc.WebRTCConnection._setup_data_channel_callbacks()</a>, <a class="el" href="quic_8py_source.html#l00195">close()</a>, <a class="el" href="webrtc_8py_source.html#l00224">p2p_engine.transport.webrtc.WebRTCConnection.close()</a>, <a class="el" href="quic_8py_source.html#l00147">read()</a>, <a class="el" href="quic_8py_source.html#l00379">p2p_engine.transport.quic.QUICStream.read()</a> , 以及 <a class="el" href="webrtc_8py_source.html#l00175">p2p_engine.transport.webrtc.WebRTCConnection.read()</a>.</p>
+
+</div>
+</div>
+<a id="afae02292483c3a3d7cfc76712f16ecac" name="afae02292483c3a3d7cfc76712f16ecac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afae02292483c3a3d7cfc76712f16ecac">&#9670;&#160;</a></span>_remote_address</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[tuple] p2p_engine.transport.quic.QUICConnection._remote_address = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00108">108</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00232">remote_address()</a> , 以及 <a class="el" href="webrtc_8py_source.html#l00259">p2p_engine.transport.webrtc.WebRTCConnection.remote_address()</a>.</p>
+
+</div>
+</div>
+<a id="a440430f12e2366f1e048f0452738fc1b" name="a440430f12e2366f1e048f0452738fc1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a440430f12e2366f1e048f0452738fc1b">&#9670;&#160;</a></span>_session_ticket</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[<a class="el" href="namespacep2p__engine_1_1transport_1_1quic.html#a642b7d316cc90859e5a07fcf9a944bc2">SessionTicket</a>] p2p_engine.transport.quic.QUICConnection._session_ticket = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00117">117</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00301">_handle_quic_event()</a> , 以及 <a class="el" href="quic_8py_source.html#l00143">session_ticket()</a>.</p>
+
+</div>
+</div>
+<a id="a6f7ba367ec7f824833f1839f2a620b01" name="a6f7ba367ec7f824833f1839f2a620b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f7ba367ec7f824833f1839f2a620b01">&#9670;&#160;</a></span>_stream_id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[int] p2p_engine.transport.quic.QUICConnection._stream_id = <a class="el" href="#a609a3c6eeacee9e74cf2564b5d5b3c60">stream_id</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00099">99</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00329">_get_or_create_stream()</a>, <a class="el" href="quic_8py_source.html#l00301">_handle_quic_event()</a>, <a class="el" href="quic_8py_source.html#l00425">p2p_engine.transport.quic.QUICStream.close()</a>, <a class="el" href="quic_8py_source.html#l00133">stream_id()</a>, <a class="el" href="quic_8py_source.html#l00370">p2p_engine.transport.quic.QUICStream.stream_id()</a>, <a class="el" href="upgrader_8py_source.html#l00153">p2p_engine.transport.upgrader.MuxedStream.stream_id()</a>, <a class="el" href="quic_8py_source.html#l00173">write()</a> , 以及 <a class="el" href="quic_8py_source.html#l00405">p2p_engine.transport.quic.QUICStream.write()</a>.</p>
+
+</div>
+</div>
+<a id="a4437419ab49ddba917ebe589f40ea415" name="a4437419ab49ddba917ebe589f40ea415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4437419ab49ddba917ebe589f40ea415">&#9670;&#160;</a></span>_supports_0rtt</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool p2p_engine.transport.quic.QUICConnection._supports_0rtt = False</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00116">116</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00301">_handle_quic_event()</a> , 以及 <a class="el" href="quic_8py_source.html#l00138">supports_0rtt()</a>.</p>
+
+</div>
+</div>
+<a id="a4ab8892e2d83f0d4a5450aa5103ce733" name="a4ab8892e2d83f0d4a5450aa5103ce733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ab8892e2d83f0d4a5450aa5103ce733">&#9670;&#160;</a></span>_write_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.transport.quic.QUICConnection._write_lock = asyncio.Lock()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="quic_8py_source.html">quic.py</a> 第 <a class="el" href="quic_8py_source.html#l00105">105</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="quic_8py_source.html#l00173">write()</a>, <a class="el" href="quic_8py_source.html#l00405">p2p_engine.transport.quic.QUICStream.write()</a> , 以及 <a class="el" href="webrtc_8py_source.html#l00201">p2p_engine.transport.webrtc.WebRTCConnection.write()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/transport/<a class="el" href="quic_8py_source.html">quic.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1transport.html">transport</a></li><li class="navelem"><a href="namespacep2p__engine_1_1transport_1_1quic.html">quic</a></li><li class="navelem"><a href="classp2p__engine_1_1transport_1_1quic_1_1_q_u_i_c_connection.html">QUICConnection</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

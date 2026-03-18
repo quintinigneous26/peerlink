@@ -1,0 +1,766 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.16.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>P2P Platform: p2p_engine.protocol.ping.PingProtocol类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">P2P Platform<span id="projectnumber">&#160;1.0.0</span>
+   </div>
+   <div id="projectbrief">基于WebRTC技术的去中心化P2P通信平台</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.16.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+$(function() { codefold.init(); });
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','搜索',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(function(){initNavTree('classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol.html','','classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol-members'); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">p2p_engine.protocol.ping.PingProtocol类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a5a1abeef3fc276f95e0ef93b28315b67" id="r_a5a1abeef3fc276f95e0ef93b28315b67"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5a1abeef3fc276f95e0ef93b28315b67">__init__</a> (self, asyncio.StreamReader reader, asyncio.StreamWriter writer, bool is_dialer=True, float timeout=30.0, Optional[Callable[[<a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a>], Awaitable[None]]] on_stats_update=None)</td></tr>
+<tr class="memitem:a749fc9c7f9bba3e333e80081d2da652f" id="r_a749fc9c7f9bba3e333e80081d2da652f"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a>&#160;</td><td class="memItemRight"><a class="el" href="#a749fc9c7f9bba3e333e80081d2da652f">stats</a> (self)</td></tr>
+<tr class="memitem:a0428d3ef63e5d0c44fdfb1ddb5bfdc46" id="r_a0428d3ef63e5d0c44fdfb1ddb5bfdc46"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a0428d3ef63e5d0c44fdfb1ddb5bfdc46">is_running</a> (self)</td></tr>
+<tr class="memitem:ab2f2322cb72c638ce23ef40437f6e1d2" id="r_ab2f2322cb72c638ce23ef40437f6e1d2"><td class="memItemLeft"><a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a>&#160;</td><td class="memItemRight"><a class="el" href="#ab2f2322cb72c638ce23ef40437f6e1d2">ping</a> (self, int count=1, float interval=1.0)</td></tr>
+<tr class="memitem:a840136b084a5a72944bc93450fa095aa" id="r_a840136b084a5a72944bc93450fa095aa"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a840136b084a5a72944bc93450fa095aa">serve</a> (self)</td></tr>
+<tr class="memitem:a1e2c2061c6d4f2d212250f75f541c771" id="r_a1e2c2061c6d4f2d212250f75f541c771"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a1e2c2061c6d4f2d212250f75f541c771">stop</a> (self)</td></tr>
+<tr class="memitem:a2a4514e58db0af927b6c2620abc79467" id="r_a2a4514e58db0af927b6c2620abc79467"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a2a4514e58db0af927b6c2620abc79467">reset_stats</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:aef14a02403226f4ea8ccab1280aa39ef" id="r_aef14a02403226f4ea8ccab1280aa39ef"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aef14a02403226f4ea8ccab1280aa39ef">_send_ping</a> (self)</td></tr>
+<tr class="memitem:af26faaa94cb5e7a4b2bc2ee5daf2762b" id="r_af26faaa94cb5e7a4b2bc2ee5daf2762b"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#af26faaa94cb5e7a4b2bc2ee5daf2762b">_on_ping_success</a> (self, float rtt)</td></tr>
+<tr class="memitem:ad7458e8f9d146d5cf5027a2803c20e5e" id="r_ad7458e8f9d146d5cf5027a2803c20e5e"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#ad7458e8f9d146d5cf5027a2803c20e5e">_on_ping_failure</a> (self, str reason)</td></tr>
+<tr class="memitem:a3d23448be6372334d047a9ec57533c45" id="r_a3d23448be6372334d047a9ec57533c45"><td class="memItemLeft">None&#160;</td><td class="memItemRight"><a class="el" href="#a3d23448be6372334d047a9ec57533c45">_handle_ping_request</a> (self)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a34ffe946459c1ff240ad422525161cac" id="r_a34ffe946459c1ff240ad422525161cac"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a34ffe946459c1ff240ad422525161cac">_reader</a> = reader</td></tr>
+<tr class="memitem:a8e1ac410e50524eec8f83c7791b8d5a8" id="r_a8e1ac410e50524eec8f83c7791b8d5a8"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8e1ac410e50524eec8f83c7791b8d5a8">_writer</a> = writer</td></tr>
+<tr class="memitem:a78b452fd1784c68555192b52b94564dc" id="r_a78b452fd1784c68555192b52b94564dc"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a78b452fd1784c68555192b52b94564dc">_is_dialer</a> = is_dialer</td></tr>
+<tr class="memitem:ad916f332c673b47593434e9c83e65a63" id="r_ad916f332c673b47593434e9c83e65a63"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ad916f332c673b47593434e9c83e65a63">_timeout</a> = timeout</td></tr>
+<tr class="memitem:a1f886cb31b3d661f938e8a62b4507079" id="r_a1f886cb31b3d661f938e8a62b4507079"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1f886cb31b3d661f938e8a62b4507079">_on_stats_update</a> = on_stats_update</td></tr>
+<tr class="memitem:a863140940292c6886e621ac69e4b04a6" id="r_a863140940292c6886e621ac69e4b04a6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a863140940292c6886e621ac69e4b04a6">_stats</a> = <a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a>()</td></tr>
+<tr class="memitem:a892dd8f30a2294427f8b395bed0b3119" id="r_a892dd8f30a2294427f8b395bed0b3119"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a892dd8f30a2294427f8b395bed0b3119">_running</a> = False</td></tr>
+<tr class="memitem:a71e9546cabe1e1839f6abfd843eeacfb" id="r_a71e9546cabe1e1839f6abfd843eeacfb"><td class="memItemLeft">Optional[asyncio.Task]&#160;</td><td class="memItemRight"><a class="el" href="#a71e9546cabe1e1839f6abfd843eeacfb">_task</a> = None</td></tr>
+<tr class="memitem:a78898c27e345aaaaaba4746895913167" id="r_a78898c27e345aaaaaba4746895913167"><td class="memItemLeft">int&#160;</td><td class="memItemRight"><a class="el" href="#a78898c27e345aaaaaba4746895913167">_max_streams_per_peer</a> = 1 if is_dialer else 2</td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">详细描述</h2>
+<div class="textblock"><pre class="fragment">libp2p Ping Protocol Implementation
+
+The ping protocol measures RTT (Round Trip Time) between peers by:
+1. Dialing peer sends 32 random bytes
+2. Listening peer echoes back the same bytes
+3. Dialing peer measures RTT from send to receive
+
+The dialing peer may repeat the process on the same stream.
+</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00048">48</a> 行定义.</p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">构造及析构函数说明</h2>
+<a id="a5a1abeef3fc276f95e0ef93b28315b67" name="a5a1abeef3fc276f95e0ef93b28315b67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a1abeef3fc276f95e0ef93b28315b67">&#9670;&#160;</a></span>__init__()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.ping.PingProtocol.__init__ </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamReader</td>          <td class="paramname"><span class="paramname"><em>reader</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">asyncio.StreamWriter</td>          <td class="paramname"><span class="paramname"><em>writer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool </td>          <td class="paramname"><span class="paramname"><em>is_dialer</em></span><span class="paramdefsep"> = </span><span class="paramdefval">True</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>timeout</em></span><span class="paramdefsep"> = </span><span class="paramdefval">30.0</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Optional[Callable[[<a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a>], Awaitable[None]]] </td>          <td class="paramname"><span class="paramname"><em>on_stats_update</em></span><span class="paramdefsep"> = </span><span class="paramdefval">None</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Initialize ping protocol
+
+Args:
+    reader: Stream reader for the connection
+    writer: Stream writer for the connection
+    is_dialer: True if this peer initiated the connection
+    timeout: Default timeout for ping operations (seconds)
+    on_stats_update: Optional callback when stats are updated
+</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">成员函数说明</h2>
+<a id="a3d23448be6372334d047a9ec57533c45" name="a3d23448be6372334d047a9ec57533c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d23448be6372334d047a9ec57533c45">&#9670;&#160;</a></span>_handle_ping_request()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.ping.PingProtocol._handle_ping_request </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle a single ping request</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00270">270</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex_8py_source.html#l00507">p2p_engine.muxer.mplex.MplexSession._reader</a>, <a class="el" href="mplex__v2_8py_source.html#l00670">p2p_engine.muxer.mplex_v2.MplexSession._reader</a>, <a class="el" href="yamux_8py_source.html#l00527">p2p_engine.muxer.yamux.YamuxSession._reader</a>, <a class="el" href="ping_8py_source.html#l00078">_reader</a>, <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a>, <a class="el" href="ping_8py_source.html#l00084">_stats</a>, <a class="el" href="ping_8py_source.html#l00081">_timeout</a>, <a class="el" href="mplex_8py_source.html#l00508">p2p_engine.muxer.mplex.MplexSession._writer</a>, <a class="el" href="mplex__v2_8py_source.html#l00671">p2p_engine.muxer.mplex_v2.MplexSession._writer</a>, <a class="el" href="yamux_8py_source.html#l00528">p2p_engine.muxer.yamux.YamuxSession._writer</a> , 以及 <a class="el" href="ping_8py_source.html#l00079">_writer</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00231">serve()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_a3d23448be6372334d047a9ec57533c45_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_a3d23448be6372334d047a9ec57533c45_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ad7458e8f9d146d5cf5027a2803c20e5e" name="ad7458e8f9d146d5cf5027a2803c20e5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7458e8f9d146d5cf5027a2803c20e5e">&#9670;&#160;</a></span>_on_ping_failure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.ping.PingProtocol._on_ping_failure </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">str</td>          <td class="paramname"><span class="paramname"><em>reason</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle failed ping</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00225">225</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a> , 以及 <a class="el" href="ping_8py_source.html#l00084">_stats</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00101">ping()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_ad7458e8f9d146d5cf5027a2803c20e5e_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_ad7458e8f9d146d5cf5027a2803c20e5e_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="af26faaa94cb5e7a4b2bc2ee5daf2762b" name="af26faaa94cb5e7a4b2bc2ee5daf2762b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af26faaa94cb5e7a4b2bc2ee5daf2762b">&#9670;&#160;</a></span>_on_ping_success()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.ping.PingProtocol._on_ping_success </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>rtt</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Handle successful ping</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00201">201</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a> , 以及 <a class="el" href="ping_8py_source.html#l00084">_stats</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00101">ping()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_af26faaa94cb5e7a4b2bc2ee5daf2762b_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_af26faaa94cb5e7a4b2bc2ee5daf2762b_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="aef14a02403226f4ea8ccab1280aa39ef" name="aef14a02403226f4ea8ccab1280aa39ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef14a02403226f4ea8ccab1280aa39ef">&#9670;&#160;</a></span>_send_ping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"> float p2p_engine.protocol.ping.PingProtocol._send_ping </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Send a single ping request
+
+Returns:
+    RTT in seconds
+
+Raises:
+    asyncio.TimeoutError: If response times out
+    ConnectionError: If connection fails
+</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00151">151</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="mplex_8py_source.html#l00507">p2p_engine.muxer.mplex.MplexSession._reader</a>, <a class="el" href="mplex__v2_8py_source.html#l00670">p2p_engine.muxer.mplex_v2.MplexSession._reader</a>, <a class="el" href="yamux_8py_source.html#l00527">p2p_engine.muxer.yamux.YamuxSession._reader</a>, <a class="el" href="ping_8py_source.html#l00078">_reader</a>, <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a>, <a class="el" href="ping_8py_source.html#l00084">_stats</a>, <a class="el" href="ping_8py_source.html#l00081">_timeout</a>, <a class="el" href="mplex_8py_source.html#l00508">p2p_engine.muxer.mplex.MplexSession._writer</a>, <a class="el" href="mplex__v2_8py_source.html#l00671">p2p_engine.muxer.mplex_v2.MplexSession._writer</a>, <a class="el" href="yamux_8py_source.html#l00528">p2p_engine.muxer.yamux.YamuxSession._writer</a> , 以及 <a class="el" href="ping_8py_source.html#l00079">_writer</a>.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00101">ping()</a>.</p>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_aef14a02403226f4ea8ccab1280aa39ef_icgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_aef14a02403226f4ea8ccab1280aa39ef_icgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a0428d3ef63e5d0c44fdfb1ddb5bfdc46" name="a0428d3ef63e5d0c44fdfb1ddb5bfdc46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0428d3ef63e5d0c44fdfb1ddb5bfdc46">&#9670;&#160;</a></span>is_running()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> bool p2p_engine.protocol.ping.PingProtocol.is_running </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Check if ping is running</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00097">97</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">p2p_engine.dht.kademlia.KademliaDHT._running</a>, <a class="el" href="engine_8py_source.html#l00152">p2p_engine.engine.P2PEngine._running</a>, <a class="el" href="event_8py_source.html#l00236">p2p_engine.event.EventBus._running</a>, <a class="el" href="heartbeat_8py_source.html#l00054">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</a> , 以及 <a class="el" href="ping_8py_source.html#l00085">_running</a>.</p>
+
+</div>
+</div>
+<a id="ab2f2322cb72c638ce23ef40437f6e1d2" name="ab2f2322cb72c638ce23ef40437f6e1d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2f2322cb72c638ce23ef40437f6e1d2">&#9670;&#160;</a></span>ping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a> p2p_engine.protocol.ping.PingProtocol.ping </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int </td>          <td class="paramname"><span class="paramname"><em>count</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float </td>          <td class="paramname"><span class="paramname"><em>interval</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1.0</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Send ping requests and measure RTT
+
+Args:
+    count: Number of ping requests to send
+    interval: Interval between pings in seconds
+
+Returns:
+    Updated PingStats
+
+Raises:
+    RuntimeError: If not the dialing peer
+    asyncio.TimeoutError: If ping times out
+    ConnectionError: If connection fails
+</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00101">101</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="ping_8py_source.html#l00080">_is_dialer</a>, <a class="el" href="ping_8py_source.html#l00225">_on_ping_failure()</a>, <a class="el" href="ping_8py_source.html#l00201">_on_ping_success()</a>, <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">p2p_engine.dht.kademlia.KademliaDHT._running</a>, <a class="el" href="engine_8py_source.html#l00152">p2p_engine.engine.P2PEngine._running</a>, <a class="el" href="event_8py_source.html#l00236">p2p_engine.event.EventBus._running</a>, <a class="el" href="heartbeat_8py_source.html#l00054">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</a>, <a class="el" href="ping_8py_source.html#l00085">_running</a>, <a class="el" href="ping_8py_source.html#l00151">_send_ping()</a>, <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a> , 以及 <a class="el" href="ping_8py_source.html#l00084">_stats</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_ab2f2322cb72c638ce23ef40437f6e1d2_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_ab2f2322cb72c638ce23ef40437f6e1d2_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a2a4514e58db0af927b6c2620abc79467" name="a2a4514e58db0af927b6c2620abc79467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a4514e58db0af927b6c2620abc79467">&#9670;&#160;</a></span>reset_stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.ping.PingProtocol.reset_stats </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Reset statistics</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00304">304</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a> , 以及 <a class="el" href="ping_8py_source.html#l00084">_stats</a>.</p>
+
+</div>
+</div>
+<a id="a840136b084a5a72944bc93450fa095aa" name="a840136b084a5a72944bc93450fa095aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840136b084a5a72944bc93450fa095aa">&#9670;&#160;</a></span>serve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.ping.PingProtocol.serve </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Handle incoming ping requests (server side)
+
+This method echoes back received payloads. It runs until
+the connection is closed or stop() is called.
+
+Raises:
+    RuntimeError: If already running
+</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00231">231</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="ping_8py_source.html#l00270">_handle_ping_request()</a>, <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">p2p_engine.dht.kademlia.KademliaDHT._running</a>, <a class="el" href="engine_8py_source.html#l00152">p2p_engine.engine.P2PEngine._running</a>, <a class="el" href="event_8py_source.html#l00236">p2p_engine.event.EventBus._running</a>, <a class="el" href="heartbeat_8py_source.html#l00054">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</a>, <a class="el" href="ping_8py_source.html#l00085">_running</a>, <a class="el" href="heartbeat_8py_source.html#l00053">p2p_engine.keeper.heartbeat.HeartbeatKeeper._task</a> , 以及 <a class="el" href="ping_8py_source.html#l00086">_task</a>.</p>
+<div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_a840136b084a5a72944bc93450fa095aa_cgraph.png" border="0" usemap="#aclassp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol_a840136b084a5a72944bc93450fa095aa_cgraph" loading="lazy" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a749fc9c7f9bba3e333e80081d2da652f" name="a749fc9c7f9bba3e333e80081d2da652f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a749fc9c7f9bba3e333e80081d2da652f">&#9670;&#160;</a></span>stats()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> <a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a> p2p_engine.protocol.ping.PingProtocol.stats </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Get ping statistics</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00092">92</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="heartbeat_8py_source.html#l00055">p2p_engine.keeper.heartbeat.HeartbeatKeeper._stats</a>, <a class="el" href="yamux__optimized_8py_source.html#l00189">p2p_engine.muxer.yamux_optimized.OptimizedYamuxSession._stats</a> , 以及 <a class="el" href="ping_8py_source.html#l00084">_stats</a>.</p>
+
+</div>
+</div>
+<a id="a1e2c2061c6d4f2d212250f75f541c771" name="a1e2c2061c6d4f2d212250f75f541c771"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e2c2061c6d4f2d212250f75f541c771">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"> None p2p_engine.protocol.ping.PingProtocol.stop </td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>self</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Stop ping operation</pre> 
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00287">287</a> 行定义.</p>
+
+<p class="reference">引用了 <a class="el" href="autonat_8py_source.html#l00651">p2p_engine.detection.autonat.AutoNATProtocol._running</a>, <a class="el" href="autonat_8py_source.html#l00496">p2p_engine.detection.autonat.AutoNATServer._running</a>, <a class="el" href="dht_2kademlia_8py_source.html#l00265">p2p_engine.dht.kademlia.KademliaDHT._running</a>, <a class="el" href="engine_8py_source.html#l00152">p2p_engine.engine.P2PEngine._running</a>, <a class="el" href="event_8py_source.html#l00236">p2p_engine.event.EventBus._running</a>, <a class="el" href="heartbeat_8py_source.html#l00054">p2p_engine.keeper.heartbeat.HeartbeatKeeper._running</a>, <a class="el" href="ping_8py_source.html#l00085">_running</a>, <a class="el" href="heartbeat_8py_source.html#l00053">p2p_engine.keeper.heartbeat.HeartbeatKeeper._task</a>, <a class="el" href="ping_8py_source.html#l00086">_task</a>, <a class="el" href="mplex_8py_source.html#l00508">p2p_engine.muxer.mplex.MplexSession._writer</a>, <a class="el" href="mplex__v2_8py_source.html#l00671">p2p_engine.muxer.mplex_v2.MplexSession._writer</a>, <a class="el" href="yamux_8py_source.html#l00528">p2p_engine.muxer.yamux.YamuxSession._writer</a> , 以及 <a class="el" href="ping_8py_source.html#l00079">_writer</a>.</p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">类成员变量说明</h2>
+<a id="a78b452fd1784c68555192b52b94564dc" name="a78b452fd1784c68555192b52b94564dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78b452fd1784c68555192b52b94564dc">&#9670;&#160;</a></span>_is_dialer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.ping.PingProtocol._is_dialer = is_dialer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00080">80</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00101">ping()</a>.</p>
+
+</div>
+</div>
+<a id="a78898c27e345aaaaaba4746895913167" name="a78898c27e345aaaaaba4746895913167"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78898c27e345aaaaaba4746895913167">&#9670;&#160;</a></span>_max_streams_per_peer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int p2p_engine.protocol.ping.PingProtocol._max_streams_per_peer = 1 if is_dialer else 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00089">89</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1f886cb31b3d661f938e8a62b4507079" name="a1f886cb31b3d661f938e8a62b4507079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f886cb31b3d661f938e8a62b4507079">&#9670;&#160;</a></span>_on_stats_update</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.ping.PingProtocol._on_stats_update = on_stats_update</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a34ffe946459c1ff240ad422525161cac" name="a34ffe946459c1ff240ad422525161cac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34ffe946459c1ff240ad422525161cac">&#9670;&#160;</a></span>_reader</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.ping.PingProtocol._reader = reader</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00078">78</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00270">_handle_ping_request()</a>, <a class="el" href="signaling_8py_source.html#l00292">p2p_sdk.signaling.SignalingClient._message_loop()</a>, <a class="el" href="ping_8py_source.html#l00151">_send_ping()</a>, <a class="el" href="transport_8py_source.html#l00274">p2p_sdk.transport.RelayTransport.close()</a>, <a class="el" href="signaling_8py_source.html#l00080">p2p_sdk.signaling.SignalingClient.connect()</a>, <a class="el" href="transport_8py_source.html#l00206">p2p_sdk.transport.RelayTransport.connect()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00097">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.read()</a>, <a class="el" href="upgrader_8py_source.html#l00157">p2p_engine.transport.upgrader.MuxedStream.read()</a> , 以及 <a class="el" href="transport_8py_source.html#l00256">p2p_sdk.transport.RelayTransport.recv()</a>.</p>
+
+</div>
+</div>
+<a id="a892dd8f30a2294427f8b395bed0b3119" name="a892dd8f30a2294427f8b395bed0b3119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a892dd8f30a2294427f8b395bed0b3119">&#9670;&#160;</a></span>_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool p2p_engine.protocol.ping.PingProtocol._running = False</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00085">85</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="pubsub_8py_source.html#l01051">p2p_engine.protocol.pubsub.GossipSub._heartbeat_loop()</a>, <a class="el" href="client_8py_source.html#l00570">p2p_sdk.client.P2PClient._keepalive_loop()</a>, <a class="el" href="signaling_8py_source.html#l00292">p2p_sdk.signaling.SignalingClient._message_loop()</a>, <a class="el" href="client_8py_source.html#l00516">p2p_sdk.client.P2PClient._receive_loop()</a>, <a class="el" href="transport_8py_source.html#l00154">p2p_sdk.transport.UDPTransport._recv_loop()</a>, <a class="el" href="signaling_8py_source.html#l00446">p2p_sdk.signaling.WebSocketSignalingClient._ws_message_loop()</a>, <a class="el" href="p2p__client_8py_source.html#l00558">p2p_client.P2PClient.close()</a>, <a class="el" href="client_8py_source.html#l00744">p2p_sdk.client.P2PClient.close()</a>, <a class="el" href="signaling_8py_source.html#l00080">p2p_sdk.signaling.SignalingClient.connect()</a>, <a class="el" href="signaling_8py_source.html#l00102">p2p_sdk.signaling.SignalingClient.disconnect()</a>, <a class="el" href="signaling_8py_source.html#l00403">p2p_sdk.signaling.WebSocketSignalingClient.disconnect()</a>, <a class="el" href="p2p__client_8py_source.html#l00322">p2p_client.P2PClient.initialize()</a>, <a class="el" href="client_8py_source.html#l00218">p2p_sdk.client.P2PClient.initialize()</a>, <a class="el" href="ping_8py_source.html#l00097">is_running()</a>, <a class="el" href="ping_8py_source.html#l00101">ping()</a>, <a class="el" href="ping_8py_source.html#l00231">serve()</a>, <a class="el" href="pubsub_8py_source.html#l00823">p2p_engine.protocol.pubsub.GossipSub.start()</a>, <a class="el" href="pubsub_8py_source.html#l01289">p2p_engine.protocol.pubsub.PubSubProtocolHandler.start()</a>, <a class="el" href="transport_8py_source.html#l00059">p2p_sdk.transport.UDPTransport.start()</a>, <a class="el" href="p2p__client_8py_source.html#l00543">p2p_client.P2PClient.start_recv_loop()</a>, <a class="el" href="ping_8py_source.html#l00287">stop()</a>, <a class="el" href="pubsub_8py_source.html#l00832">p2p_engine.protocol.pubsub.GossipSub.stop()</a>, <a class="el" href="pubsub_8py_source.html#l01294">p2p_engine.protocol.pubsub.PubSubProtocolHandler.stop()</a> , 以及 <a class="el" href="transport_8py_source.html#l00079">p2p_sdk.transport.UDPTransport.stop()</a>.</p>
+
+</div>
+</div>
+<a id="a863140940292c6886e621ac69e4b04a6" name="a863140940292c6886e621ac69e4b04a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a863140940292c6886e621ac69e4b04a6">&#9670;&#160;</a></span>_stats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.ping.PingProtocol._stats = <a class="el" href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_stats.html">PingStats</a>()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00084">84</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00270">_handle_ping_request()</a>, <a class="el" href="ping_8py_source.html#l00225">_on_ping_failure()</a>, <a class="el" href="ping_8py_source.html#l00201">_on_ping_success()</a>, <a class="el" href="ping_8py_source.html#l00151">_send_ping()</a>, <a class="el" href="bandwidth_8py_source.html#l00228">src.bandwidth.BandwidthLimiter.get_stats()</a>, <a class="el" href="ping_8py_source.html#l00101">ping()</a>, <a class="el" href="bandwidth_8py_source.html#l00218">src.bandwidth.BandwidthLimiter.remove_allocation()</a>, <a class="el" href="ping_8py_source.html#l00304">reset_stats()</a>, <a class="el" href="ping_8py_source.html#l00092">stats()</a>, <a class="el" href="bandwidth_8py_source.html#l00139">src.bandwidth.BandwidthLimiter.throttle_read()</a> , 以及 <a class="el" href="bandwidth_8py_source.html#l00169">src.bandwidth.BandwidthLimiter.throttle_write()</a>.</p>
+
+</div>
+</div>
+<a id="a71e9546cabe1e1839f6abfd843eeacfb" name="a71e9546cabe1e1839f6abfd843eeacfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71e9546cabe1e1839f6abfd843eeacfb">&#9670;&#160;</a></span>_task</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Optional[asyncio.Task] p2p_engine.protocol.ping.PingProtocol._task = None</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00086">86</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00231">serve()</a> , 以及 <a class="el" href="ping_8py_source.html#l00287">stop()</a>.</p>
+
+</div>
+</div>
+<a id="ad916f332c673b47593434e9c83e65a63" name="ad916f332c673b47593434e9c83e65a63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad916f332c673b47593434e9c83e65a63">&#9670;&#160;</a></span>_timeout</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.ping.PingProtocol._timeout = timeout</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00081">81</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00270">_handle_ping_request()</a> , 以及 <a class="el" href="ping_8py_source.html#l00151">_send_ping()</a>.</p>
+
+</div>
+</div>
+<a id="a8e1ac410e50524eec8f83c7791b8d5a8" name="a8e1ac410e50524eec8f83c7791b8d5a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e1ac410e50524eec8f83c7791b8d5a8">&#9670;&#160;</a></span>_writer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">p2p_engine.protocol.ping.PingProtocol._writer = writer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ping_8py_source.html">ping.py</a> 第 <a class="el" href="ping_8py_source.html#l00079">79</a> 行定义.</p>
+
+<p class="reference">被这些函数引用 <a class="el" href="ping_8py_source.html#l00270">_handle_ping_request()</a>, <a class="el" href="ping_8py_source.html#l00151">_send_ping()</a>, <a class="el" href="signaling_8py_source.html#l00250">p2p_sdk.signaling.SignalingClient._send_request()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00136">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.close()</a>, <a class="el" href="upgrader_8py_source.html#l00169">p2p_engine.transport.upgrader.MuxedStream.close()</a>, <a class="el" href="transport_8py_source.html#l00274">p2p_sdk.transport.RelayTransport.close()</a>, <a class="el" href="signaling_8py_source.html#l00080">p2p_sdk.signaling.SignalingClient.connect()</a>, <a class="el" href="transport_8py_source.html#l00206">p2p_sdk.transport.RelayTransport.connect()</a>, <a class="el" href="signaling_8py_source.html#l00102">p2p_sdk.signaling.SignalingClient.disconnect()</a>, <a class="el" href="upgrader_8py_source.html#l00173">p2p_engine.transport.upgrader.MuxedStream.is_closed()</a>, <a class="el" href="transport_8py_source.html#l00241">p2p_sdk.transport.RelayTransport.send()</a>, <a class="el" href="ping_8py_source.html#l00287">stop()</a>, <a class="el" href="tcp__optimized_8py_source.html#l00119">p2p_engine.transport.tcp_optimized.TCPFastOpenConnection.write()</a> , 以及 <a class="el" href="upgrader_8py_source.html#l00164">p2p_engine.transport.upgrader.MuxedStream.write()</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>p2p_engine/protocol/<a class="el" href="ping_8py_source.html">ping.py</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="namespacep2p__engine.html">p2p_engine</a></li><li class="navelem"><a href="namespacep2p__engine_1_1protocol.html">protocol</a></li><li class="navelem"><a href="namespacep2p__engine_1_1protocol_1_1ping.html">ping</a></li><li class="navelem"><a href="classp2p__engine_1_1protocol_1_1ping_1_1_ping_protocol.html">PingProtocol</a></li>
+    <li class="footer">生成于 <span class="timestamp"></span> , 为 P2P Platform使用  <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
+  </ul>
+</div>
+</body>
+</html>

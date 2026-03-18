@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.16.1" xml:lang="zh">
+  <compounddef id="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state" kind="class" language="Python" prot="public">
+    <compoundname>p2p_engine::protocol::noise::DHState</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1aef415cda238ab57aa0e196b80a5d3f20" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.noise.DHState::public_key</definition>
+        <argsstring></argsstring>
+        <name>public_key</name>
+        <qualifiedname>p2p_engine.protocol.noise.DHState.public_key</qualifiedname>
+        <initializer>=  public_key</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="90" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="90" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1tls_1_1_t_l_s_handshake_payload_1aa2733cafafba711b0aa95fd4d147d6d2" compoundref="tls_8py" startline="175" endline="193">p2p_engine.protocol.tls.TLSHandshakePayload.encode</referencedby>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a2b2a38e4567c14412bd1fd06a2bf916a" compoundref="noise_8py" startline="96" endline="102">p2p_engine.protocol.noise.DHState.get_public_key_bytes</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a3c289d57c706cf9ba9496cc5070e5cac" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>p2p_engine.protocol.noise.DHState::private_key</definition>
+        <argsstring></argsstring>
+        <name>private_key</name>
+        <qualifiedname>p2p_engine.protocol.noise.DHState.private_key</qualifiedname>
+        <initializer>=  private_key</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="91" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="91" bodyend="-1"/>
+        <referencedby refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a13ecd3fd80e988cf960b57c801766d3c" compoundref="noise_8py" startline="103" endline="116">p2p_engine.protocol.noise.DHState.dh</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a623fbdfffb61689029dc420a5eb58e95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>p2p_engine.protocol.noise.DHState.__init__</definition>
+        <argsstring>(self, Optional[X25519PrivateKey] private_key=None, Optional[X25519PublicKey] public_key=None)</argsstring>
+        <name>__init__</name>
+        <qualifiedname>p2p_engine.protocol.noise.DHState.__init__</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>private_key</declname>
+          <array>[X25519PrivateKey]</array>
+          <defval>None</defval>
+        </param>
+        <param>
+          <type>Optional</type>
+          <declname>public_key</declname>
+          <array>[X25519PublicKey]</array>
+          <defval>None</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Initialize DH state.
+
+Args:
+    private_key: Optional private key (generated if not provided)
+    public_key: Optional public key (used when only public key is known)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="81" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="81" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a2b2a38e4567c14412bd1fd06a2bf916a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.noise.DHState.get_public_key_bytes</definition>
+        <argsstring>(self)</argsstring>
+        <name>get_public_key_bytes</name>
+        <qualifiedname>p2p_engine.protocol.noise.DHState.get_public_key_bytes</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Get public key as bytes (RFC 7748 encoding).</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="96" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="96" bodyend="102"/>
+        <references refid="classp2p__engine_1_1protocol_1_1identify_1_1_identify_message_1af490cc0158d0bd1a04c52912b8f95caf" compoundref="identify_8py" startline="99">p2p_engine.protocol.identify.IdentifyMessage.public_key</references>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1aef415cda238ab57aa0e196b80a5d3f20" compoundref="noise_8py" startline="90">p2p_engine.protocol.noise.DHState.public_key</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a13ecd3fd80e988cf960b57c801766d3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bytes</type>
+        <definition> bytes p2p_engine.protocol.noise.DHState.dh</definition>
+        <argsstring>(self, X25519PublicKey peer_public)</argsstring>
+        <name>dh</name>
+        <qualifiedname>p2p_engine.protocol.noise.DHState.dh</qualifiedname>
+        <param>
+          <type>self</type>
+          <defname>self</defname>
+        </param>
+        <param>
+          <type>X25519PublicKey</type>
+          <declname>peer_public</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Perform Diffie-Hellman with peer&apos;s public key.
+
+Args:
+    peer_public: Peer&apos;s X25519 public key
+
+Returns:
+    Shared secret (32 bytes)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="103" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="103" bodyend="116"/>
+        <references refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a3c289d57c706cf9ba9496cc5070e5cac" compoundref="noise_8py" startline="91">p2p_engine.protocol.noise.DHState.private_key</references>
+      </memberdef>
+      <memberdef kind="function" id="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1af0d29ac873492684e8a90eaa199b24c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>&quot;DHState&quot;</type>
+        <definition> &quot;DHState&quot; p2p_engine.protocol.noise.DHState.from_bytes</definition>
+        <argsstring>(cls, bytes public_bytes)</argsstring>
+        <name>from_bytes</name>
+        <qualifiedname>p2p_engine.protocol.noise.DHState.from_bytes</qualifiedname>
+        <param>
+          <type>cls</type>
+          <defname>cls</defname>
+        </param>
+        <param>
+          <type>bytes</type>
+          <declname>public_bytes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create DH state from public key bytes (for remote peers).
+
+Args:
+    public_bytes: Public key bytes (32 bytes, RFC 7748 encoding)
+
+Returns:
+    DHState with only public key (no private key)
+</verbatim> </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="p2p_engine/protocol/noise.py" line="118" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="118" bodyend="131"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Diffie-Hellman key pair container.
+</verbatim> </para>
+    </detaileddescription>
+    <location file="p2p_engine/protocol/noise.py" line="76" column="1" bodyfile="p2p_engine/protocol/noise.py" bodystart="76" bodyend="131"/>
+    <listofallmembers>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a623fbdfffb61689029dc420a5eb58e95" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::DHState</scope><name>__init__</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a13ecd3fd80e988cf960b57c801766d3c" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::DHState</scope><name>dh</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1af0d29ac873492684e8a90eaa199b24c9" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::DHState</scope><name>from_bytes</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a2b2a38e4567c14412bd1fd06a2bf916a" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::DHState</scope><name>get_public_key_bytes</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1a3c289d57c706cf9ba9496cc5070e5cac" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::DHState</scope><name>private_key</name></member>
+      <member refid="classp2p__engine_1_1protocol_1_1noise_1_1_d_h_state_1aef415cda238ab57aa0e196b80a5d3f20" prot="public" virt="non-virtual"><scope>p2p_engine::protocol::noise::DHState</scope><name>public_key</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
