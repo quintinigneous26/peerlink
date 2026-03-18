@@ -1,0 +1,54 @@
+# Relay/TURN Server Dockerfile
+# Multi-stage build for minimal image size
+
+# Build stage
+FROM alpine:3.19 AS builder
+
+RUN apk add --no-cache \
+    build-base \
+    cmake \
+    boost-dev \
+    openssl-dev \
+    linux-headers
+
+WORKDIR /build
+COPY CMakeLists.txt .
+COPY src ./src
+COPY include ./include
+
+RUN mkdir build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+    make -j$(nproc) relay_server
+
+# Runtime stage
+FROM alpine:3.19
+
+RUN apk add --no-cache \
+    libstdc++ \
+    libgcc \
+    boost-system \
+    openssl
+
+# Create non-root user
+RUN addgroup -g 1000 p2p && \
+    adduser -u 1000 -G p2p -s /bin/sh -D p2p
+
+WORKDIR /app
+
+# Copy binary from builder
+COPY --from=builder /build/build/src/servers/relay/relay_server /app/
+
+# Set ownership
+RUN chown -R p2p:p2p /app
+
+USER p2p
+
+# Relay ports
+EXPOSE 9001/tcp 50000-50100/udp
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD nc -z localhost 9001 || exit 1
+
+ENTRYPOINT ["/app/relay_server"]
+CMD ["--host=0.0.0.0", "--port=9001", "--min-port=50000", "--max-port=50100"]

@@ -1,0 +1,58 @@
+# DID Service Dockerfile
+# Multi-stage build for minimal image size
+
+# Build stage
+FROM alpine:3.19 AS builder
+
+RUN apk add --no-cache \
+    build-base \
+    cmake \
+    boost-dev \
+    openssl-dev \
+    linux-headers
+
+WORKDIR /build
+COPY CMakeLists.txt .
+COPY src ./src
+COPY include ./include
+
+RUN mkdir build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+    make -j$(nproc) did_server
+
+# Runtime stage
+FROM alpine:3.19
+
+RUN apk add --no-cache \
+    libstdc++ \
+    libgcc \
+    boost-system \
+    openssl
+
+# Create non-root user
+RUN addgroup -g 1000 p2p && \
+    adduser -u 1000 -G p2p -s /bin/sh -D p2p
+
+WORKDIR /app
+
+# Copy binary from builder
+COPY --from=builder /build/build/src/servers/did/did_server /app/
+
+# Set ownership
+RUN chown -R p2p:p2p /app
+
+USER p2p
+
+# DID service port
+EXPOSE 8081/tcp
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD nc -z localhost 8081 || exit 1
+
+ENV REDIS_HOST=redis
+ENV REDIS_PORT=6379
+ENV JWT_SECRET=change-me-in-production
+
+ENTRYPOINT ["/app/did_server"]
+CMD ["--host=0.0.0.0", "--port=8081"]
