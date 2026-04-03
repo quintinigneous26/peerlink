@@ -14,7 +14,7 @@ struct DIDServerConfig {
     uint16_t port = 8081;
     std::string redis_host = "127.0.0.1";
     uint16_t redis_port = 6379;
-    std::string jwt_secret = "default_secret";
+    std::string jwt_secret;  // Must be set via environment variable JWT_SECRET
     int max_connections = 1000;
 };
 
